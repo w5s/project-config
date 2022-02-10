@@ -3,7 +3,7 @@ const pkg = require('./pkg');
 const npm = require('./npm');
 /**
  * @typedef {{
- *   version: '0.1',
+ *   version: '0.2',
  *   language: string,
  *   words?: string[],
  *   flagWords?: string[],
@@ -31,7 +31,7 @@ function cspell({ state, update }) {
   });
 
   const cSpellFile = json('cSpell.json', {
-    version: '0.1',
+    version: '0.2',
     language: 'en',
     words: [],
     flagWords: [],
