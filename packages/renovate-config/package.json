@@ -1,0 +1,359 @@
+{
+  "name": "@w5s/renovate-config",
+  "version": "1.0.0-alpha.0",
+  "description": "Renovate configuration presets",
+  "keywords": [
+    "renovate",
+    "config",
+    "dependencies"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/master/packages/renovate-config#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config.git/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/w5s/project-config.git",
+    "directory": "packages/renovate-config"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "scripts": {
+    "build": "npm-run-all -p 'build:*'",
+    "build:empty": ":",
+    "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
+    "test": "npm-run-all -p 'test:*'",
+    "test:renovate-config": "renovate-config-validator",
+    "test:renovate-config-schema": "ajv test -s test/schema.json -d package.json --valid"
+  },
+  "devDependencies": {
+    "ajv-cli": "5.0.0",
+    "renovate": "26.14.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "renovate-config": {
+    "automergeLinters": {
+      "description": "Automerge all non-major linter package updates",
+      "packageRules": [
+        {
+          "extends": [
+            "packages:linters"
+          ],
+          "matchPackageNames": [
+            "prettier",
+            "@babel/eslint-parser",
+            "@commitlint/cli"
+          ],
+          "labels": [
+            "AUTOMERGE"
+          ],
+          "automerge": true
+        },
+        {
+          "extends": [
+            "@w5s/renovate-config:groupCSpell"
+          ],
+          "matchPackageNames": [],
+          "labels": [
+            "AUTOMERGE"
+          ],
+          "automerge": true
+        }
+      ]
+    },
+    "automergeJest": {
+      "description": "Automerge Jest",
+      "packageRules": [
+        {
+          "matchPackageNames": [
+            "@types/jest",
+            "babel-jest",
+            "ts-jest",
+            "expect"
+          ],
+          "matchPackagePrefixes": [
+            "jest"
+          ],
+          "labels": [
+            "AUTOMERGE"
+          ],
+          "automerge": true
+        }
+      ]
+    },
+    "automergeTools": {
+      "description": "Automerge minor updates of common dev libraries",
+      "packageRules": [
+        {
+          "matchUpdateTypes": [
+            "minor",
+            "patch"
+          ],
+          "matchDepTypes": [
+            "devDependencies"
+          ],
+          "labels": [
+            "AUTOMERGE"
+          ],
+          "automerge": true,
+          "matchPackageNames": [
+            "concurrently",
+            "glob",
+            "husky",
+            "lerna",
+            "lint-staged",
+            "mrm",
+            "npm-run-all",
+            "nodemon",
+            "patch-package",
+            "release-it",
+            "renovate",
+            "rimraf",
+            "semantic-release",
+            "ts-node",
+            "ts-node-dev",
+            "tsconfig-paths"
+          ]
+        }
+      ]
+    },
+    "automergePresets": {
+      "description": "Automerge minor updates of presets",
+      "packageRules": [
+        {
+          "matchUpdateTypes": [
+            "minor",
+            "patch"
+          ],
+          "matchDepTypes": [
+            "devDependencies"
+          ],
+          "labels": [
+            "AUTOMERGE"
+          ],
+          "automerge": true,
+          "matchPackagePatterns": [
+            "commitlint-config$",
+            "eslint-config$",
+            "mrm-preset$",
+            "ts-config$"
+          ]
+        }
+      ]
+    },
+    "automergeTypescript": {
+      "description": "Automerge Typescript patch",
+      "packageRules": [
+        {
+          "matchUpdateTypes": [
+            "minor",
+            "patch"
+          ],
+          "matchPackageNames": [
+            "typescript",
+            "typedoc"
+          ],
+          "groupName": "Typescript packages",
+          "groupSlug": "typescript",
+          "labels": [
+            "AUTOMERGE"
+          ],
+          "automerge": true
+        }
+      ]
+    },
+    "automergeBabel": {
+      "description": "Automerge babel packages",
+      "packageRules": [
+        {
+          "matchUpdateTypes": [
+            "minor",
+            "patch"
+          ],
+          "labels": [
+            "AUTOMERGE"
+          ],
+          "automerge": true,
+          "matchPackageNames": [
+            "@babel/core"
+          ]
+        }
+      ]
+    },
+    "groupAll": {
+      "extends": [
+        "@w5s/renovate-config:groupAlgoliaClientJavascript",
+        "@w5s/renovate-config:groupCSpell",
+        "@w5s/renovate-config:groupW5sCore",
+        "@w5s/renovate-config:groupRNFirebase",
+        "@w5s/renovate-config:groupReact"
+      ]
+    },
+    "groupAlgoliaClientJavascript": {
+      "packageRules": [
+        {
+          "groupName": "Algolia packages",
+          "matchSourceUrlPrefixes": [
+            "https://github.com/algolia/algoliasearch-client-javascript"
+          ]
+        }
+      ]
+    },
+    "groupRNFirebase": {
+      "packageRules": [
+        {
+          "groupName": "React Native Firebase packages",
+          "matchPackagePatterns": [
+            "^@react-native-firebase/"
+          ]
+        }
+      ]
+    },
+    "groupCSpell": {
+      "packageRules": [
+        {
+          "groupName": "CSpell group",
+          "matchPackagePatterns": [
+            "cspell"
+          ],
+          "matchPackageNames": [
+            "cspell"
+          ]
+        }
+      ]
+    },
+    "groupReact": {
+      "packageRules": [
+        {
+          "matchPackageNames": [
+            "react",
+            "@types/react",
+            "react-dom",
+            "@types/react-dom",
+            "react-test-renderer",
+            "@types/react-test-renderer"
+          ],
+          "groupName": "React packages"
+        }
+      ]
+    },
+    "groupW5sCore": {
+      "packageRules": [
+        {
+          "matchSourceUrlPrefixes": [
+            "https://github.com/w5s/core"
+          ],
+          "groupName": "W5s core packages"
+        }
+      ]
+    },
+    "default": {
+      "description": "Alias for :base",
+      "extends": [
+        "@w5s/renovate-config:base"
+      ]
+    },
+    "application": {
+      "description": "Default configuration for an application",
+      "extends": [
+        "@w5s/renovate-config:base",
+        ":pinAllExceptPeerDependencies"
+      ]
+    },
+    "library": {
+      "description": "Default configuration for a library",
+      "extends": [
+        "@w5s/renovate-config:base",
+        ":pinOnlyDevDependencies"
+      ]
+    },
+    "base": {
+      "description": "Default base configuration for all W5s projects.",
+      "automerge": false,
+      "dependencyDashboard": false,
+      "extends": [
+        ":semanticPrefixFixDepsChoreOthers",
+        ":ignoreModulesAndTests",
+        "group:monorepos",
+        "group:recommended",
+        "helpers:disableTypesNodeMajor",
+        "@w5s/renovate-config:groupAll",
+        "@w5s/renovate-config:automergeBabel",
+        "@w5s/renovate-config:automergeLinters",
+        "@w5s/renovate-config:automergePresets",
+        "@w5s/renovate-config:automergeJest",
+        "@w5s/renovate-config:automergeTools",
+        "@w5s/renovate-config:automergeTypescript"
+      ],
+      "gitLabAutomerge": true,
+      "ignoreUnstable": true,
+      "lockFileMaintenance": {
+        "enabled": true,
+        "schedule": [
+          "after 2am and before 7am on Monday"
+        ],
+        "prPriority": 1,
+        "labels": [
+          "AUTOMERGE"
+        ],
+        "automerge": true
+      },
+      "packageRules": [
+        {
+          "matchPackagePatterns": [
+            "@types/"
+          ],
+          "enabled": false
+        },
+        {
+          "matchDepTypes": [
+            "dependencies"
+          ],
+          "matchUpdateTypes": [
+            "major"
+          ],
+          "stabilityDays": 7
+        },
+        {
+          "matchDepTypes": [
+            "dependencies"
+          ],
+          "matchUpdateTypes": [
+            "minor"
+          ],
+          "stabilityDays": 2
+        },
+        {
+          "matchDepTypes": [
+            "dependencies"
+          ],
+          "matchUpdateTypes": [
+            "patch"
+          ],
+          "stabilityDays": 2
+        }
+      ],
+      "prConcurrentLimit": 20,
+      "prCreation": "not-pending",
+      "prHourlyLimit": 0,
+      "rangeStrategy": "auto",
+      "rebaseWhen": "behind-base-branch",
+      "schedule": [
+        "after 9pm every weekday",
+        "before 6am every weekday",
+        "every weekend"
+      ],
+      "semanticCommits": "auto",
+      "separateMajorMinor": true,
+      "separateMinorPatch": true,
+      "updateNotScheduled": true
+    },
+    "teamAssignees": {
+      "assigneesFromCodeOwners": true,
+      "assigneesSampleSize": 1,
+      "timezone": "Europe/Paris"
+    }
+  }
+}
