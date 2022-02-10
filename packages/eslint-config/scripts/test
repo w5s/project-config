@@ -1,0 +1,28 @@
+#!/bin/sh
+cd $(dirname $(dirname $0))
+ROOT=`pwd`
+BIN="$ROOT/node_modules/.bin"
+echo $ROOT
+echo $BIN
+
+set -e;
+
+eslint ()
+{
+  $BIN/eslint $@;
+}
+
+test_project ()
+{
+  PROJECT_NAME=$1
+  echo "Test $1"
+  cd "__tests__/$1";
+
+  shift;
+  eslint . $@;
+  cd $ROOT;
+}
+
+test_project es-project;
+test_project ts-project --ext .ts,.tsx;
+test_project json --ext .js,.json;

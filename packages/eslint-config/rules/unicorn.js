@@ -1,0 +1,45 @@
+const { off, warn, error } = require('./_rule');
+
+module.exports = {
+  plugins: ['unicorn'],
+  rules: {
+    'unicode-bom': [error, 'never'],
+    'unicorn/better-regex': error,
+    'unicorn/catch-error-name': [error, { name: error }],
+    'unicorn/custom-error-definition': off,
+    'unicorn/error-message': error,
+    'unicorn/explicit-length-check': off,
+    'unicorn/filename-case': off,
+    'unicorn/import-index': error,
+    'unicorn/new-for-builtins': off, // error, @see https://github.com/sindresorhus/eslint-plugin-unicorn/issues/122
+    'unicorn/no-abusive-eslint-disable': error,
+    'unicorn/no-array-instanceof': error,
+    'unicorn/no-console-spaces': off,
+    'unicorn/no-fn-reference-in-iterator': off,
+    'unicorn/no-for-loop': error,
+    'unicorn/no-hex-escape': error,
+    'unicorn/no-new-buffer': error,
+    'unicorn/no-null': off, // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/612
+    'unicorn/no-process-exit': off,
+    'unicorn/no-unreadable-array-destructuring': off,
+    'unicorn/no-unused-properties': warn,
+    'unicorn/no-zero-fractions': error,
+    'unicorn/number-literal-case': error,
+    'unicorn/prefer-add-event-listener': off,
+    'unicorn/prefer-event-key': error,
+    'unicorn/prefer-exponentiation-operator': error,
+    'unicorn/prefer-flat-map': error,
+    'unicorn/prefer-includes': error,
+    'unicorn/prefer-node-append': error,
+    'unicorn/prefer-node-remove': error,
+    'unicorn/prefer-number-properties': error,
+    'unicorn/prefer-query-selector': error,
+    'unicorn/prefer-set-has': off,
+    'unicorn/prefer-spread': off,
+    'unicorn/prefer-starts-ends-with': error,
+    'unicorn/prefer-text-content': error,
+    'unicorn/prefer-type-error': error,
+    'unicorn/prevent-abbreviations': off, // This rule is so dangerous : it potentially break code while fixing in many cases !!
+    'unicorn/throw-new-error': error,
+  },
+};
