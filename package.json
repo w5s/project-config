@@ -31,7 +31,7 @@
     "rescue": "git clean -fdx;yarn install",
     "test": "npm-run-all -p \"test:*\"",
     "test:packages": "lerna run test",
-    "test:cspell": "cspell '**' --no-summary",
+    "__test:cspell": "cspell '**' --no-summary",
     "validate": "npm run build && npm run lint && npm test"
   },
   "commitlint": {
