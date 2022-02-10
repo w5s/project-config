@@ -105,7 +105,8 @@
     ".cache/",
     "lib/",
     "**/tsconfig.json",
-    ".vscode/**"
+    ".vscode/**",
+    "**/_tester/**"
   ],
   "dependencies": {},
   "devDependencies": {
