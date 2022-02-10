@@ -1,0 +1,149 @@
+{
+  "name": "@w5s/project-config-src",
+  "private": true,
+  "files": [],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ],
+    "nohoist": [
+      "/@babel/eslint-parser",
+      "/eslint"
+    ]
+  },
+  "scripts": {
+    "build": "npm-run-all -p \"build:*\"",
+    "postbuild": "npm run docs",
+    "build:empty": ":",
+    "build:packages": "lerna run build",
+    "clean": "lerna run clean",
+    "configure": "npm run mrm -- configure",
+    "coverage": ":",
+    "docs": "md-magic --path './*.md' --ignore='node_modules' && lerna run docs",
+    "format": "eslint . --quiet --cache --fix --ext .js,.jsx,.ts,.tsx,.json",
+    "prepare": "npm-run-all -p \"prepare:*\"",
+    "lint": "eslint . --cache --ext .js,.jsx,.ts,.tsx,.json",
+    "mrm": "mrm --dir packages/mrm-preset",
+    "prepare:empty": ":",
+    "prepare:husky": "is-ci || husky install",
+    "prepare:packages": "lerna bootstrap",
+    "release": "CI=$(is-ci) lerna publish ${CI:+\"--yes\"}",
+    "rescue": "git clean -fdx;yarn install",
+    "test": "npm-run-all -p \"test:*\"",
+    "test:packages": "lerna run test",
+    "test:cspell": "cspell '**' --no-summary",
+    "validate": "npm run build && npm run lint && npm test"
+  },
+  "commitlint": {
+    "extends": [
+      "./packages/commitlint-config/commitlint.config"
+    ]
+  },
+  "lint-staged": {
+    "*.json": [
+      "eslint"
+    ],
+    "*.js?(x)": [
+      "eslint"
+    ],
+    "*.ts?(x)": [
+      "eslint"
+    ]
+  },
+  "eslintConfig": {
+    "env": {
+      "node": true
+    },
+    "parser": "@babel/eslint-parser",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 2020,
+      "project": "./tsconfig.json",
+      "requireConfigFile": false,
+      "sourceType": "module"
+    },
+    "plugins": [
+      "sort-keys-fix"
+    ],
+    "extends": [
+      "./packages/eslint-config/rules/base",
+      "prettier",
+      "./packages/eslint-config/rules/prettier",
+      "./packages/eslint-config/json"
+    ],
+    "rules": {
+      "filenames/match-exported": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "*.+(ts|tsx)"
+        ],
+        "extends": [
+          "./packages/eslint-config/ts"
+        ]
+      },
+      {
+        "files": [
+          "**/__mocks__ /**/*.+(ts|tsx|js|jsx)",
+          "**/__tests__ /**/*.+(ts|tsx|js|jsx)",
+          "**/?(*.)+(spec|test).+(ts|tsx|js|jsx)"
+        ],
+        "extends": [
+          "./packages/eslint-config/jest"
+        ]
+      }
+    ],
+    "root": true
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "coverage/",
+    "build/",
+    ".cache/",
+    "lib/",
+    "**/tsconfig.json",
+    ".vscode/**"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "7.17.2",
+    "@babel/eslint-parser": "7.17.0",
+    "@commitlint/cli": "16.1.0",
+    "@commitlint/config-conventional": "16.0.0",
+    "@types/node": "^16.11.24",
+    "@typescript-eslint/eslint-plugin": "5.10.2",
+    "@typescript-eslint/parser": "5.10.2",
+    "cspell": "5.18.4",
+    "eslint": "8.8.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jest": "26.1.0",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-sort-keys-fix": "1.1.2",
+    "husky": "7.0.4",
+    "is-ci": "3.0.1",
+    "lerna": "4.0.0",
+    "lint-staged": "12.3.3",
+    "markdown-magic": "2.6.0",
+    "markdown-magic-package-json": "2.0.2",
+    "markdown-magic-subpackage-list": "1.1.1",
+    "mrm": "3.0.10",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.5.1",
+    "sync-directory": "4.0.12",
+    "typescript": "4.5.5"
+  },
+  "engines": {
+    "node": ">=12.0.0",
+    "npm": ">=6.0.0",
+    "yarn": ">=1.0.0"
+  },
+  "mrmConfig": {
+    "packageArchetype": "workspace"
+  },
+  "packageManager": "yarn@1.22.17"
+}
