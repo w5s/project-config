@@ -1,0 +1,77 @@
+##
+# Follow the following standards
+#
+# @ref https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml
+# @ref https://github.com/SocialGouv/gitlab-ci-yml/
+#
+include:
+  - /.gitlab/AutoDevopsInclude.gitlab-ci.yml
+
+workflow:
+  rules:
+    # Skip GitHub pull requests pipelines
+    - if: $CI_PIPELINE_SOURCE == 'external_pull_request_event'
+      when: never
+    # Otherwise include the job and set to run normally
+    - when: always
+
+stages:
+  - prepare
+  - build
+  - code_quality
+  - registration
+  - release
+  - deploy # Dummy stage, prefer staging, canary and production
+  - staging
+  - canary
+  - production
+  - incremental rollout 10%
+  - incremental rollout 25%
+  - incremental rollout 50%
+  - incremental rollout 100%
+  - performance
+  - cleanup
+
+variables:
+  GIT_STRATEGY: fetch
+  GIT_DEPTH: 5
+
+#
+# Jobs
+#
+install:
+  extends: .autodevops_install
+
+lint:
+  extends: .autodevops_lint
+
+test:
+  extends: .autodevops_test
+
+build:
+  extends: .autodevops_build
+
+release:
+  extends: .autodevops_trigger_release
+
+# register_image:
+#   extends: .autodevops_register_image
+
+renovate:
+  extends: .autodevops_renovate
+
+pages:
+  extends: .autodevops_pages
+
+code_analysis:
+  extends:
+    - .autodevops_code_analysis
+  variables:
+    CODE_ANALYSIS_HOUR: 7 # 7h UTC => 9h Paris
+    # CODE_ANALYSIS_DISABLED: "🛑"
+
+# deploy_production:
+#   extends:
+#     - .autodevops_trigger_deploy
+#   variables:
+#     DEPLOY_ENVIRONMENT: production

@@ -1,0 +1,49 @@
+{
+  "name": "@w5s/mrm-preset",
+  "version": "1.0.0-alpha.0",
+  "description": "Mrm configuration presets",
+  "keywords": [
+    "mrm",
+    "config",
+    "bootstrap"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/master/packages/mrm-preset#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config.git/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/w5s/project-config.git",
+    "directory": "packages/mrm-preset"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "main": "config.json",
+  "scripts": {
+    "build": "npm-run-all -p 'build:*'",
+    "build:empty": ":",
+    "build:tsc": "tsc --noEmit --skipLibCheck",
+    "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
+    "format": "eslint . --fix",
+    "lint": "eslint .",
+    "test": "mkdir _tester; cd _tester; ../node_modules/.bin/mrm bootstrap --dir ..; ../node_modules/.bin/mrm configure --dir ..",
+    "test:hapi": "mkdir -p _tester/hapi; cd $_; ../../node_modules/.bin/mrm hapi --dir ../..; ../../node_modules/.bin/mrm --dir configure ../.."
+  },
+  "dependencies": {
+    "debug": "^4.3.3",
+    "mrm-core": "^6.0.0",
+    "semver-intersect": "^1.4.0",
+    "sync-directory": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.7",
+    "mrm": "3.0.10"
+  },
+  "engines": {
+    "node": ">=12.x",
+    "yarn": ">=1.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

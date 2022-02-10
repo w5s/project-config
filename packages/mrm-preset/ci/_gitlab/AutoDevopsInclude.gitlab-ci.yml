@@ -1,0 +1,251 @@
+#
+include:
+  - /.gitlab/Renovate.gitlab-ci.yml
+
+# Default variables
+variables:
+
+
+  # To activate the auto release
+  AUTO_DEVOPS_QUALITY_WHEN: 'always' # 'always'|'never'
+  AUTO_DEVOPS_TEST_WHEN: 'always' # 'always'|'never'
+  AUTO_DEVOPS_RELEASE_WHEN: 'manual' # 'on_success'|'manual'|'never'
+  AUTO_DEVOPS_DEPLOY_ALLOW: 'tag' # 'tag'|'any'
+  AUTO_DEVOPS_DEPLOY_WHEN: 'manual' # 'on_success'|'manual'|'never'
+
+  # Renovate variable
+  # RENOVATE_DISABLED: "🛑"
+
+  ##
+  # Contextual variables
+  ##
+  # DEPLOY_ENVIRONMENT: production,staging,...
+  # RENOVATE: true|false
+
+#
+# AutoDevops jobs
+#
+
+# Trait to refactor common reusable rules
+.autodevops_base_rules:
+  rules:
+    - &autodevops_schedule_skip_rule
+      if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: never
+    - &autodevops_renovate_skip_rule
+      if: "$RENOVATE"
+      when: never
+    - &autodevops_default_branch_only_rule
+      if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+      when: never
+    - when: on_success
+
+##
+# Generic trait for a trigger button for release stage
+#
+.autodevops_trigger_release:
+  stage: release
+  extends:
+    - .autodevops_node_install
+    - .autodevops_node_image
+  rules:
+    - <<: *autodevops_schedule_skip_rule
+    - <<: *autodevops_default_branch_only_rule
+    - if: "$AUTO_DEVOPS_RELEASE_WHEN == 'never'"
+      when: never
+    - if: "$CI_COMMIT_TAG"
+      when: never
+    - if: $CI_COMMIT_MESSAGE =~ /chore\(release\):/
+      when: never
+    - if: "$AUTO_DEVOPS_RELEASE_WHEN != 'manual'"
+      when: on_success
+    - when: manual
+  needs:
+    - job: install
+      artifacts: true
+    - job: build
+      artifacts: true
+  # Blocking job : https://gitlab.com/gitlab-org/gitlab/-/issues/17768#note_214977686
+  allow_failure: false
+  script:
+    - git config --global user.email "${CI_EMAIL}"
+    - git config --global user.name "${CI_USERNAME}"
+    - git remote set-url origin "https://gitlab-ci-token:$GITLAB_TOKEN@$CI_SERVER_HOST/$CI_PROJECT_PATH.git"
+    - git checkout -B "$CI_COMMIT_REF_NAME" "$CI_COMMIT_SHA"
+    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+    - npm run release
+
+##
+# Generic trait for a trigger button for deploy stage.
+# Use DEPLOY_ENVIRONMENT variable to choose environment
+#
+# Example:
+# .my_job:
+#   extends: .autodevops_trigger_deploy
+#   variables:
+#     DEPLOY_ENVIRONMENT: "my-prod"
+#
+.autodevops_trigger_deploy:
+  stage: deploy
+  rules:
+    - <<: *autodevops_schedule_skip_rule
+    # Tag based deployment
+    - if: "$AUTO_DEVOPS_DEPLOY_WHEN == 'never'"
+      when: never
+    - if: $AUTO_DEVOPS_DEPLOY_ALLOW == 'tag' && $CI_COMMIT_TAG == null
+      when: never
+    - if: $AUTO_DEVOPS_DEPLOY_ALLOW == 'tag' && $CI_COMMIT_TAG != null && $AUTO_DEVOPS_DEPLOY_WHEN == 'manual'
+      when: manual
+    - if: $AUTO_DEVOPS_DEPLOY_ALLOW == 'tag' && $CI_COMMIT_TAG != null && $AUTO_DEVOPS_DEPLOY_WHEN == 'on_success'
+      when: on_success
+    # Default branch based deployment
+    - <<: *autodevops_default_branch_only_rule
+    - if: $AUTO_DEVOPS_DEPLOY_WHEN != 'manual'
+      when: on_success
+    - when: manual
+
+.autodevops_install:
+  stage: prepare
+  extends:
+    - .autodevops_node_install
+  interruptible: true
+  rules:
+    - <<: *autodevops_schedule_skip_rule
+    - when: on_success
+
+.autodevops_lint:
+  stage: code_quality
+  rules:
+    - <<: *autodevops_schedule_skip_rule
+    - if: "$AUTO_DEVOPS_QUALITY_WHEN == 'never'"
+      when: never
+    - when: always
+  extends:
+    - .autodevops_node_install
+    - .autodevops_node_image
+  needs:
+    - job: install
+      artifacts: true
+    - job: build
+      artifacts: true
+  script:
+    - yarn lint
+
+.autodevops_test:
+  stage: code_quality
+  rules:
+    - <<: *autodevops_schedule_skip_rule
+    - if: "$AUTO_DEVOPS_TEST_WHEN == 'never'"
+      when: never
+    - when: always
+  extends:
+    - .autodevops_node_install
+    - .autodevops_node_image
+  needs:
+    - job: install
+      artifacts: true
+    - job: build
+      artifacts: true
+  script:
+    - yarn test
+
+.autodevops_build:
+  stage: build
+  extends:
+    - .autodevops_node_build
+  rules:
+    - <<: *autodevops_schedule_skip_rule
+    - when: on_success
+  needs:
+    - job: install
+      artifacts: true
+
+.autodevops_pages:
+  extends:
+    - .autodevops_node_docs
+    - .autodevops_trigger_deploy
+  artifacts:
+    paths:
+      - public
+
+.autodevops_code_analysis:
+  stage: code_quality
+  extends:
+    - .autodevops_node_install
+  variables:
+    CODE_ANALYSIS_HOUR: 7 # 7h UTC => 9h Paris
+    # CODE_ANALYSIS_DISABLED: "🛑"
+  rules:
+    - if: "$CODE_ANALYSIS_DISABLED"
+      when: never
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+      when: always
+    - when: never
+  script:
+    - >
+      if [ `date +%H` -eq $CODE_ANALYSIS_HOUR ]; then
+        npm run code-analysis;
+      else
+        echo "Code Analysis skipped H=$(date +%H)";
+      fi
+
+# .autodevops_register_image:
+#   extends:
+#     - .base_register_stage
+#   stage: registration
+#   needs:
+#     - job: Build
+#       artifacts: true
+#   variables:
+#     CONTEXT: .
+#     IMAGE_NAME: $CI_REGISTRY_IMAGE
+
+.autodevops_node_image:
+  image: node:lts-alpine
+
+.autodevops_node_install:
+  extends:
+    - .autodevops_node_image
+  before_script:
+    - yarn install --frozen-lockfile --prefer-offline
+  script:
+    - echo 'Installation Successful'
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
+
+.autodevops_node_build:
+  extends:
+    - .autodevops_node_image
+    - .autodevops_node_install
+  script:
+    - npm run build
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - dist
+      - "packages/*/dist"
+      - lib
+      - "packages/*/lib"
+      - node_modules
+
+.autodevops_node_docs:
+  extends:
+    - .autodevops_node_image
+    - .autodevops_node_install
+  script:
+    # We use NPM because supports `--if-present`
+    - npm run docs --if-present
+
+.autodevops_renovate:
+  stage: prepare
+  rules:
+    - if: "$RENOVATE_DISABLED"
+      when: never
+    - if: "$RENOVATE"
+      when: always
+    - when: never
+  extends:
+    - .renovate

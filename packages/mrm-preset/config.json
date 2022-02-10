@@ -1,0 +1,20 @@
+{
+  "aliases": {
+    "configure": [
+      "gitignore",
+      "project",
+      "contributing",
+      "release",
+      "ci",
+      "lang",
+      "commitlint",
+      "editorconfig",
+      "eslint",
+      "cspell",
+      "jest",
+      "renovate",
+      "githooks",
+      "postconfigure"
+    ]
+  }
+}
