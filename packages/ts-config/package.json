@@ -1,0 +1,40 @@
+{
+  "name": "@w5s/ts-config",
+  "version": "1.0.0-alpha.0",
+  "description": "Typescript compiler configuration presets",
+  "keywords": [
+    "typescript",
+    "config",
+    "tsc"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/master/packages/ts-config#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/w5s/project-config.git",
+    "directory": "packages/ts-config"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "main": "./tsconfig.json",
+  "files": [
+    "tsconfig.json"
+  ],
+  "scripts": {
+    "build": "npm-run-all -p 'build:*'",
+    "build:empty": ":",
+    "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
+    "test": "tsc -p __tests__/tsconfig.json --noEmit --skipLibCheck"
+  },
+  "devDependencies": {
+    "typescript": "4.5.5"
+  },
+  "peerDependencies": {
+    "typescript": "3.x || 4.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
