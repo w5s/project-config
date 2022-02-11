@@ -1,6 +1,9 @@
 const { cspell } = require('../core/cspell');
+const { lintStaged } = require('../core/lintStaged');
+const { hasGit } = require('../core/git');
 
 function task() {
+  const gitSupported = hasGit();
   cspell({
     state: 'present',
     update: (_) => ({
@@ -20,8 +23,16 @@ function task() {
       ),
     }),
   });
+
+  lintStaged({
+    state: gitSupported ? 'present' : 'absent',
+    update: (config) => ({
+      ...config,
+      '*.*': ['cspell --no-must-find-files'],
+    }),
+  });
 }
 
-task.description = 'Adds Gitignore file';
+task.description = 'Adds CSpell support';
 
 module.exports = task;
