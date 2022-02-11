@@ -4,7 +4,6 @@ module.exports = {
     require.resolve('./rules/base'),
     require.resolve('./rules/jsdoc'),
     require.resolve('./rules/import'),
-    require.resolve('./rules/promise'),
     require.resolve('./rules/unicorn'),
     'prettier',
     require.resolve('./rules/prettier'),
