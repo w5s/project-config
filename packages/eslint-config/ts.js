@@ -2,7 +2,6 @@
 module.exports = {
   extends: [
     require.resolve('./rules/base'),
-    require.resolve('./rules/filenames'),
     require.resolve('./rules/jsdoc'),
     require.resolve('./rules/import'),
     require.resolve('./rules/promise'),
