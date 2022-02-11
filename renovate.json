@@ -1,8 +1,8 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "@w5s/renovate-config:library",
-    "@w5s/renovate-config:teamAssignees"
+    "local>packages/renovate-config:library",
+    "local>packages/renovate-config:teamAssignees"
   ],
   "ignorePaths": [
     "**/node_modules/**"
