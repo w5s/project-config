@@ -90,7 +90,7 @@ module.exports = {
     'import/no-relative-parent-imports': off,
     'import/no-restricted-paths': off,
     'import/no-self-import': error,
-    'import/no-unassigned-import': error,
+    'import/no-unassigned-import': off,
     'import/no-unresolved': [error, { caseSensitive: true, commonjs: true }],
     'import/no-unused-modules': [performanceIssue(error), { unusedExports: true }],
     'import/no-useless-path-segments': error,
