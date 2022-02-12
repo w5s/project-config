@@ -7,7 +7,7 @@
     "config",
     "lint"
   ],
-  "homepage": "https://github.com/w5s/project-config/blob/master/packages/eslint-config#readme",
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/eslint-config#readme",
   "bugs": {
     "url": "https://github.com/w5s/project-config.git/issues"
   },
