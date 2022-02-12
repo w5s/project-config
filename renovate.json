@@ -6,16 +6,5 @@
   ],
   "ignorePaths": [
     "**/node_modules/**"
-  ],
-  "packageRules": [
-    {
-      "packageNames": [
-        "renovate"
-      ],
-      "labels": [
-        "AUTOMERGE"
-      ],
-      "automerge": true
-    }
   ]
 }
