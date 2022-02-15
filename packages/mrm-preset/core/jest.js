@@ -14,7 +14,7 @@ function jest({ state }) {
   const packageFileDefault = packageJson();
   const hasJest = state === 'present';
   const hasTypescript = Boolean(packageFileDefault.get('devDependencies.typescript'));
-  const hasWorkspaces = Boolean(packageFileDefault.get('workspaces'));
+  const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
 
   pkg.withPackageJson((packageFile) => {
     if (hasJest) {

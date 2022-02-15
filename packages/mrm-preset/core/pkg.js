@@ -61,6 +61,14 @@ function manager(packageFile) {
 /**
  *
  * @param {import('mrm-core').PackageJson} packageFile
+ */
+function hasWorkspaces(packageFile) {
+  return Boolean(packageFile.get('workspaces'));
+}
+
+/**
+ *
+ * @param {import('mrm-core').PackageJson} packageFile
  * @param {Record<string, string>} engineVersionMap
  */
 function engineMinVersion(packageFile, engineVersionMap) {
@@ -94,5 +102,6 @@ module.exports = {
   script,
   manager,
   engineMinVersion,
+  hasWorkspaces,
   withPackageJson,
 };

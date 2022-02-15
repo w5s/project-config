@@ -23,7 +23,7 @@ const jsonFile = require('./jsonFile');
  */
 function typedoc({ state, update }) {
   const packageFileDefault = packageJson();
-  const hasWorkspaces = Boolean(packageFileDefault.get('workspaces'));
+  const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
   const hasTypedoc = state === 'present';
 
   pkg.withPackageJson((packageFile) => {

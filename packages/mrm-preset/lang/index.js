@@ -4,7 +4,6 @@ const npm = require('../core/npm');
 const { gitIgnore } = require('../core/git');
 const project = require('../core/project');
 const { eslintIgnore } = require('../core/eslint');
-const { useWorkspaces } = require('../core/workspace');
 const { typedoc } = require('../core/typedoc');
 const pkg = require('../core/pkg');
 
@@ -27,8 +26,9 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
   }
   task.typescript = () => {
     const tsConfigPreset = tsConfigDefault;
-    const isApplication = packageJson().get('mrmConfig.packageArchetype') === 'application';
-    const hasWorkspaces = useWorkspaces();
+    const packageFile = packageJson();
+    const isApplication = packageFile.get('mrmConfig.packageArchetype') === 'application';
+    const hasWorkspaces = pkg.hasWorkspaces(packageFile);
     const tsConfigSettingsName = 'tsconfig.settings.json';
     const tsConfigSettings = json(tsConfigSettingsName);
     const tsConfig = json('tsconfig.json');
@@ -77,9 +77,9 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
       }
     }
     // Application setup
-    pkg.withPackageJson((packageFile) => {
+    pkg.withPackageJson((_packageFile) => {
       if (isApplication) {
-        pkg.script(packageFile, {
+        pkg.script(_packageFile, {
           name: project.develop,
           script:
             "NODE_ENV=development ts-node-dev --require='tsconfig-paths/register' -r dotenv/config -- ./src/index.ts dotenv_config_path=.env",
