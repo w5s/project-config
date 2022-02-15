@@ -383,7 +383,13 @@ module.exports = {
     'operator-linebreak': [error, 'after'],
     'padded-blocks': [error, 'never'],
     'padding-line-between-statements': off,
-    'prefer-arrow-callback': error,
+    'prefer-arrow-callback': [
+      error,
+      {
+        allowNamedFunctions: false,
+        allowUnboundThis: true,
+      },
+    ],
     'prefer-const': error,
     'prefer-destructuring': off,
     'prefer-named-capture-group': off,
