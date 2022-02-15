@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.2](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.1...@w5s/eslint-config@1.0.0-alpha.2) (2022-02-15)
+
+
+### Features
+
+* improve arrow-body-style configuration ([a4ee8a9](https://github.com/w5s/project-config/commit/a4ee8a9f3912285b45287afc4ccae2fa57431c6a))
+* improve prefer-arrow-callback support ([644b45c](https://github.com/w5s/project-config/commit/644b45c0422355cd8767cfd0231b09b694b879ea))
+
+
+
+
+
 # 1.0.0-alpha.1 (2022-02-12)
 
 
