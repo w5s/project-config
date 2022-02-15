@@ -5,9 +5,7 @@ const { off, warn, error } = require('./_rule');
  * @param {string} _status
  */
 // eslint-disable-next-line no-unused-vars
-const performanceIssue = (_status) => {
-  return off;
-};
+const performanceIssue = (_status) => off;
 
 module.exports = {
   plugins: ['import'],

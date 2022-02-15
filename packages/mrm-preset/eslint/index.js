@@ -87,23 +87,21 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     // VSCode support
     vscodeSettings({
       state: 'present',
-      update: (settings) => {
-        return {
-          ...settings,
-          'editor.codeActionsOnSave': settings['editor.codeActionsOnSave'] || {
-            'source.fixAll': true,
-          },
-          'eslint.validate': extList.map(
-            (ext) =>
-              ({
-                jsx: 'javascriptreact',
-                js: 'javascript',
-                tsx: 'typescriptreact',
-                ts: 'typescript',
-              }[ext] || ext)
-          ),
-        };
-      },
+      update: (settings) => ({
+        ...settings,
+        'editor.codeActionsOnSave': settings['editor.codeActionsOnSave'] || {
+          'source.fixAll': true,
+        },
+        'eslint.validate': extList.map(
+          (ext) =>
+            ({
+              jsx: 'javascriptreact',
+              js: 'javascript',
+              tsx: 'typescriptreact',
+              ts: 'typescript',
+            }[ext] || ext)
+        ),
+      }),
     });
   }
 

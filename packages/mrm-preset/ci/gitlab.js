@@ -21,9 +21,7 @@ function task() {
       /**
        * @param {string|{local: string}} include
        */
-      (include) => {
-        return (typeof include === 'string' ? include : include.local) === includePath;
-      }
+      (include) => (typeof include === 'string' ? include : include.local) === includePath
     );
   const addInclude = (/** @type {string} */ includePath) =>
     gitlabCIConfig.set('include', gitlabCIConfig.get('include', []).concat([{ local: includePath }]));

@@ -13,26 +13,17 @@ type ReactComponentState = {
 };
 
 export class MarkupView extends React.PureComponent<ReactComponentProps, ReactComponentState> {
-  state: ReactComponentState = {
+  override state: ReactComponentState = {
     fooState: false,
   };
 
-  componentDidMount(): void {}
+  override componentDidMount(): void {}
 
-  componentDidUpdate(previousProps: ReactComponentProps, previousState: ReactComponentState): void {}
+  override componentDidUpdate(previousProps: ReactComponentProps, previousState: ReactComponentState): void {}
 
-  handlePress = () => {
-    return null;
-  };
+  handlePress = () => null;
 
-  render(): React.ReactNode {
-    return this.state.fooState ? (
-      <FunctionComponent
-        onLongPress={() => {
-          return null;
-        }}
-        onPress={this.handlePress}
-      />
-    ) : null;
+  override render(): React.ReactNode {
+    return this.state.fooState ? <FunctionComponent onLongPress={() => null} onPress={this.handlePress} /> : null;
   }
 }

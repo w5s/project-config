@@ -29,16 +29,13 @@ function task() {
    *
    * @param {string} script
    */
-  const lernaRun = (script) => {
-    return `lerna run ${script}`;
-  };
+  const lernaRun = (script) => `lerna run ${script}`;
+
   /**
    *
    * @param {string} script
    */
-  const npmRunAll = (script) => {
-    return `npm-run-all -p "${script}:*"`;
-  };
+  const npmRunAll = (script) => `npm-run-all -p "${script}:*"`;
 
   // Detect git repository
   pkg.value(packageFile, {

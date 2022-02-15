@@ -78,12 +78,13 @@ function engineMinVersion(packageFile, engineVersionMap) {
   };
 
   packageFile.merge({
-    engines: Object.keys(engineVersionMap).reduce((acc, engineName) => {
-      return {
+    engines: Object.keys(engineVersionMap).reduce(
+      (acc, engineName) => ({
         ...acc,
         [engineName]: engineConstraint(engineName),
-      };
-    }, {}),
+      }),
+      {}
+    ),
   });
 }
 

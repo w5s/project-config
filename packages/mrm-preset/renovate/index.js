@@ -34,9 +34,7 @@ function createRenovate({ renovatePresetApplication, renovatePresetLibrary }) {
             /**
              * @param {string} extension
              */
-            (extension) => {
-              return extension !== renovatePresetApplication && extension !== renovatePresetLibrary;
-            }
+            (extension) => extension !== renovatePresetApplication && extension !== renovatePresetLibrary
           )
         )
       );

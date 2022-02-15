@@ -31,16 +31,10 @@ function vscodeTask(newTask) {
    * @type {Array<any>}
    */
   const tasks = vscodeTaskFile.get('tasks', []);
-  if (
-    tasks.find((task) => {
-      return task.script === newTask.script;
-    })
-  ) {
+  if (tasks.find((task) => task.script === newTask.script)) {
     vscodeTaskFile.set(
       'tasks',
-      tasks.map((task) => {
-        return task.script === newTask.script ? newTask : task;
-      })
+      tasks.map((task) => (task.script === newTask.script ? newTask : task))
     );
   } else {
     vscodeTaskFile.set('tasks', [newTask].concat(tasks));

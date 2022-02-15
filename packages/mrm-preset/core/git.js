@@ -15,19 +15,13 @@ function remoteSync() {
            * 1. filter github URL
            * @param {string} returnValue
            */
-          (returnValue) => {
-            return returnValue.replace(/^git@github.com:/, 'https://github.com/');
-          },
+          (returnValue) => returnValue.replace(/^git@github.com:/, 'https://github.com/'),
           /**
            * 2. filter gitlab URL
            * @param {string} returnValue
            */
-          (returnValue) => {
-            return returnValue.replace(/^git@gitlab.com:/, 'https://gitlab.com/');
-          },
-        ].reduce((returnValue, filter) => {
-          return filter(returnValue);
-        }, remoteURL)
+          (returnValue) => returnValue.replace(/^git@gitlab.com:/, 'https://gitlab.com/'),
+        ].reduce((returnValue, filter) => filter(returnValue), remoteURL)
       : remoteURL;
   } catch (error) {
     // ignore error
@@ -48,9 +42,7 @@ exports.hasGit = hasGit;
 function trimStartLine(content) {
   return content
     .split(/\n/)
-    .map((line) => {
-      return line.replace(/^\s+/, '');
-    })
+    .map((line) => line.replace(/^\s+/, ''))
     .filter((_) => _.length > 0)
     .join('\n');
 }
@@ -64,9 +56,7 @@ function gitIgnore(section, sectionContent) {
 
   return block({
     block: Array.isArray(sectionContent) ? sectionContent.join(EOL) : trimStartLine(sectionContent),
-    marker: (mark) => {
-      return `# ${mark} ### ${section} ###`;
-    },
+    marker: (mark) => `# ${mark} ### ${section} ###`,
     path: '.gitignore',
   });
 }

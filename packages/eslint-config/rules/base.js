@@ -12,7 +12,13 @@ module.exports = {
     'array-bracket-spacing': [error, 'never'],
     'array-callback-return': error,
     'array-element-newline': off,
-    'arrow-body-style': [error, 'always'],
+    'arrow-body-style': [
+      'error',
+      'as-needed',
+      {
+        requireReturnForObjectLiteral: false,
+      },
+    ],
     'arrow-parens': [error, 'always'],
     'arrow-spacing': [error, { after: true, before: true }],
     'block-scoped-var': error,

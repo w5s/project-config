@@ -72,9 +72,7 @@ function install(deps, options = {}, exec) {
   }
 
   log.info(`Installing ${listify(newDeps)}...`);
-  const versionedDeps = newDeps.map((dep) => {
-    return getVersionedDep(dep, versions);
-  });
+  const versionedDeps = newDeps.map((dep) => getVersionedDep(dep, versions));
 
   // eslint-disable-next-line consistent-return
   return run(versionedDeps, { dev }, exec);
@@ -96,9 +94,7 @@ function uninstall(deps, options = {}, exec) {
   const installed = getOwnDependencies({ dev });
 
   // @ts-ignore
-  const newDeps = deps.filter((dep) => {
-    return installed[dep];
-  });
+  const newDeps = deps.filter((dep) => installed[dep]);
 
   if (newDeps.length === 0) {
     return;
