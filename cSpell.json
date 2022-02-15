@@ -23,6 +23,7 @@
     "pino",
     "prebuild",
     "Stroustrup",
+    "strictsoftware",
     "subpackage",
     "typedoc"
   ],
@@ -34,7 +35,8 @@
     "mdwn",
     "smpltmpl",
     "exts",
-    "tsbuildinfo"
+    "tsbuildinfo",
+    "modulemap"
   ],
   "flagWords": [],
   "ignorePaths": [
