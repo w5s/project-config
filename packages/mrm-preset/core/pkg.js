@@ -69,6 +69,26 @@ function hasWorkspaces(packageFile) {
 /**
  *
  * @param {import('mrm-core').PackageJson} packageFile
+ * @param {string} packageName
+ * @param {'normal'|'dev'|'peer'=} dependencyType
+ */
+function hasDependency(packageFile, packageName, dependencyType) {
+  return Boolean(
+    packageFile.get(
+      `${
+        dependencyType == null || dependencyType === 'normal'
+          ? 'dependencies'
+          : dependencyType === 'dev'
+          ? 'devDependencies'
+          : 'peerDependencies'
+      }.${packageName}`
+    )
+  );
+}
+
+/**
+ *
+ * @param {import('mrm-core').PackageJson} packageFile
  * @param {Record<string, string>} engineVersionMap
  */
 function engineMinVersion(packageFile, engineVersionMap) {
@@ -102,6 +122,7 @@ module.exports = {
   script,
   manager,
   engineMinVersion,
+  hasDependency,
   hasWorkspaces,
   withPackageJson,
 };

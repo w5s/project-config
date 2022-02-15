@@ -13,7 +13,7 @@ const project = require('./project');
 function jest({ state }) {
   const packageFileDefault = packageJson();
   const hasJest = state === 'present';
-  const hasTypescript = Boolean(packageFileDefault.get('devDependencies.typescript'));
+  const hasTypescript = pkg.hasDependency(packageFileDefault, 'typescript', 'dev');
   const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
 
   pkg.withPackageJson((packageFile) => {

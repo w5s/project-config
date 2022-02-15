@@ -44,7 +44,8 @@ function husky({ state }) {
  * }} options
  */
 function gitHook({ name, state, content }) {
-  const hasHusky = Boolean(packageJson().get('devDependencies.husky'));
+  const packageFileDefault = packageJson();
+  const hasHusky = pkg.hasDependency(packageFileDefault, 'husky', 'dev');
   const hasGitHook = hasHusky && state === 'present';
   const hookDirectory = '.husky';
   const hookFileName = path.join(hookDirectory, name);

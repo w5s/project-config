@@ -15,7 +15,8 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
    * }} config
    */
   function task({ eslintPreset, eslintRules }) {
-    const hasTypescript = packageJson().get('devDependencies.typescript');
+    const packageFileDefault = packageJson();
+    const hasTypescript = pkg.hasDependency(packageFileDefault, 'typescript', 'dev');
     const hasJSX = true;
     const hasJSON = true;
 

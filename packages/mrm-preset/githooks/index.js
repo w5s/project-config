@@ -1,6 +1,7 @@
 const path = require('path');
 const { packageJson, template } = require('mrm-core');
 const project = require('../core/project');
+const pkg = require('../core/pkg');
 const { hasGit } = require('../core/git');
 const { gitHook, husky } = require('../core/githooks');
 const { lintStaged } = require('../core/lintStaged');
@@ -10,9 +11,9 @@ function createGitHooks() {
   function task() {
     const gitSupported = hasGit();
     const packageFile = packageJson();
-    const hasESLint = Boolean(packageFile.get('devDependencies.eslint'));
-    const hasJest = Boolean(packageFile.get('devDependencies.jest'));
-    const hasTsc = Boolean(packageFile.get('devDependencies.typescript'));
+    const hasESLint = pkg.hasDependency(packageFile, 'eslint', 'dev');
+    const hasJest = pkg.hasDependency(packageFile, 'jest', 'dev');
+    const hasTsc = pkg.hasDependency(packageFile, 'typescript', 'dev');
 
     husky({
       state: gitSupported ? 'present' : 'absent',
