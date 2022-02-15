@@ -91,7 +91,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
         return {
           ...settings,
           'editor.codeActionsOnSave': settings['editor.codeActionsOnSave'] || {
-            'source.fixAll.eslint': true,
+            'source.fixAll': true,
           },
           'eslint.validate': extList.map(
             (ext) =>
