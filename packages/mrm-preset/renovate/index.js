@@ -54,6 +54,6 @@ function createRenovate({ renovatePresetApplication, renovatePresetLibrary }) {
 }
 
 module.exports = createRenovate({
-  renovatePresetApplication: '@w5s/renovate-config:application',
-  renovatePresetLibrary: '@w5s/renovate-config:library',
+  renovatePresetApplication: 'github>w5s/renovate-config:application',
+  renovatePresetLibrary: 'github>w5s/renovate-config:library',
 });
