@@ -92,7 +92,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
         'editor.codeActionsOnSave': settings['editor.codeActionsOnSave'] || {
           'source.fixAll': true,
         },
-        'eslint.probe': extList.map(
+        'eslint.validate': extList.map(
           (ext) =>
             ({
               jsx: 'javascriptreact',

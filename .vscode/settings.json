@@ -2,7 +2,7 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "eslint.probe": [
+  "eslint.validate": [
     "javascript",
     "javascriptreact",
     "typescript",
