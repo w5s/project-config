@@ -76,7 +76,9 @@
       "./packages/eslint-config/rules/prettier",
       "./packages/eslint-config/json"
     ],
-    "rules": {},
+    "rules": {
+      "prefer-object-spread": "off"
+    },
     "overrides": [
       {
         "files": [

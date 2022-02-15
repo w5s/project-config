@@ -1,5 +1,8 @@
 const { fixme, off, warn, error } = require('./_rule');
-const { rules: baseRules } = require('./base');
+const { rules: _baseRules } = require('./base');
+
+// Fix : TS pluging seems to modify the rules
+const baseRules = JSON.parse(JSON.stringify(_baseRules));
 
 const duplicateTSC = off; // = "off because tsc already checks that"
 
