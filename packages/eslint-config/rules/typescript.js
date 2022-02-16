@@ -1,4 +1,4 @@
-const { fixme, off, warn, error } = require('./_rule');
+const { fixme, off, warn, error, concatESConfig } = require('./_rule');
 const { rules: _baseRules } = require('./base');
 
 // Fix : TS pluging seems to modify the rules
@@ -6,51 +6,14 @@ const baseRules = JSON.parse(JSON.stringify(_baseRules));
 
 const duplicateTSC = off; // = "off because tsc already checks that"
 
-// https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
-const ruleDisabled = {
-  camelcase: off,
-  'constructor-super': off,
-  'dot-notation': off,
-  'getter-return': off,
-  'import/default': duplicateTSC,
-  'import/export': fixme(error), // https://github.com/benmosher/eslint-plugin-import/issues/1964
-  'import/named': duplicateTSC,
-  'import/namespace': duplicateTSC,
-  'import/no-named-as-default-member': duplicateTSC,
-  'import/no-unresolved': duplicateTSC,
-  'no-array-constructor': off,
-  'no-const-assign': off,
-  'no-dupe-args': off,
-  'no-dupe-class-members': off,
-  'no-dupe-keys': off,
-  'no-empty-function': off,
-  'no-func-assign': off,
-  'no-import-assign': off,
-  'no-inner-declarations': fixme(error), // https://github.com/typescript-eslint/typescript-eslint/issues/239
-  'no-new-symbol': off,
-  'no-obj-calls': off,
-  'no-redeclare': off,
-  'no-setter-return': off,
-  'no-shadow': off, // https://github.com/typescript-eslint/typescript-eslint/issues/2483
-  'no-this-before-super': off,
-  'no-undef': off,
-  'no-unreachable': off,
-  'no-unsafe-negation': off,
-  'no-unused-vars': off,
-  'no-use-before-define': off,
-  'no-useless-constructor': off,
-  'no-var': error,
-  'prefer-const': error,
-  'prefer-rest-params': error,
-  'prefer-spread': error,
-  'valid-typeof': off,
-};
-
-module.exports = {
-  extends: ['plugin:@typescript-eslint/recommended-requiring-type-checking'],
-  plugins: ['@typescript-eslint', 'import'],
-  rules: Object.assign(
-    {
+module.exports = concatESConfig(
+  /**
+   * Plugin rules
+   */
+  {
+    extends: ['plugin:@typescript-eslint/recommended-requiring-type-checking'],
+    plugins: ['@typescript-eslint', 'import'],
+    rules: {
       '@typescript-eslint/adjacent-overload-signatures': error,
       '@typescript-eslint/ban-ts-comment': [
         warn,
@@ -130,6 +93,49 @@ module.exports = {
       '@typescript-eslint/triple-slash-reference': error,
       '@typescript-eslint/type-annotation-spacing': error,
     },
-    ruleDisabled
-  ),
-};
+  },
+  /**
+   * Disabled rules
+   */
+  {
+    // https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
+    rules: {
+      camelcase: off,
+      'constructor-super': off,
+      'dot-notation': off,
+      'getter-return': off,
+      'import/default': duplicateTSC,
+      'import/export': fixme(error), // https://github.com/benmosher/eslint-plugin-import/issues/1964
+      'import/named': duplicateTSC,
+      'import/namespace': duplicateTSC,
+      'import/no-named-as-default-member': duplicateTSC,
+      'import/no-unresolved': duplicateTSC,
+      'no-array-constructor': off,
+      'no-const-assign': off,
+      'no-dupe-args': off,
+      'no-dupe-class-members': off,
+      'no-dupe-keys': off,
+      'no-empty-function': off,
+      'no-func-assign': off,
+      'no-import-assign': off,
+      'no-inner-declarations': fixme(error), // https://github.com/typescript-eslint/typescript-eslint/issues/239
+      'no-new-symbol': off,
+      'no-obj-calls': off,
+      'no-redeclare': off,
+      'no-setter-return': off,
+      'no-shadow': off, // https://github.com/typescript-eslint/typescript-eslint/issues/2483
+      'no-this-before-super': off,
+      'no-undef': off,
+      'no-unreachable': off,
+      'no-unsafe-negation': off,
+      'no-unused-vars': off,
+      'no-use-before-define': off,
+      'no-useless-constructor': off,
+      'no-var': error,
+      'prefer-const': error,
+      'prefer-rest-params': error,
+      'prefer-spread': error,
+      'valid-typeof': off,
+    },
+  }
+);

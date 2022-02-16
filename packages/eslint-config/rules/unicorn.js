@@ -1,18 +1,10 @@
-const { off, warn, error } = require('./_rule');
+const { off, warn, error, concatESConfig } = require('./_rule');
 
-const unsafeRules = {
-  'unicorn/consistent-destructuring': off,
-  'unicorn/no-array-for-each': off, // This rule could change browser compatibility
-  'unicorn/no-object-as-default-parameter': off,
-  'unicorn/prefer-default-parameters': off,
-  'unicorn/prevent-abbreviations': off, // This rule is so dangerous : it potentially break code while fixing in many cases !!
-};
-
-module.exports = {
-  extends: ['plugin:unicorn/recommended'],
-  plugins: ['unicorn'],
-  rules: Object.assign(
-    {
+module.exports = concatESConfig(
+  {
+    extends: ['plugin:unicorn/recommended'],
+    plugins: ['unicorn'],
+    rules: {
       'unicode-bom': [error, 'never'],
       'unicorn/better-regex': error,
       'unicorn/catch-error-name': [error, { name: error }],
@@ -53,6 +45,14 @@ module.exports = {
       'unicorn/prefer-type-error': error,
       'unicorn/throw-new-error': error,
     },
-    unsafeRules
-  ),
-};
+  },
+  {
+    rules: {
+      'unicorn/consistent-destructuring': off,
+      'unicorn/no-array-for-each': off, // This rule could change browser compatibility
+      'unicorn/no-object-as-default-parameter': off,
+      'unicorn/prefer-default-parameters': off,
+      'unicorn/prevent-abbreviations': off, // This rule is so dangerous : it potentially break code while fixing in many cases !!
+    },
+  }
+);

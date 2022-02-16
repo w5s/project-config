@@ -1,25 +1,13 @@
-const { off, error } = require('./_rule');
+const { off, error, concatESConfig } = require('./_rule');
 
-/**
- * Typescript config is loose because we often have "hack", "mock" in tests
- */
-const tsDisabled = {
-  '@typescript-eslint/no-unsafe-assignment': off,
-  '@typescript-eslint/no-unsafe-call': off,
-  '@typescript-eslint/no-unsafe-member-access': off,
-  '@typescript-eslint/no-unsafe-return': off,
-  '@typescript-eslint/restrict-template-expressions': off,
-  '@typescript-eslint/unbound-method': off,
-};
-
-module.exports = {
-  env: {
-    jest: true,
-  },
-  extends: ['plugin:jest/recommended'],
-  plugins: ['jest'],
-  rules: Object.assign(
-    {
+module.exports = concatESConfig(
+  {
+    env: {
+      jest: true,
+    },
+    extends: ['plugin:jest/recommended'],
+    plugins: ['jest'],
+    rules: {
       'jest/expect-expect': off, // Disabled because it does not handle functions that does the expect
       'jest/no-alias-methods': error,
       'jest/no-commented-out-tests': error,
@@ -41,6 +29,18 @@ module.exports = {
       'jest/valid-expect': error,
       'jest/valid-title': [error, { ignoreTypeOfDescribeName: true }],
     },
-    tsDisabled
-  ),
-};
+  },
+  /**
+   * Typescript config is set to be less strict because we often have "hack", "mock" in tests
+   */
+  {
+    rules: {
+      '@typescript-eslint/no-unsafe-assignment': off,
+      '@typescript-eslint/no-unsafe-call': off,
+      '@typescript-eslint/no-unsafe-member-access': off,
+      '@typescript-eslint/no-unsafe-return': off,
+      '@typescript-eslint/restrict-template-expressions': off,
+      '@typescript-eslint/unbound-method': off,
+    },
+  }
+);
