@@ -7,7 +7,7 @@ module.exports = concatESConfig(
   require('eslint-config-airbnb-base/rules/errors'),
   // @ts-ignore
   require('eslint-config-airbnb-base/rules/es6'),
-  // we use our own import configuration
+  /** {@link ./import.js} */
   // require('eslint-config-airbnb-base/rules/imports'),
   // @ts-ignore
   require('eslint-config-airbnb-base/rules/node'),
