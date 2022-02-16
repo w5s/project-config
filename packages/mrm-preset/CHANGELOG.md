@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.4](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.3...@w5s/mrm-preset@1.0.0-alpha.4) (2022-02-16)
+
+
+### Bug Fixes
+
+* correct eslint vscode settings ([a32e0fb](https://github.com/w5s/project-config/commit/a32e0fb739cbe349565b26ea412cdf37e3d56bdb))
+* correct mrm preset url ([ad6f030](https://github.com/w5s/project-config/commit/ad6f03091e0a294c043974b564e24c79023e659b))
+* correct typo ([2218859](https://github.com/w5s/project-config/commit/221885997fec37149f7e349b00a58fbcb3bfb8db))
+* rollback to eslint.validate vscode setting ([769a2e1](https://github.com/w5s/project-config/commit/769a2e100083aca4f5e9037fa539fcf1f6002d65))
+
+
+### Features
+
+* improve typescript eslint configuration ([efc6f1c](https://github.com/w5s/project-config/commit/efc6f1cef876e8fc5d4d1d1b94ca90a6805fbbbf))
+
+
+
+
+
 # [1.0.0-alpha.3](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.2...@w5s/mrm-preset@1.0.0-alpha.3) (2022-02-15)
 
 
