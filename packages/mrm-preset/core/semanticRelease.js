@@ -34,7 +34,7 @@ function semanticRelease({ state, update, preset }) {
     });
   });
 }
-semanticRelease.command = function () {
+semanticRelease.command = function command() {
   return 'semantic-release';
 };
 
