@@ -108,7 +108,6 @@
     ".vscode/**",
     "**/_tester/**"
   ],
-  "dependencies": {},
   "devDependencies": {
     "@babel/core": "7.17.2",
     "@babel/eslint-parser": "7.17.0",

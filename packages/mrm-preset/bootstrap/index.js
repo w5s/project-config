@@ -3,6 +3,7 @@ const path = require('path');
 const { packageJson, file } = require('mrm-core');
 const npm = require('../core/npm');
 const pkg = require('../core/pkg');
+const { gitIgnoreTemplate } = require('../core/git');
 
 /**
  * @param {{
@@ -14,56 +15,61 @@ const pkg = require('../core/pkg');
  * @returns {void}
  */
 function task({ mrmPreset, mrmTask, packageArchetype, packageManager }) {
+  const isYarn = file('package-lock.json').exists()
+    ? false
+    : file('yarn.lock').exists()
+    ? true
+    : packageManager === 'yarn';
+
   /**
    * setup package.json from following object
    */
 
-  const packageFile = packageJson({
+  packageJson({
     name: path.basename(process.cwd()),
     version: '1.0.0-alpha.0',
     private: true,
     license: 'UNLICENSED',
     description: '',
-  });
-
-  packageFile.merge({
-    scripts: {
-      configure: `npm run mrm -- ${mrmTask}`,
-      mrm: `mrm --preset ${mrmPreset}`,
-    },
-  });
-  pkg.value(packageFile, {
-    path: 'packageManager',
-    state: 'present',
-    update: packageManager,
-    default: () => {
-      if (file('yarn.lock').exists()) {
-        return 'yarn';
-      }
-
-      // return 'npm';
-      return undefined;
-    },
-  });
-  pkg.value(packageFile, {
-    path: 'mrmConfig.packageArchetype',
-    state: 'present',
-    update: packageArchetype,
-    default: () => {
-      if (file('lerna.json').exists() || Boolean(packageFile.get('workspaces'))) {
-        return 'workspace';
-      }
-
-      return 'library';
-    },
-  });
-  packageFile.save();
-
+  }).save();
+  gitIgnoreTemplate(['macOS', 'NodeJS', 'VisualStudioCode']);
+  // if (isYarn) {
+  //   execCommand(undefined, 'yarn', ['set', 'version', 'berry']);
+  // }
   npm.dependency({
     dev: true,
     name: ['mrm', mrmPreset],
-    yarn: packageManager === 'yarn',
+    yarn: isYarn,
     state: 'present',
+  });
+
+  pkg.withPackageJson((packageFile) => {
+    // Add MRM default scripts
+    pkg.script(packageFile, {
+      name: 'configure',
+      state: 'default',
+      script: `${packageManager} run mrm -- ${mrmTask}`,
+    });
+    pkg.script(packageFile, {
+      name: 'mrm',
+      state: 'default',
+      script: `${packageManager} --preset ${mrmPreset}`,
+    });
+  });
+
+  pkg.withPackageJson((packageFile) => {
+    pkg.value(packageFile, {
+      path: 'mrmConfig.packageArchetype',
+      state: 'present',
+      update: packageArchetype,
+      default: () => {
+        if (file('lerna.json').exists() || Boolean(packageFile.get('workspaces'))) {
+          return 'workspace';
+        }
+
+        return 'library';
+      },
+    });
   });
 }
 
