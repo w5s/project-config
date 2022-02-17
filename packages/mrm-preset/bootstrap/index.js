@@ -22,7 +22,7 @@ function task({ mrmPreset, mrmTask, packageArchetype, packageManager }) {
     name: path.basename(process.cwd()),
     version: '1.0.0-alpha.0',
     private: true,
-    license: 'PRIVATE',
+    license: 'UNLICENSED',
     description: '',
   });
 
