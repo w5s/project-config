@@ -61,3 +61,20 @@ function gitIgnore(section, sectionContent) {
   });
 }
 exports.gitIgnore = gitIgnore;
+
+/**
+ * @param {string[]} flags
+ */
+function gitIgnoreTemplate(flags) {
+  // eslint-disable-next-line global-require, import/no-dynamic-require
+  const templateMap = require('./git.ignore');
+
+  flags.forEach((flag) => {
+    // @ts-ignore
+    if (templateMap[flag]) {
+      // @ts-ignore
+      gitIgnore(flag, templateMap[flag]);
+    }
+  });
+}
+exports.gitIgnoreTemplate = gitIgnoreTemplate;

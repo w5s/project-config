@@ -11,6 +11,7 @@ module.exports = {
   yarn-debug.log*
   yarn-error.log*
   lerna-debug.log*
+  .pnpm-debug.log*
 
   # Diagnostic reports (https://nodejs.org/api/report.html)
   report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -47,8 +48,8 @@ module.exports = {
   node_modules/
   jspm_packages/
 
-  # TypeScript v1 declaration files
-  typings/
+  # Snowpack dependency directory (https://snowpack.dev/)
+  web_modules/
 
   # TypeScript cache
   *.tsbuildinfo
@@ -58,6 +59,9 @@ module.exports = {
 
   # Optional eslint cache
   .eslintcache
+
+  # Optional stylelint cache
+  .stylelintcache
 
   # Microbundle cache
   .rpt2_cache/
@@ -71,27 +75,23 @@ module.exports = {
   # Output of 'npm pack'
   *.tgz
 
-  # Yarn v2
-  .yarn/*
-  !.yarn/cache
-  !.yarn/patches
-  !.yarn/plugins
-  !.yarn/releases
-  !.yarn/sdks
-  !.yarn/versions
-
   # Yarn Integrity file
   .yarn-integrity
 
-  # dotenv environment variables file
+  # dotenv environment variable files
   .env
-  .env.test
+  .env.development.local
+  .env.test.local
+  .env.production.local
+  .env.local
 
   # parcel-bundler cache (https://parceljs.org/)
   .cache
+  .parcel-cache
 
   # Next.js build output
   .next
+  out
 
   # Nuxt.js build / generate output
   .nuxt
@@ -101,10 +101,17 @@ module.exports = {
   .cache/
   # Comment in the public line in if your project uses Gatsby and not Next.js
   # https://nextjs.org/blog/next-9-1#public-directory-support
-  public/
+  # public
 
   # vuepress build output
   .vuepress/dist
+
+  # vuepress v2.x temp and cache directory
+  .temp
+  .cache
+
+  # Docusaurus cache and generated files
+  .docusaurus
 
   # Serverless directories
   .serverless/
@@ -116,7 +123,17 @@ module.exports = {
   .dynamodb/
 
   # TernJS port file
-  .tern-port`,
+  .tern-port
+
+  # Stores VSCode versions used for testing VSCode extensions
+  .vscode-test
+
+  # yarn v2
+  .yarn/cache
+  .yarn/unplugged
+  .yarn/build-state.yml
+  .yarn/install-state.gz
+  .pnp.*`,
   VisualStudioCode: `
   .vscode/*
   !.vscode/settings.json
