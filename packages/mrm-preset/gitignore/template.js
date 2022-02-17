@@ -71,6 +71,15 @@ module.exports = {
   # Output of 'npm pack'
   *.tgz
 
+  # Yarn v2
+  .yarn/*
+  !.yarn/cache
+  !.yarn/patches
+  !.yarn/plugins
+  !.yarn/releases
+  !.yarn/sdks
+  !.yarn/versions
+
   # Yarn Integrity file
   .yarn-integrity
 
