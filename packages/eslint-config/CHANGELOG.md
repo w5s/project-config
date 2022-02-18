@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.5](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.4...@w5s/eslint-config@1.0.0-alpha.5) (2022-02-18)
+
+
+### Features
+
+* add support for yarn berry ([2b77669](https://github.com/w5s/project-config/commit/2b77669a29316825a38470c80a48aff8ab068f7f))
+
+
+
+
+
 # [1.0.0-alpha.4](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.3...@w5s/eslint-config@1.0.0-alpha.4) (2022-02-16)
 
 

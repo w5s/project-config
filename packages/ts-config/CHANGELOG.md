@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.3](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.0-alpha.2...@w5s/ts-config@1.0.0-alpha.3) (2022-02-18)
+
+
+### Bug Fixes
+
+* disable tsconfig  noUnusedLocals ([7086e8e](https://github.com/w5s/project-config/commit/7086e8e5382882afcdc3d39497ff9268294ecf1a))
+* disable tsconfig noUnusedParameters ([889d7a2](https://github.com/w5s/project-config/commit/889d7a2b1f7d09b62eb6637efd3c87d6dd55f950))
+
+
+
+
+
 # [1.0.0-alpha.2](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.0-alpha.1...@w5s/ts-config@1.0.0-alpha.2) (2022-02-15)
 
 **Note:** Version bump only for package @w5s/ts-config
