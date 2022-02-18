@@ -1,6 +1,8 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const path = require('path');
-const { packageJson, file } = require('mrm-core');
+const { packageJson, file, yaml } = require('mrm-core');
+// @ts-ignore
+const execCommand = require('mrm-core/src/util/execCommand');
 const npm = require('../core/npm');
 const pkg = require('../core/pkg');
 const { gitIgnoreTemplate } = require('../core/git');
@@ -20,7 +22,7 @@ function task({ mrmPreset, mrmTask, packageArchetype, packageManager }) {
     : file('yarn.lock').exists()
     ? true
     : packageManager === 'yarn';
-
+  const isYarnBerry = false;
   /**
    * setup package.json from following object
    */
@@ -33,9 +35,11 @@ function task({ mrmPreset, mrmTask, packageArchetype, packageManager }) {
     description: '',
   }).save();
   gitIgnoreTemplate(['macOS', 'NodeJS', 'VisualStudioCode']);
-  // if (isYarn) {
-  //   execCommand(undefined, 'yarn', ['set', 'version', 'berry']);
-  // }
+  if (isYarn && isYarnBerry) {
+    execCommand(undefined, 'yarn', ['set', 'version', 'berry']);
+    yaml('.yarnrc.yml').set('nodeLinker', 'node-modules').save();
+    execCommand(undefined, 'yarn', ['install']);
+  }
   npm.dependency({
     dev: true,
     name: ['mrm', mrmPreset],

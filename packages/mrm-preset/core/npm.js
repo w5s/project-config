@@ -134,7 +134,7 @@ function runNpm(deps, options = {}, exec) {
 function runYarn(deps, options = {}, exec) {
   const add = options.dev ? ['add', '--dev'] : ['add'];
   const remove = ['remove'];
-  const args = (options.remove ? remove : add).concat(isUsingWorkspaces() ? ['-W'] : []).concat(deps);
+  const args = (options.remove ? remove : add).concat(isUsingWorkspaces() && !isYarnBerry() ? ['-W'] : []).concat(deps);
 
   return execCommand(exec, 'yarn', args, {
     cwd: options.cwd,
@@ -246,6 +246,10 @@ function isUsingYarn() {
 
 function isUsingWorkspaces() {
   return Boolean(packageJson().get('workspaces'));
+}
+
+function isYarnBerry() {
+  return fs.existsSync('.yarnrc.yml');
 }
 
 /**
