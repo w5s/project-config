@@ -19,7 +19,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
     // "noUnusedLocals": true, => Prefer ESLint validation
-    "noUnusedParameters": true,
+    // "noUnusedParameters": true, => Prefer ESLint validation
     "pretty": true,
     "resolveJsonModule": false,
     "skipLibCheck": true,
