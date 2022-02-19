@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.6](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.5...@w5s/eslint-config@1.0.0-alpha.6) (2022-02-19)
+
+
+### Bug Fixes
+
+* allow for-of and remove for restricted syntax ([f8a3ae9](https://github.com/w5s/project-config/commit/f8a3ae97a4e1a50713e2e61a0d48f2633a2af3dd))
+* allow no-param-reassign for props ([e9fef46](https://github.com/w5s/project-config/commit/e9fef462e5b3b2d6b7f6236e228253af5c767406))
+
+
+
+
+
 # [1.0.0-alpha.5](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.4...@w5s/eslint-config@1.0.0-alpha.5) (2022-02-18)
 
 
