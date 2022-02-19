@@ -52,6 +52,7 @@ module.exports = concatESConfig(
       'unicorn/no-array-callback-reference': off, // Many false positive reported
       'unicorn/no-array-for-each': off, // This rule could change browser compatibility
       'unicorn/no-array-method-this-argument': off, // Many false positive reported
+      'unicorn/no-array-reduce': off, // Array#reduce can be used
       'unicorn/no-object-as-default-parameter': off,
       'unicorn/prefer-default-parameters': off,
       'unicorn/prevent-abbreviations': off, // This rule is so dangerous : it potentially break code while fixing in many cases !!
