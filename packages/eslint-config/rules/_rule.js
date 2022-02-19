@@ -72,7 +72,7 @@ module.exports = {
   concatESConfig,
   error,
   // eslint-disable-next-line no-unused-vars
-  fixme: (/** @type {'off'|'warn'|'error'} */ _status) => off,
+  fixme: (/** @type {'off'|'warn'|'error'|undefined} */ _status) => off,
   off,
   warn,
 };
