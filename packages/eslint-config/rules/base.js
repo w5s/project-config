@@ -1,4 +1,4 @@
-const { concatESConfig, off } = require('./_rule');
+const { concatESConfig, off, error } = require('./_rule');
 
 module.exports = concatESConfig(
   // @ts-ignore
@@ -23,6 +23,8 @@ module.exports = concatESConfig(
     rules: {
       // Often useful in jsx
       'no-nested-ternary': off,
+      // Too strict, for pure code prefer the functional plugin
+      'no-param-reassign': [error, { props: false }],
     },
   }
 );
