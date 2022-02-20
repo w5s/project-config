@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.8](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.7...@w5s/eslint-config@1.0.0-alpha.8) (2022-02-20)
+
+
+### Bug Fixes
+
+* disable unicorn/consistent-function-scoping and unicorn/no-useless-undefined for tests ([5f6a7eb](https://github.com/w5s/project-config/commit/5f6a7eb4687816124906a04754396717ca5d44b0))
+* ignore underscore case arguments ([c79fd34](https://github.com/w5s/project-config/commit/c79fd34f5d8fd2e91f5c6ad61436e41bb09378c4))
+
+
+
+
+
 # [1.0.0-alpha.7](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.6...@w5s/eslint-config@1.0.0-alpha.7) (2022-02-20)
 
 
