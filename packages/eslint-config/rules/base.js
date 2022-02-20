@@ -34,6 +34,8 @@ module.exports = concatESConfig(
         // @ts-ignore
         ({ selector }) => selector !== 'ForOfStatement'
       ),
+      // underscore is often used (mongodb, etc)
+      'no-underscore-dangle': off,
     },
   }
 );
