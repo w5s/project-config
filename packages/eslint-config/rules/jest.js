@@ -31,6 +31,15 @@ module.exports = concatESConfig(
     },
   },
   /**
+   * Unicorn less strict to help writing tests
+   */
+  {
+    rules: {
+      'unicorn/consistent-function-scoping': off,
+      'unicorn/no-useless-undefined': off,
+    },
+  },
+  /**
    * Typescript config is set to be less strict because we often have "hack", "mock" in tests
    */
   {
