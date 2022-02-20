@@ -214,7 +214,7 @@ module.exports = concatESConfig(
       'no-undef': off,
       'no-unreachable': off,
       'no-unsafe-negation': off,
-      'no-unused-expression': off,
+      'no-unused-expressions': off,
       'no-unused-vars': off,
       'no-use-before-define': off,
       'no-useless-constructor': off,
