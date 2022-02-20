@@ -36,6 +36,8 @@ module.exports = concatESConfig(
       ),
       // underscore is often used (mongodb, etc)
       'no-underscore-dangle': off,
+      // Ignore underscore case arguments
+      'no-unused-vars': [error, { argsIgnorePattern: '^_' }],
       // Allow in some cases https://github.com/airbnb/javascript/issues/1089#issuecomment-1024351821
       'no-use-before-define': [error, 'nofunc'],
     },
