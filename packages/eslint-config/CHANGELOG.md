@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.7](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.6...@w5s/eslint-config@1.0.0-alpha.7) (2022-02-20)
+
+
+### Bug Fixes
+
+* correct missing "s" and disable no-unused-expressions for typescript ([d5358f2](https://github.com/w5s/project-config/commit/d5358f2b039643c1c455cbf893b4b56bdff93c28))
+* correct no-use-before-define options ([73534fa](https://github.com/w5s/project-config/commit/73534fac53a1296be100d2f843ff0d3fa07efa53))
+* disable no-underscore-dangle rule ([5205ec1](https://github.com/w5s/project-config/commit/5205ec1bc078a249f5171256ba73dc4cd6ac79c3))
+* disable unicorn/no-array-callback-reference ([654d827](https://github.com/w5s/project-config/commit/654d8277384af12306433d5faf6c4aaf68ddf91d))
+* disable unicorn/no-array-method-this-argument ([784be96](https://github.com/w5s/project-config/commit/784be9629b8b4e22212ed77c0c25e19f4fb70092))
+* disable unicorn/no-array-reduce rule ([4496b8b](https://github.com/w5s/project-config/commit/4496b8b049a0aad18f3ac1931581d4c9cf9441fd))
+
+
+
+
+
 # [1.0.0-alpha.6](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.5...@w5s/eslint-config@1.0.0-alpha.6) (2022-02-19)
 
 
