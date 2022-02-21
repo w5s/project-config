@@ -91,6 +91,11 @@
           "**/__tests__ /**/*.+(ts|tsx|js|jsx)",
           "**/?(*.)+(spec|test).+(ts|tsx|js|jsx)"
         ],
+        "settings": {
+          "jest": {
+            "version": "latest"
+          }
+        },
         "extends": [
           "./packages/eslint-config/jest"
         ]

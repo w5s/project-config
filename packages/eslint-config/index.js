@@ -1,11 +1,36 @@
 // http://eslint.org/docs/user-guide/configuring
+/**
+ * @param {string} name
+ */
+function tryResolve(name) {
+  try {
+    require.resolve(name);
+    return true;
+  } catch (_error) {
+    return false;
+  }
+}
+
+/**
+ * @template T
+ * @param {boolean} condition
+ * @param {T} value
+ */
+function includeIf(condition, value) {
+  return condition ? [value] : [];
+}
+
 module.exports = {
-  extends: [require.resolve('./es'), require.resolve('./react'), require.resolve('./json')],
+  extends: [
+    require.resolve('./es'),
+    require.resolve('./json'),
+    ...includeIf(tryResolve('react'), require.resolve('./react')),
+  ],
   overrides: [
-    {
+    ...includeIf(tryResolve('typescript'), {
       extends: [require.resolve('./ts')],
       files: ['*.+(ts|tsx)'],
-    },
+    }),
     {
       extends: [require.resolve('./jest')],
       files: [
@@ -13,6 +38,11 @@ module.exports = {
         '**/__tests__/**/*.+(ts|tsx|js|jsx)',
         '**/?(*.)+(spec|test).+(ts|tsx|js|jsx)',
       ],
+      settings: {
+        jest: {
+          version: 'latest',
+        },
+      },
     },
   ],
   root: true,
