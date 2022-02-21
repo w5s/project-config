@@ -22,6 +22,7 @@ module.exports = concatESConfig(
     rules: {
       'unicorn/consistent-function-scoping': off,
       'unicorn/no-useless-undefined': off,
+      'unicorn/prefer-module': off,
     },
   },
   /**
