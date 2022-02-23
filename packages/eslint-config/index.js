@@ -22,6 +22,7 @@ function includeIf(condition, value) {
 
 module.exports = {
   extends: [
+    require.resolve('./ignore'),
     require.resolve('./es'),
     require.resolve('./json'),
     ...includeIf(tryResolve('react'), require.resolve('./react')),
