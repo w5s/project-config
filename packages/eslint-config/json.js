@@ -1,4 +1,5 @@
 module.exports = {
+  ignorePatterns: ['**/tsconfig.json', '.vscode/**'], // To remove warning
   plugins: ['json-format'],
   settings: {
     'json/ignore-files': ['**/package-lock.json'],
