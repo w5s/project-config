@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.9](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.8...@w5s/eslint-config@1.0.0-alpha.9) (2022-02-23)
+
+
+### Bug Fixes
+
+* add ignorePatterns ([4ce424a](https://github.com/w5s/project-config/commit/4ce424adb9851c5df4a339a90f7502e72822475c))
+* add ignorePatterns for json patterns ([3a9d639](https://github.com/w5s/project-config/commit/3a9d6397f5a74a691cc1fd67425efb3de131dc10))
+* cleanup jest rules ([8bcbe23](https://github.com/w5s/project-config/commit/8bcbe2380654ec3093e75224cb958886509f80a9))
+* cleanup jsdoc rules ([57cab06](https://github.com/w5s/project-config/commit/57cab06c5ad65932630c3f589d57fac06dddcae8))
+* disable unicorn/prefer-module in jest tests ([223a45c](https://github.com/w5s/project-config/commit/223a45cc3e018158ffd32c5b3b212a5653ba5126))
+
+
+
+
+
 # [1.0.0-alpha.8](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.7...@w5s/eslint-config@1.0.0-alpha.8) (2022-02-20)
 
 

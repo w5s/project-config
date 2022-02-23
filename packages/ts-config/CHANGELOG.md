@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.4](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.0-alpha.3...@w5s/ts-config@1.0.0-alpha.4) (2022-02-23)
+
+
+### Bug Fixes
+
+* improve exclude pattern ([75baa83](https://github.com/w5s/project-config/commit/75baa8392c1bec346edfbd13aa5dc4ba189a4868))
+
+
+
+
+
 # [1.0.0-alpha.3](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.0-alpha.2...@w5s/ts-config@1.0.0-alpha.3) (2022-02-18)
 
 

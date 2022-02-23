@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.6](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.5...@w5s/mrm-preset@1.0.0-alpha.6) (2022-02-23)
+
+
+### Bug Fixes
+
+* correct gitignore task ([b4f0903](https://github.com/w5s/project-config/commit/b4f0903561c97500aef65488ef06ccd7eae0db80))
+* remove jest on lint-staged ([2fbc851](https://github.com/w5s/project-config/commit/2fbc85132ab380429d6966bff47b176bcfb51f6d))
+* shorten eslint extensions ([aecc870](https://github.com/w5s/project-config/commit/aecc870ce0b288436208757376bc05504bff3331))
+
+
+### Features
+
+* use es-jest as default jest preset ([61535d9](https://github.com/w5s/project-config/commit/61535d9c47c25150becc564a5dd273d7cc14b579))
+
+
+
+
+
 # [1.0.0-alpha.5](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.4...@w5s/mrm-preset@1.0.0-alpha.5) (2022-02-18)
 
 
