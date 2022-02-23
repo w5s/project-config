@@ -30,9 +30,9 @@
     "useDefineForClassFields": true,
   },
   "exclude": [
-    "lib",
-    "node_modules",
-    "**/*.test.*",
-    "**/*.spec.*"
+    "**/lib/**",
+    "**/dist/**",
+    "**/build/**",
+    "**/node_modules/**"
   ]
 }
