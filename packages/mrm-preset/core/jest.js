@@ -1,6 +1,5 @@
 /* eslint-disable no-template-curly-in-string */
 const { packageJson } = require('mrm-core');
-const { vscodeSnippets } = require('./vscode');
 const pkg = require('./pkg');
 const npm = require('./npm');
 const project = require('./project');
@@ -13,34 +12,31 @@ const project = require('./project');
 function jest({ state }) {
   const packageFileDefault = packageJson();
   const hasJest = state === 'present';
-  const hasTypescript = pkg.hasDependency(packageFileDefault, 'typescript', 'dev');
   const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
+  const hasTypescript = pkg.hasDependency(packageFileDefault, 'typescript', 'dev');
 
   pkg.withPackageJson((packageFile) => {
     if (hasJest) {
-      const ignorePatterns = ['/node_modules/', '/docs/', '/lib/', '/build/', '/.cache/', '/public/'];
-      packageFile.merge({
-        jest: {
-          coveragePathIgnorePatterns: ignorePatterns,
-          testPathIgnorePatterns: ignorePatterns,
-        },
-      });
-      if (hasTypescript) {
-        packageFile.merge({
-          jest: {
-            globals: {
-              'ts-jest': {
-                tsconfig: hasWorkspaces ? 'tsconfig.settings.json' : 'tsconfig.json',
-              },
-            },
-            roots: hasWorkspaces ? ['<rootDir>/packages'] : null,
-            transform: {
-              '^.+\\.tsx?$': 'ts-jest',
-            },
-          },
+      if (hasWorkspaces) {
+        pkg.value(packageFile, {
+          path: 'jest',
+          state: 'present',
+          update: () => ({
+            preset: 'es-jest',
+            projects: packageFile
+              .get('workspaces.packages', packageFile.get('workspaces', []))
+              .map((/** @type {string} */ workspace) => `<rootDir>/${workspace}`),
+          }),
         });
       } else {
-        packageFile.unset('jest.globals.ts-jest').unset('jest.transform.^.+\\.tsx?$');
+        const ignorePatterns = ['/node_modules/', '/docs/', '/lib/', '/build/', '/.cache/', '/public/'];
+        packageFile.merge({
+          jest: {
+            preset: 'es-jest',
+            coveragePathIgnorePatterns: ignorePatterns,
+            testPathIgnorePatterns: ignorePatterns,
+          },
+        });
       }
     } else {
       packageFile.unset('jest');
@@ -56,48 +52,43 @@ function jest({ state }) {
       script: hasWorkspaces ? pkg.emptyScript : 'jest',
       state: !hasJest || hasWorkspaces ? 'default' : 'present',
     });
-    pkg.script(packageFile, {
-      name: `${project.test}:watch`,
-      script: pkg.emptyScript,
-      state: 'absent',
-    });
   });
   // Dependencies
   npm.dependency({
     dev: true,
-    name: ['jest', 'babel-jest', '@babel/core'],
+    name: ['jest', 'es-jest'],
     state: hasJest ? 'present' : 'absent',
   });
   npm.dependency({
     dev: true,
-    name: ['ts-jest', '@types/jest'],
+    name: ['@types/jest'],
     state: hasJest && hasTypescript ? 'present' : 'absent',
   });
 
-  vscodeSnippets({
-    name: 'jest',
-    snippets: {
-      'Jest Describe Block': {
-        body: ["describe('${1:description}', () => {", '\t$0', '});'],
-        description: 'Jest describe block',
-        prefix: 'describe',
-        scope: 'javascript,typescript',
-      },
-      'Jest Expect': {
-        body: 'expect($0)',
-        description: 'Jest expect assertion',
-        prefix: 'expect',
-        scope: 'javascript,typescript',
-      },
-      'Jest Test Block': {
-        body: ["test('${1:description}', () => {", '\t$0', '});'],
-        description: 'Jest test block',
-        prefix: 'test',
-        scope: 'javascript,typescript',
-      },
-    },
-    state: hasJest ? 'present' : 'absent',
-  });
+  // vscodeSnippets({
+  //   name: 'jest',
+  //   snippets: {
+  //     'Jest Describe Block': {
+  //       body: ["describe('${1:description}', () => {", '\t$0', '});'],
+  //       description: 'Jest describe block',
+  //       prefix: 'describe',
+  //       scope: 'javascript,typescript',
+  //     },
+  //     'Jest Expect': {
+  //       body: 'expect($0)',
+  //       description: 'Jest expect assertion',
+  //       prefix: 'expect',
+  //       scope: 'javascript,typescript',
+  //     },
+  //     'Jest Test Block': {
+  //       body: ["test('${1:description}', () => {", '\t$0', '});'],
+  //       description: 'Jest test block',
+  //       prefix: 'test',
+  //       scope: 'javascript,typescript',
+  //     },
+  //   },
+  //   state: hasJest ? 'present' : 'absent',
+  // });
 }
 
 module.exports = {
