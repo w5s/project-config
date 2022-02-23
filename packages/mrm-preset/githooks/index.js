@@ -12,7 +12,6 @@ function createGitHooks() {
     const gitSupported = hasGit();
     const packageFile = packageJson();
     const hasESLint = pkg.hasDependency(packageFile, 'eslint', 'dev');
-    const hasJest = pkg.hasDependency(packageFile, 'jest', 'dev');
     const hasTsc = pkg.hasDependency(packageFile, 'typescript', 'dev');
 
     husky({
@@ -23,16 +22,8 @@ function createGitHooks() {
       update: (config) => ({
         ...config,
         '*.json': [...(hasESLint ? ['eslint'] : [])],
-        '*.js?(x)': [
-          ...(hasTsc ? ["bash -c 'tsc --noEmit'"] : []),
-          ...(hasESLint ? ['eslint'] : []),
-          ...(hasJest ? ['jest --ci --bail --findRelatedTests'] : []),
-        ],
-        '*.ts?(x)': [
-          ...(hasTsc ? ["bash -c 'tsc --noEmit'"] : []),
-          ...(hasESLint ? ['eslint'] : []),
-          ...(hasJest ? ['jest --ci --bail --findRelatedTests'] : []),
-        ],
+        '*.js?(x)': [...(hasTsc ? ["bash -c 'tsc --noEmit'"] : []), ...(hasESLint ? ['eslint'] : [])],
+        '*.ts?(x)': [...(hasTsc ? ["bash -c 'tsc --noEmit'"] : []), ...(hasESLint ? ['eslint'] : [])],
       }),
     });
     gitHook({
