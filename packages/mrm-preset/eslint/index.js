@@ -70,7 +70,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       json: hasJSON,
     };
     const extList = Object.keys(extsMap).filter((ext) => extsMap[ext]);
-    const extOption = ` --ext ${extList.map((ext) => `.${ext}`).join(',')}`;
+    const extOption = ` --ext=${extList.join(',')}`;
 
     pkg.withPackageJson((packageFile) => {
       pkg.script(packageFile, {
