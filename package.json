@@ -19,7 +19,7 @@
     "clean": "turbo run clean",
     "configure": "npm run mrm -- configure",
     "coverage": ":",
-    "docs": "md-magic --path './*.md' --ignore='node_modules' && lerna run docs",
+    "docs": "md-magic --path './*.md' --ignore='node_modules' && turbo run docs",
     "format": "eslint . --quiet --cache --fix --ext=js,jsx,ts,tsx,json",
     "prepare": "npm-run-all -p \"prepare:*\"",
     "lint": "eslint . --cache --ext=js,jsx,ts,tsx,json",
