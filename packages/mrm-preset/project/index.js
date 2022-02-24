@@ -29,7 +29,7 @@ function task() {
    *
    * @param {string} script
    */
-  const lernaRun = (script) => `lerna run ${script}`;
+  const turboRun = (script) => `turbo run ${script}`;
 
   /**
    *
@@ -67,12 +67,12 @@ function task() {
   });
   pkg.script(packageFile, {
     name: `${project.build}:packages`,
-    script: lernaRun(project.build),
+    script: turboRun(project.build),
     state: useWorkspace ? 'present' : 'absent',
   });
   pkg.script(packageFile, {
     name: project.clean,
-    script: useWorkspace ? lernaRun(project.clean) : pkg.emptyScript,
+    script: useWorkspace ? turboRun(project.clean) : pkg.emptyScript,
     state: useWorkspace ? 'present' : 'default',
   });
 
@@ -103,8 +103,18 @@ function task() {
   });
   pkg.script(packageFile, {
     name: project.test,
-    script: useWorkspace ? lernaRun(project.test) : pkg.emptyScript,
-    state: useWorkspace ? 'present' : 'default',
+    script: npmRunAll(project.test),
+    state: 'present',
+  });
+  pkg.script(packageFile, {
+    name: `${project.prepare}:empty`,
+    script: pkg.emptyScript,
+    state: 'default',
+  });
+  pkg.script(packageFile, {
+    name: `${project.prepare}:packages`,
+    script: turboRun(project.test),
+    state: useWorkspace ? 'present' : 'absent',
   });
   pkg.script(packageFile, {
     name: project.validate,
@@ -151,6 +161,25 @@ function task() {
   });
 
   // workspace
+  const turboConfig = json('turbo.json', {
+    $schema: 'https://turborepo.org/schema.json',
+    pipeline: {
+      [project.build]: {
+        dependsOn: ['^build'],
+        outputs: ['lib/**', 'dist/**', '.next/**'],
+      },
+      [project.test]: {},
+      [project.lint]: {},
+      [project.format]: {},
+      [project.clean]: {
+        cache: false,
+      },
+      [project.develop]: {
+        cache: false,
+      },
+    },
+    globalDependencies: ['tsconfig.settings.json'],
+  });
   const lernaConfig = json('lerna.json', {
     version: packageFile.get('version'),
   });
@@ -172,10 +201,12 @@ function task() {
       useWorkspaces: useWorkspace,
     });
     lernaConfig.save();
+    turboConfig.save();
     makeDirs('packages');
   } else {
     packageFile.unset('workspaces');
     lernaConfig.delete();
+    turboConfig.delete();
   }
 
   // Engine
@@ -200,7 +231,7 @@ function task() {
   });
   npm.dependency({
     dev: true,
-    name: ['lerna'],
+    name: ['lerna', 'turbo'],
     state: useWorkspace ? 'present' : 'absent',
   });
 
