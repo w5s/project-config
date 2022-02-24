@@ -6,4 +6,9 @@ module.exports = {
   rules: {
     'jsdoc/require-jsdoc': off,
   },
+  settings: {
+    jsdoc: {
+      mode: 'typescript',
+    },
+  },
 };
