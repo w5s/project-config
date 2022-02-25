@@ -18,11 +18,10 @@ const log = require('mrm-core/src/util/log');
 // @ts-ignore
 const execCommand = require('mrm-core/src/util/execCommand');
 // @ts-ignore
-const json = require('mrm-core/src/formats/json');
-// @ts-ignore
 const packageJson = require('mrm-core/src/files/packageJson');
 // @ts-ignore
 const MrmError = require('mrm-core/src/error');
+const { yaml, json } = require('mrm-core');
 
 /**
  * @typedef Options
@@ -249,7 +248,38 @@ function isUsingWorkspaces() {
 }
 
 function isYarnBerry() {
-  return fs.existsSync('.yarnrc.yml');
+  const yamlRC = yaml('.yarnrc.yml');
+  return yamlRC.exists() && (yamlRC.get('yarnPath') || '').indexOf('.yarn/releases/yarn-1.') < 0;
+}
+
+/**
+ * @param {'npm'|`yarn@${'classic'|'berry'}`} defaultPackageManager
+ */
+function bootstrap(defaultPackageManager) {
+  const packageFile = json(`./package.json`);
+  const isYarn = defaultPackageManager.startsWith('yarn@');
+  if (!packageFile.get('packageManager')) {
+    if (isYarn) {
+      execCommand(undefined, 'yarn', ['set', 'version', 'berry']);
+      yaml('.yarnrc.yml')
+        .merge({
+          nodeLinker: 'node-modules',
+        })
+        .save();
+      // Downgrade
+      if (defaultPackageManager.endsWith('@classic')) {
+        execCommand(undefined, 'yarn', ['set', 'version', 'classic']);
+      }
+    }
+  }
+
+  // lock files
+  if (isYarn && !fs.existsSync('yarn.lock')) {
+    execCommand(undefined, 'yarn', ['install']);
+  }
+  if (!isYarn && !fs.existsSync('package-lock.json')) {
+    execCommand(undefined, 'npm', ['install']);
+  }
 }
 
 /**
@@ -269,5 +299,6 @@ function dependency({ name, state, ...options }) {
 }
 
 module.exports = {
+  bootstrap,
   dependency,
 };
