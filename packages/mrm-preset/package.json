@@ -26,7 +26,7 @@
     "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
     "format": "eslint . --fix",
     "lint": "eslint .",
-    "test": "mkdir _tester; cd _tester; ../node_modules/.bin/mrm bootstrap --dir ..; ../node_modules/.bin/mrm configure --dir .."
+    "test": "mkdir _tester; cd _tester; mrm bootstrap --dir ..; mrm configure --dir .."
   },
   "dependencies": {
     "debug": "^4.3.3",
