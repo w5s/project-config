@@ -10,7 +10,7 @@ const { gitIgnoreTemplate } = require('../core/git');
  *   mrmPreset: string,
  *   mrmTask: string,
  *   packageArchetype: 'application'|'library'|'workspace',
- *   packageManager: 'npm'|'yarn'
+ *   packageManager: 'npm'|'yarn@classic'|'yarn@berry'
  * }} config
  * @returns {void}
  */
@@ -28,7 +28,7 @@ function task({ mrmPreset, mrmTask, packageArchetype, packageManager }) {
   }).save();
   gitIgnoreTemplate(['macOS', 'NodeJS', 'VisualStudioCode']);
 
-  npm.bootstrap('yarn@berry');
+  npm.bootstrap(packageManager);
 
   npm.dependency({
     dev: true,
@@ -37,16 +37,18 @@ function task({ mrmPreset, mrmTask, packageArchetype, packageManager }) {
   });
 
   pkg.withPackageJson((packageFile) => {
+    const currentPackageManager = pkg.manager(packageFile);
+
     // Add MRM default scripts
     pkg.script(packageFile, {
       name: 'configure',
       state: 'default',
-      script: `${packageManager} run mrm -- ${mrmTask}`,
+      script: currentPackageManager === 'npm' ? `npm run mrm -- ${mrmTask}` : `yarn mrm ${mrmTask}`,
     });
     pkg.script(packageFile, {
       name: 'mrm',
       state: 'default',
-      script: `${packageManager} --preset ${mrmPreset}`,
+      script: `${currentPackageManager} --preset ${mrmPreset}`,
     });
   });
 
@@ -86,8 +88,8 @@ task.parameters = {
     type: 'input',
   },
   packageManager: {
-    default: 'yarn',
-    choices: ['yarn', 'npm'],
+    default: 'yarn@berry',
+    choices: ['yarn@berry', 'yarn@classic', 'npm'],
     message: 'Which default package manager ?',
     name: 'packageManager',
     type: 'input',
