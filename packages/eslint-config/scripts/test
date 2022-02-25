@@ -1,15 +1,12 @@
 #!/bin/sh
 cd $(dirname $(dirname $0))
 ROOT=`pwd`
-BIN="$ROOT/node_modules/.bin"
-echo $ROOT
-echo $BIN
 
 set -e;
 
 eslint ()
 {
-  $BIN/eslint $@;
+  yarn eslint $@;
 }
 
 test_project ()
