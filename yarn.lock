@@ -2553,7 +2553,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@w5s/commitlint-config@workspace:packages/commitlint-config":
+"@w5s/commitlint-config@workspace:*, @w5s/commitlint-config@workspace:packages/commitlint-config":
   version: 0.0.0-use.local
   resolution: "@w5s/commitlint-config@workspace:packages/commitlint-config"
   dependencies:
@@ -2625,6 +2625,7 @@ __metadata:
     "@types/node": ^16.11.24
     "@typescript-eslint/eslint-plugin": 5.12.1
     "@typescript-eslint/parser": 5.12.1
+    "@w5s/commitlint-config": "workspace:*"
     cspell: 5.18.5
     eslint: 8.9.0
     eslint-config-prettier: 8.4.0

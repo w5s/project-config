@@ -36,7 +36,7 @@
   },
   "commitlint": {
     "extends": [
-      "./packages/commitlint-config/commitlint.config"
+      "@w5s/commitlint-config"
     ]
   },
   "lint-staged": {
@@ -121,6 +121,7 @@
     "@types/node": "^16.11.24",
     "@typescript-eslint/eslint-plugin": "5.12.1",
     "@typescript-eslint/parser": "5.12.1",
+    "@w5s/commitlint-config": "workspace:*",
     "cspell": "5.18.5",
     "eslint": "8.9.0",
     "eslint-config-prettier": "8.4.0",
