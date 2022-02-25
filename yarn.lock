@@ -2601,7 +2601,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/mrm-preset@workspace:packages/mrm-preset":
+"@w5s/mrm-preset@workspace:*, @w5s/mrm-preset@workspace:packages/mrm-preset":
   version: 0.0.0-use.local
   resolution: "@w5s/mrm-preset@workspace:packages/mrm-preset"
   dependencies:
@@ -2626,6 +2626,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 5.12.1
     "@typescript-eslint/parser": 5.12.1
     "@w5s/commitlint-config": "workspace:*"
+    "@w5s/mrm-preset": "workspace:*"
     "@w5s/ts-config": "workspace:*"
     cspell: 5.18.5
     eslint: 8.9.0
