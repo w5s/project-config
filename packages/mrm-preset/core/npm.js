@@ -257,7 +257,7 @@ function isYarnBerry() {
  */
 function bootstrap(defaultPackageManager) {
   const packageFile = json(`./package.json`);
-  const isYarn = defaultPackageManager.startsWith('yarn@');
+  const isYarn = isUsingYarn() || defaultPackageManager.startsWith('yarn@');
   if (!packageFile.get('packageManager')) {
     if (isYarn) {
       execCommand(undefined, 'yarn', ['set', 'version', 'berry']);
