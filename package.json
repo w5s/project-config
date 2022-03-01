@@ -27,7 +27,7 @@
     "prepare:empty": ":",
     "prepare:husky": "is-ci || husky install",
     "prepare:packages": "lerna bootstrap",
-    "release": "CI=$(is-ci) lerna publish ${CI:+\"--yes\"}",
+    "release": "is-ci && lerna publish --yes || lerna publish",
     "rescue": "git clean -fdx;yarn install",
     "test": "npm-run-all -p \"test:*\"",
     "test:packages": "turbo run test",
