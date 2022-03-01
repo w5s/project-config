@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.7](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.6...@w5s/mrm-preset@1.0.0-alpha.7) (2022-03-01)
+
+
+### Bug Fixes
+
+* correct bootstrap step ([da7f539](https://github.com/w5s/project-config/commit/da7f539560ba143f830c9ea824b0d79c6a50522c))
+* correct is-ci script that fails in some yarn berry ([4e4707d](https://github.com/w5s/project-config/commit/4e4707d7e8c0cd2c88e1dc6bc94705317dcf9e98))
+* improve yarn check ([3af241a](https://github.com/w5s/project-config/commit/3af241af004d747518733983260eb295aa75e5cb))
+
+
+
+
+
 # [1.0.0-alpha.6](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.5...@w5s/mrm-preset@1.0.0-alpha.6) (2022-02-23)
 
 
