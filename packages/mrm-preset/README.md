@@ -19,7 +19,7 @@ Initialize your project using this command :
 
 ```bash
 # from the root of your project
-npm exec -p mrm -p @w5s/mrm-preset -- mrm bootstrap --preset @w5s/mrm-preset
+npm exec --package=@w5s/mrm-preset -- mrm bootstrap --preset @w5s/mrm-preset
 ```
 
 This will install in `package.json` the npm scripts
