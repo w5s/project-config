@@ -43,6 +43,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
         .unset('compilerOptions.outDir')
         .unset('include')
         .merge({
+          $schema: 'https://json.schemastore.org/tsconfig',
           extends: `./${tsConfigSettingsName}`,
         })
         .save();
@@ -52,6 +53,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
     } else {
       tsConfigSettings
         .merge({
+          $schema: 'https://json.schemastore.org/tsconfig',
           compilerOptions: {},
           extends: tsConfigPreset,
         })
