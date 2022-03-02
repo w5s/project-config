@@ -11,14 +11,14 @@ const pkg = require('../core/pkg');
  *
  * @param {{
  *  language: 'typescript',
- *  tsConfig: string,
+ *  tsConfig: string
  * }} config
  */
 function createLang({ language: languageDefault = 'typescript', tsConfig: tsConfigDefault }) {
   /**
    *
    * @param {{
-   *   language: 'typescript',
+   *   language: 'typescript'
    * }} config
    */
   function task({ language }) {

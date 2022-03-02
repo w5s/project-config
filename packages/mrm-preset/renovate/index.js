@@ -4,7 +4,7 @@ const { hasGit } = require('../core/git');
 /**
  *
  * @param {{
- *   renovatePresetApplication: string
+ *   renovatePresetApplication: string,
  *   renovatePresetLibrary: string
  * }} config
  */

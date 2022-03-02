@@ -1,10 +1,14 @@
-const { off } = require('./_rule');
+const { off, error } = require('./_rule');
 
 module.exports = {
   extends: ['plugin:jsdoc/recommended'],
   plugins: ['jsdoc'],
   rules: {
+    'jsdoc/no-undefined-types': off, // https://github.com/gajus/eslint-plugin-jsdoc/issues/839
     'jsdoc/require-jsdoc': off,
+    'jsdoc/require-param-description': off,
+    'jsdoc/require-returns': off,
+    strict: [error, 'safe'],
   },
   settings: {
     jsdoc: {
