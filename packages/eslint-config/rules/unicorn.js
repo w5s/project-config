@@ -49,6 +49,7 @@ module.exports = concatESConfig(
   {
     rules: {
       'unicorn/consistent-destructuring': off,
+      'unicorn/consistent-function-scoping': off, // Too many false positive
       'unicorn/no-array-callback-reference': off, // Many false positive reported
       'unicorn/no-array-for-each': off, // This rule could change browser compatibility
       'unicorn/no-array-method-this-argument': off, // Many false positive reported
