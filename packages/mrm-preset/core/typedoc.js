@@ -26,14 +26,6 @@ function typedoc({ state, update }) {
   const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
   const hasTypedoc = state === 'present';
 
-  pkg.withPackageJson((packageFile) => {
-    pkg.script(packageFile, {
-      name: 'typedoc',
-      script: 'typedoc',
-      state: !hasTypedoc || hasWorkspaces ? 'absent' : 'present',
-    });
-  });
-
   const typedocFile = json('typedoc.json');
 
   if (hasTypedoc) {
@@ -44,11 +36,11 @@ function typedoc({ state, update }) {
         ...update(config),
         ...(hasWorkspaces
           ? {
-              'external-modulemap': '.*packages/([^/]+)/.*',
-              entryPoints: ['packages/'],
+              entryPointStrategy: 'packages',
+              entryPoints: undefined,
             }
           : {
-              'external-modulemap': undefined,
+              entryPointStrategy: undefined,
               entryPoints: ['src/index.ts'],
             }),
       }),
@@ -69,11 +61,6 @@ function typedoc({ state, update }) {
     dev: true,
     name: ['typedoc'],
     state: hasTypedoc ? 'present' : 'absent',
-  });
-  npm.dependency({
-    dev: true,
-    name: ['@strictsoftware/typedoc-plugin-monorepo'],
-    state: hasTypedoc && hasWorkspaces ? 'present' : 'absent',
   });
 }
 
