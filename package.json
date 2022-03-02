@@ -51,56 +51,19 @@
     ]
   },
   "eslintConfig": {
-    "env": {
-      "node": true
-    },
-    "parser": "@babel/eslint-parser",
     "parserOptions": {
-      "ecmaFeatures": {
-        "jsx": true
-      },
-      "ecmaVersion": 2020,
-      "project": "./tsconfig.json",
-      "requireConfigFile": false,
-      "sourceType": "module"
+      "project": "./tsconfig.json"
     },
     "plugins": [
       "sort-keys-fix"
     ],
     "extends": [
-      "./packages/eslint-config/rules/base",
-      "prettier",
-      "./packages/eslint-config/rules/prettier",
-      "./packages/eslint-config/json"
+      "@w5s/eslint-config"
     ],
     "rules": {
-      "prefer-object-spread": "off"
+      "prefer-object-spread": "off",
+      "unicorn/prefer-module": "off"
     },
-    "overrides": [
-      {
-        "files": [
-          "*.+(ts|tsx)"
-        ],
-        "extends": [
-          "@w5s/eslint-config/ts"
-        ]
-      },
-      {
-        "files": [
-          "**/__mocks__ /**/*.+(ts|tsx|js|jsx)",
-          "**/__tests__ /**/*.+(ts|tsx|js|jsx)",
-          "**/?(*.)+(spec|test).+(ts|tsx|js|jsx)"
-        ],
-        "settings": {
-          "jest": {
-            "version": "latest"
-          }
-        },
-        "extends": [
-          "./packages/eslint-config/jest"
-        ]
-      }
-    ],
     "root": true
   },
   "eslintIgnore": [
@@ -117,19 +80,13 @@
     "@babel/core": "7.17.5",
     "@babel/eslint-parser": "7.17.0",
     "@commitlint/cli": "16.2.1",
-    "@commitlint/config-conventional": "16.2.1",
     "@types/node": "^16.11.24",
-    "@typescript-eslint/eslint-plugin": "5.12.1",
-    "@typescript-eslint/parser": "5.12.1",
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/eslint-config": "workspace:*",
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/ts-config": "workspace:*",
     "cspell": "5.18.5",
     "eslint": "8.10.0",
-    "eslint-plugin-import": "2.25.4",
-    "eslint-plugin-jest": "26.1.1",
-    "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "husky": "7.0.4",
     "is-ci": "3.0.1",
@@ -141,7 +98,6 @@
     "mrm": "3.0.10",
     "npm-run-all": "4.1.5",
     "prettier": "2.5.1",
-    "sync-directory": "4.0.12",
     "turbo": "1.1.4",
     "typescript": "4.5.5"
   },

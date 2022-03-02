@@ -6,7 +6,7 @@ function tryResolve(name) {
   try {
     require.resolve(name);
     return true;
-  } catch (_error) {
+  } catch {
     return false;
   }
 }
