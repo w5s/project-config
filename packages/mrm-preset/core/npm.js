@@ -249,7 +249,7 @@ function isUsingWorkspaces() {
 
 function isYarnBerry() {
   const yamlRC = yaml('.yarnrc.yml');
-  return yamlRC.exists() && (yamlRC.get('yarnPath') || '').indexOf('.yarn/releases/yarn-1.') < 0;
+  return yamlRC.exists() && !(yamlRC.get('yarnPath') || '').includes('.yarn/releases/yarn-1.');
 }
 
 /**
@@ -258,18 +258,16 @@ function isYarnBerry() {
 function bootstrap(defaultPackageManager) {
   const packageFile = json(`./package.json`);
   const isYarn = isUsingYarn() || defaultPackageManager.startsWith('yarn@');
-  if (!packageFile.get('packageManager')) {
-    if (isYarn) {
-      execCommand(undefined, 'yarn', ['set', 'version', 'berry']);
-      yaml('.yarnrc.yml')
-        .merge({
-          nodeLinker: 'node-modules',
-        })
-        .save();
-      // Downgrade
-      if (defaultPackageManager.endsWith('@classic')) {
-        execCommand(undefined, 'yarn', ['set', 'version', 'classic']);
-      }
+  if (!packageFile.get('packageManager') && isYarn) {
+    execCommand(undefined, 'yarn', ['set', 'version', 'berry']);
+    yaml('.yarnrc.yml')
+      .merge({
+        nodeLinker: 'node-modules',
+      })
+      .save();
+    // Downgrade
+    if (defaultPackageManager.endsWith('@classic')) {
+      execCommand(undefined, 'yarn', ['set', 'version', 'classic']);
     }
   }
 

@@ -1,19 +1,15 @@
 const { jest } = require('../core/jest');
 
-function createJest() {
-  /**
-   *
-   */
-  function task() {
-    jest({
-      state: 'present',
-    });
-  }
-
-  task.description = 'Setup Jest';
-  task.parameters = {};
-
-  return task;
+/**
+ *
+ */
+function task() {
+  jest({
+    state: 'present',
+  });
 }
 
-module.exports = createJest();
+task.description = 'Setup Jest';
+task.parameters = {};
+
+module.exports = task;

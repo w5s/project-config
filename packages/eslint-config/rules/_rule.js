@@ -28,7 +28,7 @@ const off = 'off';
 
 /**
  * @template T
- * @type {(value: T[]|T|undefined) => T[]} */
+  @type {(value: T[]|T|undefined) => T[]} */
 function toArray(value) {
   if (value == null) {
     return [];

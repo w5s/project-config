@@ -13,17 +13,19 @@ function remoteSync() {
       ? [
           /**
            * 1. filter github URL
+           *
            * @param {string} returnValue
            */
           (returnValue) => returnValue.replace(/^git@github.com:/, 'https://github.com/'),
           /**
            * 2. filter gitlab URL
+           *
            * @param {string} returnValue
            */
           (returnValue) => returnValue.replace(/^git@gitlab.com:/, 'https://gitlab.com/'),
         ].reduce((returnValue, filter) => filter(returnValue), remoteURL)
       : remoteURL;
-  } catch (error) {
+  } catch {
     // ignore error
   }
 

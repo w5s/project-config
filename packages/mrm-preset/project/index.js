@@ -6,36 +6,35 @@ const { vscodeTask } = require('../core/vscode');
 const project = require('../core/project');
 const mrmPackageJson = require('../package.json');
 
+/**
+ *
+ * @param {string} script
+ */
+const npmRun = (script) => {
+  switch (script) {
+    case project.install:
+    case project.test:
+      return `npm ${script}`;
+    default:
+      return `npm run ${script}`;
+  }
+};
+/**
+ *
+ * @param {string} script
+ */
+const turboRun = (script) => `turbo run ${script}`;
+
+/**
+ *
+ * @param {string} script
+ */
+const npmRunAll = (script) => `npm-run-all -p "${script}:*"`;
 function task() {
   const packageFile = packageJson();
   const gitSupported = git.hasGit();
   const useWorkspace = packageFile.get('mrmConfig.packageArchetype') === 'workspace';
   const packageManager = pkg.manager(packageFile);
-
-  /**
-   *
-   * @param {string} script
-   */
-  const npmRun = (script) => {
-    switch (script) {
-      case project.install:
-      case project.test:
-        return `npm ${script}`;
-      default:
-        return `npm run ${script}`;
-    }
-  };
-  /**
-   *
-   * @param {string} script
-   */
-  const turboRun = (script) => `turbo run ${script}`;
-
-  /**
-   *
-   * @param {string} script
-   */
-  const npmRunAll = (script) => `npm-run-all -p "${script}:*"`;
 
   // Detect git repository
   pkg.value(packageFile, {

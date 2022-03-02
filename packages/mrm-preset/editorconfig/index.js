@@ -26,6 +26,7 @@ function createEditorConfig(defaults) {
 
   /**
    * @param {string} section
+   * @param existing
    */
   function mergeSection(section, existing = {}) {
     return Object.assign(existing, defaults[section] || {});
@@ -52,6 +53,7 @@ function createEditorConfig(defaults) {
 
 module.exports = createEditorConfig({
   '*': {
+    // eslint-disable-next-line unicorn/text-encoding-identifier-case
     charset: 'utf-8',
     continuation_indent_size: 4,
     curly_bracket_next_line: false,

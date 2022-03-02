@@ -1,4 +1,4 @@
-const { join } = require('path');
+const path = require('path');
 const { json, file, template, packageJson } = require('mrm-core');
 const npm = require('../core/npm');
 const { gitIgnore } = require('../core/git');
@@ -68,12 +68,12 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
         .save();
 
       // Create default index
-      const templateDir = join(__dirname, 'templates');
+      const templateDir = path.join(__dirname, 'templates');
       if (!file('src/index.ts').exists()) {
-        template('src/index.ts', join(templateDir, 'index.ts')).apply().save();
+        template('src/index.ts', path.join(templateDir, 'index.ts')).apply().save();
       }
       if (!file('src/index.spec.ts').exists()) {
-        template('src/index.spec.ts', join(templateDir, 'index.spec.ts')).apply().save();
+        template('src/index.spec.ts', path.join(templateDir, 'index.spec.ts')).apply().save();
       }
     }
     // Application setup

@@ -53,7 +53,7 @@ function block({
     const replaceBlock = beginBlock + EOL + blockContent + EOL + endBlock;
 
     if (found.exists) {
-      return fullContent.substr(0, found.startIndex) + replaceBlock + fullContent.substr(found.endIndex);
+      return fullContent.slice(0, Math.max(0, found.startIndex)) + replaceBlock + fullContent.slice(found.endIndex);
     }
 
     // insert

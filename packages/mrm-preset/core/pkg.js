@@ -100,18 +100,14 @@ function engineMinVersion(packageFile, engineVersionMap) {
     const currentVersion = packageFile.get(`engines.${engineName}`, defaultVersion);
     try {
       return intersect(currentVersion, defaultVersion);
-    } catch (_) {
+    } catch {
       return currentVersion; // leave unchanged
     }
   };
 
   packageFile.merge({
-    engines: Object.keys(engineVersionMap).reduce(
-      (acc, engineName) => ({
-        ...acc,
-        [engineName]: engineConstraint(engineName),
-      }),
-      {}
+    engines: Object.fromEntries(
+      Object.keys(engineVersionMap).map((engineName) => [engineName, engineConstraint(engineName)])
     ),
   });
 }
