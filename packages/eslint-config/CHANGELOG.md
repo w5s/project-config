@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.11](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.10...@w5s/eslint-config@1.0.0-alpha.11) (2022-03-08)
+
+
+### Bug Fixes
+
+* add missing $schema for tsconfig ([c33c7ae](https://github.com/w5s/project-config/commit/c33c7aeba405d651eba19187436724780dd90aff))
+* disable unicorn/consistent-function-scoping ([39de3ef](https://github.com/w5s/project-config/commit/39de3efeef075c42d255a63938b1a50d23bdcfe2))
+
+
+
+
+
 # [1.0.0-alpha.10](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.9...@w5s/eslint-config@1.0.0-alpha.10) (2022-03-01)
 
 

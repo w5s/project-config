@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.8](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.7...@w5s/mrm-preset@1.0.0-alpha.8) (2022-03-08)
+
+
+### Bug Fixes
+
+* add missing $schema for tsconfig ([c33c7ae](https://github.com/w5s/project-config/commit/c33c7aeba405d651eba19187436724780dd90aff))
+* remove unused typedoc script ([51238f0](https://github.com/w5s/project-config/commit/51238f04b8f3d95baac7f0a367ba1c07061d2ce4))
+
+
+
+
+
 # [1.0.0-alpha.7](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.6...@w5s/mrm-preset@1.0.0-alpha.7) (2022-03-01)
 
 
