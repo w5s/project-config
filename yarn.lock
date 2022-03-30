@@ -2562,7 +2562,7 @@ __metadata:
     lint-staged: 12.3.7
     markdown-magic: 2.6.0
     markdown-magic-package-json: 2.0.2
-    markdown-magic-subpackage-list: 1.1.1
+    markdown-magic-subpackage-list: 1.1.2
     mrm: 4.0.0
     npm-run-all: 4.1.5
     prettier: 2.6.1
@@ -7822,10 +7822,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-magic-subpackage-list@npm:1.1.1":
-  version: 1.1.1
-  resolution: "markdown-magic-subpackage-list@npm:1.1.1"
-  checksum: 36afc55abddae6fc0b0537d024b227721ecee7195d9d24e033a09fc752752535cdcc58baf4c789961ddb1218ab4f0c97cf472252a75d331c6000168c2e8622ba
+"markdown-magic-subpackage-list@npm:1.1.2":
+  version: 1.1.2
+  resolution: "markdown-magic-subpackage-list@npm:1.1.2"
+  peerDependencies:
+    markdown-magic: ">=0.1 <=2.x"
+  checksum: feb0143c00927b9c3973f5bbc6a22b8db8d37ee35a2ca08826edbfc7bf3e7ceba132ddd4f286e7dbd774e8a2401769b06a2d0ab0af7b58f8a93938ce466f371c
   languageName: node
   linkType: hard
 
