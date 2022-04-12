@@ -48,7 +48,7 @@ function task({ mrmPreset, mrmTask, packageArchetype, packageManager }) {
     pkg.script(packageFile, {
       name: 'mrm',
       state: 'default',
-      script: `${currentPackageManager} --preset ${mrmPreset}`,
+      script: `mrm --preset ${mrmPreset}`,
     });
   });
 
