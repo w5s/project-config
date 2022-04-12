@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.9](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.8...@w5s/mrm-preset@1.0.0-alpha.9) (2022-04-12)
+
+
+### Bug Fixes
+
+* correct default mrm task ([1a59cb1](https://github.com/w5s/project-config/commit/1a59cb1a114c2cba091c4729b5e66e5a5354004e))
+
+
+
+
+
 # [1.0.0-alpha.8](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.7...@w5s/mrm-preset@1.0.0-alpha.8) (2022-03-08)
 
 
