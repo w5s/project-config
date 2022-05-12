@@ -21,8 +21,12 @@ function task() {
     update: (config) => ({
       ...config,
       '*.json': [...(hasESLint ? ['eslint'] : [])],
-      '*.js?(x)': [...(hasTsc ? ["bash -c 'tsc --noEmit'"] : []), ...(hasESLint ? ['eslint'] : [])],
-      '*.ts?(x)': [...(hasTsc ? ["bash -c 'tsc --noEmit'"] : []), ...(hasESLint ? ['eslint'] : [])],
+      '*.js?(x)': [...(hasESLint ? ['eslint'] : [])],
+      '*.ts?(x)': [
+        // TODO: https://github.com/okonet/lint-staged/issues/825
+        // ...(hasTsc ? ["tsc --noEmit --skipLibCheck"] : []),
+        ...(hasESLint ? ['eslint'] : []),
+      ],
     }),
   });
   gitHook({
