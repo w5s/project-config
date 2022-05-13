@@ -40,7 +40,7 @@ const defaultManager = 'npm';
 
 /**
  * @param {import('mrm-core').PackageJson} packageFile
- * @returns {'yarn'|'npm'}
+ * @returns {'yarn'|'npm'} - The manager used by the package
  */
 function manager(packageFile) {
   if (packageFile.get('packagerManager')) {

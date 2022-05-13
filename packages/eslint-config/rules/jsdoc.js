@@ -8,6 +8,7 @@ module.exports = {
     'jsdoc/require-jsdoc': off,
     'jsdoc/require-param-description': off,
     'jsdoc/require-returns': off,
+    'jsdoc/valid-types': off, // FIXME: reports lots of false positive
     strict: [error, 'safe'],
   },
   settings: {

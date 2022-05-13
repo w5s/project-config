@@ -24,18 +24,20 @@ const MrmError = require('mrm-core/src/error');
 const { yaml, json } = require('mrm-core');
 
 /**
- * @typedef Options
- * @property {boolean} [dev]
- * @property {boolean} [yarn]
- * @property {Record<string, string>} [versions]
+ * @typedef {{
+ *   dev?: boolean,
+ *   yarn?: boolean,
+ *   versions?: Record<string, string>,
+ * }} Options
  */
 
 /**
- * @typedef RunOptions
- * @property {boolean} [dev]
- * @property {boolean} [remove]
- * @property {boolean} [stdio]
- * @property {string} [cwd]
+ * @typedef {{
+ *  dev?: boolean,
+ *  remove?: boolean,
+ *  stdio?: boolean,
+ *  cwd?: string,
+ * }} RunOptions
  */
 
 /**
@@ -166,7 +168,7 @@ function getVersionedDep(dep, versions) {
 /**
  *
  * @param {Options} options
- * @returns {Record<string, string>}
+ * @returns {Record<string, string>} - map of package names to versions
  */
 function getOwnDependencies(options) {
   const pkg = packageJson({
@@ -181,7 +183,7 @@ function getOwnDependencies(options) {
  * Return version of installed npm package
  *
  * @param {string} name
- * @returns {string}
+ * @returns {string} - version
  */
 function getInstalledVersion(name) {
   return json(`./node_modules/${name}/package.json`).get('version');
@@ -194,7 +196,7 @@ function getInstalledVersion(name) {
  * @param {string[]} deps
  * @param {Record<string, string>} versions
  * @param {Options} options
- * @returns {string[]}
+ * @returns {string[]} - list of not installed dependencies
  */
 function getUnsatisfiedDeps(deps, versions, options) {
   const ownDependencies = getOwnDependencies(options);

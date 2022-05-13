@@ -11,7 +11,6 @@ function task() {
   const gitSupported = hasGit();
   const packageFile = packageJson();
   const hasESLint = pkg.hasDependency(packageFile, 'eslint', 'dev');
-  const hasTsc = pkg.hasDependency(packageFile, 'typescript', 'dev');
 
   husky({
     state: gitSupported ? 'present' : 'absent',

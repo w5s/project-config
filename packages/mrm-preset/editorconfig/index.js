@@ -26,7 +26,7 @@ function createEditorConfig(defaults) {
 
   /**
    * @param {string} section
-   * @param existing
+   * @param {defaults} existing
    */
   function mergeSection(section, existing = {}) {
     return Object.assign(existing, defaults[section] || {});
