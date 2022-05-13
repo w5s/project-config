@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.10](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.9...@w5s/mrm-preset@1.0.0-alpha.10) (2022-05-13)
+
+
+### Bug Fixes
+
+* remove tsc on lint-staged because buggy ([6b0f4f2](https://github.com/w5s/project-config/commit/6b0f4f2c6d5d06f959ee1edc5cc6266464747d7e))
+
+
+
+
+
 # [1.0.0-alpha.9](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.8...@w5s/mrm-preset@1.0.0-alpha.9) (2022-04-12)
 
 
