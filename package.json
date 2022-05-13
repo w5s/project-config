@@ -32,7 +32,9 @@
     "test": "npm-run-all -p \"test:*\"",
     "test:packages": "turbo run test",
     "__test:cspell": "cspell '**' --no-summary",
-    "validate": "npm run build && npm run lint && npm test"
+    "validate": "npm run build && npm run lint && npm test",
+    "develop": ":",
+    "code-analysis": ":"
   },
   "commitlint": {
     "extends": [
@@ -74,7 +76,8 @@
     "lib/",
     "**/tsconfig.json",
     ".vscode/**",
-    "**/_tester/**"
+    "**/_tester/**",
+    "public/"
   ],
   "devDependencies": {
     "@babel/core": "7.17.10",
@@ -102,7 +105,7 @@
     "typescript": "4.6.4"
   },
   "engines": {
-    "node": ">=12.0.0",
+    "node": ">=14.0.0",
     "npm": ">=6.0.0",
     "yarn": ">=1.0.0"
   },
