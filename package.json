@@ -26,7 +26,6 @@
     "mrm": "mrm --preset @w5s/mrm-preset",
     "prepare:empty": ":",
     "prepare:husky": "is-ci || husky install",
-    "prepare:packages": "lerna bootstrap",
     "release": "is-ci && lerna publish --yes || lerna publish",
     "rescue": "git clean -fdx;yarn install",
     "test": "npm-run-all -p \"test:*\"",

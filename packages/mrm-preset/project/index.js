@@ -139,11 +139,6 @@ function task() {
     script: pkg.emptyScript,
     state: 'default',
   });
-  pkg.script(packageFile, {
-    name: `${project.prepare}:packages`,
-    script: 'lerna bootstrap',
-    state: useWorkspace ? 'present' : 'absent',
-  });
 
   // rescue
   pkg.script(packageFile, {
