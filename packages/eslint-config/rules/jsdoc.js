@@ -1,10 +1,11 @@
-const { off, error } = require('./_rule');
+const { off, error, warn } = require('./_rule');
 
 module.exports = {
   extends: ['plugin:jsdoc/recommended'],
   plugins: ['jsdoc'],
   rules: {
     'jsdoc/no-undefined-types': off, // https://github.com/gajus/eslint-plugin-jsdoc/issues/839
+    'jsdoc/require-hyphen-before-param-description': [warn, 'never'],
     'jsdoc/require-jsdoc': off,
     'jsdoc/require-param-description': off,
     'jsdoc/require-returns': off,
