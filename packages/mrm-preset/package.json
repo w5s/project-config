@@ -32,7 +32,7 @@
     "debug": "^4.3.3",
     "mrm-core": "^7.0.0",
     "semver-intersect": "^1.4.0",
-    "sync-directory": "^4.0.0"
+    "sync-directory": "^5.0.0"
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
