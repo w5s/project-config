@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.15](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.14...@w5s/eslint-config@1.0.0-alpha.15) (2022-05-20)
+
+
+### Bug Fixes
+
+* correct jsdoc hyphen rule to be always added ([061bca6](https://github.com/w5s/project-config/commit/061bca6192bd82caf6f9e25cd275cc8899b7f4f4))
+
+
+
+
+
 # [1.0.0-alpha.14](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.13...@w5s/eslint-config@1.0.0-alpha.14) (2022-05-20)
 
 
