@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.11](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.10...@w5s/mrm-preset@1.0.0-alpha.11) (2022-05-20)
+
+
+### Bug Fixes
+
+* correct prepare package script ([f2d5fbf](https://github.com/w5s/project-config/commit/f2d5fbfc4e7b66dece1d1139e2ba3835bcf524a1))
+
+
+### Features
+
+* add minimal support for yarn + github ci ([b9ae537](https://github.com/w5s/project-config/commit/b9ae53746fa9a3f92a1ca0e3600e20cdda583a45))
+
+
+
+
+
 # [1.0.0-alpha.10](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.9...@w5s/mrm-preset@1.0.0-alpha.10) (2022-05-13)
 
 
