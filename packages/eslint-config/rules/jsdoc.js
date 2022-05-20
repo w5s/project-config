@@ -5,7 +5,7 @@ module.exports = {
   plugins: ['jsdoc'],
   rules: {
     'jsdoc/no-undefined-types': off, // https://github.com/gajus/eslint-plugin-jsdoc/issues/839
-    'jsdoc/require-hyphen-before-param-description': [warn, 'never'],
+    'jsdoc/require-hyphen-before-param-description': [warn, 'always'],
     'jsdoc/require-jsdoc': off,
     'jsdoc/require-param-description': off,
     'jsdoc/require-returns': off,
