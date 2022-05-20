@@ -112,7 +112,7 @@ function task() {
   });
   pkg.script(packageFile, {
     name: `${project.prepare}:packages`,
-    script: turboRun(project.test),
+    script: turboRun(project.prepare),
     state: useWorkspace ? 'present' : 'absent',
   });
   pkg.script(packageFile, {
