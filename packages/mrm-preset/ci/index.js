@@ -1,10 +1,15 @@
 const gitlabCI = require('../core/gitlabCI');
+const githubCI = require('../core/githubCI');
 const gitlab = require('./gitlab');
+const github = require('./github');
 
 function task() {
   // check gitlab support
   if (gitlabCI.isSupported()) {
     gitlab();
+  }
+  if (githubCI.isSupported()) {
+    github();
   }
 }
 
