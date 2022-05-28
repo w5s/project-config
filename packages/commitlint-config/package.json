@@ -30,10 +30,10 @@
     "test:git-log": "cd ../..;npm exec -- commitlint --from HEAD~3 --to HEAD --verbose"
   },
   "dependencies": {
-    "@commitlint/config-conventional": "^16.0.0"
+    "@commitlint/config-conventional": "^17.0.0"
   },
   "peerDependencies": {
-    "@commitlint/cli": "^16.0.0"
+    "@commitlint/cli": "^16.0.0 || ^17.0.0"
   },
   "publishConfig": {
     "access": "public"
