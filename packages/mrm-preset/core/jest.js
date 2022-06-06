@@ -13,7 +13,6 @@ function jest({ state }) {
   const packageFileDefault = packageJson();
   const hasJest = state === 'present';
   const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
-  const hasTypescript = pkg.hasDependency(packageFileDefault, 'typescript', 'dev');
 
   pkg.withPackageJson((packageFile) => {
     if (hasJest) {
@@ -53,16 +52,12 @@ function jest({ state }) {
       state: !hasJest || hasWorkspaces ? 'default' : 'present',
     });
   });
+
   // Dependencies
   npm.dependency({
     dev: true,
     name: ['jest', 'es-jest'],
     state: hasJest ? 'present' : 'absent',
-  });
-  npm.dependency({
-    dev: true,
-    name: ['@types/jest'],
-    state: hasJest && hasTypescript ? 'present' : 'absent',
   });
 
   // vscodeSnippets({
