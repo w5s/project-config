@@ -211,6 +211,7 @@ function task() {
         [project.test]: {},
         [project.lint]: {},
         [project.format]: {},
+        [project.docs]: {},
         [project.spellcheck]: {},
         [project.clean]: {
           cache: false,

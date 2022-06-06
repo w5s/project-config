@@ -1,3 +1,5 @@
+/** @type {'docs'} */
+const docs = 'docs';
 /** @type {'install'} */
 const install = 'install';
 /** @type {'prepare'} */
@@ -43,6 +45,7 @@ function post(taskName) {
 
 module.exports = {
   build,
+  docs,
   prepare,
   develop,
   clean,
