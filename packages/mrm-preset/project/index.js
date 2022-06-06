@@ -5,6 +5,7 @@ const npm = require('../core/npm');
 const { vscodeTask } = require('../core/vscode');
 const project = require('../core/project');
 const mrmPackageJson = require('../package.json');
+const { turbo } = require('../core/turbo');
 
 /**
  *
@@ -155,25 +156,7 @@ function task() {
   });
 
   // workspace
-  const turboConfig = json('turbo.json', {
-    $schema: 'https://turborepo.org/schema.json',
-    pipeline: {
-      [project.build]: {
-        dependsOn: ['^build'],
-        outputs: ['lib/**', 'dist/**', '.next/**'],
-      },
-      [project.test]: {},
-      [project.lint]: {},
-      [project.format]: {},
-      [project.clean]: {
-        cache: false,
-      },
-      [project.develop]: {
-        cache: false,
-      },
-    },
-    globalDependencies: ['tsconfig.settings.json'],
-  });
+
   const lernaConfig = json('lerna.json', {
     version: packageFile.get('version'),
   });
@@ -195,12 +178,10 @@ function task() {
       useWorkspaces: useWorkspace,
     });
     lernaConfig.save();
-    turboConfig.save();
     makeDirs('packages');
   } else {
     packageFile.unset('workspaces');
     lernaConfig.delete();
-    turboConfig.delete();
   }
 
   // Engine
@@ -217,6 +198,31 @@ function task() {
   );
   packageFile.save();
 
+  // Turbo config
+  turbo({
+    state: useWorkspace ? 'present' : 'absent',
+    update: (_) => ({
+      ..._,
+      pipeline: {
+        [project.build]: {
+          dependsOn: ['^build'],
+          outputs: ['lib/**', 'dist/**', '.next/**'],
+        },
+        [project.test]: {},
+        [project.lint]: {},
+        [project.format]: {},
+        [project.spellcheck]: {},
+        [project.clean]: {
+          cache: false,
+        },
+        [project.develop]: {
+          cache: false,
+        },
+      },
+      globalDependencies: ['tsconfig.settings.json'],
+    }),
+  });
+
   // Dependencies
   npm.dependency({
     dev: true,
@@ -225,7 +231,7 @@ function task() {
   });
   npm.dependency({
     dev: true,
-    name: ['lerna', 'turbo'],
+    name: ['lerna'],
     state: useWorkspace ? 'present' : 'absent',
   });
 
