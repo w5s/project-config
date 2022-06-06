@@ -24,6 +24,8 @@ const validate = 'validate';
 const release = 'release';
 /** @type {'rescue'} */
 const rescue = 'rescue';
+/** @type {'spellcheck'} */
+const spellcheck = 'spellcheck';
 
 /**
  * @param {string} taskName
@@ -55,4 +57,5 @@ module.exports = {
   rescue,
   test,
   validate,
+  spellcheck,
 };
