@@ -30,10 +30,10 @@
     "rescue": "git clean -fdx;yarn install",
     "test": "npm-run-all -p \"test:*\"",
     "test:packages": "turbo run test",
-    "__test:cspell": "cspell '**' --no-summary",
     "validate": "npm run build && npm run lint && npm test",
     "develop": ":",
-    "code-analysis": ":"
+    "code-analysis": ":",
+    "spellcheck": "cspell '*' --silent && turbo run spellcheck"
   },
   "commitlint": {
     "extends": [

@@ -11,10 +11,10 @@
         ".next/**"
       ]
     },
-    "docs": {},
     "test": {},
     "lint": {},
     "format": {},
+    "spellcheck": {},
     "clean": {
       "cache": false
     },

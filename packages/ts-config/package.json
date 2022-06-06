@@ -28,6 +28,7 @@
     "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
     "format": "eslint . --quiet --fix --ext=mjs,cjs,js,jsx,ts,tsx,json",
     "lint": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json",
+    "spellcheck": "cspell '**' --silent",
     "test": "tsc -p __tests__/tsconfig.json --noEmit --skipLibCheck"
   },
   "devDependencies": {

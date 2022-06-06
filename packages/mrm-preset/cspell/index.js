@@ -1,4 +1,6 @@
 const { cspell } = require('../core/cspell');
+const project = require('../core/project');
+const pkg = require('../core/pkg');
 
 function task() {
   cspell({
@@ -19,6 +21,22 @@ function task() {
         ])
       ),
     }),
+  });
+
+  pkg.withPackageJson((packageFile) => {
+    const hasWorkspaces = pkg.hasWorkspaces(packageFile);
+    pkg.script(packageFile, {
+      name: project.spellcheck,
+      script: `cspell ${hasWorkspaces ? `'*' --silent && turbo run spellcheck` : '**'}`,
+      state: 'present',
+    });
+  });
+  pkg.forEachWorkspace(({ packageFile }) => {
+    pkg.script(packageFile, {
+      name: project.spellcheck,
+      script: `cspell '**' --silent`,
+      state: 'present',
+    });
   });
 }
 
