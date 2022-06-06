@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "debug": "^4.3.3",
+    "glob": "^8.0.3",
     "mrm-core": "^7.0.0",
     "semver-intersect": "^1.4.0",
     "sync-directory": "^5.0.0"

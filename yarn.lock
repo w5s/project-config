@@ -2736,6 +2736,7 @@ __metadata:
   dependencies:
     "@types/debug": ^4.1.7
     debug: ^4.3.3
+    glob: ^8.0.3
     mrm: 4.0.0
     mrm-core: ^7.0.0
     semver-intersect: ^1.4.0

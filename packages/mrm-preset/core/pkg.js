@@ -3,7 +3,9 @@
 
 // @ts-ignore
 const { intersect } = require('semver-intersect');
-const { packageJson, file } = require('mrm-core');
+const { packageJson, file, json } = require('mrm-core');
+const glob = require('glob');
+const path = require('path');
 const jsonFile = require('./jsonFile');
 
 /**
@@ -21,7 +23,38 @@ function withPackageJson(block) {
 }
 
 /**
- * @param {import('mrm-core').PackageJson} packageFile
+ * @param {import("mrm-core").Json} packageFile
+ * @returns {string[]} - The list of workspace matchers
+ */
+function listWorkspaceMatchers(packageFile) {
+  return packageFile.get('workspaces.packages', packageFile.get('workspaces', []));
+}
+
+/**
+ * @param {(workspace: {
+ *   projectDir: string;
+ *   packageFile: import("mrm-core").Json;
+ * }) => void} fn
+ */
+function forEachWorkspace(fn) {
+  const packageRoot = packageJson();
+  const workspacesMatchers = listWorkspaceMatchers(packageRoot);
+
+  for (const workspaceMatcher of workspacesMatchers) {
+    const directories = glob.sync(workspaceMatcher);
+    directories.forEach((directory) => {
+      const packageFile = json(path.join(directory, 'package.json'));
+      fn({
+        projectDir: directory,
+        packageFile,
+      });
+      packageFile.save();
+    });
+  }
+}
+
+/**
+ * @param {import('mrm-core').Json} packageFile
  * @param {{
  *   name: string,
  *   state: 'present'|'absent'|'default',
@@ -30,9 +63,9 @@ function withPackageJson(block) {
  */
 function script(packageFile, { name, state, script: scriptName }) {
   if (state === 'absent') {
-    packageFile.removeScript(name);
-  } else if (state === 'present' || (state === 'default' && !packageFile.getScript(name))) {
-    packageFile.setScript(name, scriptName);
+    packageFile.unset(['scripts', name]);
+  } else if (state === 'present' || (state === 'default' && !packageFile.get(['scripts', name]))) {
+    packageFile.set(['scripts', name], scriptName);
   }
 }
 
@@ -121,4 +154,6 @@ module.exports = {
   hasDependency,
   hasWorkspaces,
   withPackageJson,
+  forEachWorkspace,
+  listWorkspaceMatchers,
 };
