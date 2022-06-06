@@ -87,7 +87,7 @@
     "@w5s/eslint-config": "workspace:*",
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/ts-config": "workspace:*",
-    "cspell": "6.0.0",
+    "cspell": "6.1.1",
     "eslint": "8.16.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "husky": "8.0.1",
@@ -100,8 +100,8 @@
     "mrm": "4.0.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.6.2",
-    "turbo": "1.2.14",
-    "typescript": "4.7.2"
+    "turbo": "1.2.16",
+    "typescript": "4.7.3"
   },
   "engines": {
     "node": ">=14.0.0",
