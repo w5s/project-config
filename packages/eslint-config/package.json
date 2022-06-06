@@ -27,8 +27,8 @@
     "build": "npm-run-all -p 'build:*'",
     "build:empty": ":",
     "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
-    "format": "eslint . --fix",
-    "lint": "eslint .",
+    "format": "eslint . --quiet --fix --ext=mjs,cjs,js,jsx,ts,tsx,json",
+    "lint": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json",
     "test": "scripts/test"
   },
   "eslintConfig": {

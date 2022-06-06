@@ -26,6 +26,8 @@
     "build": "npm-run-all -p 'build:*'",
     "build:empty": ":",
     "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
+    "format": "eslint . --quiet --fix --ext=mjs,cjs,js,jsx,ts,tsx,json",
+    "lint": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json",
     "test": "exit 0",
     "test:git-log": "cd ../..;npm exec -- commitlint --from HEAD~3 --to HEAD --verbose"
   },
