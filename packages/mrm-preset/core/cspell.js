@@ -1,5 +1,4 @@
 const { json } = require('mrm-core');
-const pkg = require('./pkg');
 const npm = require('./npm');
 /**
  * @typedef {{
@@ -21,14 +20,6 @@ const npm = require('./npm');
  */
 function cspell({ state, update }) {
   const hasCSpell = state === 'present';
-
-  pkg.withPackageJson((packageFile) => {
-    pkg.script(packageFile, {
-      name: 'cspell',
-      script: 'cspell',
-      state,
-    });
-  });
 
   const cSpellFile = json('cSpell.json', {
     version: '0.2',
