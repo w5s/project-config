@@ -16,6 +16,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
    */
   function task({ eslintPreset, eslintRules }) {
     const packageFileDefault = packageJson();
+    const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
     const hasTypescript = pkg.hasDependency(packageFileDefault, 'typescript', 'dev');
     const hasJSX = true;
     const hasJSON = true;
@@ -63,6 +64,8 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
 
     /** @type {Record<string, boolean>} */
     const extsMap = {
+      mjs: true,
+      cjs: true,
       js: true,
       jsx: hasJSX,
       ts: hasTypescript,
@@ -73,14 +76,34 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     const extOption = ` --ext=${extList.join(',')}`;
 
     pkg.withPackageJson((packageFile) => {
+      const ignorePatterns = pkg
+        .listWorkspaceMatchers(packageFile)
+        .map((_) => ` --ignore-pattern='${_}/**'`)
+        .join('');
       pkg.script(packageFile, {
         name: project.lint,
-        script: `eslint . --cache${extOption}`,
+        script: hasWorkspaces
+          ? `eslint .${extOption}${ignorePatterns} && turbo run ${project.lint}`
+          : `eslint .${extOption}`,
         state: 'present',
       });
       pkg.script(packageFile, {
         name: project.format,
-        script: `eslint . --quiet --cache --fix${extOption}`,
+        script: hasWorkspaces
+          ? `eslint . --quiet --fix${extOption}${ignorePatterns} && turbo run ${project.format}`
+          : `eslint . --quiet --fix${extOption}`,
+        state: 'present',
+      });
+    });
+    pkg.forEachWorkspace(({ packageFile }) => {
+      pkg.script(packageFile, {
+        name: project.lint,
+        script: `eslint .${extOption}`,
+        state: 'present',
+      });
+      pkg.script(packageFile, {
+        name: project.format,
+        script: `eslint . --quiet --fix${extOption}`,
         state: 'present',
       });
     });
@@ -93,14 +116,20 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
         'editor.codeActionsOnSave': settings['editor.codeActionsOnSave'] || {
           'source.fixAll': true,
         },
-        'eslint.validate': extList.map(
-          (ext) =>
-            ({
-              jsx: 'javascriptreact',
-              js: 'javascript',
-              tsx: 'typescriptreact',
-              ts: 'typescript',
-            }[ext] || ext)
+        'eslint.validate': Array.from(
+          new Set(
+            extList.map(
+              (ext) =>
+                ({
+                  cjs: 'javascript',
+                  mjs: 'javascript',
+                  jsx: 'javascriptreact',
+                  js: 'javascript',
+                  tsx: 'typescriptreact',
+                  ts: 'typescript',
+                }[ext] || ext)
+            )
+          )
         ),
       }),
     });
