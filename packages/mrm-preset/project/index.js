@@ -86,13 +86,23 @@ function task() {
   // lint
   pkg.script(packageFile, {
     name: project.lint,
+    script: npmRunAll(project.lint),
+    state: 'present',
+  });
+  pkg.script(packageFile, {
+    name: `${project.lint}:empty`,
     script: pkg.emptyScript,
-    state: 'default',
+    state: 'present',
   });
   pkg.script(packageFile, {
     name: project.format,
+    script: npmRunAll(project.format),
+    state: 'present',
+  });
+  pkg.script(packageFile, {
+    name: `${project.format}:empty`,
     script: pkg.emptyScript,
-    state: 'default',
+    state: 'present',
   });
 
   // test
