@@ -25,16 +25,19 @@ function task() {
 
   pkg.withPackageJson((packageFile) => {
     const hasWorkspaces = pkg.hasWorkspaces(packageFile);
+    const workspaceMatchers = pkg.listWorkspaceMatchers(packageFile);
     pkg.script(packageFile, {
       name: project.spellcheck,
-      script: `cspell ${hasWorkspaces ? `'*' --silent && turbo run spellcheck` : '**'}`,
+      script: `cspell --no-progress '**' ${
+        hasWorkspaces ? `${workspaceMatchers.map((_) => `--exclude='${_}/**'`).join(' ')} && turbo run spellcheck` : ''
+      }`,
       state: 'present',
     });
   });
   pkg.forEachWorkspace(({ packageFile }) => {
     pkg.script(packageFile, {
       name: project.spellcheck,
-      script: `cspell '**' --silent`,
+      script: `cspell --no-progress '**'`,
       state: 'present',
     });
   });
