@@ -63,7 +63,7 @@ function task() {
   pkg.script(packageFile, {
     name: `${project.build}:empty`,
     script: pkg.emptyScript,
-    state: 'present',
+    state: !useWorkspace ? 'present' : 'absent',
   });
   pkg.script(packageFile, {
     name: `${project.build}:packages`,
@@ -92,7 +92,7 @@ function task() {
   pkg.script(packageFile, {
     name: `${project.lint}:empty`,
     script: pkg.emptyScript,
-    state: 'present',
+    state: !useWorkspace ? 'present' : 'absent',
   });
   pkg.script(packageFile, {
     name: project.format,
@@ -102,7 +102,7 @@ function task() {
   pkg.script(packageFile, {
     name: `${project.format}:empty`,
     script: pkg.emptyScript,
-    state: 'present',
+    state: !useWorkspace ? 'present' : 'absent',
   });
 
   // test
@@ -115,16 +115,6 @@ function task() {
     name: project.test,
     script: npmRunAll(project.test),
     state: 'present',
-  });
-  pkg.script(packageFile, {
-    name: `${project.prepare}:empty`,
-    script: pkg.emptyScript,
-    state: 'default',
-  });
-  pkg.script(packageFile, {
-    name: `${project.prepare}:packages`,
-    script: turboRun(project.prepare),
-    state: useWorkspace ? 'present' : 'absent',
   });
   pkg.script(packageFile, {
     name: project.validate,
@@ -147,8 +137,13 @@ function task() {
   });
   pkg.script(packageFile, {
     name: `${project.prepare}:empty`,
-    script: pkg.emptyScript,
+    script: !useWorkspace ? 'present' : 'absent',
     state: 'default',
+  });
+  pkg.script(packageFile, {
+    name: `${project.prepare}:packages`,
+    script: turboRun(project.prepare),
+    state: useWorkspace ? 'present' : 'absent',
   });
 
   // rescue
