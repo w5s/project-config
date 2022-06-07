@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.13](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.12...@w5s/mrm-preset@1.0.0-alpha.13) (2022-06-07)
+
+
+### Bug Fixes
+
+* improve cspell output ([a5721b5](https://github.com/w5s/project-config/commit/a5721b5c8e97817dc68e9444f4443d3cb7893a27))
+
+
+
+
+
 # [1.0.0-alpha.12](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.11...@w5s/mrm-preset@1.0.0-alpha.12) (2022-06-07)
 
 
