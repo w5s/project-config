@@ -33,7 +33,7 @@
     "prepare": "npm-run-all -p \"prepare:*\"",
     "release": "is-ci && lerna publish --yes || lerna publish",
     "rescue": "git clean -fdx;yarn install",
-    "spellcheck": "cspell '*' --silent && turbo run spellcheck",
+    "spellcheck": "cspell --no-progress '**' --exclude='packages/*/**' && turbo run spellcheck",
     "test:packages": "turbo run test",
     "test": "npm-run-all -p \"test:*\"",
     "validate": "npm run build && npm run lint && npm test"
