@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.12](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.11...@w5s/mrm-preset@1.0.0-alpha.12) (2022-06-07)
+
+
+### Bug Fixes
+
+* add spellcheck task to turbo config ([1029c2b](https://github.com/w5s/project-config/commit/1029c2b97b12b44618ce741d045b02712f0ebf18))
+* clean non useful empty script when possible ([2e7e60a](https://github.com/w5s/project-config/commit/2e7e60a400506bbca00db653813668fa47f8f065))
+* correct docs task in turbo ([0fca8c9](https://github.com/w5s/project-config/commit/0fca8c9ca0389b090e6aa2a66d47ab63b1cb138e))
+* remove uneeded @types/jest typing ([475f6bb](https://github.com/w5s/project-config/commit/475f6bbdc101d31460cd8ffb7f5deb3b97176d5c))
+* remove uneeded cspell script ([ba8d38b](https://github.com/w5s/project-config/commit/ba8d38b8053a24a7937c24c270f5d61d3dad71c7))
+
+
+### Features
+
+* configure spellcheck ([4be6a96](https://github.com/w5s/project-config/commit/4be6a96d6d30e1085b73c0befcab1d3fa30475ab))
+* improve eslint mrm support for workspaces ([2dacc2e](https://github.com/w5s/project-config/commit/2dacc2e867ebb74c8de777af2ce9f173426ebc33))
+* improve turbo support for lint and format ([76e19e0](https://github.com/w5s/project-config/commit/76e19e02918aba66a2e6e9c06a7d0bed99500ecc))
+
+
+
+
+
 # [1.0.0-alpha.11](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.10...@w5s/mrm-preset@1.0.0-alpha.11) (2022-05-20)
 
 

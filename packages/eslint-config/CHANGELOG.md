@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.16](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.15...@w5s/eslint-config@1.0.0-alpha.16) (2022-06-07)
+
+
+### Features
+
+* configure spellcheck ([4be6a96](https://github.com/w5s/project-config/commit/4be6a96d6d30e1085b73c0befcab1d3fa30475ab))
+
+
+
+
+
 # [1.0.0-alpha.15](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.14...@w5s/eslint-config@1.0.0-alpha.15) (2022-05-20)
 
 
