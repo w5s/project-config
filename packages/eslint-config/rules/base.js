@@ -24,6 +24,8 @@ module.exports = concatESConfig(
   // overrides
   {
     rules: {
+      // Annoying because it is not always wanted
+      'default-case': off,
       // Often useful in jsx
       'no-nested-ternary': off,
       // Too strict, for pure code prefer the functional plugin
