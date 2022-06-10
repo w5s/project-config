@@ -1,7 +1,7 @@
 import { dep } from './dep';
 
 export function test(): 'zero' | 'one' | 'other' {
-  dep();
+  dep('param');
 
   const returnValue = [];
   const parts = [];
