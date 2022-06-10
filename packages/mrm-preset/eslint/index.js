@@ -110,7 +110,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       });
       pkg.script(packageFile, {
         name: `${project.format}:src`,
-        script: `eslint . --quiet --fix${extOption}`,
+        script: `eslint . --fix${extOption}`,
         state: !hasWorkspaces ? 'present' : 'absent',
       });
     });
@@ -122,7 +122,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       });
       pkg.script(packageFile, {
         name: project.format,
-        script: `eslint . --quiet --fix${extOption}`,
+        script: `eslint . -fix${extOption}`,
         state: 'default',
       });
     });
