@@ -215,6 +215,7 @@ function task() {
         },
         [project.test]: {},
         [project.lint]: {},
+        [project.prepare]: {},
         [project.format]: {},
         [project.docs]: {},
         [project.spellcheck]: {},
