@@ -1,10 +1,11 @@
-const { concatESConfig, error } = require('./_rule');
+const { concatESConfig, error, fixme } = require('./_rule');
 
 module.exports = concatESConfig({
   extends: ['plugin:promise/recommended'],
   plugins: ['promise'],
   rules: {
-    'promise/prefer-await-to-callbacks': error,
+    // https://github.com/xjamundx/eslint-plugin-promise/issues/212
+    'promise/prefer-await-to-callbacks': fixme(error),
     'promise/prefer-await-to-then': error,
   },
 });
