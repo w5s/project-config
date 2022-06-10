@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.18](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.17...@w5s/eslint-config@1.0.0-alpha.18) (2022-06-10)
+
+
+### Bug Fixes
+
+* remove --quiet option on format ([268b0a7](https://github.com/w5s/project-config/commit/268b0a76dbd03cfa6729988472948a66e2b749c9))
+
+
+### Features
+
+* add promise plugin ([60b6273](https://github.com/w5s/project-config/commit/60b6273cd51df464b11c0c643ba5f799f3a27cc7))
+
+
+
+
+
 # [1.0.0-alpha.17](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.16...@w5s/eslint-config@1.0.0-alpha.17) (2022-06-07)
 
 **Note:** Version bump only for package @w5s/eslint-config

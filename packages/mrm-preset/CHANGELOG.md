@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.14](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.13...@w5s/mrm-preset@1.0.0-alpha.14) (2022-06-10)
+
+
+### Bug Fixes
+
+* add prepare task to turbo configuration ([717d59a](https://github.com/w5s/project-config/commit/717d59a724c1de8cb37f37c23aae8f4cc57fc231))
+* remove --quiet option on format ([268b0a7](https://github.com/w5s/project-config/commit/268b0a76dbd03cfa6729988472948a66e2b749c9))
+
+
+
+
+
 # [1.0.0-alpha.13](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.12...@w5s/mrm-preset@1.0.0-alpha.13) (2022-06-07)
 
 
