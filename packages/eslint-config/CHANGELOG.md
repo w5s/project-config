@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.19](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.18...@w5s/eslint-config@1.0.0-alpha.19) (2022-06-10)
+
+
+### Bug Fixes
+
+* disable default-case ([bb132b8](https://github.com/w5s/project-config/commit/bb132b8e1dc5e42c8d4cc1a3e1c159ae652c6b06))
+* fix ts error in tests ([0ec3f27](https://github.com/w5s/project-config/commit/0ec3f278f9e1420d878d69afdf6f098fe1625361))
+
+
+
+
+
 # [1.0.0-alpha.18](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.17...@w5s/eslint-config@1.0.0-alpha.18) (2022-06-10)
 
 
