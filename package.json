@@ -90,7 +90,7 @@
     "@w5s/eslint-config": "workspace:*",
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/ts-config": "workspace:*",
-    "cspell": "6.1.1",
+    "cspell": "6.1.2",
     "eslint": "8.17.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "husky": "8.0.1",
