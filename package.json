@@ -82,7 +82,7 @@
     "public/"
   ],
   "devDependencies": {
-    "@babel/core": "7.18.2",
+    "@babel/core": "7.18.5",
     "@babel/eslint-parser": "7.18.2",
     "@commitlint/cli": "17.0.2",
     "@types/node": "^16.11.24",
