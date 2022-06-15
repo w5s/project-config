@@ -15,31 +15,26 @@ function jest({ state }) {
   const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
 
   pkg.withPackageJson((packageFile) => {
-    if (hasJest) {
-      if (hasWorkspaces) {
-        pkg.value(packageFile, {
-          path: 'jest',
-          state: 'present',
-          update: () => ({
+    const ignorePatterns = ['/node_modules/', '/docs/', '/lib/', '/build/', '/.cache/', '/public/'];
+
+    pkg.value(packageFile, {
+      path: 'jest',
+      state: hasJest ? 'present' : 'absent',
+      update: hasWorkspaces
+        ? () => ({
             preset: 'es-jest',
             projects: packageFile
               .get('workspaces.packages', packageFile.get('workspaces', []))
               .map((/** @type {string} */ workspace) => `<rootDir>/${workspace}`),
-          }),
-        });
-      } else {
-        const ignorePatterns = ['/node_modules/', '/docs/', '/lib/', '/build/', '/.cache/', '/public/'];
-        packageFile.merge({
-          jest: {
+          })
+        : (config) => ({
+            ...config,
             preset: 'es-jest',
             coveragePathIgnorePatterns: ignorePatterns,
             testPathIgnorePatterns: ignorePatterns,
-          },
-        });
-      }
-    } else {
-      packageFile.unset('jest');
-    }
+          }),
+      default: {},
+    });
 
     pkg.script(packageFile, {
       name: project.coverage,
