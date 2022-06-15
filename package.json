@@ -82,7 +82,7 @@
     "public/"
   ],
   "devDependencies": {
-    "@babel/core": "7.18.2",
+    "@babel/core": "7.18.5",
     "@babel/eslint-parser": "7.18.2",
     "@commitlint/cli": "17.0.2",
     "@types/node": "^16.11.24",
@@ -95,7 +95,7 @@
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "husky": "8.0.1",
     "is-ci": "3.0.1",
-    "lerna": "5.1.1",
+    "lerna": "5.1.2",
     "lint-staged": "13.0.1",
     "markdown-magic": "2.6.0",
     "markdown-magic-package-json": "2.0.2",
