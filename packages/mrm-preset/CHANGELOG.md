@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.15](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.14...@w5s/mrm-preset@1.0.0-alpha.15) (2022-06-15)
+
+
+### Bug Fixes
+
+* remove test from build ([506f19d](https://github.com/w5s/project-config/commit/506f19d71b3fc16613d37d10c022a08dbcf70376))
+
+
+
+
+
 # [1.0.0-alpha.14](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.13...@w5s/mrm-preset@1.0.0-alpha.14) (2022-06-10)
 
 
