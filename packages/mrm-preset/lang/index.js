@@ -37,6 +37,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
     gitIgnore('Typescript', ['lib/', '*.tsbuildinfo', 'typings/']);
     eslintIgnore(['lib/']);
 
+    const excludeList = ['**/*.test.*', '**/*.spec.*', '**/__tests__/**'];
     if (hasWorkspaces) {
       tsConfig
         .unset('compilerOptions.rootDir')
@@ -45,6 +46,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
         .merge({
           $schema: 'https://json.schemastore.org/tsconfig',
           extends: `./${tsConfigSettingsName}`,
+          exclude: excludeList,
         })
         .save();
 
@@ -66,6 +68,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
           },
           extends: `./${tsConfigSettingsName}`,
           include: ['./src'],
+          exclude: excludeList,
         })
         .save();
 
