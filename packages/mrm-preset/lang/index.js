@@ -1,11 +1,11 @@
 const path = require('path');
 const { json, file, template, packageJson } = require('mrm-core');
-const npm = require('../core/npm');
-const { gitIgnore } = require('../core/git');
-const project = require('../core/project');
-const { eslintIgnore } = require('../core/eslint');
-const { typedoc } = require('../core/typedoc');
-const pkg = require('../core/pkg');
+const npm = require('../core/npm.js');
+const { gitIgnore } = require('../core/git.js');
+const project = require('../core/project.js');
+const { eslintIgnore } = require('../core/eslint.js');
+const { typedoc } = require('../core/typedoc.js');
+const pkg = require('../core/pkg.js');
 
 /**
  *
@@ -37,7 +37,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
     gitIgnore('Typescript', ['lib/', '*.tsbuildinfo', 'typings/']);
     eslintIgnore(['lib/']);
 
-    const excludeList = ['**/*.test.*', '**/*.spec.*', '**/__tests__/**'];
+    // const excludeList = ['**/*.test.*', '**/*.spec.*', '**/__tests__/**'];
     if (hasWorkspaces) {
       tsConfig
         .unset('compilerOptions.rootDir')
@@ -46,7 +46,6 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
         .merge({
           $schema: 'https://json.schemastore.org/tsconfig',
           extends: `./${tsConfigSettingsName}`,
-          exclude: excludeList,
         })
         .save();
 
@@ -68,7 +67,6 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
           },
           extends: `./${tsConfigSettingsName}`,
           include: ['./src'],
-          exclude: excludeList,
         })
         .save();
 

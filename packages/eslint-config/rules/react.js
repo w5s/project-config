@@ -1,4 +1,4 @@
-const { off, warn, error } = require('./_rule');
+const { off, warn, error } = require('./_rule.js');
 
 module.exports = {
   plugins: ['react'],

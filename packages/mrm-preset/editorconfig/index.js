@@ -1,6 +1,6 @@
 const { ini } = require('mrm-core');
 const createDebug = require('debug');
-const { vscodeRecommendedExtension } = require('../core/vscode');
+const { vscodeRecommendedExtension } = require('../core/vscode.js');
 
 /**
  *

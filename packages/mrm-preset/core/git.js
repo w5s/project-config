@@ -1,5 +1,5 @@
 const { file, ini } = require('mrm-core');
-const block = require('./block');
+const block = require('./block.js');
 
 /**
  *
@@ -69,7 +69,7 @@ exports.gitIgnore = gitIgnore;
  */
 function gitIgnoreTemplate(flags) {
   // eslint-disable-next-line global-require, import/no-dynamic-require
-  const templateMap = require('./git.ignore');
+  const templateMap = require('./git.ignore.js');
 
   flags.forEach((flag) => {
     // @ts-ignore

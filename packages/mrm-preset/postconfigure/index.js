@@ -1,7 +1,7 @@
 const { spawnSync } = require('child_process');
 const { packageJson } = require('mrm-core');
-const project = require('../core/project');
-const pkg = require('../core/pkg');
+const project = require('../core/project.js');
+const pkg = require('../core/pkg.js');
 
 function task() {
   const packageFile = packageJson();

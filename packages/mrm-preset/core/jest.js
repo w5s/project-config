@@ -1,8 +1,8 @@
 /* eslint-disable no-template-curly-in-string */
 const { packageJson } = require('mrm-core');
-const pkg = require('./pkg');
-const npm = require('./npm');
-const project = require('./project');
+const pkg = require('./pkg.js');
+const npm = require('./npm.js');
+const project = require('./project.js');
 
 /**
  * @param {{

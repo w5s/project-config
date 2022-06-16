@@ -1,5 +1,5 @@
 const { json } = require('mrm-core');
-const npm = require('./npm');
+const npm = require('./npm.js');
 /**
  * @typedef {{
  *   version: '0.2',

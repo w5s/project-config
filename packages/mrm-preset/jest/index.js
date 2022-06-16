@@ -1,4 +1,4 @@
-const { jest } = require('../core/jest');
+const { jest } = require('../core/jest.js');
 
 /**
  *

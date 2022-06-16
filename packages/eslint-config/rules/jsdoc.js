@@ -1,4 +1,4 @@
-const { off, error, warn } = require('./_rule');
+const { off, error, warn } = require('./_rule.js');
 
 module.exports = {
   extends: ['plugin:jsdoc/recommended'],

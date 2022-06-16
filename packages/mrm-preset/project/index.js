@@ -1,11 +1,11 @@
 const { packageJson, json, makeDirs } = require('mrm-core');
-const git = require('../core/git');
-const pkg = require('../core/pkg');
-const npm = require('../core/npm');
-const { vscodeTask } = require('../core/vscode');
-const project = require('../core/project');
+const git = require('../core/git.js');
+const pkg = require('../core/pkg.js');
+const npm = require('../core/npm.js');
+const { vscodeTask } = require('../core/vscode.js');
+const project = require('../core/project.js');
 const mrmPackageJson = require('../package.json');
-const { turbo } = require('../core/turbo');
+const { turbo } = require('../core/turbo.js');
 
 /**
  *

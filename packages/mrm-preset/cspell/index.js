@@ -1,6 +1,6 @@
-const { cspell } = require('../core/cspell');
-const project = require('../core/project');
-const pkg = require('../core/pkg');
+const { cspell } = require('../core/cspell.js');
+const project = require('../core/project.js');
+const pkg = require('../core/pkg.js');
 
 function task() {
   cspell({

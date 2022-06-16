@@ -1,4 +1,4 @@
-const { concatESConfig, off, error } = require('./_rule');
+const { concatESConfig, off, error } = require('./_rule.js');
 
 const baseConfig = concatESConfig(
   // @ts-ignore

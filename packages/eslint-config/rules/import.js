@@ -1,4 +1,4 @@
-const { off, warn, error, concatESConfig, fixme } = require('./_rule');
+const { off, warn, error, concatESConfig, fixme } = require('./_rule.js');
 
 /**
  * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
@@ -13,6 +13,15 @@ module.exports = concatESConfig(
   // Overrides
   {
     rules: {
+      'import/extensions': [
+        error,
+        'ignorePackages',
+        {
+          // js: 'never',
+          // jsx: 'never',
+          // mjs: 'never',
+        },
+      ],
       'import/no-deprecated': performanceIssue(warn),
       'import/no-named-as-default': performanceIssue(error),
       'import/no-unused-modules': performanceIssue(error),

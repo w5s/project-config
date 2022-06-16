@@ -1,4 +1,4 @@
-const { gitIgnoreTemplate } = require('../core/git');
+const { gitIgnoreTemplate } = require('../core/git.js');
 
 function task() {
   gitIgnoreTemplate(['macOS', 'NodeJS', 'VisualStudioCode']);

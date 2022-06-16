@@ -1,5 +1,5 @@
 const { json, packageJson } = require('mrm-core');
-const { hasGit } = require('../core/git');
+const { hasGit } = require('../core/git.js');
 
 /**
  *

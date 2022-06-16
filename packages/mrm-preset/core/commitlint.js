@@ -1,6 +1,6 @@
-const pkg = require('./pkg');
-const npm = require('./npm');
-const { gitHook } = require('./githooks');
+const pkg = require('./pkg.js');
+const npm = require('./npm.js');
+const { gitHook } = require('./githooks.js');
 
 /**
  * @param {{

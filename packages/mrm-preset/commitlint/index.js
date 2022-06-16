@@ -1,5 +1,5 @@
-const { commitlint } = require('../core/commitlint');
-const { hasGit } = require('../core/git');
+const { commitlint } = require('../core/commitlint.js');
+const { hasGit } = require('../core/git.js');
 
 /**
  *

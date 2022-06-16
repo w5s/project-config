@@ -1,10 +1,10 @@
 const { execSync } = require('child_process');
 const path = require('path');
 const { file, packageJson, makeDirs } = require('mrm-core');
-const project = require('./project');
-const npm = require('./npm');
-const pkg = require('./pkg');
-const block = require('./block');
+const project = require('./project.js');
+const npm = require('./npm.js');
+const pkg = require('./pkg.js');
+const block = require('./block.js');
 
 /**
  * @param {{

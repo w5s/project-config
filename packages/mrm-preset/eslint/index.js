@@ -1,10 +1,10 @@
 const { packageJson } = require('mrm-core');
-const pkg = require('../core/pkg');
-const npm = require('../core/npm');
-const { gitIgnore } = require('../core/git');
-const { eslintIgnore, eslintConfig } = require('../core/eslint');
-const project = require('../core/project');
-const { vscodeSettings } = require('../core/vscode');
+const pkg = require('../core/pkg.js');
+const npm = require('../core/npm.js');
+const { gitIgnore } = require('../core/git.js');
+const { eslintIgnore, eslintConfig } = require('../core/eslint.js');
+const project = require('../core/project.js');
+const { vscodeSettings } = require('../core/vscode.js');
 
 function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended' }) {
   /**

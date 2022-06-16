@@ -6,7 +6,7 @@ const { intersect } = require('semver-intersect');
 const { packageJson, file, json } = require('mrm-core');
 const glob = require('glob');
 const path = require('path');
-const jsonFile = require('./jsonFile');
+const jsonFile = require('./jsonFile.js');
 
 /**
  * An empty placeholder for npm script

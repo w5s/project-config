@@ -1,6 +1,6 @@
 // @see https://github.com/danielnixon/eslint-config-typed-fp/blob/master/src/index.ts
 
-const { off, error } = require('./rules/_rule');
+const { off, error } = require('./rules/_rule.js');
 
 module.exports = {
   overrides: [

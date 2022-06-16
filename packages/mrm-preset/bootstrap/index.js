@@ -1,9 +1,9 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const path = require('path');
 const { packageJson, file } = require('mrm-core');
-const npm = require('../core/npm');
-const pkg = require('../core/pkg');
-const { gitIgnoreTemplate } = require('../core/git');
+const npm = require('../core/npm.js');
+const pkg = require('../core/pkg.js');
+const { gitIgnoreTemplate } = require('../core/git.js');
 
 /**
  * @param {{

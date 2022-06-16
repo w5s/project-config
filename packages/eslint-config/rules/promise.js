@@ -1,4 +1,4 @@
-const { concatESConfig, error, fixme } = require('./_rule');
+const { concatESConfig, error, fixme } = require('./_rule.js');
 
 module.exports = concatESConfig({
   extends: ['plugin:promise/recommended'],

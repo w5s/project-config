@@ -1,4 +1,4 @@
-const { error } = require('./_rule');
+const { error } = require('./_rule.js');
 
 module.exports = {
   plugins: ['prettier'],

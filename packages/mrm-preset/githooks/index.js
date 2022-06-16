@@ -1,11 +1,11 @@
 const path = require('path');
 const { packageJson, template } = require('mrm-core');
-const project = require('../core/project');
-const pkg = require('../core/pkg');
-const { hasGit } = require('../core/git');
-const { gitHook, husky } = require('../core/githooks');
-const { lintStaged } = require('../core/lintStaged');
-const { file } = require('../core/file');
+const project = require('../core/project.js');
+const pkg = require('../core/pkg.js');
+const { hasGit } = require('../core/git.js');
+const { gitHook, husky } = require('../core/githooks.js');
+const { lintStaged } = require('../core/lintStaged.js');
+const { file } = require('../core/file.js');
 
 function task() {
   const gitSupported = hasGit();

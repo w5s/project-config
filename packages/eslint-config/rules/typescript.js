@@ -1,8 +1,8 @@
 // Inspired by https://github.com/iamturns/eslint-config-airbnb-typescript/blob/master/lib/shared.js
 
-const { fixme, off, warn, error, concatESConfig } = require('./_rule');
-const { rules: _baseRules } = require('./base');
-const { rules: _baseImportRules } = require('./import');
+const { fixme, off, warn, error, concatESConfig } = require('./_rule.js');
+const { rules: _baseRules } = require('./base.js');
+const { rules: _baseImportRules } = require('./import.js');
 
 // Fix Hack : TS pluging seems to modify the rules
 const deepClone = (/** @type {Record<string, unknown>} */ anyValue) => JSON.parse(JSON.stringify(anyValue));

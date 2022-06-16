@@ -1,7 +1,7 @@
 const { packageJson } = require('mrm-core');
-const pkg = require('../core/pkg');
-const project = require('../core/project');
-const { semanticRelease } = require('../core/semanticRelease');
+const pkg = require('../core/pkg.js');
+const project = require('../core/project.js');
+const { semanticRelease } = require('../core/semanticRelease.js');
 
 function task() {
   const useWorkspace = packageJson().get('mrmConfig.packageArchetype') === 'workspace';

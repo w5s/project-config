@@ -1,4 +1,4 @@
-const { off, warn, error, concatESConfig } = require('./_rule');
+const { off, warn, error, concatESConfig } = require('./_rule.js');
 
 module.exports = concatESConfig(
   {
