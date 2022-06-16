@@ -1,14 +1,29 @@
 const { packageJson } = require('mrm-core');
-
+const jsonFile = require('./jsonFile.js');
 /**
- * @param {import('eslint').Linter.Config} config
+ * @typedef {import('eslint').Linter.Config} ESLintConfig
  */
-function eslintConfig(config) {
+/**
+ * @param {{
+ *   state: 'present'|'absent',
+ *   update: (config: ESLintConfig) => ESLintConfig
+ * }} config
+ */
+function eslintConfig({ state, update }) {
   const packageFile = packageJson();
-  packageFile.merge({ eslintConfig: config });
+
+  jsonFile.value(packageFile, {
+    path: undefined,
+    state,
+    // @ts-ignore
+    update,
+    /** @type {ESLintConfig} */
+    // @ts-ignore
+    default: {},
+  });
+
   packageFile.save();
 }
-exports.eslintConfig = eslintConfig;
 
 /**
  *
@@ -19,4 +34,8 @@ function eslintIgnore(ignorePatterns) {
   packageFile.merge({ eslintIgnore: ignorePatterns });
   packageFile.save();
 }
-exports.eslintIgnore = eslintIgnore;
+
+module.exports = {
+  eslintConfig,
+  eslintIgnore,
+};

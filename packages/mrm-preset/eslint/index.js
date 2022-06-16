@@ -55,11 +55,16 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       state: !eslintPreset.startsWith('eslint:') ? 'present' : 'absent',
     });
     eslintConfig({
-      extends: [eslintPreset],
-      rules: eslintRules,
-      parserOptions: {
-        project: hasTypescript ? './tsconfig.json' : undefined,
-      },
+      state: 'present',
+      update: (config) => ({
+        ...config,
+        extends: [eslintPreset],
+        rules: eslintRules,
+        parserOptions: {
+          project: hasTypescript ? './tsconfig.json' : undefined,
+          ...config.parserOptions,
+        },
+      }),
     });
 
     /** @type {Record<string, boolean>} */
