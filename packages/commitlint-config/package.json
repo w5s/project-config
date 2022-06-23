@@ -1,6 +1,6 @@
 {
   "name": "@w5s/commitlint-config",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "description": "Commitlint configuration presets",
   "keywords": [
     "commitlint",
