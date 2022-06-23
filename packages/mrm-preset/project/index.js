@@ -168,6 +168,7 @@ function task() {
   if (useWorkspace) {
     const packages = ['packages/*'];
     const versionIndependent = lernaConfig.get('version') === 'independent';
+    const gitmoji = true;
     packageFile.merge({ workspaces: { packages } });
     lernaConfig.merge({
       command: {
@@ -176,7 +177,9 @@ function task() {
           npmClient: 'npm',
         },
         version: {
-          message: `chore(release): publish${versionIndependent ? '' : ' %s'}`,
+          message: gitmoji
+            ? `🔖 Publish${versionIndependent ? '' : ' %s'}`
+            : `chore(release): publish${versionIndependent ? '' : ' %s'}`,
         },
       },
       npmClient: packageManager,

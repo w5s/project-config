@@ -1,3 +1,4 @@
+const { vscodeRecommendedExtension } = require('../core/vscode.js');
 const { commitlint } = require('../core/commitlint.js');
 const { hasGit } = require('../core/git.js');
 
@@ -21,6 +22,8 @@ function createCommitLint({ commitLintPreset: commitLintPresetDefault }) {
       preset: commitLintPreset,
       state: gitPresent ? 'present' : 'absent',
     });
+
+    vscodeRecommendedExtension(['seatonjiang.gitmoji-vscode']);
   }
 
   task.description = 'Setup CommitLint';
