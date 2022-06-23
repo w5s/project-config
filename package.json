@@ -81,6 +81,12 @@
     "**/_tester/**",
     "public/"
   ],
+  "jest": {
+    "preset": "es-jest",
+    "projects": [
+      "<rootDir>/packages/*"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "7.18.5",
     "@babel/eslint-parser": "7.18.2",
@@ -91,10 +97,12 @@
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/ts-config": "workspace:*",
     "cspell": "6.1.2",
+    "es-jest": "2.0.0",
     "eslint": "8.18.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
     "husky": "8.0.1",
     "is-ci": "3.0.1",
+    "jest": "28.0.0",
     "lerna": "5.1.4",
     "lint-staged": "13.0.2",
     "markdown-magic": "2.6.0",

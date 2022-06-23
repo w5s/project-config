@@ -35,11 +35,30 @@
     "format": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json",
     "lint": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json",
     "spellcheck": "cspell --no-progress '**'",
-    "test": "exit 0",
+    "test": "jest",
     "validate": "npm run lint && npm run build && npm run test"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "preset": "es-jest",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib/",
+      "/build/",
+      "/.cache/",
+      "/docs/",
+      "/public/"
+    ]
+  },
   "dependencies": {
-    "@commitlint/config-conventional": "^17.0.0"
+    "@commitlint/types": "^17.0.0",
+    "conventional-changelog-conventionalcommits": "^5.0.0"
+  },
+  "devDependencies": {
+    "@commitlint/lint": "^17.0.0",
+    "@jest/globals": "^28.0.0"
   },
   "peerDependencies": {
     "@commitlint/cli": "^16.0.0 || ^17.0.0"
