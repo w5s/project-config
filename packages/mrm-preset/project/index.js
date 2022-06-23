@@ -137,8 +137,8 @@ function task() {
   });
   pkg.script(packageFile, {
     name: `${project.prepare}:empty`,
-    script: !useWorkspace ? 'present' : 'absent',
-    state: 'default',
+    script: pkg.emptyScript,
+    state: !useWorkspace ? 'present' : 'absent',
   });
   pkg.script(packageFile, {
     name: `${project.prepare}:packages`,
