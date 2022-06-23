@@ -41,16 +41,17 @@ function setValue(jsonFile, path, pathValue) {
  */
 function value(jsonFile, { state, path, default: defaultValue, update: nextValue }) {
   if (state === 'present') {
-    if (nextValue != null) {
-      const resolvedValue = typeof nextValue === 'function' ? nextValue(getValue(jsonFile, path)) : nextValue;
-      if (resolvedValue != null) {
-        setValue(jsonFile, path, resolvedValue);
+    let currentValue = getValue(jsonFile, path);
+
+    if (currentValue == null) {
+      currentValue = typeof defaultValue === 'function' ? defaultValue() : defaultValue;
+      if (currentValue != null) {
+        setValue(jsonFile, path, currentValue);
       }
     }
 
-    const currentValue = getValue(jsonFile, path);
-    if (currentValue == null) {
-      const resolvedValue = typeof defaultValue === 'function' ? defaultValue() : defaultValue;
+    if (nextValue != null) {
+      const resolvedValue = typeof nextValue === 'function' ? nextValue(getValue(jsonFile, path)) : nextValue;
       if (resolvedValue != null) {
         setValue(jsonFile, path, resolvedValue);
       }
