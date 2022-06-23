@@ -13,7 +13,7 @@ function eslintConfig({ state, update }) {
   const packageFile = packageJson();
 
   jsonFile.value(packageFile, {
-    path: undefined,
+    path: 'eslintConfig',
     state,
     // @ts-ignore
     update,
