@@ -127,7 +127,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       });
       pkg.script(packageFile, {
         name: project.format,
-        script: `eslint . -fix${extOption}`,
+        script: `eslint . --fix${extOption}`,
         state: 'default',
       });
     });
