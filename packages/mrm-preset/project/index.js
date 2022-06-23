@@ -171,6 +171,7 @@ function task() {
     const gitmoji = true;
     packageFile.merge({ workspaces: { packages } });
     lernaConfig.merge({
+      $schema: 'https://json.schemastore.org/lerna.json',
       command: {
         publish: {
           conventionalCommits: true,
@@ -184,6 +185,7 @@ function task() {
       },
       npmClient: packageManager,
       useWorkspaces: useWorkspace,
+      changelogPreset: 'gitmoji-config',
     });
     lernaConfig.save();
     makeDirs('packages');
