@@ -213,6 +213,7 @@ function task() {
     state: useWorkspace ? 'present' : 'absent',
     update: (_) => ({
       ..._,
+      baseBranch: 'origin/main',
       pipeline: {
         [project.build]: {
           dependsOn: ['^build'],
