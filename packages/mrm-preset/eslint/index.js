@@ -11,10 +11,9 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
    *
    * @param {{
    *   eslintPreset: string,
-   *   eslintRules: Record<string, any>
    * }} config
    */
-  function task({ eslintPreset, eslintRules }) {
+  function task({ eslintPreset }) {
     const packageFileDefault = packageJson();
     const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
     const hasTypescript = pkg.hasDependency(packageFileDefault, 'typescript', 'dev');
@@ -59,7 +58,6 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       update: (config) => ({
         ...config,
         extends: [eslintPreset],
-        rules: eslintRules,
         parserOptions: {
           project: hasTypescript ? './tsconfig.json' : undefined,
           ...config.parserOptions,
@@ -165,9 +163,6 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       default: eslintPresetDefault,
       message: 'Enter ESLint preset name',
       type: 'input',
-    },
-    eslintRules: {
-      type: 'config',
     },
   };
 
