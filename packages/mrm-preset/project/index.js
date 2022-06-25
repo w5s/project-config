@@ -34,7 +34,7 @@ const npmRunAll = (script) => `npm-run-all -p "${script}:*"`;
 function task() {
   const packageFile = packageJson();
   const gitSupported = git.hasGit();
-  const useWorkspace = packageFile.get('mrmConfig.packageArchetype') === 'workspace';
+  const useWorkspace = pkg.hasWorkspaces(packageFile);
   const packageManager = pkg.manager(packageFile);
 
   // Detect git repository
