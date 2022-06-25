@@ -36,22 +36,33 @@ function task() {
   const gitSupported = git.hasGit();
   const useWorkspace = pkg.hasWorkspaces(packageFile);
   const packageManager = pkg.manager(packageFile);
+  const gitRepository = git.remoteSync();
 
   // Detect git repository
   pkg.value(packageFile, {
     path: 'repository',
     state: 'present',
-    update: () => {
-      const gitRepository = git.remoteSync();
-      if (gitRepository) {
-        return {
-          type: 'git',
-          url: gitRepository,
-        };
-      }
-
-      return undefined;
-    },
+    update: () =>
+      gitRepository
+        ? {
+            type: 'git',
+            url: gitRepository,
+          }
+        : undefined,
+  });
+  pkg.forEachWorkspace((workspace) => {
+    pkg.value(workspace.packageFile, {
+      path: 'repository',
+      state: 'present',
+      update: () =>
+        gitRepository
+          ? {
+              type: 'git',
+              url: gitRepository,
+              directory: workspace.projectDir,
+            }
+          : undefined,
+    });
   });
 
   // build & clean
