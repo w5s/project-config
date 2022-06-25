@@ -7,8 +7,7 @@ const block = require('./block.js');
 function remoteSync() {
   try {
     const gitConfig = ini('.git/config');
-    const remoteURL = gitConfig.get('[remote "origin"]').url;
-
+    const remoteURL = gitConfig.get('remote "origin"').url.trim();
     return remoteURL
       ? [
           /**
