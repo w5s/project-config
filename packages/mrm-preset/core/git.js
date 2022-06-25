@@ -8,22 +8,7 @@ function remoteSync() {
   try {
     const gitConfig = ini('.git/config');
     const remoteURL = gitConfig.get('remote "origin"').url.trim();
-    return remoteURL
-      ? [
-          /**
-           * 1. filter github URL
-           *
-           * @param {string} returnValue
-           */
-          (returnValue) => returnValue.replace(/^git@github.com:/, 'https://github.com/'),
-          /**
-           * 2. filter gitlab URL
-           *
-           * @param {string} returnValue
-           */
-          (returnValue) => returnValue.replace(/^git@gitlab.com:/, 'https://gitlab.com/'),
-        ].reduce((returnValue, filter) => filter(returnValue), remoteURL)
-      : remoteURL;
+    return remoteURL;
   } catch {
     // ignore error
   }
