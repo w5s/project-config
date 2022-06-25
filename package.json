@@ -1,6 +1,10 @@
 {
   "name": "@w5s/project-config-src",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/w5s/project-config.git"
+  },
   "files": [],
   "workspaces": {
     "packages": [
