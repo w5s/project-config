@@ -35,7 +35,7 @@
     "prepare:husky": "is-ci || husky install",
     "prepare:packages": "turbo run prepare",
     "prepare": "npm-run-all -p \"prepare:*\"",
-    "release": "npx multi-semantic-release",
+    "release": "is-ci && lerna publish --yes || lerna publish",
     "rescue": "git clean -fdx;yarn install",
     "spellcheck": "cspell --no-progress '**' --exclude='packages/*/**' && turbo run spellcheck",
     "test:packages": "turbo run test",
@@ -91,9 +91,6 @@
       "<rootDir>/packages/*"
     ]
   },
-  "resolutions": {
-    "npm/chalk": "^4.1.2"
-  },
   "devDependencies": {
     "@babel/core": "7.18.5",
     "@babel/eslint-parser": "7.18.2",
@@ -111,16 +108,14 @@
     "husky": "8.0.1",
     "is-ci": "3.0.1",
     "jest": "28.0.0",
+    "lerna": "5.1.4",
     "lint-staged": "13.0.2",
     "markdown-magic": "2.6.0",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "1.1.2",
     "mrm": "4.0.0",
-    "multi-semantic-release": "^2.13.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.7.1",
-    "semantic-release": "^19.0.3",
-    "semantic-release-config-gitmoji": "^1.2.4",
     "turbo": "1.2.16",
     "typescript": "4.7.4"
   },
