@@ -103,7 +103,7 @@
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/ts-config": "workspace:*",
     "concurrently": "7.2.2",
-    "conventional-changelog-gitmoji-config": "^1.4.3",
+    "conventional-changelog-gitmoji-config": "1.4.3",
     "cspell": "6.1.2",
     "es-jest": "2.0.0",
     "eslint": "8.18.0",
