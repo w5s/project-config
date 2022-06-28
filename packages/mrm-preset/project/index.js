@@ -31,7 +31,7 @@ const turboRun = (script) => `turbo run ${script}`;
  *
  * @param {string} script
  */
-const npmRunAll = (script) => `npm-run-all -p "${script}:*"`;
+const npmRunAll = (script) => `concurrently "npm:${script}:*"`;
 function task() {
   const packageFile = packageJson();
   const gitSupported = git.hasGit();
@@ -254,9 +254,15 @@ function task() {
   });
 
   // Dependencies
+  // clean
   npm.dependency({
     dev: true,
     name: ['npm-run-all'],
+    state: 'absent',
+  });
+  npm.dependency({
+    dev: true,
+    name: ['concurrently'],
     state: 'present',
   });
   npm.dependency({
