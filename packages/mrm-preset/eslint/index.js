@@ -119,12 +119,12 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     });
     pkg.forEachWorkspace(({ packageFile }) => {
       pkg.script(packageFile, {
-        name: project.lint,
+        name: `${project.lint}:src`,
         script: `eslint .${extOption}`,
         state: 'default',
       });
       pkg.script(packageFile, {
-        name: project.format,
+        name: `${project.format}:src`,
         script: `eslint . --fix${extOption}`,
         state: 'default',
       });

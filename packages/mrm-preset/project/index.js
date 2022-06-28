@@ -30,20 +30,118 @@ const turboRun = (script) => `turbo run ${script}`;
 /**
  *
  * @param {string} script
+ * @param {boolean} allowEmpty
  */
-const npmRunAll = (script) => `concurrently "npm:${script}:*"`;
+const npmRunAll = (script, allowEmpty) => `concurrently "npm:${script}:*" ${allowEmpty ? `"${pkg.emptyScript}"` : ''}`;
 function task() {
-  const packageFile = packageJson();
+  const rootPackageFile = packageJson();
+  const rootUseWorkspace = pkg.hasWorkspaces(rootPackageFile);
+  const rootEngineMinVersion = Object.assign(
+    {
+      node: '>=12.x',
+      yarn: '>=1.x',
+      npm: '>=6.x',
+    },
+    mrmPackageJson.engines
+  );
   const gitSupported = git.hasGit();
-  const useWorkspace = pkg.hasWorkspaces(packageFile);
-  const packageManager = pkg.manager(packageFile);
+  const packageManager = pkg.manager(rootPackageFile);
   const gitRepository = git.remoteSync();
 
   // Detect git repository
-  if (useWorkspace) {
-    const dirs = pkg.listWorkspaceMatchers(packageFile).map(dirname);
+  if (rootUseWorkspace) {
+    const dirs = pkg.listWorkspaceMatchers(rootPackageFile).map(dirname);
     makeDirs(dirs);
   }
+
+  const addScripts = (/** @type {import("mrm-core").Json} */ currentPackageFile, /** @type {boolean} */ root) => {
+    const useWorkspace = pkg.hasWorkspaces(currentPackageFile);
+
+    // build
+    pkg.script(currentPackageFile, {
+      name: project.build,
+      script: npmRunAll(project.build, false),
+      state: 'present',
+    });
+    pkg.script(currentPackageFile, {
+      name: `${project.build}:packages`,
+      script: turboRun(project.build),
+      state: useWorkspace ? 'present' : 'absent',
+    });
+
+    // lint
+    pkg.script(currentPackageFile, {
+      name: project.lint,
+      script: npmRunAll(project.lint, true),
+      state: 'present',
+    });
+    pkg.script(currentPackageFile, {
+      name: project.format,
+      script: npmRunAll(project.format, true),
+      state: 'present',
+    });
+
+    // test
+    // pkg.script(currentPackageFile, {
+    //   name: project.coverage,
+    //   script: pkg.emptyScript,
+    //   state: 'default',
+    // });
+    pkg.script(currentPackageFile, {
+      name: project.test,
+      script: useWorkspace ? npmRunAll(project.test, false) : pkg.emptyScript,
+      state: useWorkspace ? 'present' : 'default',
+    });
+
+    // prepare
+    pkg.script(currentPackageFile, {
+      name: project.prepare,
+      script: npmRunAll(project.prepare, true),
+      state: 'present',
+    });
+
+    // clean
+    pkg.script(currentPackageFile, {
+      name: project.clean,
+      script: npmRunAll(project.clean, true),
+      state: 'present',
+    });
+    pkg.script(currentPackageFile, {
+      name: `${project.clean}:packages`,
+      script: turboRun(project.clean),
+      state: useWorkspace ? 'present' : 'absent',
+    });
+
+    // Root
+
+    // rescue
+    pkg.script(currentPackageFile, {
+      name: project.rescue,
+      script: `${gitSupported ? 'git clean -fdx' : ''};${packageManager} install`,
+      state: root ? 'present' : 'absent',
+    });
+
+    // release
+    pkg.script(currentPackageFile, {
+      name: project.release,
+      script: pkg.emptyScript,
+      state: root ? 'default' : 'absent',
+    });
+
+    // code analysis
+    pkg.script(currentPackageFile, {
+      name: project.codeAnalysis,
+      script: pkg.emptyScript,
+      state: root ? 'default' : 'absent',
+    });
+
+    // develop & auto build & load
+    pkg.script(currentPackageFile, {
+      name: project.develop,
+      script: pkg.emptyScript,
+      state: root ? 'default' : 'absent',
+    });
+  };
 
   // eslint-disable-next-line no-shadow
   pkg.withPackageJson((packageFile) => {
@@ -58,146 +156,39 @@ function task() {
             }
           : undefined,
     });
-    pkg.forEachWorkspace((workspace) => {
-      pkg.value(workspace.packageFile, {
-        path: 'repository',
-        state: 'present',
-        update: () =>
-          gitRepository
-            ? {
-                type: 'git',
-                url: gitRepository,
-                directory: workspace.projectDir,
-              }
-            : undefined,
-      });
-    });
 
-    // build & clean
-    pkg.script(packageFile, {
-      name: project.build,
-      script: npmRunAll(project.build),
-      state: 'present',
-    });
-    pkg.script(packageFile, {
-      name: `${project.build}:empty`,
-      script: pkg.emptyScript,
-      state: !useWorkspace ? 'present' : 'absent',
-    });
-    pkg.script(packageFile, {
-      name: `${project.build}:packages`,
-      script: turboRun(project.build),
-      state: useWorkspace ? 'present' : 'absent',
-    });
-    pkg.script(packageFile, {
-      name: project.clean,
-      script: useWorkspace ? turboRun(project.clean) : pkg.emptyScript,
-      state: useWorkspace ? 'present' : 'default',
-    });
+    addScripts(packageFile, true);
 
-    // develop & auto build & load
-    pkg.script(packageFile, {
-      name: project.develop,
-      script: pkg.emptyScript,
-      state: 'default',
-    });
-
-    // lint
-    pkg.script(packageFile, {
-      name: project.lint,
-      script: npmRunAll(project.lint),
-      state: 'present',
-    });
-    pkg.script(packageFile, {
-      name: `${project.lint}:empty`,
-      script: pkg.emptyScript,
-      state: !useWorkspace ? 'present' : 'absent',
-    });
-    pkg.script(packageFile, {
-      name: project.format,
-      script: npmRunAll(project.format),
-      state: 'present',
-    });
-    pkg.script(packageFile, {
-      name: `${project.format}:empty`,
-      script: pkg.emptyScript,
-      state: !useWorkspace ? 'present' : 'absent',
-    });
-
-    // test
-    pkg.script(packageFile, {
-      name: project.coverage,
-      script: pkg.emptyScript,
-      state: 'default',
-    });
-    pkg.script(packageFile, {
-      name: project.test,
-      script: npmRunAll(project.test),
-      state: 'present',
-    });
     pkg.script(packageFile, {
       name: project.validate,
       script: `${npmRun(project.build)} && ${npmRun(project.lint)} && ${npmRun(project.test)}`,
       state: 'present',
     });
 
-    // code analysis
-    pkg.script(packageFile, {
-      name: project.codeAnalysis,
-      script: pkg.emptyScript,
-      state: 'default',
-    });
-
-    // prepare
-    pkg.script(packageFile, {
-      name: project.prepare,
-      script: npmRunAll(project.prepare),
-      state: 'present',
-    });
-    pkg.script(packageFile, {
-      name: `${project.prepare}:empty`,
-      script: pkg.emptyScript,
-      state: !useWorkspace ? 'present' : 'absent',
-    });
-    pkg.script(packageFile, {
-      name: `${project.prepare}:packages`,
-      script: turboRun(project.prepare),
-      state: useWorkspace ? 'present' : 'absent',
-    });
-
-    // rescue
-    pkg.script(packageFile, {
-      name: project.rescue,
-      script: `${gitSupported ? 'git clean -fdx' : ''};${packageManager} install`,
-      state: 'present',
-    });
-
-    // release
-    pkg.script(packageFile, {
-      name: project.release,
-      script: pkg.emptyScript,
-      state: 'default',
-    });
-
     // Engine
-    pkg.engineMinVersion(
-      packageFile,
-      Object.assign(
-        {
-          node: '>=12.x',
-          yarn: '>=1.x',
-          npm: '>=6.x',
-        },
-        mrmPackageJson.engines
-      )
-    );
+    pkg.engineMinVersion(packageFile, rootEngineMinVersion);
+  });
+  pkg.forEachWorkspace((workspace) => {
+    pkg.value(workspace.packageFile, {
+      path: 'repository',
+      state: 'present',
+      update: () =>
+        gitRepository
+          ? {
+              type: 'git',
+              url: gitRepository,
+              directory: workspace.projectDir,
+            }
+          : undefined,
+    });
+    addScripts(workspace.packageFile, false);
   });
 
   // workspace
   const lernaConfig = json('lerna.json', {
-    version: packageFile.get('version'),
+    version: rootPackageFile.get('version'),
   });
-  if (useWorkspace) {
+  if (rootUseWorkspace) {
     const versionIndependent = lernaConfig.get('version') === 'independent';
     const gitmoji = true;
 
@@ -215,7 +206,7 @@ function task() {
         },
       },
       npmClient: packageManager,
-      useWorkspaces: useWorkspace,
+      useWorkspaces: rootUseWorkspace,
       changelogPreset: 'gitmoji-config',
     });
     lernaConfig.save();
@@ -223,11 +214,11 @@ function task() {
     lernaConfig.delete();
   }
 
-  packageFile.save();
+  rootPackageFile.save();
 
   // Turbo config
   turbo({
-    state: useWorkspace ? 'present' : 'absent',
+    state: rootUseWorkspace ? 'present' : 'absent',
     update: (_) => ({
       ..._,
       baseBranch: 'origin/main',
@@ -268,7 +259,7 @@ function task() {
   npm.dependency({
     dev: true,
     name: ['lerna', 'conventional-changelog-gitmoji-config'],
-    state: useWorkspace ? 'present' : 'absent',
+    state: rootUseWorkspace ? 'present' : 'absent',
   });
 
   // VSCode
