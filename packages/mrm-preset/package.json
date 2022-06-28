@@ -20,7 +20,7 @@
   "author": "Julien Polo <julien.polo@gmail.com>",
   "main": "config.json",
   "scripts": {
-    "build": "npm-run-all -p 'build:*'",
+    "build": "concurrently 'build:*'",
     "build:empty": ":",
     "build:tsc": "tsc --noEmit --skipLibCheck",
     "docs": "md-magic --path '**/*.md' --ignore='node_modules'",

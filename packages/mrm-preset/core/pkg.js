@@ -158,6 +158,7 @@ function engineMinVersion(packageFile, engineVersionMap) {
       Object.keys(engineVersionMap).map((engineName) => [engineName, engineConstraint(engineName)])
     ),
   });
+  return packageFile.get('engines');
 }
 
 module.exports = {

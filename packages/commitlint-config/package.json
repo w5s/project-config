@@ -28,7 +28,7 @@
     "src/**/!(*.spec).ts"
   ],
   "scripts": {
-    "build": "npm-run-all -p 'build:*'",
+    "build": "concurrently 'build:*'",
     "build:src": "tsc",
     "clean": "tsc -- --build --clean",
     "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
