@@ -14,6 +14,21 @@ const jsonFile = require('./jsonFile.js');
 const emptyScript = ':';
 
 /**
+ * @param {import('mrm-core').Json} packageFile
+ * @returns {'application'|'library'|'workspace'} the archetype value
+ */
+function archetype(packageFile) {
+  if (hasWorkspaces(packageFile)) {
+    return 'workspace';
+  }
+  if (packageFile.get('private') === true || (packageFile.get('main') == null && packageFile.get('exports'))) {
+    return 'application';
+  }
+
+  return 'library';
+}
+
+/**
  * @param {(pkg: import('mrm-core').PackageJson) => void} block
  */
 function withPackageJson(block) {
@@ -93,7 +108,7 @@ function manager(packageFile) {
 
 /**
  *
- * @param {import('mrm-core').PackageJson} packageFile
+ * @param {import('mrm-core').Json} packageFile
  */
 function hasWorkspaces(packageFile) {
   return Boolean(packageFile.get('workspaces'));
@@ -148,6 +163,7 @@ function engineMinVersion(packageFile, engineVersionMap) {
 module.exports = {
   ...jsonFile,
   emptyScript,
+  archetype,
   script,
   manager,
   engineMinVersion,

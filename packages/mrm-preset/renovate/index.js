@@ -1,5 +1,6 @@
 const { json, packageJson } = require('mrm-core');
 const { hasGit } = require('../core/git.js');
+const pkg = require('../core/pkg.js');
 
 /**
  *
@@ -19,7 +20,8 @@ function createRenovate({ renovatePresetApplication, renovatePresetLibrary }) {
     const gitSupported = hasGit();
 
     if (gitSupported) {
-      const packageArchetype = packageJson().get('mrmConfig.packageArchetype', 'library');
+      const packageFile = packageJson();
+      const packageArchetype = pkg.archetype(packageFile);
       const renovatePresetResolved =
         renovatePreset || (packageArchetype === 'application' ? renovatePresetApplication : renovatePresetLibrary);
       const renovateFile = json('renovate.json');

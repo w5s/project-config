@@ -27,7 +27,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
   task.typescript = () => {
     const tsConfigPreset = tsConfigDefault;
     const packageFile = packageJson();
-    const isApplication = packageFile.get('mrmConfig.packageArchetype') === 'application';
+    const isApplication = pkg.archetype(packageFile) === 'application';
     const hasWorkspaces = pkg.hasWorkspaces(packageFile);
     const tsConfigSettingsName = 'tsconfig.settings.json';
     const tsConfigSettings = json(tsConfigSettingsName);
