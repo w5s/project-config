@@ -1,4 +1,4 @@
-const path = require('path');
+const path = require('node:path');
 const { packageJson, template } = require('mrm-core');
 const project = require('../core/project.js');
 const pkg = require('../core/pkg.js');

@@ -1,5 +1,5 @@
 /* eslint-disable global-require, sort-keys-fix/sort-keys-fix */
-const path = require('path');
+const path = require('node:path');
 const { yaml } = require('mrm-core');
 
 /** @type {typeof import('sync-directory')['default']} */

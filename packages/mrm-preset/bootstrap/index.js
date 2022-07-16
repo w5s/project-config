@@ -1,5 +1,5 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
-const path = require('path');
+const path = require('node:path');
 const { packageJson, file } = require('mrm-core');
 const npm = require('../core/npm.js');
 const pkg = require('../core/pkg.js');
