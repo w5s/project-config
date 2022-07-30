@@ -104,7 +104,7 @@
     "@w5s/ts-config": "workspace:*",
     "concurrently": "7.3.0",
     "conventional-changelog-gitmoji-config": "1.4.3",
-    "cspell": "6.4.2",
+    "cspell": "6.5.0",
     "es-jest": "2.0.0",
     "eslint": "8.20.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
