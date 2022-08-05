@@ -3227,13 +3227,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*, @types/eslint@npm:8.4.1":
+"@types/eslint@npm:*":
   version: 8.4.1
   resolution: "@types/eslint@npm:8.4.1"
   dependencies:
     "@types/estree": "*"
     "@types/json-schema": "*"
   checksum: b5790997ee9d3820d16350192d41849b0e2448c9e93650acac672ddf502e35c0a5a25547172a9eec840a96687cd94ba1cee672cbd86640f8f4ff1b65960d2ab9
+  languageName: node
+  linkType: hard
+
+"@types/eslint@npm:8.4.5":
+  version: 8.4.5
+  resolution: "@types/eslint@npm:8.4.5"
+  dependencies:
+    "@types/estree": "*"
+    "@types/json-schema": "*"
+  checksum: 428b0c971a50adb0d08621e76f21b284580a0052a31341a0e6d553f72b54cd0142d549aa1497c7e3bc56e9f6bcc27286e66e0216e1ba76d1a5ecd2279c40bc8c
   languageName: node
   linkType: hard
 
@@ -3809,7 +3819,7 @@ __metadata:
     "@babel/eslint-parser": 7.18.9
     "@babel/plugin-syntax-class-properties": ^7.0.0
     "@babel/plugin-syntax-jsx": ^7.0.0
-    "@types/eslint": 8.4.1
+    "@types/eslint": 8.4.5
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/prettier": 2.4.4
     "@types/react": 17.0.2
