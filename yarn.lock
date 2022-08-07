@@ -3377,6 +3377,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:16.11.47":
+  version: 16.11.47
+  resolution: "@types/node@npm:16.11.47"
+  checksum: 26811000753fd1bb9a90a563fc72942ac3ad5d5b6c97609a090c1e24210e040597ba060e55a7a46cb22cc84dafee112d741f45652139c6166e8ce0c970b4f05a
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:>=12":
   version: 17.0.21
   resolution: "@types/node@npm:17.0.21"
@@ -3388,13 +3395,6 @@ __metadata:
   version: 10.17.60
   resolution: "@types/node@npm:10.17.60"
   checksum: 2cdb3a77d071ba8513e5e8306fa64bf50e3c3302390feeaeff1fd325dd25c8441369715dfc8e3701011a72fed5958c7dfa94eb9239a81b3c286caa4d97db6eef
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^16.11.24":
-  version: 16.11.24
-  resolution: "@types/node@npm:16.11.24"
-  checksum: d4827d548c04ca55db30901ea248ce1a1f8d2958b3143a7e71fd86d3d7b804faebfa9b80b934c7c6030a82553323dfe70f01dd0000176561a2cb3fc9db06a7b3
   languageName: node
   linkType: hard
 
@@ -3872,7 +3872,7 @@ __metadata:
     "@babel/core": 7.18.10
     "@babel/eslint-parser": 7.18.9
     "@commitlint/cli": 17.0.3
-    "@types/node": ^16.11.24
+    "@types/node": 16.11.47
     "@w5s/commitlint-config": "workspace:*"
     "@w5s/eslint-config": "workspace:*"
     "@w5s/mrm-preset": "workspace:*"
