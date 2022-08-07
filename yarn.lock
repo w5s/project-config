@@ -3419,10 +3419,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:2.4.4":
-  version: 2.4.4
-  resolution: "@types/prettier@npm:2.4.4"
-  checksum: 2c2cc57efd49c7d8907415a72f96c84a6dd8696dd3bf8aa4ca3a667427bebf71cbfbc912673624bdfc935d272d1c008c639cf155f6449315990a4dc110f0d216
+"@types/prettier@npm:2.7.0":
+  version: 2.7.0
+  resolution: "@types/prettier@npm:2.7.0"
+  checksum: bf5d0c7c1270909b39399539ac106d20ddaa85fe92eb1d59922dc99159604b4f8d5e41b0045fb29c8011585cf5bca2350b7441ef3d9816c08bd0e10ebd4b31d4
   languageName: node
   linkType: hard
 
@@ -3829,7 +3829,7 @@ __metadata:
     "@babel/plugin-syntax-jsx": ^7.0.0
     "@types/eslint": 8.4.5
     "@types/eslint-plugin-prettier": ^3.1.0
-    "@types/prettier": 2.4.4
+    "@types/prettier": 2.7.0
     "@types/react": 17.0.48
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": 5.32.0
