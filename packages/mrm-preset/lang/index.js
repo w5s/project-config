@@ -104,7 +104,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
     });
 
     typedoc({
-      state: 'present',
+      state: isApplication ? 'absent' : 'present',
       update: (config) => ({
         // Default values
         tsconfig: 'tsconfig.json',
