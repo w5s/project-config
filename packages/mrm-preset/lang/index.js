@@ -66,7 +66,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
             rootDir: './src',
           },
           extends: `./${tsConfigSettingsName}`,
-          include: ['./src'],
+          include: ['src'],
         })
         .save();
 
