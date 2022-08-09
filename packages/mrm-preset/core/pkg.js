@@ -136,7 +136,7 @@ function hasDependency(packageFile, packageName, dependencyType) {
 
 /**
  *
- * @param {import('mrm-core').PackageJson} packageFile
+ * @param {import('mrm-core').Json} packageFile
  * @param {Record<string, string>} engineVersionMap
  */
 function engineMinVersion(packageFile, engineVersionMap) {

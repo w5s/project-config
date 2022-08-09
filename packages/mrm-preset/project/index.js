@@ -182,6 +182,9 @@ function task() {
           : undefined,
     });
     addScripts(workspace.packageFile, false);
+
+    // Engine
+    pkg.engineMinVersion(workspace.packageFile, { node: rootEngineMinVersion.node });
   });
 
   // workspace
