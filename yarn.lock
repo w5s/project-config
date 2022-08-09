@@ -3912,7 +3912,10 @@ __metadata:
   dependencies:
     typescript: 4.7.4
   peerDependencies:
-    typescript: 3.x || 4.x
+    typescript: ">=4.7.x"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
   languageName: unknown
   linkType: soft
 

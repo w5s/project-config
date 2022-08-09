@@ -27,6 +27,11 @@ In the `tsconfig.json` for your project
 }
 ```
 
+## Requirements
+<!-- AUTO-GENERATED-CONTENT:START (PKGJSON:template=Typescript: ${peerDependencies.typescript}&unknownTxt= ) -->
+Typescript: >=4.7.x
+<!-- AUTO-GENERATED-CONTENT:END -->
+
 ## License
 <!-- AUTO-GENERATED-CONTENT:START (PKGJSON:template=[${license}][license-url] © ${author}) -->
 [MIT][license-url] © Julien Polo <julien.polo@gmail.com>
