@@ -3021,6 +3021,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rushstack/eslint-patch@npm:^1.1.0":
+  version: 1.1.4
+  resolution: "@rushstack/eslint-patch@npm:1.1.4"
+  checksum: 597bc84e2f76c7f5f2bcedd4c4b1dd5d02524167a0f67ac588e8fbbd94666297aaf0e6a53ec46afb95554164fc1169ff782841003280e4bc98e80ab6559412c6
+  languageName: node
+  linkType: hard
+
 "@sinclair/typebox@npm:^0.24.1":
   version: 0.24.19
   resolution: "@sinclair/typebox@npm:0.24.19"
@@ -3815,6 +3822,7 @@ __metadata:
   dependencies:
     "@babel/core": "*"
     "@babel/eslint-parser": 7.18.9
+    "@rushstack/eslint-patch": ^1.1.0
     "@types/eslint": 8.4.5
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/prettier": 2.7.0

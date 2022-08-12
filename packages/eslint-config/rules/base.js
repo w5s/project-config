@@ -1,5 +1,9 @@
 const { concatESConfig, off, error } = require('./_rule.js');
 
+// Fix eslint shareable config (https://github.com/eslint/eslint/issues/3458)
+// @ts-ignore
+require('@rushstack/eslint-patch/modern-module-resolution.js');
+
 const baseConfig = concatESConfig(
   // @ts-ignore
   require('eslint-config-airbnb-base/rules/best-practices'),
