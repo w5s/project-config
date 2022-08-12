@@ -77,7 +77,7 @@
     "react": "18.2.0"
   },
   "peerDependencies": {
-    "eslint": "5.x || 6.x || 7.x || 8.x",
+    "eslint": "8.x",
     "prettier": "2.x",
     "typescript": "4.x"
   },
