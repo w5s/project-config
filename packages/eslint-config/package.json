@@ -45,9 +45,8 @@
     "__tests__"
   ],
   "dependencies": {
-    "@babel/eslint-parser": "^7.0.0",
-    "@babel/plugin-syntax-class-properties": "^7.0.0",
-    "@babel/plugin-syntax-jsx": "^7.0.0",
+    "@babel/core": "*",
+    "@babel/eslint-parser": "*",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint-config-airbnb-base": "^15.0.0",

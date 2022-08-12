@@ -46,7 +46,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:7.18.10":
+"@babel/core@npm:*, @babel/core@npm:7.18.10":
   version: 7.18.10
   resolution: "@babel/core@npm:7.18.10"
   dependencies:
@@ -296,7 +296,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/helper-plugin-utils@npm:^7.12.13, @babel/helper-plugin-utils@npm:^7.16.7":
+"@babel/helper-plugin-utils@npm:^7.12.13":
   version: 7.16.7
   resolution: "@babel/helper-plugin-utils@npm:7.16.7"
   checksum: d08dd86554a186c2538547cd537552e4029f704994a9201d41d82015c10ed7f58f9036e8d1527c3760f042409163269d308b0b3706589039c5f1884619c6d4ce
@@ -494,7 +494,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/plugin-syntax-class-properties@npm:^7.0.0, @babel/plugin-syntax-class-properties@npm:^7.8.3":
+"@babel/plugin-syntax-class-properties@npm:^7.8.3":
   version: 7.12.13
   resolution: "@babel/plugin-syntax-class-properties@npm:7.12.13"
   dependencies:
@@ -524,17 +524,6 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.0.0-0
   checksum: bf5aea1f3188c9a507e16efe030efb996853ca3cadd6512c51db7233cc58f3ac89ff8c6bdfb01d30843b161cfe7d321e1bf28da82f7ab8d7e6bc5464666f354a
-  languageName: node
-  linkType: hard
-
-"@babel/plugin-syntax-jsx@npm:^7.0.0":
-  version: 7.16.7
-  resolution: "@babel/plugin-syntax-jsx@npm:7.16.7"
-  dependencies:
-    "@babel/helper-plugin-utils": ^7.16.7
-  peerDependencies:
-    "@babel/core": ^7.0.0-0
-  checksum: cd9b0e53c50e8ddb0afaf0f42e0b221a94e4f59aee32a591364266a31195c48cac5fef288d02c1c935686bda982d2e0f1ed61cceb995fc9f6fb09ef5ebecdd2b
   languageName: node
   linkType: hard
 
@@ -3824,9 +3813,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/eslint-config@workspace:packages/eslint-config"
   dependencies:
+    "@babel/core": "*"
     "@babel/eslint-parser": 7.18.9
-    "@babel/plugin-syntax-class-properties": ^7.0.0
-    "@babel/plugin-syntax-jsx": ^7.0.0
     "@types/eslint": 8.4.5
     "@types/eslint-plugin-prettier": ^3.1.0
     "@types/prettier": 2.7.0
@@ -3850,7 +3838,7 @@ __metadata:
     prettier: 2.7.1
     react: 18.2.0
   peerDependencies:
-    eslint: 5.x || 6.x || 7.x || 8.x
+    eslint: 8.x
     prettier: 2.x
     typescript: 4.x
   peerDependenciesMeta:

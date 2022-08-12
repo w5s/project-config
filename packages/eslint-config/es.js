@@ -12,7 +12,7 @@ module.exports = {
   parser: '@babel/eslint-parser',
   parserOptions: {
     babelOptions: {
-      plugins: ['@babel/plugin-syntax-class-properties', '@babel/plugin-syntax-jsx'],
+      plugins: [],
     },
     ecmaFeatures: {
       jsx: true,
