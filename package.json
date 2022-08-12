@@ -126,8 +126,5 @@
     "npm": ">=6.0.0",
     "yarn": ">=1.0.0"
   },
-  "mrmConfig": {
-    "packageArchetype": "workspace"
-  },
   "packageManager": "yarn@3.2.2"
 }

@@ -1,6 +1,6 @@
 /* eslint-disable sort-keys-fix/sort-keys-fix */
 const path = require('node:path');
-const { packageJson, file } = require('mrm-core');
+const { packageJson } = require('mrm-core');
 const npm = require('../core/npm.js');
 const pkg = require('../core/pkg.js');
 const { gitIgnoreTemplate } = require('../core/git.js');
@@ -14,7 +14,7 @@ const { gitIgnoreTemplate } = require('../core/git.js');
  * }} config
  * @returns {void}
  */
-function task({ mrmPreset, mrmTask, packageArchetype, packageManager }) {
+function task({ mrmPreset, mrmTask, packageManager }) {
   /**
    * setup package.json from following object
    */
@@ -51,21 +51,6 @@ function task({ mrmPreset, mrmTask, packageArchetype, packageManager }) {
       script: `mrm --preset ${mrmPreset}`,
     });
   });
-
-  pkg.withPackageJson((packageFile) => {
-    pkg.value(packageFile, {
-      path: 'mrmConfig.packageArchetype',
-      state: 'present',
-      update: packageArchetype,
-      default: () => {
-        if (file('lerna.json').exists() || Boolean(packageFile.get('workspaces'))) {
-          return 'workspace';
-        }
-
-        return 'library';
-      },
-    });
-  });
 }
 
 task.description = 'Bootstrap a new project.';
@@ -79,12 +64,6 @@ task.parameters = {
   mrmTask: {
     default: 'configure',
     message: 'Default MRM task name ?',
-    type: 'input',
-  },
-  packageArchetype: {
-    choices: ['library', 'application', 'workspace'],
-    message: 'What Archetype of package ?',
-    name: 'packageArchetype',
     type: 'input',
   },
   packageManager: {
