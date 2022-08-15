@@ -4,7 +4,7 @@ const npm = require('../core/npm.js');
 const { gitIgnore } = require('../core/git.js');
 const project = require('../core/project.js');
 const { eslintIgnore } = require('../core/eslint.js');
-const { typedoc } = require('../core/typedoc.js');
+// const { typedoc } = require('../core/typedoc.js');
 const pkg = require('../core/pkg.js');
 
 /**
@@ -103,29 +103,29 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
       state: 'present',
     });
 
-    typedoc({
-      state: isApplication ? 'absent' : 'present',
-      update: (config) => ({
-        // Default values
-        tsconfig: 'tsconfig.json',
-        excludePrivate: true,
-        excludeExternals: true,
-        readme: 'README.md',
-        theme: 'default',
-        // Inherits current
-        ...config,
-        // Force values
-        out: 'public',
-        exclude: [
-          '**/build/**/*',
-          '**/example/**/*',
-          '**/lib/**/*',
-          '**/node_modules/**',
-          '**/__tests__/*.(ts|tsx)',
-          '**/*.(spec|test).(ts|tsx)',
-        ],
-      }),
-    });
+    // typedoc({
+    //   state: isApplication ? 'absent' : 'present',
+    //   update: (config) => ({
+    //     // Default values
+    //     tsconfig: 'tsconfig.json',
+    //     excludePrivate: true,
+    //     excludeExternals: true,
+    //     readme: 'README.md',
+    //     theme: 'default',
+    //     // Inherits current
+    //     ...config,
+    //     // Force values
+    //     out: 'public',
+    //     exclude: [
+    //       '**/build/**/*',
+    //       '**/example/**/*',
+    //       '**/lib/**/*',
+    //       '**/node_modules/**',
+    //       '**/__tests__/*.(ts|tsx)',
+    //       '**/*.(spec|test).(ts|tsx)',
+    //     ],
+    //   }),
+    // });
   };
 
   task.description = 'Setup Programming Language';
