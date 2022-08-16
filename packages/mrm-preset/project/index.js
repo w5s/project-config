@@ -1,5 +1,5 @@
 const { dirname } = require('node:path');
-const { packageJson, json, makeDirs } = require('mrm-core');
+const { packageJson, makeDirs } = require('mrm-core');
 const git = require('../core/git.js');
 const pkg = require('../core/pkg.js');
 const npm = require('../core/npm.js');
@@ -188,34 +188,6 @@ function task() {
   });
 
   // workspace
-  const lernaConfig = json('lerna.json', {
-    version: rootPackageFile.get('version'),
-  });
-  if (rootUseWorkspace) {
-    const versionIndependent = lernaConfig.get('version') === 'independent';
-    const gitmoji = true;
-
-    lernaConfig.merge({
-      $schema: 'https://json.schemastore.org/lerna.json',
-      command: {
-        publish: {
-          conventionalCommits: true,
-          npmClient: 'npm',
-        },
-        version: {
-          message: gitmoji
-            ? `🔖 Publish${versionIndependent ? '' : ' %s'}`
-            : `chore(release): publish${versionIndependent ? '' : ' %s'}`,
-        },
-      },
-      npmClient: packageManager,
-      useWorkspaces: rootUseWorkspace,
-      changelogPreset: 'gitmoji-config',
-    });
-    lernaConfig.save();
-  } else {
-    lernaConfig.delete();
-  }
 
   rootPackageFile.save();
 
@@ -262,7 +234,7 @@ function task() {
   npm.dependency({
     dev: true,
     name: ['lerna', 'conventional-changelog-gitmoji-config'],
-    state: rootUseWorkspace ? 'present' : 'absent',
+    state: 'absent',
   });
 
   // VSCode
