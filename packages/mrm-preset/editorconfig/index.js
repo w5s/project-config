@@ -43,7 +43,10 @@ function createEditorConfig(defaults) {
 
     editorConfigFile.save();
 
-    vscodeRecommendedExtension(['editorconfig.editorconfig']);
+    vscodeRecommendedExtension({
+      name: 'editorconfig.editorconfig',
+      state: 'present',
+    });
   }
 
   task.description = 'Adds EditorConfig file';

@@ -23,7 +23,10 @@ function createCommitLint({ commitLintPreset: commitLintPresetDefault }) {
       state: gitPresent ? 'present' : 'absent',
     });
 
-    vscodeRecommendedExtension(['seatonjiang.gitmoji-vscode']);
+    vscodeRecommendedExtension({
+      name: 'seatonjiang.gitmoji-vscode',
+      state: gitPresent ? 'present' : 'absent',
+    });
   }
 
   task.description = 'Setup CommitLint';

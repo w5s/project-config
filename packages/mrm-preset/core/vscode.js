@@ -1,13 +1,23 @@
 const { json } = require('mrm-core');
 
 /**
- * @param {Array<string>} recommendations
+ * @param {{
+ *   name: string,
+ *   state: 'present'|'absent',
+ * }} recommendation
  */
-function vscodeRecommendedExtension(recommendations) {
+function vscodeRecommendedExtension(recommendation) {
   const packageFile = json('.vscode/extensions.json');
-  packageFile.merge({
-    recommendations,
-  });
+  if (recommendation.state === 'present') {
+    packageFile.merge({
+      recommendations: [recommendation.name],
+    });
+  } else {
+    packageFile.set(
+      'recommendations',
+      packageFile.get('recommendations', []).filter((/** @type {string} */ _) => _ !== recommendation.name)
+    );
+  }
   packageFile.save();
 }
 exports.vscodeRecommendedExtension = vscodeRecommendedExtension;

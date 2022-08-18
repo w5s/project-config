@@ -131,7 +131,10 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     });
 
     // VSCode support
-    vscodeRecommendedExtension(['dbaeumer.vscode-eslint']);
+    vscodeRecommendedExtension({
+      name: 'dbaeumer.vscode-eslint',
+      state: 'present',
+    });
     vscodeSettings({
       state: 'present',
       update: (settings) => ({
