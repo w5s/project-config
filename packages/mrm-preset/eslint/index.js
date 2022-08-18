@@ -4,7 +4,7 @@ const npm = require('../core/npm.js');
 const { gitIgnore } = require('../core/git.js');
 const { eslintIgnore, eslintConfig } = require('../core/eslint.js');
 const project = require('../core/project.js');
-const { vscodeSettings } = require('../core/vscode.js');
+const { vscodeSettings, vscodeRecommendedExtension } = require('../core/vscode.js');
 
 function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended' }) {
   /**
@@ -131,6 +131,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     });
 
     // VSCode support
+    vscodeRecommendedExtension(['dbaeumer.vscode-eslint']);
     vscodeSettings({
       state: 'present',
       update: (settings) => ({
