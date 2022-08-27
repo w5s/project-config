@@ -2,6 +2,7 @@ const { dirname } = require('node:path');
 const { packageJson, json, makeDirs } = require('mrm-core');
 const git = require('../core/git.js');
 const pkg = require('../core/pkg.js');
+const jsonFile = require('../core/pkg.js');
 const npm = require('../core/npm.js');
 const { vscodeTask } = require('../core/vscode.js');
 const project = require('../core/project.js');
@@ -54,6 +55,20 @@ function task() {
     makeDirs(dirs);
   }
 
+  const setDefault = (/** @type {import("mrm-core").Json} */ currentPackageFile, /** @type {boolean} */ _root) => {
+    jsonFile.value(currentPackageFile, {
+      path: '',
+      state: 'present',
+      update: (content) => ({
+        type: 'module',
+        license: 'UNLICENSED',
+        version: '1.0.0-alpha.0',
+        description: '',
+        ...content,
+      }),
+      default: {},
+    });
+  };
   const addScripts = (/** @type {import("mrm-core").Json} */ currentPackageFile, /** @type {boolean} */ root) => {
     const useWorkspace = pkg.hasWorkspaces(currentPackageFile);
 
@@ -157,6 +172,7 @@ function task() {
           : undefined,
     });
 
+    setDefault(packageFile, false);
     addScripts(packageFile, true);
 
     pkg.script(packageFile, {
@@ -181,6 +197,7 @@ function task() {
             }
           : undefined,
     });
+    setDefault(workspace.packageFile, false);
     addScripts(workspace.packageFile, false);
 
     // Engine
