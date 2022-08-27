@@ -3934,7 +3934,7 @@ __metadata:
     "@types/debug": 4.1.7
     debug: ^4.3.3
     glob: ^8.0.3
-    mrm: 4.0.0
+    mrm: 4.1.0
     mrm-core: ^7.0.0
     semver-intersect: ^1.4.0
     sync-directory: ^5.0.0
@@ -3967,7 +3967,7 @@ __metadata:
     markdown-magic: 2.6.0
     markdown-magic-package-json: 2.0.2
     markdown-magic-subpackage-list: 1.1.2
-    mrm: 4.0.0
+    mrm: 4.1.0
     prettier: 2.7.1
     turbo: 1.4.3
     typescript: 4.7.4
@@ -11079,9 +11079,37 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mrm@npm:4.0.0":
-  version: 4.0.0
-  resolution: "mrm@npm:4.0.0"
+"mrm-core@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "mrm-core@npm:7.1.0"
+  dependencies:
+    babel-code-frame: ^6.26.0
+    comment-json: ^2.2.0
+    detect-indent: ^6.0.0
+    editorconfig: ^0.15.3
+    find-up: ^4.1.0
+    fs-extra: ^8.1.0
+    kleur: ^3.0.3
+    listify: ^1.0.0
+    lodash: ^4.17.15
+    minimist: ^1.2.0
+    prop-ini: ^0.0.2
+    rc: ^1.2.8
+    readme-badger: ^0.3.0
+    semver: ^6.3.0
+    smpltmpl: ^1.0.2
+    split-lines: ^2.0.0
+    strip-bom: ^4.0.0
+    validate-npm-package-name: ^3.0.0
+    webpack-merge: ^4.2.2
+    yaml: ^2.0.0-1
+  checksum: 78f9e997e25e666c2ef971600b23242d04d742feeb68e0f01e04c507595e8eb79eec8dfbd62b3d89f35a78ac39adbbfc2818b151b7049828ec6bbb152e4aa51e
+  languageName: node
+  linkType: hard
+
+"mrm@npm:4.1.0":
+  version: 4.1.0
+  resolution: "mrm@npm:4.1.0"
   dependencies:
     git-username: ^1.0.0
     glob: ^7.1.6
@@ -11094,7 +11122,7 @@ __metadata:
     longest: ^2.0.1
     middleearth-names: ^1.1.0
     minimist: ^1.2.0
-    mrm-core: ^7.0.0
+    mrm-core: ^7.1.0
     semver-utils: ^1.1.4
     update-notifier: ^4.1.0
     user-home: ^2.0.0
@@ -11102,7 +11130,7 @@ __metadata:
     which: ^2.0.2
   bin:
     mrm: bin/mrm.js
-  checksum: 576b6017323e1681d977b2123f6a46dc7f70fbc9df45669c043bd6c50f53a2b939a7e5ffecdcce580505b781b88a97780cabff3712a5ca7192e29d53b1171596
+  checksum: 67830f77d182354d45f710bb3f04f1b6b2726ae1c2606f05c4a385d12c939dd19ca7ad74390ab928fd6a463fae689b9f89a1d7254d305411f4007a1ee8be3747
   languageName: node
   linkType: hard
 
