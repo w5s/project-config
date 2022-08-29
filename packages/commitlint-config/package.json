@@ -62,7 +62,7 @@
     "commitlint-plugin-gitmoji": "^2.2.0"
   },
   "devDependencies": {
-    "@commitlint/lint": "17.0.3",
+    "@commitlint/lint": "17.1.0",
     "@jest/globals": "29.0.1"
   },
   "peerDependencies": {
