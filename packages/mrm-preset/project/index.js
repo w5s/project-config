@@ -57,7 +57,7 @@ function task() {
 
   const setDefault = (/** @type {import("mrm-core").Json} */ currentPackageFile, /** @type {boolean} */ _root) => {
     jsonFile.value(currentPackageFile, {
-      path: '',
+      path: undefined,
       state: 'present',
       update: (content) => ({
         type: 'module',
