@@ -18,6 +18,7 @@
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "commonjs",
   "main": "index.js",
   "files": [
     "*.js",

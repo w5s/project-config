@@ -1,11 +1,14 @@
 {
   "name": "@w5s/project-config-src",
+  "version": "1.0.0-alpha.0",
   "private": true,
+  "description": "",
   "repository": {
     "type": "git",
     "url": "git@github.com:w5s/project-config.git"
   },
   "license": "MIT",
+  "type": "commonjs",
   "files": [],
   "workspaces": {
     "packages": [
