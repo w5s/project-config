@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.22](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.21...@w5s/mrm-preset@1.0.0-alpha.22) (2022-08-29)
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
+
+
+
+
 # [1.0.0-alpha.21](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.0-alpha.20...@w5s/mrm-preset@1.0.0-alpha.21) (2022-08-09)
 
 **Note:** Version bump only for package @w5s/mrm-preset
