@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.29](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.28...@w5s/eslint-config@1.0.0-alpha.29) (2022-08-29)
+
+**Note:** Version bump only for package @w5s/eslint-config
+
+
+
+
+
 # [1.0.0-alpha.28](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.27...@w5s/eslint-config@1.0.0-alpha.28) (2022-08-29)
 
 **Note:** Version bump only for package @w5s/eslint-config
