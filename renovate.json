@@ -4,7 +4,5 @@
     "github>w5s/renovate-config:library",
     "github>w5s/renovate-config:teamAssignees"
   ],
-  "ignorePaths": [
-    "**/node_modules/**"
-  ]
+  "ignorePaths": ["**/node_modules/**"]
 }

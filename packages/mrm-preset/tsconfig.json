@@ -7,8 +7,5 @@
     "noEmit": true,
     "resolveJsonModule": true
   },
-  "exclude": [
-    "**/templates/**",
-    "_tester"
-  ]
+  "exclude": ["**/templates/**", "_tester"]
 }

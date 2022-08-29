@@ -3,14 +3,8 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "lib/**",
-        "dist/**",
-        ".next/**"
-      ]
+      "dependsOn": ["^build"],
+      "outputs": ["lib/**", "dist/**", ".next/**"]
     },
     "test": {},
     "lint": {},
@@ -25,7 +19,5 @@
       "cache": false
     }
   },
-  "globalDependencies": [
-    "tsconfig.settings.json"
-  ]
+  "globalDependencies": ["tsconfig.settings.json"]
 }

@@ -6,7 +6,7 @@
     "outDir": "./lib",
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es5",
+    "target": "es5"
   },
   "include": ["src"]
 }
