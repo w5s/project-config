@@ -82,7 +82,6 @@
     "build/",
     ".cache/",
     "lib/",
-    "**/tsconfig.json",
     ".vscode/**",
     "**/_tester/**",
     "public/"
