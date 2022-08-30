@@ -1,3 +1,4 @@
+/* cspell:disable */
 // https://github.com/keithamus/sort-package-json/blob/master/defaultRules.md
 module.exports = {
   extends: ['plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/prettier'],
