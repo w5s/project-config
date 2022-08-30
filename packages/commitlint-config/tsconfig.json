@@ -2,10 +2,10 @@
   "$schema": "https://json.schemastore.org/tsconfig.json",
   "extends": "../../tsconfig.settings.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "outDir": "./lib",
-    "module": "commonjs",
     "esModuleInterop": true,
+    "module": "commonjs",
+    "outDir": "./lib",
+    "rootDir": "./src",
     "target": "es5"
   },
   "include": ["src"]
