@@ -1,6 +1,6 @@
 {
   "name": "@w5s/eslint-config",
-  "version": "1.0.0-alpha.29",
+  "version": "1.0.0-alpha.30",
   "description": "ESLint configuration presets",
   "keywords": [
     "eslint",
