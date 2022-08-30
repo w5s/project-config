@@ -28,7 +28,6 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       'coverage/',
       'build/',
       '.cache/',
-      '.vscode/**',
       'public/',
     ]);
 
