@@ -178,6 +178,7 @@ module.exports = {
       },
     },
   ],
+  plugins: ['jsonc'],
   rules: {
     // 'jsonc/sort-keys': 'error',
   },
