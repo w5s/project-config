@@ -32,10 +32,10 @@
     "docs": "md-magic --path './*.md' --ignore='node_modules' && turbo run docs",
     "format": "concurrently \"npm:format:*\" \":\"",
     "format:packages": "turbo run format",
-    "format:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc --ignore-pattern='packages/*/**' --fix",
+    "format:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5 --ignore-pattern='packages/*/**' --fix",
     "lint": "concurrently \"npm:lint:*\" \":\"",
     "lint:packages": "turbo run lint",
-    "lint:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc --ignore-pattern='packages/*/**'",
+    "lint:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5 --ignore-pattern='packages/*/**'",
     "mrm": "mrm --preset @w5s/mrm-preset",
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "prepare:husky": "is-ci || husky install",
@@ -53,13 +53,13 @@
     ]
   },
   "lint-staged": {
-    "*.json": [
-      "eslint"
-    ],
     "*.js?(x)": [
       "eslint"
     ],
     "*.ts?(x)": [
+      "eslint"
+    ],
+    "*.{json,jsonc,json5}": [
       "eslint"
     ]
   },

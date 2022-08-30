@@ -74,6 +74,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       tsx: hasTypescript && hasJSX,
       json: hasJSON,
       jsonc: hasJSON,
+      json5: hasJSON,
     };
     const extList = Object.keys(extsMap).filter((ext) => extsMap[ext]);
     const extOption = ` --ext=${extList.join(',')}`;

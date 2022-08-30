@@ -19,7 +19,7 @@ function task() {
     state: gitSupported ? 'present' : 'absent',
     update: (config) => ({
       ...config,
-      '*.json?(c)': [...(hasESLint ? ['eslint'] : [])],
+      '*.{json,jsonc,json5}': [...(hasESLint ? ['eslint'] : [])],
       '*.js?(x)': [...(hasESLint ? ['eslint'] : [])],
       '*.ts?(x)': [
         // TODO: https://github.com/okonet/lint-staged/issues/825

@@ -4,6 +4,10 @@ module.exports = {
   extends: ['plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/prettier'],
   overrides: [
     {
+      files: ['*.json', '*.json5', '*.jsonc'],
+      parser: 'jsonc-eslint-parser',
+    },
+    {
       files: ['tsconfig*.json'],
       rules: {
         'jsonc/sort-keys': [
