@@ -25,6 +25,7 @@ module.exports = {
     require.resolve('./ignore'),
     require.resolve('./es'),
     require.resolve('./json'),
+    require.resolve('./yml'),
     ...includeIf(tryResolve('react'), require.resolve('./react')),
   ],
   overrides: [

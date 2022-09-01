@@ -19,6 +19,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     const hasTypescript = pkg.hasDependency(packageFileDefault, 'typescript', 'dev');
     const hasJSX = true;
     const hasJSON = true;
+    const hasYAML = true;
 
     // Should be added first
     gitIgnore('ESLint', ['.eslintcache']);
@@ -74,6 +75,8 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       json: hasJSON,
       jsonc: hasJSON,
       json5: hasJSON,
+      yml: hasYAML,
+      yaml: hasYAML,
     };
     const extList = Object.keys(extsMap).filter((ext) => extsMap[ext]);
     const extOption = ` --ext=${extList.join(',')}`;
@@ -153,6 +156,8 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
                   js: 'javascript',
                   tsx: 'typescriptreact',
                   ts: 'typescript',
+                  yaml: 'yaml',
+                  yml: 'yaml',
                 }[ext] || ext)
             )
           )

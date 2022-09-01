@@ -9,6 +9,7 @@
     "typescriptreact",
     "json",
     "jsonc",
-    "json5"
+    "json5",
+    "yaml"
   ]
 }
