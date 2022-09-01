@@ -38,13 +38,15 @@ function jest({ state }) {
 
     pkg.script(packageFile, {
       name: project.coverage,
-      script: hasWorkspaces ? pkg.emptyScript : 'jest --coverage',
-      state: !hasJest || hasWorkspaces ? 'default' : 'present',
+      update: (_) => (hasWorkspaces ? _ : 'jest --coverage'),
+      state: 'present',
+      default: pkg.emptyScript,
     });
     pkg.script(packageFile, {
       name: project.test,
-      script: hasWorkspaces ? pkg.emptyScript : 'jest',
-      state: !hasJest || hasWorkspaces ? 'default' : 'present',
+      update: (_) => (hasWorkspaces ? _ : 'jest'),
+      state: 'present',
+      default: pkg.emptyScript,
     });
   });
 

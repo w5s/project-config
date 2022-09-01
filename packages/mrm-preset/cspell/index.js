@@ -28,7 +28,7 @@ function task() {
     const workspaceMatchers = pkg.listWorkspaceMatchers(packageFile);
     pkg.script(packageFile, {
       name: project.spellcheck,
-      script: `cspell --no-progress '**' ${
+      update: `cspell --no-progress '**' ${
         hasWorkspaces ? `${workspaceMatchers.map((_) => `--exclude='${_}/**'`).join(' ')} && turbo run spellcheck` : ''
       }`,
       state: 'present',
@@ -37,7 +37,7 @@ function task() {
   pkg.forEachWorkspace(({ packageFile }) => {
     pkg.script(packageFile, {
       name: project.spellcheck,
-      script: `cspell --no-progress '**'`,
+      update: `cspell --no-progress '**'`,
       state: 'present',
     });
   });

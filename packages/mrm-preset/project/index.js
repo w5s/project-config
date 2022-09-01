@@ -75,24 +75,24 @@ function task() {
     // build
     pkg.script(currentPackageFile, {
       name: project.build,
-      script: npmRunAll(project.build, false),
+      update: npmRunAll(project.build, false),
       state: 'present',
     });
     pkg.script(currentPackageFile, {
       name: `${project.build}:packages`,
-      script: turboRun(project.build),
+      update: turboRun(project.build),
       state: useWorkspace ? 'present' : 'absent',
     });
 
     // lint
     pkg.script(currentPackageFile, {
       name: project.lint,
-      script: npmRunAll(project.lint, true),
+      update: npmRunAll(project.lint, true),
       state: 'present',
     });
     pkg.script(currentPackageFile, {
       name: project.format,
-      script: npmRunAll(project.format, true),
+      update: npmRunAll(project.format, true),
       state: 'present',
     });
 
@@ -104,26 +104,27 @@ function task() {
     // });
     pkg.script(currentPackageFile, {
       name: project.test,
-      script: useWorkspace ? npmRunAll(project.test, false) : pkg.emptyScript,
-      state: useWorkspace ? 'present' : 'default',
+      update: useWorkspace ? npmRunAll(project.test, false) : undefined,
+      state: 'present',
+      default: pkg.emptyScript,
     });
 
     // prepare
     pkg.script(currentPackageFile, {
       name: project.prepare,
-      script: npmRunAll(project.prepare, true),
+      update: npmRunAll(project.prepare, true),
       state: 'present',
     });
 
     // clean
     pkg.script(currentPackageFile, {
       name: project.clean,
-      script: npmRunAll(project.clean, true),
+      update: npmRunAll(project.clean, true),
       state: 'present',
     });
     pkg.script(currentPackageFile, {
       name: `${project.clean}:packages`,
-      script: turboRun(project.clean),
+      update: turboRun(project.clean),
       state: useWorkspace ? 'present' : 'absent',
     });
 
@@ -132,29 +133,29 @@ function task() {
     // rescue
     pkg.script(currentPackageFile, {
       name: project.rescue,
-      script: `${gitSupported ? 'git clean -fdx' : ''};${packageManager} install`,
+      update: `${gitSupported ? 'git clean -fdx' : ''};${packageManager} install`,
       state: root ? 'present' : 'absent',
     });
 
     // release
     pkg.script(currentPackageFile, {
       name: project.release,
-      script: pkg.emptyScript,
-      state: root ? 'default' : 'absent',
+      default: pkg.emptyScript,
+      state: root ? 'present' : 'absent',
     });
 
     // code analysis
     pkg.script(currentPackageFile, {
       name: project.codeAnalysis,
-      script: pkg.emptyScript,
-      state: root ? 'default' : 'absent',
+      default: pkg.emptyScript,
+      state: root ? 'present' : 'absent',
     });
 
     // develop & auto build & load
     pkg.script(currentPackageFile, {
       name: project.develop,
-      script: pkg.emptyScript,
-      state: root ? 'default' : 'absent',
+      default: pkg.emptyScript,
+      state: root ? 'present' : 'absent',
     });
   };
 
@@ -177,7 +178,7 @@ function task() {
 
     pkg.script(packageFile, {
       name: project.validate,
-      script: `${npmRun(project.build)} && ${npmRun(project.lint)} && ${npmRun(project.test)}`,
+      update: `${npmRun(project.build)} && ${npmRun(project.lint)} && ${npmRun(project.test)}`,
       state: 'present',
     });
 

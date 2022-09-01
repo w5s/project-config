@@ -31,7 +31,7 @@ function husky({ state }) {
     pkg.script(packageFile, {
       name: `${project.prepare}:husky`,
       state: hasHusky ? 'present' : 'absent',
-      script: 'is-ci || husky install',
+      update: 'is-ci || husky install',
     });
   });
 }

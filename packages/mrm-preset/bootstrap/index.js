@@ -42,13 +42,13 @@ function task({ mrmPreset, mrmTask, packageManager }) {
     // Add MRM default scripts
     pkg.script(packageFile, {
       name: 'configure',
-      state: 'default',
-      script: currentPackageManager === 'npm' ? `npm run mrm -- ${mrmTask}` : `yarn mrm ${mrmTask}`,
+      state: 'present',
+      default: currentPackageManager === 'npm' ? `npm run mrm -- ${mrmTask}` : `yarn mrm ${mrmTask}`,
     });
     pkg.script(packageFile, {
       name: 'mrm',
-      state: 'default',
-      script: `mrm --preset ${mrmPreset}`,
+      state: 'present',
+      default: `mrm --preset ${mrmPreset}`,
     });
   });
 }

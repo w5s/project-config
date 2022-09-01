@@ -84,7 +84,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
       if (isApplication) {
         pkg.script(_packageFile, {
           name: project.develop,
-          script:
+          update:
             "NODE_ENV=development ts-node-dev --require='tsconfig-paths/register' -r dotenv/config -- ./src/index.ts dotenv_config_path=.env",
           state: 'present',
         });

@@ -1,6 +1,10 @@
 /* cSpell: disable */
 // @ts-check
 
+/**
+ * @typedef {string|boolean|number|null|Array<unknown>|Record<string, unknown>} JsonValue
+ */
+
 // @ts-ignore
 const { intersect } = require('semver-intersect');
 const { packageJson, file, json } = require('mrm-core');
@@ -69,19 +73,20 @@ function forEachWorkspace(fn) {
 }
 
 /**
+ * @template {undefined|JsonValue} T
  * @param {import('mrm-core').Json} packageFile
  * @param {{
  *   name: string,
- *   state: 'present'|'absent'|'default',
- *   script: string,
+ *   state: 'present'|'absent',
+ *   update?: T | ((previousValue: T) => T)
+ *   default?: T | (() => T)
  * }} options
  */
-function script(packageFile, { name, state, script: scriptName }) {
-  if (state === 'absent') {
-    packageFile.unset(['scripts', name]);
-  } else if (state === 'present' || (state === 'default' && !packageFile.get(['scripts', name]))) {
-    packageFile.set(['scripts', name], scriptName);
-  }
+function script(packageFile, options) {
+  jsonFile.value(packageFile, {
+    ...options,
+    path: ['scripts', options.name],
+  });
 }
 
 const defaultManager = 'npm';

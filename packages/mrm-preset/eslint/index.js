@@ -90,46 +90,50 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       // workspaces
       pkg.script(packageFile, {
         name: `${project.lint}:root`,
-        script: `eslint .${extOption}${ignorePatterns}`,
+        update: `eslint .${extOption}${ignorePatterns}`,
         state: hasWorkspaces ? 'present' : 'absent',
       });
       pkg.script(packageFile, {
         name: `${project.format}:root`,
-        script: `eslint .${extOption}${ignorePatterns} --fix`,
+        update: `eslint .${extOption}${ignorePatterns} --fix`,
         state: hasWorkspaces ? 'present' : 'absent',
       });
       pkg.script(packageFile, {
         name: `${project.lint}:packages`,
-        script: `turbo run ${project.lint}`,
+        update: `turbo run ${project.lint}`,
         state: hasWorkspaces ? 'present' : 'absent',
       });
       pkg.script(packageFile, {
         name: `${project.format}:packages`,
-        script: `turbo run ${project.format}`,
+        update: `turbo run ${project.format}`,
         state: hasWorkspaces ? 'present' : 'absent',
       });
       // regular package
       pkg.script(packageFile, {
         name: `${project.lint}:src`,
-        script: `eslint .${extOption}`,
+        update: `eslint .${extOption}`,
         state: !hasWorkspaces ? 'present' : 'absent',
       });
       pkg.script(packageFile, {
         name: `${project.format}:src`,
-        script: `eslint . --fix${extOption}`,
+        update: `eslint . --fix${extOption}`,
         state: !hasWorkspaces ? 'present' : 'absent',
       });
     });
     pkg.forEachWorkspace(({ packageFile }) => {
+      const updater = (/** @type {boolean} */ format) => (/** @type {string} */ _) =>
+        _ == null || _ === '' || _.trimStart().startsWith('eslint')
+          ? `eslint .${format ? ' --fix' : ''}${extOption}`
+          : _;
       pkg.script(packageFile, {
         name: `${project.lint}:src`,
-        script: `eslint .${extOption}`,
-        state: 'default',
+        update: updater(),
+        state: 'present',
       });
       pkg.script(packageFile, {
         name: `${project.format}:src`,
-        script: `eslint . --fix${extOption}`,
-        state: 'default',
+        update: updater(true),
+        state: 'present',
       });
     });
 
