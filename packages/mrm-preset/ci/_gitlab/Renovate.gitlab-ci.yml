@@ -1,20 +1,20 @@
 # https://fotoallerlei.com/blog/post/2020/automatic-dependency-updates-with-renovate-and-gitlab/post
 .renovate:
   variables:
-    RENOVATE_GIT_AUTHOR: "${GITLAB_USER_NAME} <${GITLAB_USER_EMAIL}>"
-    RENOVATE_DRY_RUN: "false"
-    RENOVATE_LOG_LEVEL: "debug"
-    RENOVATE_ALLOWED_POST_UPGRADE: "^pod ,^yarn "
+    RENOVATE_GIT_AUTHOR: '${GITLAB_USER_NAME} <${GITLAB_USER_EMAIL}>'
+    RENOVATE_DRY_RUN: 'false'
+    RENOVATE_LOG_LEVEL: debug
+    RENOVATE_ALLOWED_POST_UPGRADE: '^pod ,^yarn '
     # RENOVATE_DISABLED: "🛑"
   rules:
-    - if: "$RENOVATE_DISABLED"
+    - if: $RENOVATE_DISABLED
       when: never
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: always
     - when: never
   image:
     name: renovate/renovate
-    entrypoint: [""]
+    entrypoint: ['']
   script:
     - >
       renovate

@@ -1,4 +1,4 @@
-##
+#
 # Follow the following standards
 #
 # @ref https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Auto-DevOps.gitlab-ci.yml
@@ -69,7 +69,6 @@ code_analysis:
   variables:
     CODE_ANALYSIS_HOUR: 7 # 7h UTC => 9h Paris
     # CODE_ANALYSIS_DISABLED: "🛑"
-
 # deploy_production:
 #   extends:
 #     - .autodevops_trigger_deploy

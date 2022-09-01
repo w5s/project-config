@@ -4,21 +4,19 @@ include:
 
 # Default variables
 variables:
-
-
   # To activate the auto release
-  AUTO_DEVOPS_QUALITY_WHEN: 'always' # 'always'|'never'
-  AUTO_DEVOPS_TEST_WHEN: 'always' # 'always'|'never'
-  AUTO_DEVOPS_RELEASE_WHEN: 'manual' # 'on_success'|'manual'|'never'
-  AUTO_DEVOPS_DEPLOY_ALLOW: 'tag' # 'tag'|'any'
-  AUTO_DEVOPS_DEPLOY_WHEN: 'manual' # 'on_success'|'manual'|'never'
+  AUTO_DEVOPS_QUALITY_WHEN: always # 'always'|'never'
+  AUTO_DEVOPS_TEST_WHEN: always # 'always'|'never'
+  AUTO_DEVOPS_RELEASE_WHEN: manual # 'on_success'|'manual'|'never'
+  AUTO_DEVOPS_DEPLOY_ALLOW: tag # 'tag'|'any'
+  AUTO_DEVOPS_DEPLOY_WHEN: manual # 'on_success'|'manual'|'never'
 
   # Renovate variable
   # RENOVATE_DISABLED: "🛑"
 
-  ##
+  # #
   # Contextual variables
-  ##
+  # #
   # DEPLOY_ENVIRONMENT: production,staging,...
   # RENOVATE: true|false
 
@@ -33,14 +31,14 @@ variables:
       if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: never
     - &autodevops_renovate_skip_rule
-      if: "$RENOVATE"
+      if: $RENOVATE
       when: never
     - &autodevops_default_branch_only_rule
-      if: '$CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH'
+      if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
       when: never
     - when: on_success
 
-##
+# #
 # Generic trait for a trigger button for release stage
 #
 .autodevops_trigger_release:
@@ -53,7 +51,7 @@ variables:
     - <<: *autodevops_default_branch_only_rule
     - if: "$AUTO_DEVOPS_RELEASE_WHEN == 'never'"
       when: never
-    - if: "$CI_COMMIT_TAG"
+    - if: $CI_COMMIT_TAG
       when: never
     - if: $CI_COMMIT_MESSAGE =~ /🔖 /
       when: never
@@ -77,7 +75,7 @@ variables:
     - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
     - npm run release
 
-##
+# #
 # Generic trait for a trigger button for deploy stage.
 # Use DEPLOY_ENVIRONMENT variable to choose environment
 #
@@ -178,7 +176,7 @@ variables:
     CODE_ANALYSIS_HOUR: 7 # 7h UTC => 9h Paris
     # CODE_ANALYSIS_DISABLED: "🛑"
   rules:
-    - if: "$CODE_ANALYSIS_DISABLED"
+    - if: $CODE_ANALYSIS_DISABLED
       when: never
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
       when: always
@@ -228,9 +226,9 @@ variables:
     expire_in: 1 week
     paths:
       - dist
-      - "packages/*/dist"
+      - 'packages/*/dist'
       - lib
-      - "packages/*/lib"
+      - 'packages/*/lib'
       - node_modules
 
 .autodevops_node_docs:
@@ -244,9 +242,9 @@ variables:
 .autodevops_renovate:
   stage: prepare
   rules:
-    - if: "$RENOVATE_DISABLED"
+    - if: $RENOVATE_DISABLED
       when: never
-    - if: "$RENOVATE"
+    - if: $RENOVATE
       when: always
     - when: never
   extends:
