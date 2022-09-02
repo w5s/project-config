@@ -53,7 +53,7 @@ function jest({ state }) {
   // Dependencies
   npm.dependency({
     dev: true,
-    name: ['jest', 'es-jest'],
+    name: ['jest', 'es-jest', '@jest/globals'],
     state: hasJest ? 'present' : 'absent',
   });
 
