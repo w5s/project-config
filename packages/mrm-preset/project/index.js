@@ -55,18 +55,26 @@ function task() {
     makeDirs(dirs);
   }
 
-  const setDefault = (/** @type {import("mrm-core").Json} */ currentPackageFile, /** @type {boolean} */ _root) => {
+  const setDefault = (/** @type {import("mrm-core").Json} */ currentPackageFile, /** @type {boolean} */ root) => {
     jsonFile.value(currentPackageFile, {
-      path: undefined,
+      path: 'type',
       state: 'present',
-      update: (content) => ({
-        type: 'module',
-        license: 'UNLICENSED',
-        version: '1.0.0-alpha.0',
-        description: '',
-        ...content,
-      }),
-      default: {},
+      default: 'module',
+    });
+    jsonFile.value(currentPackageFile, {
+      path: 'license',
+      state: 'present',
+      update: (_) => _ ?? (root && rootUseWorkspace ? 'UNLICENSED' : undefined),
+    });
+    jsonFile.value(currentPackageFile, {
+      path: 'version',
+      state: root && rootUseWorkspace ? 'absent' : 'present',
+      default: '1.0.0-alpha.0',
+    });
+    jsonFile.value(currentPackageFile, {
+      path: 'description',
+      state: 'present',
+      update: (_) => _ ?? (root && rootUseWorkspace ? '' : undefined),
     });
   };
   const addScripts = (/** @type {import("mrm-core").Json} */ currentPackageFile, /** @type {boolean} */ root) => {
