@@ -1,6 +1,7 @@
 // @ts-ignore
 const fs = require('node:fs');
 const findUp = require('find-up');
+// @ts-ignore
 const parseGitignore = require('parse-gitignore');
 
 const getGitignore = () => {
