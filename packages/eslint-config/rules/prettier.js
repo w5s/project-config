@@ -1,6 +1,7 @@
 const { error } = require('./_rule.js');
 
 module.exports = {
+  extends: ['prettier'],
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': [

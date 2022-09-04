@@ -6,7 +6,6 @@ module.exports = {
     require.resolve('./rules/jsdoc'),
     require.resolve('./rules/import'),
     require.resolve('./rules/unicorn'),
-    'prettier',
     require.resolve('./rules/prettier'),
   ],
   parser: '@babel/eslint-parser',

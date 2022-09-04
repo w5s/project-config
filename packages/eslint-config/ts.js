@@ -7,7 +7,6 @@ module.exports = {
     require.resolve('./rules/unicorn'),
     'plugin:import/typescript',
     require.resolve('./rules/typescript'),
-    'prettier',
     require.resolve('./rules/prettier'),
   ],
   parser: '@typescript-eslint/parser',
