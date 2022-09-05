@@ -54,7 +54,7 @@ describe('Commitlint Config', () => {
     });
   });
 
-  describe('start-with-gitmoji', () => {
+  describe.skip('start-with-gitmoji', () => {
     test('should return error when no gitmoji found', async () => {
       const result = await lint(`${''} ${anyValidType}(${anyValidScope}): ${anyValidSubject}`);
 

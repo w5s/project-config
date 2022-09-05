@@ -8,7 +8,7 @@ import commitTypes from '@gitmoji/commit-types';
 const { Error, Warning, Disabled } = RuleConfigSeverity;
 
 const rules: QualifiedRules = {
-  'start-with-gitmoji': [Error, 'always'],
+  'start-with-gitmoji': [Disabled, 'always'], // [Error, 'always'], FIXME: https://github.com/arvinxx/gitmoji-commit-workflow/issues/492
   'body-leading-blank': [Warning, 'always'],
   'body-max-line-length': [Error, 'always', 100],
   'footer-leading-blank': [Warning, 'always'],
