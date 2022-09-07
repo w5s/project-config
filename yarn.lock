@@ -3230,47 +3230,47 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@technote-space/anchor-markdown-header@npm:^1.1.35":
-  version: 1.1.35
-  resolution: "@technote-space/anchor-markdown-header@npm:1.1.35"
+"@technote-space/anchor-markdown-header@npm:^1.1.21":
+  version: 1.1.37
+  resolution: "@technote-space/anchor-markdown-header@npm:1.1.37"
   dependencies:
-    emoji-regex: ^10.0.0
-  checksum: 4258cf7572ef613705446453f641ef50fe63fb753145ca6acd1907961422dfcf3e46d06439c42824571b51edce21c3a40a3f0dc93dd97b6a5d5b6e2d3f71cb8a
+    emoji-regex: ^10.1.0
+  checksum: fd6bef6aa9cca67855b013e9f2801e11319a2e53eb4ff9b56a728b34428555007bd1ef2146659a5ebdbc33eb39edfaf3a624de0decabbc1d6ca017b5042e9d79
   languageName: node
   linkType: hard
 
-"@technote-space/doctoc@npm:^2.4.7":
-  version: 2.4.21
-  resolution: "@technote-space/doctoc@npm:2.4.21"
+"@technote-space/doctoc@npm:2.4.7":
+  version: 2.4.7
+  resolution: "@technote-space/doctoc@npm:2.4.7"
   dependencies:
-    "@technote-space/anchor-markdown-header": ^1.1.35
-    "@textlint/markdown-to-ast": ^12.1.0
-    htmlparser2: ^7.2.0
+    "@technote-space/anchor-markdown-header": ^1.1.21
+    "@textlint/markdown-to-ast": ^12.0.0
+    htmlparser2: ^6.1.0
     update-section: ^0.3.3
-  checksum: f4528033868b25b521a96e2ebd58ab0610881f66553d94e74327172866d78be6d12800a27985b2ecd8b5ecf5fe8f56baa69d6eb5f3a0ab53b99a82e4d0afbe4c
+  checksum: 603cb9781799f6df6f0f7d1669ac19c8c8876f4b2deffebcd44cf05aca2f295474571a2dc7cbd1114e9ea750bef78382daf10bd6b33d6b509166eaf489786e75
   languageName: node
   linkType: hard
 
-"@textlint/ast-node-types@npm:^12.1.0":
-  version: 12.1.0
-  resolution: "@textlint/ast-node-types@npm:12.1.0"
-  checksum: d4a5f97e3c51f2eb6523f23ff636a8e79bd850ea62fa95674a5e3984755afb857cd8c62a3b140550702aa4de5bb7ad9545cb14668ac475a2b020c92540adbebc
+"@textlint/ast-node-types@npm:^12.2.1":
+  version: 12.2.1
+  resolution: "@textlint/ast-node-types@npm:12.2.1"
+  checksum: b5b8a7eb45727ab8bda32d83c06298ec0ce588ccd3668236b86e863a4e56a87f98fe7095978bbe15004ef78d109844545141d453134ca0764c436ecedc26f64f
   languageName: node
   linkType: hard
 
-"@textlint/markdown-to-ast@npm:^12.1.0":
-  version: 12.1.0
-  resolution: "@textlint/markdown-to-ast@npm:12.1.0"
+"@textlint/markdown-to-ast@npm:^12.0.0":
+  version: 12.2.1
+  resolution: "@textlint/markdown-to-ast@npm:12.2.1"
   dependencies:
-    "@textlint/ast-node-types": ^12.1.0
-    debug: ^4.3.3
+    "@textlint/ast-node-types": ^12.2.1
+    debug: ^4.3.4
     remark-footnotes: ^3.0.0
     remark-frontmatter: ^3.0.0
     remark-gfm: ^1.0.0
     remark-parse: ^9.0.0
     traverse: ^0.6.6
     unified: ^9.2.2
-  checksum: b9778708f1adf3ecd6f398569041e7ac0806bbe61ca84e1c1cc4605f07faa4d13e2816f11c88e8abca91ca790cbe314a43b2011a3de7c8b20602a81b23045b1a
+  checksum: af0a6f7ea5edeb3dbf1c7ce55b4dd79812d2e9c17e52228e1edb0ca9f4145240619466abeab6e177bdc2297e7599dcb57b9f4521446d31e68f2a5ccc621025e8
   languageName: node
   linkType: hard
 
@@ -4046,7 +4046,7 @@ __metadata:
     jest: 29.0.1
     lerna: 5.5.0
     lint-staged: 13.0.3
-    markdown-magic: 2.6.0
+    markdown-magic: 2.6.1
     markdown-magic-package-json: 2.0.2
     markdown-magic-subpackage-list: 1.1.2
     mrm: 4.1.0
@@ -6242,7 +6242,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"domhandler@npm:^4.2.0, domhandler@npm:^4.2.2":
+"domhandler@npm:^4.0.0":
+  version: 4.3.1
+  resolution: "domhandler@npm:4.3.1"
+  dependencies:
+    domelementtype: ^2.2.0
+  checksum: 4c665ceed016e1911bf7d1dadc09dc888090b64dee7851cccd2fcf5442747ec39c647bb1cb8c8919f8bbdd0f0c625a6bafeeed4b2d656bbecdbae893f43ffaaa
+  languageName: node
+  linkType: hard
+
+"domhandler@npm:^4.2.0":
   version: 4.3.0
   resolution: "domhandler@npm:4.3.0"
   dependencies:
@@ -6251,7 +6260,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"domutils@npm:^2.8.0":
+"domutils@npm:^2.5.2":
   version: 2.8.0
   resolution: "domutils@npm:2.8.0"
   dependencies:
@@ -6370,10 +6379,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"emoji-regex@npm:^10.0.0":
-  version: 10.0.0
-  resolution: "emoji-regex@npm:10.0.0"
-  checksum: 9a2e0ad35b84d8ce92777126d122196ff319f64de596e0ca8560298f94eec64b9be26f5b799bb47e2ad3e8791691817f3aec4e3c507e58d5b94a6adeea271921
+"emoji-regex@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "emoji-regex@npm:10.1.0"
+  checksum: 5bc780fc4d75f89369155a87c55f7e83a0bf72bcccda7df7f2c570cde4738d8b17d112d12afdadfec16647d1faef6501307b4304f81d35c823a938fe6547df0f
   languageName: node
   linkType: hard
 
@@ -6436,13 +6445,6 @@ __metadata:
   version: 2.2.0
   resolution: "entities@npm:2.2.0"
   checksum: 19010dacaf0912c895ea262b4f6128574f9ccf8d4b3b65c7e8334ad0079b3706376360e28d8843ff50a78aabcb8f08f0a32dbfacdc77e47ed77ca08b713669b3
-  languageName: node
-  linkType: hard
-
-"entities@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "entities@npm:3.0.1"
-  checksum: aaf7f12033f0939be91f5161593f853f2da55866db55ccbf72f45430b8977e2b79dbd58c53d0fdd2d00bd7d313b75b0968d09f038df88e308aa97e39f9456572
   languageName: node
   linkType: hard
 
@@ -8367,15 +8369,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"htmlparser2@npm:^7.2.0":
-  version: 7.2.0
-  resolution: "htmlparser2@npm:7.2.0"
+"htmlparser2@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "htmlparser2@npm:6.1.0"
   dependencies:
     domelementtype: ^2.0.1
-    domhandler: ^4.2.2
-    domutils: ^2.8.0
-    entities: ^3.0.1
-  checksum: 96563d9965729cfcb3f5f19c26d013c6831b4cb38d79d8c185e9cd669ea6a9ffe8fb9ccc74d29a068c9078aa0e2767053ed6b19aa32723c41550340d0094bea0
+    domhandler: ^4.0.0
+    domutils: ^2.5.2
+    entities: ^2.0.0
+  checksum: 81a7b3d9c3bb9acb568a02fc9b1b81ffbfa55eae7f1c41ae0bf840006d1dbf54cb3aa245b2553e2c94db674840a9f0fdad7027c9a9d01a062065314039058c4e
   languageName: node
   linkType: hard
 
@@ -10516,11 +10518,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-magic@npm:2.6.0":
-  version: 2.6.0
-  resolution: "markdown-magic@npm:2.6.0"
+"markdown-magic@npm:2.6.1":
+  version: 2.6.1
+  resolution: "markdown-magic@npm:2.6.1"
   dependencies:
-    "@technote-space/doctoc": ^2.4.7
+    "@technote-space/doctoc": 2.4.7
     commander: ^7.2.0
     deepmerge: ^4.2.2
     find-up: ^5.0.0
@@ -10532,7 +10534,7 @@ __metadata:
   bin:
     markdown: cli.js
     md-magic: cli.js
-  checksum: 553963862fb5a769767ccfcc34a6f8dcc9dd4c11702229f70bb3cd431fd942e70b2de21d699613f7a34746d25c167ef6bf059d361f53488c36952cf3c196ca36
+  checksum: eb7234cba516a658b1099cb8db458655a5945e2663e97daa1dbb7736d07c0ff5de8cd1ff0eca9b8ce9c7c702cddc6d57a9dc943ded45c935bbe85ca377d4c268
   languageName: node
   linkType: hard
 
