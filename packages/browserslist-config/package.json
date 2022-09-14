@@ -1,0 +1,41 @@
+{
+  "name": "@w5s/browserslist-config",
+  "version": "1.0.0-alpha.0",
+  "description": "Browserslist support shared configuration",
+  "keywords": [
+    "browserslist",
+    "config"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/master/packages/browserslist-config#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/w5s/project-config.git",
+    "directory": "packages/browserslist-config"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "commonjs",
+  "files": [
+    "index.js",
+    "default.js",
+    "development.js"
+  ],
+  "scripts": {
+    "build": "yarn docs",
+    "docs": "node scripts/build-docs.mjs && md-magic --path '**/*.md' --ignore='node_modules'",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "browserslist": "^4.21.3",
+    "lodash-es": "^4.17.21"
+  },
+  "peerDependencies": {
+    "browserslist": ">= 4.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
