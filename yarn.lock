@@ -4063,7 +4063,7 @@ __metadata:
     "@types/debug": 4.1.7
     debug: ^4.3.3
     glob: ^8.0.3
-    mrm: 4.1.0
+    mrm: 4.1.6
     mrm-core: ^7.0.0
     semver-intersect: ^1.4.0
     sync-directory: ^5.0.0
@@ -4096,7 +4096,7 @@ __metadata:
     markdown-magic: 2.6.1
     markdown-magic-package-json: 2.0.2
     markdown-magic-subpackage-list: 1.1.2
-    mrm: 4.1.0
+    mrm: 4.1.6
     prettier: 2.7.1
     turbo: 1.4.6
     typescript: 4.8.3
@@ -11175,9 +11175,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mrm-core@npm:^7.1.0":
-  version: 7.1.0
-  resolution: "mrm-core@npm:7.1.0"
+"mrm-core@npm:^7.1.6":
+  version: 7.1.6
+  resolution: "mrm-core@npm:7.1.6"
   dependencies:
     babel-code-frame: ^6.26.0
     comment-json: ^2.2.0
@@ -11199,13 +11199,13 @@ __metadata:
     validate-npm-package-name: ^3.0.0
     webpack-merge: ^4.2.2
     yaml: ^2.0.0-1
-  checksum: 78f9e997e25e666c2ef971600b23242d04d742feeb68e0f01e04c507595e8eb79eec8dfbd62b3d89f35a78ac39adbbfc2818b151b7049828ec6bbb152e4aa51e
+  checksum: 3e5ea8f5b1acdbea8e9cc9915b7949b4d296bd59d56aeab89a4701f3e7035d76e83a62bb0802f0711ec1c7d44e5094ff8a27944f4feead7156cf923ba7e58307
   languageName: node
   linkType: hard
 
-"mrm@npm:4.1.0":
-  version: 4.1.0
-  resolution: "mrm@npm:4.1.0"
+"mrm@npm:4.1.6":
+  version: 4.1.6
+  resolution: "mrm@npm:4.1.6"
   dependencies:
     git-username: ^1.0.0
     glob: ^7.1.6
@@ -11218,7 +11218,7 @@ __metadata:
     longest: ^2.0.1
     middleearth-names: ^1.1.0
     minimist: ^1.2.0
-    mrm-core: ^7.1.0
+    mrm-core: ^7.1.6
     semver-utils: ^1.1.4
     update-notifier: ^4.1.0
     user-home: ^2.0.0
@@ -11226,7 +11226,7 @@ __metadata:
     which: ^2.0.2
   bin:
     mrm: bin/mrm.js
-  checksum: 67830f77d182354d45f710bb3f04f1b6b2726ae1c2606f05c4a385d12c939dd19ca7ad74390ab928fd6a463fae689b9f89a1d7254d305411f4007a1ee8be3747
+  checksum: c858336ac6fb78814133dca748730b8e6beef657f8f4652ca80c2e7af96204ea1dd303ad0a37f0a4c6c12f87eea06f19f461299303c3a0a3416678952d06872c
   languageName: node
   linkType: hard
 
