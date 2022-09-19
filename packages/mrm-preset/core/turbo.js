@@ -6,7 +6,6 @@ const jsonFile = require('./jsonFile.js');
 /**
  * @typedef {{
  *   $schema: string,
- *   baseBranch?: string,
  *   pipeline?: Record<string, unknown>,
  *   globalDependencies?: Array<string>,
  * }} TurboConfig
