@@ -24,7 +24,8 @@
     "development.js"
   ],
   "scripts": {
-    "build": "yarn docs",
+    "build": "concurrently \"npm:build:*\" ",
+    "build:docs": "yarn docs",
     "docs": "node scripts/build-docs.mjs && md-magic --path '**/*.md' --ignore='node_modules'",
     "test": "jest"
   },
