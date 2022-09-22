@@ -95,12 +95,12 @@ function task() {
     // lint
     pkg.script(currentPackageFile, {
       name: project.lint,
-      update: npmRunAll(project.lint, true),
+      update: useWorkspace ? turboRun(project.lint) : npmRunAll(project.lint, true),
       state: 'present',
     });
     pkg.script(currentPackageFile, {
       name: project.format,
-      update: npmRunAll(project.format, true),
+      update: useWorkspace ? turboRun(project.format) : npmRunAll(project.format, true),
       state: 'present',
     });
 
@@ -247,7 +247,7 @@ function task() {
 
   // Turbo config
   turbo({
-    state: rootUseWorkspace ? 'present' : 'absent',
+    state: 'present',
     update: (_) => ({
       ..._,
       pipeline: {
@@ -256,9 +256,15 @@ function task() {
           outputs: ['lib/**', 'dist/**', '.next/**'],
         },
         [project.test]: {},
-        [project.lint]: {},
+        [project.lint]: {
+          dependsOn: [`//#${project.lint}:root`],
+        },
+        [`//#${project.lint}:root`]: {},
         [project.prepare]: {},
-        [project.format]: {},
+        [project.format]: {
+          dependsOn: [`//#${project.format}:root`],
+        },
+        [`//#${project.format}:root`]: {},
         [project.docs]: {},
         [project.spellcheck]: {},
         [project.clean]: {

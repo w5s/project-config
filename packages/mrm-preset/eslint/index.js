@@ -90,34 +90,31 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       // workspaces
       pkg.script(packageFile, {
         name: `${project.lint}:root`,
-        update: `eslint .${extOption}${ignorePatterns}`,
-        state: hasWorkspaces ? 'present' : 'absent',
+        update: `eslint .${extOption}${hasWorkspaces ? ignorePatterns : ''}`,
+        state: 'present',
       });
       pkg.script(packageFile, {
         name: `${project.format}:root`,
-        update: `eslint .${extOption}${ignorePatterns} --fix`,
-        state: hasWorkspaces ? 'present' : 'absent',
+        update: `eslint .${extOption}${hasWorkspaces ? ignorePatterns : ''} --fix`,
+        state: 'present',
       });
+
+      // clean
       pkg.script(packageFile, {
         name: `${project.lint}:packages`,
-        update: `turbo run ${project.lint}`,
-        state: hasWorkspaces ? 'present' : 'absent',
+        state: 'absent',
       });
       pkg.script(packageFile, {
         name: `${project.format}:packages`,
-        update: `turbo run ${project.format}`,
-        state: hasWorkspaces ? 'present' : 'absent',
+        state: 'absent',
       });
-      // regular package
       pkg.script(packageFile, {
         name: `${project.lint}:src`,
-        update: `eslint .${extOption}`,
-        state: !hasWorkspaces ? 'present' : 'absent',
+        state: 'absent',
       });
       pkg.script(packageFile, {
         name: `${project.format}:src`,
-        update: `eslint . --fix${extOption}`,
-        state: !hasWorkspaces ? 'present' : 'absent',
+        state: 'absent',
       });
     });
     pkg.forEachWorkspace(({ packageFile }) => {

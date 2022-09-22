@@ -140,6 +140,10 @@ module.exports = {
             order: ['type', 'name', 'email', 'url'],
             pathPattern: `^${key}$`,
           })),
+          ...['scripts', 'betterScripts'].map((key) => ({
+            order: { type: 'asc' },
+            pathPattern: `^${key}$`,
+          })),
           ...[
             'bin',
             'contributes',

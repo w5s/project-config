@@ -6,9 +6,15 @@
       "outputs": ["lib/**", "dist/**", ".next/**"]
     },
     "test": {},
-    "lint": {},
+    "lint": {
+      "dependsOn": ["//#lint:root"]
+    },
+    "//#lint:root": {},
     "prepare": {},
-    "format": {},
+    "format": {
+      "dependsOn": ["//#format:root"]
+    },
+    "//#format:root": {},
     "docs": {},
     "spellcheck": {},
     "clean": {
