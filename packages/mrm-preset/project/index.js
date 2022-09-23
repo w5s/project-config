@@ -83,13 +83,8 @@ function task() {
     // build
     pkg.script(currentPackageFile, {
       name: project.build,
-      update: npmRunAll(project.build, false),
+      update: useWorkspace ? turboRun(project.build) : npmRunAll(project.build, true),
       state: 'present',
-    });
-    pkg.script(currentPackageFile, {
-      name: `${project.build}:packages`,
-      update: turboRun(project.build),
-      state: useWorkspace ? 'present' : 'absent',
     });
 
     // lint
@@ -112,7 +107,7 @@ function task() {
     // });
     pkg.script(currentPackageFile, {
       name: project.test,
-      update: useWorkspace ? npmRunAll(project.test, false) : undefined,
+      update: useWorkspace ? turboRun(project.test) : npmRunAll(project.test, false),
       state: 'present',
       default: pkg.emptyScript,
     });
@@ -127,13 +122,8 @@ function task() {
     // clean
     pkg.script(currentPackageFile, {
       name: project.clean,
-      update: npmRunAll(project.clean, true),
+      update: useWorkspace ? turboRun(project.clean) : npmRunAll(project.clean, true),
       state: 'present',
-    });
-    pkg.script(currentPackageFile, {
-      name: `${project.clean}:packages`,
-      update: turboRun(project.clean),
-      state: useWorkspace ? 'present' : 'absent',
     });
 
     // Root
@@ -164,6 +154,20 @@ function task() {
       name: project.develop,
       default: pkg.emptyScript,
       state: root ? 'present' : 'absent',
+    });
+
+    // TODO: remove
+    pkg.script(currentPackageFile, {
+      name: `${project.clean}:packages`,
+      state: 'absent',
+    });
+    pkg.script(currentPackageFile, {
+      name: `${project.build}:packages`,
+      state: 'absent',
+    });
+    pkg.script(currentPackageFile, {
+      name: `${project.test}:packages`,
+      state: 'absent',
     });
   };
 
@@ -252,10 +256,14 @@ function task() {
       ..._,
       pipeline: {
         [project.build]: {
-          dependsOn: ['^build'],
+          dependsOn: [`^${project.build}`, `//#${project.build}:root`],
           outputs: ['lib/**', 'dist/**', '.next/**'],
         },
-        [project.test]: {},
+        [`//#${project.build}:root`]: {},
+        [project.test]: {
+          dependsOn: [`//#${project.test}:root`],
+        },
+        [`//#${project.test}:root`]: {},
         [project.lint]: {
           dependsOn: [`//#${project.lint}:root`],
         },
@@ -268,6 +276,10 @@ function task() {
         [project.docs]: {},
         [project.spellcheck]: {},
         [project.clean]: {
+          dependsOn: [`//#${project.clean}:root`],
+          cache: false,
+        },
+        [`//#${project.clean}:root`]: {
           cache: false,
         },
         [project.develop]: {

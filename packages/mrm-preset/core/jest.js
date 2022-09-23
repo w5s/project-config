@@ -35,18 +35,17 @@ function jest({ state }) {
           }),
       default: {},
     });
-
     pkg.script(packageFile, {
-      name: project.coverage,
-      update: (_) => (hasWorkspaces ? _ : 'jest --coverage'),
+      name: `//#${project.coverage}:root`,
+      update: (/** @type {string|undefined} */ _) => (hasWorkspaces ? _ : 'jest --coverage'),
       state: 'present',
-      default: pkg.emptyScript,
+      default: undefined, // pkg.emptyScript,
     });
     pkg.script(packageFile, {
-      name: project.test,
-      update: (_) => (hasWorkspaces ? _ : 'jest'),
+      name: `//#${project.test}:root`,
+      update: (/** @type {string|undefined} */ _) => (hasWorkspaces ? _ : 'jest'),
       state: 'present',
-      default: pkg.emptyScript,
+      default: undefined, // pkg.emptyScript,
     });
   });
 
