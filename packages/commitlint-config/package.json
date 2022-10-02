@@ -63,7 +63,7 @@
   },
   "devDependencies": {
     "@commitlint/lint": "17.1.0",
-    "@jest/globals": "29.0.3"
+    "@jest/globals": "29.1.2"
   },
   "peerDependencies": {
     "@commitlint/cli": "^16.0.0 || ^17.0.0"
