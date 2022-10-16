@@ -16,10 +16,12 @@ const { turbo } = require('../core/turbo.js');
 const npmRun = (script) => {
   switch (script) {
     case project.install:
-    case project.test:
+    case project.test: {
       return `npm ${script}`;
-    default:
+    }
+    default: {
       return `npm run ${script}`;
+    }
   }
 };
 /**
