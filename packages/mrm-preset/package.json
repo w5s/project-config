@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@types/debug": "4.1.7",
-    "mrm": "4.1.6"
+    "mrm": "4.1.7"
   },
   "engines": {
     "node": ">=16.0.0"
