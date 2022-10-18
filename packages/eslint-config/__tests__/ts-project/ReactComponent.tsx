@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-function FunctionComponent(props: { onPress: () => void; onLongPress: () => void }) {
+const ignore = (anyValue: unknown) => anyValue;
+function FunctionComponent(props: { onPress: () => void; onLongPress: () => void; children?: React.ReactNode }) {
+  ignore(props.onLongPress);
+  ignore(props.onPress);
+  ignore(props.children);
   return null;
 }
 
@@ -24,6 +28,10 @@ export class MarkupView extends React.PureComponent<ReactComponentProps, ReactCo
   handlePress = () => null;
 
   override render(): React.ReactNode {
-    return this.state.fooState ? <FunctionComponent onLongPress={() => null} onPress={this.handlePress} /> : null;
+    return this.state.fooState ? (
+      <FunctionComponent onLongPress={() => null} onPress={this.handlePress}>
+        {this.props.foo}
+      </FunctionComponent>
+    ) : null;
   }
 }
