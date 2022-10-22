@@ -4190,7 +4190,7 @@ __metadata:
     "@types/debug": 4.1.7
     debug: ^4.3.3
     glob: ^8.0.3
-    mrm: 4.1.7
+    mrm: 4.1.13
     mrm-core: ^7.0.0
     semver-intersect: ^1.4.0
     sync-directory: ^5.0.0
@@ -4224,7 +4224,7 @@ __metadata:
     markdown-magic: 2.6.1
     markdown-magic-package-json: 2.0.2
     markdown-magic-subpackage-list: 1.1.2
-    mrm: 4.1.7
+    mrm: 4.1.13
     prettier: 2.7.1
     turbo: 1.5.6
     typescript: 4.8.4
@@ -11615,9 +11615,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mrm-core@npm:^7.1.7":
-  version: 7.1.7
-  resolution: "mrm-core@npm:7.1.7"
+"mrm-core@npm:^7.1.13":
+  version: 7.1.13
+  resolution: "mrm-core@npm:7.1.13"
   dependencies:
     babel-code-frame: ^6.26.0
     comment-json: ^2.2.0
@@ -11639,13 +11639,13 @@ __metadata:
     validate-npm-package-name: ^3.0.0
     webpack-merge: ^4.2.2
     yaml: ^2.0.0-1
-  checksum: c6367d6d94bf8010ae462b2014acab772d5d0a7b6bee8607f8e13822ef720bbeb1b05c1039dbfb515b400bfbd910dd78a862f91d404484f6b97a50dda224c220
+  checksum: def9a8b73dbd1b389177c39ca82203333de9dc58aa58aa3032164d9ad2303f17b749d4d5e829fb65ccf01c4a8b5557bac105817c6d7e1db2b24b98491dadb38f
   languageName: node
   linkType: hard
 
-"mrm@npm:4.1.7":
-  version: 4.1.7
-  resolution: "mrm@npm:4.1.7"
+"mrm@npm:4.1.13":
+  version: 4.1.13
+  resolution: "mrm@npm:4.1.13"
   dependencies:
     git-username: ^1.0.0
     glob: ^7.1.6
@@ -11658,7 +11658,7 @@ __metadata:
     longest: ^2.0.1
     middleearth-names: ^1.1.0
     minimist: ^1.2.0
-    mrm-core: ^7.1.7
+    mrm-core: ^7.1.13
     semver-utils: ^1.1.4
     update-notifier: ^4.1.0
     user-home: ^2.0.0
@@ -11666,7 +11666,7 @@ __metadata:
     which: ^2.0.2
   bin:
     mrm: bin/mrm.js
-  checksum: 4174a7fe5f5b01a24e35fe358cf98a645baf8b4573294218c9528e3a438587994408c598d811d2c4e7c6ec496fa41b71c6a359306ac3ed8881a1983dda21bdba
+  checksum: 61d28e78697adc92bcb5a554ed01700c20d138dbcd975e6fcc446253e3759a2572b15cb7d71cdbdaf0b7125588ac862dd31792666dd39da234b28c17401fa988
   languageName: node
   linkType: hard
 
