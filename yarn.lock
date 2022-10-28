@@ -4213,7 +4213,7 @@ __metadata:
     concurrently: 7.5.0
     conventional-changelog-gitmoji-config: 1.4.4
     cspell: 6.12.0
-    es-jest: 2.0.0
+    es-jest: 2.1.0
     eslint: 8.26.0
     eslint-plugin-sort-keys-fix: 1.1.2
     husky: 8.0.1
@@ -6818,12 +6818,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"es-jest@npm:2.0.0":
-  version: 2.0.0
-  resolution: "es-jest@npm:2.0.0"
+"es-jest@npm:2.1.0":
+  version: 2.1.0
+  resolution: "es-jest@npm:2.1.0"
   dependencies:
     esbuild: ^0
-  checksum: ef0042969783319980af3cc91bd0ec5380f241e70a9bb3b70ba892323d69889b5c718893a465108d69b494f6ccad7924194922ecc9910104ee36fd651f8aeb6e
+  checksum: 24e053c7fec00cf612288f37c57e930d9e1750a94dea6e3fba040c4b47dd1e459811078281213b0f4e031f169cc9c9456381078b42da0dd86b81517ee7ddf697
   languageName: node
   linkType: hard
 
