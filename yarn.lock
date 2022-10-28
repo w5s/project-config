@@ -3687,10 +3687,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:16.18.0":
-  version: 16.18.0
-  resolution: "@types/node@npm:16.18.0"
-  checksum: 4eb4b88012c7d3f527c1b4989cf085479d44ce418fb047fb8d3b545601a3e1fc436de8491b9734debeda8eae241963fb802cea87a5a5698bf5f6f3d489d446a8
+"@types/node@npm:16.18.2":
+  version: 16.18.2
+  resolution: "@types/node@npm:16.18.2"
+  checksum: d21bb6614916b88242300abb23f11ae8bdaabd60c8f7c5edac21f3bf4b1f3ebfbd2a9019a664dd28e5b5730145c069074d70e7a2ab063e80a2fa9ab12de9797a
   languageName: node
   linkType: hard
 
@@ -4205,7 +4205,7 @@ __metadata:
     "@babel/eslint-parser": 7.19.1
     "@commitlint/cli": 17.1.2
     "@jest/globals": latest
-    "@types/node": 16.18.0
+    "@types/node": 16.18.2
     "@w5s/commitlint-config": "workspace:*"
     "@w5s/eslint-config": "workspace:*"
     "@w5s/mrm-preset": "workspace:*"
