@@ -8,6 +8,7 @@ module.exports = concatESConfig(
     extends: ['plugin:jest/recommended'],
     plugins: ['jest'],
     rules: {
+      'jest/consistent-test-it': error,
       'jest/expect-expect': off, // Disabled because it does not handle functions that does the expect
       'jest/no-alias-methods': error,
       'jest/prefer-spy-on': error,

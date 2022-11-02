@@ -1,5 +1,5 @@
 import commitlint from '@commitlint/lint';
-import { describe, test, expect } from '@jest/globals';
+import { describe, it, expect } from '@jest/globals';
 import config from './index.js';
 
 const lint = async (input: string) => commitlint(input, config.rules, config.parserPreset);
@@ -19,7 +19,7 @@ describe('Commitlint Config', () => {
   const anyValidHeader = `${anyGitmoji} ${anyValidType}(${anyValidScope}): ${anyValidSubject}`;
 
   describe('valid commit', () => {
-    test('should validate a complete commit', async () => {
+    it('should validate a complete commit', async () => {
       const result = await lint(`${anyValidHeader}${'\n\n'}${anyValidBody}${'\n\n'}${anyValidFooter}`);
 
       expect(result).toEqual(
@@ -30,7 +30,7 @@ describe('Commitlint Config', () => {
         })
       );
     });
-    test('should validate simple commit', async () => {
+    it('should validate simple commit', async () => {
       const result = await lint(`${'✨'} ${anyValidSubject}`);
 
       expect(result).toEqual(
@@ -41,7 +41,7 @@ describe('Commitlint Config', () => {
         })
       );
     });
-    test('should not return error when gitmoji as emoji', async () => {
+    it('should not return error when gitmoji as emoji', async () => {
       const result = await lint(`${'✨'} ${anyValidType}(${anyValidScope}): ${anyValidSubject}`);
 
       expect(result).toEqual(
@@ -55,7 +55,7 @@ describe('Commitlint Config', () => {
   });
 
   describe.skip('start-with-gitmoji', () => {
-    test('should return error when no gitmoji found', async () => {
+    it('should return error when no gitmoji found', async () => {
       const result = await lint(`${''} ${anyValidType}(${anyValidScope}): ${anyValidSubject}`);
 
       expect(result).toEqual(
@@ -70,7 +70,7 @@ describe('Commitlint Config', () => {
         })
       );
     });
-    test('should return error when invalid gitmoji', async () => {
+    it('should return error when invalid gitmoji', async () => {
       const result = await lint(`${':foo_bar:'} ${anyValidType}(${anyValidScope}): ${anyValidSubject}`);
 
       expect(result).toEqual(
@@ -88,7 +88,7 @@ describe('Commitlint Config', () => {
   });
 
   describe('body-leading-blank', () => {
-    test('should return error when no blank line between subject and body', async () => {
+    it('should return error when no blank line between subject and body', async () => {
       const result = await lint(`${anyValidHeader}${'\n'}${anyValidBody}`);
 
       expect(result).toEqual(
@@ -106,7 +106,7 @@ describe('Commitlint Config', () => {
   });
 
   describe('footer-leading-blank', () => {
-    test('should return error when no blank line between body and footer', async () => {
+    it('should return error when no blank line between body and footer', async () => {
       const result = await lint(`${anyValidHeader}${'\n\n'}${anyValidBody}${'\n'}${anyValidFooter}`);
 
       expect(result).toEqual(
@@ -124,7 +124,7 @@ describe('Commitlint Config', () => {
   });
 
   describe('header-max-length', () => {
-    test('should return error when length > 72 characters', async () => {
+    it('should return error when length > 72 characters', async () => {
       const longSubject = generateValidSubject(72 - `${anyValidType}: `.length + 1);
       const result = await lint(`${anyGitmoji} ${anyValidType}: ${longSubject}`);
 
@@ -143,7 +143,7 @@ describe('Commitlint Config', () => {
   });
 
   describe('scope-case', () => {
-    test('should return error if scope is not lower-case', async () => {
+    it('should return error if scope is not lower-case', async () => {
       const result = await lint(`${anyGitmoji} ${'chore(Type)'}: ${anyValidSubject}`);
 
       expect(result).toEqual(
@@ -163,7 +163,7 @@ describe('Commitlint Config', () => {
   describe.skip('subject-empty', () => {
     // FIXME: subject-empty should be enabled but there is a bug :
     // https://github.com/conventional-changelog/commitlint/issues/2761
-    test('should return error if subject is empty', async () => {
+    it('should return error if subject is empty', async () => {
       const result = await lint(`${anyGitmoji} ${anyValidType}: ${''}`);
 
       expect(result).toEqual(
@@ -181,7 +181,7 @@ describe('Commitlint Config', () => {
   });
 
   describe('subject-full-stop', () => {
-    test('should return error if ending with .', async () => {
+    it('should return error if ending with .', async () => {
       const result = await lint(`${anyValidHeader}.`);
 
       expect(result).toEqual(
@@ -199,7 +199,7 @@ describe('Commitlint Config', () => {
   });
 
   describe('type-case', () => {
-    test('should return error when type is not lowercase', async () => {
+    it('should return error when type is not lowercase', async () => {
       const result = await lint(`${anyGitmoji} ${`Chore(${anyValidScope})`}: ${anyValidSubject}`);
 
       expect(result).toEqual(
@@ -217,7 +217,7 @@ describe('Commitlint Config', () => {
   });
 
   describe('type-empty', () => {
-    test('should return error if type is not empty', async () => {
+    it('should return error if type is not empty', async () => {
       const result = await lint(`${anyGitmoji} ${'chore'}(${anyValidScope}): ${anyValidSubject}`);
 
       expect(result).toEqual(
