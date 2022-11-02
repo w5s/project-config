@@ -92,7 +92,7 @@
   "devDependencies": {
     "@babel/core": "7.19.6",
     "@babel/eslint-parser": "7.19.1",
-    "@commitlint/cli": "17.1.2",
+    "@commitlint/cli": "17.2.0",
     "@jest/globals": "latest",
     "@types/node": "16.18.3",
     "@w5s/commitlint-config": "workspace:*",
