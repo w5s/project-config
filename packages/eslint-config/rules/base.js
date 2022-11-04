@@ -30,6 +30,8 @@ module.exports = concatESConfig(
     rules: {
       // Annoying because it is not always wanted
       'default-case': off,
+      // We do not want console.* in production. Disable this rule on a per line basis if needed
+      'no-console': error,
       // Often useful in jsx
       'no-nested-ternary': off,
       // Too strict, for pure code prefer the functional plugin
