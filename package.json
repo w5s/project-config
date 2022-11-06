@@ -90,7 +90,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "7.19.6",
+    "@babel/core": "7.20.2",
     "@babel/eslint-parser": "7.19.1",
     "@commitlint/cli": "17.2.0",
     "@jest/globals": "latest",
