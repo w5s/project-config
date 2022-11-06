@@ -7,11 +7,11 @@
     },
     "//#build:root": {},
     "test": {
-      "dependsOn": ["//#test:root"]
+      "dependsOn": ["^build", "//#test:root"]
     },
     "//#test:root": {},
     "lint": {
-      "dependsOn": ["//#lint:root"]
+      "dependsOn": ["^build", "//#lint:root"]
     },
     "//#lint:root": {},
     "prepare": {},

@@ -13,17 +13,17 @@ const { turbo } = require('../core/turbo.js');
  *
  * @param {string} script
  */
-const npmRun = (script) => {
-  switch (script) {
-    case project.install:
-    case project.test: {
-      return `npm ${script}`;
-    }
-    default: {
-      return `npm run ${script}`;
-    }
-  }
-};
+// const npmRun = (script) => {
+//   switch (script) {
+//     case project.install:
+//     case project.test: {
+//       return `npm ${script}`;
+//     }
+//     default: {
+//       return `npm run ${script}`;
+//     }
+//   }
+// };
 /**
  *
  * @param {string} script
@@ -192,7 +192,7 @@ function task() {
 
     pkg.script(packageFile, {
       name: project.validate,
-      update: `${npmRun(project.build)} && ${npmRun(project.lint)} && ${npmRun(project.test)}`,
+      update: `${turboRun([project.build, project.lint, project.test].join(' '))}`,
       state: 'present',
     });
 
@@ -263,11 +263,11 @@ function task() {
         },
         [`//#${project.build}:root`]: {},
         [project.test]: {
-          dependsOn: [`//#${project.test}:root`],
+          dependsOn: [`^${project.build}`, `//#${project.test}:root`],
         },
         [`//#${project.test}:root`]: {},
         [project.lint]: {
-          dependsOn: [`//#${project.lint}:root`],
+          dependsOn: [`^${project.build}`, `//#${project.lint}:root`],
         },
         [`//#${project.lint}:root`]: {},
         [project.prepare]: {},

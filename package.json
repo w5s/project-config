@@ -40,7 +40,7 @@
     "rescue": "git clean -fdx;yarn install",
     "spellcheck": "cspell --no-progress '**' --exclude='packages/*/**' && turbo run spellcheck",
     "test": "turbo run test",
-    "validate": "npm run build && npm run lint && npm test"
+    "validate": "turbo run build lint test"
   },
   "commitlint": {
     "extends": [
