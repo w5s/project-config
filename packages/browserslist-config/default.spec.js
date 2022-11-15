@@ -1,7 +1,7 @@
 const browserslist = require('browserslist');
 const config = require('./default.js');
 
-describe('browserlist default config', () => {
+describe('browserslist default config', () => {
   it('should not resolve to empty list', () => {
     const browsers = browserslist(config);
     expect(browsers).not.toHaveLength(0);

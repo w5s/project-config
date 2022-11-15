@@ -17,4 +17,4 @@ _Generated Automatically at Wed, 21 Sep 2022 20:00:22 GMT_
 - UC Browser (13.4)
 - Safari for iOS (15.6, 15.5, 15.4, 15.2-15.3, 15.0-15.1, 14.5-14.8, 14.0-14.4, 12.2-12.5)
 
-[View more in browserlist.dev (usages, coverage)](https://browserslist.dev/?q=PjAuMiUsbm90IGRlYWQsbm90IG9wX21pbmkgYWxs)
+[View more in browserslist.dev (usages, coverage)](https://browserslist.dev/?q=PjAuMiUsbm90IGRlYWQsbm90IG9wX21pbmkgYWxs)

@@ -9,6 +9,7 @@
     "commitlint",
     "editorconfig",
     "es",
+    "esbuild",
     "eslintcache",
     "esnext",
     "flowtype",
@@ -43,7 +44,8 @@
     "smpltmpl",
     "exts",
     "tsbuildinfo",
-    "modulemap"
+    "modulemap",
+    "venv"
   ],
   "flagWords": [],
   "ignorePaths": [

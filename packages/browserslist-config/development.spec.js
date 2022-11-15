@@ -1,7 +1,7 @@
 const browserslist = require('browserslist');
 const config = require('./development.js');
 
-describe('browserlist latest config', () => {
+describe('browserslist latest config', () => {
   it('should not resolve to empty list', () => {
     const browsers = browserslist(config);
     expect(browsers).not.toHaveLength(0);

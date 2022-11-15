@@ -129,7 +129,7 @@ async function buildPageContent() {
     ${entries(grouped)
       .map(([deviceType, data]) => buildSection(deviceType, data))
       .join('')}
-    [View more in browserlist.dev (usages, coverage)](${url})
+    [View more in browserslist.dev (usages, coverage)](${url})
   `
       .split('\n')
       .map((_) => _.trimStart())

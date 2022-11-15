@@ -1,5 +1,5 @@
-<!-- AUTO-GENERATED-CONTENT:START (PKGJSON:template=# W5s BrowserList configuration _(${name})_) -->
-# W5s BrowserList configuration _(@w5s/browserslist-config)_
+<!-- AUTO-GENERATED-CONTENT:START (PKGJSON:template=# W5s BrowsersList configuration _(${name})_) -->
+# W5s BrowsersList configuration _(@w5s/browserslist-config)_
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 [![NPM Version][package-version-svg]][package-url]
@@ -55,7 +55,7 @@ _Generated Automatically at Wed, 21 Sep 2022 20:00:22 GMT_
 - UC Browser (13.4)
 - Safari for iOS (15.6, 15.5, 15.4, 15.2-15.3, 15.0-15.1, 14.5-14.8, 14.0-14.4, 12.2-12.5)
 
-[View more in browserlist.dev (usages, coverage)](https://browserslist.dev/?q=PjAuMiUsbm90IGRlYWQsbm90IG9wX21pbmkgYWxs)
+[View more in browserslist.dev (usages, coverage)](https://browserslist.dev/?q=PjAuMiUsbm90IGRlYWQsbm90IG9wX21pbmkgYWxs)
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## License
