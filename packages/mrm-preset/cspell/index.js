@@ -9,6 +9,7 @@ function task() {
       ..._,
       ignorePaths: Array.from(
         new Set([
+          '**/dist/**',
           '**/build/**',
           '**/lib/**',
           '**/node_modules/**',
@@ -28,8 +29,13 @@ function task() {
     const workspaceMatchers = pkg.listWorkspaceMatchers(packageFile);
     pkg.script(packageFile, {
       name: project.spellcheck,
+      update: `turbo run spellcheck`,
+      state: 'present',
+    });
+    pkg.script(packageFile, {
+      name: `${project.spellcheck}:root`,
       update: `cspell --no-progress '**' ${
-        hasWorkspaces ? `${workspaceMatchers.map((_) => `--exclude='${_}/**'`).join(' ')} && turbo run spellcheck` : ''
+        hasWorkspaces ? `${workspaceMatchers.map((_) => `--exclude='${_}/**'`).join(' ')}` : ''
       }`,
       state: 'present',
     });

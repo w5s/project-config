@@ -276,7 +276,10 @@ function task() {
         },
         [`//#${project.format}:root`]: {},
         [project.docs]: {},
-        [project.spellcheck]: {},
+        [project.spellcheck]: {
+          dependsOn: [`//#${project.spellcheck}:root`],
+        },
+        [`//#${project.spellcheck}:root`]: {},
         [project.clean]: {
           dependsOn: [`//#${project.clean}:root`],
           cache: false,
