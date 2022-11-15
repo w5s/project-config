@@ -38,7 +38,8 @@
     "prepare:packages": "turbo run prepare",
     "release": "is-ci && lerna publish --yes || lerna publish",
     "rescue": "git clean -fdx;yarn install",
-    "spellcheck": "cspell --no-progress '**' --exclude='packages/*/**' && turbo run spellcheck",
+    "spellcheck": "turbo run spellcheck",
+    "spellcheck:root": "cspell --no-progress '**' --exclude='packages/*/**'",
     "test": "turbo run test",
     "validate": "turbo run build lint test"
   },
