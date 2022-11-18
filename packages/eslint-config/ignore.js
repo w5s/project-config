@@ -7,7 +7,7 @@ const parseGitignore = require('parse-gitignore');
 const getGitignore = () => {
   const found = findUp.sync('.gitignore');
   if (found) {
-    return parseGitignore(fs.readFileSync(found));
+    return parseGitignore.parse(fs.readFileSync(found)).patterns;
   }
 
   return [];
