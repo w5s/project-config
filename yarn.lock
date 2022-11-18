@@ -4177,7 +4177,7 @@ __metadata:
     eslint-plugin-unicorn: ^44.0.0
     eslint-plugin-yml: ^1.1.0
     find-up: ^5.0.0
-    parse-gitignore: ^1.0.1
+    parse-gitignore: ^2.0.0
     prettier: 2.7.1
     react: 18.2.0
   peerDependencies:
@@ -12688,10 +12688,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-gitignore@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "parse-gitignore@npm:1.0.1"
-  checksum: 3ccb72ebe7dcc05c3bd43452c6afb733e3df90bc9c596fc92f16abed30fa3498ebe73045265cb1d45e0de4603f9be42a71101bd03b0db6470374340139bd307e
+"parse-gitignore@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "parse-gitignore@npm:2.0.0"
+  checksum: 81e2fc56aefe004bb1c2b70f69a4a599969c21d2e4ee66e1e9c7eb84ae30286a25cf84d3a3b09e8b1772fd0e2b028560d97998f2e2ad1c3eebb89f84cedf36ea
   languageName: node
   linkType: hard
 
