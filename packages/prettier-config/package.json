@@ -25,6 +25,7 @@
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
+    "build:tsc": "tsc",
     "clean": "concurrently \"npm:clean:*\" \":\"",
     "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
     "format": "concurrently \"npm:format:*\" \":\"",
