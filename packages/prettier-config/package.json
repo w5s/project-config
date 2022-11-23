@@ -1,0 +1,56 @@
+{
+  "name": "@w5s/prettier-config",
+  "version": "1.0.0-alpha.0",
+  "description": "Prettier shared configuration",
+  "keywords": [
+    "typescript",
+    "config",
+    "tsc"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/prettier-config#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:w5s/project-config.git",
+    "directory": "packages/prettier-config"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "commonjs",
+  "main": "index.js",
+  "files": [
+    "index.js"
+  ],
+  "scripts": {
+    "build": "concurrently \"npm:build:*\" \":\"",
+    "clean": "concurrently \"npm:clean:*\" \":\"",
+    "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
+    "format": "concurrently \"npm:format:*\" \":\"",
+    "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
+    "lint": "concurrently \"npm:lint:*\" \":\"",
+    "lint:src": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
+    "prepare": "concurrently \"npm:prepare:*\" \":\"",
+    "spellcheck": "cspell --no-progress '**'",
+    "test": "concurrently \"npm:test:*\" ",
+    "test:src": "exit 0"
+  },
+  "devDependencies": {
+    "prettier": "2.8.0"
+  },
+  "peerDependencies": {
+    "prettier": ">= 2.0"
+  },
+  "peerDependenciesMeta": {
+    "prettier": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
