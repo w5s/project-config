@@ -19,9 +19,20 @@
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
   "type": "commonjs",
-  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./lib/*": "./lib/*"
+  },
+  "typings": "./index.d.ts",
   "files": [
-    "index.js"
+    "lib/**/!(*.spec).d.ts",
+    "lib/**/!(*.spec).js.map",
+    "lib/**/!(*.spec).js",
+    "src/**/!(*.spec).ts",
+    "!example/**/*",
+    "!*.cjs",
+    "index.js",
+    "index.d.ts"
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
