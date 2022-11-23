@@ -34,7 +34,7 @@
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "spellcheck": "cspell --no-progress '**'",
     "test": "concurrently \"npm:test:*\" ",
-    "test:src": "tsc -p __tests__/tsconfig.json --noEmit --skipLibCheck"
+    "test:src": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck"
   },
   "devDependencies": {
     "typescript": "4.9.3"
