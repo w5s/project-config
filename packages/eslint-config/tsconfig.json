@@ -5,6 +5,7 @@
     "allowJs": true,
     "checkJs": true,
     "jsx": "react",
-    "noEmit": true
+    "noEmit": true,
+    "resolveJsonModule": true
   }
 }
