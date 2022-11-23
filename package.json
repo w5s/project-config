@@ -99,6 +99,7 @@
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/eslint-config": "workspace:*",
     "@w5s/mrm-preset": "workspace:*",
+    "@w5s/prettier-config": "workspace:*",
     "@w5s/ts-config": "workspace:*",
     "concurrently": "7.6.0",
     "conventional-changelog-gitmoji-config": "1.4.4",

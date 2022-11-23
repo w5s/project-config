@@ -4161,6 +4161,7 @@ __metadata:
     "@types/react": 18.0.25
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": 5.43.0
+    "@w5s/prettier-config": ^1.0.0-alpha.0
     eslint: 8.28.0
     eslint-config-airbnb-base: ^15.0.0
     eslint-config-prettier: 8.5.0
@@ -4204,7 +4205,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/prettier-config@workspace:packages/prettier-config":
+"@w5s/prettier-config@^1.0.0-alpha.0, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
   version: 0.0.0-use.local
   resolution: "@w5s/prettier-config@workspace:packages/prettier-config"
   dependencies:
@@ -4229,6 +4230,7 @@ __metadata:
     "@w5s/commitlint-config": "workspace:*"
     "@w5s/eslint-config": "workspace:*"
     "@w5s/mrm-preset": "workspace:*"
+    "@w5s/prettier-config": "workspace:*"
     "@w5s/ts-config": "workspace:*"
     concurrently: 7.6.0
     conventional-changelog-gitmoji-config: 1.4.4
