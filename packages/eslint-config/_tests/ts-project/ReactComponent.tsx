@@ -23,7 +23,7 @@ export class MarkupView extends React.PureComponent<ReactComponentProps, ReactCo
 
   override componentDidMount(): void {}
 
-  override componentDidUpdate(previousProps: ReactComponentProps, previousState: ReactComponentState): void {}
+  override componentDidUpdate(_previousProps: ReactComponentProps, _previousState: ReactComponentState): void {}
 
   handlePress = () => null;
 

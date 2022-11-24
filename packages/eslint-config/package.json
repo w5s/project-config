@@ -43,8 +43,14 @@
     }
   },
   "eslintIgnore": [
-    "__tests__"
+    "_tests"
   ],
+  "jest": {
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "_tests"
+    ]
+  },
   "dependencies": {
     "@babel/core": "*",
     "@babel/eslint-parser": "*",
