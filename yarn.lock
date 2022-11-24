@@ -1603,20 +1603,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gitmoji/commit-types@npm:1.1.5":
-  version: 1.1.5
-  resolution: "@gitmoji/commit-types@npm:1.1.5"
-  checksum: 132aa891aff0b23e0db3e9aa629ed758e5432465e8af9bc32e6a7a186a9708fc83dced2d6ef75eb43b725a3de0ef33908012c7d0cf2e8e7a9716d170e2814adc
-  languageName: node
-  linkType: hard
-
-"@gitmoji/parser-opts@npm:1.3.1":
-  version: 1.3.1
-  resolution: "@gitmoji/parser-opts@npm:1.3.1"
-  checksum: 2ea04ab9a7775ef12410635b2265c5473f6ba865e53f9ebe996b17fbd224d115075e89ad499d31c50eafeaa6ab1effbb094c30d3c52ff0e4d8dac422918235d3
-  languageName: node
-  linkType: hard
-
 "@humanwhocodes/config-array@npm:^0.11.6":
   version: 0.11.6
   resolution: "@humanwhocodes/config-array@npm:0.11.6"
@@ -4225,7 +4211,6 @@ __metadata:
     "@w5s/prettier-config": "workspace:*"
     "@w5s/ts-config": "workspace:*"
     concurrently: 7.6.0
-    conventional-changelog-gitmoji-config: 1.4.4
     cspell: 6.14.3
     es-jest: 2.1.0
     eslint: 8.28.0
@@ -5920,17 +5905,6 @@ __metadata:
     read-pkg-up: ^3.0.0
     through2: ^4.0.0
   checksum: 56d5194040495ea316e53fd64cb3614462c318f0fe54b1bf25aba6fba9b3d51cb9fdf7ac5b766f17e5529a3f90e317257394e00b0a9a5ce42caf3a59f82afb3a
-  languageName: node
-  linkType: hard
-
-"conventional-changelog-gitmoji-config@npm:1.4.4":
-  version: 1.4.4
-  resolution: "conventional-changelog-gitmoji-config@npm:1.4.4"
-  dependencies:
-    "@gitmoji/commit-types": 1.1.5
-    "@gitmoji/parser-opts": 1.3.1
-    cosmiconfig: ^7.0.0
-  checksum: 4f59273dc865488301ea1af0f26573c5af194f8d853724982c04b6761b819ed5dea3f5a69e65ad34b2c47d1864c16dae064a7bc5ef9f45f0a304c74f98bcd57e
   languageName: node
   linkType: hard
 

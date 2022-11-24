@@ -309,7 +309,7 @@ function task() {
   });
   npm.dependency({
     dev: true,
-    name: ['lerna', 'conventional-changelog-gitmoji-config'],
+    name: ['lerna'],
     state: rootUseWorkspace ? 'present' : 'absent',
   });
 

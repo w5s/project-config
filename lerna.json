@@ -11,6 +11,5 @@
       "message": "🔖 Publish"
     }
   },
-  "version": "independent",
-  "changelogPreset": "gitmoji-config"
+  "version": "independent"
 }
