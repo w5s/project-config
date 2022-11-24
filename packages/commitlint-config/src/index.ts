@@ -1,11 +1,19 @@
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { RuleConfigSeverity, type QualifiedRules } from '@commitlint/types';
+import { RuleConfigSeverity, type QualifiedRules, type LintOptions } from '@commitlint/types';
 import { gitmojis } from 'gitmojis';
 import emojiRegexp from 'emoji-regex';
 
 const allGitmojiCodes = [...gitmojis.map((gitmoji) => gitmoji.code), ...gitmojis.map((gitmoji) => gitmoji.emoji)];
 const { Error, Warning } = RuleConfigSeverity;
+
+const parserPreset: LintOptions = {
+  parserOpts: {
+    // eslint-disable-next-line unicorn/no-unsafe-regex, prefer-regex-literals
+    headerPattern: new RegExp(`^(:\\w*:|${String(emojiRegexp().source)}) (?:\\((.*)\\):? )?(.*)$`), /// ^(:\w*:) (?:\((.*)\) )?(.*)$/,
+    headerCorrespondence: ['type', 'scope', 'subject'],
+  },
+};
 
 const rules: QualifiedRules = {
   'body-leading-blank': [Warning, 'always'],
@@ -24,18 +32,8 @@ const rules: QualifiedRules = {
 };
 
 const config = {
-  parserPreset: {
-    parserOpts: {
-      // eslint-disable-next-line unicorn/no-unsafe-regex, prefer-regex-literals
-      headerPattern: new RegExp(`^(:\\w*:|${String(emojiRegexp().source)}) (?:\\((.*)\\):? )?(.*)$`), /// ^(:\w*:) (?:\((.*)\) )?(.*)$/,
-      headerCorrespondence: ['type', 'scope', 'subject'],
-    },
-  },
+  parserPreset,
   rules,
 };
-// FIXME: this is a workaround for commonjs loading
-if (typeof module !== 'undefined') {
-  module.exports = config;
-}
 
 export default config;

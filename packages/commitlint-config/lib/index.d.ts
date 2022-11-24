@@ -1,10 +1,6 @@
+import { type LintOptions } from '@commitlint/types';
 declare const config: {
-    parserPreset: {
-        parserOpts: {
-            headerPattern: RegExp;
-            headerCorrespondence: string[];
-        };
-    };
+    parserPreset: LintOptions;
     rules: Partial<import("@commitlint/types").RulesConfig<import("@commitlint/types").RuleConfigQuality.Qualified>>;
 };
 export default config;
