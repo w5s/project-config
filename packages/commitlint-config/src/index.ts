@@ -1,14 +1,13 @@
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { RuleConfigSeverity, type QualifiedRules } from '@commitlint/types';
-import gitmojiPlugin from 'commitlint-plugin-gitmoji';
-import gitmojiParserOpts from '@gitmoji/parser-opts';
-import commitTypes from '@gitmoji/commit-types';
+import { gitmojis } from 'gitmojis';
+import emojiRegexp from 'emoji-regex';
 
-const { Error, Warning, Disabled } = RuleConfigSeverity;
+const allGitmojiCodes = [...gitmojis.map((gitmoji) => gitmoji.code), ...gitmojis.map((gitmoji) => gitmoji.emoji)];
+const { Error, Warning } = RuleConfigSeverity;
 
 const rules: QualifiedRules = {
-  'start-with-gitmoji': [Disabled, 'always'], // [Error, 'always'], FIXME: https://github.com/arvinxx/gitmoji-commit-workflow/issues/492
   'body-leading-blank': [Warning, 'always'],
   'body-max-line-length': [Error, 'always', 100],
   'footer-leading-blank': [Warning, 'always'],
@@ -16,22 +15,23 @@ const rules: QualifiedRules = {
   'header-max-length': [Error, 'always', 72],
   'scope-case': [Error, 'always', 'lower-case'],
   'subject-case': [Error, 'always', ['sentence-case']],
-  'subject-empty': [Disabled, 'never'], // [Error, 'never'],
+  'subject-empty': [Error, 'never'],
+  'subject-exclamation-mark': [Error, 'never'],
   'subject-full-stop': [Error, 'never', '.'],
   'type-case': [Error, 'always', 'lower-case'],
-  'type-empty': [Error, 'always'],
-  'type-enum': [Error, 'always', commitTypes],
+  'type-empty': [Error, 'never'],
+  'type-enum': [Error, 'always', allGitmojiCodes],
 };
 
 const config = {
-  rules,
   parserPreset: {
-    parserOpts: gitmojiParserOpts,
-    plugins: {
-      gitmoji: gitmojiPlugin,
+    parserOpts: {
+      // eslint-disable-next-line unicorn/no-unsafe-regex, prefer-regex-literals
+      headerPattern: new RegExp(`^(:\\w*:|${String(emojiRegexp().source)}) (?:\\((.*)\\):? )?(.*)$`), /// ^(:\w*:) (?:\((.*)\) )?(.*)$/,
+      headerCorrespondence: ['type', 'scope', 'subject'],
     },
   },
-  plugins: [gitmojiPlugin],
+  rules,
 };
 // FIXME: this is a workaround for commonjs loading
 if (typeof module !== 'undefined') {

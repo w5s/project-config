@@ -11,12 +11,11 @@ describe('Commitlint Config', () => {
       .join('');
 
   const anyGitmoji = '✨';
-  const anyValidType = '';
   const anyValidScope = 'scope';
   const anyValidSubject = generateValidSubject(10);
   const anyValidBody = ['body1', 'body2'].join('\n');
   const anyValidFooter = ['BREAKING CHANGE: Z'];
-  const anyValidHeader = `${anyGitmoji} ${anyValidType}(${anyValidScope}): ${anyValidSubject}`;
+  const anyValidHeader = `${anyGitmoji} (${anyValidScope}): ${anyValidSubject}`;
 
   describe('valid commit', () => {
     it('should validate a complete commit', async () => {
@@ -42,45 +41,12 @@ describe('Commitlint Config', () => {
       );
     });
     it('should not return error when gitmoji as emoji', async () => {
-      const result = await lint(`${'✨'} ${anyValidType}(${anyValidScope}): ${anyValidSubject}`);
+      const result = await lint(`${'✨'} (${anyValidScope}): ${anyValidSubject}`);
 
       expect(result).toEqual(
         expect.objectContaining({
           valid: true,
           errors: [],
-          warnings: [],
-        })
-      );
-    });
-  });
-
-  describe.skip('start-with-gitmoji', () => {
-    it('should return error when no gitmoji found', async () => {
-      const result = await lint(`${''} ${anyValidType}(${anyValidScope}): ${anyValidSubject}`);
-
-      expect(result).toEqual(
-        expect.objectContaining({
-          valid: false,
-          errors: expect.arrayContaining([
-            expect.objectContaining({
-              name: 'start-with-gitmoji',
-            }),
-          ]),
-          warnings: [],
-        })
-      );
-    });
-    it('should return error when invalid gitmoji', async () => {
-      const result = await lint(`${':foo_bar:'} ${anyValidType}(${anyValidScope}): ${anyValidSubject}`);
-
-      expect(result).toEqual(
-        expect.objectContaining({
-          valid: false,
-          errors: expect.arrayContaining([
-            expect.objectContaining({
-              name: 'start-with-gitmoji',
-            }),
-          ]),
           warnings: [],
         })
       );
@@ -125,8 +91,8 @@ describe('Commitlint Config', () => {
 
   describe('header-max-length', () => {
     it('should return error when length > 72 characters', async () => {
-      const longSubject = generateValidSubject(72 - `${anyValidType}: `.length + 1);
-      const result = await lint(`${anyGitmoji} ${anyValidType}: ${longSubject}`);
+      const longSubject = generateValidSubject(72 - `: `.length + 1);
+      const result = await lint(`${anyGitmoji} : ${longSubject}`);
 
       expect(result).toEqual(
         expect.objectContaining({
@@ -144,7 +110,7 @@ describe('Commitlint Config', () => {
 
   describe('scope-case', () => {
     it('should return error if scope is not lower-case', async () => {
-      const result = await lint(`${anyGitmoji} ${'chore(Type)'}: ${anyValidSubject}`);
+      const result = await lint(`${anyGitmoji} ${'(Scope)'}: ${anyValidSubject}`);
 
       expect(result).toEqual(
         expect.objectContaining({
@@ -164,7 +130,7 @@ describe('Commitlint Config', () => {
     // FIXME: subject-empty should be enabled but there is a bug :
     // https://github.com/conventional-changelog/commitlint/issues/2761
     it('should return error if subject is empty', async () => {
-      const result = await lint(`${anyGitmoji} ${anyValidType}: ${''}`);
+      const result = await lint(`${anyGitmoji} : ${''}`);
 
       expect(result).toEqual(
         expect.objectContaining({
@@ -200,7 +166,7 @@ describe('Commitlint Config', () => {
 
   describe('type-case', () => {
     it('should return error when type is not lowercase', async () => {
-      const result = await lint(`${anyGitmoji} ${`Chore(${anyValidScope})`}: ${anyValidSubject}`);
+      const result = await lint(`${':Bug:'} ${`(${anyValidScope})`}: ${anyValidSubject}`);
 
       expect(result).toEqual(
         expect.objectContaining({
@@ -218,7 +184,7 @@ describe('Commitlint Config', () => {
 
   describe('type-empty', () => {
     it('should return error if type is not empty', async () => {
-      const result = await lint(`${anyGitmoji} ${'chore'}(${anyValidScope}): ${anyValidSubject}`);
+      const result = await lint(`${''} (${anyValidScope}): ${anyValidSubject}`);
 
       expect(result).toEqual(
         expect.objectContaining({
