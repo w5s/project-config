@@ -21,18 +21,22 @@ npm install --save-dev @w5s/commitlint-config @commitlint/cli
 
 In the `package.json` of your project
 
+<!-- AUTO-GENERATED-CONTENT:START (PKGJSON:template=```json\n{\n  "commitlint": {\n    "extends": ["${name}"]\n  }\n}\n```) -->
 ```json
 {
-    "commitlint": {
-        "extends": ["@w5s/commitlint-config"],
-        "rules": {}
-    },
-    "husky": {
-        "hooks": {
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }  
-    }
+  "commitlint": {
+    "extends": ["@w5s/commitlint-config"]
+  }
 }
+```
+<!-- AUTO-GENERATED-CONTENT:END -->
+
+Ensure the `commitlint` is setup on husky commit message hook (default `.husky/commit-msg`)
+
+```console
+commitlint --edit $1
+# -OR-
+npm exec --no -- commitlint --edit $1
 ```
 
 ## License
