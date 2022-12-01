@@ -38,5 +38,5 @@ export function ternary(): boolean {
   const falsyValue = undefined;
 
   // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  return falsyValue != null ? booleanValue : false;
+  return falsyValue == null ? false : booleanValue;
 }
