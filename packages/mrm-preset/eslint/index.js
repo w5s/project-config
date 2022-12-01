@@ -50,7 +50,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     npm.dependency({
       dev: true,
       name: eslintPreset,
-      state: !eslintPreset.startsWith('eslint:') ? 'present' : 'absent',
+      state: eslintPreset.startsWith('eslint:') ? 'absent' : 'present',
     });
     eslintConfig({
       state: 'present',
