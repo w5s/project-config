@@ -29,7 +29,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       'coverage/',
       'build/',
       '.cache/',
-      'public/',
+      './public/',
     ]);
 
     // Dependencies

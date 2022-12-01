@@ -82,7 +82,7 @@
     ".cache/",
     "lib/",
     "**/_tester/**",
-    "public/"
+    "./public/"
   ],
   "jest": {
     "preset": "es-jest",
