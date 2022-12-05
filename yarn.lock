@@ -4224,7 +4224,6 @@ __metadata:
     react: 18.2.0
   peerDependencies:
     eslint: 8.x
-    prettier: 2.x
     typescript: 4.x
   peerDependenciesMeta:
     typescript:
@@ -4252,7 +4251,7 @@ __metadata:
   dependencies:
     prettier: 2.8.0
   peerDependencies:
-    prettier: ">= 2.0"
+    prettier: 2.x
   peerDependenciesMeta:
     prettier:
       optional: true

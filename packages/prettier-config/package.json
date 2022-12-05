@@ -52,7 +52,7 @@
     "prettier": "2.8.0"
   },
   "peerDependencies": {
-    "prettier": ">= 2.0"
+    "prettier": "2.x"
   },
   "peerDependenciesMeta": {
     "prettier": {
