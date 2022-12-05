@@ -35,7 +35,8 @@
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "spellcheck": "cspell --no-progress '**'",
     "test": "concurrently \"npm:test:*\" ",
-    "test:src": "scripts/test"
+    "test:src": "scripts/test",
+    "test_:rule-coverage": "eslint-find-rules --unused"
   },
   "eslintConfig": {
     "rules": {
@@ -83,7 +84,7 @@
     "@typescript-eslint/parser": "5.45.0",
     "eslint": "8.29.0",
     "eslint-config-prettier": "8.5.0",
-    "eslint-index": "1.5.0",
+    "eslint-find-rules": "4.1.0",
     "prettier": "2.8.0",
     "react": "18.2.0"
   },
