@@ -49,7 +49,7 @@
     "test:src": "exit 0"
   },
   "devDependencies": {
-    "prettier": "2.8.0"
+    "prettier": "2.8.1"
   },
   "peerDependencies": {
     "prettier": "2.x"
