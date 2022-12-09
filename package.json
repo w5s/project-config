@@ -95,7 +95,7 @@
     "@babel/eslint-parser": "7.19.1",
     "@commitlint/cli": "17.3.0",
     "@jest/globals": "latest",
-    "@types/node": "16.18.6",
+    "@types/node": "16.18.7",
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/eslint-config": "workspace:*",
     "@w5s/mrm-preset": "workspace:*",
