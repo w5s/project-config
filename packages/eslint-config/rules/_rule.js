@@ -27,8 +27,8 @@ const off = 'off';
  */
 
 /**
- * @template T
-  @type {(value: T[]|T|undefined) => T[]} */
+ * @type {<T>(value: T[]|T|undefined) => T[]}
+ */
 function toArray(value) {
   if (value == null) {
     return [];
@@ -40,8 +40,7 @@ function toArray(value) {
 }
 
 /**
- * @template T
- * @type {(left: T[]|T|undefined, right:T[]|T|undefined) => T[]}
+ * @type {<T>(left: T[]|T|undefined, right:T[]|T|undefined) => T[]}
  */
 function concatArray(left, right) {
   return toArray(left).concat(toArray(right));
