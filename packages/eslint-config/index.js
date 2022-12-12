@@ -26,6 +26,7 @@ module.exports = {
     require.resolve('./es'),
     require.resolve('./json'),
     require.resolve('./yml'),
+    require.resolve('./jest'),
     ...includeIf(tryResolve('react'), require.resolve('./react')),
   ],
   overrides: [
@@ -33,19 +34,6 @@ module.exports = {
       extends: [require.resolve('./ts')],
       files: ['*.+(ts|tsx)'],
     }),
-    {
-      extends: [require.resolve('./jest')],
-      files: [
-        '**/__mocks__/**/*.+(ts|tsx|js|jsx)',
-        '**/__tests__/**/*.+(ts|tsx|js|jsx)',
-        '**/?(*.)+(spec|test).+(ts|tsx|js|jsx)',
-      ],
-      settings: {
-        jest: {
-          version: 'latest',
-        },
-      },
-    },
   ],
   root: true,
 };
