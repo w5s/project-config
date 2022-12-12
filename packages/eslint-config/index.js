@@ -24,16 +24,11 @@ module.exports = {
   extends: [
     require.resolve('./ignore'),
     require.resolve('./es'),
+    ...includeIf(tryResolve('typescript'), require.resolve('./ts')),
     require.resolve('./json'),
     require.resolve('./yml'),
     require.resolve('./jest'),
     ...includeIf(tryResolve('react'), require.resolve('./react')),
-  ],
-  overrides: [
-    ...includeIf(tryResolve('typescript'), {
-      extends: [require.resolve('./ts')],
-      files: ['*.+(ts|tsx)'],
-    }),
   ],
   root: true,
 };
