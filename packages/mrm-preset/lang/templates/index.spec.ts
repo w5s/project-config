@@ -1,8 +1,8 @@
-import { describe, test, expect } from '@jest/globals'
+import { describe, it, expect } from '@jest/globals'
 import { main } from './index.js';
 
 describe('index', () => {
-  test('main', () => {
+  it('main', () => {
     expect(typeof main).toBe('function');
   });
 });

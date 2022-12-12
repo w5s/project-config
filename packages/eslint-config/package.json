@@ -79,6 +79,7 @@
     "@babel/eslint-parser": "7.19.1",
     "@types/eslint": "8.4.10",
     "@types/eslint-plugin-prettier": "3.1.0",
+    "@types/jest": "29.2.4",
     "@types/prettier": "2.7.1",
     "@types/react": "18.0.26",
     "@typescript-eslint/parser": "5.46.0",

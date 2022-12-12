@@ -1,3 +1,3 @@
-export const TEST_1 = 'blah';
-
-export const TEST_2 = 'blah2';
+test('empty', () => {
+  expect(true).toBe(true);
+});
