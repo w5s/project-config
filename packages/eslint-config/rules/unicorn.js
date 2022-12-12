@@ -47,6 +47,14 @@ module.exports = concatESConfig(
     },
   },
   {
+    overrides: [
+      {
+        files: ['**/+(babel|jest|next|vue).config.js'],
+        rules: {
+          'unicorn/prefer-module': 'off',
+        },
+      },
+    ],
     rules: {
       'unicorn/consistent-destructuring': off,
       'unicorn/consistent-function-scoping': off, // Too many false positive

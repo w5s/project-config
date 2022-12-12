@@ -8,22 +8,7 @@ const warn = 'warn';
 const off = 'off';
 
 /**
- * @typedef {{
- *  env?: Record<string, boolean>,
- *  extends?: string[]|string,
- *  plugins?: string[]|string,
- *  rules?: Record<string, unknown>,
- *  settings?: Record<string, unknown>,
- * }} ESLintConfigInit
- */
-/**
- * @typedef {{
- *  env: Record<string, boolean>,
- *  extends: string[],
- *  plugins: string[],
- *  rules: Record<string, unknown>,
- *  settings: Record<string, unknown>,
- * }} ESLintConfig
+ * @typedef {import("eslint").ESLint.ConfigData} ESLintConfig
  */
 
 /**
@@ -46,13 +31,14 @@ function concatArray(left, right) {
   return toArray(left).concat(toArray(right));
 }
 
-/** @type {(...configs: ESLintConfigInit[]) => ESLintConfig} */
+/** @type {(...configs: ESLintConfig[]) => ESLintConfig} */
 function concatESConfig(...configs) {
   return configs.reduce(
-    (/** @type {ESLintConfig} */ returnValue, /** @type {ESLintConfigInit} */ config) =>
+    (/** @type {ESLintConfig} */ returnValue, /** @type {ESLintConfig} */ config) =>
       Object.assign({}, returnValue, config, {
         env: Object.assign({}, returnValue.env, config.env),
         extends: concatArray(returnValue.extends, config.extends),
+        overrides: concatArray(returnValue.overrides, config.overrides),
         plugins: concatArray(returnValue.plugins, config.plugins),
         rules: Object.assign({}, returnValue.rules, config.rules),
         settings: Object.assign({}, returnValue.settings, config.settings),
@@ -60,6 +46,7 @@ function concatESConfig(...configs) {
     {
       env: {},
       extends: [],
+      overrides: [],
       plugins: [],
       rules: {},
       settings: {},
