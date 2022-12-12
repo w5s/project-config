@@ -1,11 +1,9 @@
 /* cspell:disable */
 module.exports = {
-  extends: ['plugin:yml/standard', 'plugin:yml/prettier'],
   overrides: [
     {
+      extends: [require.resolve('./rules/yml')],
       files: ['*.yml', '*.yaml'],
-      parser: 'yaml-eslint-parser',
     },
   ],
-  plugins: ['yml'],
 };
