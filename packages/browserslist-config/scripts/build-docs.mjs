@@ -15,9 +15,7 @@ const Package = {
 };
 const BrowserListDev = {
   getURL(browsersListConfig) {
-    const url = `https://browserslist.dev/?q=${btoa(
-      browsersListConfig.join(',')
-    )}`;
+    const url = `https://browserslist.dev/?q=${btoa(browsersListConfig.join(','))}`;
     return url;
   },
 };
@@ -72,9 +70,7 @@ const Browser = (() => {
   }
 
   function getName(browser) {
-    return map.has(browser)
-      ? map.get(browser).name
-      : browser[0].toUpperCase() + browser.slice(1);
+    return map.has(browser) ? map.get(browser).name : browser[0].toUpperCase() + browser.slice(1);
   }
 
   function getIconName(browser) {
@@ -92,10 +88,7 @@ async function buildPageContent() {
     const getPrefix = (browser) => browser.split(' ')[0];
 
     const deviceMap = groupBy(browserList, (browser) =>
-      browser.startsWith('ios_') ||
-      browser.startsWith('and_') ||
-      browser.startsWith('op_') ||
-      browser.startsWith('ie_')
+      browser.startsWith('ios_') || browser.startsWith('and_') || browser.startsWith('op_') || browser.startsWith('ie_')
         ? 'mobile'
         : 'desktop'
     );
@@ -116,9 +109,7 @@ async function buildPageContent() {
     ${entries(browsers)
       .map(
         ([browserCode, versions]) =>
-          `- ${Browser.getName(browserCode)} (${versions
-            .map(Browser.getVersion)
-            .join(', ')})`
+          `- ${Browser.getName(browserCode)} (${versions.map(Browser.getVersion).join(', ')})`
       )
       .join('\n')}
   `;

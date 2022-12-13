@@ -18,7 +18,7 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 
-[*.{js,jsx,ts,tsx,js.hbs}]
+[*.{js,cjs,mjs,jsx,ts,tsx,js.hbs}]
 indent_style = space
 indent_size = 2
 max_line_length = 120

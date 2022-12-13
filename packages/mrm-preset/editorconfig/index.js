@@ -87,7 +87,7 @@ module.exports = createEditorConfig({
     max_line_length: 120,
     quote_type: 'single',
   },
-  '*.{js,jsx,ts,tsx,js.hbs}': {
+  '*.{js,cjs,mjs,jsx,ts,tsx,js.hbs}': {
     indent_size: 2,
     indent_style: 'space',
     max_line_length: 120,
