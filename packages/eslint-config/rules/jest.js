@@ -31,6 +31,7 @@ module.exports = concatESConfig(
    */
   {
     rules: {
+      '@typescript-eslint/naming-convention': off,
       '@typescript-eslint/no-non-null-assertion': off,
       '@typescript-eslint/no-unsafe-assignment': off,
       '@typescript-eslint/no-unsafe-call': off,
