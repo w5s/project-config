@@ -1,28 +1,15 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 var types_1 = require("@commitlint/types");
-var gitmojis_1 = require("gitmojis");
-var emoji_regex_1 = __importDefault(require("emoji-regex"));
-var allGitmojiCodes = __spreadArray(__spreadArray([], gitmojis_1.gitmojis.map(function (gitmoji) { return gitmoji.code; }), true), gitmojis_1.gitmojis.map(function (gitmoji) { return gitmoji.emoji; }), true);
-var Error = types_1.RuleConfigSeverity.Error, Warning = types_1.RuleConfigSeverity.Warning;
+var gitmoji_js_1 = require("./gitmoji.js");
+var plugin_js_1 = require("./plugin.js");
+var Error = types_1.RuleConfigSeverity.Error, Warning = types_1.RuleConfigSeverity.Warning, Disabled = types_1.RuleConfigSeverity.Disabled;
 var parserPreset = {
     parserOpts: {
         // eslint-disable-next-line unicorn/no-unsafe-regex, prefer-regex-literals
-        headerPattern: new RegExp("^(:\\w*:|".concat(String((0, emoji_regex_1.default)().source), ") (?:\\((.*)\\):? )?(.*)$")),
+        headerPattern: new RegExp("^(:\\w*:|".concat(gitmoji_js_1.Gitmoji.reEmoji.source, ") (?:\\((.*)\\):? )?(.*)$")),
         headerCorrespondence: ['type', 'scope', 'subject'],
     },
 };
@@ -39,11 +26,14 @@ var rules = {
     'subject-full-stop': [Error, 'never', '.'],
     'type-case': [Error, 'always', 'lower-case'],
     'type-empty': [Error, 'never'],
-    'type-enum': [Error, 'always', allGitmojiCodes],
+    'type-enum': [Disabled],
+    'type-gitmoji-style': [Error, 'always', 'unicode'],
+    'type-valid-gitmoji': [Error, 'always'],
 };
 var config = {
     parserPreset: parserPreset,
     rules: rules,
+    plugins: [plugin_js_1.gitmojiPlugin],
 };
 exports.default = config;
 //# sourceMappingURL=index.js.map

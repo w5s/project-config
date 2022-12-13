@@ -31,6 +31,21 @@ In the `package.json` of your project
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+Extra rules
+
+```jsonc
+{
+  "commitlint": {
+    "rules": {
+      // Rule to validate gitmoji unicode (🐛) or emoji (:bug:)
+      "type-gitmoji-style": ["error", "always", "unicode" /* | 'emoji' */],
+      // Rule to validate a gitmoji in the list
+      "type-valid-gitmoji": ["error", "always"]
+    }
+  }
+}
+```
+
 Ensure the `commitlint` is setup on husky commit message hook (default `.husky/commit-msg`)
 
 ```console

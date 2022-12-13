@@ -1,16 +1,15 @@
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { RuleConfigSeverity, type QualifiedRules, type LintOptions } from '@commitlint/types';
-import { gitmojis } from 'gitmojis';
-import emojiRegexp from 'emoji-regex';
+import { Gitmoji } from './gitmoji.js';
+import { gitmojiPlugin } from './plugin.js';
 
-const allGitmojiCodes = [...gitmojis.map((gitmoji) => gitmoji.code), ...gitmojis.map((gitmoji) => gitmoji.emoji)];
-const { Error, Warning } = RuleConfigSeverity;
+const { Error, Warning, Disabled } = RuleConfigSeverity;
 
 const parserPreset: LintOptions = {
   parserOpts: {
     // eslint-disable-next-line unicorn/no-unsafe-regex, prefer-regex-literals
-    headerPattern: new RegExp(`^(:\\w*:|${String(emojiRegexp().source)}) (?:\\((.*)\\):? )?(.*)$`), /// ^(:\w*:) (?:\((.*)\) )?(.*)$/,
+    headerPattern: new RegExp(`^(:\\w*:|${Gitmoji.reEmoji.source}) (?:\\((.*)\\):? )?(.*)$`), /// ^(:\w*:) (?:\((.*)\) )?(.*)$/,
     headerCorrespondence: ['type', 'scope', 'subject'],
   },
 };
@@ -28,12 +27,15 @@ const rules: QualifiedRules = {
   'subject-full-stop': [Error, 'never', '.'],
   'type-case': [Error, 'always', 'lower-case'],
   'type-empty': [Error, 'never'],
-  'type-enum': [Error, 'always', allGitmojiCodes],
+  'type-enum': [Disabled],
+  'type-gitmoji-style': [Error, 'always', 'unicode'],
+  'type-valid-gitmoji': [Error, 'always'],
 };
 
 const config = {
   parserPreset,
   rules,
+  plugins: [gitmojiPlugin],
 };
 
 export default config;

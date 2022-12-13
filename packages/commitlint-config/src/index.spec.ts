@@ -1,8 +1,10 @@
 import commitlint from '@commitlint/lint';
 import { describe, it, expect } from '@jest/globals';
 import config from './index.js';
+import { gitmojiPlugin } from './plugin.js';
 
-const lint = async (input: string) => commitlint(input, config.rules, config.parserPreset);
+const lint = async (input: string) =>
+  commitlint(input, config.rules, { ...config.parserPreset, plugins: { gitmoji: gitmojiPlugin } });
 
 describe('Commitlint Config', () => {
   const generateValidSubject = (length: number) =>
@@ -192,6 +194,40 @@ describe('Commitlint Config', () => {
           errors: expect.arrayContaining([
             expect.objectContaining({
               name: 'type-empty',
+            }),
+          ]),
+          warnings: [],
+        })
+      );
+    });
+  });
+  describe('type-gitmoji-style', () => {
+    it('should return error if type is not an unicode', async () => {
+      const result = await lint(`${':bug:'} (${anyValidScope}): ${anyValidSubject}`);
+
+      expect(result).toEqual(
+        expect.objectContaining({
+          valid: false,
+          errors: expect.arrayContaining([
+            expect.objectContaining({
+              name: 'type-gitmoji-style',
+            }),
+          ]),
+          warnings: [],
+        })
+      );
+    });
+  });
+  describe('type-valid-gitmoji', () => {
+    it('should return error if type is not an unicode', async () => {
+      const result = await lint(`${'🥶'} (${anyValidScope}): ${anyValidSubject}`);
+
+      expect(result).toEqual(
+        expect.objectContaining({
+          valid: false,
+          errors: expect.arrayContaining([
+            expect.objectContaining({
+              name: 'type-valid-gitmoji',
             }),
           ]),
           warnings: [],
