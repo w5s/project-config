@@ -8,11 +8,6 @@ module.exports = {
         '**/__tests__/**/*.+(ts|tsx|js|jsx)',
         '**/?(*.)+(spec|test).+(ts|tsx|js|jsx)',
       ],
-      settings: {
-        jest: {
-          version: 'latest',
-        },
-      },
     },
   ],
 };
