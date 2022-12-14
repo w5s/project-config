@@ -1,17 +1,13 @@
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { RuleConfigSeverity, type QualifiedRules, type LintOptions } from '@commitlint/types';
-import { Gitmoji } from './gitmoji.js';
+import conventionalChangelog from './conventional-changelog/index.js';
 import { gitmojiPlugin } from './plugin.js';
 
 const { Error, Warning, Disabled } = RuleConfigSeverity;
 
 const parserPreset: LintOptions = {
-  parserOpts: {
-    // eslint-disable-next-line unicorn/no-unsafe-regex, prefer-regex-literals
-    headerPattern: new RegExp(`^(:\\w*:|${Gitmoji.reEmoji.source}) (?:\\((.*)\\):? )?(.*)$`), /// ^(:\w*:) (?:\((.*)\) )?(.*)$/,
-    headerCorrespondence: ['type', 'scope', 'subject'],
-  },
+  parserOpts: conventionalChangelog.parserOpts,
 };
 
 const rules: QualifiedRules = {
