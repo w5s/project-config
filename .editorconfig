@@ -14,42 +14,46 @@ spaces_around_brackets = outside
 spaces_around_operators = true
 trim_trailing_whitespace = true
 
-[*.{py,robot}]
-indent_style = space
-indent_size = 4
-
-[*.{js,cjs,mjs,jsx,ts,tsx,js.hbs}]
-indent_style = space
+[*.{json,json5,webmanifest}]
 indent_size = 2
-max_line_length = 120
-quote_type = single
-
-[*.json]
 indent_style = space
-indent_size = 2
 insert_final_newline = ignore
 
-[*.yml]
-indent_style = space
+[*.{yml,yaml}]
 indent_size = 2
+indent_style = space
 
-[*.{css,scss,less}]
-indent_style = space
+[*.{bat,reg,ps1,vbs,cs,cmd,fs,ahk}]
+end_of_line = crlf
+
+[*.{sh,zsh}]
+end_of_line = lf
+
+[*.{css,sass,scss,less,pcss}]
 indent_size = 2
+indent_style = space
 max_line_length = 120
 quote_type = single
 
-[Makefile]
-indent_style = tab
+[*.{js,jsx,jsm,ts,tsx,cjs,cjs,cjsx,cts,ctsx,mjs,mts,mtsx,js.hbs}]
+indent_size = 2
+indent_style = space
+max_line_length = 120
+quote_type = single
 
-[{*.bat,*reg,*.ps1,*.vbs,*.cs,*.fs,*.ahk}]
-end_of_line = crlf
+[*.{htm,html,svg,vue}]
+indent_size = 2
+indent_style = space
 
-[*.{md,mdwn,mdown,markdown,apib}]
+[*.{md,mdwn,mdown,markdown,mdx,apib}]
 indent_size = 4
 indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = false
 
-[*.{bat,reg,ps1,vbs,cs,,fs,ahk}]
-end_of_line = crlf
+[*.{py,robot}]
+indent_size = 4
+indent_style = space
+
+[Makefile]
+indent_style = tab
