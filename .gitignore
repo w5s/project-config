@@ -1,7 +1,7 @@
 # BEGIN ### Typescript ###
 lib/*
 *.tsbuildinfo
-typings/
+typings/*
 # END ### Typescript ###
 # BEGIN ### VisualStudioCode ###
 .vscode/*
