@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+/* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 var types_1 = require("@commitlint/types");
