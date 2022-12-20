@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var gitmoji_1 = require("../gitmoji");
+var gitmoji_1 = require("./gitmoji");
 var parserOpts = {
-    headerPattern: new RegExp("^(:\\w*:|".concat(gitmoji_1.Gitmoji.reEmoji.source, ") (?:\\((.*)\\):? )?(.*)$")),
+    headerPattern: new RegExp("^(:\\w*:|".concat(gitmoji_1.GitmojiCode.reEmoji.source, ") (?:\\((.*)\\):? )?(.*)$")),
     headerCorrespondence: ['type', 'scope', 'subject'],
     revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i,
     noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'],

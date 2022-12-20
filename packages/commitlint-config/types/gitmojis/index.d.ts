@@ -1,20 +1,32 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 declare module 'gitmojis' {
+  type GitmojiUnicode = string & { '@@GitmojiStyle': 'unicode' };
+
+  type GitmojiEmoji = string & { '@@GitmojiStyle': 'emoji' };
+
   interface Gitmoji {
-    readonly emoji: string;
+    /**
+     * Gitmoji unicode code
+     *
+     * @example
+     * ```ts
+     * '🐛'
+     * ```
+     */
+    readonly emoji: GitmojiUnicode;
     readonly entity: string;
-    readonly code: string;
     readonly description: string;
     readonly name: string;
-    readonly semver: null | 'patch';
+    readonly semver: null | 'patch' | 'minor' | 'major';
     /**
-     * Gitmoji code
+     * Gitmoji string code formatted as `:my_emoji:`
      *
      * @example
      * ```ts
      * ':bug:'
      * ```
      */
-    readonly code: string;
+    readonly code: GitmojiEmoji;
   }
   export const gitmojis: ReadonlyArray<Gitmoji>;
 }

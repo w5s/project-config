@@ -1,8 +1,8 @@
 import type { ParserOptions } from '@commitlint/types';
-import { Gitmoji } from '../gitmoji';
+import { GitmojiCode } from './gitmoji';
 
 const parserOpts: ParserOptions = {
-  headerPattern: new RegExp(`^(:\\w*:|${Gitmoji.reEmoji.source}) (?:\\((.*)\\):? )?(.*)$`),
+  headerPattern: new RegExp(`^(:\\w*:|${GitmojiCode.reEmoji.source}) (?:\\((.*)\\):? )?(.*)$`),
   headerCorrespondence: ['type', 'scope', 'subject'],
   revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i,
   noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'],
