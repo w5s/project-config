@@ -2925,7 +2925,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/conventional-changelog-writer@npm:^4.0.1":
+"@types/conventional-changelog-writer@npm:4.0.1":
   version: 4.0.1
   resolution: "@types/conventional-changelog-writer@npm:4.0.1"
   dependencies:
@@ -2935,7 +2935,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/conventional-commits-parser@npm:*, @types/conventional-commits-parser@npm:^3.0.3":
+"@types/conventional-commits-parser@npm:*, @types/conventional-commits-parser@npm:3.0.3":
   version: 3.0.3
   resolution: "@types/conventional-commits-parser@npm:3.0.3"
   dependencies:
@@ -3454,8 +3454,8 @@ __metadata:
     "@commitlint/lint": 17.3.0
     "@commitlint/types": ^17.0.0
     "@jest/globals": 29.3.1
-    "@types/conventional-changelog-writer": ^4.0.1
-    "@types/conventional-commits-parser": ^3.0.3
+    "@types/conventional-changelog-writer": 4.0.1
+    "@types/conventional-commits-parser": 3.0.3
     emoji-regex: ^10.2.1
     gitmojis: ^3.13.0
   peerDependencies:
