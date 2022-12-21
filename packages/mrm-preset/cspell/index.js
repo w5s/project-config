@@ -1,12 +1,15 @@
 const { cspell } = require('../core/cspell.js');
 const project = require('../core/project.js');
 const pkg = require('../core/pkg.js');
+const npm = require('../core/npm.js');
 
 function task() {
+  const preset = '@w5s/cspell-config';
   cspell({
     state: 'present',
     update: (_) => ({
       ..._,
+      import: [preset],
       ignorePaths: Array.from(
         new Set([
           '**/dist/**',
@@ -22,6 +25,11 @@ function task() {
         ])
       ),
     }),
+  });
+  npm.dependency({
+    dev: true,
+    name: [preset],
+    state: 'present',
   });
 
   pkg.withPackageJson((packageFile) => {

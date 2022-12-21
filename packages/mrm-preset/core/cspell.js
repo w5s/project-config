@@ -21,7 +21,7 @@ const npm = require('./npm.js');
 function cspell({ state, update }) {
   const hasCSpell = state === 'present';
 
-  const cSpellFile = json('cSpell.json', {
+  const cSpellFile = json('.cspell.json', {
     version: '0.2',
     language: 'en',
     words: [],
