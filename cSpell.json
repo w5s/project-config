@@ -1,6 +1,7 @@
 {
   "version": "0.2",
   "language": "en",
+  "import": ["@w5s/cspell-config"],
   "words": [
     "autodevops",
     "automerge",
@@ -12,7 +13,6 @@
     "esbuild",
     "eslintcache",
     "esnext",
-    "flowtype",
     "githooks",
     "gitlab",
     "gitmoji",
@@ -31,20 +31,20 @@
     "Stroustrup",
     "subpackage",
     "templating",
-    "typedoc"
+    "typedoc",
+    "nocheck"
   ],
   "ignoreWords": [
+    "unicodes",
     "PKGJSON",
     "SUBPACKAGELIST",
     "dbaeumer",
     "postbuild",
     "postconfigure",
-    "mdwn",
     "ispec",
     "seatonjiang",
     "smpltmpl",
     "exts",
-    "tsbuildinfo",
     "modulemap",
     "venv"
   ],

@@ -97,6 +97,7 @@
     "@jest/globals": "latest",
     "@types/node": "16.18.10",
     "@w5s/commitlint-config": "workspace:*",
+    "@w5s/cspell-config": "workspace:*",
     "@w5s/eslint-config": "workspace:*",
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/prettier-config": "workspace:*",
