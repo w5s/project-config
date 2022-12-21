@@ -5,19 +5,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GitmojiCode = void 0;
 /* eslint-disable @typescript-eslint/naming-convention */
-var emoji_regex_1 = __importDefault(require("emoji-regex"));
-var gitmojis_1 = require("gitmojis");
+const emoji_regex_1 = __importDefault(require("emoji-regex"));
+const gitmojis_1 = require("gitmojis");
 var GitmojiCode;
 (function (GitmojiCode) {
     GitmojiCode.reEmoji = (0, emoji_regex_1.default)();
-    var reGitmoji = new RegExp("^".concat(GitmojiCode.reEmoji.source, "$"), GitmojiCode.reEmoji.flags);
-    var allGitmojiCodes = new Set(gitmojis_1.gitmojis.map(function (gitmoji) { return gitmoji.code; }).concat(gitmojis_1.gitmojis.map(function (gitmoji) { return gitmoji.emoji; })));
-    var index = {
+    const reGitmoji = new RegExp(`^${GitmojiCode.reEmoji.source}$`, GitmojiCode.reEmoji.flags);
+    const allGitmojiCodes = new Set(gitmojis_1.gitmojis.map((gitmoji) => gitmoji.code).concat(gitmojis_1.gitmojis.map((gitmoji) => gitmoji.emoji)));
+    const index = {
         // code: createIndex(gitmojis, 'code'),
         emoji: createIndex(gitmojis_1.gitmojis, 'emoji'),
     };
     function createIndex(list, key) {
-        return new Map(list.map(function (gitmoji) { return [gitmoji[key], gitmoji]; }));
+        return new Map(list.map((gitmoji) => [gitmoji[key], gitmoji]));
     }
     function isUnicode(anyValue) {
         return anyValue.match(reGitmoji) != null;
@@ -31,9 +31,9 @@ var GitmojiCode;
         return allGitmojiCodes.has(anyValue);
     }
     GitmojiCode.isValid = isValid;
-    var defaultType = 'chore';
-    var conversionMap = (function () {
-        var data = {
+    const defaultType = 'chore';
+    const conversionMap = (() => {
+        const data = {
             feat: ['✨', '♿️', '🚸'],
             fix: ['🐛'],
             docs: ['📝'],
@@ -47,20 +47,16 @@ var GitmojiCode;
             build: [],
             chore: [],
         };
-        var entries = Array.from(
+        const entries = Array.from(
         // @ts-ignore
         Object.entries(data));
-        return new Map(entries.reduce(function (acc, _a) {
-            var commitType = _a[0], gitmojiUnicodes = _a[1];
-            return acc
-                .concat(gitmojiUnicodes.map(function (gitmojiUnicode) { return [gitmojiUnicode, commitType]; }))
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                .concat(gitmojiUnicodes.map(function (gitmojiUnicode) { var _a; return [(_a = index.emoji.get(gitmojiUnicode)) === null || _a === void 0 ? void 0 : _a.code, commitType]; }));
-        }, []));
+        return new Map(entries.reduce((acc, [commitType, gitmojiUnicodes]) => acc
+            .concat(gitmojiUnicodes.map((gitmojiUnicode) => [gitmojiUnicode, commitType]))
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            .concat(gitmojiUnicodes.map((gitmojiUnicode) => [index.emoji.get(gitmojiUnicode)?.code, commitType])), []));
     })();
     function toConventionalCommitType(gitmoji) {
-        var _a;
-        return (_a = conversionMap.get(gitmoji)) !== null && _a !== void 0 ? _a : defaultType;
+        return conversionMap.get(gitmoji) ?? defaultType;
     }
     GitmojiCode.toConventionalCommitType = toConventionalCommitType;
 })(GitmojiCode = exports.GitmojiCode || (exports.GitmojiCode = {}));

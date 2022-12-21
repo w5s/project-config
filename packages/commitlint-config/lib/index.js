@@ -6,14 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/naming-convention */
 /* eslint-disable import/no-import-module-exports */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-var types_1 = require("@commitlint/types");
-var index_js_1 = __importDefault(require("./conventional-changelog/index.js"));
-var plugin_js_1 = require("./plugin.js");
-var Error = types_1.RuleConfigSeverity.Error, Warning = types_1.RuleConfigSeverity.Warning, Disabled = types_1.RuleConfigSeverity.Disabled;
-var parserPreset = {
+const types_1 = require("@commitlint/types");
+const index_js_1 = __importDefault(require("./conventional-changelog/index.js"));
+const plugin_js_1 = require("./plugin.js");
+const { Error, Warning, Disabled } = types_1.RuleConfigSeverity;
+const parserPreset = {
     parserOpts: index_js_1.default.parserOpts,
 };
-var rules = {
+const rules = {
     'body-leading-blank': [Warning, 'always'],
     'body-max-line-length': [Error, 'always', 100],
     'footer-leading-blank': [Warning, 'always'],
@@ -30,9 +30,9 @@ var rules = {
     'type-gitmoji-style': [Error, 'always', 'unicode'],
     'type-valid-gitmoji': [Error, 'always'],
 };
-var config = {
-    parserPreset: parserPreset,
-    rules: rules,
+const config = {
+    parserPreset,
+    rules,
     plugins: [plugin_js_1.gitmojiPlugin],
 };
 exports.default = config;

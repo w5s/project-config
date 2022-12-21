@@ -1,15 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var node_fs_1 = require("node:fs");
-var node_path_1 = require("node:path");
-var transform_js_1 = require("./transform.js");
-var basePath = (0, node_path_1.resolve)(__dirname, './templates');
-var template = (0, node_fs_1.readFileSync)("".concat(basePath, "/template.hbs"), 'utf8');
-var header = (0, node_fs_1.readFileSync)("".concat(basePath, "/header.hbs"), 'utf8');
-var commit = (0, node_fs_1.readFileSync)("".concat(basePath, "/commit.hbs"), 'utf8');
-var footer = (0, node_fs_1.readFileSync)("".concat(basePath, "/footer.hbs"), 'utf8');
-var author = (0, node_fs_1.readFileSync)("".concat(basePath, "/author.hbs"), 'utf8');
-var writerOpts = {
+const node_fs_1 = require("node:fs");
+const node_path_1 = require("node:path");
+const transform_js_1 = require("./transform.js");
+const basePath = (0, node_path_1.resolve)(__dirname, './templates');
+const template = (0, node_fs_1.readFileSync)(`${basePath}/template.hbs`, 'utf8');
+const header = (0, node_fs_1.readFileSync)(`${basePath}/header.hbs`, 'utf8');
+const commit = (0, node_fs_1.readFileSync)(`${basePath}/commit.hbs`, 'utf8');
+const footer = (0, node_fs_1.readFileSync)(`${basePath}/footer.hbs`, 'utf8');
+const author = (0, node_fs_1.readFileSync)(`${basePath}/author.hbs`, 'utf8');
+const writerOpts = {
     transform: (0, transform_js_1.createTransform)({}),
     groupBy: 'type',
     commitGroupsSort: 'title',

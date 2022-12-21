@@ -6,7 +6,6 @@
     "module": "commonjs",
     "outDir": "./lib",
     "rootDir": "./src",
-    "target": "es5",
     "typeRoots": ["./types"]
   },
   "include": ["src"]
