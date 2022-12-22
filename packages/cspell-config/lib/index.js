@@ -88,6 +88,11 @@ const settings = {
             dictionaries: ['w5s-typescript'],
             dictionaryDefinitions: [],
         },
+        {
+            languageId: 'typescript,javascript,typescriptreact,javascriptreact',
+            locale: '*',
+            ignoreRegExpList: ['\\/\\* eslint-disable.+', '\\/\\/ eslint-disable.+'],
+        },
     ],
 };
 module.exports = settings;
