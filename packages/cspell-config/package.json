@@ -35,8 +35,8 @@
     "index.d.ts"
   ],
   "scripts": {
+    "__build:dict": "cd dict;cspell-tools-cli compile filetypes.txt",
     "build": "concurrently \"npm:build:*\" \":\"",
-    "build:dict": "cspell-tools-cli compile dict/filetypes.txt",
     "build:src": "tsc",
     "clean": "concurrently \"npm:clean:*\" \":\"",
     "clean:src": "rm -rf lib/*",
