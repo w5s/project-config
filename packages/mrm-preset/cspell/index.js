@@ -10,20 +10,6 @@ function task() {
     update: (_) => ({
       ..._,
       import: [preset],
-      ignorePaths: Array.from(
-        new Set([
-          '**/dist/**',
-          '**/build/**',
-          '**/lib/**',
-          '**/node_modules/**',
-          '**/package.json',
-          '**/package-lock.json',
-          '**/yarn.lock',
-          '**/*.log',
-          '**/CHANGELOG.md',
-          ...(_.ignorePaths || []),
-        ])
-      ),
     }),
   });
   npm.dependency({
