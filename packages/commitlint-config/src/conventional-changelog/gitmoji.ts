@@ -58,11 +58,11 @@ export namespace GitmojiCode {
     );
     return new Map(
       entries.reduce<Array<[GitmojiCode, CommitConventionalType]>>(
-        (acc, [commitType, gitmojiUnicodes]) =>
+        (acc, [commitType, gitmojiUnicodeArray]) =>
           acc
-            .concat(gitmojiUnicodes.map((gitmojiUnicode) => [gitmojiUnicode, commitType]))
+            .concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [gitmojiUnicode, commitType]))
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            .concat(gitmojiUnicodes.map((gitmojiUnicode) => [index.emoji.get(gitmojiUnicode)?.code!, commitType])),
+            .concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [index.emoji.get(gitmojiUnicode)?.code!, commitType])),
         []
       )
     );

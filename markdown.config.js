@@ -5,7 +5,7 @@ module.exports = {
     // console.log('done')
   },
   transforms: {
-    PKGJSON: require('markdown-magic-package-json'),
-    SUBPACKAGELIST: require('markdown-magic-subpackage-list'),
+    PKG_JSON: require('markdown-magic-package-json'),
+    SUBPACKAGE_LIST: require('markdown-magic-subpackage-list'),
   },
 };
