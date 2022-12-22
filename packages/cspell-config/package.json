@@ -25,6 +25,7 @@
   },
   "typings": "./index.d.ts",
   "files": [
+    "cspell-ext.json",
     "dict/**/*",
     "lib/**/!(*.spec).d.ts",
     "lib/**/!(*.spec).d.ts.map",
