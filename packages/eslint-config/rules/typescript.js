@@ -4,7 +4,7 @@ const { fixme, off, warn, error, concatESConfig } = require('./_rule.js');
 const { rules: _baseRules } = require('./base.js');
 const { rules: _baseImportRules } = require('./import.js');
 
-// Fix Hack : TS pluging seems to modify the rules
+// Fix Hack : TS plugin seems to modify the rules
 const deepClone = (/** @type {Record<string, unknown>} */ anyValue) => JSON.parse(JSON.stringify(anyValue));
 const baseRules = deepClone(_baseRules);
 const baseImportRules = deepClone(_baseImportRules);
