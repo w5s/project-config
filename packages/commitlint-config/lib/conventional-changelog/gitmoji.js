@@ -50,10 +50,10 @@ var GitmojiCode;
         const entries = Array.from(
         // @ts-ignore
         Object.entries(data));
-        return new Map(entries.reduce((acc, [commitType, gitmojiUnicodes]) => acc
-            .concat(gitmojiUnicodes.map((gitmojiUnicode) => [gitmojiUnicode, commitType]))
+        return new Map(entries.reduce((acc, [commitType, gitmojiUnicodeArray]) => acc
+            .concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [gitmojiUnicode, commitType]))
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            .concat(gitmojiUnicodes.map((gitmojiUnicode) => [index.emoji.get(gitmojiUnicode)?.code, commitType])), []));
+            .concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [index.emoji.get(gitmojiUnicode)?.code, commitType])), []));
     })();
     function toConventionalCommitType(gitmoji) {
         return conversionMap.get(gitmoji) ?? defaultType;
