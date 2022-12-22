@@ -1,5 +1,4 @@
-const { packageJson, json } = require('mrm-core');
-const pkg = require('./pkg.js');
+const { json } = require('mrm-core');
 const npm = require('./npm.js');
 const jsonFile = require('./jsonFile.js');
 
@@ -18,10 +17,7 @@ const jsonFile = require('./jsonFile.js');
  * }} options
  */
 function turbo({ state, update }) {
-  const packageFileDefault = packageJson();
-  const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
-  const hasTurbo = state === 'present' && hasWorkspaces;
-
+  const hasTurbo = state === 'present';
   const turboFile = json('turbo.json');
 
   if (hasTurbo) {
