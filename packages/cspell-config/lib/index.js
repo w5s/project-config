@@ -30,6 +30,7 @@ const settings = {
     description: 'Default cspell configuration.',
     words: [],
     flagWords: [],
+    useGitignore: true,
     dictionaryDefinitions: [
         ...toArray(defaultSettings.dictionaryDefinitions),
         {
@@ -65,10 +66,7 @@ const settings = {
         '**/__snapshots__/**',
         // '**/.git/**',
         '**/.vscode/**',
-        '**/*.log',
         '**/*.snap',
-        '**/build/**',
-        '**/dist/**',
         '**/lib/**',
         '**/node_modules/**',
         '**/package-lock.json',
