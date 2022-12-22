@@ -30,9 +30,7 @@
     "lib/**/!(*.spec).d.ts.map",
     "lib/**/!(*.spec).js.map",
     "lib/**/!(*.spec).js",
-    "src/**/!(*.spec).ts",
-    "index.js",
-    "index.d.ts"
+    "src/**/!(*.spec).ts"
   ],
   "scripts": {
     "__build:dict": "cd dict;cspell-tools-cli compile filetypes.txt",
