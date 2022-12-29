@@ -68,8 +68,8 @@
     "@cspell/cspell-bundled-dicts": "^6.0.0"
   },
   "devDependencies": {
-    "@cspell/cspell-tools": "6.18.0",
-    "@cspell/cspell-types": "6.18.0",
+    "@cspell/cspell-tools": "6.18.1",
+    "@cspell/cspell-types": "6.18.1",
     "@jest/globals": "29.3.1"
   },
   "peerDependencies": {
