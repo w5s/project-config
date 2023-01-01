@@ -71,7 +71,7 @@
   "devDependencies": {
     "@commitlint/lint": "17.3.0",
     "@jest/globals": "29.3.1",
-    "@types/conventional-changelog-writer": "4.0.1",
+    "@types/conventional-changelog-writer": "4.0.2",
     "@types/conventional-commits-parser": "3.0.3"
   },
   "peerDependencies": {
