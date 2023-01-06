@@ -44,6 +44,11 @@
   "peerDependencies": {
     "browserslist": ">= 4.0"
   },
+  "peerDependenciesMeta": {
+    "browserslist": {
+      "optional": true
+    }
+  },
   "engines": {
     "node": ">=16.0.0"
   },

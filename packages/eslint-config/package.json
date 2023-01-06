@@ -94,6 +94,9 @@
     "typescript": "4.x"
   },
   "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    },
     "typescript": {
       "optional": true
     }
