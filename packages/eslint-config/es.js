@@ -8,12 +8,4 @@ module.exports = {
     require.resolve('./rules/unicorn'),
     require.resolve('./rules/prettier'),
   ],
-  parser: 'espree',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 2022,
-    sourceType: 'module',
-  },
 };

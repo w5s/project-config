@@ -27,6 +27,14 @@ module.exports = concatESConfig(
   baseConfig,
   // overrides
   {
+    parser: 'espree',
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true,
+      },
+      ecmaVersion: 2022,
+      sourceType: 'module',
+    },
     rules: {
       // Annoying because it is not always wanted
       'default-case': off,
