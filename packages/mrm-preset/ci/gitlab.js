@@ -1,4 +1,3 @@
-/* eslint-disable global-require, sort-keys-fix/sort-keys-fix */
 const path = require('node:path');
 const { yaml } = require('mrm-core');
 

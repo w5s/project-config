@@ -1,4 +1,3 @@
-/* eslint-disable no-template-curly-in-string */
 const { packageJson } = require('mrm-core');
 const pkg = require('./pkg.js');
 const npm = require('./npm.js');

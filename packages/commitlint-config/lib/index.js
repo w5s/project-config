@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable import/no-import-module-exports */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 const types_1 = require("@commitlint/types");
 const index_js_1 = __importDefault(require("./conventional-changelog/index.js"));

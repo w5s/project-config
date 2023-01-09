@@ -57,8 +57,9 @@ function concatESConfig(...configs) {
 module.exports = {
   concatESConfig,
   error,
-  // eslint-disable-next-line no-unused-vars
-  fixme: (/** @type {'off'|'warn'|'error'|undefined} */ _status) => off,
+  fixme: (
+    /** @type {import("eslint").Linter.RuleLevel|[import("eslint").Linter.RuleLevel, ..._1: any[]]|undefined} */ _status
+  ) => off,
   off,
   warn,
 };

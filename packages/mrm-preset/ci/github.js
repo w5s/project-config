@@ -1,4 +1,3 @@
-/* eslint-disable global-require, sort-keys-fix/sort-keys-fix */
 const { packageJson } = require('mrm-core');
 const githubCI = require('../core/githubCI.js');
 const pkg = require('../core/pkg.js');

@@ -4,7 +4,6 @@ const { off, warn, error, concatESConfig, fixme } = require('./_rule.js');
  * @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
  * @param {string} _status
  */
-// eslint-disable-next-line no-unused-vars
 const performanceIssue = (_status) => off;
 
 module.exports = concatESConfig(
