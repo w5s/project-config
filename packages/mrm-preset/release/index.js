@@ -11,7 +11,9 @@ function task() {
     pkg.script(packageFile, {
       name: project.release,
       // eslint-disable-next-line no-template-curly-in-string
-      update: useWorkspace ? 'is-ci && lerna publish --yes || lerna publish' : semanticRelease.command(),
+      update: useWorkspace
+        ? 'is-ci && npm run clean && lerna publish --yes || lerna publish'
+        : semanticRelease.command(),
       state: 'present',
     });
   });

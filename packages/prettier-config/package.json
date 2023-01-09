@@ -45,7 +45,7 @@
     "lint": "concurrently \"npm:lint:*\" \":\"",
     "lint:src": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
-    "prepublishOnly": "npm run clean;npm run build",
+    "prepublishOnly": "npm run build",
     "spellcheck": "cspell --no-progress '**'",
     "test": "concurrently \"npm:test:*\" ",
     "test:src": "exit 0"

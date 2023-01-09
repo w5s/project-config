@@ -35,7 +35,7 @@
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "prepare:husky": "is-ci || husky install",
     "prepare:packages": "turbo run prepare",
-    "release": "is-ci && lerna publish --yes || lerna publish",
+    "release": "is-ci && npm run clean && lerna publish --yes || lerna publish",
     "rescue": "git clean -fdx;yarn install",
     "spellcheck": "turbo run spellcheck",
     "spellcheck:root": "cspell --no-progress '**' --exclude='packages/*/**'",
