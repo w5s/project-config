@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GitmojiCode = void 0;
-/* eslint-disable @typescript-eslint/naming-convention */
 const emoji_regex_1 = __importDefault(require("emoji-regex"));
 const gitmojis_1 = require("gitmojis");
 var GitmojiCode;

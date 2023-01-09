@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Plugin, Rule, RuleConfigCondition } from '@commitlint/types';
 import { GitmojiCode } from './conventional-changelog/gitmoji';
 

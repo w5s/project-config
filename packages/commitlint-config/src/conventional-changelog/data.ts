@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import type { Commit as CommitDefault } from 'conventional-commits-parser';
 
 export type Commit = CommitDefault<never> & {

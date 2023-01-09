@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 declare module 'gitmojis' {
   type GitmojiUnicode = string & { '@@GitmojiStyle': 'unicode' };
 

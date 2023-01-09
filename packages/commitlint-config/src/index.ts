@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { RuleConfigSeverity, type QualifiedRules, type LintOptions } from '@commitlint/types';
 import conventionalChangelog from './conventional-changelog/index.js';
 import { gitmojiPlugin } from './plugin.js';

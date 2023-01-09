@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import emojiRegexp from 'emoji-regex';
 import { Gitmoji, gitmojis, GitmojiUnicode, GitmojiEmoji } from 'gitmojis';
 import type { CommitConventionalType } from './data';
