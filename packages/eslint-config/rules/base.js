@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-unresolved
+const { ECMA_VERSION } = require('@w5s/dev');
 const { concatESConfig, off, error } = require('./_rule.js');
 
 // Fix eslint shareable config (https://github.com/eslint/eslint/issues/3458)
@@ -27,14 +29,23 @@ module.exports = concatESConfig(
   baseConfig,
   // overrides
   {
+    env: {
+      [`es${ECMA_VERSION}`]: true,
+    },
+    globals: {
+      __DEV__: 'readonly',
+      __PROD__: 'readonly',
+      __TEST__: 'readonly',
+    },
     parser: 'espree',
     parserOptions: {
       ecmaFeatures: {
         jsx: true,
       },
-      ecmaVersion: 2022,
+      ecmaVersion: ECMA_VERSION,
       sourceType: 'module',
     },
+    reportUnusedDisableDirectives: true,
     rules: {
       // Annoying because it is not always wanted
       'default-case': off,

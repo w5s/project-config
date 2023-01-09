@@ -1,0 +1,58 @@
+{
+  "name": "@w5s/dev",
+  "version": "1.0.0-alpha.0",
+  "description": "Shared development constants and functions",
+  "keywords": [
+    "config",
+    "dev"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packagesdev#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:w5s/project-config.git",
+    "directory": "packages/dev"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "commonjs",
+  "exports": {
+    ".": "./lib/index.js",
+    "./lib/*": "./lib/*"
+  },
+  "typings": "./index.d.ts",
+  "files": [
+    "lib/**/!(*.spec).d.ts",
+    "lib/**/!(*.spec).js.map",
+    "lib/**/!(*.spec).js",
+    "src/**/!(*.spec).ts",
+    "!example/**/*",
+    "!*.cjs",
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "build": "concurrently \"npm:build:*\" \":\"",
+    "build:tsc": "tsc",
+    "clean": "concurrently \"npm:clean:*\" \":\"",
+    "clean:src": "rm -rf lib/*",
+    "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
+    "format": "concurrently \"npm:format:*\" \":\"",
+    "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
+    "lint": "concurrently \"npm:lint:*\" \":\"",
+    "lint:src": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
+    "prepare": "concurrently \"npm:prepare:*\" \":\"",
+    "prepublishOnly": "npm run clean;npm run build",
+    "spellcheck": "cspell --no-progress '**'",
+    "test": "concurrently \"npm:test:*\" ",
+    "test:src": "exit 0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
