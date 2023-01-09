@@ -15,7 +15,6 @@
       "packages/*"
     ],
     "nohoist": [
-      "/@babel/eslint-parser",
       "/eslint"
     ]
   },
@@ -91,8 +90,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "7.20.12",
-    "@babel/eslint-parser": "7.19.1",
     "@commitlint/cli": "17.4.0",
     "@jest/globals": "latest",
     "@types/node": "16.18.11",

@@ -35,15 +35,8 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     // Dependencies
     npm.dependency({
       dev: true,
-      name: ['eslint', '@babel/core', '@babel/eslint-parser', 'prettier'],
+      name: ['eslint', 'prettier'],
       state: 'present',
-    });
-
-    // Clean legacy
-    npm.dependency({
-      dev: true,
-      name: ['@typescript-eslint/parser', '@typescript-eslint/eslint-plugin', 'babel-eslint'],
-      state: 'absent',
     });
 
     // Preset
