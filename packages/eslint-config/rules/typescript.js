@@ -5,7 +5,8 @@ const { rules: _baseRules } = require('./base.js');
 const { rules: _baseImportRules } = require('./import.js');
 
 // Fix Hack : TS plugin seems to modify the rules
-const deepClone = (/** @type {Record<string, unknown>} */ anyValue) => JSON.parse(JSON.stringify(anyValue));
+const deepClone = (/** @type {Partial<import("eslint").Linter.RulesRecord> | undefined} */ anyValue) =>
+  JSON.parse(JSON.stringify(anyValue));
 const baseRules = deepClone(_baseRules);
 const baseImportRules = deepClone(_baseImportRules);
 
