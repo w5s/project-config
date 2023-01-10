@@ -1,4 +1,4 @@
-import { Plugin, Rule, RuleConfigCondition } from '@commitlint/types';
+import type { Plugin, Rule, RuleConfigCondition } from '@commitlint/types';
 import { GitmojiCode } from './conventional-changelog/gitmoji';
 
 const $if =

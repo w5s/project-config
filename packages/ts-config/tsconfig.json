@@ -7,6 +7,7 @@
     "declaration": true,
     "declarationMap": true,
     "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error", // Enforce import type instead of import
     "lib": ["ES2020"],
     "module": "node16",
     "moduleResolution": "node16",
@@ -16,6 +17,7 @@
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
+    "preserveValueImports": true,
     // "noUnusedLocals": true, => Prefer ESLint validation
     // "noUnusedParameters": true, => Prefer ESLint validation
     "pretty": true,

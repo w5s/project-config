@@ -1,4 +1,4 @@
-import { Commit } from '@commitlint/types';
+import type { Commit } from '@commitlint/types';
 import { describe, expect, it } from '@jest/globals';
 import { typeGitmojiStyle, typeValidGitmoji } from './plugin';
 

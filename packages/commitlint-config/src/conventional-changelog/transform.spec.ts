@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { Commit } from './data.js';
+import type { Commit } from './data.js';
 import { createTransform } from './transform.js';
 
 const generateCommit = (commit: Partial<Commit>): Commit => ({

@@ -3,6 +3,7 @@
   "extends": "@w5s/ts-config",
   "compilerOptions": {
     // FIXME: remove this
-    "forceConsistentCasingInFileNames": false
+    "forceConsistentCasingInFileNames": false,
+    "preserveValueImports": false
   }
 }
