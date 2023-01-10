@@ -173,7 +173,6 @@ function task() {
     });
   };
 
-  // eslint-disable-next-line no-shadow
   pkg.withPackageJson((packageFile) => {
     pkg.value(packageFile, {
       path: 'repository',

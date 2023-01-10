@@ -1,15 +1,16 @@
 /* cspell:disable */
-const { error } = require('./_rule.js');
+import type eslint from 'eslint';
 
 // https://github.com/keithamus/sort-package-json/blob/master/defaultRules.md
-module.exports = {
+
+const config: eslint.Linter.Config = {
   extends: ['plugin:jsonc/recommended-with-jsonc', 'plugin:jsonc/prettier'],
   overrides: [
     {
       files: ['tsconfig*.json'],
       rules: {
         'jsonc/sort-keys': [
-          error,
+          'error',
           {
             order: ['$schema', 'display', 'extends', 'compilerOptions', 'include', 'exclude', 'files', 'references'],
             pathPattern: '^$',
@@ -25,7 +26,7 @@ module.exports = {
       files: ['package.json'],
       rules: {
         'jsonc/sort-keys': [
-          error,
+          'error',
           {
             order: [
               '$schema',
@@ -182,3 +183,5 @@ module.exports = {
   parser: 'jsonc-eslint-parser',
   plugins: ['jsonc'],
 };
+
+export = config;

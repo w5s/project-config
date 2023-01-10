@@ -2,7 +2,7 @@
 module.exports = {
   overrides: [
     {
-      extends: [require.resolve('./rules/jest')],
+      extends: [require.resolve('./lib/jest.js')],
       files: [
         '**/__mocks__/**/*.+(ts|tsx|js|jsx)',
         '**/__tests__/**/*.+(ts|tsx|js|jsx)',

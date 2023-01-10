@@ -1,20 +1,6 @@
-/** @type {'error'} */
-const error = 'error';
+import type { ESLint, Linter } from 'eslint';
 
-/** @type {'warn'} */
-const warn = 'warn';
-
-/** @type {'off'} */
-const off = 'off';
-
-/**
- * @typedef {import("eslint").ESLint.ConfigData} ESLintConfig
- */
-
-/**
- * @type {<T>(value: T[]|T|undefined) => T[]}
- */
-function toArray(value) {
+function toArray<T>(value: T[] | T | undefined): T[] {
   if (value == null) {
     return [];
   }
@@ -24,17 +10,13 @@ function toArray(value) {
   return [value];
 }
 
-/**
- * @type {<T>(left: T[]|T|undefined, right:T[]|T|undefined) => T[]}
- */
-function concatArray(left, right) {
+function concatArray<T>(left: T[] | T | undefined, right: T[] | T | undefined): T[] {
   return toArray(left).concat(toArray(right));
 }
 
-/** @type {(...configs: ESLintConfig[]) => ESLintConfig} */
-function concatESConfig(...configs) {
+export function concatESConfig(...configs: ESLint.ConfigData[]): ESLint.ConfigData {
   return configs.reduce(
-    (/** @type {ESLintConfig} */ returnValue, /** @type {ESLintConfig} */ config) =>
+    (returnValue, config) =>
       Object.assign({}, returnValue, config, {
         env: Object.assign({}, returnValue.env, config.env),
         extends: concatArray(returnValue.extends, config.extends),
@@ -54,12 +36,10 @@ function concatESConfig(...configs) {
   );
 }
 
-module.exports = {
-  concatESConfig,
-  error,
-  fixme: (
-    /** @type {import("eslint").Linter.RuleLevel|[import("eslint").Linter.RuleLevel, ..._1: any[]]|undefined} */ _status
-  ) => off,
-  off,
-  warn,
-};
+export function fixme(_status: Linter.RuleLevel | [Linter.RuleLevel, ...any[]] | undefined) {
+  return 'off' as const;
+}
+
+export function disable(_status: Linter.RuleLevel | [Linter.RuleLevel, ...any[]] | undefined, _explanation: string) {
+  return 'off' as const;
+}

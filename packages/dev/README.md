@@ -20,8 +20,8 @@ npm install --save-dev @w5s/dev
 ## Usage
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```json\n"${name}"\n```) -->
-```ts
-import { ECMA_VERSION } from "@w5s/dev";
+```json
+"@w5s/dev"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 

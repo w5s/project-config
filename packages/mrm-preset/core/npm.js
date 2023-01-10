@@ -1,5 +1,5 @@
 /* eslint-disable default-param-last */
-/* eslint-disable no-use-before-define */
+
 /* eslint-disable import/no-extraneous-dependencies */
 /* cSpell: disable */
 // @ts-check

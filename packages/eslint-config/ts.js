@@ -3,13 +3,13 @@ module.exports = {
   overrides: [
     {
       extends: [
-        require.resolve('./rules/base'),
-        require.resolve('./rules/jsdoc'),
-        require.resolve('./rules/import'),
-        require.resolve('./rules/unicorn'),
+        require.resolve('./lib/base.js'),
+        require.resolve('./lib/jsdoc.js'),
+        require.resolve('./lib/import.js'),
+        require.resolve('./lib/unicorn.js'),
         'plugin:import/typescript',
-        require.resolve('./rules/typescript'),
-        require.resolve('./rules/prettier'),
+        require.resolve('./lib/typescript.js'),
+        require.resolve('./lib/prettier.js'),
       ],
       files: ['*.+(ts|tsx)'],
       parser: '@typescript-eslint/parser',

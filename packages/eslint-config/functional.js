@@ -1,7 +1,5 @@
 // @see https://github.com/danielnixon/eslint-config-typed-fp/blob/master/src/index.ts
 
-const { off, error } = require('./rules/_rule.js');
-
 module.exports = {
   overrides: [
     {
@@ -12,19 +10,18 @@ module.exports = {
       ],
       rules: {
         'functional/functional-parameters': [
-          error,
+          'error',
           {
             allowArgumentsKeyword: false,
             allowRestParameter: false,
             enforceParameterCount: false,
           },
         ],
-
-        'functional/no-conditional-statement': off,
-        'functional/no-method-signature': off,
+        'functional/no-conditional-statement': 'off',
+        'functional/no-method-signature': 'off',
         'functional/prefer-readonly-type': [
           // @see https://github.com/jonaskello/eslint-plugin-functional/issues/51
-          off, // error
+          'off', // error
           {
             // When you call methods like `filter` and `concat` on an array (_even a readonly_ array) you always get back a mutable array.
             // By default prefer-readonly-type won't catch these cases, but with the checkImplicit option on it will.
@@ -34,15 +31,15 @@ module.exports = {
             checkImplicit: true,
           },
         ],
-        'functional/prefer-type-literal': off,
+        'functional/prefer-type-literal': 'off',
         'total-functions/no-unsafe-readonly-mutable-assignment': [
           // @see https://github.com/danielnixon/eslint-plugin-total-functions/issues?q=is%3Aissue+is%3Aopen+no-unsafe-readonly-mutable-assignment
-          off,
+          'off',
         ],
 
         'total-functions/no-unsafe-type-assertion': [
           // Don't need this given consistent-type-assertions bans type assertions entirely.,
-          off,
+          'off',
         ],
       },
     },
