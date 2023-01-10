@@ -1,4 +1,8 @@
 "use strict";
+/* eslint-disable global-require */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-require-imports */
 const getPackageScope = () => {
     try {
         const { name } = require('../package.json');

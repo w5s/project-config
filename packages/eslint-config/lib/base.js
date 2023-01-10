@@ -53,7 +53,6 @@ const config = (0, _rule_js_1.concatESConfig)(baseConfig,
         'no-param-reassign': ['error', { props: false }],
         // Allow for-of syntax
         // @ts-ignore
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call
         'no-restricted-syntax': baseConfig.rules['no-restricted-syntax'].filter(
         // @ts-ignore
         ({ selector }) => selector !== 'ForOfStatement'),
