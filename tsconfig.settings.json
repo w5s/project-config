@@ -2,8 +2,6 @@
   "$schema": "https://json.schemastore.org/tsconfig.json",
   "extends": "@w5s/ts-config",
   "compilerOptions": {
-    // FIXME: remove this
-    "forceConsistentCasingInFileNames": false,
     "preserveValueImports": false
   }
 }
