@@ -8,6 +8,7 @@
     "declarationMap": true,
     "forceConsistentCasingInFileNames": true,
     "importsNotUsedAsValues": "error", // Enforce import type instead of import
+    "isolatedModules": true,
     "lib": ["ES2020"],
     "module": "node16",
     "moduleDetection": "force",
