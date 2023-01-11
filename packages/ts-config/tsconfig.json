@@ -10,6 +10,7 @@
     "importsNotUsedAsValues": "error", // Enforce import type instead of import
     "lib": ["ES2020"],
     "module": "node16",
+    "moduleDetection": "force",
     "moduleResolution": "node16",
     "noEmitOnError": true,
     // "noFallthroughCasesInSwitch": true, => Prefer ESLint validation
