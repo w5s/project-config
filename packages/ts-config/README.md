@@ -27,6 +27,14 @@ In the `tsconfig.json` for your project
 }
 ```
 
+## Features
+
+- `tsconfig.json`
+  - All strict settings by default
+  - Emit JS with latest syntax, files should be transpiled if needed with other tool (esbuild, etc)
+  - Isolated modules
+  - Source map, Declaration and Declaration map
+
 ## Requirements
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=Typescript: ${peerDependencies.typescript}&unknownTxt= ) -->
 Typescript: >=4.7.x
