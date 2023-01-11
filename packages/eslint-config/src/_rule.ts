@@ -19,6 +19,8 @@ export function concatESConfig(...configs: ESLint.ConfigData[]): ESLint.ConfigDa
     (returnValue, config) =>
       Object.assign({}, returnValue, config, {
         env: Object.assign({}, returnValue.env, config.env),
+        globals: Object.assign({}, returnValue.globals, config.globals),
+        parserOptions: Object.assign({}, returnValue.parserOptions, config.parserOptions),
         extends: concatArray(returnValue.extends, config.extends),
         overrides: concatArray(returnValue.overrides, config.overrides),
         plugins: concatArray(returnValue.plugins, config.plugins),

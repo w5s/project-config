@@ -3,10 +3,10 @@ module.exports = {
   overrides: [
     {
       extends: [
-        require.resolve('./lib/base.js'),
-        require.resolve('./lib/jsdoc.js'),
-        require.resolve('./lib/import.js'),
-        require.resolve('./lib/unicorn.js'),
+        require.resolve('./lib/es/base.js'),
+        require.resolve('./lib/es/jsdoc.js'),
+        require.resolve('./lib/es/import.js'),
+        require.resolve('./lib/es/unicorn.js'),
         'plugin:import/typescript',
         require.resolve('./lib/typescript.js'),
         require.resolve('./lib/prettier.js'),

@@ -3493,7 +3493,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/dev@^1.0.0-alpha.0, @w5s/dev@workspace:packages/dev":
+"@w5s/dev@^1.0.0-alpha.1, @w5s/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
   languageName: unknown
@@ -3512,8 +3512,8 @@ __metadata:
     "@types/react": 18.0.26
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": 5.48.0
-    "@w5s/dev": ^1.0.0-alpha.0
-    "@w5s/prettier-config": ^1.0.6
+    "@w5s/dev": ^1.0.0-alpha.1
+    "@w5s/prettier-config": ^1.0.7
     eslint: 8.31.0
     eslint-config-airbnb-base: ^15.0.0
     eslint-config-prettier: 8.6.0
@@ -3558,7 +3558,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/prettier-config@^1.0.6, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
+"@w5s/prettier-config@^1.0.7, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
   version: 0.0.0-use.local
   resolution: "@w5s/prettier-config@workspace:packages/prettier-config"
   dependencies:

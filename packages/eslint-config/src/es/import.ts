@@ -1,7 +1,7 @@
 import type eslint from 'eslint';
 // @ts-ignore
 import importConfig from 'eslint-config-airbnb-base/rules/imports';
-import { concatESConfig, fixme, disable } from './_rule.js';
+import { concatESConfig, fixme, disable } from '../_rule.js';
 
 // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
 

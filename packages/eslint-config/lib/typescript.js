@@ -3,8 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const _rule_js_1 = require("./_rule.js");
-const base_js_1 = __importDefault(require("./base.js"));
-const import_js_1 = __importDefault(require("./import.js"));
+const base_js_1 = __importDefault(require("./es/base.js"));
+const import_js_1 = __importDefault(require("./es/import.js"));
 // Inspired by https://github.com/iamturns/eslint-config-airbnb-typescript/blob/master/lib/shared.js
 // Fix Hack : TS plugin seems to modify the rules
 const deepClone = (anyValue) => JSON.parse(JSON.stringify(anyValue));

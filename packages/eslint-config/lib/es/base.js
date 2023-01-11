@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const dev_1 = require("@w5s/dev");
-const _rule_js_1 = require("./_rule.js");
+const _rule_js_1 = require("../_rule.js");
 // Fix eslint shareable config (https://github.com/eslint/eslint/issues/3458)
 // @ts-ignore
 require("@rushstack/eslint-patch/modern-module-resolution.js");

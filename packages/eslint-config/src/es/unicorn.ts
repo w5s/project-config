@@ -1,5 +1,5 @@
 import type eslint from 'eslint';
-import { concatESConfig } from './_rule.js';
+import { concatESConfig } from '../_rule.js';
 
 const config: eslint.Linter.Config = concatESConfig(
   {

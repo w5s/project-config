@@ -1,7 +1,7 @@
 /* eslint-disable import/order */
 import type eslint from 'eslint';
 import { ECMA_VERSION } from '@w5s/dev';
-import { concatESConfig } from './_rule.js';
+import { concatESConfig } from '../_rule.js';
 
 // Fix eslint shareable config (https://github.com/eslint/eslint/issues/3458)
 // @ts-ignore

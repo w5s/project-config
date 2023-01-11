@@ -1,5 +1,5 @@
 "use strict";
-const _rule_js_1 = require("./_rule.js");
+const _rule_js_1 = require("../_rule.js");
 const config = (0, _rule_js_1.concatESConfig)({
     extends: ['plugin:promise/recommended'],
     plugins: ['promise'],

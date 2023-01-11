@@ -1,7 +1,7 @@
 import type eslint from 'eslint';
 import { fixme, concatESConfig } from './_rule.js';
-import baseConfig from './base.js';
-import importConfig from './import.js';
+import baseConfig from './es/base.js';
+import importConfig from './es/import.js';
 
 // Inspired by https://github.com/iamturns/eslint-config-airbnb-typescript/blob/master/lib/shared.js
 
