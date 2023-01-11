@@ -11,5 +11,11 @@
     "jsonc",
     "json5",
     "yaml"
-  ]
+  ],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/lib/**": true
+  }
 }
