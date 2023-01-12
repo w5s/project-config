@@ -5,14 +5,14 @@ import promiseConfig from './es/promise.js';
 import jsdocConfig from './es/jsdoc.js';
 import importConfig from './es/import.js';
 import unicornConfig from './es/unicorn.js';
-import prettierConfig from './prettier.js';
+// import prettierConfig from './prettier.js';
 
 const config: eslint.Linter.Config = concatESConfig(
   baseConfig,
   promiseConfig,
   jsdocConfig,
   importConfig,
-  unicornConfig,
-  prettierConfig
+  unicornConfig
+  // prettierConfig
 );
 export = config;

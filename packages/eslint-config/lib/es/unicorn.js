@@ -1,7 +1,12 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+// @ts-ignore unicorn config is not typed
+const recommended_js_1 = __importDefault(require("eslint-plugin-unicorn/configs/recommended.js"));
 const _rule_js_1 = require("../_rule.js");
-const config = (0, _rule_js_1.concatESConfig)({
-    extends: ['plugin:unicorn/recommended'],
+const config = (0, _rule_js_1.concatESConfig)(recommended_js_1.default, {
+    // extends: ['plugin:unicorn/recommended'],
     plugins: ['unicorn'],
     rules: {
         'unicode-bom': ['error', 'never'],

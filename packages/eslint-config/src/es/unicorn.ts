@@ -1,9 +1,12 @@
 import type eslint from 'eslint';
+// @ts-ignore unicorn config is not typed
+import unicornConfig from 'eslint-plugin-unicorn/configs/recommended.js';
 import { concatESConfig } from '../_rule.js';
 
 const config: eslint.Linter.Config = concatESConfig(
+  unicornConfig,
   {
-    extends: ['plugin:unicorn/recommended'],
+    // extends: ['plugin:unicorn/recommended'],
     plugins: ['unicorn'],
     rules: {
       'unicode-bom': ['error', 'never'],

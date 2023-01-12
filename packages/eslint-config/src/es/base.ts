@@ -4,21 +4,21 @@ import { ECMA_VERSION } from '@w5s/dev';
 import { concatESConfig } from '../_rule.js';
 
 // Fix eslint shareable config (https://github.com/eslint/eslint/issues/3458)
-// @ts-ignore
+// @ts-ignore No typing available
 import '@rushstack/eslint-patch/modern-module-resolution.js';
-// @ts-ignore
+// @ts-ignore No typing available
 import bestPractisesConfig from 'eslint-config-airbnb-base/rules/best-practices';
-// @ts-ignore
+// @ts-ignore No typing available
 import errorsConfig from 'eslint-config-airbnb-base/rules/errors';
-// @ts-ignore
+// @ts-ignore No typing available
 import es6Config from 'eslint-config-airbnb-base/rules/es6';
-// @ts-ignore
+// @ts-ignore No typing available
 import nodeConfig from 'eslint-config-airbnb-base/rules/node';
-// @ts-ignore
+// @ts-ignore No typing available
 import strictConfig from 'eslint-config-airbnb-base/rules/strict';
-// @ts-ignore
+// @ts-ignore No typing available
 import styleConfig from 'eslint-config-airbnb-base/rules/style';
-// @ts-ignore
+// @ts-ignore No typing available
 import variablesConfig from 'eslint-config-airbnb-base/rules/variables';
 
 const baseConfig = concatESConfig(
@@ -62,10 +62,9 @@ const config: eslint.Linter.Config = concatESConfig(
       // Too strict, for pure code prefer the functional plugin
       'no-param-reassign': ['error', { props: false }],
       // Allow for-of syntax
-      // @ts-ignore
-
+      // @ts-ignore No typing available
       'no-restricted-syntax': baseConfig.rules['no-restricted-syntax'].filter(
-        // @ts-ignore
+        // @ts-ignore No typing available
         ({ selector }) => selector !== 'ForOfStatement'
       ),
       // underscore is often used (mongodb, etc)
