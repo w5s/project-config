@@ -47,7 +47,7 @@ const config = (0, _rule_js_1.concatESConfig)({
 }, {
     overrides: [
         {
-            files: ['**/+(babel|jest|next|vue).config.js'],
+            files: ['**/*.config.cjs', '**/*.config.js'],
             rules: {
                 'unicorn/prefer-module': 'off',
             },

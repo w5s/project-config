@@ -50,7 +50,7 @@ const config: eslint.Linter.Config = concatESConfig(
   {
     overrides: [
       {
-        files: ['**/+(babel|jest|next|vue).config.js'],
+        files: ['**/*.config.cjs', '**/*.config.js'],
         rules: {
           'unicorn/prefer-module': 'off',
         },
