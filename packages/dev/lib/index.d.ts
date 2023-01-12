@@ -43,4 +43,5 @@ export declare const EXTENSIONS_WITHOUT_DOT: string[];
  * ```
  */
 export declare const CONFIG_GLOB_LIST: string[];
+export declare const EXTENSIONS_RESOURCES_REGEX = "\\.(css|sass|scss|less|gif|png|jpg|jpeg|svg|gql|graphql|yml|yaml)$";
 //# sourceMappingURL=index.d.ts.map

@@ -17,6 +17,10 @@ const config = (0, _rule_js_1.concatESConfig)(
  */
 {
     extends: ['plugin:@typescript-eslint/recommended-requiring-type-checking'],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+        sourceType: 'module',
+    },
     plugins: ['@typescript-eslint', 'import'],
     rules: {
         '@typescript-eslint/adjacent-overload-signatures': 'error',

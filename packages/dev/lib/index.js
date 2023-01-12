@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CONFIG_GLOB_LIST = exports.EXTENSIONS_WITHOUT_DOT = exports.EXTENSIONS = exports.IGNORE_LIST = exports.ECMA_VERSION = void 0;
+exports.EXTENSIONS_RESOURCES_REGEX = exports.CONFIG_GLOB_LIST = exports.EXTENSIONS_WITHOUT_DOT = exports.EXTENSIONS = exports.IGNORE_LIST = exports.ECMA_VERSION = void 0;
 /**
  * Supported ECMA version
  *
@@ -57,4 +57,5 @@ exports.EXTENSIONS_WITHOUT_DOT = exports.EXTENSIONS.map((ext) => ext.slice(1));
  * ```
  */
 exports.CONFIG_GLOB_LIST = ['**/.*.{js,cjs}', '**/*.config.{js,cjs}'];
+exports.EXTENSIONS_RESOURCES_REGEX = '\\.(css|sass|scss|less|gif|png|jpg|jpeg|svg|gql|graphql|yml|yaml)$';
 //# sourceMappingURL=index.js.map

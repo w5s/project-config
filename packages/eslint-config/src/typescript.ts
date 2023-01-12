@@ -18,6 +18,10 @@ const config: eslint.Linter.Config = concatESConfig(
    */
   {
     extends: ['plugin:@typescript-eslint/recommended-requiring-type-checking'],
+    parser: '@typescript-eslint/parser',
+    parserOptions: {
+      sourceType: 'module',
+    },
     plugins: ['@typescript-eslint', 'import'],
     rules: {
       '@typescript-eslint/adjacent-overload-signatures': 'error',
