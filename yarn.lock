@@ -3150,7 +3150,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/parse-gitignore@npm:^1.0.0":
+"@types/parse-gitignore@npm:1.0.0":
   version: 1.0.0
   resolution: "@types/parse-gitignore@npm:1.0.0"
   dependencies:
@@ -3493,7 +3493,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/dev@^1.0.0-alpha.1, @w5s/dev@workspace:packages/dev":
+"@w5s/dev@^1.0.0-alpha.2, @w5s/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
   languageName: unknown
@@ -3507,12 +3507,12 @@ __metadata:
     "@types/eslint": 8.4.10
     "@types/eslint-plugin-prettier": 3.1.0
     "@types/jest": 29.2.5
-    "@types/parse-gitignore": ^1.0.0
+    "@types/parse-gitignore": 1.0.0
     "@types/prettier": 2.7.2
     "@types/react": 18.0.26
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": 5.48.0
-    "@w5s/dev": ^1.0.0-alpha.1
+    "@w5s/dev": ^1.0.0-alpha.2
     "@w5s/prettier-config": ^1.0.7
     eslint: 8.31.0
     eslint-config-airbnb-base: ^15.0.0
