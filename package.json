@@ -90,7 +90,7 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "17.4.0",
+    "@commitlint/cli": "17.4.2",
     "@jest/globals": "latest",
     "@types/node": "16.18.11",
     "@w5s/commitlint-config": "workspace:*",
