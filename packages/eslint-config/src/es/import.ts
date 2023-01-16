@@ -28,13 +28,11 @@ const config: eslint.Linter.Config = concatESConfig(
       'import/unambiguous': fixme('off'), // Disable because proposal still in progress
     },
     settings: {
-      'import/ignore': [...IGNORE_LIST, EXTENSIONS_RESOURCES_REGEX],
-
-      // Append 'ts' extensions to Airbnb 'import/extensions' setting
       'import/extensions': EXTENSIONS,
 
       // Resolve type definition packages
       'import/external-module-folders': ['node_modules', 'node_modules/@types'],
+      'import/ignore': [...IGNORE_LIST, EXTENSIONS_RESOURCES_REGEX],
 
       // Apply special parsing for TypeScript files
       'import/parsers': {

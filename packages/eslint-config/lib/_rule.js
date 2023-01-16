@@ -14,15 +14,17 @@ function concatArray(left, right) {
     return toArray(left).concat(toArray(right));
 }
 function concatESConfig(...configs) {
-    return configs.reduce((returnValue, config) => Object.assign({}, returnValue, config, {
-        env: Object.assign({}, returnValue.env, config.env),
-        globals: Object.assign({}, returnValue.globals, config.globals),
-        parserOptions: Object.assign({}, returnValue.parserOptions, config.parserOptions),
+    return configs.reduce((returnValue, config) => ({
+        ...returnValue,
+        ...config,
+        env: { ...returnValue.env, ...config.env },
         extends: concatArray(returnValue.extends, config.extends),
+        globals: { ...returnValue.globals, ...config.globals },
         overrides: concatArray(returnValue.overrides, config.overrides),
+        parserOptions: { ...returnValue.parserOptions, ...config.parserOptions },
         plugins: concatArray(returnValue.plugins, config.plugins),
-        rules: Object.assign({}, returnValue.rules, config.rules),
-        settings: Object.assign({}, returnValue.settings, config.settings),
+        rules: { ...returnValue.rules, ...config.rules },
+        settings: { ...returnValue.settings, ...config.settings },
     }), {
         env: {},
         extends: [],

@@ -49,14 +49,6 @@
     "test:src": "scripts/test",
     "test_:rule-coverage": "eslint-find-rules --unused"
   },
-  "eslintConfig": {
-    "rules": {
-      "sort-keys-fix/sort-keys-fix": "error"
-    }
-  },
-  "eslintIgnore": [
-    "_tests"
-  ],
   "jest": {
     "testPathIgnorePatterns": [
       "node_modules",

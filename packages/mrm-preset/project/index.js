@@ -39,14 +39,13 @@ const npmRunAll = (script, allowEmpty) => `concurrently "npm:${script}:*" ${allo
 function task() {
   const rootPackageFile = packageJson();
   const rootUseWorkspace = pkg.hasWorkspaces(rootPackageFile);
-  const rootEngineMinVersion = Object.assign(
-    {
-      node: '>=12.x',
-      yarn: '>=1.x',
-      npm: '>=6.x',
-    },
-    mrmPackageJson.engines
-  );
+  const rootEngineMinVersion = {
+    // @ts-ignore
+    node: '>=12.x',
+    yarn: '>=1.x',
+    npm: '>=6.x',
+    ...mrmPackageJson.engines,
+  };
   const gitSupported = git.hasGit();
   const packageManager = pkg.manager(rootPackageFile);
   const gitRepository = git.remoteSync();

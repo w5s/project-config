@@ -69,7 +69,6 @@
       "@w5s/eslint-config"
     ],
     "rules": {
-      "prefer-object-spread": "off",
       "unicorn/prefer-module": "off"
     },
     "root": true

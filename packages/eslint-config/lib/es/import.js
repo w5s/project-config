@@ -29,11 +29,10 @@ imports_1.default,
         'import/unambiguous': (0, _rule_js_1.fixme)('off'), // Disable because proposal still in progress
     },
     settings: {
-        'import/ignore': [...dev_1.IGNORE_LIST, dev_1.EXTENSIONS_RESOURCES_REGEX],
-        // Append 'ts' extensions to Airbnb 'import/extensions' setting
         'import/extensions': dev_1.EXTENSIONS,
         // Resolve type definition packages
         'import/external-module-folders': ['node_modules', 'node_modules/@types'],
+        'import/ignore': [...dev_1.IGNORE_LIST, dev_1.EXTENSIONS_RESOURCES_REGEX],
         // Apply special parsing for TypeScript files
         'import/parsers': {
             '@typescript-eslint/parser': dev_1.EXTENSIONS.filter((ext) => !ext.includes('js')),
