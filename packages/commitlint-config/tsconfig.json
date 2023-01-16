@@ -1,9 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig.json",
-  "extends": "../../tsconfig.settings.json",
+  "extends": "../../tsconfig.settings-config.json",
   "compilerOptions": {
-    "esModuleInterop": true,
-    "module": "commonjs",
     "outDir": "./lib",
     "rootDir": "./src",
     "typeRoots": ["./types"]

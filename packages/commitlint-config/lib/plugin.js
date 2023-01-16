@@ -31,4 +31,3 @@ exports.gitmojiPlugin = {
         'type-valid-gitmoji': exports.typeValidGitmoji,
     },
 };
-//# sourceMappingURL=plugin.js.map

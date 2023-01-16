@@ -13,4 +13,3 @@ const config = (0, _rule_js_1.concatESConfig)(base_js_1.default, promise_js_1.de
 // prettierConfig
 );
 module.exports = config;
-//# sourceMappingURL=es.js.map

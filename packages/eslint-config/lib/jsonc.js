@@ -181,4 +181,3 @@ const config = {
     plugins: ['jsonc'],
 };
 module.exports = config;
-//# sourceMappingURL=jsonc.js.map

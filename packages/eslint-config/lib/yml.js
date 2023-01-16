@@ -5,4 +5,3 @@ const config = {
     plugins: ['yml'],
 };
 module.exports = config;
-//# sourceMappingURL=yml.js.map

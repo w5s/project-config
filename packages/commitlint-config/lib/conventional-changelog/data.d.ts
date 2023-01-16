@@ -25,4 +25,3 @@ export interface CommitConventionalTypeData {
     emoji: string;
     'en-US': string;
 }
-//# sourceMappingURL=data.d.ts.map

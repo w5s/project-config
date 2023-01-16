@@ -33,4 +33,3 @@ const config = {
     plugins: [plugin_js_1.gitmojiPlugin],
 };
 exports.default = config;
-//# sourceMappingURL=index.js.map

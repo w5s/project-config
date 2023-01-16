@@ -59,4 +59,3 @@ var GitmojiCode;
     }
     GitmojiCode.toConventionalCommitType = toConventionalCommitType;
 })(GitmojiCode = exports.GitmojiCode || (exports.GitmojiCode = {}));
-//# sourceMappingURL=gitmoji.js.map

@@ -10,4 +10,3 @@ const parserOpts = {
     revertCorrespondence: [`header`, `hash`],
 };
 exports.default = parserOpts;
-//# sourceMappingURL=parser-opts.js.map

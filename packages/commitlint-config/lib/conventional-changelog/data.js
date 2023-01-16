@@ -82,4 +82,3 @@ exports.CommitConventionalType = (() => {
     }
     return { ...enumObject, hasInstance, getData, values, parse };
 })();
-//# sourceMappingURL=data.js.map

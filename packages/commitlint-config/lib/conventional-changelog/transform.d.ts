@@ -18,4 +18,3 @@ export declare namespace displayType {
     }
 }
 export declare function createTransform(config: TransformConfig): WriterOptions.Transform.Function;
-//# sourceMappingURL=transform.d.ts.map

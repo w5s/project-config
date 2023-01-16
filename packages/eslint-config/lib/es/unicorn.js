@@ -71,4 +71,3 @@ const config = (0, _rule_js_1.concatESConfig)(recommended_js_1.default, {
     },
 });
 module.exports = config;
-//# sourceMappingURL=unicorn.js.map

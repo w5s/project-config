@@ -43,4 +43,3 @@ function disable(_status, _explanation) {
     return 'off';
 }
 exports.disable = disable;
-//# sourceMappingURL=_rule.js.map

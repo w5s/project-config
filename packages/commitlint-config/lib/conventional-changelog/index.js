@@ -7,4 +7,3 @@ const parser_opts_1 = __importDefault(require("./parser-opts"));
 exports.default = {
     parserOpts: parser_opts_1.default,
 };
-//# sourceMappingURL=index.js.map

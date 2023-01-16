@@ -10,4 +10,3 @@ export declare namespace GitmojiCode {
     function isValid(anyValue: string): anyValue is GitmojiCode;
     function toConventionalCommitType(gitmoji: GitmojiCode): CommitConventionalType;
 }
-//# sourceMappingURL=gitmoji.d.ts.map

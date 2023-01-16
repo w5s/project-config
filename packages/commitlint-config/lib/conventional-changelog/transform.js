@@ -88,4 +88,3 @@ function createTransform(config) {
     return transform;
 }
 exports.createTransform = createTransform;
-//# sourceMappingURL=transform.js.map

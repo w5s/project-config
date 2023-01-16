@@ -21,4 +21,3 @@ const writerOpts = {
     footerPartial: footer,
 };
 exports.default = writerOpts;
-//# sourceMappingURL=writer-opts.js.map

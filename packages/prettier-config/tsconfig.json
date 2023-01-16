@@ -1,6 +1,6 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "../../tsconfig.settings.json",
+  "extends": "../../tsconfig.settings-config.json",
   "compilerOptions": {
     "outDir": "lib"
   },

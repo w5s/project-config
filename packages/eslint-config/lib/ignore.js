@@ -38,4 +38,3 @@ const config = {
     ],
 };
 module.exports = config;
-//# sourceMappingURL=ignore.js.map

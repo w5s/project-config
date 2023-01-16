@@ -41,4 +41,3 @@ const config = {
     },
 };
 module.exports = config;
-//# sourceMappingURL=prettier.js.map

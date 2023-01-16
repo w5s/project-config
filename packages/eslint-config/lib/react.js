@@ -174,4 +174,3 @@ const config = {
     },
 };
 module.exports = config;
-//# sourceMappingURL=react.js.map

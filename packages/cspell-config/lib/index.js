@@ -96,4 +96,3 @@ const settings = {
     ],
 };
 module.exports = settings;
-//# sourceMappingURL=index.js.map

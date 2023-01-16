@@ -245,4 +245,3 @@ const config = (0, _rule_js_1.concatESConfig)(
     },
 });
 module.exports = config;
-//# sourceMappingURL=typescript.js.map

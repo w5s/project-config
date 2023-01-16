@@ -18,4 +18,3 @@ const config = {
     },
 };
 module.exports = config;
-//# sourceMappingURL=jsdoc.js.map
