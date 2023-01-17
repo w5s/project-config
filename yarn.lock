@@ -2975,7 +2975,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:*, @types/eslint@npm:8.4.10":
+"@types/eslint@npm:*, @types/eslint@npm:8.4.10, @types/eslint@npm:^8.4.10":
   version: 8.4.10
   resolution: "@types/eslint@npm:8.4.10"
   dependencies:
@@ -3434,6 +3434,9 @@ __metadata:
 "@w5s/dev@^1.0.0-alpha.2, @w5s/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
+  dependencies:
+    "@jest/globals": 29.3.1
+    "@types/eslint": ^8.4.10
   languageName: unknown
   linkType: soft
 
