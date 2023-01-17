@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const dev_1 = require("@w5s/dev");
-const _rule_js_1 = require("../_rule.js");
 // Fix eslint shareable config (https://github.com/eslint/eslint/issues/3458)
 // @ts-ignore No typing available
 require("@rushstack/eslint-patch/modern-module-resolution.js");
@@ -21,8 +20,8 @@ const strict_1 = __importDefault(require("eslint-config-airbnb-base/rules/strict
 const style_1 = __importDefault(require("eslint-config-airbnb-base/rules/style"));
 // @ts-ignore No typing available
 const variables_1 = __importDefault(require("eslint-config-airbnb-base/rules/variables"));
-const baseConfig = (0, _rule_js_1.concatESConfig)(best_practices_1.default, errors_1.default, es6_1.default, node_1.default, strict_1.default, style_1.default, variables_1.default);
-const config = (0, _rule_js_1.concatESConfig)(baseConfig, 
+const baseConfig = dev_1.ESLintConfig.concat(best_practices_1.default, errors_1.default, es6_1.default, node_1.default, strict_1.default, style_1.default, variables_1.default);
+const config = dev_1.ESLintConfig.concat(baseConfig, 
 // overrides
 {
     env: {

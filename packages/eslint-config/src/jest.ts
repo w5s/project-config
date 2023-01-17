@@ -1,7 +1,7 @@
+import { ESLintConfig } from '@w5s/dev';
 import type eslint from 'eslint';
-import { concatESConfig } from './_rule.js';
 
-const config: eslint.Linter.Config = concatESConfig(
+const config: eslint.Linter.Config = ESLintConfig.concat(
   {
     env: {
       'jest/globals': true,

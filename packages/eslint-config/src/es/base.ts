@@ -1,7 +1,5 @@
-/* eslint-disable import/order */
 import type eslint from 'eslint';
-import { ECMA_VERSION } from '@w5s/dev';
-import { concatESConfig } from '../_rule.js';
+import { ECMA_VERSION, ESLintConfig } from '@w5s/dev';
 
 // Fix eslint shareable config (https://github.com/eslint/eslint/issues/3458)
 // @ts-ignore No typing available
@@ -21,7 +19,7 @@ import styleConfig from 'eslint-config-airbnb-base/rules/style';
 // @ts-ignore No typing available
 import variablesConfig from 'eslint-config-airbnb-base/rules/variables';
 
-const baseConfig = concatESConfig(
+const baseConfig = ESLintConfig.concat(
   bestPractisesConfig,
   errorsConfig,
   es6Config,
@@ -31,7 +29,7 @@ const baseConfig = concatESConfig(
   variablesConfig
 );
 
-const config: eslint.Linter.Config = concatESConfig(
+const config: eslint.Linter.Config = ESLintConfig.concat(
   baseConfig,
   // overrides
   {

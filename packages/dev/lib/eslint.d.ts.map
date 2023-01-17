@@ -1,0 +1,1 @@
+{"version":3,"file":"eslint.d.ts","sourceRoot":"","sources":["../src/eslint.ts"],"names":[],"mappings":"AAAA,OAAO,KAAK,EAAE,MAAM,EAAE,MAAM,QAAQ,CAAC;AAgBrC,yBAAiB,YAAY,CAAC;IAC5B;;;OAGG;IACH,SAAgB,MAAM,CAAC,GAAG,OAAO,EAAE,MAAM,CAAC,UAAU,EAAE,GAAG,MAAM,CAAC,UAAU,CAuBzE;CACF"}

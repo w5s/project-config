@@ -7,7 +7,7 @@ const dev_1 = require("@w5s/dev");
 const imports_1 = __importDefault(require("eslint-config-airbnb-base/rules/imports"));
 const _rule_js_1 = require("../_rule.js");
 // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
-const config = (0, _rule_js_1.concatESConfig)(
+const config = dev_1.ESLintConfig.concat(
 // @ts-ignore
 imports_1.default, 
 // Overrides

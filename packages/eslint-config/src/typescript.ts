@@ -1,5 +1,6 @@
 import type eslint from 'eslint';
-import { fixme, concatESConfig } from './_rule.js';
+import { ESLintConfig } from '@w5s/dev';
+import { fixme } from './_rule.js';
 import baseConfig from './es/base.js';
 import importConfig from './es/import.js';
 
@@ -12,7 +13,7 @@ const baseImportRules = deepClone(importConfig.rules);
 
 const duplicateTSC = 'off'; // = "off because tsc already checks that"
 
-const config: eslint.Linter.Config = concatESConfig(
+const config: eslint.Linter.Config = ESLintConfig.concat(
   /**
    * Plugin rules
    */

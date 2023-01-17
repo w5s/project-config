@@ -1,6 +1,6 @@
 "use strict";
-const _rule_js_1 = require("./_rule.js");
-const config = (0, _rule_js_1.concatESConfig)({
+const dev_1 = require("@w5s/dev");
+const config = dev_1.ESLintConfig.concat({
     env: {
         'jest/globals': true,
     },

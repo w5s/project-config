@@ -2,6 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+const dev_1 = require("@w5s/dev");
 const _rule_js_1 = require("./_rule.js");
 const base_js_1 = __importDefault(require("./es/base.js"));
 const import_js_1 = __importDefault(require("./es/import.js"));
@@ -11,7 +12,7 @@ const deepClone = (anyValue) => JSON.parse(JSON.stringify(anyValue));
 const baseRules = deepClone(base_js_1.default.rules);
 const baseImportRules = deepClone(import_js_1.default.rules);
 const duplicateTSC = 'off'; // = "off because tsc already checks that"
-const config = (0, _rule_js_1.concatESConfig)(
+const config = dev_1.ESLintConfig.concat(
 /**
  * Plugin rules
  */

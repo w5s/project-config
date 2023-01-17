@@ -47,7 +47,27 @@
     "prepublishOnly": "npm run clean;npm run build",
     "spellcheck": "cspell --no-progress '**'",
     "test": "concurrently \"npm:test:*\" ",
-    "test:src": "exit 0"
+    "test:src": "jest"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "preset": "es-jest",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib/",
+      "/build/",
+      "/.cache/",
+      "/docs/",
+      "/public/"
+    ]
+  },
+  "dependencies": {
+    "@types/eslint": "^8.4.10"
+  },
+  "devDependencies": {
+    "@jest/globals": "^29.3.1"
   },
   "engines": {
     "node": ">=16.0.0"

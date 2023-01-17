@@ -1,7 +1,8 @@
+import { ESLintConfig } from '@w5s/dev';
 import type eslint from 'eslint';
-import { concatESConfig, fixme } from '../_rule.js';
+import { fixme } from '../_rule.js';
 
-const config: eslint.Linter.Config = concatESConfig({
+const config: eslint.Linter.Config = ESLintConfig.concat({
   extends: ['plugin:promise/recommended'],
   plugins: ['promise'],
   rules: {

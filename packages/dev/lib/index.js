@@ -1,61 +1,19 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __exportStar = (this && this.__exportStar) || function(m, exports) {
+    for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EXTENSIONS_RESOURCES_REGEX = exports.CONFIG_GLOB_LIST = exports.EXTENSIONS_WITHOUT_DOT = exports.EXTENSIONS = exports.IGNORE_LIST = exports.ECMA_VERSION = void 0;
-/**
- * Supported ECMA version
- *
- * @example
- * ```ts
- * ECMA_VERSION // 2022
- * ```
- */
-exports.ECMA_VERSION = 2022;
-/**
- * Files and folders to always ignore
- *
- * @example
- * ```ts
- * IGNORE_LIST // ['node_modules/', 'build/', ...]
- * ```
- */
-exports.IGNORE_LIST = [
-    'node_modules/',
-    'build/',
-    'cjs/',
-    'coverage/',
-    'dist/',
-    'dts/',
-    'esm/',
-    'lib/',
-    'mjs/',
-    'umd/',
-];
-/**
- * Supported file extensions
- *
- * @example
- * ```ts
- * EXTENSIONS // ['.ts', '.js', ...]
- * ```
- */
-exports.EXTENSIONS = ['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mjs'];
-/**
- * Supported file extensions without starting dots
- *
- * @example
- * ```ts
- * EXTENSIONS_WITHOUT_DOT // ['ts', 'js', ...]
- * ```
- */
-exports.EXTENSIONS_WITHOUT_DOT = exports.EXTENSIONS.map((ext) => ext.slice(1));
-/**
- * List of globs to find config related files
- *
- * @example
- * ```ts
- * CONFIG_GLOB_LIST // ['**\/.*.{js,cjs}', '**\/*.config.{js,cjs}']
- * ```
- */
-exports.CONFIG_GLOB_LIST = ['**/.*.{js,cjs}', '**/*.config.{js,cjs}'];
-exports.EXTENSIONS_RESOURCES_REGEX = '\\.(css|sass|scss|less|gif|png|jpg|jpeg|svg|gql|graphql|yml|yaml)$';
+__exportStar(require("./constant.js"), exports);
+__exportStar(require("./eslint.js"), exports);
 //# sourceMappingURL=index.js.map
