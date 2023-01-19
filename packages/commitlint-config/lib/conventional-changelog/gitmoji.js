@@ -10,7 +10,9 @@ var GitmojiCode;
 (function (GitmojiCode) {
     GitmojiCode.reEmoji = (0, emoji_regex_1.default)();
     const reGitmoji = new RegExp(`^${GitmojiCode.reEmoji.source}$`, GitmojiCode.reEmoji.flags);
-    const allGitmojiCodes = new Set(gitmojis_1.gitmojis.map((gitmoji) => gitmoji.code).concat(gitmojis_1.gitmojis.map((gitmoji) => gitmoji.emoji)));
+    const allGitmojiCodes = new Set(gitmojis_1.gitmojis
+        .map((gitmoji) => gitmoji.code)
+        .concat(gitmojis_1.gitmojis.map((gitmoji) => gitmoji.emoji)));
     const index = {
         // code: createIndex(gitmojis, 'code'),
         emoji: createIndex(gitmojis_1.gitmojis, 'emoji'),
@@ -51,8 +53,11 @@ var GitmojiCode;
         Object.entries(data));
         return new Map(entries.reduce((acc, [commitType, gitmojiUnicodeArray]) => acc
             .concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [gitmojiUnicode, commitType]))
+            .concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            .concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [index.emoji.get(gitmojiUnicode)?.code, commitType])), []));
+            index.emoji.get(gitmojiUnicode)?.code,
+            commitType,
+        ])), []));
     })();
     function toConventionalCommitType(gitmoji) {
         return conversionMap.get(gitmoji) ?? defaultType;

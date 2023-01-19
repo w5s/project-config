@@ -1,7 +1,7 @@
 declare module 'gitmojis' {
-  type GitmojiUnicode = string & { '@@GitmojiStyle': 'unicode' };
+  type GitmojiUnicode = string;
 
-  type GitmojiEmoji = string & { '@@GitmojiStyle': 'emoji' };
+  type GitmojiEmoji = string;
 
   interface Gitmoji {
     /**

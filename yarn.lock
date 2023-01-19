@@ -3583,7 +3583,7 @@ __metadata:
     "@types/conventional-changelog-writer": 4.0.2
     "@types/conventional-commits-parser": 3.0.3
     emoji-regex: ^10.2.1
-    gitmojis: ^3.13.0
+    gitmojis: ^3.13.4
   peerDependencies:
     "@commitlint/cli": ^16.0.0 || ^17.0.0
   peerDependenciesMeta:
@@ -7361,10 +7361,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"gitmojis@npm:^3.13.0":
-  version: 3.13.2
-  resolution: "gitmojis@npm:3.13.2"
-  checksum: 76dce7fba292e68d5b4fb5bd70672b8d58dddb1130949ea231e146e7494ec6f07c72a386aa540efc7c24137cdce7757b56d469f1a5a0708f44ea5a7a812022de
+"gitmojis@npm:^3.13.4":
+  version: 3.13.4
+  resolution: "gitmojis@npm:3.13.4"
+  checksum: f9d8ec955eb63e4a5c5ba7303a110d55c12b8bfb77f08e991f392d3d002c2c818f13b0ce2a087768affbd30add37155587bb12387051035206ff8e30e198e7f5
   languageName: node
   linkType: hard
 

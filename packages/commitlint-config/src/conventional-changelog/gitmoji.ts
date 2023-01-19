@@ -1,17 +1,19 @@
 import emojiRegexp from 'emoji-regex';
-import { Gitmoji, gitmojis, GitmojiUnicode, GitmojiEmoji } from 'gitmojis';
+import { Gitmoji, gitmojis } from 'gitmojis';
 import type { CommitConventionalType } from './data';
 
 export type GitmojiCode = GitmojiCode.Unicode | GitmojiCode.Emoji;
 export namespace GitmojiCode {
-  export type Unicode = GitmojiUnicode;
-  export type Emoji = GitmojiEmoji;
+  export type Unicode = string & { '@@GitmojiStyle': 'unicode' };
+  export type Emoji = string & { '@@GitmojiStyle': 'emoji' };
 
   export const reEmoji = emojiRegexp();
 
   const reGitmoji = new RegExp(`^${reEmoji.source}$`, reEmoji.flags);
   const allGitmojiCodes = new Set(
-    gitmojis.map((gitmoji) => gitmoji.code as GitmojiCode).concat(gitmojis.map((gitmoji) => gitmoji.emoji))
+    gitmojis
+      .map((gitmoji) => gitmoji.code as GitmojiCode)
+      .concat(gitmojis.map((gitmoji) => gitmoji.emoji as GitmojiCode))
   );
   const index = {
     // code: createIndex(gitmojis, 'code'),
@@ -60,8 +62,14 @@ export namespace GitmojiCode {
         (acc, [commitType, gitmojiUnicodeArray]) =>
           acc
             .concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [gitmojiUnicode, commitType]))
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            .concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [index.emoji.get(gitmojiUnicode)?.code!, commitType])),
+
+            .concat(
+              gitmojiUnicodeArray.map((gitmojiUnicode) => [
+                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+                index.emoji.get(gitmojiUnicode)?.code! as GitmojiCode,
+                commitType,
+              ])
+            ),
         []
       )
     );
