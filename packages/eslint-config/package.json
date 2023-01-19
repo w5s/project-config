@@ -84,7 +84,7 @@
     "@types/parse-gitignore": "1.0.0",
     "@types/prettier": "2.7.2",
     "@types/react": "18.0.26",
-    "@typescript-eslint/parser": "5.48.1",
+    "@typescript-eslint/parser": "5.48.2",
     "eslint": "8.31.0",
     "eslint-config-prettier": "8.6.0",
     "eslint-find-rules": "4.1.0",
