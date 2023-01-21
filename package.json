@@ -99,7 +99,7 @@
     "@w5s/prettier-config": "workspace:*",
     "@w5s/ts-config": "workspace:*",
     "concurrently": "7.6.0",
-    "cspell": "6.18.1",
+    "cspell": "6.19.2",
     "es-jest": "2.1.0",
     "eslint": "8.32.0",
     "eslint-plugin-sort-keys-fix": "1.1.2",
