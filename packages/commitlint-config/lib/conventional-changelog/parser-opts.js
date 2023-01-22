@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const gitmoji_1 = require("./gitmoji");
 const parserOpts = {
-    headerPattern: new RegExp(`^(:\\w*:|${gitmoji_1.GitmojiCode.reEmoji.source}) (?:\\((.*)\\):? )?(.*)$`),
+    headerPattern: new RegExp(`^(:\\w*:|${gitmoji_1.Emoji.reEmojiUnicode.source}) (?:\\((.*)\\):? )?(.*)$`),
     headerCorrespondence: ['type', 'scope', 'subject'],
     revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i,
     noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'],

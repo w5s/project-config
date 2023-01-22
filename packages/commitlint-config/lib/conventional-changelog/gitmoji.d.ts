@@ -1,15 +1,28 @@
 import type { CommitConventionalType } from './data';
-export type GitmojiCode = GitmojiCode.Unicode | GitmojiCode.Emoji;
-export declare namespace GitmojiCode {
+export type Emoji = Emoji.Unicode | Emoji.Text;
+export declare namespace Emoji {
+    const reEmojiUnicode: RegExp;
+    const reEmojiText: RegExp;
     type Unicode = string & {
-        '@@GitmojiStyle': 'unicode';
+        '@@EmojiStyle': 'unicode';
     };
-    type Emoji = string & {
-        '@@GitmojiStyle': 'emoji';
+    type Text = string & {
+        '@@EmojiStyle': 'text';
     };
-    const reEmoji: RegExp;
     function isUnicode(anyValue: string): anyValue is Unicode;
-    function isEmoji(anyValue: string): anyValue is Emoji;
+    function isText(anyValue: string): anyValue is Text;
+    function hasInstance(anyValue: string): anyValue is Emoji;
+}
+export type GitmojiCode = Emoji & {
+    '@@Gitmoji': true;
+};
+export declare namespace GitmojiCode {
+    type Unicode = Emoji.Unicode & {
+        '@@Gitmoji': true;
+    };
+    type Emoji = Emoji.Text & {
+        '@@Gitmoji': true;
+    };
     function isValid(anyValue: string): anyValue is GitmojiCode;
     function toConventionalCommitType(gitmoji: GitmojiCode): CommitConventionalType;
 }

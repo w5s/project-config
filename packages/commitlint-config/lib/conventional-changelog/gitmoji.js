@@ -3,13 +3,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.GitmojiCode = void 0;
+exports.GitmojiCode = exports.Emoji = void 0;
 const emoji_regex_1 = __importDefault(require("emoji-regex"));
 const gitmojis_1 = require("gitmojis");
+var Emoji;
+(function (Emoji) {
+    Emoji.reEmojiUnicode = (0, emoji_regex_1.default)();
+    Emoji.reEmojiText = /:(\w+):/;
+    const reMatchOnly = (input) => new RegExp(`^${input.source}$`, input.flags);
+    const _reEmojiUnicode = reMatchOnly(Emoji.reEmojiUnicode);
+    const _reEmojiText = reMatchOnly(Emoji.reEmojiText);
+    function isUnicode(anyValue) {
+        return anyValue.match(_reEmojiUnicode) != null;
+    }
+    Emoji.isUnicode = isUnicode;
+    function isText(anyValue) {
+        return anyValue.match(_reEmojiText) != null;
+    }
+    Emoji.isText = isText;
+    function hasInstance(anyValue) {
+        return isText(anyValue) || isUnicode(anyValue);
+    }
+    Emoji.hasInstance = hasInstance;
+})(Emoji = exports.Emoji || (exports.Emoji = {}));
 var GitmojiCode;
 (function (GitmojiCode) {
-    GitmojiCode.reEmoji = (0, emoji_regex_1.default)();
-    const reGitmoji = new RegExp(`^${GitmojiCode.reEmoji.source}$`, GitmojiCode.reEmoji.flags);
+    // export const reEmoji = emojiRegexp();
     const allGitmojiCodes = new Set(gitmojis_1.gitmojis
         .map((gitmoji) => gitmoji.code)
         .concat(gitmojis_1.gitmojis.map((gitmoji) => gitmoji.emoji)));
@@ -20,14 +39,6 @@ var GitmojiCode;
     function createIndex(list, key) {
         return new Map(list.map((gitmoji) => [gitmoji[key], gitmoji]));
     }
-    function isUnicode(anyValue) {
-        return anyValue.match(reGitmoji) != null;
-    }
-    GitmojiCode.isUnicode = isUnicode;
-    function isEmoji(anyValue) {
-        return anyValue.match(/^:(\w+):$/) != null;
-    }
-    GitmojiCode.isEmoji = isEmoji;
     function isValid(anyValue) {
         return allGitmojiCodes.has(anyValue);
     }

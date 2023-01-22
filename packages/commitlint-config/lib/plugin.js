@@ -4,8 +4,8 @@ exports.gitmojiPlugin = exports.typeValidGitmoji = exports.typeGitmojiStyle = vo
 const gitmoji_1 = require("./conventional-changelog/gitmoji");
 const $if = (when = 'always') => (cond) => when === 'always' ? cond : !cond;
 const typeGitmojiStyle = (parsed, when = 'always', value = 'unicode') => {
-    const isUnicode = parsed.type != null && gitmoji_1.GitmojiCode.isUnicode(parsed.type);
-    const isEmoji = parsed.type != null && gitmoji_1.GitmojiCode.isEmoji(parsed.type);
+    const isUnicode = parsed.type != null && gitmoji_1.Emoji.isUnicode(parsed.type);
+    const isEmoji = parsed.type != null && gitmoji_1.Emoji.isText(parsed.type);
     return value === 'unicode'
         ? $if(when)(isUnicode)
             ? [true]

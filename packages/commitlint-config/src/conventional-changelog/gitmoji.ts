@@ -2,14 +2,39 @@ import emojiRegexp from 'emoji-regex';
 import { Gitmoji, gitmojis } from 'gitmojis';
 import type { CommitConventionalType } from './data';
 
-export type GitmojiCode = GitmojiCode.Unicode | GitmojiCode.Emoji;
+export type Emoji = Emoji.Unicode | Emoji.Text;
+export namespace Emoji {
+  export const reEmojiUnicode = emojiRegexp();
+
+  export const reEmojiText = /:(\w+):/;
+
+  const reMatchOnly = (input: RegExp) => new RegExp(`^${input.source}$`, input.flags);
+  const _reEmojiUnicode = reMatchOnly(reEmojiUnicode);
+  const _reEmojiText = reMatchOnly(reEmojiText);
+
+  export type Unicode = string & { '@@EmojiStyle': 'unicode' };
+  export type Text = string & { '@@EmojiStyle': 'text' };
+
+  export function isUnicode(anyValue: string): anyValue is Unicode {
+    return anyValue.match(_reEmojiUnicode) != null;
+  }
+
+  export function isText(anyValue: string): anyValue is Text {
+    return anyValue.match(_reEmojiText) != null;
+  }
+
+  export function hasInstance(anyValue: string): anyValue is Emoji {
+    return isText(anyValue) || isUnicode(anyValue);
+  }
+}
+
+export type GitmojiCode = Emoji & { '@@Gitmoji': true };
 export namespace GitmojiCode {
-  export type Unicode = string & { '@@GitmojiStyle': 'unicode' };
-  export type Emoji = string & { '@@GitmojiStyle': 'emoji' };
+  export type Unicode = Emoji.Unicode & { '@@Gitmoji': true };
+  export type Emoji = Emoji.Text & { '@@Gitmoji': true };
 
-  export const reEmoji = emojiRegexp();
+  // export const reEmoji = emojiRegexp();
 
-  const reGitmoji = new RegExp(`^${reEmoji.source}$`, reEmoji.flags);
   const allGitmojiCodes = new Set(
     gitmojis
       .map((gitmoji) => gitmoji.code as GitmojiCode)
@@ -22,14 +47,6 @@ export namespace GitmojiCode {
 
   function createIndex<K extends keyof Gitmoji>(list: readonly Gitmoji[], key: K): ReadonlyMap<Gitmoji[K], Gitmoji> {
     return new Map(list.map((gitmoji) => [gitmoji[key], gitmoji]));
-  }
-
-  export function isUnicode(anyValue: string): anyValue is Unicode {
-    return anyValue.match(reGitmoji) != null;
-  }
-
-  export function isEmoji(anyValue: string): anyValue is Emoji {
-    return anyValue.match(/^:(\w+):$/) != null;
   }
 
   export function isValid(anyValue: string): anyValue is GitmojiCode {
