@@ -20,6 +20,7 @@ function task() {
     update: (config) => ({
       ...config,
       '*.{json,jsonc,json5}': [...(hasESLint ? ['eslint'] : [])],
+      '*.{yml,yaml}': [...(hasESLint ? ['eslint'] : [])],
       '*.js?(x)': [...(hasESLint ? ['eslint'] : [])],
       '*.ts?(x)': [
         // TODO: https://github.com/okonet/lint-staged/issues/825
