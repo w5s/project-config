@@ -34,7 +34,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
     const tsConfig = json('tsconfig.json');
 
     // Should be run first
-    gitIgnore('Typescript', ['lib/*', '*.tsbuildinfo', 'typings/*']);
+    gitIgnore('Typescript', ['lib/', '*.tsbuildinfo', 'typings/']);
     eslintIgnore(['lib/']);
 
     // const excludeList = ['**/*.test.*', '**/*.spec.*', '**/__tests__/**'];
