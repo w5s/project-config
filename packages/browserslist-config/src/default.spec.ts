@@ -1,5 +1,6 @@
-const browserslist = require('browserslist');
-const config = require('./default.js');
+import browserslist from 'browserslist';
+import { describe, it, expect } from '@jest/globals';
+import config from './default.js';
 
 describe('browserslist default config', () => {
   it('should not resolve to empty list', () => {

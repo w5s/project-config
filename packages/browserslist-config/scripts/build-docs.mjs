@@ -99,7 +99,7 @@ async function buildPageContent() {
     };
   }
 
-  const browsersListConfig = await Package.readBrowsersListConfig('default.js');
+  const browsersListConfig = await Package.readBrowsersListConfig('lib/default.js');
   const url = BrowserListDev.getURL(browsersListConfig);
   const supportedBrowsers = browserslist(browsersListConfig);
   const grouped = groupsByDeviceType(supportedBrowsers);

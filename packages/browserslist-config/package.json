@@ -18,15 +18,25 @@
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
   "type": "commonjs",
+  "exports": {
+    ".": "./index.js",
+    "./lib/*": "./lib/*"
+  },
+  "typings": "./index.d.ts",
   "files": [
+    "lib/**/!(*.spec).d.ts",
+    "lib/**/!(*.spec).d.ts.map",
+    "lib/**/!(*.spec).js.map",
+    "lib/**/!(*.spec).js",
+    "src/**/!(*.spec).ts",
     "index.js",
-    "default.js",
-    "development.js"
+    "index.d.ts"
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
-    "build:docs": "yarn docs",
+    "build:tsc": "tsc;yarn docs",
     "clean": "concurrently \"npm:clean:*\" \":\"",
+    "clean:src": "rm -rf lib/*",
     "docs": "node scripts/build-docs.mjs && md-magic --path '**/*.md' --ignore='node_modules'",
     "format": "concurrently \"npm:format:*\" \":\"",
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
@@ -37,7 +47,22 @@
     "test": "concurrently \"npm:test:*\" ",
     "test:src": "jest"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^(\\.{1,2}/.*)\\.js$": "$1"
+    },
+    "preset": "es-jest",
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/lib/",
+      "/build/",
+      "/.cache/",
+      "/docs/",
+      "/public/"
+    ]
+  },
   "devDependencies": {
+    "@jest/globals": "29.4.0",
     "browserslist": "4.21.4",
     "lodash-es": "4.17.21"
   },
