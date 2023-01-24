@@ -14,21 +14,21 @@ function tryResolve(name) {
 /**
  * @template T
  * @param {boolean} condition
- * @param {T} value
+ * @param {() => T} getValue
  */
-function includeIf(condition, value) {
-  return condition ? [value] : [];
+function includeIf(condition, getValue) {
+  return condition ? [getValue()] : [];
 }
 
 module.exports = {
   extends: [
     require.resolve('./ignore.js'),
     require.resolve('./es.js'),
-    ...includeIf(tryResolve('typescript'), require.resolve('./ts.js')),
+    ...includeIf(tryResolve('typescript'), () => require.resolve('./ts.js')),
     require.resolve('./json.js'),
     require.resolve('./yml.js'),
     require.resolve('./jest.js'),
-    ...includeIf(tryResolve('react'), require.resolve('./react.js')),
+    ...includeIf(tryResolve('react'), () => require.resolve('./react.js')),
   ],
   root: true,
 };
