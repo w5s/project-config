@@ -23,6 +23,17 @@ imports_1.default,
             },
         ],
         'import/no-deprecated': 'off',
+        'import/no-extraneous-dependencies': [
+            'error',
+            {
+                ...imports_1.default.rules['import/no-extraneous-dependencies'][1],
+                devDependencies: [
+                    ...imports_1.default.rules['import/no-extraneous-dependencies'][1].devDependencies,
+                    '**/*.config.[jt]s?(x)',
+                    '**/*.config.cjs',
+                ],
+            },
+        ],
         'import/no-named-as-default': 'off',
         'import/no-unused-modules': 'off',
         'import/prefer-default-export': 'off',

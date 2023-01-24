@@ -22,6 +22,17 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
         },
       ],
       'import/no-deprecated': 'off', // Performance issues
+      'import/no-extraneous-dependencies': [
+        'error',
+        {
+          ...importConfig.rules['import/no-extraneous-dependencies'][1],
+          devDependencies: [
+            ...importConfig.rules['import/no-extraneous-dependencies'][1].devDependencies,
+            '**/*.config.[jt]s?(x)',
+            '**/*.config.cjs',
+          ],
+        },
+      ],
       'import/no-named-as-default': 'off', // Performance issues
       'import/no-unused-modules': 'off', // Performance issues
       'import/prefer-default-export': 'off', // Not aligned, default export does not bring sufficient semantic
