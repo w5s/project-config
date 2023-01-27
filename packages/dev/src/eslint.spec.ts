@@ -19,6 +19,12 @@ describe('ESLintConfig', () => {
             rules: {
               'rule-a': 'error',
             },
+            parserOptions: {
+              a: true,
+            },
+            settings: {
+              sa: true,
+            },
           },
           {
             env: {
@@ -33,6 +39,12 @@ describe('ESLintConfig', () => {
             rules: {
               'rule-b': 'error',
             },
+            parserOptions: {
+              b: true,
+            },
+            settings: {
+              sb: true,
+            },
           },
           {
             env: {
@@ -46,6 +58,12 @@ describe('ESLintConfig', () => {
             plugins: ['plugin-c'],
             rules: {
               'rule-c': 'error',
+            },
+            parserOptions: {
+              c: true,
+            },
+            settings: {
+              sc: true,
             },
           }
         )
@@ -62,14 +80,22 @@ describe('ESLintConfig', () => {
           gc: true,
         },
         overrides: [{ files: 'a' }, { files: 'b' }, { files: 'c' }],
-        parserOptions: {},
+        parserOptions: {
+          a: true,
+          b: true,
+          c: true,
+        },
         plugins: ['plugin-a', 'plugin-b', 'plugin-c'],
         rules: {
           'rule-a': 'error',
           'rule-b': 'error',
           'rule-c': 'error',
         },
-        settings: {},
+        settings: {
+          sa: true,
+          sb: true,
+          sc: true,
+        },
       });
     });
   });

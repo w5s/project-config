@@ -36,7 +36,9 @@ export namespace ESLintConfig {
       {
         env: {},
         extends: [],
+        globals: {},
         overrides: [],
+        parserOptions: {},
         plugins: [],
         rules: {},
         settings: {},

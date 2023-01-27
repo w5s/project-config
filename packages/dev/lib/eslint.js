@@ -34,7 +34,9 @@ var ESLintConfig;
         }), {
             env: {},
             extends: [],
+            globals: {},
             overrides: [],
+            parserOptions: {},
             plugins: [],
             rules: {},
             settings: {},
