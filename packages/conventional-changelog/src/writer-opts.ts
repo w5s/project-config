@@ -3,6 +3,8 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { createTransform } from './transform.js';
 
+export interface WriterOptions extends Options {}
+
 const basePath = resolve(__dirname, './templates');
 
 const template = readFileSync(`${basePath}/template.hbs`, 'utf8');
@@ -11,7 +13,7 @@ const commit = readFileSync(`${basePath}/commit.hbs`, 'utf8');
 const footer = readFileSync(`${basePath}/footer.hbs`, 'utf8');
 const author = readFileSync(`${basePath}/author.hbs`, 'utf8');
 
-const writerOpts: Options = {
+export const writerOpts: WriterOptions = {
   transform: createTransform({}),
   groupBy: 'type',
   commitGroupsSort: 'title',
@@ -22,5 +24,3 @@ const writerOpts: Options = {
   commitPartial: commit.replace(/{{gitUserInfo}}/g, author),
   footerPartial: footer,
 };
-
-export default writerOpts;

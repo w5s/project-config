@@ -4,11 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const types_1 = require("@commitlint/types");
-const index_js_1 = __importDefault(require("./conventional-changelog/index.js"));
+const conventional_changelog_1 = __importDefault(require("@w5s/conventional-changelog"));
 const plugin_js_1 = require("./plugin.js");
 const { Error, Warning, Disabled } = types_1.RuleConfigSeverity;
 const parserPreset = {
-    parserOpts: index_js_1.default.parserOpts,
+    parserOpts: conventional_changelog_1.default.parserOpts,
 };
 const rules = {
     'body-leading-blank': [Warning, 'always'],

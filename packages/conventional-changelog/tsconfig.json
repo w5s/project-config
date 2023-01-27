@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/tsconfig.json",
+  "extends": "../../tsconfig.settings-config.json",
+  "compilerOptions": {
+    "outDir": "./lib",
+    "rootDir": "./src",
+    "typeRoots": ["./types"]
+  },
+  "include": ["src"]
+}

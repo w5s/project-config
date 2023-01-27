@@ -1,11 +1,11 @@
-import { RuleConfigSeverity, type QualifiedRules, type LintOptions } from '@commitlint/types';
-import conventionalChangelog from './conventional-changelog/index.js';
+import { RuleConfigSeverity, type QualifiedRules, type LintOptions, ParserOptions } from '@commitlint/types';
+import conventionalChangelog from '@w5s/conventional-changelog';
 import { gitmojiPlugin } from './plugin.js';
 
 const { Error, Warning, Disabled } = RuleConfigSeverity;
 
 const parserPreset: LintOptions = {
-  parserOpts: conventionalChangelog.parserOpts,
+  parserOpts: conventionalChangelog.parserOpts as ParserOptions,
 };
 
 const rules: QualifiedRules = {

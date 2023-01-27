@@ -1,7 +1,9 @@
-import type { ParserOptions } from '@commitlint/types';
+import type { Options } from 'conventional-commits-parser';
 import { Emoji } from './gitmoji';
 
-const parserOpts: ParserOptions = {
+export interface ParserOptions extends Options {}
+
+export const parserOpts: ParserOptions = {
   headerPattern: new RegExp(`^(:\\w*:|${Emoji.reEmojiUnicode.source}) (?:\\((.*)\\):? )?(.*)$`),
   headerCorrespondence: ['type', 'scope', 'subject'],
   revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i,
@@ -9,4 +11,3 @@ const parserOpts: ParserOptions = {
   // revertPattern: /revert:\s([\S\s]*?)\s*this reverts commit (\w*)\./i,
   revertCorrespondence: [`header`, `hash`],
 };
-export default parserOpts;
