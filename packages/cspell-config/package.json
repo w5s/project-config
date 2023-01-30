@@ -70,7 +70,7 @@
   "devDependencies": {
     "@cspell/cspell-tools": "6.19.2",
     "@cspell/cspell-types": "6.19.2",
-    "@jest/globals": "29.3.1"
+    "@jest/globals": "29.4.1"
   },
   "peerDependencies": {
     "cspell": "^6.0.0"
