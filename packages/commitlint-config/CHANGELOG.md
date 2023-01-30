@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.8 (2023-01-30)</small>
+
+- ✨ Add @w5s/conventional-changelog package ([3d29c81](https://github.com/w5s/project-config/commit/3d29c81))
+- ⬆️ Upgrade jest monorepo ([f3007ce](https://github.com/w5s/project-config/commit/f3007ce))
+- 🗑️ Remove old files ([1cbdc9e](https://github.com/w5s/project-config/commit/1cbdc9e))
+
 ## [1.0.7](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@1.0.6...@w5s/commitlint-config@1.0.7) (2023-01-22)
 
 **Note:** Version bump only for package @w5s/commitlint-config

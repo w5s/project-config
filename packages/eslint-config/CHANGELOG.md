@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.49 (2023-01-30)
+
+- ♻️ Lazy load modules ([d015688](https://github.com/w5s/project-config/commit/d015688))
+- ✨ Enable no-void allowStatement ([fa9f3dc](https://github.com/w5s/project-config/commit/fa9f3dc))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.49.0 ([9d4fae0](https://github.com/w5s/project-config/commit/9d4fae0))
+- ⬆️ Upgrade jest monorepo ([f3007ce](https://github.com/w5s/project-config/commit/f3007ce))
+- 🐛 Fix extraneous dependencies errors ([09a8044](https://github.com/w5s/project-config/commit/09a8044))
+
 # [1.0.0-alpha.48](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.0-alpha.47...@w5s/eslint-config@1.0.0-alpha.48) (2023-01-22)
 
 **Note:** Version bump only for package @w5s/eslint-config

@@ -1,6 +1,6 @@
 {
   "name": "@w5s/eslint-config",
-  "version": "1.0.0-alpha.48",
+  "version": "1.0.0-alpha.49",
   "description": "ESLint configuration presets",
   "keywords": [
     "eslint",
@@ -59,7 +59,7 @@
     "@rushstack/eslint-patch": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
-    "@w5s/dev": "^1.0.0-alpha.3",
+    "@w5s/dev": "^1.0.0-alpha.4",
     "@w5s/prettier-config": "^1.0.8",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^8.0.0",
