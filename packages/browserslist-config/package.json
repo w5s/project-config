@@ -62,7 +62,7 @@
     ]
   },
   "devDependencies": {
-    "@jest/globals": "29.4.0",
+    "@jest/globals": "29.4.1",
     "browserslist": "4.21.4",
     "lodash-es": "4.17.21"
   },
