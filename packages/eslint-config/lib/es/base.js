@@ -61,6 +61,8 @@ const config = dev_1.ESLintConfig.concat(baseConfig,
         'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
         // Allow in some cases https://github.com/airbnb/javascript/issues/1089#issuecomment-1024351821
         'no-use-before-define': ['error', 'nofunc'],
+        // Allow statements, to be compatible with '@typescript-eslint/no-floating-promises' fix
+        'no-void': ['error', { allowAsStatement: true }],
     },
 });
 module.exports = config;
