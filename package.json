@@ -56,6 +56,9 @@
     ],
     "*.{json,jsonc,json5}": [
       "eslint"
+    ],
+    "*.{yml,yaml}": [
+      "eslint"
     ]
   },
   "eslintConfig": {
