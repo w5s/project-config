@@ -11,5 +11,6 @@
       "message": "🔖 Publish"
     }
   },
-  "version": "independent"
+  "version": "independent",
+  "changelogPreset": "@w5s/conventional-changelog"
 }
