@@ -1,4 +1,5 @@
 dbaeumer
+espree
 jpolo
 rushstack
 seatonjiang

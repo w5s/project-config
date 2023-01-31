@@ -3,7 +3,14 @@
   "language": "en",
   "import": ["@w5s/cspell-config"],
   "dictionaries": ["w5s-typescript"],
-  "ignoreWords": ["ispec", "postbuild", "postconfigure", "modulemap", "venv"],
+  "ignoreWords": [
+    "ispec",
+    "postbuild",
+    "postconfigure",
+    "modulemap",
+    "venv",
+    "nofunc"
+  ],
   "flagWords": [],
   "ignorePaths": [
     "packages/eslint-config/rules/**",

@@ -5,7 +5,7 @@ import { ECMA_VERSION, ESLintConfig } from '@w5s/dev';
 // @ts-ignore No typing available
 import '@rushstack/eslint-patch/modern-module-resolution.js';
 // @ts-ignore No typing available
-import bestPractisesConfig from 'eslint-config-airbnb-base/rules/best-practices';
+import bestPracticesConfig from 'eslint-config-airbnb-base/rules/best-practices';
 // @ts-ignore No typing available
 import errorsConfig from 'eslint-config-airbnb-base/rules/errors';
 // @ts-ignore No typing available
@@ -20,7 +20,7 @@ import styleConfig from 'eslint-config-airbnb-base/rules/style';
 import variablesConfig from 'eslint-config-airbnb-base/rules/variables';
 
 const baseConfig = ESLintConfig.concat(
-  bestPractisesConfig,
+  bestPracticesConfig,
   errorsConfig,
   es6Config,
   nodeConfig,
