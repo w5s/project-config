@@ -28,7 +28,6 @@ module.exports = {
     require.resolve('./json.js'),
     require.resolve('./yml.js'),
     require.resolve('./jest.js'),
-    ...includeIf(tryResolve('react'), () => require.resolve('./react.js')),
   ],
   root: true,
 };

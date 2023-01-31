@@ -70,7 +70,6 @@
     "eslint-plugin-jsonc": "^2.4.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-total-functions": "^6.0.0",
     "eslint-plugin-unicorn": "^45.0.0",
     "eslint-plugin-yml": "^1.1.0",
