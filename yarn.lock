@@ -3709,7 +3709,7 @@ __metadata:
     "@commitlint/lint": 17.4.2
     "@commitlint/types": ^17.0.0
     "@jest/globals": 29.4.1
-    "@w5s/conventional-changelog": ^1.0.0-alpha.0
+    "@w5s/conventional-changelog": ^1.0.0-alpha.1
   peerDependencies:
     "@commitlint/cli": ^16.0.0 || ^17.0.0
   peerDependenciesMeta:
@@ -3718,7 +3718,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/conventional-changelog@^1.0.0-alpha.0, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
+"@w5s/conventional-changelog@^1.0.0-alpha.1, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
   version: 0.0.0-use.local
   resolution: "@w5s/conventional-changelog@workspace:packages/conventional-changelog"
   dependencies:
@@ -3747,7 +3747,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/dev@^1.0.0-alpha.3, @w5s/dev@workspace:packages/dev":
+"@w5s/dev@^1.0.0-alpha.4, @w5s/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
@@ -3769,7 +3769,7 @@ __metadata:
     "@types/react": 18.0.27
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": 5.49.0
-    "@w5s/dev": ^1.0.0-alpha.3
+    "@w5s/dev": ^1.0.0-alpha.4
     "@w5s/prettier-config": ^1.0.8
     eslint: 8.32.0
     eslint-config-airbnb-base: ^15.0.0
