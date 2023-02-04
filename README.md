@@ -5,6 +5,7 @@
 <!-- AUTO-GENERATED-CONTENT:START (SUBPACKAGE_LIST:verbose=true) -->
 * [@w5s/browserslist-config](packages/browserslist-config) - Browserslist support shared configuration
 * [@w5s/commitlint-config](packages/commitlint-config) - Commitlint configuration presets
+* [@w5s/conventional-changelog](packages/conventional-changelog) - Conventional changelog plugin for @w5s
 * [@w5s/cspell-config](packages/cspell-config) - CSpell configuration presets
 * [@w5s/dev](packages/dev) - Shared development constants and functions
 * [@w5s/eslint-config](packages/eslint-config) - ESLint configuration presets

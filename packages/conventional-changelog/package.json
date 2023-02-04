@@ -34,7 +34,7 @@
     "build:src": "tsc",
     "clean": "concurrently \"npm:clean:*\" \":\"",
     "clean:src": "rm -rf lib/*",
-    "docs": "md-magic --path '**/*.md' --ignore='node_modules'",
+    "docs": "node ../../markdown.mjs",
     "format": "concurrently \"npm:format:*\" \":\"",
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "lint": "concurrently \"npm:lint:*\" \":\"",

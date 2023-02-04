@@ -1,19 +1,19 @@
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5s Commitlint configuration _(${name})_) -->
-# W5s Commitlint configuration _(@w5s/commitlint-config)_
+# W5s Commitlint configuration _(@w5s/conventional-changelog)_
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 [![NPM Version][package-version-svg]][package-url]
 [![License][license-image]][license-url]
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=> ${description}&unknownTxt= ) -->
-> Commitlint configuration presets
+> Conventional changelog plugin for @w5s
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Installation
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```console\nnpm install --save-dev ${name} @commitlint/cli\n```) -->
 ```console
-npm install --save-dev @w5s/commitlint-config @commitlint/cli
+npm install --save-dev @w5s/conventional-changelog @commitlint/cli
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -25,7 +25,7 @@ In the `package.json` of your project
 ```json
 {
   "commitlint": {
-    "extends": ["@w5s/commitlint-config"]
+    "extends": ["@w5s/conventional-changelog"]
   }
 }
 ```
@@ -62,10 +62,10 @@ npm exec --no -- commitlint --edit $1
 <!-- VARIABLES -->
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[package-version-svg]: https://img.shields.io/npm/v/${name}.svg?style=flat-square) -->
-[package-version-svg]: https://img.shields.io/npm/v/@w5s/commitlint-config.svg?style=flat-square
+[package-version-svg]: https://img.shields.io/npm/v/@w5s/conventional-changelog.svg?style=flat-square
 <!-- AUTO-GENERATED-CONTENT:END -->
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[package-url]: https://www.npmjs.com/package/${name}) -->
-[package-url]: https://www.npmjs.com/package/@w5s/commitlint-config
+[package-url]: https://www.npmjs.com/package/@w5s/conventional-changelog
 <!-- AUTO-GENERATED-CONTENT:END -->
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[license-image]: https://img.shields.io/badge/license-${license}-green.svg?style=flat-square) -->
 [license-image]: https://img.shields.io/badge/license-MIT-green.svg?style=flat-square

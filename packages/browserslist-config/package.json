@@ -37,7 +37,7 @@
     "build:tsc": "tsc;yarn docs",
     "clean": "concurrently \"npm:clean:*\" \":\"",
     "clean:src": "rm -rf lib/*",
-    "docs": "node scripts/build-docs.mjs && md-magic --path '**/*.md' --ignore='node_modules'",
+    "docs": "node scripts/build-docs.mjs && node ../../markdown.mjs",
     "format": "concurrently \"npm:format:*\" \":\"",
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "lint": "concurrently \"npm:lint:*\" \":\"",

@@ -25,7 +25,7 @@
     "configure": "yarn mrm configure",
     "coverage": ":",
     "develop": ":",
-    "docs": "md-magic --path './*.md' --ignore='node_modules' && turbo run docs",
+    "docs": "node markdown.mjs && turbo run docs",
     "format": "turbo run format",
     "format:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --ignore-pattern='packages/*/**' --fix",
     "lint": "turbo run lint",
