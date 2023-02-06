@@ -128,13 +128,25 @@ describe('Commitlint Config', () => {
     });
   });
 
-  describe.skip('subject-empty', () => {
+  describe('subject-empty', () => {
     // FIXME: subject-empty should be enabled but there is a bug :
     // https://github.com/conventional-changelog/commitlint/issues/2761
     it('should return error if subject is empty', async () => {
-      const result = await lint(`${anyGitmoji} : ${''}`);
+      const result = await lint(`${anyGitmoji} ${''}`);
 
       expect(result).toEqual(
+        expect.objectContaining({
+          valid: false,
+          errors: [
+            expect.objectContaining({
+              name: 'subject-empty',
+            }),
+          ],
+          warnings: [],
+        })
+      );
+
+      expect(await lint(`${anyGitmoji} (${anyValidScope}): ${''}`)).toEqual(
         expect.objectContaining({
           valid: false,
           errors: [
