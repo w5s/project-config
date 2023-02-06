@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.27 (2023-02-06)
+
+- ⬆️ Upgrade dependency typescript to v4.9.5 ([8c5604d](https://github.com/w5s/project-config/commit/8c5604d))
+- 📝 Update documentation ([8cd1934](https://github.com/w5s/project-config/commit/8cd1934))
+- 🔧 Configure TS with noEmit: true by default ([530dd70](https://github.com/w5s/project-config/commit/530dd70))
+
 # [1.0.0-alpha.26](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.0-alpha.25...@w5s/ts-config@1.0.0-alpha.26) (2023-01-12)
 
 **Note:** Version bump only for package @w5s/ts-config

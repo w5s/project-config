@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.10 (2023-02-06)
+
+- ⬆️ Upgrade dependency browserslist to v4.21.5 ([a1e9203](https://github.com/w5s/project-config/commit/a1e9203))
+- 📝 Update documentation ([8cd1934](https://github.com/w5s/project-config/commit/8cd1934))
+- 🔧 Configure TS with noEmit: true by default ([530dd70](https://github.com/w5s/project-config/commit/530dd70))
+
 ## 1.0.0-alpha.9 (2023-01-30)
 
 - ♻️ Migrate to typescript ([268d54b](https://github.com/w5s/project-config/commit/268d54b))

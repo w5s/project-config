@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.50 (2023-02-06)
+
+- ♻️ Prefer inline comment (with sort) ([a388a34](https://github.com/w5s/project-config/commit/a388a34))
+- ✏️ Fix spellcheck ([0e5ba8c](https://github.com/w5s/project-config/commit/0e5ba8c))
+- ➖ Remove eslint-plug-react ([90bbdd2](https://github.com/w5s/project-config/commit/90bbdd2))
+- ➖ Remove functional plugin ([e5e3bcd](https://github.com/w5s/project-config/commit/e5e3bcd))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.50.0 ([6f2bd5b](https://github.com/w5s/project-config/commit/6f2bd5b))
+- ⬆️ Upgrade dependency eslint to v8.33.0 ([6b80751](https://github.com/w5s/project-config/commit/6b80751))
+- 📝 Update documentation ([8cd1934](https://github.com/w5s/project-config/commit/8cd1934))
+- 🔧 Configure TS with noEmit: true by default ([530dd70](https://github.com/w5s/project-config/commit/530dd70))
+- 🚨 Fix linter warnings ([d7ecea5](https://github.com/w5s/project-config/commit/d7ecea5))
+- 🚨 Improve sort-keys rule ([41549f3](https://github.com/w5s/project-config/commit/41549f3))
+
 ## 1.0.0-alpha.49 (2023-01-30)
 
 - ♻️ Lazy load modules ([d015688](https://github.com/w5s/project-config/commit/d015688))

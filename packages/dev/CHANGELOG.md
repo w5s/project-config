@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.5 (2023-02-06)
+
+- 📝 Update documentation ([8cd1934](https://github.com/w5s/project-config/commit/8cd1934))
+- 🔧 Configure TS with noEmit: true by default ([530dd70](https://github.com/w5s/project-config/commit/530dd70))
+
 ## 1.0.0-alpha.4 (2023-01-30)
 
 - ✅ Add tests ([1495733](https://github.com/w5s/project-config/commit/1495733))

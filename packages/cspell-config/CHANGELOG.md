@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.7 (2023-02-06)
+
+- ✏️ Fix spellcheck ([0e5ba8c](https://github.com/w5s/project-config/commit/0e5ba8c))
+- 📝 Update documentation ([8cd1934](https://github.com/w5s/project-config/commit/8cd1934))
+- 🔧 Configure TS with noEmit: true by default ([530dd70](https://github.com/w5s/project-config/commit/530dd70))
+- 🚨 Fix linter warnings ([d7ecea5](https://github.com/w5s/project-config/commit/d7ecea5))
+
 ## 1.0.0-alpha.6 (2023-01-30)
 
 - ⬆️ Upgrade jest monorepo ([f3007ce](https://github.com/w5s/project-config/commit/f3007ce))
