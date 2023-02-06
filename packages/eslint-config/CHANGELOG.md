@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.51 (2023-02-06)
+
+- 🐛 Fix transitive peer dependency issue ([e4b8394](https://github.com/w5s/project-config/commit/e4b8394))
+
 ## 1.0.0-alpha.50 (2023-02-06)
 
 - ♻️ Prefer inline comment (with sort) ([a388a34](https://github.com/w5s/project-config/commit/a388a34))
