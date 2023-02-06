@@ -1,5 +1,5 @@
 import type { AdvancedCSpellSettings } from '@cspell/cspell-types';
-// @ts-ignore
+// @ts-ignore CSpell config is not typed
 import cSpellSettings from '@cspell/cspell-bundled-dicts/cspell-default.config.js';
 
 const toArray = <T>(value: T | T[] | undefined) => (Array.isArray(value) ? value : value == null ? [] : [value]);

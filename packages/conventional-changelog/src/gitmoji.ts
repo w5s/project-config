@@ -71,7 +71,7 @@ export namespace GitmojiCode {
     };
 
     const entries = Array.from<[CommitConventionalType, GitmojiCode.Unicode[]]>(
-      // @ts-ignore
+      // @ts-ignore entries are not well typed
       Object.entries(data)
     );
     return new Map(

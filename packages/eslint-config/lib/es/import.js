@@ -3,13 +3,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const dev_1 = require("@w5s/dev");
-// @ts-ignore
+// @ts-ignore airbnb is not typed
 const imports_1 = __importDefault(require("eslint-config-airbnb-base/rules/imports"));
 const _rule_js_1 = require("../_rule.js");
 // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
-const config = dev_1.ESLintConfig.concat(
-// @ts-ignore
-imports_1.default, 
+const config = dev_1.ESLintConfig.concat(imports_1.default, 
 // Overrides
 {
     rules: {

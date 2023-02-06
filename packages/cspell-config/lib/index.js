@@ -2,7 +2,7 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-// @ts-ignore
+// @ts-ignore CSpell config is not typed
 const cspell_default_config_js_1 = __importDefault(require("@cspell/cspell-bundled-dicts/cspell-default.config.js"));
 const toArray = (value) => (Array.isArray(value) ? value : value == null ? [] : [value]);
 const defaultSettings = cspell_default_config_js_1.default;

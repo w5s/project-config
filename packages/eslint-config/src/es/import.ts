@@ -1,13 +1,12 @@
 import { ESLintConfig, EXTENSIONS, EXTENSIONS_RESOURCES_REGEX, IGNORE_LIST } from '@w5s/dev';
 import type eslint from 'eslint';
-// @ts-ignore
+// @ts-ignore airbnb is not typed
 import importConfig from 'eslint-config-airbnb-base/rules/imports';
 import { fixme } from '../_rule.js';
 
 // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
 
 const config: eslint.Linter.Config = ESLintConfig.concat(
-  // @ts-ignore
   importConfig,
   // Overrides
   {
