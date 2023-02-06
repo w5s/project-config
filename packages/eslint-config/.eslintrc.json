@@ -6,6 +6,6 @@
     "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/no-unsafe-member-access": "off",
     "@typescript-eslint/no-unsafe-call": "off",
-    "sort-keys-fix/sort-keys-fix": "error"
+    "sort-keys/sort-keys-fix": "error"
   }
 }
