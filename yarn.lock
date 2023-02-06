@@ -3446,7 +3446,7 @@ __metadata:
     "@commitlint/lint": 17.4.2
     "@commitlint/types": ^17.0.0
     "@jest/globals": 29.4.1
-    "@w5s/conventional-changelog": ^1.0.0-alpha.1
+    "@w5s/conventional-changelog": ^1.0.0-alpha.2
   peerDependencies:
     "@commitlint/cli": ^16.0.0 || ^17.0.0
   peerDependenciesMeta:
@@ -3455,7 +3455,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/conventional-changelog@^1.0.0-alpha.1, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
+"@w5s/conventional-changelog@^1.0.0-alpha.2, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
   version: 0.0.0-use.local
   resolution: "@w5s/conventional-changelog@workspace:packages/conventional-changelog"
   dependencies:
@@ -3484,7 +3484,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/dev@^1.0.0-alpha.4, @w5s/dev@workspace:packages/dev":
+"@w5s/dev@^1.0.0-alpha.5, @w5s/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
@@ -3506,8 +3506,8 @@ __metadata:
     "@types/react": 18.0.27
     "@typescript-eslint/eslint-plugin": ^5.0.0
     "@typescript-eslint/parser": 5.50.0
-    "@w5s/dev": ^1.0.0-alpha.4
-    "@w5s/prettier-config": ^1.0.8
+    "@w5s/dev": ^1.0.0-alpha.5
+    "@w5s/prettier-config": ^1.0.9
     eslint: 8.33.0
     eslint-config-airbnb-base: ^15.0.0
     eslint-config-prettier: 8.6.0
@@ -3526,6 +3526,7 @@ __metadata:
     react: 18.2.0
   peerDependencies:
     eslint: 8.x
+    prettier: 2.x
     typescript: 4.x
   peerDependenciesMeta:
     eslint:
@@ -3549,7 +3550,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/prettier-config@^1.0.8, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
+"@w5s/prettier-config@^1.0.9, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
   version: 0.0.0-use.local
   resolution: "@w5s/prettier-config@workspace:packages/prettier-config"
   dependencies:
