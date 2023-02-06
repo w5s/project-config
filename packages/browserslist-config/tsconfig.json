@@ -1,10 +1,4 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig.json",
-  "extends": "../../tsconfig.settings-config.json",
-  "compilerOptions": {
-    "jsx": "react",
-    "outDir": "lib",
-    "resolveJsonModule": true
-  },
-  "include": ["src"]
+  "extends": "../../tsconfig.settings-config.json"
 }

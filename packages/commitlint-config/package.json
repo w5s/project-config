@@ -35,7 +35,7 @@
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
-    "build:src": "tsc",
+    "build:src": "tsc -b tsconfig.build.json",
     "clean": "concurrently \"npm:clean:*\" \":\"",
     "clean:src": "rm -rf lib/*",
     "docs": "node ../../markdown.mjs",
