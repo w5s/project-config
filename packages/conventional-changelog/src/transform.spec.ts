@@ -101,6 +101,22 @@ describe(createTransform, () => {
         references: [],
         type: '🐛 Bug Fixes',
       });
+
+      const emojiCommit = generateCommit({
+        type: ':bug:',
+      });
+
+      expect(transform(emojiCommit, defaultContext)).toEqual({
+        body: null,
+        footer: null,
+        merge: null,
+        revert: null,
+        header: '',
+        mentions: [],
+        notes: [],
+        references: [],
+        type: '🐛 Bug Fixes',
+      });
     });
 
     it('should show scope display name', () => {
