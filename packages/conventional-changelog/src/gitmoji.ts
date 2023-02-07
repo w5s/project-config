@@ -61,13 +61,13 @@ export namespace GitmojiCode {
       docs: ['📝'] as GitmojiCode.Unicode[],
       style: ['🎨', '🚨'] as GitmojiCode.Unicode[],
       refactor: ['♻️', '🏗️'] as GitmojiCode.Unicode[],
-      test: ['✅'] as GitmojiCode.Unicode[],
+      test: ['✅', '🧪'] as GitmojiCode.Unicode[],
       perf: ['⚡️'] as GitmojiCode.Unicode[],
       revert: ['⏪️'] as GitmojiCode.Unicode[],
       ci: ['👷', '💚'] as GitmojiCode.Unicode[],
       wip: ['🚧'] as GitmojiCode.Unicode[],
       build: [] as GitmojiCode.Unicode[],
-      chore: [] as GitmojiCode.Unicode[],
+      chore: ['🔧'] as GitmojiCode.Unicode[],
     };
 
     const entries = Array.from<[CommitConventionalType, GitmojiCode.Unicode[]]>(
