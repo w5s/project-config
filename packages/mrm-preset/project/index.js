@@ -240,7 +240,7 @@ function task() {
       },
       npmClient: packageManager,
       useWorkspaces: rootUseWorkspace,
-      changelogPreset: 'gitmoji-config',
+      changelogPreset: '@w5s/conventional-changelog',
     });
     lernaConfig.save();
   } else {
@@ -309,6 +309,11 @@ function task() {
     dev: true,
     name: ['lerna'],
     state: rootUseWorkspace ? 'present' : 'absent',
+  });
+  npm.dependency({
+    dev: true,
+    name: ['@w5s/conventional-changelog'],
+    state: 'present',
   });
 
   // VSCode
