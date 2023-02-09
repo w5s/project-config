@@ -3603,7 +3603,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/conventional-changelog@^1.0.0-alpha.2, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
+"@w5s/conventional-changelog@^1.0.0-alpha.2, @w5s/conventional-changelog@workspace:*, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
   version: 0.0.0-use.local
   resolution: "@w5s/conventional-changelog@workspace:packages/conventional-changelog"
   dependencies:
@@ -3719,6 +3719,7 @@ __metadata:
     "@jest/globals": latest
     "@types/node": 16.18.12
     "@w5s/commitlint-config": "workspace:*"
+    "@w5s/conventional-changelog": "workspace:*"
     "@w5s/cspell-config": "workspace:*"
     "@w5s/eslint-config": "workspace:*"
     "@w5s/mrm-preset": "workspace:*"
