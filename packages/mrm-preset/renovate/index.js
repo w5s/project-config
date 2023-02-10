@@ -27,7 +27,6 @@ function createRenovate({ renovatePresetApplication, renovatePresetLibrary }) {
       const renovateFile = json('renovate.json');
       renovateFile.merge({
         $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-        ignorePaths: ['**/node_modules/**'],
       });
       renovateFile.set(
         'extends',
