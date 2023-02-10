@@ -49,6 +49,44 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
 
       file('src/index.ts').delete();
       file('src/index.spec.ts').delete();
+
+      pkg.forEachWorkspace(({ projectDir, packageFile: projectPackageFile }) => {
+        const projectTsConfig = json(`${projectDir}/tsconfig.json`);
+        const projectTsConfigBuild = json(`${projectDir}/tsconfig.build.json`);
+        const hasTypecript = projectTsConfig.exists();
+        pkg.script(projectPackageFile, {
+          name: 'build:tsc',
+          state: hasTypecript ? 'present' : 'absent',
+          update: () => 'tsc -b tsconfig.build.json',
+        });
+        pkg.script(projectPackageFile, {
+          name: 'clean:tsc',
+          state: hasTypecript ? 'present' : 'absent',
+          update: () => 'rm -rf lib',
+        });
+        if (hasTypecript && projectPackageFile.get('name') !== '@w5s/ts-config') {
+          projectTsConfig
+            .merge({
+              $schema: 'https://json.schemastore.org/tsconfig.json',
+              extends: '../../tsconfig.settings.json',
+            })
+            .save();
+
+          projectTsConfigBuild
+            .merge({
+              $schema: 'https://json.schemastore.org/tsconfig.json',
+              extends: './tsconfig.json',
+              compilerOptions: {
+                noEmit: false,
+                outDir: 'lib',
+              },
+              include: ['src'],
+            })
+            .save();
+        } else {
+          projectTsConfigBuild.delete();
+        }
+      });
     } else {
       tsConfigSettings
         .merge({
