@@ -67,6 +67,7 @@ const settings: AdvancedCSpellSettings = {
     '**/*.snap',
     '**/lib/**',
     '**/node_modules/**',
+    '**/package.json',
     '**/package-lock.json',
     '**/renovate.json',
     '**/vscode-extension/**',
