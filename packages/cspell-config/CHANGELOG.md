@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.9 (2023-02-10)
+
+- ✨ Add package.json to cspell default ignore path ([ccba8dc](https://github.com/w5s/project-config/commit/ccba8dc))
+- ✨ Add package.json to cspell default ignore path ([3530b12](https://github.com/w5s/project-config/commit/3530b12))
+- ✨ Add some new words to dictionary ([078cfad](https://github.com/w5s/project-config/commit/078cfad))
+
 ## 1.0.0-alpha.8 (2023-02-10)
 
 - ⬆️ Upgrade jest monorepo to v29.4.2 ([eeb4bfe](https://github.com/w5s/project-config/commit/eeb4bfe))
