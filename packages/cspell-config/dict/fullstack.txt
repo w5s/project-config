@@ -1,5 +1,6 @@
 autodevops
 automerge
+browserslist
 camelcase
 circleci
 CODEOWNERS
@@ -15,6 +16,8 @@ healthcheck
 interruptible
 macOS
 npmjs
+stylelint
+stylelintrc
 subpackage
 templating
 typedoc
