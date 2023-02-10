@@ -69,6 +69,7 @@ const settings = {
         '**/*.snap',
         '**/lib/**',
         '**/node_modules/**',
+        '**/package.json',
         '**/package-lock.json',
         '**/renovate.json',
         '**/vscode-extension/**',
