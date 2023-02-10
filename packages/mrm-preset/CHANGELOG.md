@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.42 (2023-02-10)
+
+- ✨ Configure @w5s/conventional-changelog ([b19e437](https://github.com/w5s/project-config/commit/b19e437))
+- ✨ Improve typescript support for monorepo packages ([0a13a68](https://github.com/w5s/project-config/commit/0a13a68))
+- 🗑️ Remove unneeded code ([ee9410e](https://github.com/w5s/project-config/commit/ee9410e))
+
 ## 1.0.0-alpha.41 (2023-02-06)
 
 - 📝 Update documentation ([8cd1934](https://github.com/w5s/project-config/commit/8cd1934))

@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.10 (2023-02-10)</small>
+
+- ⬆️ Upgrade jest monorepo to v29.4.2 ([eeb4bfe](https://github.com/w5s/project-config/commit/eeb4bfe))
+- 👷 Rename build:src and clean:src to build:tsc and clean:tsc ([420b305](https://github.com/w5s/project-config/commit/420b305))
+
 ## <small>1.0.9 (2023-02-06)</small>
 
 - ✅ Make subject-empty pass ([85dbb47](https://github.com/w5s/project-config/commit/85dbb47))

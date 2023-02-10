@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.6 (2023-02-10)
+
+- ⬆️ Upgrade jest monorepo to v29.4.2 ([eeb4bfe](https://github.com/w5s/project-config/commit/eeb4bfe))
+- 👷 Rename build:src and clean:src to build:tsc and clean:tsc ([420b305](https://github.com/w5s/project-config/commit/420b305))
+
 ## 1.0.0-alpha.5 (2023-02-06)
 
 - 📝 Update documentation ([8cd1934](https://github.com/w5s/project-config/commit/8cd1934))

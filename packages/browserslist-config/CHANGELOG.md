@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.11 (2023-02-10)
+
+- ⬆️ Upgrade jest monorepo to v29.4.2 ([eeb4bfe](https://github.com/w5s/project-config/commit/eeb4bfe))
+- 👷 Rename build:src and clean:src to build:tsc and clean:tsc ([420b305](https://github.com/w5s/project-config/commit/420b305))
+
 ## 1.0.0-alpha.10 (2023-02-06)
 
 - ⬆️ Upgrade dependency browserslist to v4.21.5 ([a1e9203](https://github.com/w5s/project-config/commit/a1e9203))

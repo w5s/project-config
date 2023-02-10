@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.52 (2023-02-10)
+
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.51.0 ([ffe700a](https://github.com/w5s/project-config/commit/ffe700a))
+- 👷 Rename build:src and clean:src to build:tsc and clean:tsc ([420b305](https://github.com/w5s/project-config/commit/420b305))
+
 ## 1.0.0-alpha.51 (2023-02-06)
 
 - 🐛 Fix transitive peer dependency issue ([e4b8394](https://github.com/w5s/project-config/commit/e4b8394))
