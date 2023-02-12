@@ -29,11 +29,11 @@ function task({ mrmPreset, mrmTask, packageManager }) {
 
   npm.bootstrap(packageManager);
 
-  npm.dependency({
-    dev: true,
-    name: ['mrm', mrmPreset],
-    state: 'present',
-  });
+  // npm.dependency({
+  //   dev: true,
+  //   name: ['mrm', mrmPreset],
+  //   state: 'present',
+  // });
 
   pkg.withPackageJson((packageFile) => {
     const currentPackageManager = pkg.manager(packageFile);
@@ -47,7 +47,7 @@ function task({ mrmPreset, mrmTask, packageManager }) {
     pkg.script(packageFile, {
       name: 'mrm',
       state: 'present',
-      default: `mrm --preset ${mrmPreset}`,
+      default: `npm exec --package=mrm --package=${mrmPreset} -- mrm --preset ${mrmPreset}`,
     });
   });
 }
