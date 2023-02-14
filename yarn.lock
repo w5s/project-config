@@ -409,12 +409,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/cli@npm:17.4.2":
-  version: 17.4.2
-  resolution: "@commitlint/cli@npm:17.4.2"
+"@commitlint/cli@npm:17.4.3":
+  version: 17.4.3
+  resolution: "@commitlint/cli@npm:17.4.3"
   dependencies:
     "@commitlint/format": ^17.4.0
-    "@commitlint/lint": ^17.4.2
+    "@commitlint/lint": ^17.4.3
     "@commitlint/load": ^17.4.2
     "@commitlint/read": ^17.4.2
     "@commitlint/types": ^17.4.0
@@ -425,7 +425,7 @@ __metadata:
     yargs: ^17.0.0
   bin:
     commitlint: cli.js
-  checksum: a2d0ecd2c5a770b3d3be1214020ed4298f3d7685f5c065ed2f1565b02b9a1608abd00d114c8b9b17e84741cde0d977bb2c2afc1074176565b6b63e9cde0d2e25
+  checksum: 352020caefb383cef8d26048ce540c87065df1c0647b6c3c08c9f9782db450b0d30341b52151f41ae94eaa36b99b3f63c24484a8082713b1e3bc9d02041c7320
   languageName: node
   linkType: hard
 
@@ -480,19 +480,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:17.4.2":
-  version: 17.4.2
-  resolution: "@commitlint/lint@npm:17.4.2"
-  dependencies:
-    "@commitlint/is-ignored": ^17.4.2
-    "@commitlint/parse": ^17.4.2
-    "@commitlint/rules": ^17.4.2
-    "@commitlint/types": ^17.4.0
-  checksum: efcb5fbee6f8cad5b619deabde598f1f1ac253cf1162eeda4de01e41ae13b7caa651d6fe5eea75d32a20fa7975bb27d13d9e0c9a422ebd158485311e6fb8c8a9
-  languageName: node
-  linkType: hard
-
-"@commitlint/lint@npm:^17.4.2":
+"@commitlint/lint@npm:17.4.3, @commitlint/lint@npm:^17.4.3":
   version: 17.4.3
   resolution: "@commitlint/lint@npm:17.4.3"
   dependencies:
@@ -571,7 +559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/rules@npm:^17.4.2, @commitlint/rules@npm:^17.4.3":
+"@commitlint/rules@npm:^17.4.3":
   version: 17.4.3
   resolution: "@commitlint/rules@npm:17.4.3"
   dependencies:
@@ -3535,7 +3523,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/commitlint-config@workspace:packages/commitlint-config"
   dependencies:
-    "@commitlint/lint": 17.4.2
+    "@commitlint/lint": 17.4.3
     "@commitlint/types": ^17.0.0
     "@jest/globals": 29.4.2
     "@w5s/conventional-changelog": ^1.0.0-alpha.3
@@ -3660,7 +3648,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/project-config-src@workspace:."
   dependencies:
-    "@commitlint/cli": 17.4.2
+    "@commitlint/cli": 17.4.3
     "@jest/globals": latest
     "@types/node": 16.18.12
     "@w5s/commitlint-config": "workspace:*"
