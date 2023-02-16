@@ -65,7 +65,7 @@
     "gitmojis": "^3.13.4"
   },
   "devDependencies": {
-    "@jest/globals": "29.4.2",
+    "@jest/globals": "29.4.3",
     "@types/conventional-changelog-writer": "4.0.2",
     "@types/conventional-commits-parser": "3.0.3"
   },

@@ -67,7 +67,7 @@
     "@types/eslint": "^8.4.10"
   },
   "devDependencies": {
-    "@jest/globals": "29.4.2"
+    "@jest/globals": "29.4.3"
   },
   "engines": {
     "node": ">=16.0.0"
