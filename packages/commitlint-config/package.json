@@ -68,7 +68,7 @@
     "@w5s/conventional-changelog": "^1.0.0-alpha.3"
   },
   "devDependencies": {
-    "@commitlint/lint": "17.4.3",
+    "@commitlint/lint": "17.4.4",
     "@jest/globals": "29.4.3"
   },
   "peerDependencies": {
