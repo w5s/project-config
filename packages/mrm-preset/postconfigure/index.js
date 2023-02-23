@@ -8,7 +8,7 @@ function task() {
   // Remove old deps
   npm.dependency({
     dev: true,
-    name: ['is-ci', '@commitlint/cli', 'lint-staged'],
+    name: ['is-ci', '@commitlint/cli', 'lint-staged', 'mrm'],
     state: 'absent',
   });
 
