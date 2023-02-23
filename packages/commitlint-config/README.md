@@ -49,9 +49,7 @@ Extra rules
 Ensure the `commitlint` is setup on husky commit message hook (default `.husky/commit-msg`)
 
 ```console
-commitlint --edit $1
-# -OR-
-npm exec --no -- commitlint --edit $1
+npm exec -- commitlint --edit $1
 ```
 
 ## License

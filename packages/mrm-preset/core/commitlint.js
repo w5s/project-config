@@ -23,13 +23,13 @@ function commitlint({ state, preset }) {
 
   gitHook({
     name: 'commit-msg',
-    content: 'npm exec --no -- commitlint --edit $1',
+    content: 'npm exec -- commitlint --edit $1',
     state,
   });
 
   npm.dependency({
     dev: true,
-    name: ['@commitlint/cli', preset],
+    name: [preset],
     state,
   });
 }

@@ -10,7 +10,7 @@ function task() {
   pkg.withPackageJson((packageFile) => {
     pkg.script(packageFile, {
       name: project.release,
-      update: useWorkspace ? 'is-ci && lerna publish --yes || lerna publish' : semanticRelease.command(),
+      update: useWorkspace ? '[ -n "$CI" ] && lerna publish --yes || lerna publish' : semanticRelease.command(),
       state: 'present',
     });
   });

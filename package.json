@@ -33,9 +33,9 @@
     "mrm": "npm exec --package=mrm --package=@w5s/mrm-preset -- mrm --preset @w5s/mrm-preset",
     "postbuild": "npm run docs",
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
-    "prepare:husky": "is-ci || husky install",
+    "prepare:githooks": "[ -n \"$CI\" ] || npx husky install .githooks",
     "prepare:packages": "turbo run prepare",
-    "release": "is-ci && lerna publish --yes || lerna publish",
+    "release": "[ -n \"$CI\" ] && lerna publish --yes || lerna publish",
     "rescue": "git clean -fdx;yarn install",
     "spellcheck": "turbo run spellcheck",
     "spellcheck:root": "cspell --no-progress '**' --exclude='packages/*/**'",
@@ -76,15 +76,6 @@
     },
     "root": true
   },
-  "eslintIgnore": [
-    "node_modules/",
-    "coverage/",
-    "build/",
-    ".cache/",
-    "lib/",
-    "**/_tester/**",
-    "./public/"
-  ],
   "jest": {
     "preset": "es-jest",
     "projects": [
@@ -92,7 +83,6 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "17.4.4",
     "@jest/globals": "latest",
     "@types/node": "16.18.12",
     "@w5s/commitlint-config": "workspace:*",
@@ -107,11 +97,8 @@
     "es-jest": "2.1.0",
     "eslint": "8.34.0",
     "eslint-plugin-sort-keys": "2.3.5",
-    "husky": "8.0.3",
-    "is-ci": "3.0.1",
     "jest": "29.4.3",
     "lerna": "6.5.1",
-    "lint-staged": "13.1.2",
     "markdown-magic": "2.6.1",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "1.1.2",

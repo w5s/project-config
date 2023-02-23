@@ -31,7 +31,7 @@ function task() {
   });
   gitHook({
     name: 'pre-commit',
-    content: `npm exec --no -- lint-staged`,
+    content: `npm exec -- lint-staged`,
     state: gitSupported ? 'present' : 'absent',
   });
   gitHook({
