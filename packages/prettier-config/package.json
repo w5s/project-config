@@ -1,6 +1,6 @@
 {
   "name": "@w5s/prettier-config",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Prettier shared configuration",
   "keywords": [
     "typescript",

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.11 (2023-02-23)</small>
+
+- ⬆️ Upgrade dependency prettier to v2.8.4 ([8d48800](https://github.com/w5s/project-config/commit/8d48800))
+
 ## <small>1.0.10 (2023-02-10)</small>
 
 - 👷 Rename build:src and clean:src to build:tsc and clean:tsc ([420b305](https://github.com/w5s/project-config/commit/420b305))

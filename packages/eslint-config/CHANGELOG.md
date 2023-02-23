@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.53 (2023-02-23)
+
+- ⬆️ Upgrade dependency @types/eslint to v8.21.1 ([1c7f82b](https://github.com/w5s/project-config/commit/1c7f82b))
+- ⬆️ Upgrade dependency @types/react to v18.0.28 ([fa606da](https://github.com/w5s/project-config/commit/fa606da))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.52.0 ([5187440](https://github.com/w5s/project-config/commit/5187440))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.53.0 ([37d0615](https://github.com/w5s/project-config/commit/37d0615))
+- ⬆️ Upgrade dependency eslint to v8.34.0 ([a96c630](https://github.com/w5s/project-config/commit/a96c630))
+- ⬆️ Upgrade dependency eslint-plugin-jsdoc to v40 ([c6f6470](https://github.com/w5s/project-config/commit/c6f6470))
+- ⬆️ Upgrade dependency prettier to v2.8.4 ([8d48800](https://github.com/w5s/project-config/commit/8d48800))
+
 ## 1.0.0-alpha.52 (2023-02-10)
 
 - ⬆️ Upgrade dependency @typescript-eslint/parser to v5.51.0 ([ffe700a](https://github.com/w5s/project-config/commit/ffe700a))

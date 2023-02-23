@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.43 (2023-02-23)
+
+- ✨ Improve mrm bootstrap script ([0445277](https://github.com/w5s/project-config/commit/0445277))
+- ➖ Remove is-ci, lint-staged, commitlint dependency (used through npx) ([ae39f34](https://github.com/w5s/project-config/commit/ae39f34))
+- ➖ Remove mrm dependency ([7ee3d94](https://github.com/w5s/project-config/commit/7ee3d94))
+- 🐛 Fix unbound variable error ([d2aa040](https://github.com/w5s/project-config/commit/d2aa040))
+- 💚 Fix ci ([cded057](https://github.com/w5s/project-config/commit/cded057))
+
 ## 1.0.0-alpha.42 (2023-02-10)
 
 - ✨ Configure @w5s/conventional-changelog ([b19e437](https://github.com/w5s/project-config/commit/b19e437))

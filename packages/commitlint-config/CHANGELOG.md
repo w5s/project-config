@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.11 (2023-02-23)</small>
+
+- ➖ Remove is-ci, lint-staged, commitlint dependency (used through npx) ([ae39f34](https://github.com/w5s/project-config/commit/ae39f34))
+- ⬆️ Upgrade commitlint monorepo to v17.4.3 ([87ca95e](https://github.com/w5s/project-config/commit/87ca95e))
+- ⬆️ Upgrade commitlint monorepo to v17.4.4 ([ad152db](https://github.com/w5s/project-config/commit/ad152db))
+- ⬆️ Upgrade jest monorepo to v29.4.3 ([e0b7bd9](https://github.com/w5s/project-config/commit/e0b7bd9))
+
 ## <small>1.0.10 (2023-02-10)</small>
 
 - ⬆️ Upgrade jest monorepo to v29.4.2 ([eeb4bfe](https://github.com/w5s/project-config/commit/eeb4bfe))

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.4 (2023-02-23)
+
+- ⬆️ Upgrade jest monorepo to v29.4.3 ([e0b7bd9](https://github.com/w5s/project-config/commit/e0b7bd9))
+
 ## 1.0.0-alpha.3 (2023-02-10)
 
 - ✅ Add tests ([ac5f536](https://github.com/w5s/project-config/commit/ac5f536))

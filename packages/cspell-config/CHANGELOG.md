@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.10 (2023-02-23)
+
+- ⬆️ Upgrade jest monorepo to v29.4.3 ([e0b7bd9](https://github.com/w5s/project-config/commit/e0b7bd9))
+- 🔧 Standardize configuration ([afd589c](https://github.com/w5s/project-config/commit/afd589c))
+
 ## 1.0.0-alpha.9 (2023-02-10)
 
 - ✨ Add package.json to cspell default ignore path ([ccba8dc](https://github.com/w5s/project-config/commit/ccba8dc))
