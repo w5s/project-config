@@ -16,6 +16,6 @@ jobs:
         with:
           node-version: lts/*
           cache: yarn
-      - run: yarn install --frozen-lockfile
+      - run: yarn install --immutable
       - run: yarn run build
       - run: yarn validate
