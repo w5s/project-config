@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.11 (2023-02-28)
+
+- ♻️ Exclude test in build files ([be94c3b](https://github.com/w5s/project-config/commit/be94c3b))
+- ⬆️ Upgrade CSpell group to v6.27.0 ([fe645ec](https://github.com/w5s/project-config/commit/fe645ec))
+
 ## 1.0.0-alpha.10 (2023-02-23)
 
 - ⬆️ Upgrade jest monorepo to v29.4.3 ([e0b7bd9](https://github.com/w5s/project-config/commit/e0b7bd9))

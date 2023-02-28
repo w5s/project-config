@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.54 (2023-02-28)
+
+- ♻️ Exclude test in build files ([be94c3b](https://github.com/w5s/project-config/commit/be94c3b))
+- ⬆️ Upgrade dependency eslint to v8.35.0 ([dfed96e](https://github.com/w5s/project-config/commit/dfed96e))
+
 ## 1.0.0-alpha.53 (2023-02-23)
 
 - ⬆️ Upgrade dependency @types/eslint to v8.21.1 ([1c7f82b](https://github.com/w5s/project-config/commit/1c7f82b))
