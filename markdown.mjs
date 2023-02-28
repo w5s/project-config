@@ -5,7 +5,7 @@ import markdownPackageJSON from 'markdown-magic-package-json';
 import markdownList from 'markdown-magic-subpackage-list';
 
 // const markdownPath = path.join(__dirname, 'README.md');
-markdownMagic(['**/*.md', '!node_modules/**'], {
+markdownMagic(['**/*.md', '!node_modules/**', '!packages/**'], {
   transforms: {
     PKG_JSON: markdownPackageJSON,
     SUBPACKAGE_LIST: markdownList,
