@@ -1,5 +1,5 @@
 # Bootstrap task
 
 ```bash
-npm exec -p mrm -p @w5s/mrm-preset -- mrm bootstrap --preset @w5s/mrm-preset
+npm exec --package=mrm --package=@w5s/mrm-preset@latest -- mrm bootstrap --preset @w5s/mrm-preset
 ```
