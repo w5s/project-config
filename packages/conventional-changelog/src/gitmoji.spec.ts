@@ -1,9 +1,9 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 import { CommitConventionalType } from './data.js';
 import { GitmojiCode } from './gitmoji.js';
 
 describe('GitmojiCode', () => {
-  describe(GitmojiCode.toConventionalCommitType, () => {
+  describe('toConventionalCommitType', () => {
     it.each([
       ['✨', CommitConventionalType.Feat],
       [':sparkles:', CommitConventionalType.Feat],

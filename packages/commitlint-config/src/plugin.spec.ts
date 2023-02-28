@@ -1,5 +1,5 @@
 import type { Commit } from '@commitlint/types';
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 import { typeGitmojiStyle, typeValidGitmoji } from './plugin';
 
 const generateCommit = (properties: Partial<Commit>): Commit => ({
@@ -20,7 +20,7 @@ const generateCommit = (properties: Partial<Commit>): Commit => ({
 const anyEmoji = ':bug:';
 const anyGitmojiUnicode = '🐛';
 
-describe(typeGitmojiStyle, () => {
+describe('typeGitmojiStyle', () => {
   it('should return correct values when value="emoji"', () => {
     expect(typeGitmojiStyle(generateCommit({ type: anyEmoji }), undefined, 'emoji')).toEqual([true]);
     expect(typeGitmojiStyle(generateCommit({ type: anyGitmojiUnicode }), undefined, 'emoji')).toEqual([
@@ -41,7 +41,7 @@ describe(typeGitmojiStyle, () => {
     // ]);
   });
 });
-describe(typeValidGitmoji, () => {
+describe('typeValidGitmoji', () => {
   it('should return correct values', () => {
     expect(typeValidGitmoji(generateCommit({ type: anyEmoji }), undefined)).toEqual([true]);
     expect(typeValidGitmoji(generateCommit({ type: anyGitmojiUnicode }), undefined)).toEqual([true]);

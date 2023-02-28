@@ -76,12 +76,6 @@
     },
     "root": true
   },
-  "jest": {
-    "preset": "es-jest",
-    "projects": [
-      "<rootDir>/packages/*"
-    ]
-  },
   "devDependencies": {
     "@jest/globals": "latest",
     "@types/node": "16.18.13",
@@ -94,10 +88,8 @@
     "@w5s/ts-config": "workspace:*",
     "concurrently": "7.6.0",
     "cspell": "6.27.0",
-    "es-jest": "2.1.0",
     "eslint": "8.35.0",
     "eslint-plugin-sort-keys": "2.3.5",
-    "jest": "29.4.3",
     "lerna": "6.5.1",
     "markdown-magic": "2.6.1",
     "markdown-magic-package-json": "2.0.2",

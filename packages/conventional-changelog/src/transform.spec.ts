@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 import type { Commit } from './data.js';
 import { createTransform } from './transform.js';
 
@@ -15,7 +15,7 @@ const generateCommit = (commit: Partial<Commit>): Commit => ({
 });
 const defaultContext = { commit: '', date: '', issue: '' };
 
-describe(createTransform, () => {
+describe('createTransform', () => {
   it('return commit if has feat', () => {
     const transform = createTransform({});
 

@@ -1,15 +1,15 @@
-import { describe, expect, it } from '@jest/globals';
+import { describe, expect, it } from 'vitest';
 import { CommitConventionalType } from './data.js';
 
 describe('CommitConventionalType', () => {
-  describe(CommitConventionalType.hasInstance, () => {
+  describe('hasInstance', () => {
     it('should return true only for correct values', () => {
       expect(CommitConventionalType.hasInstance('build')).toBe(true);
       expect(CommitConventionalType.hasInstance('any_value')).toBe(false);
       expect(CommitConventionalType.hasInstance(undefined)).toBe(false);
     });
   });
-  describe(CommitConventionalType.values, () => {
+  describe('values', () => {
     it('should have correct values', () => {
       expect(CommitConventionalType.values()).toEqual([
         'build',
@@ -30,7 +30,7 @@ describe('CommitConventionalType', () => {
       expect(Object.isFrozen(CommitConventionalType.values())).toBe(true);
     });
   });
-  describe(CommitConventionalType.parse, () => {
+  describe('parse', () => {
     it('should return undefined for incorrect values', () => {
       expect(CommitConventionalType.parse('any_value')).toBe(undefined);
     });

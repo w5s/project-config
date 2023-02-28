@@ -43,21 +43,7 @@
     "prepublishOnly": "npm run clean;npm run build",
     "spellcheck": "cspell --no-progress '**'",
     "test": "concurrently \"npm:test:*\" ",
-    "test:src": "jest"
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "^(\\.{1,2}/.*)\\.js$": "$1"
-    },
-    "preset": "es-jest",
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/lib/",
-      "/build/",
-      "/.cache/",
-      "/docs/",
-      "/public/"
-    ]
+    "test:src": "vitest run"
   },
   "dependencies": {
     "@commitlint/types": "^17.0.0",
@@ -65,9 +51,10 @@
     "gitmojis": "^3.13.4"
   },
   "devDependencies": {
-    "@jest/globals": "29.4.3",
     "@types/conventional-changelog-writer": "4.0.2",
-    "@types/conventional-commits-parser": "3.0.3"
+    "@types/conventional-commits-parser": "3.0.3",
+    "vite": "4.1.4",
+    "vitest": "0.29.2"
   },
   "engines": {
     "node": ">=16.0.0"
