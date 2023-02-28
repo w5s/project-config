@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.44 (2023-02-28)
+
+- ✨ Use always latest mrm preset ([abf6c51](https://github.com/w5s/project-config/commit/abf6c51))
+- 👷 Update mrm presets ([4a56dbc](https://github.com/w5s/project-config/commit/4a56dbc))
+
 ## 1.0.0-alpha.43 (2023-02-23)
 
 - ✨ Improve mrm bootstrap script ([0445277](https://github.com/w5s/project-config/commit/0445277))
