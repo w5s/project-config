@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.45 (2023-03-01)
+
+- 👷 Migrate to vitest ([a49676c](https://github.com/w5s/project-config/commit/a49676c))
+
 ## 1.0.0-alpha.44 (2023-02-28)
 
 - ✨ Use always latest mrm preset ([abf6c51](https://github.com/w5s/project-config/commit/abf6c51))

@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0-alpha.12 (2023-03-01)
+
+- 🐛 Ignore all changelogs in cspell ([3ffb0e5](https://github.com/w5s/project-config/commit/3ffb0e5))
+- 👷 Migrate to vitest ([a49676c](https://github.com/w5s/project-config/commit/a49676c))
+
 ## 1.0.0-alpha.11 (2023-02-28)
 
 - ♻️ Exclude test in build files ([be94c3b](https://github.com/w5s/project-config/commit/be94c3b))

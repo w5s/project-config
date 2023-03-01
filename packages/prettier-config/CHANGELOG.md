@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.13 (2023-03-01)</small>
+
+- 👷 Migrate to vitest ([a49676c](https://github.com/w5s/project-config/commit/a49676c))
+
 ## <small>1.0.12 (2023-02-28)</small>
 
 - ♻️ Exclude test in build files ([be94c3b](https://github.com/w5s/project-config/commit/be94c3b))
