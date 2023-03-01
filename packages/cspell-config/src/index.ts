@@ -60,7 +60,7 @@ const settings: AdvancedCSpellSettings = {
   import: toArray(defaultSettings.import).filter((dict) => !excludeImport.has(dict)),
   ignorePaths: [
     ...toArray(defaultSettings.ignorePaths),
-    'CHANGELOG.md',
+    '**/CHANGELOG.md',
     '**/__snapshots__/**',
     // '**/.git/**',
     '**/.vscode/**',
@@ -72,8 +72,6 @@ const settings: AdvancedCSpellSettings = {
     '**/renovate.json',
     '**/vscode-extension/**',
     '**/yarn.lock',
-    '**/apps/*/CHANGELOG.md',
-    '**/packages/*/CHANGELOG.md',
     'pnpm-lock.yaml',
   ],
   languageSettings: [
