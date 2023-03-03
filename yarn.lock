@@ -2733,7 +2733,7 @@ __metadata:
     mrm-core: ^7.0.0
     mrm-preset-default: 4.1.11
     semver-intersect: ^1.4.0
-    sync-directory: ^5.0.0
+    sync-directory: ^6.0.0
   languageName: unknown
   linkType: soft
 
@@ -11795,9 +11795,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sync-directory@npm:^5.0.0":
-  version: 5.1.9
-  resolution: "sync-directory@npm:5.1.9"
+"sync-directory@npm:^6.0.0":
+  version: 6.0.2
+  resolution: "sync-directory@npm:6.0.2"
   dependencies:
     chokidar: ^3.3.1
     commander: ^6.2.0
@@ -11806,7 +11806,7 @@ __metadata:
     readdir-enhanced: ^1.5.2
   bin:
     syncdir: cmd.js
-  checksum: 574c5b25011b949ffabb2299ef68f3b43a8976944ddeffeaf89fcdaa2a2f225d55b7fc2e48fc01692cccc8ff5482a60e927e167d6e07eb54ba36da622b802302
+  checksum: 47986ebbd75f85cddada7721441a2d858f420bc189cef810b64dbf82bae5bf9966925181038190e35cdc30a02b7172141c87546f815e4e50ddbe1c52e9b31194
   languageName: node
   linkType: hard
 
