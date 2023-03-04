@@ -12,7 +12,7 @@
       "editorconfig",
       "eslint",
       "cspell",
-      "jest",
+      "vitest",
       "renovate",
       "githooks",
       "postconfigure"

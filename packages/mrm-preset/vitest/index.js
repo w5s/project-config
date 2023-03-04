@@ -1,15 +1,15 @@
-const { jest } = require('../core/jest.js');
+const { vitest } = require('../core/vitest.js');
 
 /**
  *
  */
 function task() {
-  jest({
+  vitest({
     state: 'present',
   });
 }
 
-task.description = 'Setup Jest';
+task.description = 'Setup Vitest';
 task.parameters = {};
 
 module.exports = task;
