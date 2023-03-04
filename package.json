@@ -78,7 +78,7 @@
   },
   "devDependencies": {
     "@jest/globals": "latest",
-    "@types/node": "16.18.13",
+    "@types/node": "16.18.14",
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/conventional-changelog": "workspace:*",
     "@w5s/cspell-config": "workspace:*",
