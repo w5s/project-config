@@ -108,7 +108,7 @@ function task() {
     // });
     pkg.script(currentPackageFile, {
       name: project.test,
-      update: useWorkspace ? turboRun(project.test) : npmRunAll(project.test, false),
+      update: useWorkspace ? turboRun(project.test) : npmRunAll(project.test, true),
       state: 'present',
       default: pkg.emptyScript,
     });

@@ -45,7 +45,7 @@
     "postbuild:tsc": "yarn docs",
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "spellcheck": "cspell --no-progress '**'",
-    "test": "concurrently \"npm:test:*\" ",
+    "test": "concurrently \"npm:test:*\" \":\"",
     "test:src": "vitest run"
   },
   "devDependencies": {

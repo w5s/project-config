@@ -31,8 +31,8 @@
     "lint:src": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "spellcheck": "cspell --no-progress '**'",
-    "test": "concurrently \"npm:test:*\" ",
-    "test:src": "mkdir _tester; cd _tester; mrm bootstrap --dir ..; mrm configure --dir .."
+    "test": "concurrently \"npm:test:*\" \":\"",
+    "test:script": "mkdir _tester; cd _tester; mrm bootstrap --dir ..; mrm configure --dir .."
   },
   "dependencies": {
     "debug": "^4.3.3",

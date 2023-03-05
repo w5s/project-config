@@ -47,8 +47,7 @@
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "prepublishOnly": "npm run clean;npm run build",
     "spellcheck": "cspell --no-progress '**'",
-    "test": "concurrently \"npm:test:*\" ",
-    "test:src": "exit 0"
+    "test": "concurrently \"npm:test:*\" \":\""
   },
   "devDependencies": {
     "prettier": "2.8.4",
