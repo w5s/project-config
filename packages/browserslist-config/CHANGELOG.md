@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0 (2023-03-05)
+
+- 🔧 Improve project configuration ([3e3db6f](https://github.com/w5s/project-config/commit/3e3db6f))
+
 ## 1.0.0-alpha.14 (2023-03-01)
 
 - 👷 Migrate to vitest ([a49676c](https://github.com/w5s/project-config/commit/a49676c))

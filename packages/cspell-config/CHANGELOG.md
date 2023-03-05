@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0 (2023-03-05)
+
+- ✅ Add snapshot tests ([0ccf98e](https://github.com/w5s/project-config/commit/0ccf98e))
+- 🔧 Improve project configuration ([3e3db6f](https://github.com/w5s/project-config/commit/3e3db6f))
+
 ## 1.0.0-alpha.12 (2023-03-01)
 
 - 🐛 Ignore all changelogs in cspell ([3ffb0e5](https://github.com/w5s/project-config/commit/3ffb0e5))

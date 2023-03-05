@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 1.0.0 (2023-03-05)
+
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.54.0 ([d4a9cf0](https://github.com/w5s/project-config/commit/d4a9cf0))
+- 🔧 Improve project configuration ([3e3db6f](https://github.com/w5s/project-config/commit/3e3db6f))
+
 ## 1.0.0-alpha.55 (2023-03-01)
 
 - 👷 Migrate to vitest ([a49676c](https://github.com/w5s/project-config/commit/a49676c))
