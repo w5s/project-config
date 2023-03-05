@@ -1,4 +1,5 @@
 const { file, packageJson } = require('mrm-core');
+const fs = require('node:fs');
 const pkg = require('./pkg.js');
 const npm = require('./npm.js');
 const project = require('./project.js');
@@ -37,23 +38,27 @@ function vitest({ state }) {
   });
 
   pkg.forEachWorkspace(({ projectDir, packageFile }) => {
+    const hasSrc = fs.existsSync(`${projectDir}/src`);
+    const packageState = hasVitest && hasSrc ? 'present' : 'absent';
     pkg.value(packageFile, {
       path: 'devDependencies.vite',
-      state,
+      state: packageState,
       update: (_) => _ ?? viteVersion,
     });
     pkg.value(packageFile, {
       path: 'devDependencies.vitest',
-      state,
+      state: packageState,
       update: (_) => _ ?? vitestVersion,
     });
     pkg.script(packageFile, {
       name: `${project.test}:src`,
       update,
-      state: 'present',
+      state: packageState,
     });
     const viteConfig = file(`${projectDir}/vite.config.ts`);
-    if (!viteConfig.exists()) {
+    if (packageState === 'absent') {
+      viteConfig.delete();
+    } else if (!viteConfig.exists()) {
       viteConfig.save(
         `/// <reference types="vitest" />
 import { defineConfig } from 'vite';
