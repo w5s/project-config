@@ -47,7 +47,8 @@
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "prepublishOnly": "npm run clean;npm run build",
     "spellcheck": "cspell --no-progress '**'",
-    "test": "concurrently \"npm:test:*\" \":\""
+    "test": "concurrently \"npm:test:*\" \":\"",
+    "test:src": "vitest run"
   },
   "dependencies": {
     "@cspell/cspell-bundled-dicts": "^6.0.0"

@@ -1,0 +1,500 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`index > should match snapshot 1`] = `
+{
+  "allowCompoundWords": false,
+  "default": {
+    "allowCompoundWords": false,
+    "description": "Default cspell configuration.",
+    "dictionaries": [
+      "companies",
+      "softwareTerms",
+      "public-licenses",
+      "filetypes",
+      "w5s-filetypes",
+      "w5s-fullstack",
+      "w5s-names",
+    ],
+    "dictionaryDefinitions": [
+      {
+        "addWords": false,
+        "description": "Additional file types",
+        "name": "w5s-filetypes",
+        "path": "../dict/filetypes.txt",
+      },
+      {
+        "description": "Fullstack terms",
+        "name": "w5s-fullstack",
+        "path": "../dict/fullstack.txt",
+      },
+      {
+        "addWords": false,
+        "description": "Typescript keywords",
+        "name": "w5s-typescript",
+        "path": "../dict/typescript.txt",
+      },
+      {
+        "addWords": false,
+        "description": "Known names",
+        "name": "w5s-names",
+        "path": "../dict/names.txt",
+      },
+    ],
+    "enableFiletypes": [
+      "svelte",
+    ],
+    "flagWords": [],
+    "id": "w5s-default-js",
+    "ignorePaths": [
+      "**/CHANGELOG.md",
+      "**/__snapshots__/**",
+      "**/.vscode/**",
+      "**/*.snap",
+      "**/lib/**",
+      "**/node_modules/**",
+      "**/package.json",
+      "**/package-lock.json",
+      "**/renovate.json",
+      "**/vscode-extension/**",
+      "**/yarn.lock",
+      "pnpm-lock.yaml",
+    ],
+    "ignoreWords": [],
+    "import": [
+      "@cspell/dict-aws/cspell-ext.json",
+      "@cspell/dict-bash/cspell-ext.json",
+      "@cspell/dict-companies/cspell-ext.json",
+      "@cspell/dict-cryptocurrencies/cspell-ext.json",
+      "@cspell/dict-css/cspell-ext.json",
+      "@cspell/dict-dart/cspell-ext.json",
+      "@cspell/dict-docker/cspell-ext.json",
+      "@cspell/dict-en_us/cspell-ext.json",
+      "@cspell/dict-en-common-misspellings/cspell-ext.json",
+      "@cspell/dict-en-gb/cspell-ext.json",
+      "@cspell/dict-filetypes/cspell-ext.json",
+      "@cspell/dict-fonts/cspell-ext.json",
+      "@cspell/dict-fullstack/cspell-ext.json",
+      "@cspell/dict-gaming-terms/cspell-ext.json",
+      "@cspell/dict-git/cspell-ext.json",
+      "@cspell/dict-golang/cspell-ext.json",
+      "@cspell/dict-html-symbol-entities/cspell-ext.json",
+      "@cspell/dict-html/cspell-ext.json",
+      "@cspell/dict-java/cspell-ext.json",
+      "@cspell/dict-k8s/cspell-ext.json",
+      "@cspell/dict-lorem-ipsum/cspell-ext.json",
+      "@cspell/dict-node/cspell-ext.json",
+      "@cspell/dict-npm/cspell-ext.json",
+      "@cspell/dict-public-licenses/cspell-ext.json",
+      "@cspell/dict-ruby/cspell-ext.json",
+      "@cspell/dict-rust/cspell-ext.json",
+      "@cspell/dict-sql/cspell-ext.json",
+      "@cspell/dict-software-terms/cspell-ext.json",
+      "@cspell/dict-svelte/cspell-ext.json",
+      "@cspell/dict-swift/cspell-ext.json",
+      "@cspell/dict-typescript/cspell-ext.json",
+      "@cspell/dict-vue/cspell-ext.json",
+    ],
+    "language": "en",
+    "languageSettings": [
+      {
+        "dictionaries": [
+          "typescript",
+          "node",
+          "npm",
+        ],
+        "languageId": "javascript,javascriptreact",
+      },
+      {
+        "dictionaries": [
+          "typescript",
+          "node",
+          "npm",
+        ],
+        "languageId": "typescript,typescriptreact,mdx",
+      },
+      {
+        "dictionaries": [
+          "html",
+          "html-symbol-entities",
+          "css",
+          "fonts",
+        ],
+        "languageId": "javascriptreact,typescriptreact,mdx",
+      },
+      {
+        "dictionaries": [
+          "npm",
+          "html",
+          "html-symbol-entities",
+        ],
+        "languageId": "markdown,asciidoc",
+      },
+      {
+        "dictionaries": [
+          "html",
+          "fonts",
+          "typescript",
+          "css",
+          "npm",
+          "html-symbol-entities",
+        ],
+        "languageId": "html,pug,jade,php,handlebars",
+      },
+      {
+        "dictionaries": [
+          "node",
+          "npm",
+        ],
+        "languageId": "json,jsonc",
+      },
+      {
+        "dictionaries": [
+          "php",
+        ],
+        "languageId": "php",
+      },
+      {
+        "dictionaries": [
+          "fonts",
+          "css",
+        ],
+        "languageId": "css,less,scss",
+      },
+      {
+        "enabled": false,
+        "languageId": "map",
+      },
+      {
+        "enabled": false,
+        "languageId": "image",
+      },
+      {
+        "enabled": false,
+        "languageId": "binary",
+      },
+      {
+        "ignoreRegExpList": [
+          "HTML-symbol-entity",
+        ],
+        "languageId": "markdown,html,mdx",
+      },
+      {
+        "ignoreRegExpList": [
+          "href",
+        ],
+        "languageId": "html",
+      },
+      {
+        "ignoreRegExpList": [
+          "MARKDOWN-link-reference",
+          "MARKDOWN-link-footer",
+          "MARKDOWN-link",
+          "MARKDOWN-anchor",
+        ],
+        "languageId": "markdown",
+      },
+      {
+        "dictionaries": [
+          "w5s-typescript",
+        ],
+        "dictionaryDefinitions": [],
+        "ignoreRegExpList": [
+          "js-hex-escape",
+          "js-unicode-escape",
+          "js-regexp-flags",
+        ],
+        "includeRegExpList": [],
+        "languageId": "typescript,javascript,typescriptreact,javascriptreact",
+        "locale": "*",
+        "patterns": [],
+      },
+      {
+        "ignoreRegExpList": [
+          "\\\\/\\\\* eslint-disable.+",
+          "\\\\/\\\\/ eslint-disable.+",
+        ],
+        "languageId": "typescript,javascript,typescriptreact,javascriptreact",
+        "locale": "*",
+      },
+    ],
+    "maxNumberOfProblems": 10000,
+    "name": "W5s default settings .js",
+    "patterns": [
+      {
+        "description": "Matches on HTML symbols like \`&clubs;\`",
+        "name": "HTML-symbol-entity",
+        "pattern": /&\\[a-z\\]\\+;/g,
+      },
+      {
+        "description": "Markdown reference link: \`[This is a link][reference]\`, matches \`[reference]\`",
+        "name": "MARKDOWN-link-reference",
+        "pattern": /\\(\\?<=\\\\\\]\\)\\\\\\[\\[-\\\\w\\.\`'"\\*&;#@ \\]\\+\\\\\\]/g,
+      },
+      {
+        "description": "Markdown referenced link: \`[reference]: https://www.google.com\`, matches the entire reference.",
+        "name": "MARKDOWN-link-footer",
+        "pattern": /\\\\\\[\\[-\\\\w\\.\`'"\\*&;#@ \\]\\+\\\\\\]:\\( \\[\\^\\\\s\\]\\*\\)\\?/g,
+      },
+      {
+        "description": "Markdown link: \`[link text](link)\`, matches \`link\`",
+        "name": "MARKDOWN-link",
+        "pattern": /\\(\\?<=\\\\\\]\\\\\\(\\)\\[\\^\\)\\\\s\\]\\+/g,
+      },
+      {
+        "description": "Markdown Anchors: \`<a id=\\"my_link\\"></a>\`, matches \`my_link\`",
+        "name": "MARKDOWN-anchor",
+        "pattern": /\\(\\?<=<a\\\\s\\+id="\\)\\[\\^"\\\\s\\]\\+/g,
+      },
+    ],
+    "readonly": true,
+    "useGitignore": true,
+    "version": "0.2",
+    "words": [],
+  },
+  "description": "Default cspell configuration.",
+  "dictionaries": [
+    "companies",
+    "softwareTerms",
+    "public-licenses",
+    "filetypes",
+    "w5s-filetypes",
+    "w5s-fullstack",
+    "w5s-names",
+  ],
+  "dictionaryDefinitions": [
+    {
+      "addWords": false,
+      "description": "Additional file types",
+      "name": "w5s-filetypes",
+      "path": "../dict/filetypes.txt",
+    },
+    {
+      "description": "Fullstack terms",
+      "name": "w5s-fullstack",
+      "path": "../dict/fullstack.txt",
+    },
+    {
+      "addWords": false,
+      "description": "Typescript keywords",
+      "name": "w5s-typescript",
+      "path": "../dict/typescript.txt",
+    },
+    {
+      "addWords": false,
+      "description": "Known names",
+      "name": "w5s-names",
+      "path": "../dict/names.txt",
+    },
+  ],
+  "enableFiletypes": [
+    "svelte",
+  ],
+  "flagWords": [],
+  "id": "w5s-default-js",
+  "ignorePaths": [
+    "**/CHANGELOG.md",
+    "**/__snapshots__/**",
+    "**/.vscode/**",
+    "**/*.snap",
+    "**/lib/**",
+    "**/node_modules/**",
+    "**/package.json",
+    "**/package-lock.json",
+    "**/renovate.json",
+    "**/vscode-extension/**",
+    "**/yarn.lock",
+    "pnpm-lock.yaml",
+  ],
+  "ignoreWords": [],
+  "import": [
+    "@cspell/dict-aws/cspell-ext.json",
+    "@cspell/dict-bash/cspell-ext.json",
+    "@cspell/dict-companies/cspell-ext.json",
+    "@cspell/dict-cryptocurrencies/cspell-ext.json",
+    "@cspell/dict-css/cspell-ext.json",
+    "@cspell/dict-dart/cspell-ext.json",
+    "@cspell/dict-docker/cspell-ext.json",
+    "@cspell/dict-en_us/cspell-ext.json",
+    "@cspell/dict-en-common-misspellings/cspell-ext.json",
+    "@cspell/dict-en-gb/cspell-ext.json",
+    "@cspell/dict-filetypes/cspell-ext.json",
+    "@cspell/dict-fonts/cspell-ext.json",
+    "@cspell/dict-fullstack/cspell-ext.json",
+    "@cspell/dict-gaming-terms/cspell-ext.json",
+    "@cspell/dict-git/cspell-ext.json",
+    "@cspell/dict-golang/cspell-ext.json",
+    "@cspell/dict-html-symbol-entities/cspell-ext.json",
+    "@cspell/dict-html/cspell-ext.json",
+    "@cspell/dict-java/cspell-ext.json",
+    "@cspell/dict-k8s/cspell-ext.json",
+    "@cspell/dict-lorem-ipsum/cspell-ext.json",
+    "@cspell/dict-node/cspell-ext.json",
+    "@cspell/dict-npm/cspell-ext.json",
+    "@cspell/dict-public-licenses/cspell-ext.json",
+    "@cspell/dict-ruby/cspell-ext.json",
+    "@cspell/dict-rust/cspell-ext.json",
+    "@cspell/dict-sql/cspell-ext.json",
+    "@cspell/dict-software-terms/cspell-ext.json",
+    "@cspell/dict-svelte/cspell-ext.json",
+    "@cspell/dict-swift/cspell-ext.json",
+    "@cspell/dict-typescript/cspell-ext.json",
+    "@cspell/dict-vue/cspell-ext.json",
+  ],
+  "language": "en",
+  "languageSettings": [
+    {
+      "dictionaries": [
+        "typescript",
+        "node",
+        "npm",
+      ],
+      "languageId": "javascript,javascriptreact",
+    },
+    {
+      "dictionaries": [
+        "typescript",
+        "node",
+        "npm",
+      ],
+      "languageId": "typescript,typescriptreact,mdx",
+    },
+    {
+      "dictionaries": [
+        "html",
+        "html-symbol-entities",
+        "css",
+        "fonts",
+      ],
+      "languageId": "javascriptreact,typescriptreact,mdx",
+    },
+    {
+      "dictionaries": [
+        "npm",
+        "html",
+        "html-symbol-entities",
+      ],
+      "languageId": "markdown,asciidoc",
+    },
+    {
+      "dictionaries": [
+        "html",
+        "fonts",
+        "typescript",
+        "css",
+        "npm",
+        "html-symbol-entities",
+      ],
+      "languageId": "html,pug,jade,php,handlebars",
+    },
+    {
+      "dictionaries": [
+        "node",
+        "npm",
+      ],
+      "languageId": "json,jsonc",
+    },
+    {
+      "dictionaries": [
+        "php",
+      ],
+      "languageId": "php",
+    },
+    {
+      "dictionaries": [
+        "fonts",
+        "css",
+      ],
+      "languageId": "css,less,scss",
+    },
+    {
+      "enabled": false,
+      "languageId": "map",
+    },
+    {
+      "enabled": false,
+      "languageId": "image",
+    },
+    {
+      "enabled": false,
+      "languageId": "binary",
+    },
+    {
+      "ignoreRegExpList": [
+        "HTML-symbol-entity",
+      ],
+      "languageId": "markdown,html,mdx",
+    },
+    {
+      "ignoreRegExpList": [
+        "href",
+      ],
+      "languageId": "html",
+    },
+    {
+      "ignoreRegExpList": [
+        "MARKDOWN-link-reference",
+        "MARKDOWN-link-footer",
+        "MARKDOWN-link",
+        "MARKDOWN-anchor",
+      ],
+      "languageId": "markdown",
+    },
+    {
+      "dictionaries": [
+        "w5s-typescript",
+      ],
+      "dictionaryDefinitions": [],
+      "ignoreRegExpList": [
+        "js-hex-escape",
+        "js-unicode-escape",
+        "js-regexp-flags",
+      ],
+      "includeRegExpList": [],
+      "languageId": "typescript,javascript,typescriptreact,javascriptreact",
+      "locale": "*",
+      "patterns": [],
+    },
+    {
+      "ignoreRegExpList": [
+        "\\\\/\\\\* eslint-disable.+",
+        "\\\\/\\\\/ eslint-disable.+",
+      ],
+      "languageId": "typescript,javascript,typescriptreact,javascriptreact",
+      "locale": "*",
+    },
+  ],
+  "maxNumberOfProblems": 10000,
+  "name": "W5s default settings .js",
+  "patterns": [
+    {
+      "description": "Matches on HTML symbols like \`&clubs;\`",
+      "name": "HTML-symbol-entity",
+      "pattern": /&\\[a-z\\]\\+;/g,
+    },
+    {
+      "description": "Markdown reference link: \`[This is a link][reference]\`, matches \`[reference]\`",
+      "name": "MARKDOWN-link-reference",
+      "pattern": /\\(\\?<=\\\\\\]\\)\\\\\\[\\[-\\\\w\\.\`'"\\*&;#@ \\]\\+\\\\\\]/g,
+    },
+    {
+      "description": "Markdown referenced link: \`[reference]: https://www.google.com\`, matches the entire reference.",
+      "name": "MARKDOWN-link-footer",
+      "pattern": /\\\\\\[\\[-\\\\w\\.\`'"\\*&;#@ \\]\\+\\\\\\]:\\( \\[\\^\\\\s\\]\\*\\)\\?/g,
+    },
+    {
+      "description": "Markdown link: \`[link text](link)\`, matches \`link\`",
+      "name": "MARKDOWN-link",
+      "pattern": /\\(\\?<=\\\\\\]\\\\\\(\\)\\[\\^\\)\\\\s\\]\\+/g,
+    },
+    {
+      "description": "Markdown Anchors: \`<a id=\\"my_link\\"></a>\`, matches \`my_link\`",
+      "name": "MARKDOWN-anchor",
+      "pattern": /\\(\\?<=<a\\\\s\\+id="\\)\\[\\^"\\\\s\\]\\+/g,
+    },
+  ],
+  "readonly": true,
+  "useGitignore": true,
+  "version": "0.2",
+  "words": [],
+}
+`;

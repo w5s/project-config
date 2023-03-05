@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`index > should match snapshot 1`] = `
+{
+  "default": {
+    "overrides": [
+      {
+        "files": [
+          "*.css",
+          "*.scss",
+        ],
+        "options": {
+          "trailingComma": "none",
+        },
+      },
+    ],
+    "singleQuote": true,
+    "trailingComma": "es5",
+  },
+}
+`;
