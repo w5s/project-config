@@ -6,6 +6,7 @@ circleci
 CODEOWNERS
 commitlint
 datasource
+datasources
 editorconfig
 esbuild
 esnext
