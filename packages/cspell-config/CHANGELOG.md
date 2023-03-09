@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.2 (2023-03-09)</small>
+
+- 🐛 Add missing plural for datasources ([46e9594](https://github.com/w5s/project-config/commit/46e9594))
+
 ## <small>1.0.1 (2023-03-09)</small>
 
 - ✨ Add new names to dictionary ([2190883](https://github.com/w5s/project-config/commit/2190883))
