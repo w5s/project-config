@@ -5,6 +5,7 @@ camelcase
 circleci
 CODEOWNERS
 commitlint
+datasource
 editorconfig
 esbuild
 esnext

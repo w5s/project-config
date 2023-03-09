@@ -1,6 +1,7 @@
 dbaeumer
 espree
 jpolo
+rubygems
 rushstack
 seatonjiang
 strictsoftware
