@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.1 (2023-03-09)</small>
+
+- ✨ Add new names to dictionary ([2190883](https://github.com/w5s/project-config/commit/2190883))
+- ⬆️ Upgrade CSpell group to v6.28.0 ([2a36c93](https://github.com/w5s/project-config/commit/2a36c93))
+
 ## 1.0.0 (2023-03-05)
 
 - ✅ Add snapshot tests ([0ccf98e](https://github.com/w5s/project-config/commit/0ccf98e))

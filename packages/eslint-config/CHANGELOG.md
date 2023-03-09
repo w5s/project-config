@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.1 (2023-03-09)</small>
+
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.54.1 ([483f987](https://github.com/w5s/project-config/commit/483f987))
+- ⬆️ Upgrade dependency eslint-config-prettier to v8.7.0 ([a211204](https://github.com/w5s/project-config/commit/a211204))
+
 ## 1.0.0 (2023-03-05)
 
 - ⬆️ Upgrade dependency @typescript-eslint/parser to v5.54.0 ([d4a9cf0](https://github.com/w5s/project-config/commit/d4a9cf0))

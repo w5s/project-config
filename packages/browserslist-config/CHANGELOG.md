@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.1 (2023-03-09)</small>
+
+- 📝 Update browserslist support ([5d9cd4a](https://github.com/w5s/project-config/commit/5d9cd4a))
+- 🔨 Add commit script ([e449c48](https://github.com/w5s/project-config/commit/e449c48))
+
 ## 1.0.0 (2023-03-05)
 
 - 🔧 Improve project configuration ([3e3db6f](https://github.com/w5s/project-config/commit/3e3db6f))
