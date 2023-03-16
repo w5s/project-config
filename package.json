@@ -86,7 +86,7 @@
     "@w5s/prettier-config": "workspace:*",
     "@w5s/ts-config": "workspace:*",
     "concurrently": "7.6.0",
-    "cspell": "6.29.3",
+    "cspell": "6.30.0",
     "eslint": "8.36.0",
     "eslint-plugin-sort-keys": "2.3.5",
     "lerna": "6.5.1",
