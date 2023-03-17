@@ -18,8 +18,10 @@
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
-  "type": "commonjs",
-  "main": "./tsconfig.json",
+  "type": "module",
+  "exports": {
+    ".": "./tsconfig.json"
+  },
   "files": [
     "tsconfig.json"
   ],
@@ -37,10 +39,10 @@
     "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck"
   },
   "devDependencies": {
-    "typescript": "4.9.5"
+    "typescript": "5.0.2"
   },
   "peerDependencies": {
-    "typescript": ">=4.7.x"
+    "typescript": ">=5.x"
   },
   "peerDependenciesMeta": {
     "typescript": {

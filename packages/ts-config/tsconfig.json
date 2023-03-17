@@ -7,8 +7,7 @@
     "declaration": true,
     "declarationMap": true,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error", // Enforce import type instead of import
-    "isolatedModules": true,
+    // "isolatedModules": true,
     "lib": ["ES2020"],
     "module": "node16",
     "moduleDetection": "force",
@@ -20,7 +19,6 @@
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
-    "preserveValueImports": true,
     // "noUnusedLocals": true, => Prefer ESLint validation
     // "noUnusedParameters": true, => Prefer ESLint validation
     "pretty": true,
@@ -30,7 +28,8 @@
     "strict": true,
     "stripInternal": true,
     "target": "ES2020",
-    "useDefineForClassFields": true
+    "useDefineForClassFields": true,
+    "verbatimModuleSyntax": true
   },
   "exclude": ["**/lib/**", "**/dist/**", "**/build/**", "**/node_modules/**"]
 }
