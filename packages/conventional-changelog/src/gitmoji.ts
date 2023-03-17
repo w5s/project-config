@@ -1,5 +1,5 @@
 import emojiRegexp from 'emoji-regex';
-import { Gitmoji, gitmojis } from 'gitmojis';
+import { type Gitmoji, gitmojis } from 'gitmojis';
 import type { CommitConventionalType } from './data';
 
 export type Emoji = Emoji.Unicode | Emoji.Text;

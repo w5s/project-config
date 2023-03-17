@@ -2,6 +2,10 @@
   "$schema": "https://json.schemastore.org/tsconfig.json",
   "extends": "@w5s/ts-config",
   "compilerOptions": {
-    "preserveValueImports": false
+    "declarationMap": false,
+    "esModuleInterop": true,
+    "module": "CommonJS",
+    "sourceMap": false,
+    "verbatimModuleSyntax": false
   }
 }

@@ -2227,7 +2227,7 @@ __metadata:
   dependencies:
     typescript: 5.0.2
   peerDependencies:
-    typescript: ">=4.7.x"
+    typescript: ">=5.x"
   peerDependenciesMeta:
     typescript:
       optional: true
