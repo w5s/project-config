@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.1 (2023-03-17)</small>
+
+- ⬆️ Upgrade dependency typescript to v5 ([aaf96b1](https://github.com/w5s/project-config/commit/aaf96b1))
+- 💚 Fix build ([a2bcea5](https://github.com/w5s/project-config/commit/a2bcea5))
+
 ## 1.0.0 (2023-03-05)
 
 - ✅ Add snapshot tests ([0ccf98e](https://github.com/w5s/project-config/commit/0ccf98e))

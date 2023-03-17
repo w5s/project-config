@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.3 (2023-03-17)</small>
+
+- ⬆️ Upgrade CSpell group to v6.29.0 ([e2ebca0](https://github.com/w5s/project-config/commit/e2ebca0))
+- ⬆️ Upgrade CSpell group to v6.29.3 ([8595fb9](https://github.com/w5s/project-config/commit/8595fb9))
+- ⬆️ Upgrade CSpell group to v6.30.0 ([9fc4c29](https://github.com/w5s/project-config/commit/9fc4c29))
+- ⬆️ Upgrade dependency vite to v4.2.0 ([78b78a6](https://github.com/w5s/project-config/commit/78b78a6))
+- ⬆️ Upgrade dependency vitest to v0.29.3 ([e38b3fe](https://github.com/w5s/project-config/commit/e38b3fe))
+- 💚 Fix build ([a2bcea5](https://github.com/w5s/project-config/commit/a2bcea5))
+
 ## <small>1.0.2 (2023-03-09)</small>
 
 - 🐛 Add missing plural for datasources ([46e9594](https://github.com/w5s/project-config/commit/46e9594))

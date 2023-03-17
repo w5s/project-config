@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.1 (2023-03-17)</small>
+
+- ⬆️ Upgrade dependency glob to v9 ([4b51735](https://github.com/w5s/project-config/commit/4b51735))
+- ⬆️ Upgrade dependency mrm to v4.1.14 ([7420490](https://github.com/w5s/project-config/commit/7420490))
+
 ## 1.0.0 (2023-03-05)
 
 - ✨ Add vitest support ([f2b1fe4](https://github.com/w5s/project-config/commit/f2b1fe4))

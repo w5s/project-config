@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.15 (2023-03-17)</small>
+
+- ⬆️ Upgrade dependency vite to v4.2.0 ([78b78a6](https://github.com/w5s/project-config/commit/78b78a6))
+- ⬆️ Upgrade dependency vitest to v0.29.3 ([e38b3fe](https://github.com/w5s/project-config/commit/e38b3fe))
+- 💚 Fix build ([a2bcea5](https://github.com/w5s/project-config/commit/a2bcea5))
+
 ## <small>1.0.14 (2023-03-05)</small>
 
 - 🔧 Improve project configuration ([3e3db6f](https://github.com/w5s/project-config/commit/3e3db6f))

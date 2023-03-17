@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.2 (2023-03-17)</small>
+
+- ⬆️ Upgrade dependency @types/eslint to v8.21.2 ([908c9e6](https://github.com/w5s/project-config/commit/908c9e6))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.55.0 ([bb978da](https://github.com/w5s/project-config/commit/bb978da))
+- ⬆️ Upgrade dependency eslint to v8.36.0 ([c916e7e](https://github.com/w5s/project-config/commit/c916e7e))
+- ⬆️ Upgrade dependency eslint-plugin-unicorn to v46 ([7b15b10](https://github.com/w5s/project-config/commit/7b15b10))
+- ⬆️ Upgrade dependency typescript to v5 ([aaf96b1](https://github.com/w5s/project-config/commit/aaf96b1))
+- ⬆️ Upgrade dependency vite to v4.2.0 ([78b78a6](https://github.com/w5s/project-config/commit/78b78a6))
+- ⬆️ Upgrade dependency vitest to v0.29.3 ([e38b3fe](https://github.com/w5s/project-config/commit/e38b3fe))
+- 💚 Fix build ([a2bcea5](https://github.com/w5s/project-config/commit/a2bcea5))
+
 ## <small>1.0.1 (2023-03-09)</small>
 
 - ⬆️ Upgrade dependency @typescript-eslint/parser to v5.54.1 ([483f987](https://github.com/w5s/project-config/commit/483f987))
