@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.4 (2023-03-20)</small>
+
+- ⬆️ Upgrade CSpell group to v6.30.2 ([254f727](https://github.com/w5s/project-config/commit/254f727))
+
 ## <small>1.0.3 (2023-03-17)</small>
 
 - ⬆️ Upgrade CSpell group to v6.29.0 ([e2ebca0](https://github.com/w5s/project-config/commit/e2ebca0))

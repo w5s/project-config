@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.3 (2023-03-20)</small>
+
+- 🐛 Disable dot-notation on jest files ([40b4629](https://github.com/w5s/project-config/commit/40b4629))
+
 ## <small>1.0.2 (2023-03-17)</small>
 
 - ⬆️ Upgrade dependency @types/eslint to v8.21.2 ([908c9e6](https://github.com/w5s/project-config/commit/908c9e6))

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.3 (2023-03-20)</small>
+
+- 📝 Update browserslist support ([c8c5bb2](https://github.com/w5s/project-config/commit/c8c5bb2))
+
 ## <small>1.0.2 (2023-03-17)</small>
 
 - ⬆️ Upgrade dependency vite to v4.2.0 ([78b78a6](https://github.com/w5s/project-config/commit/78b78a6))
