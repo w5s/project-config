@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.3 (2023-03-21)</small>
+
+- 🐛 Add missing templates ([a1fd896](https://github.com/w5s/project-config/commit/a1fd896))
+
 ## <small>1.0.2 (2023-03-21)</small>
 
 - ✨ Add gitRawCommitOpts ([945d082](https://github.com/w5s/project-config/commit/945d082))
