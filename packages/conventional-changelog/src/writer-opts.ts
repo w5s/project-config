@@ -1,11 +1,11 @@
 import type { Options } from 'conventional-changelog-writer';
 import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { resolve, dirname } from 'node:path';
 import { createTransform } from './transform.js';
 
 export interface WriterOptions extends Options {}
 
-const basePath = resolve(__dirname, './templates');
+const basePath = resolve(dirname(__dirname), './template');
 
 const template = readFileSync(`${basePath}/template.hbs`, 'utf8');
 const header = readFileSync(`${basePath}/header.hbs`, 'utf8');

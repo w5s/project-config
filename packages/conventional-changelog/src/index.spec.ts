@@ -7,6 +7,10 @@ describe('conventional-changelog', () => {
       parserOpts: expect.objectContaining({
         headerPattern: expect.any(RegExp),
       }),
+      writerOpts: expect.objectContaining({
+        commitGroupsSort: expect.any(String),
+        commitPartial: expect.any(String),
+      }),
     });
   });
 });
