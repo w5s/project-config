@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.2 (2023-03-21)</small>
+
+- ✨ Add gitRawCommitOpts ([945d082](https://github.com/w5s/project-config/commit/945d082))
+- ✨ Add recommendedBumpOpts ([e2a9dd8](https://github.com/w5s/project-config/commit/e2a9dd8))
+- ✨ Add writerOpts ([83d20f4](https://github.com/w5s/project-config/commit/83d20f4))
+
 ## <small>1.0.1 (2023-03-17)</small>
 
 - ⬆️ Upgrade dependency vite to v4.2.0 ([78b78a6](https://github.com/w5s/project-config/commit/78b78a6))

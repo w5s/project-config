@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.16 (2023-03-21)</small>
+
+**Note:** Version bump only for package @w5s/commitlint-config
+
 ## <small>1.0.15 (2023-03-17)</small>
 
 - ⬆️ Upgrade dependency vite to v4.2.0 ([78b78a6](https://github.com/w5s/project-config/commit/78b78a6))
