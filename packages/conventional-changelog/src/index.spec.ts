@@ -11,6 +11,10 @@ describe('conventional-changelog', () => {
         commitGroupsSort: expect.any(String),
         commitPartial: expect.any(String),
       }),
+      recommendedBumpOpts: expect.objectContaining({
+        parserOpts: expect.any(Object),
+        whatBump: expect.any(Function),
+      }),
     });
   });
 });
