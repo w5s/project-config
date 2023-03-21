@@ -4,6 +4,9 @@ import config from './index.js';
 describe('conventional-changelog', () => {
   it('should export data', () => {
     expect(config).toEqual({
+      gitRawCommitOpts: {
+        format: expect.any(String),
+      },
       parserOpts: expect.objectContaining({
         headerPattern: expect.any(RegExp),
       }),

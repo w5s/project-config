@@ -8,5 +8,8 @@ declare const _default: {
             reason: string;
         };
     };
+    gitRawCommitOpts: {
+        format: string;
+    };
 };
 export default _default;
