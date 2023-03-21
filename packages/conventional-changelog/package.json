@@ -21,6 +21,7 @@
   },
   "typings": "./lib/index.d.ts",
   "files": [
+    "template/*",
     "lib/**/!(*.spec).d.ts",
     "lib/**/!(*.spec).d.ts.map",
     "lib/**/!(*.spec).js.map",
