@@ -10,7 +10,7 @@ function task() {
     packageManager === 'npm'
       ? `${packageManager} ci`
       : packageManager === 'yarn'
-      ? `${packageManager} install --frozen-lockfile`
+      ? `${packageManager} install --immutable`
       : `${packageManager} install`;
   githubCI.workflow({
     name: 'node.js.yml',
