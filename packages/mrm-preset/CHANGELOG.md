@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.2 (2023-03-24)</small>
+
+- ✨ Improve yarn berry support ([c5010cc](https://github.com/w5s/project-config/commit/c5010cc))
+- 🐛 Fix github actions when merge queue ([6d8ab34](https://github.com/w5s/project-config/commit/6d8ab34))
+
 ## <small>1.0.1 (2023-03-17)</small>
 
 - ⬆️ Upgrade dependency glob to v9 ([4b51735](https://github.com/w5s/project-config/commit/4b51735))

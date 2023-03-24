@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.18 (2023-03-24)</small>
+
+- ⬆️ Upgrade dependency vite to v4.2.1 ([076c5b8](https://github.com/w5s/project-config/commit/076c5b8))
+- ⬆️ Upgrade dependency vitest to v0.29.7 ([0b07005](https://github.com/w5s/project-config/commit/0b07005))
+
 ## <small>1.0.17 (2023-03-21)</small>
 
 **Note:** Version bump only for package @w5s/commitlint-config

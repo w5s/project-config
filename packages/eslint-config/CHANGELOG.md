@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.4 (2023-03-24)</small>
+
+- ⬆️ Upgrade dependency @types/eslint to v8.21.3 ([4d44495](https://github.com/w5s/project-config/commit/4d44495))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.56.0 ([a695b2c](https://github.com/w5s/project-config/commit/a695b2c))
+- ⬆️ Upgrade dependency eslint-config-prettier to v8.8.0 ([60f53ee](https://github.com/w5s/project-config/commit/60f53ee))
+- ⬆️ Upgrade dependency prettier to v2.8.6 ([7bcd2ff](https://github.com/w5s/project-config/commit/7bcd2ff))
+- ⬆️ Upgrade dependency vite to v4.2.1 ([076c5b8](https://github.com/w5s/project-config/commit/076c5b8))
+- ⬆️ Upgrade dependency vitest to v0.29.7 ([0b07005](https://github.com/w5s/project-config/commit/0b07005))
+
 ## <small>1.0.3 (2023-03-20)</small>
 
 - 🐛 Disable dot-notation on jest files ([40b4629](https://github.com/w5s/project-config/commit/40b4629))
