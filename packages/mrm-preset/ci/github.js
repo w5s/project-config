@@ -19,6 +19,7 @@ function task() {
       name: 'Node.js CI',
       ...config,
       on: {
+        merge_group: {},
         push: {
           branches: [baseBranch],
         },
