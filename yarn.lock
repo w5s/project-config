@@ -11289,8 +11289,8 @@ __metadata:
   linkType: hard
 
 "sync-directory@npm:^6.0.0":
-  version: 6.0.3
-  resolution: "sync-directory@npm:6.0.3"
+  version: 6.0.4
+  resolution: "sync-directory@npm:6.0.4"
   dependencies:
     chokidar: ^3.3.1
     commander: ^6.2.0
@@ -11299,7 +11299,7 @@ __metadata:
     readdir-enhanced: ^1.5.2
   bin:
     syncdir: cmd.js
-  checksum: dbb1ff4b975c78a41bc47167e52eb1915e8c0f7ea86dbba07adf1673920a15c55436c3d085ef458873257bdfed3452cf2476ab38e90d51cb5566211116df7f5f
+  checksum: 9333a649d96a0c91644331de752425e81fb9329e84e7d83d776a4fca56a0e1d68b23cc3313a94a95e230d2e36670acda3c4b94801a5b2997e31d6b1e321b666f
   languageName: node
   linkType: hard
 
