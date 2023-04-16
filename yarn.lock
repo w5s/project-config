@@ -3032,9 +3032,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001449":
-  version: 1.0.30001478
-  resolution: "caniuse-lite@npm:1.0.30001478"
-  checksum: 27a370dcb32a6a35e186307aabc570da1cd0fccc849913665e7df6822a87286de99509b163304e0586c23c539a991717fb68ed84b85bbd21b2cb86475ae5ffb2
+  version: 1.0.30001479
+  resolution: "caniuse-lite@npm:1.0.30001479"
+  checksum: 68b3ca3292b2471040a8f05636c69b036a3e16a00dd4e8c92ce97b04599ce0452c05776d72cad054fc67cff4c812b8f77a0d29e1de6d60592b96cb768502f0b3
   languageName: node
   linkType: hard
 
@@ -10380,11 +10380,11 @@ __metadata:
   linkType: hard
 
 "regexp-tree@npm:^0.1.24, regexp-tree@npm:~0.1.1":
-  version: 0.1.24
-  resolution: "regexp-tree@npm:0.1.24"
+  version: 0.1.25
+  resolution: "regexp-tree@npm:0.1.25"
   bin:
     regexp-tree: bin/regexp-tree
-  checksum: 5807013289d9205288d665e0f8d8cff94843dfd55fdedd1833eb9d9bbd07188a37dfa02942ec5cdc671180037f715148fac1ba6f18fd6be4268e5a8feb49d340
+  checksum: 7117d2378376c4ea0d088f19cb68b210daffe23d5b7c1c604e9d4576470ea5f07624727fc88de969dd71abdb720bd32205407f954c6dcc4a4320cb599651e2f6
   languageName: node
   linkType: hard
 
