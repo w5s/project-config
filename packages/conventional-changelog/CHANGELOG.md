@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.6](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.5...@w5s/conventional-changelog@1.0.6) (2023-04-19)
+
+### ✅ Tests
+
+- Refactor tests ([326ca65](https://github.com/w5s/project-config/commit/326ca65)) \* Refactor tests ([7f73c29](https://github.com/w5s/project-config/commit/7f73c29))
+
+### 🐛 Bug Fixes
+
+- Add missing export ([f764ccb](https://github.com/w5s/project-config/commit/f764ccb))
+
 ## <small>1.0.5 (2023-04-19)</small>
 
 - ⬆️ Upgrade dependency vite to v4.2.2 ([161dd36](https://github.com/w5s/project-config/commit/161dd36))

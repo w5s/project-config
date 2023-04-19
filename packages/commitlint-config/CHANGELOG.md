@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.20](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@1.0.19...@w5s/commitlint-config@1.0.20) (2023-04-19)
+
+### ✅ Tests
+
+- Make tests pass ([af53282](https://github.com/w5s/project-config/commit/af53282))
+
 ## <small>1.0.19 (2023-04-19)</small>
 
 - ✨ Increase header-max-length to 100 ([c05cf49](https://github.com/w5s/project-config/commit/c05cf49))
