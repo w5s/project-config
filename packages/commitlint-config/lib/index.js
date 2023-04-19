@@ -15,7 +15,7 @@ const rules = {
     'body-max-line-length': [Error, 'always', 100],
     'footer-leading-blank': [Warning, 'always'],
     'footer-max-line-length': [Error, 'always', 100],
-    'header-max-length': [Error, 'always', 72],
+    'header-max-length': [Error, 'always', 100],
     'scope-case': [Error, 'always', 'lower-case'],
     'subject-case': [Error, 'always', ['sentence-case']],
     'subject-empty': [Error, 'never'],
