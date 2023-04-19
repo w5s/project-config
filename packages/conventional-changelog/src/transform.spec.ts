@@ -103,6 +103,22 @@ describe('createTransform', () => {
       ],
       [
         generateCommit({
+          type: '⬆️',
+        }),
+        {
+          body: null,
+          footer: null,
+          merge: null,
+          revert: null,
+          header: '',
+          mentions: [],
+          notes: [],
+          references: [],
+          type: '🎫 Chores',
+        },
+      ],
+      [
+        generateCommit({
           type: ':bug:',
         }),
         {
