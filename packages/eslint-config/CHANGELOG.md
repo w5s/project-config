@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.5 (2023-04-19)</small>
+
+- ⬆️ Upgrade dependency @types/eslint to v8.37.0 ([ac063e5](https://github.com/w5s/project-config/commit/ac063e5))
+- ⬆️ Upgrade dependency @types/react to v18.0.29 ([1ae3e55](https://github.com/w5s/project-config/commit/1ae3e55))
+- ⬆️ Upgrade dependency @types/react to v18.0.30 ([05eb1ae](https://github.com/w5s/project-config/commit/05eb1ae))
+- ⬆️ Upgrade dependency @types/react to v18.0.31 ([647f2a2](https://github.com/w5s/project-config/commit/647f2a2))
+- ⬆️ Upgrade dependency @types/react to v18.0.32 ([21fd951](https://github.com/w5s/project-config/commit/21fd951))
+- ⬆️ Upgrade dependency @types/react to v18.0.33 ([eddcc5d](https://github.com/w5s/project-config/commit/eddcc5d))
+- ⬆️ Upgrade dependency @types/react to v18.0.34 ([4ec30a6](https://github.com/w5s/project-config/commit/4ec30a6))
+- ⬆️ Upgrade dependency @types/react to v18.0.35 ([ab888b7](https://github.com/w5s/project-config/commit/ab888b7))
+- ⬆️ Upgrade dependency @types/react to v18.0.37 ([e78c78f](https://github.com/w5s/project-config/commit/e78c78f))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.57.0 ([bbed094](https://github.com/w5s/project-config/commit/bbed094))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.57.1 ([af5430e](https://github.com/w5s/project-config/commit/af5430e))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.58.0 ([b72d9e5](https://github.com/w5s/project-config/commit/b72d9e5))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v5.59.0 ([1be2fef](https://github.com/w5s/project-config/commit/1be2fef))
+- ⬆️ Upgrade dependency eslint to v8.37.0 ([75e21f0](https://github.com/w5s/project-config/commit/75e21f0))
+- ⬆️ Upgrade dependency eslint to v8.38.0 ([78634aa](https://github.com/w5s/project-config/commit/78634aa))
+- ⬆️ Upgrade dependency eslint-plugin-jsdoc to v41 ([78ed2ae](https://github.com/w5s/project-config/commit/78ed2ae))
+- ⬆️ Upgrade dependency prettier to v2.8.7 ([4fde99d](https://github.com/w5s/project-config/commit/4fde99d))
+- ⬆️ Upgrade dependency vite to v4.2.2 ([161dd36](https://github.com/w5s/project-config/commit/161dd36))
+- ⬆️ Upgrade dependency vitest to v0.29.8 ([86a4f32](https://github.com/w5s/project-config/commit/86a4f32))
+- ⬆️ Upgrade dependency vitest to v0.30.0 ([6e64a08](https://github.com/w5s/project-config/commit/6e64a08))
+- ⬆️ Upgrade dependency vitest to v0.30.1 ([33a376b](https://github.com/w5s/project-config/commit/33a376b))
+
 ## <small>1.0.4 (2023-03-24)</small>
 
 - ⬆️ Upgrade dependency @types/eslint to v8.21.3 ([4d44495](https://github.com/w5s/project-config/commit/4d44495))

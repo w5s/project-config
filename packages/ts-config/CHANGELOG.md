@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.2 (2023-04-19)</small>
+
+- ⬆️ Upgrade dependency typescript to v5.0.3 ([9ad27ad](https://github.com/w5s/project-config/commit/9ad27ad))
+- ⬆️ Upgrade dependency typescript to v5.0.4 ([5188d90](https://github.com/w5s/project-config/commit/5188d90))
+
 ## <small>1.0.1 (2023-03-17)</small>
 
 - ⬆️ Upgrade dependency typescript to v5 ([aaf96b1](https://github.com/w5s/project-config/commit/aaf96b1))

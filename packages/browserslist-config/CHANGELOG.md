@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.5 (2023-04-19)</small>
+
+- ⬆️ Upgrade dependency vite to v4.2.2 ([161dd36](https://github.com/w5s/project-config/commit/161dd36))
+- ⬆️ Upgrade dependency vitest to v0.29.8 ([86a4f32](https://github.com/w5s/project-config/commit/86a4f32))
+- ⬆️ Upgrade dependency vitest to v0.30.0 ([6e64a08](https://github.com/w5s/project-config/commit/6e64a08))
+- ⬆️ Upgrade dependency vitest to v0.30.1 ([33a376b](https://github.com/w5s/project-config/commit/33a376b))
+- 📝 Update browserslist support ([c1c311a](https://github.com/w5s/project-config/commit/c1c311a))
+
 ## <small>1.0.4 (2023-03-24)</small>
 
 - ⬆️ Upgrade dependency vite to v4.2.1 ([076c5b8](https://github.com/w5s/project-config/commit/076c5b8))
