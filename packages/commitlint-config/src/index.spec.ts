@@ -92,8 +92,8 @@ describe('Commitlint Config', () => {
   });
 
   describe('header-max-length', () => {
-    it('should return error when length > 72 characters', async () => {
-      const longSubject = generateValidSubject(72 - `: `.length + 1);
+    it('should return error when length > 100 characters', async () => {
+      const longSubject = generateValidSubject(100 - `: `.length + 1);
       const result = await lint(`${anyGitmoji} : ${longSubject}`);
 
       expect(result).toEqual(
