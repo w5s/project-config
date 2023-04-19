@@ -16,10 +16,10 @@
   "author": "Julien Polo <julien.polo@gmail.com>",
   "type": "commonjs",
   "exports": {
-    ".": "./lib/index.js",
+    ".": "./index.js",
     "./lib/*": "./lib/*"
   },
-  "typings": "./lib/index.d.ts",
+  "typings": "./index.d.ts",
   "files": [
     "template/*",
     "lib/**/!(*.spec).d.ts",
