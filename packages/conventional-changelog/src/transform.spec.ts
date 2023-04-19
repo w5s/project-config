@@ -84,39 +84,43 @@ describe('createTransform', () => {
         type: '🐛 Bug Fixes',
       });
     });
-    it('should handle type as unicode gitmoji', () => {
+    it.each([
+      [
+        generateCommit({
+          type: '🐛',
+        }),
+        {
+          body: null,
+          footer: null,
+          merge: null,
+          revert: null,
+          header: '',
+          mentions: [],
+          notes: [],
+          references: [],
+          type: '🐛 Bug Fixes',
+        },
+      ],
+      [
+        generateCommit({
+          type: ':bug:',
+        }),
+        {
+          body: null,
+          footer: null,
+          merge: null,
+          revert: null,
+          header: '',
+          mentions: [],
+          notes: [],
+          references: [],
+          type: '🐛 Bug Fixes',
+        },
+      ],
+    ])('should handle type as unicode gitmoji', (commit, expected) => {
       const transform = createTransform({});
-      const unicodeCommit = generateCommit({
-        type: '🐛',
-      });
 
-      expect(transform(unicodeCommit, defaultContext)).toEqual({
-        body: null,
-        footer: null,
-        merge: null,
-        revert: null,
-        header: '',
-        mentions: [],
-        notes: [],
-        references: [],
-        type: '🐛 Bug Fixes',
-      });
-
-      const emojiCommit = generateCommit({
-        type: ':bug:',
-      });
-
-      expect(transform(emojiCommit, defaultContext)).toEqual({
-        body: null,
-        footer: null,
-        merge: null,
-        revert: null,
-        header: '',
-        mentions: [],
-        notes: [],
-        references: [],
-        type: '🐛 Bug Fixes',
-      });
+      expect(transform(commit, defaultContext)).toEqual(expected);
     });
 
     it('should show scope display name', () => {
