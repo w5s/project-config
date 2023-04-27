@@ -43,5 +43,14 @@ var ESLintConfig;
         });
     }
     ESLintConfig.concat = concat;
+    /**
+     * Always return 'off'. `_status` is the previous rule value.
+     *
+     * @param _status
+     */
+    function fixme(_status) {
+        return 'off';
+    }
+    ESLintConfig.fixme = fixme;
 })(ESLintConfig = exports.ESLintConfig || (exports.ESLintConfig = {}));
 //# sourceMappingURL=eslint.js.map

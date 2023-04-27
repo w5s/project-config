@@ -1,6 +1,5 @@
 import { ESLintConfig } from '@w5s/dev';
 import type eslint from 'eslint';
-import { fixme } from './_rule';
 
 const config: eslint.Linter.Config = ESLintConfig.concat(
   {
@@ -48,7 +47,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
    */
   {
     rules: {
-      '@typescript-eslint/dot-notation': fixme(undefined), // eslint-plugin-jest seems to break this rule
+      '@typescript-eslint/dot-notation': ESLintConfig.fixme(undefined), // eslint-plugin-jest seems to break this rule
       '@typescript-eslint/naming-convention': 'off',
       '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',

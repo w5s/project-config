@@ -1,4 +1,4 @@
-import type { ESLint } from 'eslint';
+import type { ESLint, Linter } from 'eslint';
 
 function toArray<T>(value: T[] | T | undefined): T[] {
   if (value == null) {
@@ -44,5 +44,14 @@ export namespace ESLintConfig {
         settings: {},
       }
     );
+  }
+
+  /**
+   * Always return 'off'. `_status` is the previous rule value.
+   *
+   * @param _status
+   */
+  export function fixme(_status: Linter.RuleLevel | [Linter.RuleLevel, ...any[]] | undefined) {
+    return 'off' as const;
   }
 }

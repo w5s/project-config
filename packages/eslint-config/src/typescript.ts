@@ -1,6 +1,5 @@
 import type eslint from 'eslint';
 import { ESLintConfig } from '@w5s/dev';
-import { fixme } from './_rule.js';
 import baseConfig from './es/base.js';
 import importConfig from './es/import.js';
 
@@ -102,7 +101,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       '@typescript-eslint/no-misused-new': 'error',
       '@typescript-eslint/no-namespace': 'off', // We don't agree with community, namespaces are great and not deprecated
       '@typescript-eslint/no-non-null-assertion': 'error',
-      '@typescript-eslint/no-redeclare': fixme(baseRules['no-redeclare']),
+      '@typescript-eslint/no-redeclare': ESLintConfig.fixme(baseRules['no-redeclare']),
       '@typescript-eslint/no-require-imports': 'error',
       '@typescript-eslint/no-shadow': baseRules['no-shadow'],
       '@typescript-eslint/no-this-alias': 'error',
@@ -197,7 +196,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       'func-call-spacing': 'off',
       'getter-return': 'off',
       'import/default': duplicateTSC,
-      'import/export': fixme('error'), // https://github.com/benmosher/eslint-plugin-import/issues/1964
+      'import/export': ESLintConfig.fixme('error'), // https://github.com/benmosher/eslint-plugin-import/issues/1964
       'import/named': duplicateTSC,
       'import/namespace': duplicateTSC,
       'import/no-named-as-default-member': duplicateTSC,
@@ -216,7 +215,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       'no-func-assign': 'off',
       'no-implied-eval': 'off',
       'no-import-assign': 'off',
-      'no-inner-declarations': fixme('error'), // https://github.com/typescript-eslint/typescript-eslint/issues/239
+      'no-inner-declarations': ESLintConfig.fixme('error'), // https://github.com/typescript-eslint/typescript-eslint/issues/239
       'no-loop-func': 'off',
       'no-loss-of-precision': 'off',
       'no-magic-numbers': 'off',
