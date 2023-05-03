@@ -55,7 +55,7 @@
     "@types/conventional-changelog-writer": "4.0.2",
     "@types/conventional-commits-parser": "3.0.3",
     "vite": "4.3.4",
-    "vitest": "0.30.1"
+    "vitest": "0.31.0"
   },
   "engines": {
     "node": ">=16.0.0"
