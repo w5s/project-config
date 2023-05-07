@@ -1513,11 +1513,11 @@ __metadata:
   linkType: hard
 
 "@technote-space/anchor-markdown-header@npm:^1.1.21":
-  version: 1.1.40
-  resolution: "@technote-space/anchor-markdown-header@npm:1.1.40"
+  version: 1.1.41
+  resolution: "@technote-space/anchor-markdown-header@npm:1.1.41"
   dependencies:
     emoji-regex: ^10.2.1
-  checksum: 19e67f50a7d2102f0fd8b8fa9d7a4322984a7f5e2da65bfcf10ac9037451fcf67cfb03f8d3342f74f58fa1cc88430fcef23960c26954bb515d70a6368e9c4f9e
+  checksum: 9056f94a8f033bd3cfee9377fafc41f60bf77b1a4034e0e8dabd04f0fee6585a67a8427674fb64dbec85364b5b0dfe6fe74be834b73bc72c6d3168c7530bf1ef
   languageName: node
   linkType: hard
 
