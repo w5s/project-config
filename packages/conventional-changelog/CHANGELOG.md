@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.7...@w5s/conventional-changelog@1.0.8) (2023-05-09)
+
+### ✅ Tests
+
+- Add Emoji tests ([112fadd](https://github.com/w5s/project-config/commit/112fadd))
+
+### 🎫 Chores
+
+- Upgrade dependency vite to v4.3.1 ([1e9b626](https://github.com/w5s/project-config/commit/1e9b626)) _ Upgrade dependency vite to v4.3.2 ([c12c09d](https://github.com/w5s/project-config/commit/c12c09d)) _ Upgrade dependency vite to v4.3.3 ([a1cfeed](https://github.com/w5s/project-config/commit/a1cfeed)) _ Upgrade dependency vite to v4.3.4 ([cc9f316](https://github.com/w5s/project-config/commit/cc9f316)) _ Upgrade dependency vite to v4.3.5 ([1250063](https://github.com/w5s/project-config/commit/1250063)) \* Upgrade dependency vitest to v0.31.0 ([8e59a59](https://github.com/w5s/project-config/commit/8e59a59))
+
 ## [1.0.7](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.6...@w5s/conventional-changelog@1.0.7) (2023-04-19)
 
 ### 🐛 Bug Fixes
