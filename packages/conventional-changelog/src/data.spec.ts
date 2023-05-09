@@ -38,4 +38,10 @@ describe('CommitConventionalType', () => {
       expect(CommitConventionalType.parse('build')).toBe(CommitConventionalType.Build);
     });
   });
+  describe('findWhere', () => {
+    it('should return undefined for incorrect values', () => {
+      expect(CommitConventionalType.findWhere((_) => _.emoji === '')).toEqual([]);
+      expect(CommitConventionalType.findWhere((_) => _.emoji === '✨')).toEqual([CommitConventionalType.Feat]);
+    });
+  });
 });

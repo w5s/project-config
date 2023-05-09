@@ -8,6 +8,7 @@ export declare const CommitConventionalType: {
     getData: (commitType: CommitConventionalType) => CommitConventionalTypeData;
     values: () => readonly CommitConventionalType[];
     parse: (anyValue: string) => CommitConventionalType | undefined;
+    findWhere: (predicate: (data: CommitConventionalTypeData) => boolean) => CommitConventionalType[];
     Build: "build";
     CI: "ci";
     Docs: "docs";
@@ -24,4 +25,5 @@ export declare const CommitConventionalType: {
 export interface CommitConventionalTypeData {
     emoji: string;
     'en-US': string;
+    changelog: boolean;
 }

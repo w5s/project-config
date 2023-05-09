@@ -22,50 +22,62 @@ exports.CommitConventionalType = (() => {
         feat: {
             emoji: '✨',
             'en-US': 'Features',
+            changelog: true,
         },
         fix: {
             emoji: '🐛',
             'en-US': 'Bug Fixes',
+            changelog: true,
         },
         build: {
             emoji: '👷',
             'en-US': 'Build System',
+            changelog: false,
         },
         chore: {
             emoji: '🎫',
             'en-US': 'Chores',
+            changelog: false,
         },
         ci: {
             emoji: '🔧',
             'en-US': 'Continuous Integration',
+            changelog: false,
         },
         docs: {
             emoji: '📝',
             'en-US': 'Documentation',
+            changelog: false,
         },
         test: {
             emoji: '✅',
             'en-US': 'Tests',
+            changelog: false,
         },
         perf: {
             emoji: '⚡',
             'en-US': 'Performance Improvements',
+            changelog: true,
         },
         refactor: {
             emoji: '♻',
             'en-US': 'Code Refactoring',
+            changelog: false,
         },
         revert: {
             emoji: '⏪',
             'en-US': 'Reverts',
+            changelog: true,
         },
         style: {
             emoji: '💄',
             'en-US': 'Styles',
+            changelog: false,
         },
         wip: {
             emoji: '🚧',
             'en-US': 'Work in progress',
+            changelog: false,
         },
     };
     function hasInstance(anyValue) {
@@ -80,5 +92,9 @@ exports.CommitConventionalType = (() => {
     function values() {
         return enumValues;
     }
-    return { ...enumObject, hasInstance, getData, values, parse };
+    function findWhere(predicate) {
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        return enumValues.filter((enumValue) => predicate(getData(enumValue)));
+    }
+    return { ...enumObject, hasInstance, getData, values, parse, findWhere };
 })();
