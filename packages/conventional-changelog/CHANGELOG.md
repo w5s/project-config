@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.8...@w5s/conventional-changelog@1.0.9) (2023-05-09)
+
+### 🐛 Bug Fixes
+
+- Filter some commit types in changelog ([130712d](https://github.com/w5s/project-config/commit/130712d)) \* Filter some commit types in changelog ([80f141c](https://github.com/w5s/project-config/commit/80f141c))
+
 ## [1.0.8](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.7...@w5s/conventional-changelog@1.0.8) (2023-05-09)
 
 ### ✅ Tests
