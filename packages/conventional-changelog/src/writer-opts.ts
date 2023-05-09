@@ -2,6 +2,7 @@ import type { Options } from 'conventional-changelog-writer';
 import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { createTransform } from './transform.js';
+import { CommitConventionalType } from './data.js';
 
 export interface WriterOptions extends Options {}
 
@@ -13,8 +14,12 @@ const commit = readFileSync(`${basePath}/commit.hbs`, 'utf8');
 const footer = readFileSync(`${basePath}/footer.hbs`, 'utf8');
 const author = readFileSync(`${basePath}/author.hbs`, 'utf8');
 
+export const defaultDisplayTypes = CommitConventionalType.findWhere((_) => _.changelog);
+
 export const writerOpts: WriterOptions = {
-  transform: createTransform({}),
+  transform: createTransform({
+    displayTypes: defaultDisplayTypes,
+  }),
   groupBy: 'type',
   commitGroupsSort: 'title',
   commitsSort: ['scope', 'subject'],
