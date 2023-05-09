@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const dev_1 = require("@w5s/dev");
-const _rule_js_1 = require("./_rule.js");
 const base_js_1 = __importDefault(require("./es/base.js"));
 const import_js_1 = __importDefault(require("./es/import.js"));
 // Inspired by https://github.com/iamturns/eslint-config-airbnb-typescript/blob/master/lib/shared.js
@@ -101,7 +100,7 @@ const config = dev_1.ESLintConfig.concat(
         '@typescript-eslint/no-misused-new': 'error',
         '@typescript-eslint/no-namespace': 'off',
         '@typescript-eslint/no-non-null-assertion': 'error',
-        '@typescript-eslint/no-redeclare': (0, _rule_js_1.fixme)(baseRules['no-redeclare']),
+        '@typescript-eslint/no-redeclare': dev_1.ESLintConfig.fixme(baseRules['no-redeclare']),
         '@typescript-eslint/no-require-imports': 'error',
         '@typescript-eslint/no-shadow': baseRules['no-shadow'],
         '@typescript-eslint/no-this-alias': 'error',
@@ -193,7 +192,7 @@ const config = dev_1.ESLintConfig.concat(
         'func-call-spacing': 'off',
         'getter-return': 'off',
         'import/default': duplicateTSC,
-        'import/export': (0, _rule_js_1.fixme)('error'),
+        'import/export': dev_1.ESLintConfig.fixme('error'),
         'import/named': duplicateTSC,
         'import/namespace': duplicateTSC,
         'import/no-named-as-default-member': duplicateTSC,
@@ -212,7 +211,7 @@ const config = dev_1.ESLintConfig.concat(
         'no-func-assign': 'off',
         'no-implied-eval': 'off',
         'no-import-assign': 'off',
-        'no-inner-declarations': (0, _rule_js_1.fixme)('error'),
+        'no-inner-declarations': dev_1.ESLintConfig.fixme('error'),
         'no-loop-func': 'off',
         'no-loss-of-precision': 'off',
         'no-magic-numbers': 'off',

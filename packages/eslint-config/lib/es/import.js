@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const dev_1 = require("@w5s/dev");
 // @ts-ignore airbnb is not typed
 const imports_1 = __importDefault(require("eslint-config-airbnb-base/rules/imports"));
-const _rule_js_1 = require("../_rule.js");
 // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
 const config = dev_1.ESLintConfig.concat(imports_1.default, 
 // Overrides
@@ -35,7 +34,7 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
         'import/no-named-as-default': 'off',
         'import/no-unused-modules': 'off',
         'import/prefer-default-export': 'off',
-        'import/unambiguous': (0, _rule_js_1.fixme)('off'), // Disable because proposal still in progress
+        'import/unambiguous': dev_1.ESLintConfig.fixme('off'), // Disable because proposal still in progress
     },
     settings: {
         'import/extensions': dev_1.EXTENSIONS,

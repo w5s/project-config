@@ -1,6 +1,5 @@
 "use strict";
 const dev_1 = require("@w5s/dev");
-const _rule_1 = require("./_rule");
 const config = dev_1.ESLintConfig.concat({
     env: {
         'jest/globals': true,
@@ -45,7 +44,7 @@ const config = dev_1.ESLintConfig.concat({
  */
 {
     rules: {
-        '@typescript-eslint/dot-notation': (0, _rule_1.fixme)(undefined),
+        '@typescript-eslint/dot-notation': dev_1.ESLintConfig.fixme(undefined),
         '@typescript-eslint/naming-convention': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-unsafe-assignment': 'off',
