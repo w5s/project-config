@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`defaultDisplayTypes > should be {format} 1`] = `
+exports[`defaultDisplayTypes > should filter types with changelog=true 1`] = `
 [
   "feat",
   "fix",
