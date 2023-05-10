@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.9](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.8...@w5s/eslint-config@1.0.9) (2023-05-10)
+
+### ✨ Features
+
+- Add common git ignore for mobile apps ([9e208a2](https://github.com/w5s/project-config/commit/9e208a2))
+
 ## [1.0.8](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.7...@w5s/eslint-config@1.0.8) (2023-05-10)
 
 ### ✨ Features
