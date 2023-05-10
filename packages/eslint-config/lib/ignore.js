@@ -5,10 +5,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 const node_fs_1 = require("node:fs");
 const find_up_1 = __importDefault(require("find-up"));
 const parse_gitignore_1 = __importDefault(require("parse-gitignore"));
-const getGitignore = () => {
-    const found = find_up_1.default.sync('.gitignore');
-    if (found != null) {
-        return parse_gitignore_1.default.parse((0, node_fs_1.readFileSync)(found)).patterns;
+const node_path_1 = require("node:path");
+const getGitignore = (prefix = '') => {
+    const cwd = process.cwd();
+    const gitIgnoreFile = find_up_1.default.sync((0, node_path_1.join)(prefix, '.gitignore'), { cwd });
+    if (gitIgnoreFile != null) {
+        const { patterns } = parse_gitignore_1.default.parse((0, node_fs_1.readFileSync)(gitIgnoreFile));
+        const returnValue = patterns.map((pattern) => (0, node_path_1.join)(prefix, pattern));
+        return returnValue;
     }
     return [];
 };
@@ -35,6 +39,8 @@ const config = {
         '_generated_/',
         '*.toml',
         ...getGitignore(),
+        ...getGitignore('android'),
+        ...getGitignore('ios'),
     ],
 };
 module.exports = config;

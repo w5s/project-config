@@ -2,13 +2,16 @@ import type eslint from 'eslint';
 import { readFileSync } from 'node:fs';
 import findUp from 'find-up';
 import parseGitignore from 'parse-gitignore';
+import { join as pathJoin } from 'node:path';
 
-const getGitignore = () => {
-  const found = findUp.sync('.gitignore');
-  if (found != null) {
-    return parseGitignore.parse(readFileSync(found)).patterns;
+const getGitignore = (prefix = '') => {
+  const cwd = process.cwd();
+  const gitIgnoreFile = findUp.sync(pathJoin(prefix, '.gitignore'), { cwd });
+  if (gitIgnoreFile != null) {
+    const { patterns } = parseGitignore.parse(readFileSync(gitIgnoreFile));
+    const returnValue = patterns.map((pattern) => pathJoin(prefix, pattern));
+    return returnValue;
   }
-
   return [];
 };
 
@@ -35,6 +38,8 @@ const config: eslint.Linter.Config = {
     '_generated_/',
     '*.toml',
     ...getGitignore(),
+    ...getGitignore('android'),
+    ...getGitignore('ios'),
   ],
 };
 
