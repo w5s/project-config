@@ -8,6 +8,7 @@ const config = {
         'jsdoc/require-jsdoc': 'off',
         'jsdoc/require-param-description': 'off',
         'jsdoc/require-returns': 'off',
+        'jsdoc/tag-lines': ['warn', 'any', { startLines: 1 }],
         'jsdoc/valid-types': 'off',
         strict: ['error', 'safe'],
     },
