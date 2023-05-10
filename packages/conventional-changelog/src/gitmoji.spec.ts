@@ -10,7 +10,7 @@ describe('Emoji', () => {
       ['💚', false],
       ['⚡️', false],
       ['any text', false],
-    ])('should return true only for :emoji: like', (input, expected) => {
+    ])('should return true only for %s', (input, expected) => {
       expect(Emoji.isText(input)).toBe(expected);
     });
   });
@@ -21,7 +21,7 @@ describe('Emoji', () => {
       ['💚', true],
       ['⚡️', true],
       ['any text', false],
-    ])('should return true only for :emoji: like', (input, expected) => {
+    ])('should return true only for %s', (input, expected) => {
       expect(Emoji.isUnicode(input)).toBe(expected);
     });
   });

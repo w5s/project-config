@@ -10,15 +10,15 @@ var Emoji;
 (function (Emoji) {
     Emoji.reEmojiUnicode = (0, emoji_regex_1.default)();
     Emoji.reEmojiText = /:\w*:/;
-    const reMatchOnly = (input) => new RegExp(`^${input.source}$`, input.flags);
+    const reMatchOnly = (input) => new RegExp(`^${input.source}$`, '');
     const _reEmojiUnicode = reMatchOnly(Emoji.reEmojiUnicode);
     const _reEmojiText = reMatchOnly(Emoji.reEmojiText);
     function isUnicode(anyValue) {
-        return anyValue.match(_reEmojiUnicode) != null;
+        return _reEmojiUnicode.test(anyValue);
     }
     Emoji.isUnicode = isUnicode;
     function isText(anyValue) {
-        return anyValue.match(_reEmojiText) != null;
+        return _reEmojiText.test(anyValue);
     }
     Emoji.isText = isText;
     function hasInstance(anyValue) {

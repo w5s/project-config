@@ -8,7 +8,7 @@ export namespace Emoji {
 
   export const reEmojiText = /:\w*:/;
 
-  const reMatchOnly = (input: RegExp) => new RegExp(`^${input.source}$`, input.flags);
+  const reMatchOnly = (input: RegExp) => new RegExp(`^${input.source}$`, '');
   const _reEmojiUnicode = reMatchOnly(reEmojiUnicode);
   const _reEmojiText = reMatchOnly(reEmojiText);
 
@@ -16,11 +16,11 @@ export namespace Emoji {
   export type Text = string & { '@@EmojiStyle': 'text' };
 
   export function isUnicode(anyValue: string): anyValue is Unicode {
-    return anyValue.match(_reEmojiUnicode) != null;
+    return _reEmojiUnicode.test(anyValue);
   }
 
   export function isText(anyValue: string): anyValue is Text {
-    return anyValue.match(_reEmojiText) != null;
+    return _reEmojiText.test(anyValue);
   }
 
   export function hasInstance(anyValue: string): anyValue is Emoji {
