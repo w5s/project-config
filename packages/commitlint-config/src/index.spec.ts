@@ -53,7 +53,7 @@ describe('Commitlint Config', () => {
         })
       );
     });
-    it.skip.each([
+    it.each([
       // Valid example
       ['⚡️ Do something'],
     ])('should validate examples', async (validExample) => {
