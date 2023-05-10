@@ -7,7 +7,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### 🎫 Chores
 
-- Upgrade dependency vite to v4.3.1 ([1e9b626](https://github.com/w5s/project-config/commit/1e9b626)) _ Upgrade dependency vite to v4.3.2 ([c12c09d](https://github.com/w5s/project-config/commit/c12c09d)) _ Upgrade dependency vite to v4.3.3 ([a1cfeed](https://github.com/w5s/project-config/commit/a1cfeed)) _ Upgrade dependency vite to v4.3.4 ([cc9f316](https://github.com/w5s/project-config/commit/cc9f316)) _ Upgrade dependency vite to v4.3.5 ([1250063](https://github.com/w5s/project-config/commit/1250063)) \* Upgrade dependency vitest to v0.31.0 ([8e59a59](https://github.com/w5s/project-config/commit/8e59a59))
+- Upgrade dependency vite to v4.3.1 ([1e9b626](https://github.com/w5s/project-config/commit/1e9b626))
+- Upgrade dependency vite to v4.3.2 ([c12c09d](https://github.com/w5s/project-config/commit/c12c09d))
+- Upgrade dependency vite to v4.3.3 ([a1cfeed](https://github.com/w5s/project-config/commit/a1cfeed))
+- Upgrade dependency vite to v4.3.4 ([cc9f316](https://github.com/w5s/project-config/commit/cc9f316))
+- Upgrade dependency vite to v4.3.5 ([1250063](https://github.com/w5s/project-config/commit/1250063))
+- Upgrade dependency vitest to v0.31.0 ([8e59a59](https://github.com/w5s/project-config/commit/8e59a59))
 
 ## <small>1.0.6 (2023-04-19)</small>
 
