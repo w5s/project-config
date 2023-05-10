@@ -4,7 +4,7 @@ import { Emoji } from './gitmoji';
 export interface ParserOptions extends Options {}
 
 export const parserOpts: ParserOptions = {
-  headerPattern: new RegExp(`^(:\\w*:|${Emoji.reEmojiUnicode.source}) (?:\\((.*)\\):? )?(.*)$`),
+  headerPattern: new RegExp(`^(${Emoji.reEmojiText.source}|${Emoji.reEmojiUnicode.source})? (?:\\((.*)\\):? )?(.*)$`),
   headerCorrespondence: ['type', 'scope', 'subject'],
   revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i,
   noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'],

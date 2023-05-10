@@ -9,7 +9,7 @@ const gitmojis_1 = require("gitmojis");
 var Emoji;
 (function (Emoji) {
     Emoji.reEmojiUnicode = (0, emoji_regex_1.default)();
-    Emoji.reEmojiText = /:(\w+):/;
+    Emoji.reEmojiText = /:\w*:/;
     const reMatchOnly = (input) => new RegExp(`^${input.source}$`, input.flags);
     const _reEmojiUnicode = reMatchOnly(Emoji.reEmojiUnicode);
     const _reEmojiText = reMatchOnly(Emoji.reEmojiText);

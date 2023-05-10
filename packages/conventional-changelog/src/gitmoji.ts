@@ -6,7 +6,7 @@ export type Emoji = Emoji.Unicode | Emoji.Text;
 export namespace Emoji {
   export const reEmojiUnicode = emojiRegexp();
 
-  export const reEmojiText = /:(\w+):/;
+  export const reEmojiText = /:\w*:/;
 
   const reMatchOnly = (input: RegExp) => new RegExp(`^${input.source}$`, input.flags);
   const _reEmojiUnicode = reMatchOnly(reEmojiUnicode);
