@@ -53,6 +53,18 @@ describe('Commitlint Config', () => {
         })
       );
     });
+    it.skip.each([
+      // Valid example
+      ['⚡️ Do something'],
+    ])('should validate examples', async (validExample) => {
+      await expect(lint(validExample)).resolves.toEqual(
+        expect.objectContaining({
+          valid: true,
+          errors: [],
+          warnings: [],
+        })
+      );
+    });
   });
 
   describe('body-leading-blank', () => {
