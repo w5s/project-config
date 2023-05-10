@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.8](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.7...@w5s/eslint-config@1.0.8) (2023-05-10)
+
+### ✨ Features
+
+- Upgrade eslint-plugin-jsdoc v44.1.0 ([99498d0](https://github.com/w5s/project-config/commit/99498d0))
+
+### 🐛 Bug Fixes
+
+- Fix ESLint jsdoc/tag-lines rule ([7d93807](https://github.com/w5s/project-config/commit/7d93807))
+
 ## [1.0.7](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.6...@w5s/eslint-config@1.0.7) (2023-05-09)
 
 ### 🐛 Bug Fixes

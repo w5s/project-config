@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.24](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@1.0.23...@w5s/commitlint-config@1.0.24) (2023-05-10)
+
+### 🐛 Bug Fixes
+
+- Fix commitlint header parsing ([95fa076](https://github.com/w5s/project-config/commit/95fa076))
+
 ## [1.0.23](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@1.0.22...@w5s/commitlint-config@1.0.23) (2023-05-09)
 
 **Note:** Version bump only for package @w5s/commitlint-config
