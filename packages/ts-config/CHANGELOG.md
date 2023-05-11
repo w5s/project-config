@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.3](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.2...@w5s/ts-config@1.0.3) (2023-05-11)
+
+### ✨ Features
+
+- Bump ES2021 ([bede704](https://github.com/w5s/project-config/commit/bede704))
+
 ## <small>1.0.2 (2023-04-19)</small>
 
 - ⬆️ Upgrade dependency typescript to v5.0.3 ([9ad27ad](https://github.com/w5s/project-config/commit/9ad27ad))
