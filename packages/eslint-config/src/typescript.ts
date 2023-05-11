@@ -168,6 +168,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
           devDependencies: baseImportRules['import/no-extraneous-dependencies'][1].devDependencies.reduce(
             (result: string[], devDep: string) => {
               const toAppend = [devDep];
+              // eslint-disable-next-line unicorn/prefer-string-replace-all
               const devDepWithTs = devDep.replace(/\bjs(x?)\b/g, 'ts$1');
               if (devDepWithTs !== devDep) {
                 toAppend.push(devDepWithTs);

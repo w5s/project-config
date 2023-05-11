@@ -81,6 +81,7 @@ export function createTransform(config: TransformConfig): WriterOptions.Transfor
             if (url != null) {
               const issueURL = `${url}/issues/`;
               // Issue URLs.
+              // eslint-disable-next-line unicorn/prefer-string-replace-all
               returnValue = returnValue.replace(/#(\d+)/g, (_, issue: string) => {
                 issues.add(issue);
 
@@ -89,7 +90,7 @@ export function createTransform(config: TransformConfig): WriterOptions.Transfor
             }
             if (host != null) {
               // User URLs.
-              // eslint-disable-next-line unicorn/no-unsafe-regex
+              // eslint-disable-next-line unicorn/no-unsafe-regex, unicorn/prefer-string-replace-all
               returnValue = returnValue.replace(/\B@([\da-z](?:-?[\d/a-z]){0,38})/g, (_, username: string) =>
                 username.includes('/') ? `@${username}` : `[@${username}](${host}/${username})`
               );

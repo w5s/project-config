@@ -166,6 +166,7 @@ const config = dev_1.ESLintConfig.concat(
                 ...baseImportRules['import/no-extraneous-dependencies'][1],
                 devDependencies: baseImportRules['import/no-extraneous-dependencies'][1].devDependencies.reduce((result, devDep) => {
                     const toAppend = [devDep];
+                    // eslint-disable-next-line unicorn/prefer-string-replace-all
                     const devDepWithTs = devDep.replace(/\bjs(x?)\b/g, 'ts$1');
                     if (devDepWithTs !== devDep) {
                         toAppend.push(devDepWithTs);

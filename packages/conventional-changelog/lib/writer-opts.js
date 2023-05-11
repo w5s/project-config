@@ -22,6 +22,7 @@ exports.writerOpts = {
     noteGroupsSort: 'title',
     mainTemplate: template,
     headerPartial: header,
+    // eslint-disable-next-line unicorn/prefer-string-replace-all
     commitPartial: commit.replace(/{{gitUserInfo}}/g, author),
     footerPartial: footer,
 };
