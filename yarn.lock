@@ -2113,7 +2113,7 @@ __metadata:
   dependencies:
     "@commitlint/lint": 17.6.3
     "@commitlint/types": ^17.0.0
-    "@w5s/conventional-changelog": ^1.0.10
+    "@w5s/conventional-changelog": ^1.0.12
     vite: 4.3.5
     vitest: 0.31.0
   peerDependencies:
@@ -2124,7 +2124,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/conventional-changelog@^1.0.10, @w5s/conventional-changelog@workspace:*, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
+"@w5s/conventional-changelog@^1.0.12, @w5s/conventional-changelog@workspace:*, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
   version: 0.0.0-use.local
   resolution: "@w5s/conventional-changelog@workspace:packages/conventional-changelog"
   dependencies:
