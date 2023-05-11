@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.12](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.11...@w5s/conventional-changelog@1.0.12) (2023-05-11)
+
+### 🐛 Bug Fixes
+
+- Fix version bump gitmoji support ([1785691](https://github.com/w5s/project-config/commit/1785691))
+
 ## [1.0.11](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.10...@w5s/conventional-changelog@1.0.11) (2023-05-11)
 
 **Note:** Version bump only for package @w5s/conventional-changelog
