@@ -1,6 +1,6 @@
 import emojiRegexp from 'emoji-regex';
 import { type Gitmoji, gitmojis } from 'gitmojis';
-import type { CommitConventionalType } from './data';
+import type { CommitConventionalType } from './data.js';
 
 export type Emoji = Emoji.Unicode | Emoji.Text;
 export namespace Emoji {

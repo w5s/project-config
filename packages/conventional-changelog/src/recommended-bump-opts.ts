@@ -1,5 +1,6 @@
 import type { Commit as CommitBase } from 'conventional-commits-parser';
-import { parserOpts } from './parser-opts';
+import { parserOpts } from './parser-opts.js';
+import { CommitConventionalType } from './data.js';
 
 export type Commit = CommitBase;
 
@@ -14,7 +15,7 @@ export const recommendedBumpOpts = {
       if (commit.notes.length > 0) {
         breakings += commit.notes.length;
         level = 0;
-      } else if (commit.type === 'feat') {
+      } else if (commit.type === CommitConventionalType.Feat) {
         features += 1;
         if (level === 2) {
           level = 1;

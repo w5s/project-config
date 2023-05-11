@@ -1,4 +1,4 @@
-import type { CommitConventionalType } from './data';
+import type { CommitConventionalType } from './data.js';
 export type Emoji = Emoji.Unicode | Emoji.Text;
 export declare namespace Emoji {
     const reEmojiUnicode: RegExp;

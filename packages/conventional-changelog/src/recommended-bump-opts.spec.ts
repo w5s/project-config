@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { Commit, CommitConventionalType } from './data.js';
-import { recommendedBumpOpts } from './recommended-bump-opts';
+import { recommendedBumpOpts } from './recommended-bump-opts.js';
 
 const generateCommit = (commit: Partial<Commit>): Commit => ({
   header: '',
