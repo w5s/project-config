@@ -87,7 +87,7 @@
     "@w5s/ts-config": "workspace:*",
     "concurrently": "8.0.1",
     "cspell": "6.31.1",
-    "eslint": "8.40.0",
+    "eslint": "8.41.0",
     "eslint-plugin-sort-keys": "2.3.5",
     "lerna": "6.6.2",
     "markdown-magic": "2.6.1",
