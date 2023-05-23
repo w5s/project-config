@@ -42,7 +42,7 @@
     "sync-directory": "^6.0.0"
   },
   "devDependencies": {
-    "@types/debug": "4.1.7",
+    "@types/debug": "4.1.8",
     "mrm": "4.1.14",
     "mrm-preset-default": "4.1.11"
   },
