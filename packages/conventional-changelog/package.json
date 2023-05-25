@@ -52,7 +52,7 @@
     "gitmojis": "^3.13.4"
   },
   "devDependencies": {
-    "@types/conventional-changelog-writer": "4.0.2",
+    "@types/conventional-changelog-writer": "4.0.3",
     "@types/conventional-commits-parser": "3.0.3",
     "vite": "4.3.8",
     "vitest": "0.31.1"
