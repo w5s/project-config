@@ -53,7 +53,7 @@
     "@types/eslint": "^8.4.10"
   },
   "devDependencies": {
-    "vite": "4.3.8",
+    "vite": "4.3.9",
     "vitest": "0.31.1"
   },
   "engines": {
