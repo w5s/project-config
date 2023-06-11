@@ -85,7 +85,7 @@
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/prettier-config": "workspace:*",
     "@w5s/ts-config": "workspace:*",
-    "concurrently": "8.1.0",
+    "concurrently": "8.2.0",
     "cspell": "6.31.1",
     "eslint": "8.42.0",
     "eslint-plugin-sort-keys": "2.3.5",
