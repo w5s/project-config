@@ -239,7 +239,6 @@ function task() {
         },
       },
       npmClient: packageManager,
-      useWorkspaces: rootUseWorkspace,
       changelogPreset: '@w5s/conventional-changelog',
     });
     lernaConfig.save();
