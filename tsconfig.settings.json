@@ -4,7 +4,6 @@
   "compilerOptions": {
     "declarationMap": false,
     "esModuleInterop": true,
-    "module": "CommonJS",
     "sourceMap": false,
     "verbatimModuleSyntax": false
   }

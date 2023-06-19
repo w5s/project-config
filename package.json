@@ -8,7 +8,7 @@
     "url": "git@github.com:w5s/project-config.git"
   },
   "license": "MIT",
-  "type": "commonjs",
+  "type": "module",
   "files": [],
   "workspaces": {
     "packages": [
