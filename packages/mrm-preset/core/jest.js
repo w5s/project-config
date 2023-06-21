@@ -14,7 +14,7 @@ function jest({ state }) {
   const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
 
   pkg.withPackageJson((packageFile) => {
-    const ignorePatterns = ['/node_modules/', '/docs/', '/lib/', '/build/', '/.cache/', '/public/'];
+    const ignorePatterns = ['/node_modules/', '/docs/', '/lib/', '/dist/', '/build/', '/.cache/', '/public/'];
 
     pkg.value(packageFile, {
       path: 'jest',

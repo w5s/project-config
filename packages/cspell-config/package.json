@@ -20,17 +20,17 @@
   "exports": {
     ".": "./cspell-ext.json",
     "./cspell-ext.json": "./cspell-ext.json",
-    "./lib/*": "./lib/*",
+    "./dist/*": "./dist/*",
     "./dict/*": "./dict/*"
   },
   "typings": "./index.d.ts",
   "files": [
     "cspell-ext.json",
     "dict/**/*",
-    "lib/**/!(*.spec).d.ts",
-    "lib/**/!(*.spec).d.ts.map",
-    "lib/**/!(*.spec).js.map",
-    "lib/**/!(*.spec).js",
+    "dist/**/!(*.spec).d.ts",
+    "dist/**/!(*.spec).d.ts.map",
+    "dist/**/!(*.spec).js.map",
+    "dist/**/!(*.spec).js",
     "src/**/!(*.spec).ts"
   ],
   "scripts": {
@@ -38,7 +38,7 @@
     "build": "concurrently \"npm:build:*\" \":\"",
     "build:tsc": "tsc -b tsconfig.build.json",
     "clean": "concurrently \"npm:clean:*\" \":\"",
-    "clean:tsc": "rm -rf lib",
+    "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
     "format": "concurrently \"npm:format:*\" \":\"",
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",

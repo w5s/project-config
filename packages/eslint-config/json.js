@@ -3,7 +3,7 @@
 module.exports = {
   overrides: [
     {
-      extends: [require.resolve('./lib/jsonc.js')],
+      extends: [require.resolve('./dist/jsonc.js')],
       files: ['*.json', '*.json5', '*.jsonc'],
     },
   ],

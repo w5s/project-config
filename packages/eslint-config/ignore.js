@@ -1,1 +1,1 @@
-module.exports = require('./lib/ignore.js');
+module.exports = require('./dist/ignore.js');

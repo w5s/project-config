@@ -48,10 +48,10 @@
     ]
   },
   "lint-staged": {
-    "!(**/lib/**)*.js?(x)": [
+    "!(**/dist/**)*.js?(x)": [
       "eslint"
     ],
-    "!(**/lib/**)*.ts?(x)": [
+    "!(**/dist/**)*.ts?(x)": [
       "eslint"
     ],
     "*.{json,jsonc,json5}": [

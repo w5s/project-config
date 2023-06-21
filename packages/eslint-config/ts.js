@@ -5,9 +5,9 @@ module.exports = {
   overrides: [
     {
       extends: [
-        // require.resolve('./lib/es.js'),
-        require.resolve('./lib/typescript.js'),
-        require.resolve('./lib/prettier.js'),
+        // require.resolve('./dist/es.js'),
+        require.resolve('./dist/typescript.js'),
+        require.resolve('./dist/prettier.js'),
       ],
       files: [`*.+(${EXTENSIONS_WITHOUT_DOT.filter((_) => _.includes('ts')).join('|')})`],
     },

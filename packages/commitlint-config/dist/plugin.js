@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.gitmojiPlugin = exports.typeValidGitmoji = exports.typeGitmojiStyle = void 0;
-const gitmoji_js_1 = require("@w5s/conventional-changelog/lib/gitmoji.js");
+const gitmoji_js_1 = require("@w5s/conventional-changelog/dist/gitmoji.js");
 const $if = (when = 'always') => (cond) => when === 'always' ? cond : !cond;
 const typeGitmojiStyle = (parsed, when = 'always', value = 'unicode') => {
     const isUnicode = parsed.type != null && gitmoji_js_1.Emoji.isUnicode(parsed.type);

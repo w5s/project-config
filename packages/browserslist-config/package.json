@@ -20,14 +20,14 @@
   "type": "commonjs",
   "exports": {
     ".": "./index.js",
-    "./lib/*": "./lib/*"
+    "./dist/*": "./dist/*"
   },
   "typings": "./index.d.ts",
   "files": [
-    "lib/**/!(*.spec).d.ts",
-    "lib/**/!(*.spec).d.ts.map",
-    "lib/**/!(*.spec).js.map",
-    "lib/**/!(*.spec).js",
+    "dist/**/!(*.spec).d.ts",
+    "dist/**/!(*.spec).d.ts.map",
+    "dist/**/!(*.spec).js.map",
+    "dist/**/!(*.spec).js",
     "src/**/!(*.spec).ts",
     "index.js",
     "index.d.ts"
@@ -36,7 +36,7 @@
     "build": "concurrently \"npm:build:*\" \":\"",
     "build:tsc": "tsc -b tsconfig.build.json",
     "clean": "concurrently \"npm:clean:*\" \":\"",
-    "clean:tsc": "rm -rf lib",
+    "clean:tsc": "rm -rf dist",
     "docs": "node scripts/build-docs.mjs && node ../../markdown.mjs && (git commit 'README.md' 'BROWSER_LIST.md' -m '📝 Update browserslist support') || true",
     "format": "concurrently \"npm:format:*\" \":\"",
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",

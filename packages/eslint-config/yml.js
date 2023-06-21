@@ -2,7 +2,7 @@
 module.exports = {
   overrides: [
     {
-      extends: [require.resolve('./lib/yml.js')],
+      extends: [require.resolve('./dist/yml.js')],
       files: ['*.yml', '*.yaml'],
     },
   ],

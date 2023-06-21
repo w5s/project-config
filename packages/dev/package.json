@@ -19,14 +19,14 @@
   "author": "Julien Polo <julien.polo@gmail.com>",
   "type": "commonjs",
   "exports": {
-    ".": "./lib/index.js",
-    "./lib/*": "./lib/*"
+    ".": "./dist/index.js",
+    "./dist/*": "./dist/*"
   },
   "typings": "./index.d.ts",
   "files": [
-    "lib/**/!(*.spec).d.ts",
-    "lib/**/!(*.spec).js.map",
-    "lib/**/!(*.spec).js",
+    "dist/**/!(*.spec).d.ts",
+    "dist/**/!(*.spec).js.map",
+    "dist/**/!(*.spec).js",
     "src/**/!(*.spec).ts",
     "!example/**/*",
     "!*.cjs",
@@ -37,7 +37,7 @@
     "build": "concurrently \"npm:build:*\" \":\"",
     "build:tsc": "tsc -b tsconfig.build.json",
     "clean": "concurrently \"npm:clean:*\" \":\"",
-    "clean:tsc": "rm -rf lib",
+    "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
     "format": "concurrently \"npm:format:*\" \":\"",
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",

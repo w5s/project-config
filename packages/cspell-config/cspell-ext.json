@@ -4,5 +4,5 @@
   "name": "W5s default settings",
   "id": "w5s-default-json",
   "readonly": true,
-  "import": ["./lib/index.js"]
+  "import": ["./dist/index.js"]
 }

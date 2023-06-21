@@ -33,7 +33,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
     const tsConfig = json('tsconfig.json');
 
     // Should be run first
-    gitIgnore('Typescript', ['lib/', '*.tsbuildinfo', 'typings/']);
+    gitIgnore('Typescript', ['lib/', 'dist/', '*.tsbuildinfo', 'typings/']);
 
     // const excludeList = ['**/*.test.*', '**/*.spec.*', '**/__tests__/**'];
     if (hasWorkspaces) {
@@ -62,7 +62,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
         pkg.script(projectPackageFile, {
           name: 'clean:tsc',
           state: hasTypecript ? 'present' : 'absent',
-          update: () => 'rm -rf lib',
+          update: () => 'rm -rf dist',
         });
         if (hasTypecript && projectPackageFile.get('name') !== '@w5s/ts-config') {
           projectTsConfig
@@ -78,7 +78,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
               extends: './tsconfig.json',
               compilerOptions: {
                 noEmit: false,
-                outDir: 'lib',
+                outDir: 'dist',
               },
               include: ['src'],
             })
@@ -98,7 +98,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
       tsConfig
         .merge({
           compilerOptions: {
-            outDir: './lib',
+            outDir: './dist',
             rootDir: './src',
           },
           extends: `./${tsConfigSettingsName}`,
@@ -155,7 +155,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
     //     exclude: [
     //       '**/build/**/*',
     //       '**/example/**/*',
-    //       '**/lib/**/*',
+    //       '**/dist/**/*',
     //       '**/node_modules/**',
     //       '**/__tests__/*.(ts|tsx)',
     //       '**/*.(spec|test).(ts|tsx)',

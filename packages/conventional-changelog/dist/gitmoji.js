@@ -25,7 +25,7 @@ var Emoji;
         return isText(anyValue) || isUnicode(anyValue);
     }
     Emoji.hasInstance = hasInstance;
-})(Emoji = exports.Emoji || (exports.Emoji = {}));
+})(Emoji || (exports.Emoji = Emoji = {}));
 var GitmojiCode;
 (function (GitmojiCode) {
     // export const reEmoji = emojiRegexp();
@@ -74,4 +74,4 @@ var GitmojiCode;
         return conversionMap.get(gitmoji) ?? defaultType;
     }
     GitmojiCode.toConventionalCommitType = toConventionalCommitType;
-})(GitmojiCode = exports.GitmojiCode || (exports.GitmojiCode = {}));
+})(GitmojiCode || (exports.GitmojiCode = GitmojiCode = {}));

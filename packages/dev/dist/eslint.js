@@ -52,5 +52,5 @@ var ESLintConfig;
         return 'off';
     }
     ESLintConfig.fixme = fixme;
-})(ESLintConfig = exports.ESLintConfig || (exports.ESLintConfig = {}));
+})(ESLintConfig || (exports.ESLintConfig = ESLintConfig = {}));
 //# sourceMappingURL=eslint.js.map

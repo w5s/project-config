@@ -1,3 +1,3 @@
-import Config from './lib/index.js';
+import Config from './dist/index.js';
 
 export = Config;

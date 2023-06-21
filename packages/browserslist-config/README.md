@@ -31,7 +31,7 @@ In the `package.json` for your project
 
 ## Alternative configuration
 
-- `@w5s/browserslist-config/lib/development` : Only some common browsers (for development)
+- `@w5s/browserslist-config/dist/development` : Only some common browsers (for development)
 
 ## Supported Browsers
 <!-- AUTO-GENERATED-CONTENT:START (FILE:src=./BROWSER_LIST.md) -->

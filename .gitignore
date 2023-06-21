@@ -140,12 +140,12 @@ Temporary Items
 
 # Build directory
 # We keep some built files because they are needed for the repository tooling itself (ex: prettier-config, commitlint-config)
-!packages/dev/lib/
-!packages/commitlint-config/lib/
-!packages/conventional-changelog/lib/
-!packages/eslint-config/lib/
-!packages/prettier-config/lib/
-packages/*/lib/**/*.spec.*
+!packages/dev/dist/
+!packages/commitlint-config/dist/
+!packages/conventional-changelog/dist/
+!packages/eslint-config/dist/
+!packages/prettier-config/dist/
+packages/*/dist/**/*.spec.*
 
 # mrm tester
 _tester

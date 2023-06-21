@@ -6,7 +6,7 @@ const extensions = EXTENSIONS_WITHOUT_DOT.join('|');
 module.exports = {
   overrides: [
     {
-      extends: [require.resolve('./lib/jest.js')],
+      extends: [require.resolve('./dist/jest.js')],
       files: [
         `**/__mocks__/**/*.+(${extensions})`,
         `**/__tests__/**/*.+(${extensions})`,
