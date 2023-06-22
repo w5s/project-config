@@ -37,7 +37,7 @@ In the `tsconfig.json` for your project
 
 ## Requirements
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=Typescript: ${peerDependencies.typescript}&unknownTxt= ) -->
-Typescript: >=4.7.x
+Typescript: >=5.x
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## License
