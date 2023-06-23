@@ -1,0 +1,64 @@
+{
+  "name": "@w5s/vite-config",
+  "version": "1.0.0",
+  "description": "Vite & Vitest config",
+  "keywords": [
+    "vite",
+    "vitest"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/vite-config#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:w5s/project-config.git",
+    "directory": "packages/vite-config"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "typings": "./index.d.ts",
+  "files": [
+    "dist/**/!(*.spec).d.ts",
+    "dist/**/!(*.spec).d.ts.map",
+    "dist/**/!(*.spec).js.map",
+    "dist/**/!(*.spec).js",
+    "src/**/!(*.spec).ts",
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "build": "concurrently \"npm:build:*\" \":\"",
+    "build:tsc": "scripts/build",
+    "clean": "concurrently \"npm:clean:*\" \":\"",
+    "clean:tsc": "rm -rf dist .cache/build",
+    "docs": "node ../../markdown.mjs",
+    "format": "concurrently \"npm:format:*\" \":\"",
+    "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
+    "lint": "concurrently \"npm:lint:*\" \":\"",
+    "lint:src": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
+    "prepare": "concurrently \"npm:prepare:*\" \":\"",
+    "prepublishOnly": "npm run clean;npm run build",
+    "spellcheck": "cspell --no-progress '**'",
+    "test": "concurrently \"npm:test:*\" \":\"",
+    "test:src": "vitest run"
+  },
+  "devDependencies": {
+    "vite": "4.3.9",
+    "vitest": "0.32.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
