@@ -1,0 +1,5 @@
+import { configDefaultMap } from './configDefaultMap.js';
+export function defineConfig(type, _config) {
+    return configDefaultMap[type];
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGVmaW5lQ29uZmlnLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vc3JjL2RlZmluZUNvbmZpZy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQSxPQUFPLEVBQUUsZ0JBQWdCLEVBQUUsTUFBTSx1QkFBdUIsQ0FBQztBQUd6RCxNQUFNLFVBQVUsWUFBWSxDQUFDLElBQWdCLEVBQUUsT0FBMEI7SUFDdkUsT0FBTyxnQkFBZ0IsQ0FBQyxJQUFJLENBQUMsQ0FBQztBQUNoQyxDQUFDIn0=
