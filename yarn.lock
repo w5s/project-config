@@ -2413,6 +2413,15 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@w5s/vite-config@workspace:packages/vite-config":
+  version: 0.0.0-use.local
+  resolution: "@w5s/vite-config@workspace:packages/vite-config"
+  dependencies:
+    vite: 4.3.9
+    vitest: 0.32.2
+  languageName: unknown
+  linkType: soft
+
 "@yarnpkg/lockfile@npm:^1.1.0":
   version: 1.1.0
   resolution: "@yarnpkg/lockfile@npm:1.1.0"

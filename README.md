@@ -12,4 +12,5 @@
 * [@w5s/mrm-preset](packages/mrm-preset) - Mrm configuration presets
 * [@w5s/prettier-config](packages/prettier-config) - Prettier shared configuration
 * [@w5s/ts-config](packages/ts-config) - Typescript compiler configuration presets
+* [@w5s/vite-config](packages/vite-config) - Vite & Vitest config
 <!-- AUTO-GENERATED-CONTENT:END -->
