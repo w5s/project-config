@@ -1,4 +1,5 @@
-import { mergeConfig, type UserConfigExport } from 'vitest/config';
+import { type UserConfigExport } from 'vitest/config';
+import { mergeConfig } from 'vite';
 import { configDefaultMap } from './configDefaultMap.js';
 import { ConfigType } from './type.js';
 
@@ -10,5 +11,9 @@ import { ConfigType } from './type.js';
  */
 export function defineConfig(type: ConfigType, config?: UserConfigExport): UserConfigExport {
   const baseConfig = configDefaultMap[type];
-  return config == null ? baseConfig : mergeConfig(baseConfig, config);
+  return config == null
+    ? baseConfig
+    : typeof config === 'function'
+    ? (configEnv) => mergeConfig(baseConfig, config(configEnv))
+    : mergeConfig(baseConfig, config);
 }
