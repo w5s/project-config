@@ -129,6 +129,22 @@ exports[`configDefaultMap > should be an object 1`] = `
     },
   },
   "library": {
+    "build": {
+      "lib": {
+        "entry": "src/index.ts",
+        "fileName": [Function],
+        "formats": [
+          "cjs",
+          "es",
+        ],
+      },
+      "rollupOptions": {
+        "output": {
+          "assetFileNames": "[name].[ext]",
+          "preserveModules": true,
+        },
+      },
+    },
     "test": {
       "allowOnly": true,
       "api": false,

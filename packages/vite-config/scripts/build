@@ -12,14 +12,7 @@ $TSC --module commonjs --outDir "$BUILD_DIR/cjs" $TSC_OPTS
 $TSC --module esnext --outDir "$BUILD_DIR/esm" $TSC_OPTS
 mkdir -p "$DIST_DIR"
 
-cd "$BUILD_DIR/cjs"
-for file in *.js; do
-  mv -- "${file}" "${file/%.js/.cjs}"
-done
-cd "$BUILD_DIR/esm"
-for file in *.js; do
-  mv -- "${file}" "${file/%.js/.mjs}"
-done
+
 cd "$ROOT"
-cp $BUILD_DIR/cjs/* $DIST_DIR
-cp $BUILD_DIR/esm/* $DIST_DIR
+cp -r $BUILD_DIR/cjs $DIST_DIR
+cp -r $BUILD_DIR/esm $DIST_DIR
