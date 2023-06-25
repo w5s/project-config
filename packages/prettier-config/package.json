@@ -36,7 +36,7 @@
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
-    "build:tsc": "vite build",
+    "build:tsc": "tsc && vite build",
     "clean": "concurrently \"npm:clean:*\" \":\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
