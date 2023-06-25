@@ -1,3 +1,4 @@
+"use strict";
 const prettierConfig = {
   singleQuote: true,
   trailingComma: "es5",
@@ -10,7 +11,5 @@ const prettierConfig = {
     }
   ]
 };
-export {
-  prettierConfig as default
-};
-//# sourceMappingURL=index.js.map
+module.exports = prettierConfig;
+//# sourceMappingURL=index.cjs.map

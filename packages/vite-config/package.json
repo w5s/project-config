@@ -25,15 +25,11 @@
       "import": "./dist/esm/index.js"
     }
   },
-  "typings": "./index.d.ts",
   "files": [
-    "dist/**/!(*.spec).d.ts",
-    "dist/**/!(*.spec).d.ts.map",
-    "dist/**/!(*.spec).js.map",
-    "dist/**/!(*.spec).js",
-    "src/**/!(*.spec).ts",
-    "index.js",
-    "index.d.ts"
+    "dist/",
+    "src/",
+    "!**/*.spec.*",
+    "!**/__tests__/**"
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
@@ -52,10 +48,10 @@
     "test:src": "vitest run"
   },
   "dependencies": {
-    "vite-plugin-dts": "^2.3.0"
+    "vite-plugin-dts": "^3.3.0"
   },
   "devDependencies": {
-    "vite": "4.3.9",
+    "vite": "4.4.6",
     "vitest": "0.32.2"
   },
   "engines": {

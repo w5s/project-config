@@ -18,12 +18,14 @@
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
-  "type": "commonjs",
+  "type": "module",
   "exports": {
-    ".": "./index.js",
-    "./dist/*": "./dist/*"
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs",
+      "type": "./dist/index.d.ts"
+    }
   },
-  "typings": "./index.d.ts",
   "files": [
     "dist/",
     "src/",
@@ -34,7 +36,7 @@
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
-    "build:tsc": "tsc -b tsconfig.build.json",
+    "build:tsc": "vite build",
     "clean": "concurrently \"npm:clean:*\" \":\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
@@ -51,6 +53,7 @@
     "test:src": "vitest run"
   },
   "devDependencies": {
+    "@w5s/vite-config": "workspace:*",
     "prettier": "3.1.0",
     "vite": "5.0.6",
     "vitest": "0.34.6"

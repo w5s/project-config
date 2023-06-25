@@ -1,7 +1,3 @@
-import { configDefaults, defineConfig } from 'vitest/config';
+import { defineConfig } from '@w5s/vite-config';
 
-export default defineConfig({
-  test: {
-    exclude: [...configDefaults.exclude],
-  },
-});
+export default defineConfig('library', {});
