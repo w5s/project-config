@@ -1,9 +1,0 @@
-import { configDefaults } from 'vitest/config';
-const defaultConfig = {
-    test: configDefaults,
-};
-export const configDefaultMap = Object.freeze({
-    application: defaultConfig,
-    library: defaultConfig,
-});
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uZmlnRGVmYXVsdE1hcC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jb25maWdEZWZhdWx0TWFwLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sRUFBYyxjQUFjLEVBQUUsTUFBTSxlQUFlLENBQUM7QUFHM0QsTUFBTSxhQUFhLEdBQUc7SUFDcEIsSUFBSSxFQUFFLGNBQWM7Q0FDckIsQ0FBQztBQUVGLE1BQU0sQ0FBQyxNQUFNLGdCQUFnQixHQUErQyxNQUFNLENBQUMsTUFBTSxDQUFDO0lBQ3hGLFdBQVcsRUFBRSxhQUFhO0lBQzFCLE9BQU8sRUFBRSxhQUFhO0NBQ3ZCLENBQUMsQ0FBQyJ9
