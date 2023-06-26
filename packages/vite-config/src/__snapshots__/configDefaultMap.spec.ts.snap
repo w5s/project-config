@@ -3,19 +3,6 @@
 exports[`configDefaultMap > should be an object 1`] = `
 {
   "application": {
-    "plugins": [
-      {
-        "apply": "build",
-        "buildStart": [Function],
-        "closeBundle": [Function],
-        "config": [Function],
-        "configResolved": [Function],
-        "enforce": "pre",
-        "name": "vite:dts",
-        "transform": [Function],
-        "watchChange": [Function],
-      },
-    ],
     "test": {
       "allowOnly": true,
       "api": false,
