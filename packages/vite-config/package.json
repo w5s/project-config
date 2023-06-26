@@ -54,6 +54,10 @@
     "vite": "4.4.6",
     "vitest": "0.32.2"
   },
+  "peerDependencies": {
+    "vite": "4.x",
+    "vitest": "0.x"
+  },
   "engines": {
     "node": ">=16.0.0"
   },
