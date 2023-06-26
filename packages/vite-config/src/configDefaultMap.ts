@@ -3,7 +3,6 @@ import dts from 'vite-plugin-dts';
 import { ConfigType } from './type.js';
 
 const defaultConfig: UserConfig = {
-  plugins: [dts({})],
   test: configDefaults,
 };
 
@@ -11,6 +10,12 @@ export const configDefaultMap: { readonly [T in ConfigType]: UserConfig } = Obje
   application: defaultConfig,
   library: Object.freeze({
     ...defaultConfig,
+    plugins: [
+      ...(defaultConfig.plugins ?? []),
+      dts({
+        tsConfigFilePath: 'tsconfig.build.json',
+      }),
+    ],
     build: {
       ...defaultConfig.build,
       sourcemap: true,
