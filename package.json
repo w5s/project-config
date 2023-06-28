@@ -89,7 +89,7 @@
     "cspell": "6.31.1",
     "eslint": "8.43.0",
     "eslint-plugin-sort-keys": "2.3.5",
-    "lerna": "7.1.0",
+    "lerna": "7.1.1",
     "markdown-magic": "2.6.1",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "1.1.2",
