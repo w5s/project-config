@@ -77,7 +77,7 @@
     "root": true
   },
   "devDependencies": {
-    "@types/node": "16.18.37",
+    "@types/node": "16.18.38",
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/conventional-changelog": "workspace:*",
     "@w5s/cspell-config": "workspace:*",
