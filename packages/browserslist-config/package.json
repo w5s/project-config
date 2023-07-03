@@ -52,7 +52,7 @@
     "browserslist": "4.21.9",
     "lodash-es": "4.17.21",
     "vite": "4.3.9",
-    "vitest": "0.32.2"
+    "vitest": "0.32.4"
   },
   "peerDependencies": {
     "browserslist": ">= 4.0"
