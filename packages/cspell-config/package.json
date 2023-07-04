@@ -26,12 +26,13 @@
   "typings": "./index.d.ts",
   "files": [
     "cspell-ext.json",
-    "dict/**/*",
-    "dist/**/!(*.spec).d.ts",
-    "dist/**/!(*.spec).d.ts.map",
-    "dist/**/!(*.spec).js.map",
-    "dist/**/!(*.spec).js",
-    "src/**/!(*.spec).ts"
+    "dict/",
+    "dist/",
+    "src/",
+    "index.js",
+    "index.d.ts",
+    "!**/*.spec.*",
+    "!**/__tests__/**"
   ],
   "scripts": {
     "__build:dict": "cd dict;cspell-tools-cli compile filetypes.txt",

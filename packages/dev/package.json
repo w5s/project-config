@@ -24,14 +24,12 @@
   },
   "typings": "./index.d.ts",
   "files": [
-    "dist/**/!(*.spec).d.ts",
-    "dist/**/!(*.spec).js.map",
-    "dist/**/!(*.spec).js",
-    "src/**/!(*.spec).ts",
-    "!example/**/*",
-    "!*.cjs",
+    "dist/",
+    "src/",
     "index.js",
-    "index.d.ts"
+    "index.d.ts",
+    "!**/*.spec.*",
+    "!**/__tests__/**"
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",

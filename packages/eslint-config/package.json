@@ -21,16 +21,12 @@
   "type": "commonjs",
   "main": "index.js",
   "files": [
-    "dist/**/!(*.spec).d.ts",
-    "dist/**/!(*.spec).js.map",
-    "dist/**/!(*.spec).js",
-    "src/**/!(*.spec).ts",
-    "!example/**/*",
-    "!*.cjs",
+    "dist/",
+    "src/",
     "index.js",
     "index.d.ts",
-    "*.js",
-    "rules/*.js"
+    "!**/*.spec.*",
+    "!**/__tests__/**"
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
