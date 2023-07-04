@@ -47,11 +47,10 @@ For most kind of project, just edit `eslintrc.json` and cherry pick only configu
   "root": true,
   "extends": [
     "@w5s/eslint-config/es",
-    "@w5s/eslint-config/functional",
     "@w5s/eslint-config/jest",
     "@w5s/eslint-config/json",
-    "@w5s/eslint-config/react",
     "@w5s/eslint-config/ts",
+    "@w5s/eslint-config/yml",
     // include more configurations here
   ]
   //...
@@ -62,9 +61,9 @@ For most kind of project, just edit `eslintrc.json` and cherry pick only configu
 
 - `@w5s/eslint-config/es`: for ECMA Script (ES) files
 - `@w5s/eslint-config/jest`: for jest environment tests
-- `@w5s/eslint-config/functional`: for pure functional programming
-- `@w5s/eslint-config/react`: for react capability
+- `@w5s/eslint-config/json`: for json and jsonc files
 - `@w5s/eslint-config/ts`: for typescript files
+- `@w5s/eslint-config/yml`: for yaml files
 
 ## License
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[${license}][license-url] © ${author}) -->
