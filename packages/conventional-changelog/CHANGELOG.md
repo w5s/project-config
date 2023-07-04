@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.13...@w5s/conventional-changelog@1.1.0) (2023-07-04)
+
+### ✨ Features
+
+- Change lib/ to dist/ for output dir ([40b59b5](https://github.com/w5s/project-config/commit/40b59b5))
+
 ## [1.0.13](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.12...@w5s/conventional-changelog@1.0.13) (2023-05-31)
 
 **Note:** Version bump only for package @w5s/conventional-changelog

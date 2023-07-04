@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/w5s/project-config/compare/@w5s/browserslist-config@1.0.8...@w5s/browserslist-config@1.1.0) (2023-07-04)
+
+### ✨ Features
+
+- Change lib/ to dist/ for output dir ([40b59b5](https://github.com/w5s/project-config/commit/40b59b5))
+
 ## [1.0.8](https://github.com/w5s/project-config/compare/@w5s/browserslist-config@1.0.7...@w5s/browserslist-config@1.0.8) (2023-05-31)
 
 **Note:** Version bump only for package @w5s/browserslist-config

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.4...@w5s/mrm-preset@1.1.0) (2023-07-04)
+
+### ✨ Features
+
+- Change lib/ to dist/ for output dir ([40b59b5](https://github.com/w5s/project-config/commit/40b59b5))
+
+### 🐛 Bug Fixes
+
+- Support lerna v7 ([f465e08](https://github.com/w5s/project-config/commit/f465e08))
+
 ## [1.0.4](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.3...@w5s/mrm-preset@1.0.4) (2023-05-31)
 
 **Note:** Version bump only for package @w5s/mrm-preset
