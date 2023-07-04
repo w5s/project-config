@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.1.0...@w5s/eslint-config@1.1.1) (2023-07-04)
+
+### 🐛 Bug Fixes
+
+- Include root config ([8c0a1de](https://github.com/w5s/project-config/commit/8c0a1de))
+
 # [1.1.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.0.11...@w5s/eslint-config@1.1.0) (2023-07-04)
 
 ### ✨ Features
