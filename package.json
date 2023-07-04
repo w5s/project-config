@@ -32,7 +32,7 @@
     "lint:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --ignore-pattern='packages/*/**'",
     "mrm": "npm exec --package=mrm -- mrm --dir ./packages/mrm-preset",
     "postbuild": "npm run docs",
-    "prepare": "concurrently \"npm:prepare:*\" \":\"",
+    "prepare": "npx concurrently \"npm:prepare:*\" \":\"",
     "prepare:githooks": "[ -n \"${CI:-}\" ] || npx husky install .githooks",
     "prepare:packages": "turbo run prepare",
     "release": "[ -n \"${CI:-}\" ] && lerna publish --yes || lerna publish",
