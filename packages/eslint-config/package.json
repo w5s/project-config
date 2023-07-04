@@ -23,6 +23,7 @@
   "files": [
     "dist/",
     "src/",
+    "*.js",
     "index.js",
     "index.d.ts",
     "!**/*.spec.*",
