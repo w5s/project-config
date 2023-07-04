@@ -26,18 +26,18 @@
     "tsconfig.json"
   ],
   "scripts": {
-    "build": "concurrently \"npm:build:*\" \":\"",
-    "clean": "concurrently \"npm:clean:*\" \":\"",
+    "build": "npx concurrently \"npm:build:*\" \":\"",
+    "clean": "npx concurrently \"npm:clean:*\" \":\"",
     "docs": "node ../../markdown.mjs",
-    "format": "concurrently \"npm:format:*\" \":\"",
+    "format": "npx concurrently \"npm:format:*\" \":\"",
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
-    "lint": "concurrently \"npm:lint:*\" \":\"",
+    "lint": "npx concurrently \"npm:lint:*\" \":\"",
     "lint:src": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "postpack": "npx clean-package restore",
     "prepack": "npx clean-package",
-    "prepare": "concurrently \"npm:prepare:*\" \":\"",
+    "prepare": "npx concurrently \"npm:prepare:*\" \":\"",
     "spellcheck": "cspell --no-progress '**'",
-    "test": "concurrently \"npm:test:*\" \":\"",
+    "test": "npx concurrently \"npm:test:*\" \":\"",
     "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck"
   },
   "devDependencies": {
