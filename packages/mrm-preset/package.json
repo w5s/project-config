@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@types/debug": "4.1.8",
-    "mrm": "4.1.14",
+    "mrm": "4.1.17",
     "mrm-preset-default": "4.1.11"
   },
   "engines": {
