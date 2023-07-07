@@ -2034,7 +2034,7 @@ __metadata:
   dependencies:
     browserslist: 4.21.9
     lodash-es: 4.17.21
-    vite: 4.4.1
+    vite: 4.4.2
     vitest: 0.32.4
   peerDependencies:
     browserslist: ">= 4.0"
@@ -2051,7 +2051,7 @@ __metadata:
     "@commitlint/lint": 17.6.6
     "@commitlint/types": ^17.0.0
     "@w5s/conventional-changelog": ^1.1.0
-    vite: 4.4.1
+    vite: 4.4.2
     vitest: 0.32.4
   peerDependencies:
     "@commitlint/cli": ^16.0.0 || ^17.0.0
@@ -2070,7 +2070,7 @@ __metadata:
     "@types/conventional-commits-parser": 3.0.3
     emoji-regex: ^10.2.1
     gitmojis: ^3.13.4
-    vite: 4.4.1
+    vite: 4.4.2
     vitest: 0.32.4
   languageName: unknown
   linkType: soft
@@ -2082,7 +2082,7 @@ __metadata:
     "@cspell/cspell-bundled-dicts": ^6.0.0
     "@cspell/cspell-tools": 6.31.1
     "@cspell/cspell-types": 6.31.1
-    vite: 4.4.1
+    vite: 4.4.2
     vitest: 0.32.4
   peerDependencies:
     cspell: ^6.0.0
@@ -2097,7 +2097,7 @@ __metadata:
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
     "@types/eslint": ^8.4.10
-    vite: 4.4.1
+    vite: 4.4.2
     vitest: 0.32.4
   languageName: unknown
   linkType: soft
@@ -2132,7 +2132,7 @@ __metadata:
     parse-gitignore: ^2.0.0
     prettier: 2.8.8
     react: 18.2.0
-    vite: 4.4.1
+    vite: 4.4.2
     vitest: 0.32.4
   peerDependencies:
     eslint: 8.x
@@ -2166,7 +2166,7 @@ __metadata:
   resolution: "@w5s/prettier-config@workspace:packages/prettier-config"
   dependencies:
     prettier: 2.8.8
-    vite: 4.4.1
+    vite: 4.4.2
     vitest: 0.32.4
   peerDependencies:
     prettier: 2.x
@@ -11793,9 +11793,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:4.4.1":
-  version: 4.4.1
-  resolution: "vite@npm:4.4.1"
+"vite@npm:4.4.2":
+  version: 4.4.2
+  resolution: "vite@npm:4.4.2"
   dependencies:
     esbuild: ^0.18.10
     fsevents: ~2.3.2
@@ -11829,7 +11829,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: c91d5228cd0b2410e95ea4b17279640a414f1a2d5290a01baec77351af2dda7d5901c240ed6a62de2b465567e328168d386da2aaa262d3a138fde827b289592d
+  checksum: 37a1c3a0ccc4b80c0a696203d3608d6bf7dc98219ddc178e528b972e3305af9ab8f92dea455421024e98c59372f6a97b1b4cc409a05f757a64bff830610053c6
   languageName: node
   linkType: hard
 
