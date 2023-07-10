@@ -1437,16 +1437,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint-plugin-prettier@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@types/eslint-plugin-prettier@npm:3.1.0"
-  dependencies:
-    "@types/eslint": "*"
-  checksum: e8fc9991cc181967a961c344ab894b57122e54b5f36950373f42638bb05847caef89a0e12decbb5b4a42e4eefaeefe63053ee2cbf6e1dfce43d77a445bbae728
-  languageName: node
-  linkType: hard
-
-"@types/eslint@npm:*, @types/eslint@npm:8.44.0, @types/eslint@npm:^8.4.10":
+"@types/eslint@npm:8.44.0, @types/eslint@npm:^8.44.0":
   version: 8.44.0
   resolution: "@types/eslint@npm:8.44.0"
   dependencies:
@@ -1904,7 +1895,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
-    "@types/eslint": ^8.4.10
+    "@types/eslint": ^8.44.0
     vite: 4.4.2
     vitest: 0.33.0
   languageName: unknown
@@ -1916,7 +1907,6 @@ __metadata:
   dependencies:
     "@rushstack/eslint-patch": ^1.1.0
     "@types/eslint": 8.44.0
-    "@types/eslint-plugin-prettier": 3.1.0
     "@types/parse-gitignore": 1.0.0
     "@types/prettier": 2.7.3
     "@types/react": 18.2.14
