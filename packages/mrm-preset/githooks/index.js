@@ -44,7 +44,11 @@ function task() {
     path: 'CODEOWNERS',
     state: gitSupported ? 'file' : 'absent',
     update: (content) =>
-      content.length === 0 ? template('', path.join(__dirname, 'templates', 'CODEOWNERS')).apply().get() : undefined,
+      content.length === 0
+        ? template('', path.join(__dirname, 'templates', 'CODEOWNERS'))
+            .apply()
+            .get()
+        : undefined,
   });
 }
 

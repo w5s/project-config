@@ -144,7 +144,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
                   ts: 'typescript',
                   yaml: 'yaml',
                   yml: 'yaml',
-                }[ext] || ext)
+                })[ext] || ext
             )
           )
         ),
