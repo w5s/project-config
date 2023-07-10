@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "vite": "4.4.2",
-    "vitest": "0.32.4"
+    "vitest": "0.33.0"
   },
   "engines": {
     "node": ">=16.0.0"
