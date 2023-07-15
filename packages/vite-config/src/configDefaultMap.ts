@@ -3,7 +3,7 @@ import dts from 'vite-plugin-dts';
 import { ConfigType } from './type.js';
 
 const defaultConfig: UserConfig = {
-  test: configDefaults,
+  test: { ...configDefaults },
 };
 
 export const configDefaultMap: { readonly [T in ConfigType]: UserConfig } = {
