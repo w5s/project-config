@@ -13,7 +13,7 @@ export const configDefaultMap: { readonly [T in ConfigType]: UserConfig } = Obje
     plugins: [
       ...(defaultConfig.plugins ?? []),
       dts({
-        tsConfigFilePath: 'tsconfig.build.json',
+        tsconfigPath: 'tsconfig.build.json',
       }),
     ],
     build: {
