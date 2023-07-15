@@ -6,9 +6,9 @@ const defaultConfig: UserConfig = {
   test: configDefaults,
 };
 
-export const configDefaultMap: { readonly [T in ConfigType]: UserConfig } = Object.freeze({
+export const configDefaultMap: { readonly [T in ConfigType]: UserConfig } = {
   application: defaultConfig,
-  library: Object.freeze({
+  library: {
     ...defaultConfig,
     plugins: [
       ...(defaultConfig.plugins ?? []),
@@ -33,5 +33,5 @@ export const configDefaultMap: { readonly [T in ConfigType]: UserConfig } = Obje
         },
       },
     },
-  } satisfies UserConfig),
-});
+  } satisfies UserConfig,
+};
