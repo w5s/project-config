@@ -21,9 +21,9 @@
   "type": "module",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "type": "./dist/index.d.ts"
+      "import": "./dist/index.js"
     }
   },
   "files": [
