@@ -21,7 +21,7 @@ export function displayScope(scope: string | null | undefined, scopeDisplayNameM
     : scopeDisplayNameMap[scope];
 }
 
-export function displayType(type: CommitConventionalType | string, options: displayType.Options = {}): string {
+export function displayType(type: string, options: displayType.Options = {}): string {
   const { withEmoji = true, language = 'en-US' } = options;
 
   if (CommitConventionalType.hasInstance(type)) {
