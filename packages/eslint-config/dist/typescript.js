@@ -92,7 +92,6 @@ const config = dev_1.ESLintConfig.concat(
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-extra-parens': baseRules['no-extra-parens'],
         '@typescript-eslint/no-extra-semi': baseRules['no-extra-semi'],
-        '@typescript-eslint/no-implicit-any-catch': 'error',
         '@typescript-eslint/no-inferrable-types': 'error',
         '@typescript-eslint/no-loop-func': baseRules['no-loop-func'],
         '@typescript-eslint/no-loss-of-precision': baseRules['no-loss-of-precision'],

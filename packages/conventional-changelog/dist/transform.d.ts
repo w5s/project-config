@@ -10,7 +10,7 @@ export interface TransformConfig {
     language?: Language;
 }
 export declare function displayScope(scope: string | null | undefined, scopeDisplayNameMap: Record<string, string>): string | undefined;
-export declare function displayType(type: CommitConventionalType | string, options?: displayType.Options): string;
+export declare function displayType(type: string, options?: displayType.Options): string;
 export declare namespace displayType {
     interface Options {
         readonly withEmoji?: boolean;
