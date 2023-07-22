@@ -22,12 +22,12 @@ function includeIf(condition, getValue) {
 
 module.exports = {
   extends: [
-    require.resolve('./ignore.js'),
-    require.resolve('./es.js'),
-    ...includeIf(tryResolve('typescript'), () => require.resolve('./ts.js')),
-    require.resolve('./json.js'),
-    require.resolve('./yml.js'),
-    require.resolve('./jest.js'),
+    require.resolve('./dist/rules/ignore.js'),
+    require.resolve('./dist/es.js'),
+    ...includeIf(tryResolve('typescript'), () => require.resolve('./dist/ts.js')),
+    require.resolve('./dist/json.js'),
+    require.resolve('./dist/yml.js'),
+    require.resolve('./dist/jest.js'),
   ],
   root: true,
 };
