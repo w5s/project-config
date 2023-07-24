@@ -50,7 +50,7 @@
   "devDependencies": {
     "browserslist": "4.21.9",
     "lodash-es": "4.17.21",
-    "vite": "4.4.6",
+    "vite": "4.4.7",
     "vitest": "0.33.0"
   },
   "peerDependencies": {
