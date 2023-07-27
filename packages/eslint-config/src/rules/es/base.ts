@@ -1,5 +1,5 @@
 import type eslint from 'eslint';
-import { ECMA_VERSION, ESLintConfig } from '@w5s/dev';
+import { Project, ESLintConfig } from '@w5s/dev';
 
 // Fix eslint shareable config (https://github.com/eslint/eslint/issues/3458)
 // @ts-ignore No typing available
@@ -34,7 +34,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
   // overrides
   {
     env: {
-      [`es${ECMA_VERSION}`]: true,
+      [`es${Project.ecmaVersion()}`]: true,
     },
     globals: {
       __DEV__: 'readonly',
@@ -46,7 +46,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       ecmaFeatures: {
         jsx: true,
       },
-      ecmaVersion: ECMA_VERSION,
+      ecmaVersion: Project.ecmaVersion(),
       sourceType: 'module',
     },
     reportUnusedDisableDirectives: true,

@@ -1,13 +1,4 @@
 /**
- * Supported ECMA version
- *
- * @example
- * ```ts
- * ECMA_VERSION // 2022
- * ```
- */
-export declare const ECMA_VERSION = 2022;
-/**
  * Files and folders to always ignore
  *
  * @example

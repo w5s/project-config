@@ -25,7 +25,7 @@ const config = dev_1.ESLintConfig.concat(baseConfig,
 // overrides
 {
     env: {
-        [`es${dev_1.ECMA_VERSION}`]: true,
+        [`es${dev_1.Project.ecmaVersion()}`]: true,
     },
     globals: {
         __DEV__: 'readonly',
@@ -37,7 +37,7 @@ const config = dev_1.ESLintConfig.concat(baseConfig,
         ecmaFeatures: {
             jsx: true,
         },
-        ecmaVersion: dev_1.ECMA_VERSION,
+        ecmaVersion: dev_1.Project.ecmaVersion(),
         sourceType: 'module',
     },
     reportUnusedDisableDirectives: true,

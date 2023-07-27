@@ -1,15 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EXTENSIONS_RESOURCES_REGEX = exports.CONFIG_GLOB_LIST = exports.EXTENSIONS_WITHOUT_DOT = exports.EXTENSIONS = exports.IGNORE_LIST = exports.ECMA_VERSION = void 0;
-/**
- * Supported ECMA version
- *
- * @example
- * ```ts
- * ECMA_VERSION // 2022
- * ```
- */
-exports.ECMA_VERSION = 2022;
+exports.EXTENSIONS_RESOURCES_REGEX = exports.CONFIG_GLOB_LIST = exports.EXTENSIONS_WITHOUT_DOT = exports.EXTENSIONS = exports.IGNORE_LIST = void 0;
 /**
  * Files and folders to always ignore
  *
