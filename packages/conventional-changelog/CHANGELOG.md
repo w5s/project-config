@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.1.2...@w5s/conventional-changelog@1.1.3) (2023-07-28)
+
+
+### 🐛 Bug Fixes
+
+- Change list bullet character ([33a55a0](https://github.com/w5s/project-config/commit/33a55a0))
+
+**Note:** Version bump only for package @w5s/conventional-changelog
+
+
+
+
+
 ## [1.1.2](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.1.1...@w5s/conventional-changelog@1.1.2) (2023-07-28)
 
 **Note:** Version bump only for package @w5s/conventional-changelog
