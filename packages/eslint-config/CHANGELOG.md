@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.1.2...@w5s/eslint-config@1.2.0) (2023-07-28)
+
+
+### ✨ Features
+
+* Add Project.ecmaVersion function ([94884f4](https://github.com/w5s/project-config/commit/94884f4)) * Ignore vendors and minified files ([e5249f6](https://github.com/w5s/project-config/commit/e5249f6)) 
+
+
 ## [1.1.2](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.1.1...@w5s/eslint-config@1.1.2) (2023-07-12)
 
 **Note:** Version bump only for package @w5s/eslint-config
