@@ -8,10 +8,10 @@ export interface WriterOptions extends Options {}
 
 const basePath = resolve(dirname(__dirname), './template');
 
-const template = readFileSync(`${basePath}/template.hbs`, 'utf8');
-const header = readFileSync(`${basePath}/header.hbs`, 'utf8');
-const commit = readFileSync(`${basePath}/commit.hbs`, 'utf8');
-const footer = readFileSync(`${basePath}/footer.hbs`, 'utf8');
+const mainTemplate = readFileSync(`${basePath}/template.hbs`, 'utf8');
+const headerPartial = readFileSync(`${basePath}/header.hbs`, 'utf8');
+const commitPartial = readFileSync(`${basePath}/commit.hbs`, 'utf8');
+const footerPartial = readFileSync(`${basePath}/footer.hbs`, 'utf8');
 const author = readFileSync(`${basePath}/author.hbs`, 'utf8');
 
 export const defaultDisplayTypes = CommitConventionalType.findWhere((_) => _.changelog);
@@ -24,9 +24,9 @@ export const writerOpts: WriterOptions = {
   commitGroupsSort: 'title',
   commitsSort: ['scope', 'subject'],
   noteGroupsSort: 'title',
-  mainTemplate: template,
-  headerPartial: header,
+  mainTemplate,
+  headerPartial,
   // eslint-disable-next-line unicorn/prefer-string-replace-all
-  commitPartial: commit.replace(/{{gitUserInfo}}/g, author),
-  footerPartial: footer,
+  commitPartial: commitPartial.replace(/{{gitUserInfo}}/g, author),
+  footerPartial,
 };
