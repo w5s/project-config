@@ -1,5 +1,23 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`Project > .resourceExtensions() > should equals values 1`] = `
+[
+  ".css",
+  ".sass",
+  ".scss",
+  ".less",
+  ".gif",
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".svg",
+  ".gql",
+  ".graphql",
+  ".yml",
+  ".yaml",
+]
+`;
+
 exports[`Project > .sourceExtensions() > should equals values 1`] = `
 [
   ".ts",

@@ -28,5 +28,32 @@ var Project;
         return SOURCE_EXTENSIONS;
     }
     Project.sourceExtensions = sourceExtensions;
+    const RESOURCE_EXTENSIONS = Object.freeze([
+        '.css',
+        '.sass',
+        '.scss',
+        '.less',
+        '.gif',
+        '.png',
+        '.jpg',
+        '.jpeg',
+        '.svg',
+        '.gql',
+        '.graphql',
+        '.yml',
+        '.yaml',
+    ]);
+    /**
+     * Resource file extensions
+     *
+     * @example
+     * ```ts
+     * Project.resourceExtensions() // ['.css', '.sass', ...]
+     * ```
+     */
+    function resourceExtensions() {
+        return RESOURCE_EXTENSIONS;
+    }
+    Project.resourceExtensions = resourceExtensions;
 })(Project || (exports.Project = Project = {}));
 //# sourceMappingURL=project.js.map

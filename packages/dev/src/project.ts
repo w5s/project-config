@@ -24,4 +24,32 @@ export namespace Project {
   export function sourceExtensions() {
     return SOURCE_EXTENSIONS;
   }
+
+  const RESOURCE_EXTENSIONS = Object.freeze([
+    '.css',
+    '.sass',
+    '.scss',
+    '.less',
+    '.gif',
+    '.png',
+    '.jpg',
+    '.jpeg',
+    '.svg',
+    '.gql',
+    '.graphql',
+    '.yml',
+    '.yaml',
+  ]);
+
+  /**
+   * Resource file extensions
+   *
+   * @example
+   * ```ts
+   * Project.resourceExtensions() // ['.css', '.sass', ...]
+   * ```
+   */
+  export function resourceExtensions() {
+    return RESOURCE_EXTENSIONS;
+  }
 }

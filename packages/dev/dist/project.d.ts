@@ -17,5 +17,14 @@ export declare namespace Project {
      * ```
      */
     function sourceExtensions(): readonly string[];
+    /**
+     * Resource file extensions
+     *
+     * @example
+     * ```ts
+     * Project.resourceExtensions() // ['.css', '.sass', ...]
+     * ```
+     */
+    function resourceExtensions(): readonly string[];
 }
 //# sourceMappingURL=project.d.ts.map

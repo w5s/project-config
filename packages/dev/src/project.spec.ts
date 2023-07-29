@@ -11,5 +11,16 @@ describe('Project', () => {
     it('should equals values', () => {
       expect(Project.sourceExtensions()).toMatchSnapshot();
     });
+    it('should be frozen', () => {
+      expect(Object.isFrozen(Project.sourceExtensions())).toBe(true);
+    });
+  });
+  describe('.resourceExtensions()', () => {
+    it('should equals values', () => {
+      expect(Project.resourceExtensions()).toMatchSnapshot();
+    });
+    it('should be frozen', () => {
+      expect(Object.isFrozen(Project.resourceExtensions())).toBe(true);
+    });
   });
 });
