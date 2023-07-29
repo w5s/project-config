@@ -1,6 +1,6 @@
-const { yaml } = require('mrm-core');
 const path = require('node:path');
 const fs = require('node:fs');
+const { yaml } = require('mrm-core');
 
 const FILE_PATH = '.github/workflows';
 

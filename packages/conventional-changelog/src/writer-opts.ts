@@ -1,6 +1,6 @@
-import type { Options } from 'conventional-changelog-writer';
 import { readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
+import type { Options } from 'conventional-changelog-writer';
 import { createTransform } from './transform.js';
 import { CommitConventionalType } from './data.js';
 

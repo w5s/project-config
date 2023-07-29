@@ -1,5 +1,5 @@
-const { file, packageJson } = require('mrm-core');
 const fs = require('node:fs');
+const { file, packageJson } = require('mrm-core');
 const pkg = require('./pkg.js');
 const npm = require('./npm.js');
 const project = require('./project.js');

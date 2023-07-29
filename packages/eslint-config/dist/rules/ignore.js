@@ -3,9 +3,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 const node_fs_1 = require("node:fs");
+const node_path_1 = require("node:path");
 const find_up_1 = __importDefault(require("find-up"));
 const parse_gitignore_1 = __importDefault(require("parse-gitignore"));
-const node_path_1 = require("node:path");
 const getGitignore = (prefix = '') => {
     const cwd = process.cwd();
     const gitIgnoreFile = find_up_1.default.sync((0, node_path_1.join)(prefix, '.gitignore'), { cwd });

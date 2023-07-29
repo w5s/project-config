@@ -5,11 +5,11 @@
  * @typedef {string|boolean|number|null|Array<unknown>|Record<string, unknown>} JsonValue
  */
 
+const path = require('node:path');
 // @ts-ignore
 const { intersect } = require('semver-intersect');
 const { packageJson, file, json } = require('mrm-core');
 const glob = require('glob');
-const path = require('node:path');
 const jsonFile = require('./jsonFile.js');
 
 /**

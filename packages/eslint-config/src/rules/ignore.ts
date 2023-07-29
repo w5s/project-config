@@ -1,8 +1,8 @@
-import type eslint from 'eslint';
 import { readFileSync } from 'node:fs';
+import { join as pathJoin } from 'node:path';
+import type eslint from 'eslint';
 import findUp from 'find-up';
 import parseGitignore from 'parse-gitignore';
-import { join as pathJoin } from 'node:path';
 
 const getGitignore = (prefix = '') => {
   const cwd = process.cwd();
