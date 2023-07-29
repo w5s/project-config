@@ -15,5 +15,18 @@ var Project;
         return 2022;
     }
     Project.ecmaVersion = ecmaVersion;
+    const SOURCE_EXTENSIONS = Object.freeze(['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mjs']);
+    /**
+     * Supported file extensions
+     *
+     * @example
+     * ```ts
+     * Project.sourceExtensions() // ['.ts', '.js', ...]
+     * ```
+     */
+    function sourceExtensions() {
+        return SOURCE_EXTENSIONS;
+    }
+    Project.sourceExtensions = sourceExtensions;
 })(Project || (exports.Project = Project = {}));
 //# sourceMappingURL=project.js.map

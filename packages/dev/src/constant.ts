@@ -1,3 +1,5 @@
+import { Project } from './project.js';
+
 /**
  * Files and folders to always ignore
  *
@@ -20,16 +22,6 @@ export const IGNORE_LIST = [
 ];
 
 /**
- * Supported file extensions
- *
- * @example
- * ```ts
- * EXTENSIONS // ['.ts', '.js', ...]
- * ```
- */
-export const EXTENSIONS = ['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mjs'];
-
-/**
  * Supported file extensions without starting dots
  *
  * @example
@@ -37,7 +29,7 @@ export const EXTENSIONS = ['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs',
  * EXTENSIONS_WITHOUT_DOT // ['ts', 'js', ...]
  * ```
  */
-export const EXTENSIONS_WITHOUT_DOT = EXTENSIONS.map((ext) => ext.slice(1));
+export const EXTENSIONS_WITHOUT_DOT = Project.sourceExtensions().map((ext) => ext.slice(1));
 
 /**
  * List of globs to find config related files

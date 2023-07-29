@@ -37,18 +37,18 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
         'import/unambiguous': dev_1.ESLintConfig.fixme('off'), // Disable because proposal still in progress
     },
     settings: {
-        'import/extensions': dev_1.EXTENSIONS,
+        'import/extensions': dev_1.Project.sourceExtensions(),
         // Resolve type definition packages
         'import/external-module-folders': ['node_modules', 'node_modules/@types'],
         'import/ignore': [...dev_1.IGNORE_LIST, dev_1.EXTENSIONS_RESOURCES_REGEX],
         // Apply special parsing for TypeScript files
         'import/parsers': {
-            '@typescript-eslint/parser': dev_1.EXTENSIONS.filter((ext) => !ext.includes('js')),
+            '@typescript-eslint/parser': dev_1.Project.sourceExtensions().filter((ext) => !ext.includes('js')),
         },
         // Append 'ts' extensions to Airbnb 'import/resolver' setting
         'import/resolver': {
             node: {
-                extensions: [...dev_1.EXTENSIONS, '.json'],
+                extensions: [...dev_1.Project.sourceExtensions(), '.json'],
             },
         },
     },

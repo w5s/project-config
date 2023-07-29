@@ -8,15 +8,6 @@
  */
 export declare const IGNORE_LIST: string[];
 /**
- * Supported file extensions
- *
- * @example
- * ```ts
- * EXTENSIONS // ['.ts', '.js', ...]
- * ```
- */
-export declare const EXTENSIONS: string[];
-/**
  * Supported file extensions without starting dots
  *
  * @example

@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Project > .sourceExtensions() > should equals values 1`] = `
+[
+  ".ts",
+  ".tsx",
+  ".cts",
+  ".mts",
+  ".js",
+  ".jsx",
+  ".cjs",
+  ".mjs",
+]
+`;

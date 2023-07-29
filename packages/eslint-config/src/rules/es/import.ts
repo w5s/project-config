@@ -1,4 +1,4 @@
-import { ESLintConfig, EXTENSIONS, EXTENSIONS_RESOURCES_REGEX, IGNORE_LIST } from '@w5s/dev';
+import { ESLintConfig, EXTENSIONS_RESOURCES_REGEX, IGNORE_LIST, Project } from '@w5s/dev';
 import type eslint from 'eslint';
 // @ts-ignore airbnb is not typed
 import importConfig from 'eslint-config-airbnb-base/rules/imports';
@@ -37,7 +37,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       'import/unambiguous': ESLintConfig.fixme('off'), // Disable because proposal still in progress
     },
     settings: {
-      'import/extensions': EXTENSIONS,
+      'import/extensions': Project.sourceExtensions(),
 
       // Resolve type definition packages
       'import/external-module-folders': ['node_modules', 'node_modules/@types'],
@@ -45,12 +45,12 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
 
       // Apply special parsing for TypeScript files
       'import/parsers': {
-        '@typescript-eslint/parser': EXTENSIONS.filter((ext) => !ext.includes('js')),
+        '@typescript-eslint/parser': Project.sourceExtensions().filter((ext) => !ext.includes('js')),
       },
       // Append 'ts' extensions to Airbnb 'import/resolver' setting
       'import/resolver': {
         node: {
-          extensions: [...EXTENSIONS, '.json'],
+          extensions: [...Project.sourceExtensions(), '.json'],
         },
       },
     },

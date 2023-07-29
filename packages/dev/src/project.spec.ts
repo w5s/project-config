@@ -7,4 +7,9 @@ describe('Project', () => {
       expect(Project.ecmaVersion()).toBe(2022);
     });
   });
+  describe('.sourceExtensions()', () => {
+    it('should equals values', () => {
+      expect(Project.sourceExtensions()).toMatchSnapshot();
+    });
+  });
 });

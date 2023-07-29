@@ -10,4 +10,18 @@ export namespace Project {
   export function ecmaVersion() {
     return 2022 as const;
   }
+
+  const SOURCE_EXTENSIONS = Object.freeze(['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mjs']);
+
+  /**
+   * Supported file extensions
+   *
+   * @example
+   * ```ts
+   * Project.sourceExtensions() // ['.ts', '.js', ...]
+   * ```
+   */
+  export function sourceExtensions() {
+    return SOURCE_EXTENSIONS;
+  }
 }

@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EXTENSIONS_RESOURCES_REGEX = exports.CONFIG_GLOB_LIST = exports.EXTENSIONS_WITHOUT_DOT = exports.EXTENSIONS = exports.IGNORE_LIST = void 0;
+exports.EXTENSIONS_RESOURCES_REGEX = exports.CONFIG_GLOB_LIST = exports.EXTENSIONS_WITHOUT_DOT = exports.IGNORE_LIST = void 0;
+const project_js_1 = require("./project.js");
 /**
  * Files and folders to always ignore
  *
@@ -22,15 +23,6 @@ exports.IGNORE_LIST = [
     'umd/',
 ];
 /**
- * Supported file extensions
- *
- * @example
- * ```ts
- * EXTENSIONS // ['.ts', '.js', ...]
- * ```
- */
-exports.EXTENSIONS = ['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mjs'];
-/**
  * Supported file extensions without starting dots
  *
  * @example
@@ -38,7 +30,7 @@ exports.EXTENSIONS = ['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mj
  * EXTENSIONS_WITHOUT_DOT // ['ts', 'js', ...]
  * ```
  */
-exports.EXTENSIONS_WITHOUT_DOT = exports.EXTENSIONS.map((ext) => ext.slice(1));
+exports.EXTENSIONS_WITHOUT_DOT = project_js_1.Project.sourceExtensions().map((ext) => ext.slice(1));
 /**
  * List of globs to find config related files
  *
