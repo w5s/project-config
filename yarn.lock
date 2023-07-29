@@ -10460,9 +10460,9 @@ __metadata:
   linkType: hard
 
 "signal-exit@npm:^4.0.1":
-  version: 4.0.3
-  resolution: "signal-exit@npm:4.0.3"
-  checksum: b1c69a0889b2417095d7dbea09c2c99d8e45891d71964602d0b234055d66eef11e3f3680ef36b1e864f9cc4c06e86a17821ee65a9463d0950bfe3e756a18ea62
+  version: 4.1.0
+  resolution: "signal-exit@npm:4.1.0"
+  checksum: 64c757b498cb8629ffa5f75485340594d2f8189e9b08700e69199069c8e3070fb3e255f7ab873c05dc0b3cec412aea7402e10a5990cb6a050bd33ba062a6c549
   languageName: node
   linkType: hard
 
@@ -11478,9 +11478,9 @@ __metadata:
   linkType: hard
 
 "ufo@npm:^1.1.2":
-  version: 1.1.2
-  resolution: "ufo@npm:1.1.2"
-  checksum: 83c940a6a23b6d4fc0cd116265bb5dcf88ab34a408ad9196e413270ca607a4781c09b547dc518f43caee128a096f20fe80b5a0e62b4bcc0a868619896106d048
+  version: 1.2.0
+  resolution: "ufo@npm:1.2.0"
+  checksum: eaac059b5fd64a6f80557093a49bb6bfd5d97aca433e641d5022db9cbd4be3e6a4011d2ffe1254cdb2fc8ab5cbe9942b0af834ee7ac7c63240ab542f5981f68e
   languageName: node
   linkType: hard
 
