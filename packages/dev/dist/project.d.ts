@@ -28,6 +28,15 @@ export declare namespace Project {
      */
     function resourceExtensions(): readonly `.${string}`[];
     /**
+     * Files and folders to always ignore
+     *
+     * @example
+     * ```ts
+     * IGNORED // ['node_modules/', 'build/', ...]
+     * ```
+     */
+    function ignored(): readonly string[];
+    /**
      * Return a RegExp that will match any list of extensions
      *
      * @example

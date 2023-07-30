@@ -67,6 +67,30 @@ var Project;
         return RESOURCE_EXTENSIONS;
     }
     Project.resourceExtensions = resourceExtensions;
+    const IGNORED = Object.freeze([
+        'node_modules/',
+        'build/',
+        'cjs/',
+        'coverage/',
+        'dist/',
+        'dts/',
+        'esm/',
+        'lib/',
+        'mjs/',
+        'umd/',
+    ]);
+    /**
+     * Files and folders to always ignore
+     *
+     * @example
+     * ```ts
+     * IGNORED // ['node_modules/', 'build/', ...]
+     * ```
+     */
+    function ignored() {
+        return IGNORED;
+    }
+    Project.ignored = ignored;
     /**
      * Return a RegExp that will match any list of extensions
      *

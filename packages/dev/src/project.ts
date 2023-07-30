@@ -68,6 +68,31 @@ export namespace Project {
     return RESOURCE_EXTENSIONS;
   }
 
+  const IGNORED = Object.freeze([
+    'node_modules/',
+    'build/',
+    'cjs/',
+    'coverage/',
+    'dist/',
+    'dts/',
+    'esm/',
+    'lib/',
+    'mjs/',
+    'umd/',
+  ]);
+
+  /**
+   * Files and folders to always ignore
+   *
+   * @example
+   * ```ts
+   * IGNORED // ['node_modules/', 'build/', ...]
+   * ```
+   */
+  export function ignored() {
+    return IGNORED;
+  }
+
   /**
    * Return a RegExp that will match any list of extensions
    *

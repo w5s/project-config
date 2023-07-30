@@ -40,7 +40,7 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
         'import/extensions': dev_1.Project.sourceExtensions(),
         // Resolve type definition packages
         'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-        'import/ignore': [...dev_1.IGNORE_LIST, dev_1.Project.extensionsToMatcher(dev_1.Project.resourceExtensions()).source],
+        'import/ignore': [...dev_1.Project.ignored(), dev_1.Project.extensionsToMatcher(dev_1.Project.resourceExtensions()).source],
         // Apply special parsing for TypeScript files
         'import/parsers': {
             '@typescript-eslint/parser': dev_1.Project.sourceExtensions().filter((ext) => !ext.includes('js')),

@@ -1,4 +1,4 @@
-import { ESLintConfig, IGNORE_LIST, Project } from '@w5s/dev';
+import { ESLintConfig, Project } from '@w5s/dev';
 import type eslint from 'eslint';
 // @ts-ignore airbnb is not typed
 import importConfig from 'eslint-config-airbnb-base/rules/imports';
@@ -41,7 +41,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
 
       // Resolve type definition packages
       'import/external-module-folders': ['node_modules', 'node_modules/@types'],
-      'import/ignore': [...IGNORE_LIST, Project.extensionsToMatcher(Project.resourceExtensions()).source],
+      'import/ignore': [...Project.ignored(), Project.extensionsToMatcher(Project.resourceExtensions()).source],
 
       // Apply special parsing for TypeScript files
       'import/parsers': {
