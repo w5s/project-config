@@ -68,7 +68,7 @@ var Project;
     }
     Project.resourceExtensions = resourceExtensions;
     /**
-     * Return a RegExp that will any list of extensions
+     * Return a RegExp that will match any list of extensions
      *
      * @example
      * ```ts
@@ -79,5 +79,17 @@ var Project;
         return new RegExp(`(${extensions.map(escapeRegExp).join('|')})$`);
     }
     Project.extensionsToMatcher = extensionsToMatcher;
+    /**
+     * Return a glob matcher that will match any list of extensions
+     *
+     * @example
+     * ```ts
+     * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
+     * ```
+     */
+    function extensionsToGlob(extensions) {
+        return `*.+(${extensions.map((_) => _.replace(/^\./, '')).join('|')})`;
+    }
+    Project.extensionsToGlob = extensionsToGlob;
 })(Project || (exports.Project = Project = {}));
 //# sourceMappingURL=project.js.map

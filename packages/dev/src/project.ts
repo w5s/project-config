@@ -69,7 +69,7 @@ export namespace Project {
   }
 
   /**
-   * Return a RegExp that will any list of extensions
+   * Return a RegExp that will match any list of extensions
    *
    * @example
    * ```ts
@@ -78,5 +78,17 @@ export namespace Project {
    */
   export function extensionsToMatcher(extensions: readonly Extension[]): RegExp {
     return new RegExp(`(${extensions.map(escapeRegExp).join('|')})$`);
+  }
+
+  /**
+   * Return a glob matcher that will match any list of extensions
+   *
+   * @example
+   * ```ts
+   * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
+   * ```
+   */
+  export function extensionsToGlob(extensions: readonly Extension[]): string {
+    return `*.+(${extensions.map((_) => _.replace(/^\./, '')).join('|')})`;
   }
 }

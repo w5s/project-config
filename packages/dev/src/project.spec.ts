@@ -28,4 +28,9 @@ describe('Project', () => {
       expect(Project.extensionsToMatcher(['.js', '.ts'])).toEqual(/(\.js|\.ts)$/);
     });
   });
+  describe('.extensionsToGlob()', () => {
+    it('should return a glob string', () => {
+      expect(Project.extensionsToGlob(['.js', '.ts'])).toEqual('*.+(js|ts)');
+    });
+  });
 });

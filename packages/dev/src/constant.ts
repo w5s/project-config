@@ -1,5 +1,3 @@
-import { Project } from './project.js';
-
 /**
  * Files and folders to always ignore
  *
@@ -20,16 +18,6 @@ export const IGNORE_LIST = [
   'mjs/',
   'umd/',
 ];
-
-/**
- * Supported file extensions without starting dots
- *
- * @example
- * ```ts
- * EXTENSIONS_WITHOUT_DOT // ['ts', 'js', ...]
- * ```
- */
-export const EXTENSIONS_WITHOUT_DOT = Project.sourceExtensions().map((ext) => ext.slice(1));
 
 /**
  * List of globs to find config related files

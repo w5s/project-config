@@ -10,7 +10,11 @@ const config = {
             ...dev_1.ESLintConfig.concat({
                 extends: [require.resolve('./rules/typescript.js')],
             }, prettier_js_1.default),
-            files: [`*.+(${dev_1.EXTENSIONS_WITHOUT_DOT.filter((_) => _.includes('ts')).join('|')})`],
+            files: [
+                dev_1.Project.extensionsToGlob(
+                // ts only extensions
+                dev_1.Project.sourceExtensions().filter((_) => _.includes('ts'))),
+            ],
         },
     ],
 };

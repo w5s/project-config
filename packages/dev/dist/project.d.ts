@@ -28,7 +28,7 @@ export declare namespace Project {
      */
     function resourceExtensions(): readonly `.${string}`[];
     /**
-     * Return a RegExp that will any list of extensions
+     * Return a RegExp that will match any list of extensions
      *
      * @example
      * ```ts
@@ -36,5 +36,14 @@ export declare namespace Project {
      * ```
      */
     function extensionsToMatcher(extensions: readonly Extension[]): RegExp;
+    /**
+     * Return a glob matcher that will match any list of extensions
+     *
+     * @example
+     * ```ts
+     * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
+     * ```
+     */
+    function extensionsToGlob(extensions: readonly Extension[]): string;
 }
 //# sourceMappingURL=project.d.ts.map
