@@ -40,5 +40,3 @@ export const EXTENSIONS_WITHOUT_DOT = Project.sourceExtensions().map((ext) => ex
  * ```
  */
 export const CONFIG_GLOB_LIST = ['**/.*.{js,cjs}', '**/*.config.{js,cjs}'];
-
-export const EXTENSIONS_RESOURCES_REGEX = '\\.(css|sass|scss|less|gif|png|jpg|jpeg|svg|gql|graphql|yml|yaml)$';

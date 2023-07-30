@@ -1,4 +1,10 @@
+function escapeRegExp(value: string) {
+  return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, '\\$&'); // $& means the whole matched string
+}
+
 export namespace Project {
+  export type Extension = `.${string}`;
+
   /**
    * Supported ECMA version
    *
@@ -11,7 +17,16 @@ export namespace Project {
     return 2022 as const;
   }
 
-  const SOURCE_EXTENSIONS = Object.freeze(['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mjs']);
+  const SOURCE_EXTENSIONS: readonly Extension[] = Object.freeze([
+    '.ts',
+    '.tsx',
+    '.cts',
+    '.mts',
+    '.js',
+    '.jsx',
+    '.cjs',
+    '.mjs',
+  ]);
 
   /**
    * Supported file extensions
@@ -25,7 +40,7 @@ export namespace Project {
     return SOURCE_EXTENSIONS;
   }
 
-  const RESOURCE_EXTENSIONS = Object.freeze([
+  const RESOURCE_EXTENSIONS: readonly Extension[] = Object.freeze([
     '.css',
     '.sass',
     '.scss',
@@ -51,5 +66,17 @@ export namespace Project {
    */
   export function resourceExtensions() {
     return RESOURCE_EXTENSIONS;
+  }
+
+  /**
+   * Return a RegExp that will any list of extensions
+   *
+   * @example
+   * ```ts
+   * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
+   * ```
+   */
+  export function extensionsToMatcher(extensions: readonly Extension[]): RegExp {
+    return new RegExp(`(${extensions.map(escapeRegExp).join('|')})$`);
   }
 }

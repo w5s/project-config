@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Project = void 0;
+function escapeRegExp(value) {
+    return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, '\\$&'); // $& means the whole matched string
+}
 var Project;
 (function (Project) {
     /**
@@ -15,7 +18,16 @@ var Project;
         return 2022;
     }
     Project.ecmaVersion = ecmaVersion;
-    const SOURCE_EXTENSIONS = Object.freeze(['.ts', '.tsx', '.cts', '.mts', '.js', '.jsx', '.cjs', '.mjs']);
+    const SOURCE_EXTENSIONS = Object.freeze([
+        '.ts',
+        '.tsx',
+        '.cts',
+        '.mts',
+        '.js',
+        '.jsx',
+        '.cjs',
+        '.mjs',
+    ]);
     /**
      * Supported file extensions
      *
@@ -55,5 +67,17 @@ var Project;
         return RESOURCE_EXTENSIONS;
     }
     Project.resourceExtensions = resourceExtensions;
+    /**
+     * Return a RegExp that will any list of extensions
+     *
+     * @example
+     * ```ts
+     * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
+     * ```
+     */
+    function extensionsToMatcher(extensions) {
+        return new RegExp(`(${extensions.map(escapeRegExp).join('|')})$`);
+    }
+    Project.extensionsToMatcher = extensionsToMatcher;
 })(Project || (exports.Project = Project = {}));
 //# sourceMappingURL=project.js.map

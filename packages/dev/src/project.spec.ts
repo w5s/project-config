@@ -23,4 +23,9 @@ describe('Project', () => {
       expect(Object.isFrozen(Project.resourceExtensions())).toBe(true);
     });
   });
+  describe('.extensionsToMatcher()', () => {
+    it('should return a RegExp', () => {
+      expect(Project.extensionsToMatcher(['.js', '.ts'])).toEqual(/(\.js|\.ts)$/);
+    });
+  });
 });
