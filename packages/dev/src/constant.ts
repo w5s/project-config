@@ -18,13 +18,3 @@ export const IGNORE_LIST = [
   'mjs/',
   'umd/',
 ];
-
-/**
- * List of globs to find config related files
- *
- * @example
- * ```ts
- * CONFIG_GLOB_LIST // ['**\/.*.{js,cjs}', '**\/*.config.{js,cjs}']
- * ```
- */
-export const CONFIG_GLOB_LIST = ['**/.*.{js,cjs}', '**/*.config.{js,cjs}'];
