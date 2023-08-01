@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.1.1...@w5s/mrm-preset@1.2.0) (2023-08-01)
+
+
+### ✨ Features
+
+- Add support for asdf ([a67f3b5](https://github.com/w5s/project-config/commit/a67f3b5)) - Add support for turbo caching in github actions ([d61aca7](https://github.com/w5s/project-config/commit/d61aca7))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
+
+
+
+
 ## [1.1.1](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.1.0...@w5s/mrm-preset@1.1.1) (2023-07-12)
 
 **Note:** Version bump only for package @w5s/mrm-preset

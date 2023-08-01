@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.2.1...@w5s/eslint-config@1.3.0) (2023-08-01)
+
+
+### ✨ Features
+
+- Add Project.extensionsToGlob ([da375fb](https://github.com/w5s/project-config/commit/da375fb)) - Add Project.extensionsToMatcher function ([5974834](https://github.com/w5s/project-config/commit/5974834)) - Add Project.ignored() function ([3d8b69c](https://github.com/w5s/project-config/commit/3d8b69c)) - Add Project.sourceExtensions function ([f49e9ab](https://github.com/w5s/project-config/commit/f49e9ab))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
+
+
+
+
 ## [1.2.1](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.2.0...@w5s/eslint-config@1.2.1) (2023-07-28)
 
 **Note:** Version bump only for package @w5s/eslint-config
