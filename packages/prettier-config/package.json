@@ -51,7 +51,7 @@
   "devDependencies": {
     "prettier": "3.0.0",
     "vite": "4.4.8",
-    "vitest": "0.33.0"
+    "vitest": "0.34.1"
   },
   "peerDependencies": {
     "prettier": "2.x || 3.x"
