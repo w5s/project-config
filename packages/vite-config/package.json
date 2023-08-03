@@ -52,8 +52,8 @@
   },
   "devDependencies": {
     "typescript": "*",
-    "vite": "4.4.6",
-    "vitest": "0.32.2"
+    "vite": "*",
+    "vitest": "*"
   },
   "peerDependencies": {
     "vite": "4.x",
