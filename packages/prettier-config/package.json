@@ -49,7 +49,7 @@
     "test:src": "vitest run"
   },
   "devDependencies": {
-    "prettier": "3.0.0",
+    "prettier": "3.0.1",
     "vite": "4.4.8",
     "vitest": "0.34.1"
   },
