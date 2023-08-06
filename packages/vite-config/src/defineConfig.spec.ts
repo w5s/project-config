@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { configDefaultMap } from './configDefaultMap.js';
 import { defineConfig } from './defineConfig.js';
 
@@ -12,17 +12,21 @@ describe('defineConfig', () => {
 
   it('should override parameter for application', () => {
     expect(
-      defineConfig('application', {
+      defineConfig('application', () => ({
         test: {
           globalSetup: ['test_setup.ts'],
         },
-      })
+      }))
     ).toEqual({
-      ...configDefaultMap.application,
       test: {
-        ...configDefaultMap.application.test,
         globalSetup: ['test_setup.ts'],
       },
     });
+  });
+
+  it('should override parameter for application', () => {
+    const spy = vi.fn();
+    defineConfig('library', spy);
+    expect(spy).toHaveBeenCalledWith(configDefaultMap.library);
   });
 });

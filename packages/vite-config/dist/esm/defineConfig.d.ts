@@ -1,9 +1,9 @@
-import { type UserConfigExport } from 'vitest/config';
+import { type UserConfig } from 'vite';
 import { ConfigType } from './type.js';
 /**
  * Return a new configuration for `type`
  *
  * @param type - the project archetype
- * @param config - the application custom configuration
+ * @param getConfig - the application custom configuration
  */
-export declare function defineConfig(type: ConfigType, config?: UserConfigExport): UserConfigExport;
+export declare function defineConfig(type: ConfigType, getConfig?: (defaultConfig: UserConfig) => UserConfig): UserConfig;
