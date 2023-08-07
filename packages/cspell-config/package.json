@@ -57,7 +57,7 @@
   "devDependencies": {
     "@cspell/cspell-tools": "6.31.2",
     "@cspell/cspell-types": "6.31.1",
-    "vite": "4.4.8",
+    "vite": "4.4.9",
     "vitest": "0.34.1"
   },
   "peerDependencies": {
