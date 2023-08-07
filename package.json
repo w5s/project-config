@@ -85,6 +85,7 @@
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/prettier-config": "workspace:*",
     "@w5s/ts-config": "workspace:*",
+    "clean-package": "2.2.0",
     "concurrently": "8.2.0",
     "cspell": "6.31.2",
     "eslint": "8.46.0",

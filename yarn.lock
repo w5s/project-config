@@ -2105,6 +2105,7 @@ __metadata:
     "@w5s/mrm-preset": "workspace:*"
     "@w5s/prettier-config": "workspace:*"
     "@w5s/ts-config": "workspace:*"
+    clean-package: 2.2.0
     concurrently: 8.2.0
     cspell: 6.31.2
     eslint: 8.46.0
@@ -3069,6 +3070,17 @@ __metadata:
   version: 3.8.0
   resolution: "ci-info@npm:3.8.0"
   checksum: d0a4d3160497cae54294974a7246202244fff031b0a6ea20dd57b10ec510aa17399c41a1b0982142c105f3255aff2173e5c0dd7302ee1b2f28ba3debda375098
+  languageName: node
+  linkType: hard
+
+"clean-package@npm:2.2.0":
+  version: 2.2.0
+  resolution: "clean-package@npm:2.2.0"
+  dependencies:
+    dot-prop: ^6.0.1
+  bin:
+    clean-package: bin/main.js
+  checksum: 6585ace5d378405bda3d1b0080a30fc3755d334e6b610d4daa7bede820b407473d6860f77b89cbdbd9b474e1c719c09b21ae67bf1b91b6a61e55611bf18988e1
   languageName: node
   linkType: hard
 
@@ -4097,6 +4109,15 @@ __metadata:
   dependencies:
     is-obj: ^2.0.0
   checksum: d5775790093c234ef4bfd5fbe40884ff7e6c87573e5339432870616331189f7f5d86575c5b5af2dcf0f61172990f4f734d07844b1f23482fff09e3c4bead05ea
+  languageName: node
+  linkType: hard
+
+"dot-prop@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "dot-prop@npm:6.0.1"
+  dependencies:
+    is-obj: ^2.0.0
+  checksum: 0f47600a4b93e1dc37261da4e6909652c008832a5d3684b5bf9a9a0d3f4c67ea949a86dceed9b72f5733ed8e8e6383cc5958df3bbd0799ee317fd181f2ece700
   languageName: node
   linkType: hard
 

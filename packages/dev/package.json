@@ -41,6 +41,8 @@
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "lint": "concurrently \"npm:lint:*\" \":\"",
     "lint:src": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
+    "postpack": "npx clean-package restore",
+    "prepack": "npx clean-package",
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "prepublishOnly": "npm run clean;npm run build",
     "spellcheck": "cspell --no-progress '**'",
@@ -54,6 +56,7 @@
     "vite": "4.4.9",
     "vitest": "0.34.1"
   },
+  "clean-package": "../../clean-package.config.cjs",
   "engines": {
     "node": ">=16.0.0"
   },
