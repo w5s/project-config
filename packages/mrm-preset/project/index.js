@@ -254,6 +254,7 @@ function task() {
     update: (_) => ({
       ..._,
       pipeline: {
+        ..._.pipeline,
         [project.build]: {
           dependsOn: [`^${project.build}`, `//#${project.build}:root`],
           outputs: ['lib/**', 'dist/**', '.next/**'],
@@ -272,7 +273,11 @@ function task() {
           dependsOn: [`//#${project.format}:root`],
         },
         [`//#${project.format}:root`]: {},
-        [project.docs]: {},
+        [project.docs]: {
+          dependsOn: [`//#${project.docs}:root`],
+          cache: false,
+        },
+        [`//#${project.docs}:root`]: {},
         [project.spellcheck]: {
           dependsOn: [`//#${project.spellcheck}:root`],
         },
