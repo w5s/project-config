@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.5](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.4...@w5s/ts-config@1.0.5) (2023-08-08)
+
+**Note:** Version bump only for package @w5s/ts-config
+
+
+
+
+
 ## [1.0.4](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.3...@w5s/ts-config@1.0.4) (2023-07-04)
 
 **Note:** Version bump only for package @w5s/ts-config

@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@1.1.5...@w5s/commitlint-config@1.2.0) (2023-08-08)
+
+
+### ✨ Features
+
+- Enable import/extensions for ts ([d81bf42](https://github.com/w5s/project-config/commit/d81bf42))
+
+**Note:** Version bump only for package @w5s/commitlint-config
+
+
+
+
+
 ## [1.1.5](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@1.1.4...@w5s/commitlint-config@1.1.5) (2023-08-01)
 
 **Note:** Version bump only for package @w5s/commitlint-config
