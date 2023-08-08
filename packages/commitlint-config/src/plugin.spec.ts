@@ -1,6 +1,6 @@
 import type { Commit } from '@commitlint/types';
 import { describe, expect, it } from 'vitest';
-import { typeGitmojiStyle, typeValidGitmoji } from './plugin';
+import { typeGitmojiStyle, typeValidGitmoji } from './plugin.js';
 
 const generateCommit = (properties: Partial<Commit>): Commit => ({
   raw: '',

@@ -156,8 +156,8 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
         baseImportRules['import/extensions'][1],
         {
           ...baseImportRules['import/extensions'][2],
-          ts: 'never',
-          tsx: 'never',
+          // ts: 'never',
+          // tsx: 'never',
         },
       ],
       'import/no-extraneous-dependencies': [

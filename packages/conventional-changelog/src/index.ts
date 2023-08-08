@@ -1,4 +1,4 @@
-import { gitRawCommitOpts } from './git-raw-commit-opts';
+import { gitRawCommitOpts } from './git-raw-commit-opts.js';
 import { parserOpts } from './parser-opts.js';
 import { recommendedBumpOpts } from './recommended-bump-opts.js';
 import { writerOpts } from './writer-opts.js';
