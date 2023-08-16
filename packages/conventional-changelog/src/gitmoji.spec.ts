@@ -27,6 +27,15 @@ describe('Emoji', () => {
   });
 });
 describe('GitmojiCode', () => {
+  describe('isValid', () => {
+    it.each([
+      ['✨', true],
+      ['⬇️', true],
+      ['⏪️', true],
+    ] as Array<[GitmojiCode, boolean]>)('should return correct values for %s', (emoji, expected) => {
+      expect(GitmojiCode.isValid(emoji)).toBe(expected);
+    });
+  });
   describe('toConventionalCommitType', () => {
     it.each([
       ['✨', CommitConventionalType.Feat],
