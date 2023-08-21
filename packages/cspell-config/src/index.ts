@@ -10,6 +10,7 @@ const excludeImport = new Set([
   '@cspell/dict-csharp/cspell-ext.json',
   '@cspell/dict-django/cspell-ext.json',
   '@cspell/dict-dotnet/cspell-ext.json',
+  '@cspell/dict-fsharp/cspell-ext.json',
   '@cspell/dict-elixir/cspell-ext.json',
   '@cspell/dict-haskell/cspell-ext.json',
   '@cspell/dict-latex/cspell-ext.json',
