@@ -51,6 +51,8 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
     },
     reportUnusedDisableDirectives: true,
     rules: {
+      // Too many errors in components
+      'class-methods-use-this': 'off',
       // Annoying because it is not always wanted
       'default-case': 'off',
       // We do not want console.* in production. Disable this rule on a per line basis if needed

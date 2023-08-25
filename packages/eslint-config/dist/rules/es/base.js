@@ -42,6 +42,8 @@ const config = dev_1.ESLintConfig.concat(baseConfig,
     },
     reportUnusedDisableDirectives: true,
     rules: {
+        // Too many errors in components
+        'class-methods-use-this': 'off',
         // Annoying because it is not always wanted
         'default-case': 'off',
         // We do not want console.* in production. Disable this rule on a per line basis if needed
