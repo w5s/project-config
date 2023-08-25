@@ -56,7 +56,7 @@
     "@types/conventional-changelog-writer": "4.0.4",
     "@types/conventional-commits-parser": "3.0.3",
     "vite": "4.4.9",
-    "vitest": "0.34.2"
+    "vitest": "0.34.3"
   },
   "clean-package": "../../clean-package.config.cjs",
   "engines": {
