@@ -3,8 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.2.0](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.1.5...@w5s/conventional-changelog@1.2.0) (2023-08-08)
+## [1.2.1](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.2.0...@w5s/conventional-changelog@1.2.1) (2023-08-25)
 
+**Note:** Version bump only for package @w5s/conventional-changelog
+
+# [1.2.0](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.1.5...@w5s/conventional-changelog@1.2.0) (2023-08-08)
 
 ### ✨ Features
 
@@ -12,12 +15,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @w5s/conventional-changelog
 
-
-
-
-
 ## [1.1.5](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.1.4...@w5s/conventional-changelog@1.1.5) (2023-08-01)
-
 
 ### 🐛 Bug Fixes
 
@@ -25,20 +23,11 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @w5s/conventional-changelog
 
-
-
-
-
 ## [1.1.4](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.1.3...@w5s/conventional-changelog@1.1.4) (2023-08-01)
 
 **Note:** Version bump only for package @w5s/conventional-changelog
 
-
-
-
-
 ## [1.1.3](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.1.2...@w5s/conventional-changelog@1.1.3) (2023-07-28)
-
 
 ### 🐛 Bug Fixes
 
@@ -46,25 +35,13 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @w5s/conventional-changelog
 
-
-
-
-
 ## [1.1.2](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.1.1...@w5s/conventional-changelog@1.1.2) (2023-07-28)
 
 **Note:** Version bump only for package @w5s/conventional-changelog
 
-
-
-
-
 ## [1.1.1](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.1.0...@w5s/conventional-changelog@1.1.1) (2023-07-12)
 
 **Note:** Version bump only for package @w5s/conventional-changelog
-
-
-
-
 
 # [1.1.0](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@1.0.13...@w5s/conventional-changelog@1.1.0) (2023-07-04)
 

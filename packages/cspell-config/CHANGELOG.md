@@ -3,29 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.1.3](https://github.com/w5s/project-config/compare/@w5s/cspell-config@1.1.2...@w5s/cspell-config@1.1.3) (2023-08-08)
+## [1.1.4](https://github.com/w5s/project-config/compare/@w5s/cspell-config@1.1.3...@w5s/cspell-config@1.1.4) (2023-08-25)
 
 **Note:** Version bump only for package @w5s/cspell-config
 
+## [1.1.3](https://github.com/w5s/project-config/compare/@w5s/cspell-config@1.1.2...@w5s/cspell-config@1.1.3) (2023-08-08)
 
-
-
+**Note:** Version bump only for package @w5s/cspell-config
 
 ## [1.1.2](https://github.com/w5s/project-config/compare/@w5s/cspell-config@1.1.1...@w5s/cspell-config@1.1.2) (2023-07-28)
 
 **Note:** Version bump only for package @w5s/cspell-config
 
-
-
-
-
 ## [1.1.1](https://github.com/w5s/project-config/compare/@w5s/cspell-config@1.1.0...@w5s/cspell-config@1.1.1) (2023-07-12)
 
 **Note:** Version bump only for package @w5s/cspell-config
-
-
-
-
 
 # [1.1.0](https://github.com/w5s/project-config/compare/@w5s/cspell-config@1.0.9...@w5s/cspell-config@1.1.0) (2023-07-04)
 

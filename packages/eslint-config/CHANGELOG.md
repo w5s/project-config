@@ -3,8 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [1.4.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.3.1...@w5s/eslint-config@1.4.0) (2023-08-08)
+## [1.4.1](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.4.0...@w5s/eslint-config@1.4.1) (2023-08-25)
 
+### 🐛 Bug Fixes
+
+- Disable class-methods-use-this ([88e68ad](https://github.com/w5s/project-config/commit/88e68ad))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
+# [1.4.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.3.1...@w5s/eslint-config@1.4.0) (2023-08-08)
 
 ### ✨ Features
 
@@ -12,17 +19,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @w5s/eslint-config
 
-
-
-
-
 ## [1.3.1](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.3.0...@w5s/eslint-config@1.3.1) (2023-08-01)
 
 **Note:** Version bump only for package @w5s/eslint-config
-
-
-
-
 
 # [1.3.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.2.1...@w5s/eslint-config@1.3.0) (2023-08-01)
 

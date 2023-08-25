@@ -3,16 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/w5s/project-config/compare/@w5s/dev@1.3.1...@w5s/dev@1.3.2) (2023-08-25)
+
+**Note:** Version bump only for package @w5s/dev
+
 ## [1.3.1](https://github.com/w5s/project-config/compare/@w5s/dev@1.3.0...@w5s/dev@1.3.1) (2023-08-08)
 
 **Note:** Version bump only for package @w5s/dev
 
-
-
-
-
 # [1.3.0](https://github.com/w5s/project-config/compare/@w5s/dev@1.2.0...@w5s/dev@1.3.0) (2023-08-01)
-
 
 ### ✨ Features
 
@@ -20,25 +19,15 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @w5s/dev
 
-
-
-
-
 # [1.2.0](https://github.com/w5s/project-config/compare/@w5s/dev@1.1.1...@w5s/dev@1.2.0) (2023-07-28)
-
 
 ### ✨ Features
 
-* Add Project.ecmaVersion function ([94884f4](https://github.com/w5s/project-config/commit/94884f4)) 
-
+- Add Project.ecmaVersion function ([94884f4](https://github.com/w5s/project-config/commit/94884f4))
 
 ## [1.1.1](https://github.com/w5s/project-config/compare/@w5s/dev@1.1.0...@w5s/dev@1.1.1) (2023-07-12)
 
 **Note:** Version bump only for package @w5s/dev
-
-
-
-
 
 # [1.1.0](https://github.com/w5s/project-config/compare/@w5s/dev@1.0.5...@w5s/dev@1.1.0) (2023-07-04)
 
