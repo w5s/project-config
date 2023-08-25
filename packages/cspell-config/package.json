@@ -60,7 +60,7 @@
     "@cspell/cspell-tools": "7.0.1",
     "@cspell/cspell-types": "7.0.1",
     "vite": "4.4.9",
-    "vitest": "0.34.2"
+    "vitest": "0.34.3"
   },
   "peerDependencies": {
     "cspell": "^6.0.0 || ^7.0.0"
