@@ -41,6 +41,7 @@ const config = {
         '**/vendors/**',
         '*.min.*',
         '*.toml',
+        '*.timestamp-*.mjs',
         ...getGitignore(),
         ...getGitignore('android'),
         ...getGitignore('ios'),
