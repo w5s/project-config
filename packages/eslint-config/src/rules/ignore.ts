@@ -40,6 +40,7 @@ const config: eslint.Linter.Config = {
     '**/vendors/**',
     '*.min.*',
     '*.toml',
+    '*.timestamp-*.mjs', // esbuild/vite temporary files
     ...getGitignore(),
     ...getGitignore('android'),
     ...getGitignore('ios'),
