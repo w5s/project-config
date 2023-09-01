@@ -32,6 +32,7 @@
     "postpack": "npx clean-package restore",
     "prepack": "npx clean-package",
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
+    "prepare:template": "cp ../../.editorconfig editorconfig/_editorconfig",
     "spellcheck": "cspell --no-progress '**'",
     "test": "concurrently \"npm:test:*\" \":\"",
     "test:script": "mkdir _tester; cd _tester; mrm bootstrap --dir ..; mrm configure --dir .."
