@@ -19,9 +19,9 @@ export namespace Project {
   }
 
   /**
-   * A list of "vscode-like" extension category
+   * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
    */
-  export type ExtensionQuery = keyof ExtensionRegistry;
+  export type LanguageId = keyof ExtensionRegistry;
 
   /**
    * Supported ECMA version
@@ -51,10 +51,10 @@ export namespace Project {
    * Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
    * ```
    *
-   * @param query
+   * @param languages
    */
-  export function queryExtensions(query: ExtensionQuery[]): readonly Extension[] {
-    return query
+  export function queryExtensions(languages: LanguageId[]): readonly Extension[] {
+    return languages
       .reduce<Extension[]>(
         (previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? ([] as Extension[])),
         []

@@ -33,10 +33,10 @@ var Project;
      * Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
      * ```
      *
-     * @param query
+     * @param languages
      */
-    function queryExtensions(query) {
-        return query
+    function queryExtensions(languages) {
+        return languages
             .reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), [])
             .sort();
     }

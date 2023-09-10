@@ -13,9 +13,9 @@ export declare namespace Project {
         typescriptreact: readonly Extension[];
     }
     /**
-     * A list of "vscode-like" extension category
+     * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
      */
-    type ExtensionQuery = keyof ExtensionRegistry;
+    type LanguageId = keyof ExtensionRegistry;
     /**
      * Supported ECMA version
      *
@@ -34,9 +34,9 @@ export declare namespace Project {
      * Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
      * ```
      *
-     * @param query
+     * @param languages
      */
-    function queryExtensions(query: ExtensionQuery[]): readonly Extension[];
+    function queryExtensions(languages: LanguageId[]): readonly Extension[];
     /**
      * Supported file extensions
      *
