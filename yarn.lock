@@ -188,8 +188,8 @@ __metadata:
   linkType: hard
 
 "@cspell/cspell-bundled-dicts@npm:^7.0.0":
-  version: 7.3.4
-  resolution: "@cspell/cspell-bundled-dicts@npm:7.3.4"
+  version: 7.3.5
+  resolution: "@cspell/cspell-bundled-dicts@npm:7.3.5"
   dependencies:
     "@cspell/dict-ada": ^4.0.2
     "@cspell/dict-aws": ^4.0.0
@@ -238,7 +238,7 @@ __metadata:
     "@cspell/dict-swift": ^2.0.1
     "@cspell/dict-typescript": ^3.1.1
     "@cspell/dict-vue": ^3.0.0
-  checksum: 1c5e07698573db6b5eac9d23870da08c3448d48e2ebc5b32fb6ef48233e98f98af0b14b03dbc59abe0d3af652a83b9415abcc35a63eaf0d1776a4012b6b8750f
+  checksum: 0b7008a4da6726fda8491dc61dd98a8377bed79821ea04e8f02695078c9c74b5c16af34a53173d73fc3b92ad5c7c7666ca5b3bbdef1f88be74ec42748003ef8d
   languageName: node
   linkType: hard
 
@@ -259,9 +259,9 @@ __metadata:
   linkType: hard
 
 "@cspell/cspell-pipe@npm:^7.3.3":
-  version: 7.3.4
-  resolution: "@cspell/cspell-pipe@npm:7.3.4"
-  checksum: a23cfe7b50df6caef51d42c204db9a9b04df6906ab7b4840f2029ebbf45c4d41152737410f9b0cb7bb15b7677022ce149f530c5adf6dfc8f7bf11e65306de832
+  version: 7.3.5
+  resolution: "@cspell/cspell-pipe@npm:7.3.5"
+  checksum: dbc7ee6d1becdbbee00f0667bbcc2751b7187e1f31df7648dd8be30b5d4343058979f8dfd4c87d61c99142a3a19004ccfcb1bbc25f21eacbf57c2141a5fbe66a
   languageName: node
   linkType: hard
 
@@ -307,9 +307,9 @@ __metadata:
   linkType: hard
 
 "@cspell/cspell-types@npm:^7.3.3":
-  version: 7.3.4
-  resolution: "@cspell/cspell-types@npm:7.3.4"
-  checksum: 623f97762433758e2446703a15a789879b93bebf5544e8db99c1e124f8298a3f33c310ebd6cd82b742203aced6ed8769b4623a196cb8bf2a22bc9b4836f4b0dc
+  version: 7.3.5
+  resolution: "@cspell/cspell-types@npm:7.3.5"
+  checksum: 8926d1967ff0f9ac6c9278ad33936fb553855e34b4e6db9a4e7066a555846db9e5c2535fa9126bb407912d4c717d03507421f88375ca6e49b2043f0ea8ae8238
   languageName: node
   linkType: hard
 
@@ -4735,8 +4735,8 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-jsdoc@npm:^46.0.0":
-  version: 46.5.1
-  resolution: "eslint-plugin-jsdoc@npm:46.5.1"
+  version: 46.6.0
+  resolution: "eslint-plugin-jsdoc@npm:46.6.0"
   dependencies:
     "@es-joy/jsdoccomment": ~0.40.1
     are-docs-informative: ^0.0.2
@@ -4749,7 +4749,7 @@ __metadata:
     spdx-expression-parse: ^3.0.1
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0
-  checksum: 8f6b1e60ded7bc27da4ae9ef541315a14d1f69476b5c03b53ebe323a4d2c4b61fdaf0a0ffcba2e4964247ee5371768fc612d83f2c9456c404b31e8cad44123cd
+  checksum: 3e2b46b31c6022773b8d21282b3a95fcc8053c865e4529516f9806860331021db1548a75972cf39eb1615fb5b794340365e4bd90033218aa427693c96d9e7878
   languageName: node
   linkType: hard
 
