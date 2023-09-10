@@ -87,7 +87,7 @@
     "@w5s/ts-config": "workspace:*",
     "clean-package": "2.2.0",
     "concurrently": "8.2.1",
-    "cspell": "7.3.2",
+    "cspell": "7.3.3",
     "eslint": "8.49.0",
     "eslint-plugin-sort-keys": "2.3.5",
     "lerna": "7.2.0",
