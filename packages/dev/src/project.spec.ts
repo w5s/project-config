@@ -9,10 +9,7 @@ describe('Project', () => {
   });
   describe('.sourceExtensions()', () => {
     it('should equals values', () => {
-      expect(Project.sourceExtensions()).toMatchSnapshot();
-    });
-    it('should be frozen', () => {
-      expect(Object.isFrozen(Project.sourceExtensions())).toBe(true);
+      expect(Project.sourceExtensions()).toEqual(['.cjs', '.cts', '.js', '.jsx', '.mjs', '.mts', '.ts', '.tsx']);
     });
   });
   describe('.resourceExtensions()', () => {
@@ -21,6 +18,14 @@ describe('Project', () => {
     });
     it('should be frozen', () => {
       expect(Object.isFrozen(Project.resourceExtensions())).toBe(true);
+    });
+  });
+  describe('.queryExtensions()', () => {
+    it('should equals values', () => {
+      expect(Project.queryExtensions(['javascript'])).toEqual(['.cjs', '.js', '.mjs']);
+    });
+    it('should concatenate values and keep sorted', () => {
+      expect(Project.queryExtensions(['javascript', 'javascriptreact'])).toEqual(['.cjs', '.js', '.jsx', '.mjs']);
     });
   });
   describe('.extensionsToMatcher()', () => {

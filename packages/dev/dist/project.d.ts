@@ -1,5 +1,21 @@
 export declare namespace Project {
+    /**
+     * A type of a file extension
+     */
     type Extension = `.${string}`;
+    /**
+     * Object hash of all well-known file extension category to file extensions mapping
+     */
+    interface ExtensionRegistry {
+        javascript: readonly Extension[];
+        javascriptreact: readonly Extension[];
+        typescript: readonly Extension[];
+        typescriptreact: readonly Extension[];
+    }
+    /**
+     * A list of "vscode-like" extension category
+     */
+    type ExtensionQuery = keyof ExtensionRegistry;
     /**
      * Supported ECMA version
      *
@@ -9,6 +25,18 @@ export declare namespace Project {
      * ```
      */
     function ecmaVersion(): 2022;
+    /**
+     * Return a list of extensions
+     *
+     * @example
+     * ```ts
+     * Project.queryExtensions(['javascript']); // ['.js', '.cjs', ...]
+     * Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
+     * ```
+     *
+     * @param query
+     */
+    function queryExtensions(query: ExtensionQuery[]): readonly Extension[];
     /**
      * Supported file extensions
      *

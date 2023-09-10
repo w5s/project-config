@@ -18,16 +18,29 @@ var Project;
         return 2022;
     }
     Project.ecmaVersion = ecmaVersion;
-    const SOURCE_EXTENSIONS = Object.freeze([
-        '.ts',
-        '.tsx',
-        '.cts',
-        '.mts',
-        '.js',
-        '.jsx',
-        '.cjs',
-        '.mjs',
-    ]);
+    const registry = {
+        javascript: ['.js', '.cjs', '.mjs'],
+        javascriptreact: ['.jsx'],
+        typescript: ['.ts', '.cts', '.mts'],
+        typescriptreact: ['.tsx'],
+    };
+    /**
+     * Return a list of extensions
+     *
+     * @example
+     * ```ts
+     * Project.queryExtensions(['javascript']); // ['.js', '.cjs', ...]
+     * Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
+     * ```
+     *
+     * @param query
+     */
+    function queryExtensions(query) {
+        return query
+            .reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), [])
+            .sort();
+    }
+    Project.queryExtensions = queryExtensions;
     /**
      * Supported file extensions
      *
@@ -37,7 +50,7 @@ var Project;
      * ```
      */
     function sourceExtensions() {
-        return SOURCE_EXTENSIONS;
+        return queryExtensions(['javascript', 'javascriptreact', 'typescript', 'typescriptreact']);
     }
     Project.sourceExtensions = sourceExtensions;
     const RESOURCE_EXTENSIONS = Object.freeze([

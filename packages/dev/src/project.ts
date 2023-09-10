@@ -3,7 +3,25 @@ function escapeRegExp(value: string) {
 }
 
 export namespace Project {
+  /**
+   * A type of a file extension
+   */
   export type Extension = `.${string}`;
+
+  /**
+   * Object hash of all well-known file extension category to file extensions mapping
+   */
+  export interface ExtensionRegistry {
+    javascript: readonly Extension[];
+    javascriptreact: readonly Extension[];
+    typescript: readonly Extension[];
+    typescriptreact: readonly Extension[];
+  }
+
+  /**
+   * A list of "vscode-like" extension category
+   */
+  export type ExtensionQuery = keyof ExtensionRegistry;
 
   /**
    * Supported ECMA version
@@ -17,16 +35,32 @@ export namespace Project {
     return 2022 as const;
   }
 
-  const SOURCE_EXTENSIONS: readonly Extension[] = Object.freeze([
-    '.ts',
-    '.tsx',
-    '.cts',
-    '.mts',
-    '.js',
-    '.jsx',
-    '.cjs',
-    '.mjs',
-  ]);
+  const registry: { [key: string]: readonly Extension[] } = {
+    javascript: ['.js', '.cjs', '.mjs'],
+    javascriptreact: ['.jsx'],
+    typescript: ['.ts', '.cts', '.mts'],
+    typescriptreact: ['.tsx'],
+  };
+
+  /**
+   * Return a list of extensions
+   *
+   * @example
+   * ```ts
+   * Project.queryExtensions(['javascript']); // ['.js', '.cjs', ...]
+   * Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
+   * ```
+   *
+   * @param query
+   */
+  export function queryExtensions(query: ExtensionQuery[]): readonly Extension[] {
+    return query
+      .reduce<Extension[]>(
+        (previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? ([] as Extension[])),
+        []
+      )
+      .sort();
+  }
 
   /**
    * Supported file extensions
@@ -37,7 +71,7 @@ export namespace Project {
    * ```
    */
   export function sourceExtensions() {
-    return SOURCE_EXTENSIONS;
+    return queryExtensions(['javascript', 'javascriptreact', 'typescript', 'typescriptreact']);
   }
 
   const RESOURCE_EXTENSIONS: readonly Extension[] = Object.freeze([
