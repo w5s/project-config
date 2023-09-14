@@ -2216,7 +2216,7 @@ __metadata:
     "@types/debug": 4.1.8
     debug: ^4.3.3
     glob: ^10.0.0
-    mrm: 4.1.21
+    mrm: 4.1.22
     mrm-core: ^7.0.0
     mrm-preset-default: 4.1.11
     semver-intersect: ^1.4.0
@@ -8401,9 +8401,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mrm-core@npm:^7.1.21":
-  version: 7.1.21
-  resolution: "mrm-core@npm:7.1.21"
+"mrm-core@npm:^7.1.22":
+  version: 7.1.22
+  resolution: "mrm-core@npm:7.1.22"
   dependencies:
     babel-code-frame: ^6.26.0
     comment-json: ^2.2.0
@@ -8425,7 +8425,7 @@ __metadata:
     validate-npm-package-name: ^3.0.0
     webpack-merge: ^4.2.2
     yaml: ^2.0.0-1
-  checksum: ad498949bf7ac17732f57aa8e62be9a9456090c2f1a4d3007668c6b2961753860b0526665dc29aae556f010f743d0cb6e1f21389deac10cdc7265705e7ee823a
+  checksum: 479566a66805ceeeb796ac596fc851b5efad1c93b2a2787aec242a49f33e987d640f22b52e645d1549a985f68ae1ca5b893fa05b207640f6b12d0411fb0182d7
   languageName: node
   linkType: hard
 
@@ -8647,9 +8647,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"mrm@npm:4.1.21":
-  version: 4.1.21
-  resolution: "mrm@npm:4.1.21"
+"mrm@npm:4.1.22":
+  version: 4.1.22
+  resolution: "mrm@npm:4.1.22"
   dependencies:
     git-username: ^1.0.0
     glob: ^7.1.6
@@ -8662,7 +8662,7 @@ __metadata:
     longest: ^2.0.1
     middleearth-names: ^1.1.0
     minimist: ^1.2.0
-    mrm-core: ^7.1.21
+    mrm-core: ^7.1.22
     semver-utils: ^1.1.4
     update-notifier: ^4.1.0
     user-home: ^2.0.0
@@ -8670,7 +8670,7 @@ __metadata:
     which: ^2.0.2
   bin:
     mrm: bin/mrm.js
-  checksum: 278e6c052cf91788a7649c25606b0aefab133e2f5a753bdbca5594f30da048c0cc5a7b5c4f9b4ff7115383adc50875415a94d7aec5089fefe68493b8ea196ff4
+  checksum: b44aa238fa20f1cd44cf15c075828271d747b8ca6b37c616f50defb8ef02bf2cea22ad57a01f98c13c7fc22cf601ec2a0ca4ca9208fe117955ff93bdf3a1c26b
   languageName: node
   linkType: hard
 
