@@ -483,9 +483,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-php@npm:^4.0.2":
-  version: 4.0.2
-  resolution: "@cspell/dict-php@npm:4.0.2"
-  checksum: 29cd4e080cab8eac34f540e5b1e65dfb9e6b02f0414ec6041256487a7fb03e3d598dd83d0c01bf7444644c069b1070a2387fa770598306de23d943d114ac12c2
+  version: 4.0.3
+  resolution: "@cspell/dict-php@npm:4.0.3"
+  checksum: 98040e804e3ca67df965a3ea1840d68369d7b32cf6176a63605759e40a2325321f24723c4f24525a6cdf8d35bbc975ed6424a1a581775fb8cf7e55b5b2e60c89
   languageName: node
   linkType: hard
 
