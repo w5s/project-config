@@ -3,6 +3,16 @@ import * as Module from './index.js';
 
 describe('index', () => {
   it('exports', () => {
-    expect(Object.keys(Module).sort()).toEqual(['Project', 'ESLintConfig', 'file', 'fileSync'].sort());
+    expect(Object.keys(Module).sort()).toEqual(
+      [
+        // Public API
+        'Project',
+        'ESLintConfig',
+        'file',
+        'fileSync',
+        'json',
+        'jsonSync',
+      ].sort()
+    );
   });
 });
