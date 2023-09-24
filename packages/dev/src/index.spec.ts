@@ -3,6 +3,6 @@ import * as Module from './index.js';
 
 describe('index', () => {
   it('exports', () => {
-    expect(Object.keys(Module).sort()).toEqual(['Project', 'ESLintConfig'].sort());
+    expect(Object.keys(Module).sort()).toEqual(['Project', 'ESLintConfig', 'file', 'fileSync'].sort());
   });
 });

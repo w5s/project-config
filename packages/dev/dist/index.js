@@ -15,5 +15,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 __exportStar(require("./eslint.js"), exports);
+__exportStar(require("./file.js"), exports);
 __exportStar(require("./project.js"), exports);
 //# sourceMappingURL=index.js.map
