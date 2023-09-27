@@ -8,6 +8,8 @@ describe('index', () => {
         // Public API
         'Project',
         'ESLintConfig',
+        'block',
+        'blockSync',
         'file',
         'fileSync',
         'json',
