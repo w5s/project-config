@@ -1,4 +1,4 @@
-import { FileOptions, file, fileSync } from './file.js';
+import { type FileOptions, file, fileSync } from './file.js';
 
 export interface BlockOptions {
   /**

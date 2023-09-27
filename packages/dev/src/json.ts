@@ -1,4 +1,4 @@
-import { FileOptions, file, fileSync } from './file.js';
+import { type FileOptions, file, fileSync } from './file.js';
 
 export type JSONValue = null | number | string | boolean | JSONValue[] | { [key: string]: JSONValue };
 
