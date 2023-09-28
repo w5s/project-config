@@ -26,8 +26,9 @@ describe('block', () => {
         update: () =>
           [
             // Lines
-            'some_content\n\n',
-          ].join(''),
+            'some_content',
+            '',
+          ].join('\n'),
       });
 
       await block({
@@ -38,8 +39,9 @@ describe('block', () => {
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [
           // Lines
-          'some_content\n\n',
-        ].join('')
+          'some_content',
+          '',
+        ].join('\n')
       );
     });
     it('removes the content when "absent"', async () => {
@@ -50,11 +52,11 @@ describe('block', () => {
         update: () =>
           [
             // Lines
-            'some_content\n\n',
-            '# BEGIN MANAGED BLOCK\n',
-            'test\n',
+            'some_content',
+            '# BEGIN MANAGED BLOCK',
+            'test',
             '# END MANAGED BLOCK',
-          ].join(''),
+          ].join('\n'),
       });
 
       await block({
@@ -65,14 +67,15 @@ describe('block', () => {
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [
           // Lines
-          'some_content\n\n',
-        ].join('')
+          'some_content',
+          '',
+        ].join('\n')
       );
     });
   });
 
   describe('option position', () => {
-    it('places before the after end of file', async () => {
+    it('places after end of file', async () => {
       const path = join(testPath, 'file');
       await file({
         path,
@@ -88,14 +91,16 @@ describe('block', () => {
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [
           // Lines
-          'some_content\n\n',
-          '# BEGIN MANAGED BLOCK\n',
-          'test\n',
+          'some_content',
+          '',
+          '# BEGIN MANAGED BLOCK',
+          'test',
           '# END MANAGED BLOCK',
-        ].join('')
+        ].join('\n')
       );
     });
-    it('places after the begin of file', async () => {
+
+    it('places before the begin of file', async () => {
       const path = join(testPath, 'file');
       await file({
         path,
@@ -111,11 +116,12 @@ describe('block', () => {
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [
           // Lines
-          '# BEGIN MANAGED BLOCK\n',
-          'test\n',
-          '# END MANAGED BLOCK\n',
-          'some_content\n',
-        ].join('')
+          '# BEGIN MANAGED BLOCK',
+          'test',
+          '# END MANAGED BLOCK',
+          'some_content',
+          '',
+        ].join('\n')
       );
     });
   });
@@ -136,11 +142,12 @@ describe('block', () => {
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [
           // Lines
-          'some_content\n\n',
-          '### Begin custom\n',
-          'test\n',
+          'some_content',
+          '',
+          '### Begin custom',
+          'test',
           '### End custom',
-        ].join('')
+        ].join('\n')
       );
     });
   });
