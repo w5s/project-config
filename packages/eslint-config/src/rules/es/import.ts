@@ -26,6 +26,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
           ...importConfig.rules['import/no-extraneous-dependencies'][1],
           devDependencies: [
             ...importConfig.rules['import/no-extraneous-dependencies'][1].devDependencies,
+            'dangerfile.[jt]s',
             '**/*.config.[jt]s?(x)',
             '**/*.config.cjs',
           ],
