@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.2](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@1.2.1...@w5s/commitlint-config@1.2.2) (2023-09-28)
+
+**Note:** Version bump only for package @w5s/commitlint-config
+
 ## [1.2.1](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@1.2.0...@w5s/commitlint-config@1.2.1) (2023-08-25)
 
 **Note:** Version bump only for package @w5s/commitlint-config

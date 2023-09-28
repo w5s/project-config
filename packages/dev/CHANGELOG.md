@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/w5s/project-config/compare/@w5s/dev@1.3.2...@w5s/dev@1.4.0) (2023-09-28)
+
+### ✨ Features
+
+- Add block and blockSync ([47b49a9](https://github.com/w5s/project-config/commit/47b49a9))
+- Add file() function ([d2aca93](https://github.com/w5s/project-config/commit/d2aca93))
+- Add json function ([1d62978](https://github.com/w5s/project-config/commit/1d62978))
+- Add Project.queryExtensions() ([996ce13](https://github.com/w5s/project-config/commit/996ce13))
+
+**Note:** Version bump only for package @w5s/dev
+
 ## [1.3.2](https://github.com/w5s/project-config/compare/@w5s/dev@1.3.1...@w5s/dev@1.3.2) (2023-08-25)
 
 **Note:** Version bump only for package @w5s/dev

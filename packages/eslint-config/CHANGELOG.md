@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.3](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.4.2...@w5s/eslint-config@1.4.3) (2023-09-28)
+
+### 🐛 Bug Fixes
+
+- Fix dangerfile with extraneous dependencies ([b6326db](https://github.com/w5s/project-config/commit/b6326db))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 ## [1.4.2](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.4.1...@w5s/eslint-config@1.4.2) (2023-08-29)
 
 ### 🐛 Bug Fixes

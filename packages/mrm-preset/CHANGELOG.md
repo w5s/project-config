@@ -3,8 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [1.2.1](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.2.0...@w5s/mrm-preset@1.2.1) (2023-08-08)
+# [1.3.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.2.1...@w5s/mrm-preset@1.3.0) (2023-09-28)
 
+### ✨ Features
+
+- Simplify editorconfig configuration ([7b1a5fd](https://github.com/w5s/project-config/commit/7b1a5fd))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
+## [1.2.1](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.2.0...@w5s/mrm-preset@1.2.1) (2023-08-08)
 
 ### 🐛 Bug Fixes
 
@@ -12,12 +19,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @w5s/mrm-preset
 
-
-
-
-
 # [1.2.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.1.1...@w5s/mrm-preset@1.2.0) (2023-08-01)
-
 
 ### ✨ Features
 
@@ -25,17 +27,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 **Note:** Version bump only for package @w5s/mrm-preset
 
-
-
-
-
 ## [1.1.1](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.1.0...@w5s/mrm-preset@1.1.1) (2023-07-12)
 
 **Note:** Version bump only for package @w5s/mrm-preset
-
-
-
-
 
 # [1.1.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.0.4...@w5s/mrm-preset@1.1.0) (2023-07-04)
 
