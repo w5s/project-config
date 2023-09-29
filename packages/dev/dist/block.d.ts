@@ -16,7 +16,7 @@ export interface BlockOptions {
     /**
      * Insert position
      */
-    insertPosition?: ['before', 'BeginningOfFile'] | ['after', 'EndOfFile'];
+    insertPosition?: ['before', 'BeginningOfFile' | RegExp] | ['after', 'EndOfFile' | RegExp];
     /**
      * Block target state
      */

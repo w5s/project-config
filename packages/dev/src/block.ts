@@ -18,7 +18,7 @@ export interface BlockOptions {
   /**
    * Insert position
    */
-  insertPosition?: ['before', 'BeginningOfFile'] | ['after', 'EndOfFile'];
+  insertPosition?: ['before', 'BeginningOfFile' | RegExp] | ['after', 'EndOfFile' | RegExp];
   /**
    * Block target state
    */
@@ -27,6 +27,23 @@ export interface BlockOptions {
 
 const EOF = 'EndOfFile';
 const BOF = 'BeginningOfFile';
+const insertAt = (str: string, index: number, toInsert: string) => str.slice(0, index) + toInsert + str.slice(index);
+const matchLast = (string: string, regexp: RegExp) => {
+  const matcher = new RegExp(regexp.source, `${regexp.flags}g`);
+  let firstIndex = -1;
+  let lastIndex = -1;
+  let matches;
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  while (true) {
+    matches = matcher.exec(string);
+    if (matches == null) {
+      break;
+    }
+    firstIndex = matches.index;
+    lastIndex = matcher.lastIndex;
+  }
+  return { firstIndex, lastIndex };
+};
 
 function toFileOptions(options: BlockOptions): FileOptions {
   const {
@@ -68,22 +85,30 @@ function toFileOptions(options: BlockOptions): FileOptions {
       return fullContent;
     }
     switch (positionDirection) {
-      case 'after': {
-        // insert
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        if (positionAnchor === EOF) {
-          return fullContent + EOL + replaceBlock;
+      case 'before': {
+        if (positionAnchor !== BOF) {
+          const { firstIndex } = matchLast(fullContent, positionAnchor);
+          if (firstIndex >= 0) {
+            return insertAt(fullContent, firstIndex, replaceBlock + EOL);
+          }
         }
 
-        return fullContent;
+        // Beginning of file
+        return replaceBlock + EOL + fullContent;
       }
-      case 'before': {
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        if (positionAnchor === BOF) {
-          return replaceBlock + EOL + fullContent;
+      case 'after': {
+        // insert
+        if (positionAnchor !== EOF) {
+          const { lastIndex } = matchLast(fullContent, positionAnchor);
+          if (lastIndex >= 0) {
+            return insertAt(fullContent, lastIndex, EOL + replaceBlock);
+          }
         }
-        return fullContent;
+
+        // end of file
+        return fullContent + EOL + replaceBlock;
       }
+
       default: {
         throw new Error(`Unsupported position ${String(positionDirection)}`);
       }

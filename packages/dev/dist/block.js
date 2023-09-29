@@ -4,6 +4,23 @@ exports.blockSync = exports.block = void 0;
 const file_js_1 = require("./file.js");
 const EOF = 'EndOfFile';
 const BOF = 'BeginningOfFile';
+const insertAt = (str, index, toInsert) => str.slice(0, index) + toInsert + str.slice(index);
+const matchLast = (string, regexp) => {
+    const matcher = new RegExp(regexp.source, `${regexp.flags}g`);
+    let firstIndex = -1;
+    let lastIndex = -1;
+    let matches;
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    while (true) {
+        matches = matcher.exec(string);
+        if (matches == null) {
+            break;
+        }
+        firstIndex = matches.index;
+        lastIndex = matcher.lastIndex;
+    }
+    return { firstIndex, lastIndex };
+};
 function toFileOptions(options) {
     const { marker = (mark) => `# ${mark.toUpperCase()} MANAGED BLOCK`, path, block: blockName, insertPosition = ['after', EOF], state = 'present', } = options;
     const EOL = '\n';
@@ -33,20 +50,26 @@ function toFileOptions(options) {
             return fullContent;
         }
         switch (positionDirection) {
+            case 'before': {
+                if (positionAnchor !== BOF) {
+                    const { firstIndex } = matchLast(fullContent, positionAnchor);
+                    if (firstIndex >= 0) {
+                        return insertAt(fullContent, firstIndex, replaceBlock + EOL);
+                    }
+                }
+                // Beginning of file
+                return replaceBlock + EOL + fullContent;
+            }
             case 'after': {
                 // insert
-                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                if (positionAnchor === EOF) {
-                    return fullContent + EOL + replaceBlock;
+                if (positionAnchor !== EOF) {
+                    const { lastIndex } = matchLast(fullContent, positionAnchor);
+                    if (lastIndex >= 0) {
+                        return insertAt(fullContent, lastIndex, EOL + replaceBlock);
+                    }
                 }
-                return fullContent;
-            }
-            case 'before': {
-                // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-                if (positionAnchor === BOF) {
-                    return replaceBlock + EOL + fullContent;
-                }
-                return fullContent;
+                // end of file
+                return fullContent + EOL + replaceBlock;
             }
             default: {
                 throw new Error(`Unsupported position ${String(positionDirection)}`);

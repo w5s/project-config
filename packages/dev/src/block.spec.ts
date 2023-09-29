@@ -100,6 +100,42 @@ describe('block', () => {
       );
     });
 
+    it('places after regexp', async () => {
+      const path = join(testPath, 'file');
+      await file({
+        path,
+        state: 'present',
+        update: () =>
+          [
+            // Lines
+            '<head></head>',
+            '<body>',
+            '</body>',
+            '<body>',
+            '</body>',
+          ].join('\n'),
+      });
+
+      await block({
+        path,
+        block: 'test',
+        insertPosition: ['after', /<body>/],
+      });
+      await expect(readFile(path, 'utf8')).resolves.toEqual(
+        [
+          // Lines
+          '<head></head>',
+          '<body>',
+          '</body>',
+          '<body>',
+          '# BEGIN MANAGED BLOCK',
+          'test',
+          '# END MANAGED BLOCK',
+          '</body>',
+        ].join('\n')
+      );
+    });
+
     it('places before the begin of file', async () => {
       const path = join(testPath, 'file');
       await file({
@@ -121,6 +157,41 @@ describe('block', () => {
           '# END MANAGED BLOCK',
           'some_content',
           '',
+        ].join('\n')
+      );
+    });
+    it('places before regexp', async () => {
+      const path = join(testPath, 'file');
+      await file({
+        path,
+        state: 'present',
+        update: () =>
+          [
+            // Lines
+            '<head></head>',
+            '<body>',
+            '</body>',
+            '<body>',
+            '</body>',
+          ].join('\n'),
+      });
+
+      await block({
+        path,
+        block: 'test',
+        insertPosition: ['before', /<body>/],
+      });
+      await expect(readFile(path, 'utf8')).resolves.toEqual(
+        [
+          // Lines
+          '<head></head>',
+          '<body>',
+          '</body>',
+          '# BEGIN MANAGED BLOCK',
+          'test',
+          '# END MANAGED BLOCK',
+          '<body>',
+          '</body>',
         ].join('\n')
       );
     });
