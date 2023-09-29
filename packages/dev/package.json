@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "vite": "4.4.9",
-    "vitest": "0.34.5"
+    "vitest": "0.34.6"
   },
   "clean-package": "../../clean-package.config.cjs",
   "engines": {
