@@ -6,3 +6,5 @@ rushstack
 seatonjiang
 strictsoftware
 Stroustrup
+gitlab
+circleci

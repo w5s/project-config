@@ -55,6 +55,12 @@ const settings: AdvancedCSpellSettings = {
       path: '../dict/names.txt',
       description: 'Known names',
     },
+    {
+      addWords: false,
+      name: 'w5s-npm',
+      path: '../dict/npm.txt',
+      description: 'NPM packages',
+    },
   ],
   dictionaries: [...toArray(defaultSettings.dictionaries), 'w5s-filetypes', 'w5s-fullstack', 'w5s-names'],
   ignoreWords: [],

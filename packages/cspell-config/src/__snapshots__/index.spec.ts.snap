@@ -39,6 +39,12 @@ exports[`index > should match snapshot 1`] = `
         "name": "w5s-names",
         "path": "../dict/names.txt",
       },
+      {
+        "addWords": false,
+        "description": "NPM packages",
+        "name": "w5s-npm",
+        "path": "../dict/npm.txt",
+      },
     ],
     "enableFiletypes": [
       "svelte",
@@ -285,6 +291,12 @@ exports[`index > should match snapshot 1`] = `
       "description": "Known names",
       "name": "w5s-names",
       "path": "../dict/names.txt",
+    },
+    {
+      "addWords": false,
+      "description": "NPM packages",
+      "name": "w5s-npm",
+      "path": "../dict/npm.txt",
     },
   ],
   "enableFiletypes": [
