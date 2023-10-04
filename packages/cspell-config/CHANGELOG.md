@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/w5s/project-config/compare/@w5s/cspell-config@1.1.6...@w5s/cspell-config@1.2.0) (2023-10-04)
+
+### ✨ Features
+
+- Add new words ([3d7b5c8](https://github.com/w5s/project-config/commit/3d7b5c8))
+
+**Note:** Version bump only for package @w5s/cspell-config
+
 ## [1.1.6](https://github.com/w5s/project-config/compare/@w5s/cspell-config@1.1.5...@w5s/cspell-config@1.1.6) (2023-09-28)
 
 **Note:** Version bump only for package @w5s/cspell-config
