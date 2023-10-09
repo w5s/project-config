@@ -46,7 +46,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
 
       // Apply special parsing for TypeScript files
       'import/parsers': {
-        '@typescript-eslint/parser': Project.sourceExtensions().filter((ext) => !ext.includes('js')),
+        '@typescript-eslint/parser': Project.queryExtensions(['typescript', 'typescriptreact']),
       },
       // Append 'ts' extensions to Airbnb 'import/resolver' setting
       'import/resolver': {

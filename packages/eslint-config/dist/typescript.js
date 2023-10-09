@@ -13,7 +13,7 @@ const config = {
             files: [
                 dev_1.Project.extensionsToGlob(
                 // ts only extensions
-                dev_1.Project.sourceExtensions().filter((_) => _.includes('ts'))),
+                dev_1.Project.queryExtensions(['typescript', 'typescriptreact'])),
             ],
         },
     ],

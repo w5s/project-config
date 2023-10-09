@@ -44,7 +44,7 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
         'import/ignore': [...dev_1.Project.ignored(), dev_1.Project.extensionsToMatcher(dev_1.Project.resourceExtensions()).source],
         // Apply special parsing for TypeScript files
         'import/parsers': {
-            '@typescript-eslint/parser': dev_1.Project.sourceExtensions().filter((ext) => !ext.includes('js')),
+            '@typescript-eslint/parser': dev_1.Project.queryExtensions(['typescript', 'typescriptreact']),
         },
         // Append 'ts' extensions to Airbnb 'import/resolver' setting
         'import/resolver': {

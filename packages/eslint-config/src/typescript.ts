@@ -14,7 +14,7 @@ const config: eslint.Linter.Config = {
       files: [
         Project.extensionsToGlob(
           // ts only extensions
-          Project.sourceExtensions().filter((_) => _.includes('ts'))
+          Project.queryExtensions(['typescript', 'typescriptreact'])
         ),
       ],
     },
