@@ -23,6 +23,7 @@ var Project;
         javascriptreact: ['.jsx'],
         typescript: ['.ts', '.cts', '.mts'],
         typescriptreact: ['.tsx'],
+        yaml: ['.yaml', '.yml'],
     };
     /**
      * Return a list of extensions
@@ -65,8 +66,7 @@ var Project;
         '.svg',
         '.gql',
         '.graphql',
-        '.yml',
-        '.yaml',
+        ...queryExtensions(['yaml']),
     ]);
     /**
      * Resource file extensions

@@ -13,8 +13,8 @@ exports[`Project > .resourceExtensions() > should equals values 1`] = `
   ".svg",
   ".gql",
   ".graphql",
-  ".yml",
   ".yaml",
+  ".yml",
 ]
 `;
 

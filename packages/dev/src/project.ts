@@ -16,6 +16,7 @@ export namespace Project {
     javascriptreact: readonly Extension[];
     typescript: readonly Extension[];
     typescriptreact: readonly Extension[];
+    yaml: readonly Extension[];
   }
 
   /**
@@ -40,6 +41,7 @@ export namespace Project {
     javascriptreact: ['.jsx'],
     typescript: ['.ts', '.cts', '.mts'],
     typescriptreact: ['.tsx'],
+    yaml: ['.yaml', '.yml'],
   };
 
   /**
@@ -86,8 +88,7 @@ export namespace Project {
     '.svg',
     '.gql',
     '.graphql',
-    '.yml',
-    '.yaml',
+    ...queryExtensions(['yaml']),
   ]);
 
   /**

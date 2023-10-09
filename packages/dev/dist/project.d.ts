@@ -11,6 +11,7 @@ export declare namespace Project {
         javascriptreact: readonly Extension[];
         typescript: readonly Extension[];
         typescriptreact: readonly Extension[];
+        yaml: readonly Extension[];
     }
     /**
      * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
