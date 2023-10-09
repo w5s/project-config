@@ -133,7 +133,11 @@ module.exports = {
   .yarn/unplugged
   .yarn/build-state.yml
   .yarn/install-state.gz
-  .pnp.*`,
+  .pnp.*
+
+  # Turbo
+  .turbo
+  `,
   VisualStudioCode: `
   .vscode/*
   !.vscode/settings.json
