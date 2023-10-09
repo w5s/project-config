@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.3.0...@w5s/mrm-preset@1.4.0) (2023-10-09)
+
+### ✨ Features
+
+- Ignore turbo files ([5de104f](https://github.com/w5s/project-config/commit/5de104f))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 # [1.3.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.2.1...@w5s/mrm-preset@1.3.0) (2023-09-28)
 
 ### ✨ Features

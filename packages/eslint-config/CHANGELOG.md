@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.4.4...@w5s/eslint-config@1.4.5) (2023-10-09)
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 ## [1.4.4](https://github.com/w5s/project-config/compare/@w5s/eslint-config@1.4.3...@w5s/eslint-config@1.4.4) (2023-10-04)
 
 **Note:** Version bump only for package @w5s/eslint-config
