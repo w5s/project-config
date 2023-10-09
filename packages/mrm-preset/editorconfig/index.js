@@ -1,14 +1,14 @@
 const { readFileSync } = require('node:fs');
-
+const { blockSync } = require('@w5s/dev');
 const { vscodeRecommendedExtension } = require('../core/vscode.js');
-const block = require('../core/block.js');
 
 function task() {
   const templateContent = readFileSync(require.resolve('./_editorconfig'), 'utf8');
 
-  block({
+  blockSync({
     block: templateContent,
     path: '.editorconfig',
+    insertPosition: ['after', 'EndOfFile'],
   });
 
   vscodeRecommendedExtension({

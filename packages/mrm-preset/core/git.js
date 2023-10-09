@@ -1,5 +1,5 @@
 const { file, ini } = require('mrm-core');
-const block = require('./block.js');
+const { blockSync } = require('@w5s/dev');
 const templateMap = require('./git.ignore.js');
 /**
  *
@@ -40,9 +40,9 @@ function trimStartLine(content) {
 function gitIgnore(section, sectionContent) {
   const EOL = '\n';
 
-  return block({
+  return blockSync({
     block: Array.isArray(sectionContent) ? sectionContent.join(EOL) : trimStartLine(sectionContent),
-    marker: (mark) => `# ${mark} ### ${section} ###`,
+    marker: (mark) => `# ${mark.toUpperCase()} ### ${section} ###`,
     path: '.gitignore',
   });
 }

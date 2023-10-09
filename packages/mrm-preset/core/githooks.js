@@ -1,10 +1,10 @@
 const { execSync } = require('node:child_process');
 const path = require('node:path');
 const { file, makeDirs } = require('mrm-core');
+const { blockSync } = require('@w5s/dev');
 const project = require('./project.js');
 const npm = require('./npm.js');
 const pkg = require('./pkg.js');
-const block = require('./block.js');
 
 const hookDirectory = '.githooks';
 
@@ -48,10 +48,10 @@ function gitHook({ name, state, content }) {
       execSync(`npm exec -- husky add ${hookFileName} ""`, { stdio: 'inherit' });
     }
 
-    block({
+    blockSync({
       path: hookFileName,
       block: content,
-      insertAfter: 'end',
+      insertPosition: ['after', 'EndOfFile'],
     });
   } else {
     file(hookFileName).delete();
