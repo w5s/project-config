@@ -1,11 +1,11 @@
 const path = require('node:path');
 const { packageJson, template } = require('mrm-core');
+const { fileSync } = require('@w5s/dev');
 const project = require('../core/project.js');
 const pkg = require('../core/pkg.js');
 const { hasGit } = require('../core/git.js');
 const { gitHook, husky } = require('../core/githooks.js');
 const { lintStaged } = require('../core/lintStaged.js');
-const { file } = require('../core/file.js');
 
 function task() {
   const gitSupported = hasGit();
@@ -40,9 +40,9 @@ function task() {
     state: gitSupported ? 'present' : 'absent',
   });
 
-  file({
+  fileSync({
     path: 'CODEOWNERS',
-    state: gitSupported ? 'file' : 'absent',
+    state: gitSupported ? 'present' : 'absent',
     update: (content) =>
       content.length === 0
         ? template('', path.join(__dirname, 'templates', 'CODEOWNERS'))
