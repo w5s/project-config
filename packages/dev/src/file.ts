@@ -64,7 +64,7 @@ export async function file(options: FileOptions): Promise<void> {
       await writeFile(path, newContent, encoding);
     }
   } else {
-    await rm(path);
+    await rm(path, { force: true });
   }
 }
 
@@ -92,6 +92,6 @@ export function fileSync(options: FileOptions): void {
       writeFileSync(path, newContent, encoding);
     }
   } else {
-    rmSync(path);
+    rmSync(path, { force: true });
   }
 }

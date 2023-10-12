@@ -24,4 +24,14 @@ describe('file', () => {
     });
     await expect(readFile(path, 'utf8')).resolves.toEqual('foo');
   });
+
+  it('should not throw error if absent', async () => {
+    const path = join(TEST_PATH, 'delete-absent');
+    expect(async () => {
+      await file({
+        path,
+        state: 'absent',
+      });
+    }).not.toThrow();
+  });
 });

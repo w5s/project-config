@@ -46,7 +46,7 @@ async function file(options) {
         }
     }
     else {
-        await (0, promises_1.rm)(path);
+        await (0, promises_1.rm)(path, { force: true });
     }
 }
 exports.file = file;
@@ -75,7 +75,7 @@ function fileSync(options) {
         }
     }
     else {
-        (0, node_fs_1.rmSync)(path);
+        (0, node_fs_1.rmSync)(path, { force: true });
     }
 }
 exports.fileSync = fileSync;
