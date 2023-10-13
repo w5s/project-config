@@ -26,7 +26,7 @@
     "coverage": ":",
     "develop": ":",
     "docs": "node markdown.mjs && turbo run docs",
-    "format": "turbo run format",
+    "format": "turbo run format --continue",
     "format:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --ignore-pattern='packages/*/**' --fix",
     "lint": "turbo run lint",
     "lint:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --ignore-pattern='packages/*/**'",
