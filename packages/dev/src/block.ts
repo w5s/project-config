@@ -33,7 +33,7 @@ const matchLast = (string: string, regexp: RegExp) => {
   let firstIndex = -1;
   let lastIndex = -1;
   let matches;
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition, no-constant-condition
   while (true) {
     matches = matcher.exec(string);
     if (matches == null) {
