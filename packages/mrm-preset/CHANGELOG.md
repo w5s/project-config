@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.4.0...@w5s/mrm-preset@2.0.0) (2023-10-13)
+
+### 🎫 Chores
+
+- Drop support for NodeJS 16 ([1e7b464](https://github.com/w5s/project-config/commit/1e7b464))
+
+### 💥 BREAKING CHANGES
+
+- NodeJS 16 or lower could not work with this configuration
+
 # [1.4.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.3.0...@w5s/mrm-preset@1.4.0) (2023-10-09)
 
 ### ✨ Features

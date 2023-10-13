@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.6...@w5s/ts-config@2.0.0) (2023-10-13)
+
+### 🎫 Chores
+
+- Drop support for NodeJS 16 ([1e7b464](https://github.com/w5s/project-config/commit/1e7b464))
+- Enable isolatedModules by default ([d7759cb](https://github.com/w5s/project-config/commit/d7759cb))
+
+### 💥 BREAKING CHANGES
+
+- NodeJS 16 or lower could not work with this configuration
+- Some projects that are using non isolated modules could fail compiling
+
 ## [1.0.6](https://github.com/w5s/project-config/compare/@w5s/ts-config@1.0.5...@w5s/ts-config@1.0.6) (2023-08-25)
 
 **Note:** Version bump only for package @w5s/ts-config
