@@ -96,7 +96,7 @@ function task() {
     });
     pkg.script(currentPackageFile, {
       name: project.format,
-      update: useWorkspace ? turboRun(project.format) : npmRunAll(project.format, true),
+      update: useWorkspace ? `${turboRun(project.format)} --continue` : npmRunAll(project.format, true),
       state: 'present',
     });
 
