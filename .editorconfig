@@ -1,4 +1,16 @@
 # BEGIN MANAGED BLOCK
+#==================================================================================================
+#                                         ┓ ┏┏━┏┓
+#                                         ┃┃┃┗┓┗┓
+#                                         ┗┻┛┗┛┗┛
+#
+#                                 W5s default editorconfig
+#
+#                 ⚠️ THIS IS A GENERATED FILE, SEE THE END OF FILE FOR EDITION
+#
+# Generated from https://github.com/w5s/project-config/blob/main/packages/mrm-preset/editorconfig/_editorconfig
+#==================================================================================================
+
 # http://editorconfig.org
 root = true
 
@@ -59,4 +71,7 @@ indent_style = space
 [{Makefile,**.mk,**.make}]
 indent_style = tab
 
+#==================================================================================================
+#                             ⬇ Add Project specific rules below ⬇
+#==================================================================================================
 # END MANAGED BLOCK
