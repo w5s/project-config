@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.1.1...@w5s/mrm-preset@2.2.0) (2023-10-15)
+
+### ✨ Features
+
+- Improve editorconfig file ([443848c](https://github.com/w5s/project-config/commit/443848c))
+- Improve gitignore generation ([f180f40](https://github.com/w5s/project-config/commit/f180f40))
+
+### 🐛 Bug Fixes
+
+- Move editorconfig managed to beginning of file ([174d200](https://github.com/w5s/project-config/commit/174d200))
+- Remove trailing new end line ([68edf14](https://github.com/w5s/project-config/commit/68edf14))
+- Use checkout@v4 action ([e6ab4a7](https://github.com/w5s/project-config/commit/e6ab4a7))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [2.1.1](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.1.0...@w5s/mrm-preset@2.1.1) (2023-10-15)
 
 **Note:** Version bump only for package @w5s/mrm-preset
