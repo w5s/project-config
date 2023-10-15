@@ -8,7 +8,7 @@ function task() {
   blockSync({
     block: templateContent,
     path: '.editorconfig',
-    insertPosition: ['after', 'EndOfFile'],
+    insertPosition: ['before', 'BeginningOfFile'],
   });
 
   vscodeRecommendedExtension({
