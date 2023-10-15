@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.0.0...@w5s/mrm-preset@2.1.0) (2023-10-15)
+
+### ✨ Features
+
+- Configure turbo format with --continue ([b4d3844](https://github.com/w5s/project-config/commit/b4d3844))
+- Rename node.js.yml to ci.yml ([3d851c4](https://github.com/w5s/project-config/commit/3d851c4))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 # [2.0.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@1.4.0...@w5s/mrm-preset@2.0.0) (2023-10-13)
 
 ### 🎫 Chores
