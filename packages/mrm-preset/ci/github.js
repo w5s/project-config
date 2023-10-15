@@ -13,10 +13,10 @@ function task() {
       ? `${packageManager} install --immutable`
       : `${packageManager} install`;
   githubCI.workflow({
-    name: 'node.js.yml',
+    name: 'ci.yml',
     state,
     update: (config) => ({
-      name: 'Node.js CI',
+      name: 'Continous Integration',
       ...config,
       on: {
         merge_group: {},
