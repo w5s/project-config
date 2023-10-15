@@ -3,7 +3,7 @@ const { blockSync } = require('@w5s/dev');
 const { vscodeRecommendedExtension } = require('../core/vscode.js');
 
 function task() {
-  const templateContent = readFileSync(require.resolve('./_editorconfig'), 'utf8');
+  const templateContent = readFileSync(require.resolve('./_editorconfig'), 'utf8').slice(0, -1);
 
   blockSync({
     block: templateContent,
