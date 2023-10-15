@@ -33,31 +33,36 @@ function trimStartLine(content) {
     .join('\n');
 }
 
-/**
- * @param {string} section
- * @param {string|Array<string>} sectionContent
- */
-function gitIgnore(section, sectionContent) {
-  const EOL = '\n';
+const header = `
+#==================================================================================================
+#                                         ┓ ┏┏━┏┓
+#                                         ┃┃┃┗┓┗┓
+#                                         ┗┻┛┗┛┗┛
+#
+#                                 W5s default gitignore
+#
+#                 ⚠️ THIS IS A GENERATED FILE, SEE THE END OF FILE FOR EDITION
+#
+#==================================================================================================
+`.slice(1, -1);
 
-  return blockSync({
-    block: Array.isArray(sectionContent) ? sectionContent.join(EOL) : trimStartLine(sectionContent),
-    marker: (mark) => `# ${mark.toUpperCase()} ### ${section} ###`,
-    path: '.gitignore',
-  });
-}
-exports.gitIgnore = gitIgnore;
+const footer = `
+#==================================================================================================
+#                             ⬇ Add Project specific rules below ⬇
+#==================================================================================================
+`.slice(1, -1);
 
 /**
  * @param {string[]} flags
  */
-function gitIgnoreTemplate(flags) {
-  flags.forEach((flag) => {
-    // @ts-ignore
-    if (templateMap[flag]) {
-      // @ts-ignore
-      gitIgnore(flag, templateMap[flag]);
-    }
+function gitIgnore(flags) {
+  // @ts-ignore
+  const templateContent = [header, ...flags.map((flag) => trimStartLine(templateMap[flag] ?? '')), footer].join('\n');
+
+  blockSync({
+    block: templateContent,
+    path: '.gitignore',
+    insertPosition: ['before', 'BeginningOfFile'],
   });
 }
-exports.gitIgnoreTemplate = gitIgnoreTemplate;
+exports.gitIgnore = gitIgnore;

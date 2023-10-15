@@ -1,7 +1,6 @@
 const path = require('node:path');
 const { json, file, template, packageJson } = require('mrm-core');
 const npm = require('../core/npm.js');
-const { gitIgnore } = require('../core/git.js');
 const project = require('../core/project.js');
 // const { typedoc } = require('../core/typedoc.js');
 const pkg = require('../core/pkg.js');
@@ -31,9 +30,6 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
     const tsConfigSettingsName = 'tsconfig.settings.json';
     const tsConfigSettings = json(tsConfigSettingsName);
     const tsConfig = json('tsconfig.json');
-
-    // Should be run first
-    gitIgnore('Typescript', ['lib/', 'dist/', '*.tsbuildinfo', 'typings/']);
 
     // const excludeList = ['**/*.test.*', '**/*.spec.*', '**/__tests__/**'];
     if (hasWorkspaces) {

@@ -2,7 +2,7 @@ const path = require('node:path');
 const { packageJson } = require('mrm-core');
 const npm = require('../core/npm.js');
 const pkg = require('../core/pkg.js');
-const { gitIgnoreTemplate } = require('../core/git.js');
+const { gitIgnore } = require('../core/git.js');
 
 /**
  * @param {{
@@ -25,7 +25,7 @@ function task({ mrmPreset, mrmTask, packageManager }) {
     license: 'UNLICENSED',
     description: '',
   }).save();
-  gitIgnoreTemplate(['macOS', 'NodeJS', 'VisualStudioCode']);
+  gitIgnore(['macOS', 'NodeJS', 'VisualStudioCode']);
 
   npm.bootstrap(packageManager);
 

@@ -1,7 +1,7 @@
-const { gitIgnoreTemplate } = require('../core/git.js');
+const { gitIgnore } = require('../core/git.js');
 
 function task() {
-  gitIgnoreTemplate(['macOS', 'NodeJS', 'VisualStudioCode']);
+  gitIgnore(['macOS', 'NodeJS', 'VisualStudioCode']);
 }
 task.description = 'Adds Gitignore file';
 
