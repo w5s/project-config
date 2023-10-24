@@ -123,15 +123,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/types@npm:^17.0.0":
-  version: 17.8.1
-  resolution: "@commitlint/types@npm:17.8.1"
-  dependencies:
-    chalk: "npm:^4.1.0"
-  checksum: a4cfa8c417aa0209694b96da04330282e41150caae1e1d0cec596ea34e3ce15afb84b3263abe5b89758ec1f3f71a9de0ee2d593df66db17b283127dd5e7cd6ac
-  languageName: node
-  linkType: hard
-
 "@commitlint/types@npm:^18.0.0":
   version: 18.0.0
   resolution: "@commitlint/types@npm:18.0.0"
@@ -2315,7 +2306,7 @@ __metadata:
   resolution: "@w5s/commitlint-config@workspace:packages/commitlint-config"
   dependencies:
     "@commitlint/lint": "npm:18.0.0"
-    "@commitlint/types": "npm:^17.0.0"
+    "@commitlint/types": "npm:^18.0.0"
     "@w5s/conventional-changelog": "npm:^2.0.0"
     vite: "npm:4.5.0"
     vitest: "npm:0.34.6"
@@ -2331,7 +2322,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/conventional-changelog@workspace:packages/conventional-changelog"
   dependencies:
-    "@commitlint/types": "npm:^17.0.0"
+    "@commitlint/types": "npm:^18.0.0"
     "@types/conventional-changelog-writer": "npm:4.0.7"
     "@types/conventional-commits-parser": "npm:3.0.5"
     emoji-regex: "npm:^10.2.1"

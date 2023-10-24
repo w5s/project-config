@@ -51,7 +51,7 @@
     "test:src": "vitest run"
   },
   "dependencies": {
-    "@commitlint/types": "^17.0.0",
+    "@commitlint/types": "^18.0.0",
     "@w5s/conventional-changelog": "^2.0.0"
   },
   "devDependencies": {
