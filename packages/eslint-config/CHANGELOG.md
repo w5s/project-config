@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.2](https://github.com/w5s/project-config/compare/@w5s/eslint-config@2.0.1...@w5s/eslint-config@2.0.2) (2023-10-24)
+
+### 🐛 Bug Fixes
+
+- Fix compatibility with plopfile ([575b7ad](https://github.com/w5s/project-config/commit/575b7ad))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 ## [2.0.1](https://github.com/w5s/project-config/compare/@w5s/eslint-config@2.0.0...@w5s/eslint-config@2.0.1) (2023-10-15)
 
 **Note:** Version bump only for package @w5s/eslint-config
