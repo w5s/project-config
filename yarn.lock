@@ -1773,21 +1773,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/conventional-commits-parser@npm:*":
+"@types/conventional-commits-parser@npm:*, @types/conventional-commits-parser@npm:3.0.5":
   version: 3.0.5
   resolution: "@types/conventional-commits-parser@npm:3.0.5"
   dependencies:
     "@types/node": "npm:*"
   checksum: 972b6cd9819fcf50a0a6f00d04ea51ef6541696a25f0c0cf63a05358cf4353f37f598d50d07aa61b49d71503f47309890bb6cf19423fb42d262f6dacec18eb49
-  languageName: node
-  linkType: hard
-
-"@types/conventional-commits-parser@npm:3.0.4":
-  version: 3.0.4
-  resolution: "@types/conventional-commits-parser@npm:3.0.4"
-  dependencies:
-    "@types/node": "npm:*"
-  checksum: a08802c8fd9b0d394b68a763363eb5e276ed97d52183185c100c2a6818f4a8f08127a177bb567c95e274c21f3056162aede54b83429e9a91d37d13a6f6d1ea00
   languageName: node
   linkType: hard
 
@@ -2333,7 +2324,7 @@ __metadata:
   dependencies:
     "@commitlint/types": "npm:^17.0.0"
     "@types/conventional-changelog-writer": "npm:4.0.7"
-    "@types/conventional-commits-parser": "npm:3.0.4"
+    "@types/conventional-commits-parser": "npm:3.0.5"
     emoji-regex: "npm:^10.2.1"
     gitmojis: "npm:^3.13.4"
     vite: "npm:4.5.0"
