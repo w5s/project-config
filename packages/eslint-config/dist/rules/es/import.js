@@ -26,6 +26,7 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
                 ...imports_1.default.rules['import/no-extraneous-dependencies'][1],
                 devDependencies: [
                     ...imports_1.default.rules['import/no-extraneous-dependencies'][1].devDependencies,
+                    'plopfile.[jt]s',
                     'dangerfile.[jt]s',
                     '**/*.config.[jt]s?(x)',
                     '**/*.config.cjs',
