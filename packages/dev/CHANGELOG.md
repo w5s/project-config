@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.3](https://github.com/w5s/project-config/compare/@w5s/dev@2.0.2...@w5s/dev@2.0.3) (2023-10-27)
+
+### 🐛 Bug Fixes
+
+- Filter typescript dictionary to only apply to source files ([b1d560b](https://github.com/w5s/project-config/commit/b1d560b))
+
+**Note:** Version bump only for package @w5s/dev
+
 ## [2.0.2](https://github.com/w5s/project-config/compare/@w5s/dev@2.0.1...@w5s/dev@2.0.2) (2023-10-24)
 
 **Note:** Version bump only for package @w5s/dev

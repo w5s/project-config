@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/w5s/project-config/compare/@w5s/cspell-config@2.0.2...@w5s/cspell-config@2.1.0) (2023-10-27)
+
+### ✨ Features
+
+- Add new words ([6b5864c](https://github.com/w5s/project-config/commit/6b5864c))
+
+### 🐛 Bug Fixes
+
+- Disable addWords ([784cb6b](https://github.com/w5s/project-config/commit/784cb6b))
+- Filter typescript dictionary to only apply to source files ([b1d560b](https://github.com/w5s/project-config/commit/b1d560b))
+- Remove ignore rule on lib/ folders ([85d4aae](https://github.com/w5s/project-config/commit/85d4aae))
+
+**Note:** Version bump only for package @w5s/cspell-config
+
 ## [2.0.2](https://github.com/w5s/project-config/compare/@w5s/cspell-config@2.0.1...@w5s/cspell-config@2.0.2) (2023-10-24)
 
 **Note:** Version bump only for package @w5s/cspell-config
