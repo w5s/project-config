@@ -21,6 +21,39 @@ const excludeImport = new Set([
   '@cspell/dict-r/cspell-ext.json',
   '@cspell/dict-scala/cspell-ext.json',
 ]);
+const dictionaryDefinitions: AdvancedCSpellSettings['dictionaryDefinitions'] = [
+  {
+    addWords: false,
+    name: 'w5s-filetypes',
+    path: '../dict/filetypes.txt',
+    description: 'Additional file types',
+  },
+  {
+    addWords: false,
+    name: 'w5s-fullstack',
+    path: '../dict/fullstack.txt',
+    description: 'Fullstack terms',
+  },
+  {
+    addWords: false,
+    name: 'w5s-typescript',
+    path: '../dict/typescript.txt',
+    description: 'Typescript keywords',
+  },
+  {
+    addWords: false,
+    name: 'w5s-names',
+    path: '../dict/names.txt',
+    description: 'Known names',
+  },
+  {
+    addWords: false,
+    name: 'w5s-npm',
+    path: '../dict/npm.txt',
+    description: 'NPM packages',
+  },
+];
+
 const settings: AdvancedCSpellSettings = {
   ...defaultSettings,
   name: 'W5s default settings .js',
@@ -30,46 +63,10 @@ const settings: AdvancedCSpellSettings = {
   words: [],
   flagWords: [],
   useGitignore: true,
-  dictionaryDefinitions: [
-    ...toArray(defaultSettings.dictionaryDefinitions),
-    {
-      addWords: false,
-      name: 'w5s-filetypes',
-      path: '../dict/filetypes.txt',
-      description: 'Additional file types',
-    },
-    {
-      addWords: false,
-      name: 'w5s-fullstack',
-      path: '../dict/fullstack.txt',
-      description: 'Fullstack terms',
-    },
-    {
-      addWords: false,
-      name: 'w5s-typescript',
-      path: '../dict/typescript.txt',
-      description: 'Typescript keywords',
-    },
-    {
-      addWords: false,
-      name: 'w5s-names',
-      path: '../dict/names.txt',
-      description: 'Known names',
-    },
-    {
-      addWords: false,
-      name: 'w5s-npm',
-      path: '../dict/npm.txt',
-      description: 'NPM packages',
-    },
-  ],
+  dictionaryDefinitions: [...toArray(defaultSettings.dictionaryDefinitions), ...dictionaryDefinitions],
   dictionaries: [
     ...toArray(defaultSettings.dictionaries),
-    'w5s-filetypes',
-    'w5s-fullstack',
-    'w5s-names',
-    'w5s-npm',
-    'w5s-typescript',
+    ...dictionaryDefinitions.map((dictionaryDefinition) => dictionaryDefinition.name),
   ],
   ignoreWords: [],
   import: toArray(defaultSettings.import).filter((dict) => !excludeImport.has(dict)),
