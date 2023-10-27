@@ -17,16 +17,3 @@ exports[`Project > .resourceExtensions() > should equals values 1`] = `
   ".yml",
 ]
 `;
-
-exports[`Project > .sourceExtensions() > should equals values 1`] = `
-[
-  ".ts",
-  ".tsx",
-  ".cts",
-  ".mts",
-  ".js",
-  ".jsx",
-  ".cjs",
-  ".mjs",
-]
-`;

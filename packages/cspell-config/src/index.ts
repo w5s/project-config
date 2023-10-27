@@ -66,7 +66,9 @@ const settings: AdvancedCSpellSettings = {
   dictionaryDefinitions: [...toArray(defaultSettings.dictionaryDefinitions), ...dictionaryDefinitions],
   dictionaries: [
     ...toArray(defaultSettings.dictionaries),
-    ...dictionaryDefinitions.map((dictionaryDefinition) => dictionaryDefinition.name),
+    ...dictionaryDefinitions
+      .map((dictionaryDefinition) => dictionaryDefinition.name)
+      .filter((name) => !['w5s-typescript'].includes(name)),
   ],
   ignoreWords: [],
   import: toArray(defaultSettings.import).filter((dict) => !excludeImport.has(dict)),
