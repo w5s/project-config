@@ -39,6 +39,7 @@ const settings: AdvancedCSpellSettings = {
       description: 'Additional file types',
     },
     {
+      addWords: false,
       name: 'w5s-fullstack',
       path: '../dict/fullstack.txt',
       description: 'Fullstack terms',
