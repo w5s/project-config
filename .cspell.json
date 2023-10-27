@@ -2,7 +2,7 @@
   "version": "0.2",
   "language": "en",
   "import": ["@w5s/cspell-config"],
-  "ignoreWords": ["ispec", "modulemap", "venv", "nofunc"],
+  "ignoreWords": ["venv", "nofunc"],
   "flagWords": [],
   "ignorePaths": [
     "packages/cspell-config/dict/**",
