@@ -16,7 +16,7 @@ function task() {
     name: 'ci.yml',
     state,
     update: (config) => ({
-      name: 'Continous Integration',
+      name: 'Continuous Integration',
       ...config,
       on: {
         merge_group: {},

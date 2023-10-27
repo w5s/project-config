@@ -2,19 +2,13 @@
   "version": "0.2",
   "language": "en",
   "import": ["@w5s/cspell-config"],
-  "dictionaries": ["w5s-typescript"],
-  "ignoreWords": [
-    "ispec",
-    "postbuild",
-    "postconfigure",
-    "modulemap",
-    "venv",
-    "nofunc"
-  ],
+  "ignoreWords": ["ispec", "modulemap", "venv", "nofunc"],
   "flagWords": [],
   "ignorePaths": [
+    "packages/cspell-config/dict/**",
     "packages/eslint-config/rules/**",
     "packages/mrm-preset/_tester/**",
     "packages/mrm-preset/ci/_autodevops/**"
-  ]
+  ],
+  "words": ["dtinth"]
 }

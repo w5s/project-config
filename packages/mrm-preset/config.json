@@ -16,7 +16,7 @@
       "vitest",
       "renovate",
       "githooks",
-      "postconfigure"
+      "post-configure"
     ]
   }
 }
