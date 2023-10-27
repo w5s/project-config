@@ -62,7 +62,14 @@ const settings: AdvancedCSpellSettings = {
       description: 'NPM packages',
     },
   ],
-  dictionaries: [...toArray(defaultSettings.dictionaries), 'w5s-filetypes', 'w5s-fullstack', 'w5s-names'],
+  dictionaries: [
+    ...toArray(defaultSettings.dictionaries),
+    'w5s-filetypes',
+    'w5s-fullstack',
+    'w5s-names',
+    'w5s-npm',
+    'w5s-typescript',
+  ],
   ignoreWords: [],
   import: toArray(defaultSettings.import).filter((dict) => !excludeImport.has(dict)),
   ignorePaths: [

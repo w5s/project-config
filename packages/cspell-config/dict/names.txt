@@ -8,3 +8,5 @@ strictsoftware
 Stroustrup
 gitlab
 circleci
+Raygun
+VueJS

@@ -6,6 +6,7 @@ datasource
 datasources
 editorconfig
 esnext
+frontends
 githooks
 gitmoji
 gitmojis
@@ -13,5 +14,7 @@ healthcheck
 interruptible
 macOS
 npmjs
+postpack
+prepack
 subpackage
 templating
