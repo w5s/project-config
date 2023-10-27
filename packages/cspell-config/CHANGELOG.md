@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.2](https://github.com/w5s/project-config/compare/@w5s/cspell-config@2.2.1...@w5s/cspell-config@2.2.2) (2023-10-27)
+
+### 🐛 Bug Fixes
+
+- Fix missing stylesheet word ([f2ab6ef](https://github.com/w5s/project-config/commit/f2ab6ef))
+
+**Note:** Version bump only for package @w5s/cspell-config
+
 ## [2.2.1](https://github.com/w5s/project-config/compare/@w5s/cspell-config@2.2.0...@w5s/cspell-config@2.2.1) (2023-10-27)
 
 ### 🐛 Bug Fixes
