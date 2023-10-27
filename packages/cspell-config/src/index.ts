@@ -77,7 +77,6 @@ const settings: AdvancedCSpellSettings = {
     // '**/.git/**',
     '**/.vscode/**',
     '**/*.snap',
-    '**/lib/**',
     '**/dist/**',
     '**/node_modules/**',
     '**/package.json',
