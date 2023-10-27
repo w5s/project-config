@@ -190,7 +190,7 @@ function task() {
 
     pkg.script(packageFile, {
       name: project.validate,
-      update: `${turboRun([project.build, project.lint, project.test].join(' '))}`,
+      update: `${turboRun([project.build, project.lint, project.test, project.spellcheck].join(' '))}`,
       state: 'present',
     });
 
