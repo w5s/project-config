@@ -1,6 +1,8 @@
 dbaeumer
 espree
 jpolo
+plop
+plopjs
 rubygems
 rushstack
 seatonjiang
