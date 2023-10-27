@@ -5,3 +5,4 @@ pinia
 stylelint
 stylelintrc
 typedoc
+typescript

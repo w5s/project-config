@@ -10,3 +10,4 @@ gitlab
 circleci
 Raygun
 VueJS
+typecript

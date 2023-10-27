@@ -1,7 +1,9 @@
 cjsx
 ctsx
+dangerfile
 eslintcache
 mdwn
 mtsx
 pcss
+plopfile
 tsbuildinfo
