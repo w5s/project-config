@@ -16,5 +16,6 @@ macOS
 npmjs
 postpack
 prepack
+stylesheet
 subpackage
 templating
