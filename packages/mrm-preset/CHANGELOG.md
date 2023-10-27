@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.2.2...@w5s/mrm-preset@2.3.0) (2023-10-27)
+
+### ✨ Features
+
+- Run spellcheck in validate ([082b7fe](https://github.com/w5s/project-config/commit/082b7fe))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [2.2.2](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.2.1...@w5s/mrm-preset@2.2.2) (2023-10-27)
 
 **Note:** Version bump only for package @w5s/mrm-preset
