@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@types/conventional-changelog-writer": "4.0.8",
-    "@types/conventional-commits-parser": "3.0.5",
+    "@types/conventional-commits-parser": "3.0.6",
     "vite": "4.5.0",
     "vitest": "0.34.6"
   },
