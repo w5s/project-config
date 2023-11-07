@@ -2053,12 +2053,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/parse-gitignore@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@types/parse-gitignore@npm:1.0.1"
+"@types/parse-gitignore@npm:1.0.2":
+  version: 1.0.2
+  resolution: "@types/parse-gitignore@npm:1.0.2"
   dependencies:
     "@types/node": "npm:*"
-  checksum: f0b090063b1039bc95484689367bb047d67383c14afa5094248c2b9efa5333c6ac2b538cc6b78c6e1c4b1ab87fe6145dd883623f3f3e7f04ee7b31d4d6b6a678
+  checksum: 34057f613ac93b7a1606a04de93a6cdd2417ba12ec4f326a73275d72ffb34ac9b0c3ca1a80af60ef08ad8713e0dd77057d1c0d3dac07f5a295bdecf34327c46b
   languageName: node
   linkType: hard
 
@@ -2487,7 +2487,7 @@ __metadata:
   dependencies:
     "@rushstack/eslint-patch": "npm:^1.1.0"
     "@types/eslint": "npm:8.44.7"
-    "@types/parse-gitignore": "npm:1.0.1"
+    "@types/parse-gitignore": "npm:1.0.2"
     "@types/react": "npm:18.2.37"
     "@typescript-eslint/eslint-plugin": "npm:^6.0.0"
     "@typescript-eslint/parser": "npm:6.10.0"
