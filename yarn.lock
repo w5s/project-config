@@ -1866,13 +1866,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/conventional-changelog-writer@npm:4.0.8":
-  version: 4.0.8
-  resolution: "@types/conventional-changelog-writer@npm:4.0.8"
+"@types/conventional-changelog-writer@npm:4.0.9":
+  version: 4.0.9
+  resolution: "@types/conventional-changelog-writer@npm:4.0.9"
   dependencies:
     "@types/conventional-commits-parser": "npm:*"
     "@types/node": "npm:*"
-  checksum: c30ea7872781492f1afde4cb773d36c1b4c02986455921c4d2f3b6b379345a3ad265d6ceadf753d6b77bfad200b2cc05a6ffab324ca2d97df52e489c388090a2
+  checksum: 972bf5eeb64045b3565ba039789bd305193f833398ea2c91ebdf3b91b82270c76d07ca0007976035e0c6c1149ee62c384d19d2315e4097dd36f770775550ff13
   languageName: node
   linkType: hard
 
@@ -2445,7 +2445,7 @@ __metadata:
   resolution: "@w5s/conventional-changelog@workspace:packages/conventional-changelog"
   dependencies:
     "@commitlint/types": "npm:^18.0.0"
-    "@types/conventional-changelog-writer": "npm:4.0.8"
+    "@types/conventional-changelog-writer": "npm:4.0.9"
     "@types/conventional-commits-parser": "npm:3.0.6"
     emoji-regex: "npm:^10.2.1"
     gitmojis: "npm:^3.13.4"
