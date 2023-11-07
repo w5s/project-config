@@ -1894,12 +1894,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/debug@npm:4.1.10":
-  version: 4.1.10
-  resolution: "@types/debug@npm:4.1.10"
+"@types/debug@npm:4.1.11":
+  version: 4.1.11
+  resolution: "@types/debug@npm:4.1.11"
   dependencies:
     "@types/ms": "npm:*"
-  checksum: b3479ffdfd141809b165944d3b3bf3b6a70f95064228a4fa0ff470a25c8ab3f3db7b9f5be0a7460dc9d6fe3595bdb4cbc088c9102bd7afa596dba754f0585ead
+  checksum: 0fb8dba44c1ee88634abfe1df594a7954ca2d17950e30bbb41726370f1bd960c658c701cb5da35a4aa4c52839336c48f7c724083619e45eda56cc31cfa500f1a
   languageName: node
   linkType: hard
 
@@ -2527,7 +2527,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/mrm-preset@workspace:packages/mrm-preset"
   dependencies:
-    "@types/debug": "npm:4.1.10"
+    "@types/debug": "npm:4.1.11"
     "@w5s/dev": "npm:^2.0.3"
     debug: "npm:^4.3.3"
     glob: "npm:^10.0.0"
