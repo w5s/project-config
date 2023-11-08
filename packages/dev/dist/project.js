@@ -19,6 +19,7 @@ var Project;
     }
     Project.ecmaVersion = ecmaVersion;
     const registry = {
+        graphql: ['.gql', '.graphql'],
         javascript: ['.js', '.cjs', '.mjs'],
         javascriptreact: ['.jsx'],
         typescript: ['.ts', '.cts', '.mts'],
@@ -38,7 +39,9 @@ var Project;
      */
     function queryExtensions(languages) {
         return languages
-            .reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), [])
+            .reduce(
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        (previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), [])
             .sort();
     }
     Project.queryExtensions = queryExtensions;
@@ -64,9 +67,7 @@ var Project;
         '.jpg',
         '.jpeg',
         '.svg',
-        '.gql',
-        '.graphql',
-        ...queryExtensions(['yaml']),
+        ...queryExtensions(['graphql', 'yaml']),
     ]);
     /**
      * Resource file extensions

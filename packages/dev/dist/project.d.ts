@@ -7,6 +7,7 @@ export declare namespace Project {
      * Object hash of all well-known file extension category to file extensions mapping
      */
     interface ExtensionRegistry {
+        graphql: readonly Extension[];
         javascript: readonly Extension[];
         javascriptreact: readonly Extension[];
         typescript: readonly Extension[];

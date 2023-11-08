@@ -12,6 +12,7 @@ export namespace Project {
    * Object hash of all well-known file extension category to file extensions mapping
    */
   export interface ExtensionRegistry {
+    graphql: readonly Extension[];
     javascript: readonly Extension[];
     javascriptreact: readonly Extension[];
     typescript: readonly Extension[];
@@ -36,7 +37,8 @@ export namespace Project {
     return 2022 as const;
   }
 
-  const registry: { [key: string]: readonly Extension[] } = {
+  const registry: ExtensionRegistry = {
+    graphql: ['.gql', '.graphql'],
     javascript: ['.js', '.cjs', '.mjs'],
     javascriptreact: ['.jsx'],
     typescript: ['.ts', '.cts', '.mts'],
@@ -58,6 +60,7 @@ export namespace Project {
   export function queryExtensions(languages: LanguageId[]): readonly Extension[] {
     return languages
       .reduce<Extension[]>(
+        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
         (previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? ([] as Extension[])),
         []
       )
@@ -86,9 +89,7 @@ export namespace Project {
     '.jpg',
     '.jpeg',
     '.svg',
-    '.gql',
-    '.graphql',
-    ...queryExtensions(['yaml']),
+    ...queryExtensions(['graphql', 'yaml']),
   ]);
 
   /**
