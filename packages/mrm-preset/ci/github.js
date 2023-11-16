@@ -10,8 +10,8 @@ function task() {
     packageManager === 'npm'
       ? `${packageManager} ci`
       : packageManager === 'yarn'
-      ? `${packageManager} install --immutable`
-      : `${packageManager} install`;
+        ? `${packageManager} install --immutable`
+        : `${packageManager} install`;
   githubCI.workflow({
     name: 'ci.yml',
     state,

@@ -7,8 +7,8 @@ function toConventionalCommitType(text: string) {
   return GitmojiCode.isValid(text)
     ? GitmojiCode.toConventionalCommitType(text)
     : CommitConventionalType.hasInstance(text)
-    ? text
-    : undefined;
+      ? text
+      : undefined;
 }
 
 export type Commit = CommitBase;
