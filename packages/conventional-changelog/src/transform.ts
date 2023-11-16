@@ -17,8 +17,8 @@ export function displayScope(scope: string | null | undefined, scopeDisplayNameM
   return scope == null || scope.length === 0
     ? scopeDisplayNameMap['*']
     : scopeDisplayNameMap[scope] == null
-    ? scope
-    : scopeDisplayNameMap[scope];
+      ? scope
+      : scopeDisplayNameMap[scope];
 }
 
 export function displayType(type: string, options: displayType.Options = {}): string {

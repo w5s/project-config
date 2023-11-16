@@ -15,8 +15,8 @@ export const typeGitmojiStyle: Rule<'unicode' | 'emoji'> = (parsed, when = 'alwa
       ? [true]
       : [false, `Type should ${when} be an unicode character`]
     : $if(when)(isEmoji)
-    ? [true]
-    : [false, `Type should ${when} be an valid :emoji:`];
+      ? [true]
+      : [false, `Type should ${when} be an valid :emoji:`];
 };
 
 export const typeValidGitmoji: Rule = (parsed, when = 'always') => {

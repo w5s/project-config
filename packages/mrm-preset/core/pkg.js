@@ -132,8 +132,8 @@ function hasDependency(packageFile, packageName, dependencyType) {
         dependencyType == null || dependencyType === 'normal'
           ? 'dependencies'
           : dependencyType === 'dev'
-          ? 'devDependencies'
-          : 'peerDependencies'
+            ? 'devDependencies'
+            : 'peerDependencies'
       }.${packageName}`
     )
   );
