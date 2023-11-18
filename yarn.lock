@@ -1797,10 +1797,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:16.18.61":
-  version: 16.18.61
-  resolution: "@types/node@npm:16.18.61"
-  checksum: 219423dbb29ee1a84feb3e2e7b985eccd05e00dfc6efa18b5e2e1713be1df3578ca9f9c51354d66bd8d0d4ab8f0e1959e7de1ef7d03869ff27ed5ba885c6a8cd
+"@types/node@npm:16.18.62":
+  version: 16.18.62
+  resolution: "@types/node@npm:16.18.62"
+  checksum: f5d5f6a381396f643dbb4c4154751d3d4efe153c7064f70bb24a909b67be0e1b95e0963b50bb4d3690e56838d0a2dbd8f5a51aea99008b66dfe058748b67a968
   languageName: node
   linkType: hard
 
@@ -2285,7 +2285,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/project-config-src@workspace:."
   dependencies:
-    "@types/node": "npm:16.18.61"
+    "@types/node": "npm:16.18.62"
     "@w5s/commitlint-config": "workspace:*"
     "@w5s/conventional-changelog": "workspace:*"
     "@w5s/cspell-config": "workspace:*"
