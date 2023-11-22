@@ -89,7 +89,7 @@ const config = dev_1.ESLintConfig.concat(
         '@typescript-eslint/no-dupe-class-members': baseRules['no-dupe-class-members'],
         '@typescript-eslint/no-empty-function': baseRules['no-empty-function'],
         '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: true }],
-        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-explicit-any': 'off', // if any is explicit then it's wanted
         '@typescript-eslint/no-extra-parens': baseRules['no-extra-parens'],
         '@typescript-eslint/no-extra-semi': baseRules['no-extra-semi'],
         '@typescript-eslint/no-inferrable-types': 'error',
@@ -97,7 +97,7 @@ const config = dev_1.ESLintConfig.concat(
         '@typescript-eslint/no-loss-of-precision': baseRules['no-loss-of-precision'],
         '@typescript-eslint/no-magic-numbers': baseRules['no-magic-numbers'],
         '@typescript-eslint/no-misused-new': 'error',
-        '@typescript-eslint/no-namespace': 'off',
+        '@typescript-eslint/no-namespace': 'off', // We don't agree with community, namespaces are great and not deprecated
         '@typescript-eslint/no-non-null-assertion': 'error',
         '@typescript-eslint/no-redeclare': dev_1.ESLintConfig.fixme(baseRules['no-redeclare']),
         '@typescript-eslint/no-require-imports': 'error',
@@ -192,7 +192,7 @@ const config = dev_1.ESLintConfig.concat(
         'func-call-spacing': 'off',
         'getter-return': 'off',
         'import/default': duplicateTSC,
-        'import/export': dev_1.ESLintConfig.fixme('error'),
+        'import/export': dev_1.ESLintConfig.fixme('error'), // https://github.com/benmosher/eslint-plugin-import/issues/1964
         'import/named': duplicateTSC,
         'import/namespace': duplicateTSC,
         'import/no-named-as-default-member': duplicateTSC,
@@ -211,7 +211,7 @@ const config = dev_1.ESLintConfig.concat(
         'no-func-assign': 'off',
         'no-implied-eval': 'off',
         'no-import-assign': 'off',
-        'no-inner-declarations': dev_1.ESLintConfig.fixme('error'),
+        'no-inner-declarations': dev_1.ESLintConfig.fixme('error'), // https://github.com/typescript-eslint/typescript-eslint/issues/239
         'no-loop-func': 'off',
         'no-loss-of-precision': 'off',
         'no-magic-numbers': 'off',

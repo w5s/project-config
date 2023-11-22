@@ -16,16 +16,16 @@ const config = dev_1.ESLintConfig.concat(recommended_js_1.default, {
         'unicorn/error-message': 'error',
         'unicorn/explicit-length-check': ['error', { 'non-zero': 'greater-than' }],
         'unicorn/filename-case': 'off',
-        'unicorn/import-index': 'off',
-        'unicorn/new-for-builtins': 'off',
+        'unicorn/import-index': 'off', // Not playing well with ES Module
+        'unicorn/new-for-builtins': 'off', // error, @see https://github.com/sindresorhus/eslint-plugin-unicorn/issues/122
         'unicorn/no-abusive-eslint-disable': 'error',
         'unicorn/no-array-instanceof': 'error',
         'unicorn/no-console-spaces': 'off',
-        'unicorn/no-fn-reference-in-iterator': 'off',
+        'unicorn/no-fn-reference-in-iterator': 'off', // error ?
         'unicorn/no-for-loop': 'error',
         'unicorn/no-hex-escape': 'error',
         'unicorn/no-new-buffer': 'error',
-        'unicorn/no-null': 'off',
+        'unicorn/no-null': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/612
         'unicorn/no-process-exit': 'off',
         'unicorn/no-unreadable-array-destructuring': 'off',
         'unicorn/no-unsafe-regex': 'error',
@@ -60,11 +60,11 @@ const config = dev_1.ESLintConfig.concat(recommended_js_1.default, {
     ],
     rules: {
         'unicorn/consistent-destructuring': 'off',
-        'unicorn/consistent-function-scoping': 'off',
-        'unicorn/no-array-callback-reference': 'off',
-        'unicorn/no-array-for-each': 'off',
-        'unicorn/no-array-method-this-argument': 'off',
-        'unicorn/no-array-reduce': 'off',
+        'unicorn/consistent-function-scoping': 'off', // Too many false positive
+        'unicorn/no-array-callback-reference': 'off', // Many false positive reported
+        'unicorn/no-array-for-each': 'off', // This rule could change browser compatibility
+        'unicorn/no-array-method-this-argument': 'off', // Many false positive reported
+        'unicorn/no-array-reduce': 'off', // Array#reduce can be used
         'unicorn/no-object-as-default-parameter': 'off',
         'unicorn/prefer-default-parameters': 'off',
         'unicorn/prevent-abbreviations': 'off', // This rule is so dangerous : it potentially break code while fixing in many cases !!

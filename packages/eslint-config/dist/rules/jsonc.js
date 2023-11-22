@@ -41,8 +41,8 @@ const config = {
                             'license',
                             'qna',
                             'author',
-                            'maintainers',
-                            'contributors',
+                            'maintainers', // Key order (per item): name, email, url
+                            'contributors', // Key order (per item): name, email, url
                             'publisher',
                             'sideEffects',
                             'type',
@@ -67,16 +67,16 @@ const config = {
                             'assets',
                             'bin',
                             'man',
-                            'directories',
-                            'files',
+                            'directories', // Key order: lib, bin, man, doc, example, test
+                            'files', // Unique items
                             'workspaces',
-                            'binary',
-                            'scripts',
-                            'betterScripts',
+                            'binary', //	Key order: module_name, module_path, remote_path, package_name, host
+                            'scripts', // Script sort
+                            'betterScripts', // Script sort
                             'contributes',
-                            'activationEvents',
-                            'husky',
-                            'simple-git-hooks',
+                            'activationEvents', // Unique items
+                            'husky', //	Sorts the hooks field using git hook sort
+                            'simple-git-hooks', // Key sort using git hook sort
                             'pre-commit',
                             'commitlint',
                             'lint-staged',
@@ -86,10 +86,10 @@ const config = {
                             'babel',
                             'browserslist',
                             'xo',
-                            'prettier',
-                            'eslintConfig',
+                            'prettier', // Prettier sort
+                            'eslintConfig', // ESLint sort
                             'eslintIgnore',
-                            'npmpackagejsonlint',
+                            'npmpackagejsonlint', // Key sort (also recognizes: npmPackageJsonLintConfig, npmpkgjsonlint)
                             'release',
                             'remarkConfig',
                             'stylelint',
@@ -101,9 +101,9 @@ const config = {
                             'resolutions',
                             'dependencies',
                             'devDependencies',
-                            'dependenciesMeta',
+                            'dependenciesMeta', //	Key sort (deep)
                             'peerDependencies',
-                            'peerDependenciesMeta',
+                            'peerDependenciesMeta', //	Key sort (deep)
                             'optionalDependencies',
                             'bundledDependencies',
                             'bundleDependencies',
@@ -113,14 +113,14 @@ const config = {
                             'packageManager',
                             'engines',
                             'engineStrict',
-                            'volta',
+                            'volta', //	Key order: node, npm, yarn
                             'languageName',
                             'os',
                             'cpu',
                             'preferGlobal',
                             'publishConfig',
                             'icon',
-                            'badges',
+                            'badges', //	Key order (per item): description, url, href
                             'galleryBanner',
                             'preview',
                             'markdown',

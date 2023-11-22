@@ -11,7 +11,7 @@ const config = dev_1.ESLintConfig.concat({
     plugins: ['jest'],
     rules: {
         'jest/consistent-test-it': 'error',
-        'jest/expect-expect': 'off',
+        'jest/expect-expect': 'off', // Disabled because it does not handle functions that does the expect
         'jest/no-alias-methods': 'error',
         'jest/prefer-spy-on': 'error',
         'jest/prefer-to-contain': 'error',
@@ -44,7 +44,7 @@ const config = dev_1.ESLintConfig.concat({
  */
 {
     rules: {
-        '@typescript-eslint/dot-notation': dev_1.ESLintConfig.fixme(undefined),
+        '@typescript-eslint/dot-notation': dev_1.ESLintConfig.fixme(undefined), // eslint-plugin-jest seems to break this rule
         '@typescript-eslint/naming-convention': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
         '@typescript-eslint/no-unsafe-assignment': 'off',

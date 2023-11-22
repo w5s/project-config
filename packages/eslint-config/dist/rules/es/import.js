@@ -19,7 +19,7 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
             // mjs: 'never',
             },
         ],
-        'import/no-deprecated': 'off',
+        'import/no-deprecated': 'off', // Performance issues
         'import/no-extraneous-dependencies': [
             'error',
             {
@@ -33,9 +33,9 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
                 ],
             },
         ],
-        'import/no-named-as-default': 'off',
-        'import/no-unused-modules': 'off',
-        'import/prefer-default-export': 'off',
+        'import/no-named-as-default': 'off', // Performance issues
+        'import/no-unused-modules': 'off', // Performance issues
+        'import/prefer-default-export': 'off', // Not aligned, default export does not bring sufficient semantic
         'import/unambiguous': dev_1.ESLintConfig.fixme('off'), // Disable because proposal still in progress
     },
     settings: {

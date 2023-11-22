@@ -42,7 +42,7 @@ const config = {
         '**/vendors/**',
         '*.min.*',
         '*.toml',
-        '*.timestamp-*.mjs',
+        '*.timestamp-*.mjs', // esbuild/vite temporary files
         ...getGitignore(),
         ...getGitignore('android'),
         ...getGitignore('ios'),
