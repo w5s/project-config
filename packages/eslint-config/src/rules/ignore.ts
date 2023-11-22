@@ -18,6 +18,7 @@ const getGitignore = (prefix = '') => {
 const config: eslint.Linter.Config = {
   ignorePatterns: [
     '!.*',
+    '.docusaurus',
     '.yarn',
     '.common/',
     '.config/package-lock.json',

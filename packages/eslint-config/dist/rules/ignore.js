@@ -19,6 +19,7 @@ const getGitignore = (prefix = '') => {
 const config = {
     ignorePatterns: [
         '!.*',
+        '.docusaurus',
         '.yarn',
         '.common/',
         '.config/package-lock.json',
