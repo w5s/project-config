@@ -1662,7 +1662,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:8.44.7, @types/eslint@npm:^8.44.0":
+"@types/eslint@npm:8.44.8":
+  version: 8.44.8
+  resolution: "@types/eslint@npm:8.44.8"
+  dependencies:
+    "@types/estree": "npm:*"
+    "@types/json-schema": "npm:*"
+  checksum: 610966753add984f6ac9f00eeb766691e141e66a7e20b724a45ad077f60e8cd8fd7874b7e655e93537e54873cc5711cd6f57728474e08b478407cd942f098263
+  languageName: node
+  linkType: hard
+
+"@types/eslint@npm:^8.44.0":
   version: 8.44.7
   resolution: "@types/eslint@npm:8.44.7"
   dependencies:
@@ -2235,7 +2245,7 @@ __metadata:
   resolution: "@w5s/eslint-config@workspace:packages/eslint-config"
   dependencies:
     "@rushstack/eslint-patch": "npm:^1.1.0"
-    "@types/eslint": "npm:8.44.7"
+    "@types/eslint": "npm:8.44.8"
     "@types/parse-gitignore": "npm:1.0.2"
     "@types/react": "npm:18.2.39"
     "@typescript-eslint/eslint-plugin": "npm:^6.0.0"
