@@ -1,46 +1,46 @@
 {
-  "name": "@w5s/conventional-changelog",
-  "version": "2.0.2",
-  "description": "Conventional changelog plugin for @w5s",
-  "keywords": [],
-  "homepage": "https://github.com/w5s/project-config/blob/main/packages/conventional-changelog#readme",
+  "name": "@w5s/vite-config",
+  "version": "1.0.0",
+  "description": "Vite & Vitest config",
+  "keywords": [
+    "vite",
+    "vitest"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/vite-config#readme",
   "bugs": {
     "url": "https://github.com/w5s/project-config/issues"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:w5s/project-config.git",
-    "directory": "packages/conventional-changelog"
+    "directory": "packages/vite-config"
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
-  "type": "commonjs",
+  "type": "module",
   "exports": {
-    ".": "./index.js",
-    "./dist/*": "./dist/*"
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js"
+    }
   },
-  "typings": "./index.d.ts",
   "files": [
-    "template/*",
     "dist/",
     "src/",
-    "index.js",
-    "index.d.ts",
     "!**/*.spec.*",
     "!**/__tests__/**"
   ],
   "scripts": {
     "build": "npx concurrently \"npm:build:*\" \":\"",
-    "build:tsc": "tsc -b tsconfig.build.json",
+    "build:tsc": "scripts/build",
     "clean": "npx concurrently \"npm:clean:*\" \":\"",
-    "clean:tsc": "rm -rf dist",
+    "clean:tsc": "rm -rf dist .cache/build",
     "docs": "node ../../markdown.mjs",
     "format": "npx concurrently \"npm:format:*\" \":\"",
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "lint": "npx concurrently \"npm:lint:*\" \":\"",
     "lint:src": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
-    "postpack": "npx clean-package restore",
-    "prepack": "npx clean-package",
     "prepare": "npx concurrently \"npm:prepare:*\" \":\"",
     "prepublishOnly": "npm run clean;npm run build",
     "spellcheck": "cspell --no-progress '**'",
@@ -48,19 +48,19 @@
     "test:src": "vitest run"
   },
   "dependencies": {
-    "@commitlint/types": "^18.0.0",
-    "emoji-regex": "^10.2.1",
-    "gitmojis": "^3.13.4"
+    "vite-plugin-dts": "^3.3.0"
   },
   "devDependencies": {
-    "@types/conventional-changelog-writer": "4.0.10",
-    "@types/conventional-commits-parser": "3.0.6",
-    "vite": "5.0.4",
-    "vitest": "0.34.6"
+    "typescript": "*",
+    "vite": "*",
+    "vitest": "*"
   },
-  "clean-package": "../../clean-package.config.cjs",
+  "peerDependencies": {
+    "vite": "4.x",
+    "vitest": "0.x"
+  },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=16.0.0"
   },
   "publishConfig": {
     "access": "public"

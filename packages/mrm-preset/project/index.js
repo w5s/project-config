@@ -35,7 +35,8 @@ const turboRun = (script) => `turbo run ${script}`;
  * @param {string} script
  * @param {boolean} allowEmpty
  */
-const npmRunAll = (script, allowEmpty) => `concurrently "npm:${script}:*" ${allowEmpty ? `"${pkg.emptyScript}"` : ''}`;
+const npmRunAll = (script, allowEmpty) =>
+  `npx concurrently "npm:${script}:*" ${allowEmpty ? `"${pkg.emptyScript}"` : ''}`;
 function task() {
   const rootPackageFile = packageJson();
   const rootUseWorkspace = pkg.hasWorkspaces(rootPackageFile);

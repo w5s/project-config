@@ -148,6 +148,7 @@ dist
 !packages/conventional-changelog/dist/
 !packages/eslint-config/dist/
 !packages/prettier-config/dist/
+!packages/vite-config/dist/
 packages/*/dist/**/*.spec.*
 
 # mrm tester
