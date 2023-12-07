@@ -1,6 +1,6 @@
-import { UserConfig, configDefaults } from 'vitest/config';
+import { configDefaults } from 'vitest/config';
 import dts from 'vite-plugin-dts';
-import { ConfigType } from './type.js';
+import { type ConfigType, type UserConfig } from './type.js';
 
 const defaultConfig: UserConfig = {
   test: { ...configDefaults },

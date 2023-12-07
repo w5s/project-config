@@ -1,5 +1,4 @@
-import { UserConfig } from 'vitest/config';
-import { ConfigType } from './type.js';
+import { type ConfigType, type UserConfig } from './type.js';
 export declare const configDefaultMap: {
     readonly [T in ConfigType]: UserConfig;
 };

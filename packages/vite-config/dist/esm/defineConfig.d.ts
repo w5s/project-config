@@ -1,5 +1,4 @@
-import { type UserConfig } from 'vite';
-import { ConfigType } from './type.js';
+import { type UserConfig, type ConfigType } from './type.js';
 /**
  * Return a new configuration for `type`
  *

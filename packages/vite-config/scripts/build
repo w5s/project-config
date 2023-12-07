@@ -8,8 +8,8 @@ set -e;
 
 TSC="$WORKSPACE/node_modules/.bin/tsc"
 TSC_OPTS="--project tsconfig.build.json --inlineSourceMap"
-$TSC --module commonjs --outDir "$BUILD_DIR/cjs" $TSC_OPTS
-$TSC --module esnext --outDir "$BUILD_DIR/esm" $TSC_OPTS
+$TSC --module CommonJS --moduleResolution Node10 --outDir "$BUILD_DIR/cjs" $TSC_OPTS
+$TSC --module Node16 --moduleResolution Node16 --outDir "$BUILD_DIR/esm" $TSC_OPTS
 mkdir -p "$DIST_DIR"
 
 
