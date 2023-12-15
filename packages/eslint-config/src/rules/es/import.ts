@@ -26,10 +26,12 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
           ...importConfig.rules['import/no-extraneous-dependencies'][1],
           devDependencies: [
             ...importConfig.rules['import/no-extraneous-dependencies'][1].devDependencies,
-            'plopfile.[jt]s',
-            'dangerfile.[jt]s',
-            '**/*.config.[jt]s?(x)',
-            '**/*.config.cjs',
+            // plopfile.js, plopfile.cjs, plopfile.mts, plopfile.ts, ...
+            ...Project.queryExtensions(['javascript', 'typescript']).map((extension) => `plopfile${extension}`),
+            // dangerfile.js, dangerfile.cjs, dangerfile.mts, dangerfile.ts, ...
+            ...Project.queryExtensions(['javascript', 'typescript']).map((extension) => `dangerfile${extension}`),
+            // *.config.js, *.config.cjs, *.config.mts, *.config.ts, ...
+            ...Project.queryExtensions(['javascript', 'typescript']).map((extension) => `*.config${extension}`),
           ],
         },
       ],
