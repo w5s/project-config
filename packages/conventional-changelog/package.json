@@ -55,7 +55,7 @@
   "devDependencies": {
     "@types/conventional-changelog-writer": "4.0.10",
     "@types/conventional-commits-parser": "3.0.6",
-    "vite": "5.0.9",
+    "vite": "5.0.10",
     "vitest": "1.0.4"
   },
   "clean-package": "../../clean-package.config.cjs",
