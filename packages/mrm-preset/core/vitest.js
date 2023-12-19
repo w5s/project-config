@@ -55,7 +55,7 @@ function vitest({ state }) {
       update,
       state: packageState,
     });
-    const viteConfig = file(`${projectDir}/vite.config.ts`);
+    const viteConfig = file(`${projectDir}/vite.config.mts`);
     if (packageState === 'absent') {
       viteConfig.delete();
     } else if (!viteConfig.exists()) {
