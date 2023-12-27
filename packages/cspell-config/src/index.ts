@@ -87,6 +87,11 @@ const settings: AdvancedCSpellSettings = {
     '**/vscode-extension/**',
     '**/yarn.lock',
     'pnpm-lock.yaml',
+
+    // Ignore common media files
+    '**/*.svg',
+    '**/*.webp',
+    '**/*.webm',
   ],
   languageSettings: [
     ...toArray(defaultSettings.languageSettings),
