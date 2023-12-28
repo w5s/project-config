@@ -9,7 +9,6 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
     // extends: ['plugin:unicorn/recommended'],
     plugins: ['unicorn'],
     rules: {
-      'unicode-bom': ['error', 'never'],
       'unicorn/better-regex': 'error',
       'unicorn/catch-error-name': ['error', { name: 'error' }],
       'unicorn/custom-error-definition': 'error',

@@ -65,6 +65,7 @@ const config = dev_1.ESLintConfig.concat(baseConfig,
         'no-use-before-define': ['error', 'nofunc'],
         // Allow statements, to be compatible with '@typescript-eslint/no-floating-promises' fix
         'no-void': ['error', { allowAsStatement: true }],
+        'unicode-bom': ['error', 'never'],
     },
 });
 module.exports = config;

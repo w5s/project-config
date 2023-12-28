@@ -75,6 +75,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       'no-use-before-define': ['error', 'nofunc'],
       // Allow statements, to be compatible with '@typescript-eslint/no-floating-promises' fix
       'no-void': ['error', { allowAsStatement: true }],
+      'unicode-bom': ['error', 'never'],
     },
   }
 );
