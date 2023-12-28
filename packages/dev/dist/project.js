@@ -20,6 +20,7 @@ var Project;
     Project.ecmaVersion = ecmaVersion;
     const registry = {
         graphql: ['.gql', '.graphql'],
+        jpeg: ['.jpg', '.jpeg'],
         javascript: ['.js', '.cjs', '.mjs'],
         javascriptreact: ['.jsx'],
         typescript: ['.ts', '.cts', '.mts'],
@@ -64,10 +65,8 @@ var Project;
         '.less',
         '.gif',
         '.png',
-        '.jpg',
-        '.jpeg',
         '.svg',
-        ...queryExtensions(['graphql', 'yaml']),
+        ...queryExtensions(['graphql', 'jpeg', 'yaml']),
     ]);
     /**
      * Resource file extensions

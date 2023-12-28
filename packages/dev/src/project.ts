@@ -13,6 +13,7 @@ export namespace Project {
    */
   export interface ExtensionRegistry {
     graphql: readonly Extension[];
+    jpeg: readonly Extension[];
     javascript: readonly Extension[];
     javascriptreact: readonly Extension[];
     typescript: readonly Extension[];
@@ -39,6 +40,7 @@ export namespace Project {
 
   const registry: ExtensionRegistry = {
     graphql: ['.gql', '.graphql'],
+    jpeg: ['.jpg', '.jpeg'],
     javascript: ['.js', '.cjs', '.mjs'],
     javascriptreact: ['.jsx'],
     typescript: ['.ts', '.cts', '.mts'],
@@ -86,10 +88,8 @@ export namespace Project {
     '.less',
     '.gif',
     '.png',
-    '.jpg',
-    '.jpeg',
     '.svg',
-    ...queryExtensions(['graphql', 'yaml']),
+    ...queryExtensions(['graphql', 'jpeg', 'yaml']),
   ]);
 
   /**

@@ -8,11 +8,11 @@ exports[`Project > .resourceExtensions() > should equals values 1`] = `
   ".less",
   ".gif",
   ".png",
-  ".jpg",
-  ".jpeg",
   ".svg",
   ".gql",
   ".graphql",
+  ".jpeg",
+  ".jpg",
   ".yaml",
   ".yml",
 ]

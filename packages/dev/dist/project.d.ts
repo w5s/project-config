@@ -8,6 +8,7 @@ export declare namespace Project {
      */
     interface ExtensionRegistry {
         graphql: readonly Extension[];
+        jpeg: readonly Extension[];
         javascript: readonly Extension[];
         javascriptreact: readonly Extension[];
         typescript: readonly Extension[];
