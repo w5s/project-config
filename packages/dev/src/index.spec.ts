@@ -7,6 +7,7 @@ describe('index', () => {
       [
         // Public API
         'Project',
+        'ProjectScript',
         'ESLintConfig',
         'block',
         'blockSync',

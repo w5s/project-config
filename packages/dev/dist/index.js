@@ -19,4 +19,5 @@ __exportStar(require("./block.js"), exports);
 __exportStar(require("./file.js"), exports);
 __exportStar(require("./json.js"), exports);
 __exportStar(require("./project.js"), exports);
+__exportStar(require("./projectScript.js"), exports);
 //# sourceMappingURL=index.js.map
