@@ -39,7 +39,7 @@ const header = `
 #                                         ┃┃┃┗┓┗┓
 #                                         ┗┻┛┗┛┗┛
 #
-#                                 W5s default gitignore
+#                                 W5S default gitignore
 #
 #                 ⚠️ THIS IS A GENERATED FILE, SEE THE END OF FILE FOR EDITION
 #

@@ -1,5 +1,5 @@
-<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5s Typescript configuration _(${name})_) -->
-# W5s Typescript configuration _(@w5s/ts-config)_
+<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5S Typescript configuration _(${name})_) -->
+# W5S Typescript configuration _(@w5s/ts-config)_
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 [![NPM Version][package-version-svg]][package-url]

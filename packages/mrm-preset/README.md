@@ -1,5 +1,5 @@
-<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5s Mrm Preset _(${name})_) -->
-# W5s Mrm Preset _(@w5s/mrm-preset)_
+<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5S Mrm Preset _(${name})_) -->
+# W5S Mrm Preset _(@w5s/mrm-preset)_
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 [![NPM Version][package-version-svg]][package-url]

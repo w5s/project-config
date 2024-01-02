@@ -1,5 +1,5 @@
-<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5s BrowsersList configuration _(${name})_) -->
-# W5s BrowsersList configuration _(@w5s/browserslist-config)_
+<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5S BrowsersList configuration _(${name})_) -->
+# W5S BrowsersList configuration _(@w5s/browserslist-config)_
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 [![NPM Version][package-version-svg]][package-url]

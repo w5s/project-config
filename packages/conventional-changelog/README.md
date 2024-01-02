@@ -1,5 +1,5 @@
-<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5s Commitlint configuration _(${name})_) -->
-# W5s Commitlint configuration _(@w5s/conventional-changelog)_
+<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5S Commitlint configuration _(${name})_) -->
+# W5S Commitlint configuration _(@w5s/conventional-changelog)_
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 [![NPM Version][package-version-svg]][package-url]

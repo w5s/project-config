@@ -1,7 +1,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
-  "name": "W5s default settings",
+  "name": "W5S default settings",
   "id": "w5s-default-json",
   "readonly": true,
   "import": ["./dist/index.js"]

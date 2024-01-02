@@ -1,5 +1,5 @@
-<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5s Prettier configuration _(${name})_) -->
-# W5s Prettier configuration _(@w5s/prettier-config)_
+<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5S Prettier configuration _(${name})_) -->
+# W5S Prettier configuration _(@w5s/prettier-config)_
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 [![NPM Version][package-version-svg]][package-url]

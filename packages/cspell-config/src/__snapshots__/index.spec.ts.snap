@@ -230,7 +230,7 @@ exports[`index > should match snapshot 1`] = `
       },
     ],
     "maxNumberOfProblems": 10000,
-    "name": "W5s default settings .js",
+    "name": "W5S default settings .js",
     "patterns": [
       {
         "description": "Matches on HTML symbols like \`&clubs;\`",
@@ -488,7 +488,7 @@ exports[`index > should match snapshot 1`] = `
     },
   ],
   "maxNumberOfProblems": 10000,
-  "name": "W5s default settings .js",
+  "name": "W5S default settings .js",
   "patterns": [
     {
       "description": "Matches on HTML symbols like \`&clubs;\`",

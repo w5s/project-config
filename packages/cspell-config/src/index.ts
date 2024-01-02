@@ -56,7 +56,7 @@ const dictionaryDefinitions: AdvancedCSpellSettings['dictionaryDefinitions'] = [
 
 const settings: AdvancedCSpellSettings = {
   ...defaultSettings,
-  name: 'W5s default settings .js',
+  name: 'W5S default settings .js',
   id: 'w5s-default-js',
   language: 'en',
   description: 'Default cspell configuration.',
