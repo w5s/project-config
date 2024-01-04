@@ -55,7 +55,7 @@
     "@w5s/conventional-changelog": "^2.0.5"
   },
   "devDependencies": {
-    "@commitlint/lint": "18.4.3",
+    "@commitlint/lint": "18.4.4",
     "vite": "5.0.10",
     "vitest": "1.1.1"
   },
