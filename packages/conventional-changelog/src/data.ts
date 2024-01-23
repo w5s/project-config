@@ -116,8 +116,7 @@ export const CommitConventionalType = (() => {
   }
 
   function findWhere(predicate: (data: CommitConventionalTypeData) => boolean): CommitConventionalType[] {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    return enumValues.filter((enumValue) => predicate(getData(enumValue)!));
+    return enumValues.filter((enumValue) => predicate(getData(enumValue)));
   }
 
   return { ...enumObject, hasInstance, getData, values, parse, findWhere };
