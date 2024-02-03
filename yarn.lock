@@ -6651,12 +6651,12 @@ __metadata:
   linkType: hard
 
 "is-array-buffer@npm:^3.0.1, is-array-buffer@npm:^3.0.2":
-  version: 3.0.3
-  resolution: "is-array-buffer@npm:3.0.3"
+  version: 3.0.4
+  resolution: "is-array-buffer@npm:3.0.4"
   dependencies:
     call-bind: "npm:^1.0.2"
     get-intrinsic: "npm:^1.2.1"
-  checksum: 10c0/c7eccc6e511036060bead6ec03a8b55114816c8ca4f80632210874e773b8d5d8a528752d3a1e7c5e5e3d489f08bd76a941fd4585f7b9a9b9eba4a6b0d2f74142
+  checksum: 10c0/42a49d006cc6130bc5424eae113e948c146f31f9d24460fc0958f855d9d810e6fd2e4519bf19aab75179af9c298ea6092459d8cafdec523cd19e529b26eab860
   languageName: node
   linkType: hard
 
