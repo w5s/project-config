@@ -29,7 +29,7 @@
     "stripInternal": true,
     "target": "ES2022",
     "useDefineForClassFields": true,
-    "verbatimModuleSyntax": true,
+    "verbatimModuleSyntax": true
   },
-  "exclude": ["**/lib/**", "**/dist/**", "**/build/**", "**/node_modules/**"],
+  "exclude": ["**/lib/**", "**/dist/**", "**/build/**", "**/node_modules/**"]
 }

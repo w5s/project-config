@@ -3,6 +3,6 @@
   "extends": "../../tsconfig.settings.json",
   "compilerOptions": {
     "declarationMap": true,
-    "sourceMap": true,
-  },
+    "sourceMap": true
+  }
 }
