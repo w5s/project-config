@@ -88,7 +88,7 @@
     "clean-package": "2.2.0",
     "concurrently": "8.2.2",
     "cspell": "8.3.2",
-    "eslint": "8.56.0",
+    "eslint": "8.57.0",
     "eslint-plugin-sort-keys": "2.3.5",
     "lerna": "8.1.2",
     "markdown-magic": "2.6.1",
