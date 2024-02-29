@@ -67,7 +67,7 @@
     "parse-gitignore": "^2.0.0"
   },
   "devDependencies": {
-    "@types/eslint": "8.56.4",
+    "@types/eslint": "8.56.5",
     "@types/parse-gitignore": "1.0.2",
     "@types/react": "18.2.60",
     "@typescript-eslint/parser": "7.1.0",
