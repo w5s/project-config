@@ -1901,14 +1901,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.62":
-  version: 18.2.62
-  resolution: "@types/react@npm:18.2.62"
+"@types/react@npm:18.2.64":
+  version: 18.2.64
+  resolution: "@types/react@npm:18.2.64"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/a45a986723b0febdcdcea754cfa426345f588fd9a522ab4136220a0b514ccba8f4986b23c73dd8e863d465ee1e733779bffffdd57c19488a318a5135f030c1e8
+  checksum: 10c0/ab3ba9597990d08ffd419a5ad28fd22393c7a9a241ae455fb1d5d193d209471aa1909fa7ad016fd8d161eab6d0babba77b013b56a5170bedf78833085b9ee424
   languageName: node
   linkType: hard
 
@@ -2316,7 +2316,7 @@ __metadata:
     "@rushstack/eslint-patch": "npm:^1.1.0"
     "@types/eslint": "npm:8.56.5"
     "@types/parse-gitignore": "npm:1.0.2"
-    "@types/react": "npm:18.2.62"
+    "@types/react": "npm:18.2.64"
     "@typescript-eslint/eslint-plugin": "npm:^7.0.0"
     "@typescript-eslint/parser": "npm:7.1.1"
     "@w5s/dev": "npm:^2.1.0"
