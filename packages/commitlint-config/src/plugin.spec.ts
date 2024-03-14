@@ -1,4 +1,4 @@
-import type { Commit } from '@commitlint/types';
+import type { Commit } from 'conventional-commits-parser';
 import { describe, expect, it } from 'vitest';
 import { typeGitmojiStyle, typeValidGitmoji } from './plugin.js';
 
@@ -15,7 +15,7 @@ const generateCommit = (properties: Partial<Commit>): Commit => ({
   notes: [],
   revert: null,
   merge: null,
-  ...properties,
+  ...(properties as any),
 });
 const anyEmoji = ':bug:';
 const anyGitmojiUnicode = '🐛';
