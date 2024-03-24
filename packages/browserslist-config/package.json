@@ -28,6 +28,7 @@
     "src/",
     "index.js",
     "index.d.ts",
+    "!*.d.ts.map",
     "!**/*.spec.*",
     "!**/__tests__/**"
   ],

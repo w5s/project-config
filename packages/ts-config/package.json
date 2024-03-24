@@ -23,7 +23,8 @@
     ".": "./tsconfig.json"
   },
   "files": [
-    "tsconfig.json"
+    "tsconfig.json",
+    "!*.d.ts.map"
   ],
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
