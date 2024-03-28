@@ -35,7 +35,7 @@
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
     "prepare:githooks": "[ -n \"${CI:-}\" ] || npx husky install .githooks",
     "prepare:packages": "turbo run prepare",
-    "release": "[ -n \"${CI:-}\" ] && lerna publish --yes || lerna publish",
+    "release": "[ -n \"${CI:-}\" ] && npx lerna publish --yes || npx lerna publish",
     "rescue": "git clean -fdx;yarn install",
     "spellcheck": "turbo run spellcheck",
     "spellcheck:root": "cspell --no-progress '**' --exclude='packages/*/**'",
@@ -58,6 +58,12 @@
       "eslint"
     ],
     "*.{yml,yaml}": [
+      "eslint"
+    ],
+    "*.js?(x)": [
+      "eslint"
+    ],
+    "*.ts?(x)": [
       "eslint"
     ]
   },
@@ -90,13 +96,14 @@
     "cspell": "8.6.1",
     "eslint": "8.57.0",
     "eslint-plugin-sort-keys": "2.3.5",
-    "lerna": "8.1.2",
     "markdown-magic": "2.6.1",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "1.1.2",
     "prettier": "3.2.5",
     "turbo": "1.13.0",
-    "typescript": "5.4.3"
+    "typescript": "5.4.3",
+    "vite": "^5.2.6",
+    "vitest": "^1.4.0"
   },
   "packageManager": "yarn@4.1.1",
   "engines": {
