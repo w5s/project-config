@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.4.1](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.4.0...@w5s/mrm-preset@2.4.1) (2024-03-28)
+
+### 🐛 Bug Fixes
+
+- Fix npm-run-all ([f510b1b](https://github.com/w5s/project-config/commit/f510b1b))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 # [2.4.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.3.8...@w5s/mrm-preset@2.4.0) (2024-03-28)
 
 ### ✨ Features
