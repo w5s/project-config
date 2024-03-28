@@ -33,9 +33,10 @@ const turboRun = (script) => `turbo run ${script}`;
 /**
  *
  * @param {string} script
- * @param {boolean} allowEmpty
+ * @param {boolean} _allowEmpty
+ * @param _allowEmpty
  */
-const npmRunAll = (script, allowEmpty) => `concurrently "npm:${script}:*" ${allowEmpty ? `"${pkg.emptyScript}"` : ''}`;
+const npmRunAll = (script, _allowEmpty) => `npm-run-all -s "${script}:*"`;
 function task() {
   const rootPackageFile = packageJson();
   const rootUseWorkspace = pkg.hasWorkspaces(rootPackageFile);
@@ -302,12 +303,12 @@ function task() {
   npm.dependency({
     dev: true,
     name: ['npm-run-all'],
-    state: 'absent',
+    state: 'present',
   });
   npm.dependency({
     dev: true,
     name: ['concurrently'],
-    state: 'present',
+    state: 'absent',
   });
   npm.dependency({
     dev: true,
