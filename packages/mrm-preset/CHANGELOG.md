@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.3.8...@w5s/mrm-preset@2.4.0) (2024-03-28)
+
+### ✨ Features
+
+- Use npx lerna and remove from devDependencies ([736ef29](https://github.com/w5s/project-config/commit/736ef29))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [2.3.8](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.3.7...@w5s/mrm-preset@2.3.8) (2024-03-24)
 
 **Note:** Version bump only for package @w5s/mrm-preset
