@@ -34,21 +34,22 @@
     "!**/__tests__/**"
   ],
   "scripts": {
-    "build": "npm-run-all -s \"build:*\"",
+    "build": "npm-run-all -s \"build:*\" empty",
     "build:tsc": "tsc -b tsconfig.build.json",
-    "clean": "npm-run-all -s \"clean:*\"",
+    "clean": "npm-run-all -s \"clean:*\" empty",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
-    "format": "npm-run-all -s \"format:*\"",
+    "empty": ":",
+    "format": "npm-run-all -s \"format:*\" empty",
     "format:src": "eslint . --fix --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
-    "lint": "npm-run-all -s \"lint:*\"",
+    "lint": "npm-run-all -s \"lint:*\" empty",
     "lint:src": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml",
     "postpack": "npx clean-package restore",
     "prepack": "npx clean-package",
-    "prepare": "npm-run-all -s \"prepare:*\"",
+    "prepare": "npm-run-all -s \"prepare:*\" empty",
     "prepublishOnly": "npm run clean;npm run build",
     "spellcheck": "cspell --no-progress '**'",
-    "test": "npm-run-all -s \"test:*\"",
+    "test": "npm-run-all -s \"test:*\" empty",
     "test:src": "vitest run"
   },
   "dependencies": {

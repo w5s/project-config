@@ -33,10 +33,11 @@ const turboRun = (script) => `turbo run ${script}`;
 /**
  *
  * @param {string} script
- * @param {boolean} _allowEmpty
+ * @param {boolean} allowEmpty
  * @param _allowEmpty
+ * @param allowEmpty
  */
-const npmRunAll = (script, _allowEmpty) => `npm-run-all -s "${script}:*"`;
+const npmRunAll = (script, allowEmpty) => `npm-run-all -s "${script}:*" ${allowEmpty ? 'empty' : ''}`;
 function task() {
   const rootPackageFile = packageJson();
   const rootUseWorkspace = pkg.hasWorkspaces(rootPackageFile);
@@ -81,6 +82,12 @@ function task() {
   };
   const addScripts = (/** @type {import("mrm-core").Json} */ currentPackageFile, /** @type {boolean} */ root) => {
     const useWorkspace = pkg.hasWorkspaces(currentPackageFile);
+
+    pkg.script(currentPackageFile, {
+      name: 'empty',
+      update: pkg.emptyScript,
+      state: 'present',
+    });
 
     // build
     pkg.script(currentPackageFile, {
