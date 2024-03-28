@@ -312,7 +312,7 @@ function task() {
   npm.dependency({
     dev: true,
     name: ['lerna'],
-    state: rootUseWorkspace ? 'present' : 'absent',
+    state: 'absent',
   });
   npm.dependency({
     dev: true,
