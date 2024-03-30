@@ -2472,7 +2472,7 @@ __metadata:
     turbo: "npm:1.13.0"
     typescript: "npm:5.4.3"
     vite: "npm:^5.2.6"
-    vitest: "npm:^1.4.0"
+    vitest: "npm:1.4.0"
   languageName: unknown
   linkType: soft
 
@@ -12773,7 +12773,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vitest@npm:1.4.0, vitest@npm:^1.4.0":
+"vitest@npm:1.4.0":
   version: 1.4.0
   resolution: "vitest@npm:1.4.0"
   dependencies:
