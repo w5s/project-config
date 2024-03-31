@@ -26,7 +26,7 @@ function husky({ state }) {
     pkg.script(packageFile, {
       name: `${project.prepare}:githooks`,
       state: hasHusky ? 'present' : 'absent',
-      update: `[ -n "\${CI:-}" ] || npx husky install ${hookDirectory}`,
+      update: `[ -n "\${CI:-}" ] || npx husky ${hookDirectory}`,
     });
   });
 }
