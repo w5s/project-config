@@ -1811,7 +1811,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:8.56.6, @types/eslint@npm:^8.44.0":
+"@types/eslint@npm:8.56.7":
+  version: 8.56.7
+  resolution: "@types/eslint@npm:8.56.7"
+  dependencies:
+    "@types/estree": "npm:*"
+    "@types/json-schema": "npm:*"
+  checksum: 10c0/159bb5ae2f78d905b9263240c75d07b60c26e1bcaecee8c775a7bb0cf7362f5dcdd286259ba6289ab62f989b87048090b2420619f7170a0abbd83cb68b5e0699
+  languageName: node
+  linkType: hard
+
+"@types/eslint@npm:^8.44.0":
   version: 8.56.6
   resolution: "@types/eslint@npm:8.56.6"
   dependencies:
@@ -2322,7 +2332,7 @@ __metadata:
   dependencies:
     "@commitlint/lint": "npm:19.1.0"
     "@commitlint/types": "npm:^18.0.0"
-    "@w5s/conventional-changelog": "npm:^2.0.11"
+    "@w5s/conventional-changelog": "npm:^2.0.12"
     vite: "npm:5.2.7"
     vitest: "npm:1.4.0"
   peerDependencies:
@@ -2333,7 +2343,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/conventional-changelog@npm:^2.0.11, @w5s/conventional-changelog@workspace:*, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
+"@w5s/conventional-changelog@npm:^2.0.12, @w5s/conventional-changelog@workspace:*, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
   version: 0.0.0-use.local
   resolution: "@w5s/conventional-changelog@workspace:packages/conventional-changelog"
   dependencies:
@@ -2364,7 +2374,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/dev@npm:^2.1.5, @w5s/dev@workspace:packages/dev":
+"@w5s/dev@npm:^2.1.6, @w5s/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
@@ -2379,13 +2389,13 @@ __metadata:
   resolution: "@w5s/eslint-config@workspace:packages/eslint-config"
   dependencies:
     "@rushstack/eslint-patch": "npm:^1.1.0"
-    "@types/eslint": "npm:8.56.6"
+    "@types/eslint": "npm:8.56.7"
     "@types/parse-gitignore": "npm:1.0.2"
     "@types/react": "npm:18.2.73"
     "@typescript-eslint/eslint-plugin": "npm:^7.0.0"
     "@typescript-eslint/parser": "npm:7.4.0"
-    "@w5s/dev": "npm:^2.1.5"
-    "@w5s/prettier-config": "npm:^2.0.11"
+    "@w5s/dev": "npm:^2.1.6"
+    "@w5s/prettier-config": "npm:^2.0.12"
     eslint: "npm:8.57.0"
     eslint-config-airbnb-base: "npm:^15.0.0"
     eslint-config-prettier: "npm:9.1.0"
@@ -2421,7 +2431,7 @@ __metadata:
   resolution: "@w5s/mrm-preset@workspace:packages/mrm-preset"
   dependencies:
     "@types/debug": "npm:4.1.12"
-    "@w5s/dev": "npm:^2.1.5"
+    "@w5s/dev": "npm:^2.1.6"
     debug: "npm:^4.3.3"
     glob: "npm:^10.0.0"
     mrm: "npm:4.1.22"
@@ -2432,7 +2442,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/prettier-config@npm:^2.0.11, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
+"@w5s/prettier-config@npm:^2.0.12, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
   version: 0.0.0-use.local
   resolution: "@w5s/prettier-config@workspace:packages/prettier-config"
   dependencies:
