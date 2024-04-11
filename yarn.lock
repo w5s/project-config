@@ -1986,13 +1986,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.2.75":
-  version: 18.2.75
-  resolution: "@types/react@npm:18.2.75"
+"@types/react@npm:18.2.76":
+  version: 18.2.76
+  resolution: "@types/react@npm:18.2.76"
   dependencies:
     "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/3c0d035d64007d38cf1b682108de8c5f042452025899280c5d2c040b9f53b1f81482d0d57fd93e6687c2c619f3b605d33a01569b1fbbbdeec7fb3a56c7a72af8
+  checksum: 10c0/2bdff894675698bcfdf591e74c7e427cce25e7dbfe21882d8958280e4cc9a07b11d918bf33a38e21fc835b659a25555f0797c5c432bb46b7f1ebc304cae496ed
   languageName: node
   linkType: hard
 
@@ -2393,7 +2393,7 @@ __metadata:
     "@rushstack/eslint-patch": "npm:^1.1.0"
     "@types/eslint": "npm:8.56.7"
     "@types/parse-gitignore": "npm:1.0.2"
-    "@types/react": "npm:18.2.75"
+    "@types/react": "npm:18.2.76"
     "@typescript-eslint/eslint-plugin": "npm:^7.0.0"
     "@typescript-eslint/parser": "npm:7.6.0"
     "@w5s/dev": "npm:^2.1.6"
