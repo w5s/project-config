@@ -78,7 +78,7 @@
     "prettier": "3.2.5",
     "react": "18.2.0",
     "vite": "5.2.10",
-    "vitest": "1.5.1"
+    "vitest": "1.5.2"
   },
   "peerDependencies": {
     "eslint": "8.x",
