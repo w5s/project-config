@@ -1,6 +1,6 @@
 {
   "name": "@w5s/cspell-config",
-  "version": "2.2.14",
+  "version": "2.2.15",
   "description": "CSpell configuration presets",
   "keywords": [
     "cspell"

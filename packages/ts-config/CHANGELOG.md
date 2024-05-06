@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.10](https://github.com/w5s/project-config/compare/@w5s/ts-config@2.0.9...@w5s/ts-config@2.0.10) (2024-05-06)
+
+**Note:** Version bump only for package @w5s/ts-config
+
 ## [2.0.9](https://github.com/w5s/project-config/compare/@w5s/ts-config@2.0.8...@w5s/ts-config@2.0.9) (2024-03-28)
 
 ### 🐛 Bug Fixes
