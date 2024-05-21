@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.4.5...@w5s/mrm-preset@2.5.0) (2024-05-21)
+
+### ✨ Features
+
+- Add directory, directorySync ([98e3a28](https://github.com/w5s/project-config/commit/98e3a28))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [2.4.5](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.4.4...@w5s/mrm-preset@2.4.5) (2024-05-12)
 
 **Note:** Version bump only for package @w5s/mrm-preset
