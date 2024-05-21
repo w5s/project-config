@@ -33,7 +33,7 @@
     "mrm": "npm exec --package=mrm -- mrm --dir ./packages/mrm-preset",
     "postbuild": "npm run docs",
     "prepare": "concurrently \"npm:prepare:*\" \":\"",
-    "prepare:githooks": "[ -n \"${CI:-}\" ] || npx husky .githooks",
+    "prepare:githooks": "[ -n \"${CI:-}\" ] || git config core.hooksPath .githooks",
     "prepare:packages": "turbo run prepare",
     "release": "[ -n \"${CI:-}\" ] && npx lerna publish --yes || npx lerna publish",
     "rescue": "git clean -fdx;yarn install",

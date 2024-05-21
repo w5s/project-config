@@ -9,6 +9,8 @@ describe('index', () => {
         'Project',
         'ProjectScript',
         'ESLintConfig',
+        'directory',
+        'directorySync',
         'block',
         'blockSync',
         'file',

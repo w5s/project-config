@@ -1,3 +1,4 @@
+export * from './directory.js';
 export * from './eslint.js';
 export * from './block.js';
 export * from './file.js';

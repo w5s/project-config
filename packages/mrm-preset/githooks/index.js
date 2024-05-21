@@ -4,7 +4,7 @@ const { fileSync } = require('@w5s/dev');
 const project = require('../core/project.js');
 const pkg = require('../core/pkg.js');
 const { hasGit } = require('../core/git.js');
-const { gitHook, husky } = require('../core/githooks.js');
+const { gitHook } = require('../core/githooks.js');
 const { lintStaged } = require('../core/lintStaged.js');
 
 function task() {
@@ -12,9 +12,6 @@ function task() {
   const packageFile = packageJson();
   const hasESLint = pkg.hasDependency(packageFile, 'eslint', 'dev');
 
-  husky({
-    state: gitSupported ? 'present' : 'absent',
-  });
   lintStaged({
     state: gitSupported ? 'present' : 'absent',
     update: (config) => ({
