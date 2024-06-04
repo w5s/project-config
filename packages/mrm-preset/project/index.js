@@ -253,8 +253,8 @@ function task() {
     state: 'present',
     update: (_) => ({
       ..._,
-      pipeline: {
-        ..._.pipeline,
+      tasks: {
+        ..._.tasks,
         [project.build]: {
           dependsOn: [`^${project.build}`, `//#${project.build}:root`],
           outputs: ['lib/**', 'dist/**', '.next/**'],
