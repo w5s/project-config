@@ -26,6 +26,13 @@ function task() {
       ],
     }),
   });
+  pkg.script(packageFile, {
+    name: `${project.prepare}:githooks`,
+    state: gitSupported ? 'present' : 'absent',
+    // eslint-disable-next-line no-template-curly-in-string
+    update: (_) => '[ -n "${CI:-}" ] || git config core.hooksPath .githooks',
+  });
+
   gitHook({
     name: 'pre-commit',
     content: `npm exec -- lint-staged`,
