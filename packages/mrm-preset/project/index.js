@@ -253,6 +253,8 @@ function task() {
     state: 'present',
     update: (_) => ({
       ..._,
+      globalEnv: Array.from(new Set([...(_.globalEnv ?? []), 'CI', 'DATABASE_URL', 'HOME', 'NODE_ENV'])).sort(),
+      globalDependencies: ['tsconfig.settings.json'],
       tasks: {
         ..._.tasks,
         [project.build]: {
@@ -293,7 +295,6 @@ function task() {
           cache: false,
         },
       },
-      globalDependencies: ['tsconfig.settings.json'],
     }),
   });
 

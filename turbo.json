@@ -1,6 +1,8 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "pipeline": {
+  "globalEnv": ["CI", "DATABASE_URL", "HOME", "NODE_ENV"],
+  "globalDependencies": ["tsconfig.settings.json"],
+  "tasks": {
     "build": {
       "dependsOn": ["^build", "//#build:root"],
       "outputs": ["lib/**", "dist/**", ".next/**"]
@@ -38,6 +40,5 @@
       "cache": false
     },
     "//#docs:root": {}
-  },
-  "globalDependencies": ["tsconfig.settings.json"]
+  }
 }
