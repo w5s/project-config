@@ -2371,7 +2371,7 @@ __metadata:
   dependencies:
     "@commitlint/lint": "npm:19.2.2"
     "@commitlint/types": "npm:^18.0.0"
-    "@w5s/conventional-changelog": "npm:^2.0.13"
+    "@w5s/conventional-changelog": "npm:^2.0.14"
     vite: "npm:5.2.12"
     vitest: "npm:1.6.0"
   peerDependencies:
@@ -2382,7 +2382,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/conventional-changelog@npm:^2.0.13, @w5s/conventional-changelog@workspace:*, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
+"@w5s/conventional-changelog@npm:^2.0.14, @w5s/conventional-changelog@workspace:*, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
   version: 0.0.0-use.local
   resolution: "@w5s/conventional-changelog@workspace:packages/conventional-changelog"
   dependencies:
@@ -2413,7 +2413,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/dev@npm:^2.2.0, @w5s/dev@workspace:packages/dev":
+"@w5s/dev@npm:^2.2.1, @w5s/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
@@ -2433,8 +2433,8 @@ __metadata:
     "@types/react": "npm:18.3.3"
     "@typescript-eslint/eslint-plugin": "npm:^7.0.0"
     "@typescript-eslint/parser": "npm:7.12.0"
-    "@w5s/dev": "npm:^2.2.0"
-    "@w5s/prettier-config": "npm:^2.0.13"
+    "@w5s/dev": "npm:^2.2.1"
+    "@w5s/prettier-config": "npm:^2.0.14"
     eslint: "npm:8.57.0"
     eslint-config-airbnb-base: "npm:^15.0.0"
     eslint-config-prettier: "npm:9.1.0"
@@ -2470,7 +2470,7 @@ __metadata:
   resolution: "@w5s/mrm-preset@workspace:packages/mrm-preset"
   dependencies:
     "@types/debug": "npm:4.1.12"
-    "@w5s/dev": "npm:^2.2.0"
+    "@w5s/dev": "npm:^2.2.1"
     debug: "npm:^4.3.3"
     glob: "npm:^10.0.0"
     mrm: "npm:4.1.22"
@@ -2481,7 +2481,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/prettier-config@npm:^2.0.13, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
+"@w5s/prettier-config@npm:^2.0.14, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
   version: 0.0.0-use.local
   resolution: "@w5s/prettier-config@workspace:packages/prettier-config"
   dependencies:
