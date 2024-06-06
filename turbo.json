@@ -1,6 +1,6 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalEnv": ["CI", "DATABASE_URL", "HOME", "NODE_ENV"],
+  "globalEnv": ["ASDF_*", "CI", "CI_*", "DATABASE_URL", "NODE_ENV"],
   "globalDependencies": ["tsconfig.settings.json"],
   "tasks": {
     "build": {
