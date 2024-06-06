@@ -4,7 +4,7 @@ const jsonFile = require('./jsonFile.js');
 
 /**
  * @typedef {{
- *   $schema: string,
+ *   $schema?: string,
  *   tasks?: Record<string, unknown>,
  *   globalEnv?: Array<string>,
  *   globalDependencies?: Array<string>,
@@ -25,11 +25,12 @@ function turbo({ state, update }) {
     jsonFile.value(turboFile, {
       path: undefined,
       state,
-      update,
-      /** @type {TurboConfig} */
-      default: {
+      update: (previousValue) => ({
         $schema: 'https://turborepo.org/schema.json',
-      },
+        ...update(previousValue),
+      }),
+      /** @type {TurboConfig} */
+      default: {},
     });
 
     /**
