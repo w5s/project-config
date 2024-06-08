@@ -13,7 +13,7 @@
       when: always
     - when: never
   image:
-    name: renovate/renovate@sha256:4065fb53e9e9ac4e6a66cc2915064fd3798f1e143d7ed188fc4199f232863891
+    name: renovate/renovate@sha256:baf3a405b027478b06b03f3fb06e53330c49fb1a0973a948d942aa15e20871c5
     entrypoint: ['']
   script:
     - >
