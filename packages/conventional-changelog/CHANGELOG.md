@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.15](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@2.0.14...@w5s/conventional-changelog@2.0.15) (2024-06-23)
+
+**Note:** Version bump only for package @w5s/conventional-changelog
+
 ## [2.0.14](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@2.0.13...@w5s/conventional-changelog@2.0.14) (2024-06-04)
 
 **Note:** Version bump only for package @w5s/conventional-changelog

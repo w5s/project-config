@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.6.2](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.6.1...@w5s/mrm-preset@2.6.2) (2024-06-23)
+
+### 🐛 Bug Fixes
+
+- Fix turbo configuration ([42746fa](https://github.com/w5s/project-config/commit/42746fa))
+- Fix turbo configuration ([a79c41c](https://github.com/w5s/project-config/commit/a79c41c))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [2.6.1](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.6.0...@w5s/mrm-preset@2.6.1) (2024-06-04)
 
 **Note:** Version bump only for package @w5s/mrm-preset

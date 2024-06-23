@@ -1,6 +1,6 @@
 {
   "name": "@w5s/conventional-changelog",
-  "version": "2.0.14",
+  "version": "2.0.15",
   "description": "Conventional changelog plugin for @w5s",
   "keywords": [],
   "homepage": "https://github.com/w5s/project-config/blob/main/packages/conventional-changelog#readme",
