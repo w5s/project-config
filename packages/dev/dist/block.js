@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.blockSync = exports.block = void 0;
+exports.block = block;
+exports.blockSync = blockSync;
 const file_js_1 = require("./file.js");
 const EOF = 'EndOfFile';
 const BOF = 'BeginningOfFile';
@@ -94,7 +95,6 @@ function toFileOptions(options) {
 function block(options) {
     return (0, file_js_1.file)(toFileOptions(options));
 }
-exports.block = block;
 /**
  * Replace synchronously a block in file that follows pattern :
  *
@@ -107,5 +107,4 @@ exports.block = block;
 function blockSync(options) {
     return (0, file_js_1.fileSync)(toFileOptions(options));
 }
-exports.blockSync = blockSync;
 //# sourceMappingURL=block.js.map

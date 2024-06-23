@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTransform = exports.displayType = exports.displayScope = void 0;
+exports.displayScope = displayScope;
+exports.displayType = displayType;
+exports.createTransform = createTransform;
 const data_js_1 = require("./data.js");
 const gitmoji_js_1 = require("./gitmoji.js");
 function displayScope(scope, scopeDisplayNameMap) {
@@ -10,7 +12,6 @@ function displayScope(scope, scopeDisplayNameMap) {
             ? scope
             : scopeDisplayNameMap[scope];
 }
-exports.displayScope = displayScope;
 function displayType(type, options = {}) {
     const { withEmoji = true, language = 'en-US' } = options;
     if (data_js_1.CommitConventionalType.hasInstance(type)) {
@@ -19,7 +20,6 @@ function displayType(type, options = {}) {
     }
     return type;
 }
-exports.displayType = displayType;
 function createTransform(config) {
     const displayTypes = new Set(config.displayTypes == null ? data_js_1.CommitConventionalType.values() : config.displayTypes);
     const ignoreType = (type) => type == null || !displayTypes.has(type);
@@ -88,4 +88,3 @@ function createTransform(config) {
     };
     return transform;
 }
-exports.createTransform = createTransform;

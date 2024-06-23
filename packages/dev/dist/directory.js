@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.directorySync = exports.directory = void 0;
+exports.directory = directory;
+exports.directorySync = directorySync;
 const node_fs_1 = require("node:fs");
 const promises_1 = require("node:fs/promises");
 async function exists(path) {
@@ -37,7 +38,6 @@ async function directory(options) {
         await (0, promises_1.rmdir)(path, { recursive: true });
     }
 }
-exports.directory = directory;
 /**
  * Ensure directory is present/absent
  *
@@ -63,5 +63,4 @@ function directorySync(options) {
         (0, node_fs_1.rmdirSync)(path, { recursive: true });
     }
 }
-exports.directorySync = directorySync;
 //# sourceMappingURL=directory.js.map

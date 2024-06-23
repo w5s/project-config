@@ -1,4 +1,3 @@
-/// <reference types="node" />
 export type JSONValue = null | number | string | boolean | JSONValue[] | {
     [key: string]: JSONValue;
 };

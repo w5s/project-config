@@ -3,7 +3,7 @@ declare const _default: {
     writerOpts: import("./writer-opts.js").WriterOptions;
     recommendedBumpOpts: {
         parserOpts: import("./parser-opts.js").ParserOptions;
-        whatBump: (commits: readonly import("./recommended-bump-opts.js").Commit[]) => {
+        whatBump: (commits: ReadonlyArray<import("./recommended-bump-opts.js").Commit>) => {
             level: number;
             reason: string;
         };

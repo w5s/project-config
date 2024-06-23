@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.fileSync = exports.file = void 0;
+exports.file = file;
+exports.fileSync = fileSync;
 const promises_1 = require("node:fs/promises");
 const node_fs_1 = require("node:fs");
 async function exists(path) {
@@ -49,7 +50,6 @@ async function file(options) {
         await (0, promises_1.rm)(path, { force: true });
     }
 }
-exports.file = file;
 /**
  * Ensure file is present/absent with content initialized or modified with `update
  *
@@ -78,5 +78,4 @@ function fileSync(options) {
         (0, node_fs_1.rmSync)(path, { force: true });
     }
 }
-exports.fileSync = fileSync;
 //# sourceMappingURL=file.js.map
