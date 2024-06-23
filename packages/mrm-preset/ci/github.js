@@ -33,7 +33,7 @@ function task() {
           'runs-on': 'ubuntu-latest',
           steps: [
             { uses: 'actions/checkout@v4' },
-            { uses: 'dtinth/setup-github-actions-caching-for-turbo@v1' },
+            { uses: 'rharkor/caching-for-turbo@v1.3' },
             {
               uses: 'actions/setup-node@v3',
               with: {

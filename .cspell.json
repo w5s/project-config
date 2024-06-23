@@ -10,5 +10,5 @@
     "packages/mrm-preset/_tester/**",
     "packages/mrm-preset/ci/_autodevops/**"
   ],
-  "words": ["dtinth", "monkeyc", "pipefail"]
+  "words": ["rharkor", "dtinth", "monkeyc", "pipefail"]
 }
