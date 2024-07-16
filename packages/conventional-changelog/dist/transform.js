@@ -33,8 +33,8 @@ function createTransform(config) {
         }));
         const conventionalType = commit.type == null
             ? undefined
-            : data_js_1.CommitConventionalType.parse(commit.type) ??
-                (gitmoji_js_1.GitmojiCode.isValid(commit.type) ? gitmoji_js_1.GitmojiCode.toConventionalCommitType(commit.type) : undefined);
+            : (data_js_1.CommitConventionalType.parse(commit.type) ??
+                (gitmoji_js_1.GitmojiCode.isValid(commit.type) ? gitmoji_js_1.GitmojiCode.toConventionalCommitType(commit.type) : undefined));
         if (ignoreType(conventionalType) && discard)
             return false;
         const type = conventionalType == null
