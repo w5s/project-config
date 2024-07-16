@@ -54,8 +54,8 @@ export function createTransform(config: TransformConfig): WriterOptions.Transfor
     const conventionalType =
       commit.type == null
         ? undefined
-        : CommitConventionalType.parse(commit.type) ??
-          (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : undefined);
+        : (CommitConventionalType.parse(commit.type) ??
+          (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : undefined));
 
     if (ignoreType(conventionalType) && discard) return false;
 
