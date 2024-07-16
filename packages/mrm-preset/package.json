@@ -39,7 +39,7 @@
   "dependencies": {
     "@w5s/dev": "^2.2.2",
     "debug": "^4.3.3",
-    "glob": "^10.0.0",
+    "glob": "^11.0.0",
     "mrm-core": "^7.0.0",
     "semver-intersect": "^1.4.0",
     "sync-directory": "^6.0.0"
