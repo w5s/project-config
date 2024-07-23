@@ -2513,7 +2513,7 @@ __metadata:
     markdown-magic-subpackage-list: "npm:1.1.2"
     prettier: "npm:3.3.3"
     turbo: "npm:2.0.9"
-    typescript: "npm:5.5.3"
+    typescript: "npm:5.5.4"
     vite: "npm:5.3.4"
     vitest: "npm:2.0.4"
   languageName: unknown
@@ -2523,7 +2523,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/ts-config@workspace:packages/ts-config"
   dependencies:
-    typescript: "npm:5.5.3"
+    typescript: "npm:5.5.4"
   peerDependencies:
     typescript: ">=5.x"
   peerDependenciesMeta:
@@ -12317,7 +12317,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:5.5.3, typescript@npm:>=3 < 6":
+"typescript@npm:5.5.4":
+  version: 5.5.4
+  resolution: "typescript@npm:5.5.4"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/422be60f89e661eab29ac488c974b6cc0a660fb2228003b297c3d10c32c90f3bcffc1009b43876a082515a3c376b1eefcce823d6e78982e6878408b9a923199c
+  languageName: node
+  linkType: hard
+
+"typescript@npm:>=3 < 6":
   version: 5.5.3
   resolution: "typescript@npm:5.5.3"
   bin:
@@ -12327,7 +12337,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>":
+  version: 5.5.4
+  resolution: "typescript@patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=379a07"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 10c0/73409d7b9196a5a1217b3aaad929bf76294d3ce7d6e9766dd880ece296ee91cf7d7db6b16c6c6c630ee5096eccde726c0ef17c7dfa52b01a243e57ae1f09ef07
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@npm%3A>=3 < 6#optional!builtin<compat/typescript>":
   version: 5.5.3
   resolution: "typescript@patch:typescript@npm%3A5.5.3#optional!builtin<compat/typescript>::version=5.5.3&hash=379a07"
   bin:
