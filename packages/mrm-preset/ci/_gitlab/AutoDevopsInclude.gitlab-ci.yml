@@ -201,7 +201,7 @@ variables:
 #     IMAGE_NAME: $CI_REGISTRY_IMAGE
 
 .autodevops_node_image:
-  image: node:lts-alpine@sha256:5144f275bf24e03ec5d8629d72eebb66d403a673b668f8fda0dd01176984a701
+  image: node:lts-alpine@sha256:4795fa9fb72c020aee849a794a35b9a0aaeb7b4f0cd2a4f00fac096a7da85195
 
 .autodevops_node_install:
   extends:
