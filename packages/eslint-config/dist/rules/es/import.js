@@ -27,11 +27,11 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
                 devDependencies: [
                     ...imports_1.default.rules['import/no-extraneous-dependencies'][1].devDependencies,
                     // plopfile.js, plopfile.cjs, plopfile.mts, plopfile.ts, ...
-                    ...dev_1.Project.queryExtensions(['javascript', 'typescript']).map((extension) => `plopfile${extension}`),
+                    `plopfile${dev_1.Project.queryExtensions(['javascript', 'typescript']).join(',')}`,
                     // dangerfile.js, dangerfile.cjs, dangerfile.mts, dangerfile.ts, ...
-                    ...dev_1.Project.queryExtensions(['javascript', 'typescript']).map((extension) => `dangerfile${extension}`),
+                    `dangerfile${dev_1.Project.queryExtensions(['javascript', 'typescript']).join(',')}`,
                     // *.config.js, *.config.cjs, *.config.mts, *.config.ts, ...
-                    ...dev_1.Project.queryExtensions(['javascript', 'typescript']).map((extension) => `*.config${extension}`),
+                    `**/*.config${dev_1.Project.queryExtensions(['javascript', 'typescript']).join(',')}`,
                 ],
             },
         ],
