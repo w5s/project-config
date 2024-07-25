@@ -6,6 +6,7 @@ const dev_1 = require("@w5s/dev");
 // @ts-ignore airbnb is not typed
 const imports_1 = __importDefault(require("eslint-config-airbnb-base/rules/imports"));
 // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
+const extensionsToMatcher = (extensions) => `.{${extensions.map((_) => _.slice(1)).join(',')}}`;
 const config = dev_1.ESLintConfig.concat(imports_1.default, 
 // Overrides
 {
@@ -27,11 +28,11 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
                 devDependencies: [
                     ...imports_1.default.rules['import/no-extraneous-dependencies'][1].devDependencies,
                     // plopfile.js, plopfile.cjs, plopfile.mts, plopfile.ts, ...
-                    `plopfile${dev_1.Project.queryExtensions(['javascript', 'typescript']).join(',')}`,
+                    `plopfile${extensionsToMatcher(dev_1.Project.queryExtensions(['javascript', 'typescript']))}`,
                     // dangerfile.js, dangerfile.cjs, dangerfile.mts, dangerfile.ts, ...
-                    `dangerfile${dev_1.Project.queryExtensions(['javascript', 'typescript']).join(',')}`,
+                    `dangerfile${extensionsToMatcher(dev_1.Project.queryExtensions(['javascript', 'typescript']))}`,
                     // *.config.js, *.config.cjs, *.config.mts, *.config.ts, ...
-                    `**/*.config${dev_1.Project.queryExtensions(['javascript', 'typescript']).join(',')}`,
+                    `**/*.config${extensionsToMatcher(dev_1.Project.queryExtensions(['javascript', 'typescript']))}`,
                 ],
             },
         ],

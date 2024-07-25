@@ -5,6 +5,8 @@ import importConfig from 'eslint-config-airbnb-base/rules/imports';
 
 // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
 
+const extensionsToMatcher = (extensions: readonly Project.Extension[]): string =>
+  `.{${extensions.map((_) => _.slice(1)).join(',')}}`;
 const config: eslint.Linter.Config = ESLintConfig.concat(
   importConfig,
   // Overrides
@@ -27,11 +29,11 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
           devDependencies: [
             ...importConfig.rules['import/no-extraneous-dependencies'][1].devDependencies,
             // plopfile.js, plopfile.cjs, plopfile.mts, plopfile.ts, ...
-            `plopfile${Project.queryExtensions(['javascript', 'typescript']).join(',')}`,
+            `plopfile${extensionsToMatcher(Project.queryExtensions(['javascript', 'typescript']))}`,
             // dangerfile.js, dangerfile.cjs, dangerfile.mts, dangerfile.ts, ...
-            `dangerfile${Project.queryExtensions(['javascript', 'typescript']).join(',')}`,
+            `dangerfile${extensionsToMatcher(Project.queryExtensions(['javascript', 'typescript']))}`,
             // *.config.js, *.config.cjs, *.config.mts, *.config.ts, ...
-            `**/*.config${Project.queryExtensions(['javascript', 'typescript']).join(',')}`,
+            `**/*.config${extensionsToMatcher(Project.queryExtensions(['javascript', 'typescript']))}`,
           ],
         },
       ],
