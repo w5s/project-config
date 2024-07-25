@@ -54,7 +54,7 @@
     "@types/eslint": "^8.44.0"
   },
   "devDependencies": {
-    "vite": "5.3.4",
+    "vite": "5.3.5",
     "vitest": "2.0.4"
   },
   "clean-package": "../../clean-package.config.cjs",
