@@ -2507,7 +2507,7 @@ __metadata:
     eslint: "npm:8.57.0"
     eslint-plugin-sort-keys: "npm:2.3.5"
     lerna: "npm:8.1.7"
-    markdown-magic: "npm:3.0.10"
+    markdown-magic: "npm:3.1.0"
     markdown-magic-package-json: "npm:2.0.2"
     markdown-magic-subpackage-list: "npm:1.1.2"
     prettier: "npm:3.3.3"
@@ -8283,9 +8283,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-magic@npm:3.0.10":
-  version: 3.0.10
-  resolution: "markdown-magic@npm:3.0.10"
+"markdown-magic@npm:3.1.0":
+  version: 3.1.0
+  resolution: "markdown-magic@npm:3.1.0"
   dependencies:
     "@davidwells/md-utils": "npm:^0.0.40"
     "@technote-space/doctoc": "npm:2.4.7"
@@ -8296,13 +8296,14 @@ __metadata:
     is-valid-path: "npm:^0.1.1"
     micro-mdx-parser: "npm:^1.1.0"
     mri: "npm:^1.2.0"
+    node-fetch: "npm:^2.7.0"
     oparser: "npm:^3.0.13"
     smart-glob: "npm:^1.0.2"
     sync-request: "npm:^6.1.0"
   bin:
     markdown: cli.js
     md-magic: cli.js
-  checksum: 10c0/817c5b252eb557bcee3f666216ab7c5f0e6fcfd2545556c93e363f298fa082b70b0e476d195cfef01534aac0014edda94f54d1597376b0f992cc1bf2925921a6
+  checksum: 10c0/aaf2bcdc853ea2844d41db941c50e67b7d6e14188a9f3322f5836e7df693c4f7f7a105fceb931a59e6dc2db5b8a763d769ccbb5ce21ba52920362b7e68596ec4
   languageName: node
   linkType: hard
 
@@ -9211,7 +9212,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.7":
+"node-fetch@npm:^2.6.7, node-fetch@npm:^2.7.0":
   version: 2.7.0
   resolution: "node-fetch@npm:2.7.0"
   dependencies:
