@@ -61,7 +61,7 @@
     "eslint-plugin-jsdoc": "^48.0.0",
     "eslint-plugin-jsonc": "^2.4.0",
     "eslint-plugin-prettier": "^5.0.0-alpha.0",
-    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-promise": "^7.0.0",
     "eslint-plugin-unicorn": "^49.0.0",
     "eslint-plugin-yml": "^1.1.0",
     "find-up": "^5.0.0",
