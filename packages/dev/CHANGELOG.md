@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.6](https://github.com/w5s/project-config/compare/@w5s/dev@2.2.5...@w5s/dev@2.2.6) (2024-08-05)
+
+**Note:** Version bump only for package @w5s/dev
+
 ## [2.2.5](https://github.com/w5s/project-config/compare/@w5s/dev@2.2.4...@w5s/dev@2.2.5) (2024-07-25)
 
 **Note:** Version bump only for package @w5s/dev
