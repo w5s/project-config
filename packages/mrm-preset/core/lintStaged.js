@@ -1,5 +1,4 @@
 const pkg = require('./pkg.js');
-const npm = require('./npm.js');
 const jsonFile = require('./jsonFile.js');
 
 /**
