@@ -24,11 +24,11 @@ function lintStaged({ state, update }) {
   });
 
   // Dependencies
-  npm.dependency({
-    dev: true,
-    name: ['lint-staged'],
-    state,
-  });
+  // npm.dependency({
+  //   dev: true,
+  //   name: ['lint-staged'],
+  //   state,
+  // });
 }
 
 module.exports = {
