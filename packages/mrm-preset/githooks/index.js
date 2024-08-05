@@ -26,11 +26,13 @@ function task() {
       ],
     }),
   });
-  pkg.script(packageFile, {
-    name: `${project.prepare}:githooks`,
-    state: gitSupported ? 'present' : 'absent',
-    // eslint-disable-next-line no-template-curly-in-string
-    update: (_) => '[ -n "${CI:-}" ] || git config core.hooksPath .githooks',
+  pkg.withPackageJson((_packageFile) => {
+    pkg.script(_packageFile, {
+      name: `${project.prepare}:githooks`,
+      state: gitSupported ? 'present' : 'absent',
+      // eslint-disable-next-line no-template-curly-in-string
+      update: (_) => '[ -n "${CI:-}" ] || git config core.hooksPath .githooks',
+    });
   });
 
   gitHook({
