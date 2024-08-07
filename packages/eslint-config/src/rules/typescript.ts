@@ -89,6 +89,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       '@typescript-eslint/no-dupe-class-members': baseRules['no-dupe-class-members'],
       '@typescript-eslint/no-empty-function': baseRules['no-empty-function'],
       '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: true }],
+      '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-explicit-any': 'off', // if any is explicit then it's wanted
       '@typescript-eslint/no-extra-parens': baseRules['no-extra-parens'],
       '@typescript-eslint/no-extra-semi': baseRules['no-extra-semi'],
