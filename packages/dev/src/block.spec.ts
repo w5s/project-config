@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { mkdir, rmdir, readFile } from 'node:fs/promises';
+import { mkdir, rm, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { block } from './block.js';
 import { file } from './file.js';
@@ -10,7 +10,7 @@ describe('block', () => {
   beforeEach(async () => {
     testPath = `.cache/test-block-${Math.random().toString(36)}`;
     try {
-      await rmdir(testPath, { recursive: true });
+      await rm(testPath, { recursive: true });
     } catch {
       /* empty */
     }

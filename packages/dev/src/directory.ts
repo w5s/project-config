@@ -1,5 +1,5 @@
-import { existsSync, mkdirSync, rmdirSync } from 'node:fs';
-import { access, constants, mkdir, rmdir } from 'node:fs/promises';
+import { existsSync, mkdirSync, rmSync } from 'node:fs';
+import { access, constants, mkdir, rm } from 'node:fs/promises';
 
 async function exists(path: string) {
   try {
@@ -42,7 +42,7 @@ export async function directory(options: DirectoryOptions): Promise<void> {
       await mkdir(path, { recursive: true });
     }
   } else if (isPresent) {
-    await rmdir(path, { recursive: true });
+    await rm(path, { recursive: true });
   }
 }
 
@@ -67,6 +67,6 @@ export function directorySync(options: DirectoryOptions): void {
       mkdirSync(path, { recursive: true });
     }
   } else if (isPresent) {
-    rmdirSync(path, { recursive: true });
+    rmSync(path, { recursive: true });
   }
 }

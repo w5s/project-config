@@ -1,5 +1,5 @@
 import { beforeAll, describe, it, expect } from 'vitest';
-import { mkdir, readFile, rmdir } from 'node:fs/promises';
+import { mkdir, readFile, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { json } from './json.js';
 
@@ -8,7 +8,7 @@ describe('json', () => {
 
   beforeAll(async () => {
     try {
-      await rmdir(TEST_PATH, { recursive: true });
+      await rm(TEST_PATH, { recursive: true });
     } catch {
       /* empty */
     }

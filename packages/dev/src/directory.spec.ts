@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from 'vitest';
-import { mkdir, rmdir } from 'node:fs/promises';
+import { mkdir, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { existsSync } from 'node:fs';
 import { directory, directorySync } from './directory.js';
@@ -12,7 +12,7 @@ describe.each([
 
   beforeAll(async () => {
     try {
-      await rmdir(TEST_PATH, { recursive: true });
+      await rm(TEST_PATH, { recursive: true });
     } catch {
       /* empty */
     }

@@ -35,7 +35,7 @@ async function directory(options) {
         }
     }
     else if (isPresent) {
-        await (0, promises_1.rmdir)(path, { recursive: true });
+        await (0, promises_1.rm)(path, { recursive: true });
     }
 }
 /**
@@ -60,7 +60,7 @@ function directorySync(options) {
         }
     }
     else if (isPresent) {
-        (0, node_fs_1.rmdirSync)(path, { recursive: true });
+        (0, node_fs_1.rmSync)(path, { recursive: true });
     }
 }
 //# sourceMappingURL=directory.js.map
