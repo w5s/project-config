@@ -2504,7 +2504,7 @@ __metadata:
     eslint: "npm:8.57.0"
     eslint-plugin-sort-keys: "npm:2.3.5"
     lerna: "npm:8.1.8"
-    markdown-magic: "npm:3.1.0"
+    markdown-magic: "npm:3.3.0"
     markdown-magic-package-json: "npm:2.0.2"
     markdown-magic-subpackage-list: "npm:1.1.2"
     prettier: "npm:3.3.3"
@@ -8299,9 +8299,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-magic@npm:3.1.0":
-  version: 3.1.0
-  resolution: "markdown-magic@npm:3.1.0"
+"markdown-magic@npm:3.3.0":
+  version: 3.3.0
+  resolution: "markdown-magic@npm:3.3.0"
   dependencies:
     "@davidwells/md-utils": "npm:^0.0.40"
     "@technote-space/doctoc": "npm:2.4.7"
@@ -8319,7 +8319,7 @@ __metadata:
   bin:
     markdown: cli.js
     md-magic: cli.js
-  checksum: 10c0/aaf2bcdc853ea2844d41db941c50e67b7d6e14188a9f3322f5836e7df693c4f7f7a105fceb931a59e6dc2db5b8a763d769ccbb5ce21ba52920362b7e68596ec4
+  checksum: 10c0/32026fa2a47ec1b2f658318c3e959ca5b18a8a9031abcbcae012eae94d7c26eac41dcb5f9c31d34ba674bf5803aeca243fb5cb3c12028eb7eda8a0ef9cc9f4b9
   languageName: node
   linkType: hard
 
