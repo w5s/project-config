@@ -2345,7 +2345,7 @@ __metadata:
   dependencies:
     browserslist: "npm:4.23.3"
     lodash-es: "npm:4.17.21"
-    vite: "npm:5.4.0"
+    vite: "npm:5.4.1"
     vitest: "npm:2.0.5"
   peerDependencies:
     browserslist: ">= 4.0"
@@ -2362,7 +2362,7 @@ __metadata:
     "@commitlint/lint": "npm:19.2.2"
     "@commitlint/types": "npm:^18.0.0"
     "@w5s/conventional-changelog": "npm:^2.0.20"
-    vite: "npm:5.4.0"
+    vite: "npm:5.4.1"
     vitest: "npm:2.0.5"
   peerDependencies:
     "@commitlint/cli": ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2381,7 +2381,7 @@ __metadata:
     "@types/conventional-commits-parser": "npm:5.0.0"
     emoji-regex: "npm:^10.2.1"
     gitmojis: "npm:^3.13.4"
-    vite: "npm:5.4.0"
+    vite: "npm:5.4.1"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -2393,7 +2393,7 @@ __metadata:
     "@cspell/cspell-bundled-dicts": "npm:8.13.3"
     "@cspell/cspell-tools": "npm:8.13.3"
     "@cspell/cspell-types": "npm:8.13.3"
-    vite: "npm:5.4.0"
+    vite: "npm:5.4.1"
     vitest: "npm:2.0.5"
   peerDependencies:
     cspell: ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -2408,7 +2408,7 @@ __metadata:
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
     "@types/eslint": "npm:^8.44.0"
-    vite: "npm:5.4.0"
+    vite: "npm:5.4.1"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -2441,7 +2441,7 @@ __metadata:
     parse-gitignore: "npm:^2.0.0"
     prettier: "npm:3.3.3"
     react: "npm:18.3.1"
-    vite: "npm:5.4.0"
+    vite: "npm:5.4.1"
     vitest: "npm:2.0.5"
   peerDependencies:
     eslint: 8.x
@@ -2476,7 +2476,7 @@ __metadata:
   resolution: "@w5s/prettier-config@workspace:packages/prettier-config"
   dependencies:
     prettier: "npm:3.3.3"
-    vite: "npm:5.4.0"
+    vite: "npm:5.4.1"
     vitest: "npm:2.0.5"
   peerDependencies:
     prettier: 2.x || 3.x
@@ -2510,7 +2510,7 @@ __metadata:
     prettier: "npm:3.3.3"
     turbo: "npm:2.0.13"
     typescript: "npm:5.5.4"
-    vite: "npm:5.4.0"
+    vite: "npm:5.4.1"
     vitest: "npm:2.0.5"
   languageName: unknown
   linkType: soft
@@ -10297,7 +10297,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"postcss@npm:^8.4.40":
+"postcss@npm:^8.4.40, postcss@npm:^8.4.41":
   version: 8.4.41
   resolution: "postcss@npm:8.4.41"
   dependencies:
@@ -12718,7 +12718,50 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.4.0, vite@npm:^5.0.0":
+"vite@npm:5.4.1":
+  version: 5.4.1
+  resolution: "vite@npm:5.4.1"
+  dependencies:
+    esbuild: "npm:^0.21.3"
+    fsevents: "npm:~2.3.3"
+    postcss: "npm:^8.4.41"
+    rollup: "npm:^4.13.0"
+  peerDependencies:
+    "@types/node": ^18.0.0 || >=20.0.0
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    sass-embedded: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.4.0
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    sass-embedded:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 10c0/b9ea824f1a946aa494f756e6d9dd88869baa62ae5ba3071b32b6a20958fd622cb624c860bdd7daee201c83ca029feaf8bbe2d2a6e172a5d49308772f8899d86d
+  languageName: node
+  linkType: hard
+
+"vite@npm:^5.0.0":
   version: 5.4.0
   resolution: "vite@npm:5.4.0"
   dependencies:
