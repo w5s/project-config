@@ -58,9 +58,9 @@
     "@cspell/cspell-bundled-dicts": "^8.0.0"
   },
   "devDependencies": {
-    "@cspell/cspell-bundled-dicts": "8.13.3",
-    "@cspell/cspell-tools": "8.13.3",
-    "@cspell/cspell-types": "8.13.3",
+    "@cspell/cspell-bundled-dicts": "8.14.1",
+    "@cspell/cspell-tools": "8.14.1",
+    "@cspell/cspell-types": "8.14.1",
     "vite": "5.4.1",
     "vitest": "2.0.5"
   },
