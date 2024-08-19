@@ -13,5 +13,6 @@ rushstack
 seatonjiang
 strictsoftware
 Stroustrup
+tsup
 typecript
 VueJS
