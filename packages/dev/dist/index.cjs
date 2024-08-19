@@ -1,10 +1,12 @@
-import { existsSync, mkdirSync, rmSync, readFileSync, writeFileSync, constants as constants$1, accessSync } from 'node:fs';
-import { mkdir, rm, readFile, writeFile, access, constants } from 'node:fs/promises';
+'use strict';
+
+var fs = require('fs');
+var promises = require('fs/promises');
 
 // src/directory.ts
 async function exists(path) {
   try {
-    await access(path, constants.F_OK);
+    await promises.access(path, promises.constants.F_OK);
     return true;
   } catch {
     return false;
@@ -15,21 +17,21 @@ async function directory(options) {
   const isPresent = await exists(path);
   if (state === "present") {
     if (!isPresent) {
-      await mkdir(path, { recursive: true });
+      await promises.mkdir(path, { recursive: true });
     }
   } else if (isPresent) {
-    await rm(path, { recursive: true });
+    await promises.rm(path, { recursive: true });
   }
 }
 function directorySync(options) {
   const { path, state } = options;
-  const isPresent = existsSync(path);
+  const isPresent = fs.existsSync(path);
   if (state === "present") {
     if (!isPresent) {
-      mkdirSync(path, { recursive: true });
+      fs.mkdirSync(path, { recursive: true });
     }
   } else if (isPresent) {
-    rmSync(path, { recursive: true });
+    fs.rmSync(path, { recursive: true });
   }
 }
 
@@ -46,7 +48,7 @@ function toArray(value) {
 function concatArray(left, right) {
   return toArray(left).concat(toArray(right));
 }
-var ESLintConfig;
+exports.ESLintConfig = void 0;
 ((ESLintConfig2) => {
   function concat(...configs) {
     return configs.reduce(
@@ -79,10 +81,10 @@ var ESLintConfig;
     return "off";
   }
   ESLintConfig2.fixme = fixme;
-})(ESLintConfig || (ESLintConfig = {}));
+})(exports.ESLintConfig || (exports.ESLintConfig = {}));
 async function exists2(path) {
   try {
-    await access(path, constants$1.F_OK);
+    await promises.access(path, fs.constants.F_OK);
     return true;
   } catch {
     return false;
@@ -90,7 +92,7 @@ async function exists2(path) {
 }
 function existsSync2(path) {
   try {
-    accessSync(path, constants$1.F_OK);
+    fs.accessSync(path, fs.constants.F_OK);
     return true;
   } catch {
     return false;
@@ -100,26 +102,26 @@ async function file(options) {
   const { path, state, update, encoding = "utf8" } = options;
   if (state === "present") {
     const isPresent = await exists2(path);
-    const previousContent = isPresent ? await readFile(path, encoding) : "";
+    const previousContent = isPresent ? await promises.readFile(path, encoding) : "";
     const newContent = update == null ? "" : update(previousContent);
     if (newContent != null) {
-      await writeFile(path, newContent, encoding);
+      await promises.writeFile(path, newContent, encoding);
     }
   } else {
-    await rm(path, { force: true });
+    await promises.rm(path, { force: true });
   }
 }
 function fileSync(options) {
   const { path, state, update, encoding = "utf8" } = options;
   if (state === "present") {
     const isPresent = existsSync2(path);
-    const previousContent = isPresent ? readFileSync(path, encoding) : "";
+    const previousContent = isPresent ? fs.readFileSync(path, encoding) : "";
     const newContent = update == null ? "" : update(previousContent);
     if (newContent != null) {
-      writeFileSync(path, newContent, encoding);
+      fs.writeFileSync(path, newContent, encoding);
     }
   } else {
-    rmSync(path, { force: true });
+    fs.rmSync(path, { force: true });
   }
 }
 
@@ -231,7 +233,7 @@ function jsonSync(options) {
 function escapeRegExp(value) {
   return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
 }
-var Project;
+exports.Project = void 0;
 ((Project2) => {
   function ecmaVersion() {
     return 2022;
@@ -296,7 +298,7 @@ var Project;
     return `*.+(${extensions.map((_) => _.replace(/^\./, "")).join("|")})`;
   }
   Project2.extensionsToGlob = extensionsToGlob;
-})(Project || (Project = {}));
+})(exports.Project || (exports.Project = {}));
 
 // src/projectScript.ts
 var ProjectScript = {
@@ -317,6 +319,14 @@ var ProjectScript = {
   Validate: "validate"
 };
 
-export { ESLintConfig, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, json, jsonSync };
-//# sourceMappingURL=index.js.map
-//# sourceMappingURL=index.js.map
+exports.ProjectScript = ProjectScript;
+exports.block = block;
+exports.blockSync = blockSync;
+exports.directory = directory;
+exports.directorySync = directorySync;
+exports.file = file;
+exports.fileSync = fileSync;
+exports.json = json;
+exports.jsonSync = jsonSync;
+//# sourceMappingURL=index.cjs.map
+//# sourceMappingURL=index.cjs.map

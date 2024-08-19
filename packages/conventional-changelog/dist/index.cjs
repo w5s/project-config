@@ -1,7 +1,15 @@
-import emojiRegexp from 'emoji-regex';
-import { gitmojis } from 'gitmojis';
-import { readFileSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var emojiRegexp = require('emoji-regex');
+var gitmojis = require('gitmojis');
+var fs = require('fs');
+var path = require('path');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+
+var emojiRegexp__default = /*#__PURE__*/_interopDefault(emojiRegexp);
 
 // src/git-raw-commit-opts.ts
 var gitRawCommitOpts = {
@@ -119,9 +127,9 @@ var CommitConventionalType = (() => {
   }
   return { ...enumObject, hasInstance, getData, values, parse, findWhere };
 })();
-var Emoji;
+exports.Emoji = void 0;
 ((Emoji2) => {
-  Emoji2.reEmojiUnicode = emojiRegexp();
+  Emoji2.reEmojiUnicode = emojiRegexp__default.default();
   Emoji2.reEmojiText = /:\w*:/;
   const reMatchOnly = (input) => new RegExp(`^${input.source}$`, "");
   const _reEmojiUnicode = reMatchOnly(Emoji2.reEmojiUnicode);
@@ -138,15 +146,15 @@ var Emoji;
     return isText(anyValue) || isUnicode(anyValue);
   }
   Emoji2.hasInstance = hasInstance;
-})(Emoji || (Emoji = {}));
-var GitmojiCode;
+})(exports.Emoji || (exports.Emoji = {}));
+exports.GitmojiCode = void 0;
 ((GitmojiCode2) => {
   const allGitmojiCodes = new Set(
-    gitmojis.map((gitmoji) => gitmoji.code).concat(gitmojis.map((gitmoji) => gitmoji.emoji))
+    gitmojis.gitmojis.map((gitmoji) => gitmoji.code).concat(gitmojis.gitmojis.map((gitmoji) => gitmoji.emoji))
   );
   const index = {
     // code: createIndex(gitmojis, 'code'),
-    emoji: createIndex(gitmojis, "emoji")
+    emoji: createIndex(gitmojis.gitmojis, "emoji")
   };
   function createIndex(list, key) {
     return new Map(list.map((gitmoji) => [gitmoji[key], gitmoji]));
@@ -192,11 +200,11 @@ var GitmojiCode;
     return conversionMap.get(gitmoji) ?? defaultType;
   }
   GitmojiCode2.toConventionalCommitType = toConventionalCommitType2;
-})(GitmojiCode || (GitmojiCode = {}));
+})(exports.GitmojiCode || (exports.GitmojiCode = {}));
 
 // src/recommended-bump-opts.ts
 function toConventionalCommitType(text) {
-  return GitmojiCode.isValid(text) ? GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
+  return exports.GitmojiCode.isValid(text) ? exports.GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
 }
 var recommendedBumpOpts = {
   parserOpts,
@@ -246,7 +254,7 @@ function createTransform(config) {
       ...note,
       title: `${config.withEmoji === false ? "" : "\u{1F4A5} "}BREAKING CHANGES`
     }));
-    const conventionalType = commit.type == null ? void 0 : CommitConventionalType.parse(commit.type) ?? (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : void 0);
+    const conventionalType = commit.type == null ? void 0 : CommitConventionalType.parse(commit.type) ?? (exports.GitmojiCode.isValid(commit.type) ? exports.GitmojiCode.toConventionalCommitType(commit.type) : void 0);
     if (ignoreType(conventionalType) && discard) return false;
     const type = conventionalType == null ? conventionalType : displayType(conventionalType, {
       withEmoji: config.withEmoji
@@ -294,12 +302,12 @@ function createTransform(config) {
 }
 
 // src/writer-opts.ts
-var basePath = resolve(dirname(__dirname), "./template");
-var mainTemplate = readFileSync(`${basePath}/template.hbs`, "utf8");
-var headerPartial = readFileSync(`${basePath}/header.hbs`, "utf8");
-var commitPartial = readFileSync(`${basePath}/commit.hbs`, "utf8");
-var footerPartial = readFileSync(`${basePath}/footer.hbs`, "utf8");
-var author = readFileSync(`${basePath}/author.hbs`, "utf8");
+var basePath = path.resolve(path.dirname(__dirname), "./template");
+var mainTemplate = fs.readFileSync(`${basePath}/template.hbs`, "utf8");
+var headerPartial = fs.readFileSync(`${basePath}/header.hbs`, "utf8");
+var commitPartial = fs.readFileSync(`${basePath}/commit.hbs`, "utf8");
+var footerPartial = fs.readFileSync(`${basePath}/footer.hbs`, "utf8");
+var author = fs.readFileSync(`${basePath}/author.hbs`, "utf8");
 var defaultDisplayTypes = CommitConventionalType.findWhere((_) => _.changelog);
 var writerOpts = {
   transform: createTransform({
@@ -324,6 +332,6 @@ var src_default = {
   gitRawCommitOpts
 };
 
-export { Emoji, GitmojiCode, src_default as default };
-//# sourceMappingURL=index.js.map
-//# sourceMappingURL=index.js.map
+exports.default = src_default;
+//# sourceMappingURL=index.cjs.map
+//# sourceMappingURL=index.cjs.map

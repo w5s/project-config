@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`index > should match snapshot 1`] = `
+{
+  "defaultConfig": {
+    "clean": true,
+    "dts": true,
+    "entry": [
+      "src/index.ts",
+      "!src/**/*.test.*",
+      "!src/**/*.spec.*",
+      "!**/__mocks__/**",
+    ],
+    "format": [
+      "esm",
+    ],
+    "sourcemap": true,
+    "splitting": false,
+    "treeshake": "recommended",
+  },
+  "defineConfig": [Function],
+}
+`;

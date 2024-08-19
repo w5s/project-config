@@ -2554,8 +2554,10 @@ __metadata:
     "@commitlint/types": "npm:^18.0.0"
     "@types/conventional-changelog-writer": "npm:4.0.10"
     "@types/conventional-commits-parser": "npm:5.0.0"
+    "@w5s/tsup-config": "workspace:*"
     emoji-regex: "npm:^10.2.1"
     gitmojis: "npm:^3.13.4"
+    tsup: "npm:8.2.4"
     vite: "npm:5.4.1"
     vitest: "npm:2.0.5"
   languageName: unknown

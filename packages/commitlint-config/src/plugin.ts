@@ -1,5 +1,5 @@
 import type { Plugin, Rule, RuleConfigCondition } from '@commitlint/types';
-import { Emoji, GitmojiCode } from '@w5s/conventional-changelog/dist/gitmoji.js';
+import { Emoji, GitmojiCode } from '@w5s/conventional-changelog';
 
 const $if =
   (when: RuleConfigCondition | undefined = 'always') =>

@@ -1,3 +1,5 @@
+'use strict';
+
 // src/index.ts
 var prettierConfig = {
   singleQuote: true,
@@ -13,6 +15,6 @@ var prettierConfig = {
 };
 var src_default = prettierConfig;
 
-export { src_default as default };
-//# sourceMappingURL=index.js.map
-//# sourceMappingURL=index.js.map
+module.exports = src_default;
+//# sourceMappingURL=index.cjs.map
+//# sourceMappingURL=index.cjs.map

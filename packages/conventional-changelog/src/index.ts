@@ -3,6 +3,8 @@ import { parserOpts } from './parser-opts.js';
 import { recommendedBumpOpts } from './recommended-bump-opts.js';
 import { writerOpts } from './writer-opts.js';
 
+export * from './gitmoji.js';
+
 export default {
   parserOpts,
   writerOpts,
