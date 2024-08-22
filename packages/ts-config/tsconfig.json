@@ -19,6 +19,7 @@
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
+    "outDir": "${configDir}/dist",
     // "noUnusedLocals": true, => Prefer ESLint validation
     // "noUnusedParameters": true, => Prefer ESLint validation
     "pretty": true,
