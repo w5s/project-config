@@ -8,4 +8,5 @@ export const defaultConfig: Options = {
   clean: true,
   treeshake: 'recommended',
   splitting: false,
+  tsconfig: 'tsconfig.build.json',
 };
