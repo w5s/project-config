@@ -74,7 +74,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
               extends: './tsconfig.json',
               compilerOptions: {
                 noEmit: false,
-                outDir: 'dist',
+                // outDir: 'dist',
               },
               include: ['src'],
             })
