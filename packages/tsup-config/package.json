@@ -50,7 +50,7 @@
   },
   "scripts": {
     "build": "concurrently \"npm:build:*\" \":\"",
-    "build:tsc": "npx tsup",
+    "build:tsc": "tsc -b tsconfig.build.json",
     "clean": "concurrently \"npm:clean:*\" \":\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
