@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.27 (2024-08-24)</small>
+
+- ⬆️ Upgrade dependency @types/react to v18.3.4 ([59dffaa](https://github.com/w5s/project-config/commit/59dffaa))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v8.1.0 ([18c537d](https://github.com/w5s/project-config/commit/18c537d))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v8.2.0 ([025a6de](https://github.com/w5s/project-config/commit/025a6de))
+- ⬆️ Upgrade dependency eslint-plugin-jsdoc to v50 ([cbd9913](https://github.com/w5s/project-config/commit/cbd9913))
+- ⬆️ Upgrade dependency vite to v5.4.1 ([d0c58bc](https://github.com/w5s/project-config/commit/d0c58bc))
+- ⬆️ Upgrade dependency vite to v5.4.2 ([1ddda2e](https://github.com/w5s/project-config/commit/1ddda2e))
+- 🔧 Nettoie outDir car n'est plus nécessaire ([b42fdea](https://github.com/w5s/project-config/commit/b42fdea))
+
 ## [2.0.26](https://github.com/w5s/project-config/compare/@w5s/eslint-config@2.0.25...@w5s/eslint-config@2.0.26) (2024-08-07)
 
 ### 🐛 Bug Fixes

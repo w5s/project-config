@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.2.8 (2024-08-24)</small>
+
+- ✨ Add ESM and CJS support ([d24d741](https://github.com/w5s/project-config/commit/d24d741))
+- ⬆️ Upgrade dependency vite to v5.4.1 ([d0c58bc](https://github.com/w5s/project-config/commit/d0c58bc))
+- ⬆️ Upgrade dependency vite to v5.4.2 ([1ddda2e](https://github.com/w5s/project-config/commit/1ddda2e))
+- 🔧 Nettoie outDir car n'est plus nécessaire ([b42fdea](https://github.com/w5s/project-config/commit/b42fdea))
+
 ## [2.2.7](https://github.com/w5s/project-config/compare/@w5s/dev@2.2.6...@w5s/dev@2.2.7) (2024-08-07)
 
 **Note:** Version bump only for package @w5s/dev

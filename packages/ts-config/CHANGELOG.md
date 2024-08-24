@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.14 (2024-08-24)</small>
+
+- ✨ Add default outDir value ([0b898f0](https://github.com/w5s/project-config/commit/0b898f0))
+
 ## [2.0.13](https://github.com/w5s/project-config/compare/@w5s/ts-config@2.0.12...@w5s/ts-config@2.0.13) (2024-07-24)
 
 **Note:** Version bump only for package @w5s/ts-config

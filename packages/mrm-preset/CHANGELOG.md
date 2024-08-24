@@ -3,6 +3,37 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.7.2 (2024-08-24)</small>
+
+- ✨ Remove explicit outDir ([184ee87](https://github.com/w5s/project-config/commit/184ee87))
+- 👷 Upgrade node:lts-alpine Docker digest to 1a526b9 ([0053ace](https://github.com/w5s/project-config/commit/0053ace))
+- 👷 Upgrade renovate/renovate Docker digest to 00075dd ([ed6d67e](https://github.com/w5s/project-config/commit/ed6d67e))
+- 👷 Upgrade renovate/renovate Docker digest to 01cabb7 ([99cf364](https://github.com/w5s/project-config/commit/99cf364))
+- 👷 Upgrade renovate/renovate Docker digest to 1cd03de ([0f5633f](https://github.com/w5s/project-config/commit/0f5633f))
+- 👷 Upgrade renovate/renovate Docker digest to 1fb5284 ([8b70838](https://github.com/w5s/project-config/commit/8b70838))
+- 👷 Upgrade renovate/renovate Docker digest to 33e9071 ([33c9af7](https://github.com/w5s/project-config/commit/33c9af7))
+- 👷 Upgrade renovate/renovate Docker digest to 3b17d4c ([2b9e4e3](https://github.com/w5s/project-config/commit/2b9e4e3))
+- 👷 Upgrade renovate/renovate Docker digest to 3befd26 ([9f539fc](https://github.com/w5s/project-config/commit/9f539fc))
+- 👷 Upgrade renovate/renovate Docker digest to 3bfa289 ([26ed417](https://github.com/w5s/project-config/commit/26ed417))
+- 👷 Upgrade renovate/renovate Docker digest to 3f9ef0a ([fa83e8a](https://github.com/w5s/project-config/commit/fa83e8a))
+- 👷 Upgrade renovate/renovate Docker digest to 4de20ad ([d35a3a3](https://github.com/w5s/project-config/commit/d35a3a3))
+- 👷 Upgrade renovate/renovate Docker digest to 52b9e6a ([4cca745](https://github.com/w5s/project-config/commit/4cca745))
+- 👷 Upgrade renovate/renovate Docker digest to 55a1994 ([a3e7cec](https://github.com/w5s/project-config/commit/a3e7cec))
+- 👷 Upgrade renovate/renovate Docker digest to 5dffe4e ([3d62293](https://github.com/w5s/project-config/commit/3d62293))
+- 👷 Upgrade renovate/renovate Docker digest to 80e07ee ([a08834b](https://github.com/w5s/project-config/commit/a08834b))
+- 👷 Upgrade renovate/renovate Docker digest to 865a090 ([f199cb5](https://github.com/w5s/project-config/commit/f199cb5))
+- 👷 Upgrade renovate/renovate Docker digest to 8c49d4f ([2b6fd9e](https://github.com/w5s/project-config/commit/2b6fd9e))
+- 👷 Upgrade renovate/renovate Docker digest to 8f44318 ([3c67a71](https://github.com/w5s/project-config/commit/3c67a71))
+- 👷 Upgrade renovate/renovate Docker digest to 93a74b8 ([6701211](https://github.com/w5s/project-config/commit/6701211))
+- 👷 Upgrade renovate/renovate Docker digest to 94ef3d4 ([6f20ea4](https://github.com/w5s/project-config/commit/6f20ea4))
+- 👷 Upgrade renovate/renovate Docker digest to b5b2071 ([6632b19](https://github.com/w5s/project-config/commit/6632b19))
+- 👷 Upgrade renovate/renovate Docker digest to c73313d ([fd7f81e](https://github.com/w5s/project-config/commit/fd7f81e))
+- 👷 Upgrade renovate/renovate Docker digest to cf8719c ([2ccfc35](https://github.com/w5s/project-config/commit/2ccfc35))
+- 👷 Upgrade renovate/renovate Docker digest to e876b0a ([33694a4](https://github.com/w5s/project-config/commit/33694a4))
+- 👷 Upgrade renovate/renovate Docker digest to edb21ef ([5f0092d](https://github.com/w5s/project-config/commit/5f0092d))
+- 👷 Upgrade renovate/renovate Docker digest to f24c81f ([4e6f33b](https://github.com/w5s/project-config/commit/4e6f33b))
+- 👷 Upgrade renovate/renovate Docker digest to f44d6a3 ([e0a2e75](https://github.com/w5s/project-config/commit/e0a2e75))
+
 ## [2.7.1](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.7.0...@w5s/mrm-preset@2.7.1) (2024-08-07)
 
 **Note:** Version bump only for package @w5s/mrm-preset

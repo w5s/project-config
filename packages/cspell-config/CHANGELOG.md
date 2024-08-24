@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.3.8 (2024-08-24)</small>
+
+- ⬆️ Upgrade CSpell group to v8.13.2 ([0c5ed79](https://github.com/w5s/project-config/commit/0c5ed79))
+- ⬆️ Upgrade CSpell group to v8.13.3 ([a654e00](https://github.com/w5s/project-config/commit/a654e00))
+- ⬆️ Upgrade CSpell group to v8.14.1 ([031f3b9](https://github.com/w5s/project-config/commit/031f3b9))
+- ⬆️ Upgrade CSpell group to v8.14.2 ([083315e](https://github.com/w5s/project-config/commit/083315e))
+- ⬆️ Upgrade dependency vite to v5.4.1 ([d0c58bc](https://github.com/w5s/project-config/commit/d0c58bc))
+- ⬆️ Upgrade dependency vite to v5.4.2 ([1ddda2e](https://github.com/w5s/project-config/commit/1ddda2e))
+- 💬 Add tsup word to dictionary ([18fea91](https://github.com/w5s/project-config/commit/18fea91))
+- 🔧 Nettoie outDir car n'est plus nécessaire ([b42fdea](https://github.com/w5s/project-config/commit/b42fdea))
+
 ## [2.3.7](https://github.com/w5s/project-config/compare/@w5s/cspell-config@2.3.6...@w5s/cspell-config@2.3.7) (2024-08-07)
 
 **Note:** Version bump only for package @w5s/cspell-config
