@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.7.3 (2024-08-28)</small>
+
+- ✨ Replace concurrently with npm-run-all2 ([c3276cc](https://github.com/w5s/project-config/commit/c3276cc))
+- 👷 Upgrade renovate/renovate Docker digest to 2242ab6 ([daa8047](https://github.com/w5s/project-config/commit/daa8047))
+- 👷 Upgrade renovate/renovate Docker digest to 273f9b5 ([0d61364](https://github.com/w5s/project-config/commit/0d61364))
+- 👷 Upgrade renovate/renovate Docker digest to 2a8e40d ([2c3d2eb](https://github.com/w5s/project-config/commit/2c3d2eb))
+- 👷 Upgrade renovate/renovate Docker digest to 2c3228b ([7ae7a02](https://github.com/w5s/project-config/commit/7ae7a02))
+- 👷 Upgrade renovate/renovate Docker digest to 71d466f ([7f055c5](https://github.com/w5s/project-config/commit/7f055c5))
+- 👷 Upgrade renovate/renovate Docker digest to ca46c37 ([b39844f](https://github.com/w5s/project-config/commit/b39844f))
+- 👷 Upgrade renovate/renovate Docker digest to daa9c61 ([27facfb](https://github.com/w5s/project-config/commit/27facfb))
+- 👷 Upgrade renovate/renovate Docker digest to fa865ed ([fcfe636](https://github.com/w5s/project-config/commit/fcfe636))
+
 ## <small>2.7.2 (2024-08-24)</small>
 
 - ✨ Remove explicit outDir ([184ee87](https://github.com/w5s/project-config/commit/184ee87))

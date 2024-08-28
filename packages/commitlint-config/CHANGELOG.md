@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.24 (2024-08-28)</small>
+
+- ✨ Replace concurrently with npm-run-all2 ([c3276cc](https://github.com/w5s/project-config/commit/c3276cc))
+
 ## <small>2.0.23 (2024-08-24)</small>
 
 - ✨ Add ESM and CJS support ([d24d741](https://github.com/w5s/project-config/commit/d24d741))

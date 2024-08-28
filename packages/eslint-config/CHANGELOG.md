@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.28 (2024-08-28)</small>
+
+- ✨ Replace concurrently with npm-run-all2 ([c3276cc](https://github.com/w5s/project-config/commit/c3276cc))
+- ⬆️ Upgrade dependency @types/eslint to v8.56.12 ([6fb8a82](https://github.com/w5s/project-config/commit/6fb8a82))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v8.3.0 ([d0d8aeb](https://github.com/w5s/project-config/commit/d0d8aeb))
+
 ## <small>2.0.27 (2024-08-24)</small>
 
 - ⬆️ Upgrade dependency @types/react to v18.3.4 ([59dffaa](https://github.com/w5s/project-config/commit/59dffaa))

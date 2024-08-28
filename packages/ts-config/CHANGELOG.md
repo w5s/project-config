@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.15 (2024-08-28)</small>
+
+- ✨ Replace concurrently with npm-run-all2 ([c3276cc](https://github.com/w5s/project-config/commit/c3276cc))
+
 ## <small>2.0.14 (2024-08-24)</small>
 
 - ✨ Add default outDir value ([0b898f0](https://github.com/w5s/project-config/commit/0b898f0))

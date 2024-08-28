@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.22 (2024-08-28)</small>
+
+- ✨ Replace concurrently with npm-run-all2 ([c3276cc](https://github.com/w5s/project-config/commit/c3276cc))
+
 ## <small>2.0.21 (2024-08-24)</small>
 
 - ⬆️ Upgrade dependency vite to v5.4.1 ([d0c58bc](https://github.com/w5s/project-config/commit/d0c58bc))

@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>1.0.2 (2024-08-28)</small>
+
+- ♻️ Include pre-built files for tsup-config ([055c990](https://github.com/w5s/project-config/commit/055c990))
+- ✨ Replace concurrently with npm-run-all2 ([c3276cc](https://github.com/w5s/project-config/commit/c3276cc))
+
 ## <small>1.0.1 (2024-08-24)</small>
 
 - ✨ Add ESM and CJS support ([d24d741](https://github.com/w5s/project-config/commit/d24d741))
