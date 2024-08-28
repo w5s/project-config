@@ -61,6 +61,7 @@
     "postpack": "npx clean-package restore",
     "prepack": "npx clean-package",
     "prepare": "npx run-p \"prepare:*\"",
+    "prepare:empty": ":",
     "prepublishOnly": "npm run clean;npm run build",
     "spellcheck": "cspell --no-progress '**'",
     "test": "npx run-p \"test:*\"",

@@ -33,6 +33,7 @@
     "postpack": "npx clean-package restore",
     "prepack": "npx clean-package",
     "prepare": "npx run-p \"prepare:*\"",
+    "prepare:empty": ":",
     "spellcheck": "cspell --no-progress '**'",
     "test": "npx run-p \"test:*\"",
     "test:script": "mkdir _tester; cd _tester; mrm bootstrap --dir ..; mrm configure --dir .."

@@ -39,6 +39,7 @@
     "postpack": "npx clean-package restore",
     "prepack": "npx clean-package",
     "prepare": "npx run-p \"prepare:*\"",
+    "prepare:empty": ":",
     "spellcheck": "cspell --no-progress '**'",
     "test": "npx run-p \"test:*\"",
     "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck"
