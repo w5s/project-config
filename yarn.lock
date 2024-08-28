@@ -2684,11 +2684,11 @@ __metadata:
     cspell: "npm:8.14.2"
     eslint: "npm:8.57.0"
     eslint-plugin-sort-keys: "npm:2.3.5"
-    lerna: "npm:^8.1.8"
+    lerna: "npm:8.1.8"
     markdown-magic: "npm:3.3.0"
     markdown-magic-package-json: "npm:2.0.2"
     markdown-magic-subpackage-list: "npm:1.1.2"
-    npm-run-all2: "npm:^6.2.2"
+    npm-run-all2: "npm:6.2.2"
     prettier: "npm:3.3.3"
     turbo: "npm:2.1.0"
     typescript: "npm:5.5.4"
@@ -8120,7 +8120,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lerna@npm:^8.1.8":
+"lerna@npm:8.1.8":
   version: 8.1.8
   resolution: "lerna@npm:8.1.8"
   dependencies:
@@ -9788,7 +9788,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-run-all2@npm:^6.2.2":
+"npm-run-all2@npm:6.2.2":
   version: 6.2.2
   resolution: "npm-run-all2@npm:6.2.2"
   dependencies:
