@@ -68,15 +68,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/lint@npm:19.2.2":
-  version: 19.2.2
-  resolution: "@commitlint/lint@npm:19.2.2"
+"@commitlint/lint@npm:19.4.1":
+  version: 19.4.1
+  resolution: "@commitlint/lint@npm:19.4.1"
   dependencies:
     "@commitlint/is-ignored": "npm:^19.2.2"
     "@commitlint/parse": "npm:^19.0.3"
-    "@commitlint/rules": "npm:^19.0.3"
+    "@commitlint/rules": "npm:^19.4.1"
     "@commitlint/types": "npm:^19.0.3"
-  checksum: 10c0/e7b3ca6027fecc1a3eda0ee8c21ecef0071ddddc7711a922cc6eb53a590c7e4f00d550b01134a5ebaaae603a0afbeaf65809b12f8099e08cace9d594cb69ff4b
+  checksum: 10c0/d3b455c23480f64fb4939eb78266eee687048a5e3c4203207fb25f6b7bd1f369a8529c659018db20765a6a57f6c161d3f80a01422ca7883b1a4405cd064d8fd6
   languageName: node
   linkType: hard
 
@@ -98,16 +98,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@commitlint/rules@npm:^19.0.3":
-  version: 19.0.3
-  resolution: "@commitlint/rules@npm:19.0.3"
+"@commitlint/rules@npm:^19.4.1":
+  version: 19.4.1
+  resolution: "@commitlint/rules@npm:19.4.1"
   dependencies:
     "@commitlint/ensure": "npm:^19.0.3"
     "@commitlint/message": "npm:^19.0.0"
     "@commitlint/to-lines": "npm:^19.0.0"
     "@commitlint/types": "npm:^19.0.3"
     execa: "npm:^8.0.1"
-  checksum: 10c0/4a9a3f2fb838949707650a6bf2a016ec2b0ec570cb151d1005d01bdeb2e27adff5e5eab3c06a302c6834a88e2ec39090a5482bb57f2da51e6609c2b89e33d948
+  checksum: 10c0/d2052d193dc04b6fc0588ea57eab8490c408bd725f8c4bdb8aa274dc3b5a6ba45d23b718675c6e69304c4fe6c8e92e45b6d6c9de9a5fef266a50e7a71cf3058a
   languageName: node
   linkType: hard
 
@@ -2535,9 +2535,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/commitlint-config@workspace:packages/commitlint-config"
   dependencies:
-    "@commitlint/lint": "npm:19.2.2"
+    "@commitlint/lint": "npm:19.4.1"
     "@commitlint/types": "npm:^18.0.0"
-    "@w5s/conventional-changelog": "npm:^2.0.22"
+    "@w5s/conventional-changelog": "npm:^2.0.23"
     vite: "npm:5.4.2"
     vitest: "npm:2.0.5"
   peerDependencies:
@@ -2548,7 +2548,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/conventional-changelog@npm:^2.0.22, @w5s/conventional-changelog@workspace:*, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
+"@w5s/conventional-changelog@npm:^2.0.23, @w5s/conventional-changelog@workspace:*, @w5s/conventional-changelog@workspace:packages/conventional-changelog":
   version: 0.0.0-use.local
   resolution: "@w5s/conventional-changelog@workspace:packages/conventional-changelog"
   dependencies:
@@ -2581,7 +2581,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/dev@npm:^2.2.9, @w5s/dev@workspace:packages/dev":
+"@w5s/dev@npm:^2.2.10, @w5s/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
@@ -2603,8 +2603,8 @@ __metadata:
     "@types/react": "npm:18.3.4"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
     "@typescript-eslint/parser": "npm:8.3.0"
-    "@w5s/dev": "npm:^2.2.9"
-    "@w5s/prettier-config": "npm:^2.0.22"
+    "@w5s/dev": "npm:^2.2.10"
+    "@w5s/prettier-config": "npm:^2.0.23"
     eslint: "npm:8.57.0"
     eslint-config-airbnb-base: "npm:^15.0.0"
     eslint-config-prettier: "npm:9.1.0"
@@ -2640,7 +2640,7 @@ __metadata:
   resolution: "@w5s/mrm-preset@workspace:packages/mrm-preset"
   dependencies:
     "@types/debug": "npm:4.1.12"
-    "@w5s/dev": "npm:^2.2.9"
+    "@w5s/dev": "npm:^2.2.10"
     debug: "npm:^4.3.3"
     glob: "npm:^11.0.0"
     mrm: "npm:4.1.22"
@@ -2651,7 +2651,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/prettier-config@npm:^2.0.22, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
+"@w5s/prettier-config@npm:^2.0.23, @w5s/prettier-config@workspace:*, @w5s/prettier-config@workspace:packages/prettier-config":
   version: 0.0.0-use.local
   resolution: "@w5s/prettier-config@workspace:packages/prettier-config"
   dependencies:
