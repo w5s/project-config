@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.7.4 (2024-08-28)</small>
+
+- 👷 Fix prepare script ([d9bc44f](https://github.com/w5s/project-config/commit/d9bc44f))
+
 ## <small>2.7.3 (2024-08-28)</small>
 
 - ✨ Replace concurrently with npm-run-all2 ([c3276cc](https://github.com/w5s/project-config/commit/c3276cc))
