@@ -28,7 +28,6 @@
     },
     "./dist/*": "./dist/*"
   },
-  "typings": "./index.d.ts",
   "files": [
     "template/*",
     "dist/",
