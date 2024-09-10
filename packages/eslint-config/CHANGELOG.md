@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.30 (2024-09-10)</small>
+
+- ⬆️ Upgrade dependency @types/react to v18.3.5 ([bfda127](https://github.com/w5s/project-config/commit/bfda127))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v8.4.0 ([d16a5b4](https://github.com/w5s/project-config/commit/d16a5b4))
+- ⬆️ Upgrade dependency @typescript-eslint/parser to v8.5.0 ([66a9278](https://github.com/w5s/project-config/commit/66a9278))
+- ⬆️ Upgrade dependency vite to v5.4.3 ([0883118](https://github.com/w5s/project-config/commit/0883118))
+
 ## <small>2.0.29 (2024-08-28)</small>
 
 - 👷 Fix prepare script ([d9bc44f](https://github.com/w5s/project-config/commit/d9bc44f))

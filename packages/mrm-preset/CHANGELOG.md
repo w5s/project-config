@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.7.5 (2024-09-10)</small>
+
+- 👷 Upgrade Node.js to 2d07db0 ([32d873f](https://github.com/w5s/project-config/commit/32d873f))
+- 👷 Upgrade Node.js to 9fde95f ([8b7653c](https://github.com/w5s/project-config/commit/8b7653c))
+- 👷 Upgrade renovate/renovate Docker digest to 43a32c5 ([4285427](https://github.com/w5s/project-config/commit/4285427))
+- 👷 Upgrade renovate/renovate Docker digest to 4d165fc ([7631e88](https://github.com/w5s/project-config/commit/7631e88))
+- 👷 Upgrade renovate/renovate Docker digest to 56fa900 ([27b5a12](https://github.com/w5s/project-config/commit/27b5a12))
+- 👷 Upgrade renovate/renovate Docker digest to 5c73741 ([a2782a6](https://github.com/w5s/project-config/commit/a2782a6))
+- 👷 Upgrade renovate/renovate Docker digest to 6001a92 ([709b958](https://github.com/w5s/project-config/commit/709b958))
+- 👷 Upgrade renovate/renovate Docker digest to 6ddb928 ([3b59c79](https://github.com/w5s/project-config/commit/3b59c79))
+- 👷 Upgrade renovate/renovate Docker digest to 7078a28 ([b2abb43](https://github.com/w5s/project-config/commit/b2abb43))
+- 👷 Upgrade renovate/renovate Docker digest to 70fc928 ([ea49057](https://github.com/w5s/project-config/commit/ea49057))
+- 👷 Upgrade renovate/renovate Docker digest to 850a6dd ([60d9765](https://github.com/w5s/project-config/commit/60d9765))
+- 👷 Upgrade renovate/renovate Docker digest to 88bc509 ([4d10043](https://github.com/w5s/project-config/commit/4d10043))
+- 👷 Upgrade renovate/renovate Docker digest to 8bac771 ([d64fb4d](https://github.com/w5s/project-config/commit/d64fb4d))
+- 👷 Upgrade renovate/renovate Docker digest to a34ab21 ([cc41cdd](https://github.com/w5s/project-config/commit/cc41cdd))
+- 👷 Upgrade renovate/renovate Docker digest to a873c37 ([b075f55](https://github.com/w5s/project-config/commit/b075f55))
+- 👷 Upgrade renovate/renovate Docker digest to af8fd06 ([20bf0f4](https://github.com/w5s/project-config/commit/20bf0f4))
+- 👷 Upgrade renovate/renovate Docker digest to c17da45 ([02a7be2](https://github.com/w5s/project-config/commit/02a7be2))
+- 👷 Upgrade renovate/renovate Docker digest to c8ba5d3 ([8bd5744](https://github.com/w5s/project-config/commit/8bd5744))
+- 👷 Upgrade renovate/renovate Docker digest to f64fe97 ([5b039b0](https://github.com/w5s/project-config/commit/5b039b0))
+- 👷 Upgrade renovate/renovate Docker digest to f8d4986 ([43e9b86](https://github.com/w5s/project-config/commit/43e9b86))
+- 👷 Upgrade renovate/renovate Docker digest to fee2276 ([3454fa5](https://github.com/w5s/project-config/commit/3454fa5))
+
 ## <small>2.7.4 (2024-08-28)</small>
 
 - 👷 Fix prepare script ([d9bc44f](https://github.com/w5s/project-config/commit/d9bc44f))

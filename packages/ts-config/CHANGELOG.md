@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.17 (2024-09-10)</small>
+
+- ⬆️ Upgrade dependency typescript to v5.6.2 ([1494087](https://github.com/w5s/project-config/commit/1494087))
+
 ## <small>2.0.16 (2024-08-28)</small>
 
 - 👷 Fix prepare script ([d9bc44f](https://github.com/w5s/project-config/commit/d9bc44f))

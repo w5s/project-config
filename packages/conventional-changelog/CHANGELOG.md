@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.0.24 (2024-09-10)</small>
+
+- ♻️ Clean dead code ([cd14b46](https://github.com/w5s/project-config/commit/cd14b46))
+- ⬆️ Upgrade dependency vite to v5.4.3 ([0883118](https://github.com/w5s/project-config/commit/0883118))
+- 🐛 Fix \_\_dirname use for non commonjs target ([9e4e327](https://github.com/w5s/project-config/commit/9e4e327))
+
 ## <small>2.0.23 (2024-08-28)</small>
 
 - 👷 Fix prepare script ([d9bc44f](https://github.com/w5s/project-config/commit/d9bc44f))
