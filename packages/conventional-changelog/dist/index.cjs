@@ -6,7 +6,9 @@ var emojiRegexp = require('emoji-regex');
 var gitmojis = require('gitmojis');
 var fs = require('fs');
 var path = require('path');
+var url = require('url');
 
+var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 var emojiRegexp__default = /*#__PURE__*/_interopDefault(emojiRegexp);
@@ -302,7 +304,8 @@ function createTransform(config) {
 }
 
 // src/writer-opts.ts
-var basePath = path.resolve(path.dirname(__dirname), "./template");
+var _dirname = typeof __dirname === "undefined" ? path.dirname(url.fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.src || new URL('index.cjs', document.baseURI).href)))) : __dirname;
+var basePath = path.resolve(path.dirname(_dirname), "./template");
 var mainTemplate = fs.readFileSync(`${basePath}/template.hbs`, "utf8");
 var headerPartial = fs.readFileSync(`${basePath}/header.hbs`, "utf8");
 var commitPartial = fs.readFileSync(`${basePath}/commit.hbs`, "utf8");
