@@ -43,9 +43,9 @@ function value(jsonFile, { state, path, default: defaultValue, update: nextValue
   if (state === 'present') {
     let currentValue = getValue(jsonFile, path);
 
-    if (currentValue == null) {
+    if (currentValue === undefined) {
       currentValue = typeof defaultValue === 'function' ? defaultValue() : defaultValue;
-      if (currentValue != null) {
+      if (currentValue !== undefined) {
         setValue(jsonFile, path, currentValue);
       }
     }
