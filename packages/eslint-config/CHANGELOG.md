@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.31](https://github.com/w5s/project-config/compare/@w5s/eslint-config@2.0.30...@w5s/eslint-config@2.0.31) (2024-09-12)
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 ## <small>2.0.30 (2024-09-10)</small>
 
 - ⬆️ Upgrade dependency @types/react to v18.3.5 ([bfda127](https://github.com/w5s/project-config/commit/bfda127))

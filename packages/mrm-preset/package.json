@@ -1,6 +1,6 @@
 {
   "name": "@w5s/mrm-preset",
-  "version": "2.7.5",
+  "version": "2.8.0",
   "description": "Mrm configuration presets",
   "keywords": [
     "mrm",
@@ -39,7 +39,7 @@
     "test:script": "mkdir _tester; cd _tester; mrm bootstrap --dir ..; mrm configure --dir .."
   },
   "dependencies": {
-    "@w5s/dev": "^2.2.11",
+    "@w5s/dev": "^2.2.12",
     "debug": "^4.3.3",
     "glob": "^11.0.0",
     "mrm-core": "^7.0.0",

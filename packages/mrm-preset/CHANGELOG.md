@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.8.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.7.5...@w5s/mrm-preset@2.8.0) (2024-09-12)
+
+### ✨ Features
+
+- Configure sideEffects in package.json if not present ([4431a2b](https://github.com/w5s/project-config/commit/4431a2b))
+
+### 🐛 Bug Fixes
+
+- Fix configuration ([269d2a3](https://github.com/w5s/project-config/commit/269d2a3))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## <small>2.7.5 (2024-09-10)</small>
 
 - 👷 Upgrade Node.js to 2d07db0 ([32d873f](https://github.com/w5s/project-config/commit/32d873f))

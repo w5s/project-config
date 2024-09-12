@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/w5s/project-config/compare/@w5s/ts-config@2.0.17...@w5s/ts-config@2.1.0) (2024-09-12)
+
+### ✨ Features
+
+- Enable noUncheckedSideEffectImports ([41a9a45](https://github.com/w5s/project-config/commit/41a9a45))
+
+**Note:** Version bump only for package @w5s/ts-config
+
 ## <small>2.0.17 (2024-09-10)</small>
 
 - ⬆️ Upgrade dependency typescript to v5.6.2 ([1494087](https://github.com/w5s/project-config/commit/1494087))

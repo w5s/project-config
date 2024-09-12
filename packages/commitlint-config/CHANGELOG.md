@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.0.27](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@2.0.26...@w5s/commitlint-config@2.0.27) (2024-09-12)
+
+**Note:** Version bump only for package @w5s/commitlint-config
+
 ## <small>2.0.26 (2024-09-10)</small>
 
 - ⬆️ Upgrade dependency @commitlint/lint to v19.4.1 ([87700a4](https://github.com/w5s/project-config/commit/87700a4))

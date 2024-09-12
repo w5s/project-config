@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.3.12](https://github.com/w5s/project-config/compare/@w5s/cspell-config@2.3.11...@w5s/cspell-config@2.3.12) (2024-09-12)
+
+**Note:** Version bump only for package @w5s/cspell-config
+
 ## <small>2.3.11 (2024-09-10)</small>
 
 - ⬆️ Upgrade dependency vite to v5.4.3 ([0883118](https://github.com/w5s/project-config/commit/0883118))
