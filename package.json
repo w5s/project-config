@@ -32,7 +32,7 @@
     "lint:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --ignore-pattern='packages/*/**'",
     "mrm": "npm exec --package=mrm -- mrm --dir ./packages/mrm-preset",
     "postbuild": "npm run docs",
-    "prepare": "npx run-p \"prepare:*\" ",
+    "prepare": "npx run-p \"prepare:*\"",
     "prepare:githooks": "[ -n \"${CI:-}\" ] || git config core.hooksPath .githooks",
     "prepare:packages": "turbo run prepare",
     "release": "[ -n \"${CI:-}\" ] && npx lerna publish --yes || npx lerna publish",
@@ -114,5 +114,6 @@
     "node": ">=18.0.0",
     "npm": ">=6.0.0",
     "yarn": ">=1.0.0"
-  }
+  },
+  "sideEffect": false
 }
