@@ -63,6 +63,11 @@ function task() {
       default: 'module',
     });
     jsonFile.value(currentPackageFile, {
+      path: 'sideEffect',
+      state: 'present',
+      default: false,
+    });
+    jsonFile.value(currentPackageFile, {
       path: 'license',
       state: 'present',
       update: (_) => _ ?? (root && rootUseWorkspace ? 'UNLICENSED' : undefined),
