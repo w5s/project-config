@@ -58,7 +58,7 @@
     "test:src": "vitest run"
   },
   "dependencies": {
-    "@commitlint/types": "^18.0.0",
+    "@commitlint/types": "^19.0.0",
     "emoji-regex": "^10.2.1",
     "gitmojis": "^3.13.4"
   },
