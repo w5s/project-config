@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var emojiRegexp = require('emoji-regex');
 var gitmojis = require('gitmojis');
 var fs = require('fs');
@@ -129,7 +127,7 @@ var CommitConventionalType = (() => {
   }
   return { ...enumObject, hasInstance, getData, values, parse, findWhere };
 })();
-exports.Emoji = void 0;
+var Emoji;
 ((Emoji2) => {
   Emoji2.reEmojiUnicode = emojiRegexp__default.default();
   Emoji2.reEmojiText = /:\w*:/;
@@ -148,8 +146,8 @@ exports.Emoji = void 0;
     return isText(anyValue) || isUnicode(anyValue);
   }
   Emoji2.hasInstance = hasInstance;
-})(exports.Emoji || (exports.Emoji = {}));
-exports.GitmojiCode = void 0;
+})(Emoji || (Emoji = {}));
+var GitmojiCode;
 ((GitmojiCode2) => {
   const allGitmojiCodes = new Set(
     gitmojis.gitmojis.map((gitmoji) => gitmoji.code).concat(gitmojis.gitmojis.map((gitmoji) => gitmoji.emoji))
@@ -202,11 +200,11 @@ exports.GitmojiCode = void 0;
     return conversionMap.get(gitmoji) ?? defaultType;
   }
   GitmojiCode2.toConventionalCommitType = toConventionalCommitType2;
-})(exports.GitmojiCode || (exports.GitmojiCode = {}));
+})(GitmojiCode || (GitmojiCode = {}));
 
 // src/recommended-bump-opts.ts
 function toConventionalCommitType(text) {
-  return exports.GitmojiCode.isValid(text) ? exports.GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
+  return GitmojiCode.isValid(text) ? GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
 }
 var recommendedBumpOpts = {
   parserOpts,
@@ -256,7 +254,7 @@ function createTransform(config) {
       ...note,
       title: `${config.withEmoji === false ? "" : "\u{1F4A5} "}BREAKING CHANGES`
     }));
-    const conventionalType = commit.type == null ? void 0 : CommitConventionalType.parse(commit.type) ?? (exports.GitmojiCode.isValid(commit.type) ? exports.GitmojiCode.toConventionalCommitType(commit.type) : void 0);
+    const conventionalType = commit.type == null ? void 0 : CommitConventionalType.parse(commit.type) ?? (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : void 0);
     if (ignoreType(conventionalType) && discard) return false;
     const type = conventionalType == null ? conventionalType : displayType(conventionalType, {
       withEmoji: config.withEmoji
@@ -329,12 +327,14 @@ var writerOpts = {
 
 // src/index.ts
 var src_default = {
+  Emoji,
+  GitmojiCode,
   parserOpts,
   writerOpts,
   recommendedBumpOpts,
   gitRawCommitOpts
 };
 
-exports.default = src_default;
+module.exports = src_default;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map

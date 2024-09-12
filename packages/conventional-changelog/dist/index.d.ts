@@ -64,6 +64,8 @@ declare namespace GitmojiCode {
 }
 
 declare const _default: {
+    Emoji: typeof Emoji;
+    GitmojiCode: typeof GitmojiCode;
     parserOpts: ParserOptions;
     writerOpts: WriterOptions;
     recommendedBumpOpts: {
@@ -78,4 +80,4 @@ declare const _default: {
     };
 };
 
-export { Emoji, GitmojiCode, _default as default };
+export { _default as default };

@@ -320,12 +320,14 @@ var writerOpts = {
 
 // src/index.ts
 var src_default = {
+  Emoji,
+  GitmojiCode,
   parserOpts,
   writerOpts,
   recommendedBumpOpts,
   gitRawCommitOpts
 };
 
-export { Emoji, GitmojiCode, src_default as default };
+export { src_default as default };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

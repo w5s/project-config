@@ -4,6 +4,8 @@ import config from './index.js';
 describe('conventional-changelog', () => {
   it('should export data', () => {
     expect(config).toEqual({
+      Emoji: expect.any(Object),
+      GitmojiCode: expect.any(Object),
       gitRawCommitOpts: {
         format: expect.any(String),
       },
