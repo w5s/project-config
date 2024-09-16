@@ -96,7 +96,7 @@
     "@w5s/ts-config": "workspace:*",
     "clean-package": "2.2.0",
     "cspell": "8.14.2",
-    "eslint": "8.57.0",
+    "eslint": "8.57.1",
     "eslint-plugin-sort-keys": "2.3.5",
     "lerna": "8.1.8",
     "markdown-magic": "3.3.0",
