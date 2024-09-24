@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.1.0](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@2.0.27...@w5s/commitlint-config@2.1.0) (2024-09-24)
+
+### ✨ Features
+
+- Disable import/no-default-export only for config files ([3afae4b](https://github.com/w5s/project-config/commit/3afae4b))
+
+**Note:** Version bump only for package @w5s/commitlint-config
+
 ## [2.0.27](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@2.0.26...@w5s/commitlint-config@2.0.27) (2024-09-12)
 
 **Note:** Version bump only for package @w5s/commitlint-config
