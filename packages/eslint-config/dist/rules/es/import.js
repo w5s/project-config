@@ -7,6 +7,14 @@ const dev_1 = require("@w5s/dev");
 const imports_1 = __importDefault(require("eslint-config-airbnb-base/rules/imports"));
 // @see https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/FAQ.md#eslint-plugin-import
 const extensionsToMatcher = (extensions) => `.{${extensions.map((_) => _.slice(1)).join(',')}}`;
+const configFiles = [
+    // plopfile.js, plopfile.cjs, plopfile.mts, plopfile.ts, ...
+    `plopfile${extensionsToMatcher(dev_1.Project.queryExtensions(['javascript', 'typescript']))}`,
+    // dangerfile.js, dangerfile.cjs, dangerfile.mts, dangerfile.ts, ...
+    `dangerfile${extensionsToMatcher(dev_1.Project.queryExtensions(['javascript', 'typescript']))}`,
+    // *.config.js, *.config.cjs, *.config.mts, *.config.ts, ...
+    `**/*.config${extensionsToMatcher(dev_1.Project.queryExtensions(['javascript', 'typescript']))}`,
+];
 const config = dev_1.ESLintConfig.concat(imports_1.default, 
 // Overrides
 {
@@ -28,12 +36,7 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
                 ...imports_1.default.rules['import/no-extraneous-dependencies'][1],
                 devDependencies: [
                     ...imports_1.default.rules['import/no-extraneous-dependencies'][1].devDependencies,
-                    // plopfile.js, plopfile.cjs, plopfile.mts, plopfile.ts, ...
-                    `plopfile${extensionsToMatcher(dev_1.Project.queryExtensions(['javascript', 'typescript']))}`,
-                    // dangerfile.js, dangerfile.cjs, dangerfile.mts, dangerfile.ts, ...
-                    `dangerfile${extensionsToMatcher(dev_1.Project.queryExtensions(['javascript', 'typescript']))}`,
-                    // *.config.js, *.config.cjs, *.config.mts, *.config.ts, ...
-                    `**/*.config${extensionsToMatcher(dev_1.Project.queryExtensions(['javascript', 'typescript']))}`,
+                    ...configFiles,
                 ],
             },
         ],
@@ -58,5 +61,14 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
             },
         },
     },
+}, {
+    overrides: [
+        {
+            files: configFiles,
+            rules: {
+                'import/no-default-export': 'off', // Enable default exports only for config files
+            },
+        },
+    ],
 });
 module.exports = config;

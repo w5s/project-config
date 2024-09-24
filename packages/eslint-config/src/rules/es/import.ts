@@ -7,6 +7,15 @@ import importConfig from 'eslint-config-airbnb-base/rules/imports';
 
 const extensionsToMatcher = (extensions: readonly Project.Extension[]): string =>
   `.{${extensions.map((_) => _.slice(1)).join(',')}}`;
+const configFiles = [
+  // plopfile.js, plopfile.cjs, plopfile.mts, plopfile.ts, ...
+  `plopfile${extensionsToMatcher(Project.queryExtensions(['javascript', 'typescript']))}`,
+  // dangerfile.js, dangerfile.cjs, dangerfile.mts, dangerfile.ts, ...
+  `dangerfile${extensionsToMatcher(Project.queryExtensions(['javascript', 'typescript']))}`,
+  // *.config.js, *.config.cjs, *.config.mts, *.config.ts, ...
+  `**/*.config${extensionsToMatcher(Project.queryExtensions(['javascript', 'typescript']))}`,
+];
+
 const config: eslint.Linter.Config = ESLintConfig.concat(
   importConfig,
   // Overrides
@@ -29,12 +38,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
           ...importConfig.rules['import/no-extraneous-dependencies'][1],
           devDependencies: [
             ...importConfig.rules['import/no-extraneous-dependencies'][1].devDependencies,
-            // plopfile.js, plopfile.cjs, plopfile.mts, plopfile.ts, ...
-            `plopfile${extensionsToMatcher(Project.queryExtensions(['javascript', 'typescript']))}`,
-            // dangerfile.js, dangerfile.cjs, dangerfile.mts, dangerfile.ts, ...
-            `dangerfile${extensionsToMatcher(Project.queryExtensions(['javascript', 'typescript']))}`,
-            // *.config.js, *.config.cjs, *.config.mts, *.config.ts, ...
-            `**/*.config${extensionsToMatcher(Project.queryExtensions(['javascript', 'typescript']))}`,
+            ...configFiles,
           ],
         },
       ],
@@ -61,6 +65,16 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
         },
       },
     },
+  },
+  {
+    overrides: [
+      {
+        files: configFiles,
+        rules: {
+          'import/no-default-export': 'off', // Enable default exports only for config files
+        },
+      },
+    ],
   }
 );
 
