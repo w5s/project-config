@@ -21,6 +21,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
           // mjs: 'never',
         },
       ],
+      'import/no-default-export': 'error', // Default exports are bad, especially when refactoring/renaming module
       'import/no-deprecated': 'off', // Performance issues
       'import/no-extraneous-dependencies': [
         'error',
