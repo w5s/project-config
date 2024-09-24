@@ -302,7 +302,7 @@ function createTransform(config) {
 }
 
 // src/writer-opts.ts
-var _dirname = typeof __dirname === "undefined" ? path.dirname(url.fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.src || new URL('index.cjs', document.baseURI).href)))) : __dirname;
+var _dirname = typeof __dirname === "undefined" ? path.dirname(url.fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.cjs', document.baseURI).href)))) : __dirname;
 var basePath = path.resolve(path.dirname(_dirname), "./template");
 var mainTemplate = fs.readFileSync(`${basePath}/template.hbs`, "utf8");
 var headerPartial = fs.readFileSync(`${basePath}/header.hbs`, "utf8");
