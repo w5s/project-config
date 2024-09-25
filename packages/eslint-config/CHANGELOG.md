@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.1.1](https://github.com/w5s/project-config/compare/@w5s/eslint-config@2.1.0...@w5s/eslint-config@2.1.1) (2024-09-25)
+
+### 🐛 Bug Fixes
+
+- Disable no-default-export for definition files ([824ab31](https://github.com/w5s/project-config/commit/824ab31))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 # [2.1.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@2.0.31...@w5s/eslint-config@2.1.0) (2024-09-24)
 
 ### ✨ Features
