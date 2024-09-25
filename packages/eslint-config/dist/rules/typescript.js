@@ -7,9 +7,9 @@ const base_js_1 = __importDefault(require("./es/base.js"));
 const import_js_1 = __importDefault(require("./es/import.js"));
 // Inspired by https://github.com/iamturns/eslint-config-airbnb-typescript/blob/master/lib/shared.js
 // Fix Hack : TS plugin seems to modify the rules
-const deepClone = (anyValue) => JSON.parse(JSON.stringify(anyValue));
-const baseRules = deepClone(base_js_1.default.rules);
-const baseImportRules = deepClone(import_js_1.default.rules);
+const deepClone = (anyValue) => structuredClone(anyValue);
+const baseRules = deepClone(base_js_1.default.rules) ?? {};
+const baseImportRules = deepClone(import_js_1.default.rules) ?? {};
 const duplicateTSC = 'off'; // = "off because tsc already checks that"
 const config = dev_1.ESLintConfig.concat(
 /**

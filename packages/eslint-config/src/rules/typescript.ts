@@ -6,9 +6,10 @@ import importConfig from './es/import.js';
 // Inspired by https://github.com/iamturns/eslint-config-airbnb-typescript/blob/master/lib/shared.js
 
 // Fix Hack : TS plugin seems to modify the rules
-const deepClone = (anyValue: Partial<eslint.Linter.RulesRecord> | undefined) => JSON.parse(JSON.stringify(anyValue));
-const baseRules = deepClone(baseConfig.rules);
-const baseImportRules = deepClone(importConfig.rules);
+const deepClone = <T extends Partial<eslint.Linter.RulesRecord> | undefined>(anyValue: T): any =>
+  structuredClone(anyValue);
+const baseRules = deepClone(baseConfig.rules) ?? {};
+const baseImportRules = deepClone(importConfig.rules) ?? {};
 
 const duplicateTSC = 'off'; // = "off because tsc already checks that"
 

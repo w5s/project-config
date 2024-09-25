@@ -108,6 +108,7 @@ const settings: AdvancedCSpellSettings = {
     {
       languageId: 'typescript,javascript,typescriptreact,javascriptreact',
       locale: '*',
+      // eslint-disable-next-line unicorn/prefer-string-raw
       ignoreRegExpList: ['\\/\\* eslint-disable.+', '\\/\\/ eslint-disable.+'],
     },
   ],

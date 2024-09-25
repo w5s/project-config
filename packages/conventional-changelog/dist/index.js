@@ -1,7 +1,7 @@
 import emojiRegexp from 'emoji-regex';
 import { gitmojis } from 'gitmojis';
 import { readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import nodePath from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // src/git-raw-commit-opts.ts
@@ -295,8 +295,8 @@ function createTransform(config) {
 }
 
 // src/writer-opts.ts
-var _dirname = typeof __dirname === "undefined" ? dirname(fileURLToPath(import.meta.url)) : __dirname;
-var basePath = resolve(dirname(_dirname), "./template");
+var _dirname = typeof __dirname === "undefined" ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
+var basePath = nodePath.resolve(nodePath.dirname(_dirname), "./template");
 var mainTemplate = readFileSync(`${basePath}/template.hbs`, "utf8");
 var headerPartial = readFileSync(`${basePath}/header.hbs`, "utf8");
 var commitPartial = readFileSync(`${basePath}/commit.hbs`, "utf8");

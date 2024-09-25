@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const dev_1 = require("@w5s/dev");
 // @ts-ignore unicorn config is not typed
-const recommended_js_1 = __importDefault(require("eslint-plugin-unicorn/configs/recommended.js"));
-const config = dev_1.ESLintConfig.concat(recommended_js_1.default, {
+const eslint_plugin_unicorn_1 = __importDefault(require("eslint-plugin-unicorn"));
+const config = dev_1.ESLintConfig.concat(eslint_plugin_unicorn_1.default.configs.recommended, {
     // extends: ['plugin:unicorn/recommended'],
     plugins: ['unicorn'],
     rules: {

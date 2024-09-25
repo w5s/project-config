@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { mkdir, rm, readFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import nodePath from 'node:path';
 import { file } from './file.js';
 
 describe('file', () => {
@@ -16,7 +16,7 @@ describe('file', () => {
   });
 
   it('should create file if present', async () => {
-    const path = join(TEST_PATH, 'create');
+    const path = nodePath.join(TEST_PATH, 'create');
     await file({
       path,
       state: 'present',
@@ -26,7 +26,7 @@ describe('file', () => {
   });
 
   it('should not throw error if absent', async () => {
-    const path = join(TEST_PATH, 'delete-absent');
+    const path = nodePath.join(TEST_PATH, 'delete-absent');
     expect(async () => {
       await file({
         path,
