@@ -1,6 +1,6 @@
 import { beforeAll, describe, it, expect } from 'vitest';
 import { mkdir, readFile, rm } from 'node:fs/promises';
-import { join } from 'node:path';
+import nodePath from 'node:path';
 import { json } from './json.js';
 
 describe('json', () => {
@@ -16,7 +16,7 @@ describe('json', () => {
   });
 
   it('should create file if present', async () => {
-    const path = join(TEST_PATH, 'create');
+    const path = nodePath.join(TEST_PATH, 'create');
     await json({
       path,
       state: 'present',
@@ -25,7 +25,7 @@ describe('json', () => {
     await expect(readFile(path, 'utf8')).resolves.toEqual('["foo"]');
   });
   it('should map content', async () => {
-    const path = join(TEST_PATH, 'create-already-exist');
+    const path = nodePath.join(TEST_PATH, 'create-already-exist');
     await json({
       path,
       state: 'present',

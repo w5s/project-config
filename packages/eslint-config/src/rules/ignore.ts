@@ -1,15 +1,15 @@
 import { readFileSync } from 'node:fs';
-import { join as pathJoin } from 'node:path';
+import nodePath from 'node:path';
 import type eslint from 'eslint';
 import findUp from 'find-up';
 import parseGitignore from 'parse-gitignore';
 
 const getGitignore = (prefix = '') => {
   const cwd = process.cwd();
-  const gitIgnoreFile = findUp.sync(pathJoin(prefix, '.gitignore'), { cwd });
+  const gitIgnoreFile = findUp.sync(nodePath.join(prefix, '.gitignore'), { cwd });
   if (gitIgnoreFile != null) {
     const { patterns } = parseGitignore.parse(readFileSync(gitIgnoreFile));
-    const returnValue = patterns.map((pattern) => pathJoin(prefix, pattern));
+    const returnValue = patterns.map((pattern) => nodePath.join(prefix, pattern));
     return returnValue;
   }
   return [];

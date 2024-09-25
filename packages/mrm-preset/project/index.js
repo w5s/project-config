@@ -1,4 +1,4 @@
-const { dirname } = require('node:path');
+const nodePath = require('node:path');
 const { packageJson, json, makeDirs } = require('mrm-core');
 const git = require('../core/git.js');
 const pkg = require('../core/pkg.js');
@@ -52,7 +52,7 @@ function task() {
 
   // Detect git repository
   if (rootUseWorkspace) {
-    const dirs = pkg.listWorkspaceMatchers(rootPackageFile).map(dirname);
+    const dirs = pkg.listWorkspaceMatchers(rootPackageFile).map(nodePath.dirname);
     makeDirs(dirs);
   }
 

@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { mkdir, rm, readFile } from 'node:fs/promises';
-import { join } from 'node:path';
+import nodePath from 'node:path';
 import { block } from './block.js';
 import { file } from './file.js';
 
@@ -19,7 +19,7 @@ describe('block', () => {
 
   describe('option state', () => {
     it('does not change the content when "absent" and not present', async () => {
-      const path = join(testPath, 'file');
+      const path = nodePath.join(testPath, 'file');
       await file({
         path,
         state: 'present',
@@ -45,7 +45,7 @@ describe('block', () => {
       );
     });
     it('removes the content when "absent"', async () => {
-      const path = join(testPath, 'file');
+      const path = nodePath.join(testPath, 'file');
       await file({
         path,
         state: 'present',
@@ -76,7 +76,7 @@ describe('block', () => {
 
   describe('option position', () => {
     it('places after end of file', async () => {
-      const path = join(testPath, 'file');
+      const path = nodePath.join(testPath, 'file');
       await file({
         path,
         state: 'present',
@@ -101,7 +101,7 @@ describe('block', () => {
     });
 
     it('places after regexp', async () => {
-      const path = join(testPath, 'file');
+      const path = nodePath.join(testPath, 'file');
       await file({
         path,
         state: 'present',
@@ -137,7 +137,7 @@ describe('block', () => {
     });
 
     it('places before the begin of file', async () => {
-      const path = join(testPath, 'file');
+      const path = nodePath.join(testPath, 'file');
       await file({
         path,
         state: 'present',
@@ -161,7 +161,7 @@ describe('block', () => {
       );
     });
     it('places before regexp', async () => {
-      const path = join(testPath, 'file');
+      const path = nodePath.join(testPath, 'file');
       await file({
         path,
         state: 'present',
@@ -198,7 +198,7 @@ describe('block', () => {
   });
   describe('option marker', () => {
     it('places before the after end of file', async () => {
-      const path = join(testPath, 'file');
+      const path = nodePath.join(testPath, 'file');
       await file({
         path,
         state: 'present',

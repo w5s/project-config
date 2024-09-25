@@ -1,10 +1,10 @@
 import { ESLintConfig } from '@w5s/dev';
 import type eslint from 'eslint';
 // @ts-ignore unicorn config is not typed
-import unicornConfig from 'eslint-plugin-unicorn/configs/recommended.js';
+import unicornConfig from 'eslint-plugin-unicorn';
 
 const config: eslint.Linter.Config = ESLintConfig.concat(
-  unicornConfig,
+  unicornConfig.configs.recommended,
   {
     // extends: ['plugin:unicorn/recommended'],
     plugins: ['unicorn'],

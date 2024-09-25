@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { resolve, dirname } from 'node:path';
+import nodePath from 'node:path';
 import type { Options } from 'conventional-changelog-writer';
 import { fileURLToPath } from 'node:url';
 import { createTransform } from './transform.js';
@@ -7,8 +7,8 @@ import { CommitConventionalType } from './data.js';
 
 export interface WriterOptions extends Options {}
 
-const _dirname = typeof __dirname === 'undefined' ? dirname(fileURLToPath(import.meta.url)) : __dirname;
-const basePath = resolve(dirname(_dirname), './template');
+const _dirname = typeof __dirname === 'undefined' ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
+const basePath = nodePath.resolve(nodePath.dirname(_dirname), './template');
 
 const mainTemplate = readFileSync(`${basePath}/template.hbs`, 'utf8');
 const headerPartial = readFileSync(`${basePath}/header.hbs`, 'utf8');
