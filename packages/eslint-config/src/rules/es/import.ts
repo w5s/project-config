@@ -69,7 +69,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
   {
     overrides: [
       {
-        files: configFiles,
+        files: [...configFiles, '**/*.d.ts'],
         rules: {
           'import/no-default-export': 'off', // Enable default exports only for config files
         },

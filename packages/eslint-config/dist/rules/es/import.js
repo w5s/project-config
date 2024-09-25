@@ -64,7 +64,7 @@ const config = dev_1.ESLintConfig.concat(imports_1.default,
 }, {
     overrides: [
         {
-            files: configFiles,
+            files: [...configFiles, '**/*.d.ts'],
             rules: {
                 'import/no-default-export': 'off', // Enable default exports only for config files
             },
