@@ -62,7 +62,7 @@
     "@cspell/cspell-bundled-dicts": "8.14.4",
     "@cspell/cspell-tools": "8.14.4",
     "@cspell/cspell-types": "8.14.4",
-    "vite": "5.4.7",
+    "vite": "5.4.8",
     "vitest": "2.1.1"
   },
   "peerDependencies": {
