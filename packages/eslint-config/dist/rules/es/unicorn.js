@@ -46,7 +46,7 @@ const config = dev_1.ESLintConfig.concat(eslint_plugin_unicorn_1.default.configs
         'unicorn/prefer-starts-ends-with': 'error',
         'unicorn/prefer-text-content': 'error',
         'unicorn/prefer-type-error': 'error',
-        'unicorn/throw-new-error': 'error',
+        'unicorn/throw-new-error': 'off', // Creating errors with call signature is OK
     },
 }, {
     overrides: [

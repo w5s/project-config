@@ -46,7 +46,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       'unicorn/prefer-starts-ends-with': 'error',
       'unicorn/prefer-text-content': 'error',
       'unicorn/prefer-type-error': 'error',
-      'unicorn/throw-new-error': 'error',
+      'unicorn/throw-new-error': 'off', // Creating errors with call signature is OK
     },
   },
   {
