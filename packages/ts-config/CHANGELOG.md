@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/w5s/project-config/compare/@w5s/ts-config@2.1.0...@w5s/ts-config@2.2.0) (2024-09-26)
+
+### ✨ Features
+
+- Enable exactOptionalPropertyTypes ([2ca6ab4](https://github.com/w5s/project-config/commit/2ca6ab4))
+- Enable useUnknownInCatchVariables ([6e8fa93](https://github.com/w5s/project-config/commit/6e8fa93))
+
+**Note:** Version bump only for package @w5s/ts-config
+
 # [2.1.0](https://github.com/w5s/project-config/compare/@w5s/ts-config@2.0.17...@w5s/ts-config@2.1.0) (2024-09-12)
 
 ### ✨ Features
