@@ -33,7 +33,7 @@ export interface FileOptions {
    *
    * @param content
    */
-  readonly update?: (content: string) => string | undefined;
+  readonly update?: ((content: string) => string | undefined) | undefined;
   /**
    * File encoding
    */

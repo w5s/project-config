@@ -16,7 +16,7 @@ export interface JSONOption<V = JSONValue> {
    *
    * @param content
    */
-  readonly update?: (content: V | undefined) => V | undefined;
+  readonly update?: ((content: V | undefined) => V | undefined) | undefined;
   /**
    * File encoding
    */

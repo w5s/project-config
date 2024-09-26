@@ -8,7 +8,7 @@ const jsonFile = require('./jsonFile.js');
 /**
  * @param {{
  *   state: 'present'|'absent',
- *   update?: (config: LintStagedConfig) => LintStagedConfig
+ *   update?: ((config: LintStagedConfig) => LintStagedConfig) | undefined
  * }} options
  */
 function lintStaged({ state, update }) {

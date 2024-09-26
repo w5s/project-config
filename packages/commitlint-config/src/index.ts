@@ -4,9 +4,9 @@ import { gitmojiPlugin } from './plugin.js';
 
 const { Error, Warning, Disabled } = RuleConfigSeverity;
 
-const parserPreset: LintOptions = {
-  parserOpts: conventionalChangelog.parserOpts as LintOptions['parserOpts'],
-};
+const parserPreset = {
+  parserOpts: conventionalChangelog.parserOpts as Exclude<LintOptions['parserOpts'], undefined>,
+} satisfies LintOptions;
 
 const rules: QualifiedRules = {
   'body-leading-blank': [Warning, 'always'],

@@ -112,7 +112,7 @@ interface FileOptions {
      *
      * @param content
      */
-    readonly update?: (content: string) => string | undefined;
+    readonly update?: ((content: string) => string | undefined) | undefined;
     /**
      * File encoding
      */
@@ -166,7 +166,7 @@ interface JSONOption<V = JSONValue> {
      *
      * @param content
      */
-    readonly update?: (content: V | undefined) => V | undefined;
+    readonly update?: ((content: V | undefined) => V | undefined) | undefined;
     /**
      * File encoding
      */

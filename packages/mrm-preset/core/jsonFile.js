@@ -35,7 +35,7 @@ function setValue(jsonFile, path, pathValue) {
  * @param {{
  *   path: undefined | string | string[],
  *   state: 'present'|'absent',
- *   update?: T | ((previousValue: T) => T)
+ *   update?: T | ((previousValue: T) => T) | undefined
  *   default?: T | (() => T)
  * }} options
  */
