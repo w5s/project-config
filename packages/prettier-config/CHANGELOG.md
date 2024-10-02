@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.1](https://github.com/w5s/project-config/compare/@w5s/prettier-config@2.2.0...@w5s/prettier-config@2.2.1) (2024-10-02)
+
+### 🐛 Bug Fixes
+
+- Fix trailingComma property name ([14c2a6d](https://github.com/w5s/project-config/commit/14c2a6d))
+
+**Note:** Version bump only for package @w5s/prettier-config
+
 # [2.2.0](https://github.com/w5s/project-config/compare/@w5s/prettier-config@2.1.1...@w5s/prettier-config@2.2.0) (2024-10-02)
 
 ### ✨ Features
