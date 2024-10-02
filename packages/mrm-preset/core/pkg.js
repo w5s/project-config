@@ -134,8 +134,8 @@ function hasDependency(packageFile, packageName, dependencyType) {
           : dependencyType === 'dev'
             ? 'devDependencies'
             : 'peerDependencies'
-      }.${packageName}`
-    )
+      }.${packageName}`,
+    ),
   );
 }
 
@@ -160,7 +160,7 @@ function engineMinVersion(packageFile, engineVersionMap) {
 
   packageFile.merge({
     engines: Object.fromEntries(
-      Object.keys(engineVersionMap).map((engineName) => [engineName, engineConstraint(engineName)])
+      Object.keys(engineVersionMap).map((engineName) => [engineName, engineConstraint(engineName)]),
     ),
   });
   return packageFile.get('engines');

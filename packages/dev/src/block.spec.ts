@@ -41,7 +41,7 @@ describe('block', () => {
           // Lines
           'some_content',
           '',
-        ].join('\n')
+        ].join('\n'),
       );
     });
     it('removes the content when "absent"', async () => {
@@ -69,7 +69,7 @@ describe('block', () => {
           // Lines
           'some_content',
           '',
-        ].join('\n')
+        ].join('\n'),
       );
     });
   });
@@ -96,7 +96,7 @@ describe('block', () => {
           '# BEGIN MANAGED BLOCK',
           'test',
           '# END MANAGED BLOCK',
-        ].join('\n')
+        ].join('\n'),
       );
     });
 
@@ -132,7 +132,7 @@ describe('block', () => {
           'test',
           '# END MANAGED BLOCK',
           '</body>',
-        ].join('\n')
+        ].join('\n'),
       );
     });
 
@@ -157,7 +157,7 @@ describe('block', () => {
           '# END MANAGED BLOCK',
           'some_content',
           '',
-        ].join('\n')
+        ].join('\n'),
       );
     });
     it('places before regexp', async () => {
@@ -192,7 +192,7 @@ describe('block', () => {
           '# END MANAGED BLOCK',
           '<body>',
           '</body>',
-        ].join('\n')
+        ].join('\n'),
       );
     });
   });
@@ -218,7 +218,7 @@ describe('block', () => {
           '### Begin custom',
           'test',
           '### End custom',
-        ].join('\n')
+        ].join('\n'),
       );
     });
   });

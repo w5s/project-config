@@ -69,6 +69,6 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       'unicorn/prefer-default-parameters': 'off',
       'unicorn/prevent-abbreviations': 'off', // This rule is so dangerous : it potentially break code while fixing in many cases !!
     },
-  }
+  },
 );
 export = config;

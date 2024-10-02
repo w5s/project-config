@@ -20,7 +20,7 @@ function asdfConfig({ state, update }) {
       content
         .split(eol)
         .map((_) => _.split(/\s+/, 2))
-        .filter((_) => _[0] !== '')
+        .filter((_) => _[0] !== ''),
     );
 
     // @ts-ignore

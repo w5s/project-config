@@ -25,7 +25,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
   ymlConfig,
   {
     root: true,
-  }
+  },
 );
 
 export = config;

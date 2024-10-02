@@ -26,7 +26,7 @@ describe('recommendedBumpOpts', () => {
         recommendedBumpOpts.whatBump([
           generateCommit({ type: CommitConventionalType.Feat }),
           generateCommit({ type: CommitConventionalType.Feat }),
-        ])
+        ]),
       ).toEqual({
         level: 1,
         reason: 'There are 0 BREAKING CHANGES and 2 features',

@@ -177,7 +177,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
               }
               return [...result, ...toAppend];
             },
-            []
+            [],
           ),
         },
       ],
@@ -250,6 +250,6 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       'space-infix-ops': 'off',
       'valid-typeof': 'off',
     },
-  }
+  },
 );
 export = config;

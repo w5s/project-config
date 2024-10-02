@@ -26,7 +26,7 @@ const baseConfig = ESLintConfig.concat(
   nodeConfig,
   strictConfig,
   styleConfig,
-  variablesConfig
+  variablesConfig,
 );
 
 const config: eslint.Linter.Config = ESLintConfig.concat(
@@ -65,7 +65,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       // @ts-ignore No typing available
       'no-restricted-syntax': baseConfig.rules['no-restricted-syntax'].filter(
         // @ts-ignore No typing available
-        ({ selector }) => selector !== 'ForOfStatement'
+        ({ selector }) => selector !== 'ForOfStatement',
       ),
       // underscore is often used (mongodb, etc)
       'no-underscore-dangle': 'off',
@@ -77,7 +77,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       'no-void': ['error', { allowAsStatement: true }],
       'unicode-bom': ['error', 'never'],
     },
-  }
+  },
 );
 
 export = config;

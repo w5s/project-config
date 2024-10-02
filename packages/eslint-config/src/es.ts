@@ -6,7 +6,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
   {
     extends: [require.resolve('./rules/es.js')],
   },
-  prettierConfig
+  prettierConfig,
 );
 
 export = config;

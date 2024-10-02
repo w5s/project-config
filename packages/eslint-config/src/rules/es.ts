@@ -12,7 +12,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
   promiseConfig,
   jsdocConfig,
   importConfig,
-  unicornConfig
+  unicornConfig,
   // prettierConfig
 );
 export = config;

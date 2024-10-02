@@ -92,7 +92,7 @@ export function createTransform(config: TransformConfig): WriterOptions.Transfor
               // User URLs.
               // eslint-disable-next-line unicorn/prefer-string-replace-all
               returnValue = returnValue.replace(/\B@([\da-z](?:-?[\d/a-z]){0,38})/g, (_, username: string) =>
-                username.includes('/') ? `@${username}` : `[@${username}](${host}/${username})`
+                username.includes('/') ? `@${username}` : `[@${username}](${host}/${username})`,
               );
             }
             return returnValue;

@@ -57,6 +57,6 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       '@typescript-eslint/restrict-template-expressions': 'off',
       '@typescript-eslint/unbound-method': 'off',
     },
-  }
+  },
 );
 export = config;

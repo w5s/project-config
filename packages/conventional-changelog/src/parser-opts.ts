@@ -10,7 +10,7 @@ export const parserOpts: ParserOptions = {
       `(?:\\((?<scope>.*)\\):? )?` +
       // Subject
       `(?<subject>.*)$`,
-    'u'
+    'u',
   ),
   headerCorrespondence: ['type', 'scope', 'subject'],
   revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i,

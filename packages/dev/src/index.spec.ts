@@ -17,7 +17,7 @@ describe('index', () => {
         'fileSync',
         'json',
         'jsonSync',
-      ].sort()
+      ].sort(),
     );
   });
 });

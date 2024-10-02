@@ -65,8 +65,8 @@ describe('ESLintConfig', () => {
             settings: {
               sc: true,
             },
-          }
-        )
+          },
+        ),
       ).toEqual({
         env: {
           a: true,

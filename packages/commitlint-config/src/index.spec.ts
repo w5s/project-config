@@ -28,7 +28,7 @@ describe('Commitlint Config', () => {
           valid: true,
           errors: [],
           warnings: [],
-        })
+        }),
       );
     });
     it('should validate simple commit', async () => {
@@ -39,7 +39,7 @@ describe('Commitlint Config', () => {
           valid: true,
           errors: [],
           warnings: [],
-        })
+        }),
       );
     });
     it('should not return error when gitmoji as emoji', async () => {
@@ -50,7 +50,7 @@ describe('Commitlint Config', () => {
           valid: true,
           errors: [],
           warnings: [],
-        })
+        }),
       );
     });
     it.each([
@@ -62,7 +62,7 @@ describe('Commitlint Config', () => {
           valid: true,
           errors: [],
           warnings: [],
-        })
+        }),
       );
     });
   });
@@ -80,7 +80,7 @@ describe('Commitlint Config', () => {
               name: 'body-leading-blank',
             }),
           ],
-        })
+        }),
       );
     });
   });
@@ -98,7 +98,7 @@ describe('Commitlint Config', () => {
               name: 'footer-leading-blank',
             }),
           ],
-        })
+        }),
       );
     });
   });
@@ -117,7 +117,7 @@ describe('Commitlint Config', () => {
             }),
           ],
           warnings: [],
-        })
+        }),
       );
     });
   });
@@ -135,7 +135,7 @@ describe('Commitlint Config', () => {
             }),
           ]),
           warnings: [],
-        })
+        }),
       );
     });
   });
@@ -155,7 +155,7 @@ describe('Commitlint Config', () => {
             }),
           ],
           warnings: [],
-        })
+        }),
       );
 
       expect(await lint(`${anyGitmoji} (${anyValidScope}): ${''}`)).toEqual(
@@ -167,7 +167,7 @@ describe('Commitlint Config', () => {
             }),
           ],
           warnings: [],
-        })
+        }),
       );
     });
   });
@@ -185,7 +185,7 @@ describe('Commitlint Config', () => {
             }),
           ]),
           warnings: [],
-        })
+        }),
       );
     });
   });
@@ -203,7 +203,7 @@ describe('Commitlint Config', () => {
             }),
           ]),
           warnings: [],
-        })
+        }),
       );
     });
   });
@@ -221,7 +221,7 @@ describe('Commitlint Config', () => {
             }),
           ]),
           warnings: [],
-        })
+        }),
       );
     });
   });
@@ -238,7 +238,7 @@ describe('Commitlint Config', () => {
             }),
           ]),
           warnings: [],
-        })
+        }),
       );
     });
   });
@@ -255,7 +255,7 @@ describe('Commitlint Config', () => {
             }),
           ]),
           warnings: [],
-        })
+        }),
       );
     });
   });

@@ -29,5 +29,5 @@ export const defineConfig: typeof TsUp.defineConfig = (configOrGetter) =>
   TsUp.defineConfig(
     typeof configOrGetter === 'function'
       ? (config) => awaitableMap(configOrGetter(config), mergeAllWithDefault)
-      : awaitableMap(configOrGetter, mergeAllWithDefault)
+      : awaitableMap(configOrGetter, mergeAllWithDefault),
   );

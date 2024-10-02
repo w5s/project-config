@@ -42,7 +42,7 @@ export namespace ESLintConfig {
         plugins: [],
         rules: {},
         settings: {},
-      }
+      },
     );
   }
 

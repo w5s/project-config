@@ -75,7 +75,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
         },
       },
     ],
-  }
+  },
 );
 
 export = config;

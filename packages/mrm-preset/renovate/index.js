@@ -35,9 +35,9 @@ function createRenovate({ renovatePresetApplication, renovatePresetLibrary }) {
             /**
              * @param {string} extension
              */
-            (extension) => extension !== renovatePresetApplication && extension !== renovatePresetLibrary
-          )
-        )
+            (extension) => extension !== renovatePresetApplication && extension !== renovatePresetLibrary,
+          ),
+        ),
       );
       renovateFile.save();
     }

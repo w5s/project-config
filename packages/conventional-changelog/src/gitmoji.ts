@@ -38,7 +38,7 @@ export namespace GitmojiCode {
   const allGitmojiCodes = new Set(
     gitmojis
       .map((gitmoji) => gitmoji.code as GitmojiCode)
-      .concat(gitmojis.map((gitmoji) => gitmoji.emoji as GitmojiCode))
+      .concat(gitmojis.map((gitmoji) => gitmoji.emoji as GitmojiCode)),
   );
   const index = {
     // code: createIndex(gitmojis, 'code'),
@@ -72,7 +72,7 @@ export namespace GitmojiCode {
 
     const entries = Array.from<[CommitConventionalType, GitmojiCode.Unicode[]]>(
       // @ts-ignore entries are not well typed
-      Object.entries(data)
+      Object.entries(data),
     );
     return new Map(
       entries.reduce<Array<[GitmojiCode, CommitConventionalType]>>(
@@ -85,10 +85,10 @@ export namespace GitmojiCode {
                 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
                 index.emoji.get(gitmojiUnicode)?.code! as GitmojiCode,
                 commitType,
-              ])
+              ]),
             ),
-        []
-      )
+        [],
+      ),
     );
   })();
 

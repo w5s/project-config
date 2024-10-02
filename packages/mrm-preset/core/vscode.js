@@ -15,7 +15,7 @@ function vscodeRecommendedExtension(recommendation) {
   } else {
     packageFile.set(
       'recommendations',
-      packageFile.get('recommendations', []).filter((/** @type {string} */ _) => _ !== recommendation.name)
+      packageFile.get('recommendations', []).filter((/** @type {string} */ _) => _ !== recommendation.name),
     );
   }
   packageFile.save();
@@ -44,7 +44,7 @@ function vscodeTask(newTask) {
   if (tasks.some((task) => task.script === newTask.script)) {
     vscodeTaskFile.set(
       'tasks',
-      tasks.map((task) => (task.script === newTask.script ? newTask : task))
+      tasks.map((task) => (task.script === newTask.script ? newTask : task)),
     );
   } else {
     vscodeTaskFile.set('tasks', [newTask].concat(tasks));

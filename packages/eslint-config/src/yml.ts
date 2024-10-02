@@ -9,7 +9,7 @@ const config: eslint.Linter.Config = {
       files: [
         Project.extensionsToGlob(
           // ts only extensions
-          Project.queryExtensions(['yaml'])
+          Project.queryExtensions(['yaml']),
         ),
       ],
     },

@@ -62,7 +62,7 @@ const Browser = (() => {
         name: 'IE Mobile',
         iconName: 'ie',
       },
-    })
+    }),
   );
 
   function getVersion(browser) {
@@ -90,7 +90,7 @@ async function buildPageContent() {
     const deviceMap = groupBy(browserList, (browser) =>
       browser.startsWith('ios_') || browser.startsWith('and_') || browser.startsWith('op_') || browser.startsWith('ie_')
         ? 'mobile'
-        : 'desktop'
+        : 'desktop',
     );
 
     return {
@@ -109,7 +109,7 @@ async function buildPageContent() {
     ${entries(browsers)
       .map(
         ([browserCode, versions]) =>
-          `- ${Browser.getName(browserCode)} (${versions.map(Browser.getVersion).join(', ')})`
+          `- ${Browser.getName(browserCode)} (${versions.map(Browser.getVersion).join(', ')})`,
       )
       .join('\n')}
   `;
