@@ -2,7 +2,7 @@ import type { Config } from 'prettier';
 
 const prettierConfig: Config = {
   singleQuote: true,
-  trailingCommas: 'always',
+  trailingComma: 'all',
   overrides: [
     {
       files: ['*.css', '*.scss'],

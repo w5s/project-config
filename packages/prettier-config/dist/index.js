@@ -1,7 +1,7 @@
 // src/index.ts
 var prettierConfig = {
   singleQuote: true,
-  trailingCommas: "always",
+  trailingComma: "all",
   overrides: [
     {
       files: ["*.css", "*.scss"],
