@@ -15,7 +15,7 @@ exports[`index > should match snapshot 1`] = `
       },
     ],
     "singleQuote": true,
-    "trailingComma": "es5",
+    "trailingCommas": "always",
   },
 }
 `;
