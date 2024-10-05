@@ -263,9 +263,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-cpp@npm:^5.1.16":
-  version: 5.1.17
-  resolution: "@cspell/dict-cpp@npm:5.1.17"
-  checksum: 10c0/1ac0c4eaee97b579f84683d2206c874437671092242ddd984ccc2a91d6fa6ff383209746014ac6c96771042b38c74c1539a87e7901fcd690ccb6a20745794478
+  version: 5.1.18
+  resolution: "@cspell/dict-cpp@npm:5.1.18"
+  checksum: 10c0/cf451d209105c7741c832ff1dd12ee031d52d3c29fa806a3aafcba81f95ec552fa196fb4fc22a2a90d29abbfbdf51990aaedf87714ce03726ed798f9ec660870
   languageName: node
   linkType: hard
 
@@ -515,9 +515,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-powershell@npm:^5.0.8":
-  version: 5.0.9
-  resolution: "@cspell/dict-powershell@npm:5.0.9"
-  checksum: 10c0/e5f31eb05b9070f232306c3581bcec4d3d812f79162be0ca3821f918d1dd0fd285221e494dee3d12055e79f9e59663411abeb8f439e30949fee9debe6ccb4c4b
+  version: 5.0.10
+  resolution: "@cspell/dict-powershell@npm:5.0.10"
+  checksum: 10c0/01421d8f8652c9349ed177b96f3f9d34ef2725b48ce5bf7b05b9d83221e4a46e6d61c9b64cf29c898d7685baeab03ee280e85f3af1934b1548004d5c019da8f5
   languageName: node
   linkType: hard
 
@@ -529,11 +529,11 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-python@npm:^4.2.6":
-  version: 4.2.6
-  resolution: "@cspell/dict-python@npm:4.2.6"
+  version: 4.2.7
+  resolution: "@cspell/dict-python@npm:4.2.7"
   dependencies:
     "@cspell/dict-data-science": "npm:^2.0.1"
-  checksum: 10c0/6b954be3e2bfbc6016b76611c0d4d4934ac99e3ac4386f26c5ae95d45c08a175cc2bab6793c0283accfb077e64f63962d83cd068b995b38a90ddaec2d54a8c78
+  checksum: 10c0/7b1ef797c6a2fe099b7cac68613e57ed87bf68350e6a6ffcebf987acf94358e095bed20242eaaf71863843b2fc95391d877bfccc33bd26915947d9264b954d21
   languageName: node
   linkType: hard
 
@@ -552,9 +552,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-rust@npm:^4.0.5":
-  version: 4.0.5
-  resolution: "@cspell/dict-rust@npm:4.0.5"
-  checksum: 10c0/caf999200744da013635874efe99c9d4f554f4f1947e62665233607285c2dc34c0379205f1334c57515aec416d9f3545377a457b8cf77f7d428aedaca01a9696
+  version: 4.0.6
+  resolution: "@cspell/dict-rust@npm:4.0.6"
+  checksum: 10c0/c90b6c401336266b6cfdf9eb909616efc95cd83cab80a2b9d83cea5d9726303cd8b33937be3dca974274656a65ad1901dbfbaf3eb048b697403c67e802894233
   languageName: node
   linkType: hard
 
@@ -566,9 +566,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-software-terms@npm:^4.1.3":
-  version: 4.1.5
-  resolution: "@cspell/dict-software-terms@npm:4.1.5"
-  checksum: 10c0/2075b04b85f0d00e1b021e60f51c0eab2f94f294b250f7b2f1ae7ec4612e610f02dd782a0ca9aabf69b29d4d3a9293a5a14e7155d36c20c36336e29c16214b2d
+  version: 4.1.6
+  resolution: "@cspell/dict-software-terms@npm:4.1.6"
+  checksum: 10c0/a7145d084acfd6c3dc047ec85f8dcd8339a017874cdd83e5367ff7e80bce22d763be7033b712c82f958d88be6e4f1b74721976db4f3bbbbe4dd32a64895c647d
   languageName: node
   linkType: hard
 
@@ -594,9 +594,9 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-terraform@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@cspell/dict-terraform@npm:1.0.1"
-  checksum: 10c0/3c8f69a94d388ce21340c1c6edd73f0f8f462f8ede02db44f800f6c5e25987458be9f7134318b5cfd3e5e1c8836f86ef9146b426189e6d580f69ae0644bd2e3e
+  version: 1.0.2
+  resolution: "@cspell/dict-terraform@npm:1.0.2"
+  checksum: 10c0/93aa8622fd4763decba51929be6838b6e1f3f23bd5cd06c2358787bb26f605ec804c16eb875b2d324507b1c75ef5b33e4386ca9b2dd8fb6ba1121599321e8c74
   languageName: node
   linkType: hard
 
