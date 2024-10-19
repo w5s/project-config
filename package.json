@@ -86,7 +86,7 @@
     "**/dist/**"
   ],
   "devDependencies": {
-    "@types/node": "20.16.12",
+    "@types/node": "20.16.13",
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/conventional-changelog": "workspace:*",
     "@w5s/cspell-config": "workspace:*",
