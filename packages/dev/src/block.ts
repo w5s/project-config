@@ -67,7 +67,7 @@ function toFileOptions(options: BlockOptions): FileOptions {
 
     return {
       endIndex,
-      exists: startIndex >= 0 && endIndex >= 0,
+      exists: startIndex !== -1 && endIndex >= 0,
       startIndex,
     };
   }

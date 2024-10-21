@@ -158,7 +158,7 @@ function toFileOptions(options) {
     const endIndex = content.indexOf(endBlock) + endBlock.length;
     return {
       endIndex,
-      exists: startIndex >= 0 && endIndex >= 0,
+      exists: startIndex !== -1 && endIndex >= 0,
       startIndex
     };
   }
