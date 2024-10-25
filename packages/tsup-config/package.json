@@ -68,7 +68,7 @@
     "test:src": "vitest run"
   },
   "devDependencies": {
-    "tsup": "8.3.0",
+    "tsup": "8.3.4",
     "vite": "5.4.10",
     "vitest": "2.1.3"
   },
