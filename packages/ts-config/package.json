@@ -45,7 +45,7 @@
     "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck"
   },
   "devDependencies": {
-    "typescript": "5.6.3"
+    "typescript": "5.7.2"
   },
   "peerDependencies": {
     "typescript": ">=5.x"
