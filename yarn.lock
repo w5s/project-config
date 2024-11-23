@@ -7327,7 +7327,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-finalizationregistry@npm:^1.0.2":
+"is-finalizationregistry@npm:^1.1.0":
   version: 1.1.0
   resolution: "is-finalizationregistry@npm:1.1.0"
   dependencies:
@@ -13394,14 +13394,15 @@ __metadata:
   linkType: hard
 
 "which-builtin-type@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "which-builtin-type@npm:1.1.4"
+  version: 1.2.0
+  resolution: "which-builtin-type@npm:1.2.0"
   dependencies:
+    call-bind: "npm:^1.0.7"
     function.prototype.name: "npm:^1.1.6"
     has-tostringtag: "npm:^1.0.2"
     is-async-function: "npm:^2.0.0"
     is-date-object: "npm:^1.0.5"
-    is-finalizationregistry: "npm:^1.0.2"
+    is-finalizationregistry: "npm:^1.1.0"
     is-generator-function: "npm:^1.0.10"
     is-regex: "npm:^1.1.4"
     is-weakref: "npm:^1.0.2"
@@ -13409,7 +13410,7 @@ __metadata:
     which-boxed-primitive: "npm:^1.0.2"
     which-collection: "npm:^1.0.2"
     which-typed-array: "npm:^1.1.15"
-  checksum: 10c0/a4a76d20d869a81b1dbb4adea31edc7e6c1a4466d3ab7c2cd757c9219d48d3723b04076c85583257b0f0f8e3ebe5af337248b8ceed57b9051cb97bce5bd881d1
+  checksum: 10c0/7cd4a8ccfa6a3cb7c2296c716e7266b9f31a66f3e131fe7b185232c16d3ad21442046ec1798c4ec1e19dce7eb99c7751377192e5e734dc07042d14ec0f09b332
   languageName: node
   linkType: hard
 
