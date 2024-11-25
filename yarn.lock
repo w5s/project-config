@@ -2093,12 +2093,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/conventional-commits-parser@npm:*, @types/conventional-commits-parser@npm:5.0.0, @types/conventional-commits-parser@npm:^5.0.0":
+"@types/conventional-commits-parser@npm:*, @types/conventional-commits-parser@npm:^5.0.0":
   version: 5.0.0
   resolution: "@types/conventional-commits-parser@npm:5.0.0"
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/16c748ce01cb3b3ea5947950acd695569c0daa8da62cc7e0eb98b15c4d7f812f95c079fe2c853325509f8aa73cfd388390319ae4621c8dfb21eeacb63accdb25
+  languageName: node
+  linkType: hard
+
+"@types/conventional-commits-parser@npm:5.0.1":
+  version: 5.0.1
+  resolution: "@types/conventional-commits-parser@npm:5.0.1"
+  dependencies:
+    "@types/node": "npm:*"
+  checksum: 10c0/4b7b561f195f779d07f973801a9f15d77cd58ceb67e817459688b11cc735288d30de050f445c91f4cd2c007fa86824e59a6e3cde602d150b828c4474f6e67be5
   languageName: node
   linkType: hard
 
@@ -2533,7 +2542,7 @@ __metadata:
   dependencies:
     "@commitlint/types": "npm:^19.0.0"
     "@types/conventional-changelog-writer": "npm:4.0.10"
-    "@types/conventional-commits-parser": "npm:5.0.0"
+    "@types/conventional-commits-parser": "npm:5.0.1"
     "@w5s/tsup-config": "workspace:*"
     emoji-regex: "npm:^10.2.1"
     gitmojis: "npm:^3.13.4"

@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "@types/conventional-changelog-writer": "4.0.10",
-    "@types/conventional-commits-parser": "5.0.0",
+    "@types/conventional-commits-parser": "5.0.1",
     "@w5s/tsup-config": "workspace:*",
     "tsup": "8.3.5",
     "vite": "5.4.11",
