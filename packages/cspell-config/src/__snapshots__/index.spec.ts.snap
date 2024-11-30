@@ -46,10 +46,6 @@ exports[`index > should match snapshot 1`] = `
       "path": "../dict/npm.txt",
     },
   ],
-  "enableFiletypes": [
-    "svelte",
-    "julia",
-  ],
   "flagWords": [],
   "id": "w5s-default-js",
   "ignorePaths": [
