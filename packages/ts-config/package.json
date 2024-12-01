@@ -1,6 +1,6 @@
 {
   "name": "@w5s/ts-config",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Typescript compiler configuration presets",
   "keywords": [
     "typescript",
