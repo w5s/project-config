@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@w5s/tsup-config": "workspace:*",
-    "prettier": "3.4.1",
+    "prettier": "3.4.2",
     "tsup": "8.3.5",
     "vite": "6.0.2",
     "vitest": "2.1.8"
