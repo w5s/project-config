@@ -78,7 +78,7 @@
     "eslint-find-rules": "4.2.0",
     "prettier": "3.4.2",
     "react": "18.3.1",
-    "vite": "6.0.2",
+    "vite": "6.0.3",
     "vitest": "2.1.8"
   },
   "peerDependencies": {
