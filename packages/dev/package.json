@@ -1,6 +1,6 @@
 {
   "name": "@w5s/dev",
-  "version": "2.2.17",
+  "version": "2.2.18",
   "description": "Shared development constants and functions",
   "keywords": [
     "config",

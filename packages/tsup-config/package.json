@@ -1,6 +1,6 @@
 {
   "name": "@w5s/tsup-config",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "private": true,
   "description": "Prettier shared configuration",
   "keywords": [

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.3.0](https://github.com/w5s/project-config/compare/@w5s/ts-config@2.2.2...@w5s/ts-config@2.3.0) (2024-12-09)
+
+### ✨ Features
+
+- Use target ESNext ([2ea1dd8](https://github.com/w5s/project-config/commit/2ea1dd8))
+
+**Note:** Version bump only for package @w5s/ts-config
+
 ## [2.2.2](https://github.com/w5s/project-config/compare/@w5s/ts-config@2.2.1...@w5s/ts-config@2.2.2) (2024-12-01)
 
 **Note:** Version bump only for package @w5s/ts-config
