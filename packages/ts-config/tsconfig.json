@@ -30,7 +30,7 @@
     "sourceMap": true,
     "strict": true,
     "stripInternal": true,
-    "target": "ES2022",
+    "target": "ESNext", // Use the most compatible value with bundlers, this can be overridden in project
     "useDefineForClassFields": true,
     "useUnknownInCatchVariables": true,
     "verbatimModuleSyntax": true
