@@ -239,7 +239,6 @@ function task() {
       command: {
         publish: {
           conventionalCommits: true,
-          npmClient: 'npm',
           syncWorkspaceLock: true,
         },
         version: {
