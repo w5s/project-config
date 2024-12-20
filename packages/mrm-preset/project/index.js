@@ -223,6 +223,10 @@ function task() {
   });
 
   // workspace
+  npm.dependency({
+    state: rootUseWorkspace ? 'present' : 'absent',
+    name: ['@lerna-lite/cli'],
+  });
   const lernaConfig = json('lerna.json', {
     version: rootPackageFile.get('version'),
   });
