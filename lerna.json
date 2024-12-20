@@ -4,6 +4,7 @@
   "command": {
     "publish": {
       "conventionalCommits": true,
+      "syncWorkspaceLock": true,
       "npmClient": "npm"
     },
     "version": {

@@ -240,6 +240,7 @@ function task() {
         publish: {
           conventionalCommits: true,
           npmClient: 'npm',
+          syncWorkspaceLock: true,
         },
         version: {
           message: gitmoji
