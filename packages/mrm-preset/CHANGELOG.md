@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.9.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.8.7...@w5s/mrm-preset@2.9.0) (2024-12-20)
+
+### ✨ Features
+
+- Improve turbo configuration generation ([0eeeb4c](https://github.com/w5s/project-config/commit/0eeeb4c)) 
+
+### 🐛 Bug Fixes
+
+- Use @lerna-lite/publish ([c927f34](https://github.com/w5s/project-config/commit/c927f34))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [2.8.7](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.8.6...@w5s/mrm-preset@2.8.7) (2024-12-09)
 
 **Note:** Version bump only for package @w5s/mrm-preset
