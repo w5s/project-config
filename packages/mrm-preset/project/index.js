@@ -261,12 +261,13 @@ function task() {
       globalEnv: Array.from(
         new Set([...(_.globalEnv ?? []), 'ASDF_*', 'CI', 'CI_*', 'DATABASE_URL', 'NODE_ENV']),
       ).sort(),
-      globalDependencies: ['tsconfig.settings.json'],
+      globalDependencies: ['.tool-versions', 'tsconfig.settings.json', '**/.env.*local', '.env'],
       tasks: {
         ..._.tasks,
         [project.build]: {
           dependsOn: [`^${project.build}`, `//#${project.build}:root`],
-          outputs: ['lib/**', 'dist/**', '.next/**'],
+          inputs: ['$TURBO_DEFAULT$', '.env*'],
+          outputs: ['dist/**', '.next/**', '!.next/cache/**'],
         },
         [`//#${project.build}:root`]: {},
         [project.test]: {

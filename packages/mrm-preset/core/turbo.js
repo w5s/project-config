@@ -26,7 +26,7 @@ function turbo({ state, update }) {
       path: undefined,
       state,
       update: (previousValue) => ({
-        $schema: 'https://turborepo.org/schema.json',
+        $schema: 'https://turbo.build/schema.json',
         ...update(previousValue),
       }),
       /** @type {TurboConfig} */
