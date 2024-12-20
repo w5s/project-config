@@ -2542,7 +2542,7 @@ __metadata:
   dependencies:
     browserslist: "npm:4.24.3"
     lodash-es: "npm:4.17.21"
-    vite: "npm:6.0.4"
+    vite: "npm:6.0.5"
     vitest: "npm:2.1.8"
   peerDependencies:
     browserslist: ">= 4.0"
@@ -2559,7 +2559,7 @@ __metadata:
     "@commitlint/lint": "npm:19.6.0"
     "@commitlint/types": "npm:^19.0.0"
     "@w5s/conventional-changelog": "npm:^2.1.6"
-    vite: "npm:6.0.4"
+    vite: "npm:6.0.5"
     vitest: "npm:2.1.8"
   peerDependencies:
     "@commitlint/cli": ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2580,7 +2580,7 @@ __metadata:
     emoji-regex: "npm:^10.2.1"
     gitmojis: "npm:^3.13.4"
     tsup: "npm:8.3.5"
-    vite: "npm:6.0.4"
+    vite: "npm:6.0.5"
     vitest: "npm:2.1.8"
   languageName: unknown
   linkType: soft
@@ -2592,7 +2592,7 @@ __metadata:
     "@cspell/cspell-bundled-dicts": "npm:8.17.1"
     "@cspell/cspell-tools": "npm:8.17.1"
     "@cspell/cspell-types": "npm:8.17.1"
-    vite: "npm:6.0.4"
+    vite: "npm:6.0.5"
     vitest: "npm:2.1.8"
   peerDependencies:
     cspell: ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -2609,7 +2609,7 @@ __metadata:
     "@types/eslint": "npm:^8.44.0"
     "@w5s/tsup-config": "workspace:*"
     tsup: "npm:8.3.5"
-    vite: "npm:6.0.4"
+    vite: "npm:6.0.5"
     vitest: "npm:2.1.8"
   languageName: unknown
   linkType: soft
@@ -2642,7 +2642,7 @@ __metadata:
     parse-gitignore: "npm:^2.0.0"
     prettier: "npm:3.4.2"
     react: "npm:19.0.0"
-    vite: "npm:6.0.4"
+    vite: "npm:6.0.5"
     vitest: "npm:2.1.8"
   peerDependencies:
     eslint: 8.x
@@ -2679,7 +2679,7 @@ __metadata:
     "@w5s/tsup-config": "workspace:*"
     prettier: "npm:3.4.2"
     tsup: "npm:8.3.5"
-    vite: "npm:6.0.4"
+    vite: "npm:6.0.5"
     vitest: "npm:2.1.8"
   peerDependencies:
     prettier: 2.x || 3.x
@@ -2713,7 +2713,7 @@ __metadata:
     prettier: "npm:3.4.2"
     turbo: "npm:2.3.3"
     typescript: "npm:5.7.2"
-    vite: "npm:6.0.4"
+    vite: "npm:6.0.5"
     vitest: "npm:2.1.8"
   languageName: unknown
   linkType: soft
@@ -2736,7 +2736,7 @@ __metadata:
   resolution: "@w5s/tsup-config@workspace:packages/tsup-config"
   dependencies:
     tsup: "npm:8.3.5"
-    vite: "npm:6.0.4"
+    vite: "npm:6.0.5"
     vitest: "npm:2.1.8"
   peerDependencies:
     tsup: 8.x
@@ -4928,87 +4928,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esbuild@npm:^0.21.3":
-  version: 0.21.5
-  resolution: "esbuild@npm:0.21.5"
-  dependencies:
-    "@esbuild/aix-ppc64": "npm:0.21.5"
-    "@esbuild/android-arm": "npm:0.21.5"
-    "@esbuild/android-arm64": "npm:0.21.5"
-    "@esbuild/android-x64": "npm:0.21.5"
-    "@esbuild/darwin-arm64": "npm:0.21.5"
-    "@esbuild/darwin-x64": "npm:0.21.5"
-    "@esbuild/freebsd-arm64": "npm:0.21.5"
-    "@esbuild/freebsd-x64": "npm:0.21.5"
-    "@esbuild/linux-arm": "npm:0.21.5"
-    "@esbuild/linux-arm64": "npm:0.21.5"
-    "@esbuild/linux-ia32": "npm:0.21.5"
-    "@esbuild/linux-loong64": "npm:0.21.5"
-    "@esbuild/linux-mips64el": "npm:0.21.5"
-    "@esbuild/linux-ppc64": "npm:0.21.5"
-    "@esbuild/linux-riscv64": "npm:0.21.5"
-    "@esbuild/linux-s390x": "npm:0.21.5"
-    "@esbuild/linux-x64": "npm:0.21.5"
-    "@esbuild/netbsd-x64": "npm:0.21.5"
-    "@esbuild/openbsd-x64": "npm:0.21.5"
-    "@esbuild/sunos-x64": "npm:0.21.5"
-    "@esbuild/win32-arm64": "npm:0.21.5"
-    "@esbuild/win32-ia32": "npm:0.21.5"
-    "@esbuild/win32-x64": "npm:0.21.5"
-  dependenciesMeta:
-    "@esbuild/aix-ppc64":
-      optional: true
-    "@esbuild/android-arm":
-      optional: true
-    "@esbuild/android-arm64":
-      optional: true
-    "@esbuild/android-x64":
-      optional: true
-    "@esbuild/darwin-arm64":
-      optional: true
-    "@esbuild/darwin-x64":
-      optional: true
-    "@esbuild/freebsd-arm64":
-      optional: true
-    "@esbuild/freebsd-x64":
-      optional: true
-    "@esbuild/linux-arm":
-      optional: true
-    "@esbuild/linux-arm64":
-      optional: true
-    "@esbuild/linux-ia32":
-      optional: true
-    "@esbuild/linux-loong64":
-      optional: true
-    "@esbuild/linux-mips64el":
-      optional: true
-    "@esbuild/linux-ppc64":
-      optional: true
-    "@esbuild/linux-riscv64":
-      optional: true
-    "@esbuild/linux-s390x":
-      optional: true
-    "@esbuild/linux-x64":
-      optional: true
-    "@esbuild/netbsd-x64":
-      optional: true
-    "@esbuild/openbsd-x64":
-      optional: true
-    "@esbuild/sunos-x64":
-      optional: true
-    "@esbuild/win32-arm64":
-      optional: true
-    "@esbuild/win32-ia32":
-      optional: true
-    "@esbuild/win32-x64":
-      optional: true
-  bin:
-    esbuild: bin/esbuild
-  checksum: 10c0/fa08508adf683c3f399e8a014a6382a6b65542213431e26206c0720e536b31c09b50798747c2a105a4bbba1d9767b8d3615a74c2f7bf1ddf6d836cd11eb672de
-  languageName: node
-  linkType: hard
-
-"esbuild@npm:^0.24.0":
+"esbuild@npm:0.24.0, esbuild@npm:^0.24.0":
   version: 0.24.0
   resolution: "esbuild@npm:0.24.0"
   dependencies:
@@ -5088,6 +5008,86 @@ __metadata:
   bin:
     esbuild: bin/esbuild
   checksum: 10c0/9f1aadd8d64f3bff422ae78387e66e51a5e09de6935a6f987b6e4e189ed00fdc2d1bc03d2e33633b094008529c8b6e06c7ad1a9782fb09fec223bf95998c0683
+  languageName: node
+  linkType: hard
+
+"esbuild@npm:^0.21.3":
+  version: 0.21.5
+  resolution: "esbuild@npm:0.21.5"
+  dependencies:
+    "@esbuild/aix-ppc64": "npm:0.21.5"
+    "@esbuild/android-arm": "npm:0.21.5"
+    "@esbuild/android-arm64": "npm:0.21.5"
+    "@esbuild/android-x64": "npm:0.21.5"
+    "@esbuild/darwin-arm64": "npm:0.21.5"
+    "@esbuild/darwin-x64": "npm:0.21.5"
+    "@esbuild/freebsd-arm64": "npm:0.21.5"
+    "@esbuild/freebsd-x64": "npm:0.21.5"
+    "@esbuild/linux-arm": "npm:0.21.5"
+    "@esbuild/linux-arm64": "npm:0.21.5"
+    "@esbuild/linux-ia32": "npm:0.21.5"
+    "@esbuild/linux-loong64": "npm:0.21.5"
+    "@esbuild/linux-mips64el": "npm:0.21.5"
+    "@esbuild/linux-ppc64": "npm:0.21.5"
+    "@esbuild/linux-riscv64": "npm:0.21.5"
+    "@esbuild/linux-s390x": "npm:0.21.5"
+    "@esbuild/linux-x64": "npm:0.21.5"
+    "@esbuild/netbsd-x64": "npm:0.21.5"
+    "@esbuild/openbsd-x64": "npm:0.21.5"
+    "@esbuild/sunos-x64": "npm:0.21.5"
+    "@esbuild/win32-arm64": "npm:0.21.5"
+    "@esbuild/win32-ia32": "npm:0.21.5"
+    "@esbuild/win32-x64": "npm:0.21.5"
+  dependenciesMeta:
+    "@esbuild/aix-ppc64":
+      optional: true
+    "@esbuild/android-arm":
+      optional: true
+    "@esbuild/android-arm64":
+      optional: true
+    "@esbuild/android-x64":
+      optional: true
+    "@esbuild/darwin-arm64":
+      optional: true
+    "@esbuild/darwin-x64":
+      optional: true
+    "@esbuild/freebsd-arm64":
+      optional: true
+    "@esbuild/freebsd-x64":
+      optional: true
+    "@esbuild/linux-arm":
+      optional: true
+    "@esbuild/linux-arm64":
+      optional: true
+    "@esbuild/linux-ia32":
+      optional: true
+    "@esbuild/linux-loong64":
+      optional: true
+    "@esbuild/linux-mips64el":
+      optional: true
+    "@esbuild/linux-ppc64":
+      optional: true
+    "@esbuild/linux-riscv64":
+      optional: true
+    "@esbuild/linux-s390x":
+      optional: true
+    "@esbuild/linux-x64":
+      optional: true
+    "@esbuild/netbsd-x64":
+      optional: true
+    "@esbuild/openbsd-x64":
+      optional: true
+    "@esbuild/sunos-x64":
+      optional: true
+    "@esbuild/win32-arm64":
+      optional: true
+    "@esbuild/win32-ia32":
+      optional: true
+    "@esbuild/win32-x64":
+      optional: true
+  bin:
+    esbuild: bin/esbuild
+  checksum: 10c0/fa08508adf683c3f399e8a014a6382a6b65542213431e26206c0720e536b31c09b50798747c2a105a4bbba1d9767b8d3615a74c2f7bf1ddf6d836cd11eb672de
   languageName: node
   linkType: hard
 
@@ -12553,11 +12553,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:6.0.4":
-  version: 6.0.4
-  resolution: "vite@npm:6.0.4"
+"vite@npm:6.0.5":
+  version: 6.0.5
+  resolution: "vite@npm:6.0.5"
   dependencies:
-    esbuild: "npm:^0.24.0"
+    esbuild: "npm:0.24.0"
     fsevents: "npm:~2.3.3"
     postcss: "npm:^8.4.49"
     rollup: "npm:^4.23.0"
@@ -12601,7 +12601,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/b1808f99250980bb1dc7805897ecfced4913adc7b4fd1cf7912e034f3e24e3e97a751ca3410620428bf073070f0b46071b94c4241cf9fc88b12f2d9dcafd7619
+  checksum: 10c0/d6927e1795abf0bffbf9183c3c3338c7cc1060bcfbfcd951aa4464c1e5478216f26c95077a2bbd29edbaebc079c1f08a37c7daac8f07c0a6bb53e79d502c70ef
   languageName: node
   linkType: hard
 
