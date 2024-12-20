@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.10.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.9.0...@w5s/mrm-preset@2.10.0) (2024-12-20)
+
+### ✨ Features
+
+- Enable syncWorkspaceLock for lerna publish ([4c0c818](https://github.com/w5s/project-config/commit/4c0c818))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 # [2.9.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.8.7...@w5s/mrm-preset@2.9.0) (2024-12-20)
 
 ### ✨ Features
