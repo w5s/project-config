@@ -2550,7 +2550,7 @@ __metadata:
   dependencies:
     browserslist: "npm:4.24.3"
     lodash-es: "npm:4.17.21"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
   peerDependencies:
     browserslist: ">= 4.0"
@@ -2567,7 +2567,7 @@ __metadata:
     "@commitlint/lint": "npm:19.6.0"
     "@commitlint/types": "npm:^19.0.0"
     "@w5s/conventional-changelog": "npm:^2.1.6"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
   peerDependencies:
     "@commitlint/cli": ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -2588,7 +2588,7 @@ __metadata:
     emoji-regex: "npm:^10.2.1"
     gitmojis: "npm:^3.13.4"
     tsup: "npm:8.3.5"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
   languageName: unknown
   linkType: soft
@@ -2600,7 +2600,7 @@ __metadata:
     "@cspell/cspell-bundled-dicts": "npm:8.17.1"
     "@cspell/cspell-tools": "npm:8.17.1"
     "@cspell/cspell-types": "npm:8.17.1"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
   peerDependencies:
     cspell: ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -2617,7 +2617,7 @@ __metadata:
     "@types/eslint": "npm:^8.44.0"
     "@w5s/tsup-config": "workspace:*"
     tsup: "npm:8.3.5"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
   languageName: unknown
   linkType: soft
@@ -2650,7 +2650,7 @@ __metadata:
     parse-gitignore: "npm:^2.0.0"
     prettier: "npm:3.4.2"
     react: "npm:19.0.0"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
   peerDependencies:
     eslint: 8.x
@@ -2687,7 +2687,7 @@ __metadata:
     "@w5s/tsup-config": "workspace:*"
     prettier: "npm:3.4.2"
     tsup: "npm:8.3.5"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
   peerDependencies:
     prettier: 2.x || 3.x
@@ -2721,7 +2721,7 @@ __metadata:
     prettier: "npm:3.4.2"
     turbo: "npm:2.3.3"
     typescript: "npm:5.7.2"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
   languageName: unknown
   linkType: soft
@@ -2744,7 +2744,7 @@ __metadata:
   resolution: "@w5s/tsup-config@workspace:packages/tsup-config"
   dependencies:
     tsup: "npm:8.3.5"
-    vite: "npm:6.0.6"
+    vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
   peerDependencies:
     tsup: 8.x
@@ -12593,9 +12593,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:6.0.6":
-  version: 6.0.6
-  resolution: "vite@npm:6.0.6"
+"vite@npm:6.0.7":
+  version: 6.0.7
+  resolution: "vite@npm:6.0.7"
   dependencies:
     esbuild: "npm:^0.24.2"
     fsevents: "npm:~2.3.3"
@@ -12641,7 +12641,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/144c3f80a7920a4b2fa14f00f99b58ece246455ca9313561a67a227b45dadac3343e406d3c1dbfafa79992ac88f54cb2b040b229997e432daf47594fe8cacec2
+  checksum: 10c0/ae81047b4290a7206b9394a39a782d509e9610462e7946422ba22d5bc615b5a322c07e33d7bf9dd0b3312ec3f5c63353b725913d1519324bfdf539b4f1e03f52
   languageName: node
   linkType: hard
 
