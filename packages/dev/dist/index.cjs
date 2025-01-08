@@ -212,6 +212,12 @@ function blockSync(options) {
   return fileSync(toFileOptions(options));
 }
 
+// src/interopDefault.ts
+async function interopDefault(m) {
+  const resolved = await m;
+  return resolved.default ?? resolved;
+}
+
 // src/json.ts
 function toFileOption({ update, ...otherOptions }) {
   return {
@@ -326,6 +332,7 @@ exports.directory = directory;
 exports.directorySync = directorySync;
 exports.file = file;
 exports.fileSync = fileSync;
+exports.interopDefault = interopDefault;
 exports.json = json;
 exports.jsonSync = jsonSync;
 //# sourceMappingURL=index.cjs.map

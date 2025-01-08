@@ -149,6 +149,22 @@ declare function file(options: FileOptions): Promise<void>;
  */
 declare function fileSync(options: FileOptions): void;
 
+/**
+ * Resolves a module or promise-like object, returning the default export if available.
+ *
+ * @example
+ * ```ts
+ * await interopDefault(import('./module'));// Can be a commonjs or esm module
+ * ```
+ *
+ * @template T - The type of the module or promise-like object.
+ * @param {T | PromiseLike<T>} m - The module or promise-like object to resolve.
+ * @returns {Promise<T extends { default: infer U } ? U : T>} A promise resolving to the default export if present, otherwise the module itself.
+ */
+declare function interopDefault<T>(m: T | PromiseLike<T>): Promise<T extends {
+    default: infer U;
+} ? U : T>;
+
 type JSONValue = null | number | string | boolean | JSONValue[] | {
     [key: string]: JSONValue;
 };
@@ -296,4 +312,4 @@ declare const ProjectScript: {
 };
 type ProjectScript = (typeof ProjectScript)[keyof typeof ProjectScript];
 
-export { type BlockOptions, type DirectoryOptions, ESLintConfig, type FileOptions, type JSONOption, type JSONValue, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, json, jsonSync };
+export { type BlockOptions, type DirectoryOptions, ESLintConfig, type FileOptions, type JSONOption, type JSONValue, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync };

@@ -210,6 +210,12 @@ function blockSync(options) {
   return fileSync(toFileOptions(options));
 }
 
+// src/interopDefault.ts
+async function interopDefault(m) {
+  const resolved = await m;
+  return resolved.default ?? resolved;
+}
+
 // src/json.ts
 function toFileOption({ update, ...otherOptions }) {
   return {
@@ -317,6 +323,6 @@ var ProjectScript = {
   Validate: "validate"
 };
 
-export { ESLintConfig, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, json, jsonSync };
+export { ESLintConfig, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

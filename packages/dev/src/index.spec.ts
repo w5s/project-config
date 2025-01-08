@@ -15,6 +15,7 @@ describe('index', () => {
         'blockSync',
         'file',
         'fileSync',
+        'interopDefault',
         'json',
         'jsonSync',
       ].sort(),
