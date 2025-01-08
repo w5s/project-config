@@ -2549,7 +2549,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/browserslist-config@workspace:packages/browserslist-config"
   dependencies:
-    browserslist: "npm:4.24.3"
+    browserslist: "npm:4.24.4"
     lodash-es: "npm:4.17.21"
     vite: "npm:6.0.7"
     vitest: "npm:2.1.8"
@@ -3222,7 +3222,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:4.24.3, browserslist@npm:^4.24.2":
+"browserslist@npm:4.24.4":
+  version: 4.24.4
+  resolution: "browserslist@npm:4.24.4"
+  dependencies:
+    caniuse-lite: "npm:^1.0.30001688"
+    electron-to-chromium: "npm:^1.5.73"
+    node-releases: "npm:^2.0.19"
+    update-browserslist-db: "npm:^1.1.1"
+  bin:
+    browserslist: cli.js
+  checksum: 10c0/db7ebc1733cf471e0b490b4f47e3e2ea2947ce417192c9246644e92c667dd56a71406cc58f62ca7587caf828364892e9952904a02b7aead752bc65b62a37cfe9
+  languageName: node
+  linkType: hard
+
+"browserslist@npm:^4.24.2":
   version: 4.24.3
   resolution: "browserslist@npm:4.24.3"
   dependencies:
