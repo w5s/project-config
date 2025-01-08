@@ -1,4 +1,5 @@
 const path = require('node:path');
+const process = require('node:process');
 const { packageJson } = require('mrm-core');
 const npm = require('../core/npm.js');
 const pkg = require('../core/pkg.js');

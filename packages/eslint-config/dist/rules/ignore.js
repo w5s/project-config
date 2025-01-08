@@ -4,12 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 const node_fs_1 = require("node:fs");
 const node_path_1 = __importDefault(require("node:path"));
+const node_process_1 = __importDefault(require("node:process"));
 const find_up_1 = __importDefault(require("find-up"));
 const parse_gitignore_1 = __importDefault(require("parse-gitignore"));
 const getGitignore = (prefix = '') => {
-    const cwd = process.cwd();
+    const cwd = node_process_1.default.cwd();
     const gitIgnoreFile = find_up_1.default.sync(node_path_1.default.join(prefix, '.gitignore'), { cwd });
     if (gitIgnoreFile != null) {
+        // eslint-disable-next-line n/no-sync
         const { patterns } = parse_gitignore_1.default.parse((0, node_fs_1.readFileSync)(gitIgnoreFile));
         const returnValue = patterns.map((pattern) => node_path_1.default.join(prefix, pattern));
         return returnValue;
