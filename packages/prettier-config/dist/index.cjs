@@ -13,8 +13,8 @@ var prettierConfig = {
     }
   ]
 };
-var src_default = prettierConfig;
+var index_default = prettierConfig;
 
-module.exports = src_default;
+module.exports = index_default;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map

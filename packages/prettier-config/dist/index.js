@@ -11,8 +11,8 @@ var prettierConfig = {
     }
   ]
 };
-var src_default = prettierConfig;
+var index_default = prettierConfig;
 
-export { src_default as default };
+export { index_default as default };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

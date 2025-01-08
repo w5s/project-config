@@ -327,7 +327,7 @@ var writerOpts = {
 };
 
 // src/index.ts
-var src_default = {
+var index_default = {
   Emoji,
   GitmojiCode,
   parserOpts,
@@ -336,6 +336,6 @@ var src_default = {
   gitRawCommitOpts
 };
 
-module.exports = src_default;
+module.exports = index_default;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map
