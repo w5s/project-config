@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.2.0](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@2.1.6...@w5s/conventional-changelog@2.2.0) (2025-01-08)
+
+### ✨ Features
+
+- Add eslint-plugin-n plugin ([754d716](https://github.com/w5s/project-config/commit/754d716))
+
+**Note:** Version bump only for package @w5s/conventional-changelog
+
 ## [2.1.6](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@2.1.5...@w5s/conventional-changelog@2.1.6) (2024-12-20)
 
 **Note:** Version bump only for package @w5s/conventional-changelog
