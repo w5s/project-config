@@ -1,5 +1,6 @@
 import { Project, interopDefault } from '@w5s/dev';
 import { configs } from 'eslint-plugin-jsonc';
+import importPlugin from 'eslint-plugin-import';
 
 // src/config/jsonc.ts
 var defaultFiles = [Project.extensionsToGlob([".json", ".json5", ".jsonc"])];
@@ -46,16 +47,42 @@ async function jsonc(options = {}) {
     }
   ];
 }
+var importConfig = importPlugin.flatConfigs["recommended"];
+var defaultStylistic2 = { indent: 2 };
+async function imports(options = {}) {
+  const { rules = {}, rulesStylistic = true } = options;
+  ({
+    ...defaultStylistic2,
+    ...typeof rulesStylistic === "boolean" ? {} : rulesStylistic
+  });
+  return [
+    {
+      name: "w5s/import/rules",
+      plugins: importConfig.plugins,
+      rules: {
+        ...importConfig?.rules,
+        ...rulesStylistic ? {
+          // Stylistic rules
+        } : {},
+        ...rules
+      }
+    }
+  ];
+}
 
 // src/defineConfig.ts
 async function defineConfig(options = {}) {
+  const importOptions = typeof options.import === "boolean" ? { enabled: options.import } : { enabled: true, ...options.import };
   const jsoncOptions = typeof options.jsonc === "boolean" ? { enabled: options.jsonc } : { enabled: true, ...options.jsonc };
   let returnValue = [];
   const append = async (config) => {
-    returnValue = [...returnValue, ...await config];
+    returnValue = [...returnValue, ...config];
   };
   if (jsoncOptions.enabled) {
     append(await jsonc(jsoncOptions));
+  }
+  if (importOptions.enabled) {
+    append(await imports(importOptions));
   }
   return returnValue;
 }
@@ -63,6 +90,6 @@ async function defineConfig(options = {}) {
 // src/index.ts
 var index_default = defineConfig;
 
-export { index_default as default, defineConfig, jsonc };
+export { index_default as default, defineConfig, imports, jsonc };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
