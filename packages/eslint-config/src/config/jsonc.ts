@@ -1,16 +1,18 @@
 import { interopDefault, Project } from '@w5s/dev';
 import type { Config } from '../type.js';
 import type { RuleOptions } from '../typegen/jsonc.js';
+import { configs as jsoncConfigs } from 'eslint-plugin-jsonc';
 
 const defaultFiles = [Project.extensionsToGlob(['.json', '.json5', '.jsonc'])];
 const defaultStylistic = { indent: 2 };
 
-export async function jsonc(options: jsonc.Options = {}): Promise<Array<Config>> {
+export async function jsonc(options: jsonc.Options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
     interopDefault(import('eslint-plugin-jsonc')),
     interopDefault(import('jsonc-eslint-parser')),
   ] as const);
   const { files = defaultFiles, rules = {}, rulesStylistic = true } = options;
+
   const { indent } = {
     ...defaultStylistic,
     ...(typeof rulesStylistic === 'boolean' ? {} : rulesStylistic),
@@ -30,32 +32,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<Array<Config>>
       },
       name: 'w5s/jsonc/rules',
       rules: {
-        'jsonc/no-bigint-literals': 'error',
-        'jsonc/no-binary-expression': 'error',
-        'jsonc/no-binary-numeric-literals': 'error',
-        'jsonc/no-dupe-keys': 'error',
-        'jsonc/no-escape-sequence-in-identifier': 'error',
-        'jsonc/no-floating-decimal': 'error',
-        'jsonc/no-hexadecimal-numeric-literals': 'error',
-        'jsonc/no-infinity': 'error',
-        'jsonc/no-multi-str': 'error',
-        'jsonc/no-nan': 'error',
-        'jsonc/no-number-props': 'error',
-        'jsonc/no-numeric-separators': 'error',
-        'jsonc/no-octal': 'error',
-        'jsonc/no-octal-escape': 'error',
-        'jsonc/no-octal-numeric-literals': 'error',
-        'jsonc/no-parenthesized': 'error',
-        'jsonc/no-plus-sign': 'error',
-        'jsonc/no-regexp-literals': 'error',
-        'jsonc/no-sparse-arrays': 'error',
-        'jsonc/no-template-literals': 'error',
-        'jsonc/no-undefined-value': 'error',
-        'jsonc/no-unicode-codepoint-escapes': 'error',
-        'jsonc/no-useless-escape': 'error',
-        'jsonc/space-unary-ops': 'error',
-        'jsonc/valid-json-number': 'error',
-        'jsonc/vue-custom-block/no-parsing-error': 'error',
+        ...(jsoncConfigs['flat/recommended-with-json'][0]?.rules),
         ...(rulesStylistic
           ? {
               'jsonc/array-bracket-spacing': ['error', 'never'],
@@ -73,7 +50,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<Array<Config>>
         ...rules,
       },
     },
-  ];
+  ]  as const satisfies Array<Config>;
 }
 
 export namespace jsonc {
