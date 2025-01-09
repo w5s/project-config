@@ -43,7 +43,7 @@
   ],
   "scripts": {
     "build": "npx run-p \"build:*\"",
-    "build:tsc": "tsc -b tsconfig.build.json",
+    "build:tsc": "node --experimental-strip-types scripts/typegen.ts && tsc -b tsconfig.build.json",
     "clean": "npx run-p \"clean:*\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
@@ -79,6 +79,7 @@
     "eslint-plugin-unicorn": "^56.0.0",
     "eslint-plugin-yml": "^1.1.0",
     "find-up": "^5.0.0",
+    "jsonc-eslint-parser": "^2.0.0",
     "parse-gitignore": "^2.0.0"
   },
   "devDependencies": {
