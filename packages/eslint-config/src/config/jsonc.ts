@@ -1,9 +1,8 @@
 import { interopDefault, Project } from '@w5s/dev';
 import type { Config } from '../type.js';
-import type {} from 'eslint-plugin-jsonc';
 import type { RuleOptions } from '../typegen/jsonc.js';
 
-const defaultFiles = Project.extensionsToGlob(['.json', '.json5', '.jsonc']);
+const defaultFiles = [Project.extensionsToGlob(['.json', '.json5', '.jsonc'])];
 const defaultStylistic = { indent: 2 };
 
 export async function jsonc(options: jsonc.Options = {}): Promise<Array<Config>> {
@@ -81,7 +80,7 @@ export namespace jsonc {
   export type Rules = RuleOptions;
 
   export interface Options {
-    files?: Array<string>;
+    files?: Config['files'];
     rules?: Rules;
     rulesStylistic?: boolean;
   }
