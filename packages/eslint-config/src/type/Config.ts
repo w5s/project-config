@@ -1,7 +1,5 @@
 import type { Linter } from 'eslint';
 
-type RuleOptions = {};
-
-export interface Config extends Linter.Config<Linter.RulesRecord & RuleOptions> {
-  // plugins?: Record<string, any>;
+export interface Config extends Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> {
+  plugins?: Record<string, any>;
 }

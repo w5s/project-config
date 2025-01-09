@@ -40,6 +40,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
         extends: [eslintPreset],
         parserOptions: {
           project: hasTypescript ? './tsconfig.json' : undefined,
+          // @ts-ignore FIXME: implement for eslint v9
           ...config.parserOptions,
         },
       }),

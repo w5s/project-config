@@ -1,13 +1,17 @@
-import { Project, interopDefault } from '@w5s/dev';
-import { configs } from 'eslint-plugin-jsonc';
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var dev = require('@w5s/dev');
+var eslintPluginJsonc = require('eslint-plugin-jsonc');
 
 // src/config/jsonc.ts
-var defaultFiles = [Project.extensionsToGlob([".json", ".json5", ".jsonc"])];
+var defaultFiles = [dev.Project.extensionsToGlob([".json", ".json5", ".jsonc"])];
 var defaultStylistic = { indent: 2 };
 async function jsonc(options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
-    interopDefault(import('eslint-plugin-jsonc')),
-    interopDefault(import('jsonc-eslint-parser'))
+    dev.interopDefault(import('eslint-plugin-jsonc')),
+    dev.interopDefault(import('jsonc-eslint-parser'))
   ]);
   const { files = defaultFiles, rules = {}, rulesStylistic = true } = options;
   const { indent } = {
@@ -28,7 +32,7 @@ async function jsonc(options = {}) {
       },
       name: "w5s/jsonc/rules",
       rules: {
-        ...configs["flat/recommended-with-json"][0]?.rules,
+        ...eslintPluginJsonc.configs["flat/recommended-with-json"][0]?.rules,
         ...rulesStylistic ? {
           "jsonc/array-bracket-spacing": ["error", "never"],
           "jsonc/comma-dangle": ["error", "never"],
@@ -63,6 +67,8 @@ async function defineConfig(options = {}) {
 // src/index.ts
 var index_default = defineConfig;
 
-export { index_default as default, defineConfig, jsonc };
-//# sourceMappingURL=index.js.map
-//# sourceMappingURL=index.js.map
+exports.default = index_default;
+exports.defineConfig = defineConfig;
+exports.jsonc = jsonc;
+//# sourceMappingURL=index.cjs.map
+//# sourceMappingURL=index.cjs.map
