@@ -1,6 +1,6 @@
 import type eslint from 'eslint';
 import { ESLintConfig, Project } from '@w5s/dev';
-import prettierConfig from './rules/prettier.js';
+import prettierConfig from '../_backup/rules/prettier.js';
 
 const config: eslint.Linter.Config = {
   overrides: [

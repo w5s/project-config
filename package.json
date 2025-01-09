@@ -27,9 +27,9 @@
     "develop": ":",
     "docs": "node markdown.mjs && turbo run docs",
     "format": "turbo run format --continue",
-    "format:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --ignore-pattern='packages/*/**' --fix",
+    "format:root": "eslint . --ignore-pattern='packages/*/**' --fix",
     "lint": "turbo run lint",
-    "lint:root": "eslint . --ext=mjs,cjs,js,jsx,ts,tsx,json,jsonc,json5,yml,yaml --ignore-pattern='packages/*/**'",
+    "lint:root": "eslint . --ignore-pattern='packages/*/**'",
     "mrm": "npm exec --package=mrm -- mrm --dir ./packages/mrm-preset",
     "postbuild": "npm run docs",
     "prepare": "npx run-p \"prepare:*\"",
@@ -66,21 +66,6 @@
     "*.ts?(x)": [
       "eslint"
     ]
-  },
-  "eslintConfig": {
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "plugins": [
-      "sort-keys"
-    ],
-    "extends": [
-      "@w5s/eslint-config"
-    ],
-    "rules": {
-      "unicorn/prefer-module": "off"
-    },
-    "root": true
   },
   "eslintIgnore": [
     "**/dist/**"

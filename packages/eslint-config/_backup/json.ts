@@ -1,5 +1,5 @@
 import type eslint from 'eslint';
-import jsonConfig from './rules/jsonc.js';
+import jsonConfig from '../_backup/rules/jsonc.js';
 
 const config: eslint.Linter.Config = {
   overrides: [
