@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.4.0](https://github.com/w5s/project-config/compare/@w5s/dev@2.3.0...@w5s/dev@2.4.0) (2025-01-10)
+
+### ✨ Features
+
+- Add interopDefault function ([ad71b9b](https://github.com/w5s/project-config/commit/ad71b9b))
+
+**Note:** Version bump only for package @w5s/dev
+
 # [2.3.0](https://github.com/w5s/project-config/compare/@w5s/dev@2.2.19...@w5s/dev@2.3.0) (2025-01-08)
 
 ### ✨ Features

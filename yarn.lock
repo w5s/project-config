@@ -2611,7 +2611,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/dev@npm:^2.3.0, @w5s/dev@workspace:packages/dev":
+"@w5s/dev@npm:^2.4.0, @w5s/dev@workspace:packages/dev":
   version: 0.0.0-use.local
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
@@ -2633,7 +2633,7 @@ __metadata:
     "@types/react": "npm:19.0.4"
     "@typescript-eslint/eslint-plugin": "npm:^8.0.0"
     "@typescript-eslint/parser": "npm:8.19.1"
-    "@w5s/dev": "npm:^2.3.0"
+    "@w5s/dev": "npm:^2.4.0"
     "@w5s/prettier-config": "npm:^2.2.6"
     eslint: "npm:8.57.1"
     eslint-config-airbnb-base: "npm:^15.0.0"
@@ -2671,7 +2671,7 @@ __metadata:
   resolution: "@w5s/mrm-preset@workspace:packages/mrm-preset"
   dependencies:
     "@types/debug": "npm:4.1.12"
-    "@w5s/dev": "npm:^2.3.0"
+    "@w5s/dev": "npm:^2.4.0"
     debug: "npm:^4.3.3"
     glob: "npm:^11.0.0"
     mrm: "npm:4.1.22"
