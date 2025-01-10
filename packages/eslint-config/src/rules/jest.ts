@@ -32,6 +32,12 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
       },
     },
   },
+  // NodeJS loose config
+  {
+    rules: {
+      'n/no-sync': 'off',
+    },
+  },
   /**
    * Unicorn less strict to help writing tests
    */

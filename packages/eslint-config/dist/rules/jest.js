@@ -29,6 +29,12 @@ const config = dev_1.ESLintConfig.concat({
         },
     },
 }, 
+// NodeJS loose config
+{
+    rules: {
+        'n/no-sync': 'off',
+    },
+}, 
 /**
  * Unicorn less strict to help writing tests
  */
