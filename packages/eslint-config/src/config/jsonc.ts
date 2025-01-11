@@ -50,8 +50,5 @@ export async function jsonc(options: jsonc.Options = {}) {
 export namespace jsonc {
   export type Rules = RuleOptions;
 
-  export interface Options extends PluginOptionsBase {
-    files?: Config['files'];
-    rules?: Rules;
-  }
+  export interface Options extends PluginOptionsBase<Rules> {}
 }
