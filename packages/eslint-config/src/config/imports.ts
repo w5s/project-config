@@ -28,7 +28,5 @@ export async function imports(options: imports.Options = {}) {
 export namespace imports {
   export type Rules = RuleOptions;
 
-  export interface Options extends PluginOptionsBase {
-    rules?: Rules;
-  }
+  export interface Options extends PluginOptionsBase<Rules> {}
 }
