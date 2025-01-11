@@ -64,8 +64,5 @@ export async function yml(options: yml.Options = {}) {
 export namespace yml {
   export type Rules = RuleOptions;
 
-  export interface Options extends PluginOptionsBase {
-    files?: Config['files'];
-    rules?: Rules;
-  }
+  export interface Options extends PluginOptionsBase<Rules> {}
 }
