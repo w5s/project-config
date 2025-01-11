@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+// @ts-ignore
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';

@@ -32,7 +32,7 @@ var defaultFiles = [Project.extensionsToGlob([".json", ".json5", ".jsonc"])];
 async function jsonc(options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
     import('eslint-plugin-jsonc'),
-    import('jsonc-eslint-parser')
+    interopDefault(import('jsonc-eslint-parser'))
   ]);
   const { files = defaultFiles, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic);
@@ -86,10 +86,45 @@ async function imports(options = {}) {
     }
   ];
 }
+async function node(options = {}) {
+  const [nodePlugin] = await Promise.all([
+    import('eslint-plugin-n')
+  ]);
+  const { rules = {}, stylistic = true } = options;
+  return [
+    {
+      name: "w5s/node/setup",
+      plugins: {
+        node: await interopDefault(nodePlugin)
+      }
+    },
+    {
+      name: "w5s/node/rules",
+      rules: {
+        // 'node/handle-callback-err': ['error', '^(err|error|_error)$'],
+        "node/no-deprecated-api": "error",
+        "node/no-exports-assign": "error",
+        "node/no-new-require": "error",
+        "node/no-path-concat": "error",
+        "node/no-sync": "error",
+        "node/prefer-global/buffer": ["error", "never"],
+        "node/prefer-global/console": ["error", "always"],
+        // 'node/prefer-global/process': ['error', 'never'],
+        "node/prefer-global/url": ["error", "always"],
+        "node/prefer-global/url-search-params": ["error", "always"],
+        "node/process-exit-as-throw": "error",
+        // ...(stylisticEnabled
+        //   ? {}
+        //   : {}),
+        ...rules
+      }
+    }
+  ];
+}
 var defaultFiles2 = [Project.extensionsToGlob(Project.queryExtensions(["yaml"]))];
 async function yml(options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
-    interopDefault(import('eslint-plugin-yml')),
+    import('eslint-plugin-yml'),
     interopDefault(import('yaml-eslint-parser'))
   ]);
   const { files = defaultFiles2, rules = {}, stylistic = true } = options;
@@ -98,7 +133,7 @@ async function yml(options = {}) {
     {
       name: "w5s/yml/setup",
       plugins: {
-        yml: ymlPlugin
+        yml: await interopDefault(ymlPlugin)
       }
     },
     {
@@ -142,6 +177,7 @@ async function yml(options = {}) {
 async function defineConfig(options = {}) {
   const importOptions = typeof options.import === "boolean" ? { enabled: options.import } : { enabled: true, ...options.import };
   const jsoncOptions = typeof options.jsonc === "boolean" ? { enabled: options.jsonc } : { enabled: true, ...options.jsonc };
+  const nodeOptions = typeof options.node === "boolean" ? { enabled: options.node } : { enabled: true, ...options.node };
   const ymlOptions = typeof options.yml === "boolean" ? { enabled: options.yml } : { enabled: false, ...options.yml };
   let returnValue = [];
   const append = async (config) => {
@@ -153,6 +189,9 @@ async function defineConfig(options = {}) {
   if (importOptions.enabled) {
     append(await imports(importOptions));
   }
+  if (nodeOptions.enabled) {
+    append(await node(nodeOptions));
+  }
   if (ymlOptions.enabled) {
     append(await yml(ymlOptions));
   }
@@ -162,6 +201,6 @@ async function defineConfig(options = {}) {
 // src/index.ts
 var index_default = defineConfig;
 
-export { index_default as default, defineConfig, imports, jsonc, yml };
+export { index_default as default, defineConfig, imports, jsonc, node, yml };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
