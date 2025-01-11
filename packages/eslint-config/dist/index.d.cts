@@ -4,6 +4,10 @@ import * as eslint_plugin_jsonc from 'eslint-plugin-jsonc';
 import * as eslint_plugin_jsonc_types from 'eslint-plugin-jsonc/types';
 import * as jsonc_eslint_parser from 'jsonc-eslint-parser';
 import * as eslint_plugin_jsonc_meta from 'eslint-plugin-jsonc/meta';
+import { StylisticCustomizeOptions } from '@stylistic/eslint-plugin';
+import * as eslint_plugin_yml_lib_types_js from 'eslint-plugin-yml/lib/types.js';
+import * as yaml_eslint_parser from 'yaml-eslint-parser';
+import * as eslint_plugin_yml_lib_meta_js from 'eslint-plugin-yml/lib/meta.js';
 
 /* eslint-disable unicorn/no-abusive-eslint-disable */
 /* eslint-disable */
@@ -12,11 +16,11 @@ import * as eslint_plugin_jsonc_meta from 'eslint-plugin-jsonc/meta';
 
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$1 {}
+    interface RulesRecord extends RuleOptions$2 {}
   }
 }
 
-interface RuleOptions$1 {
+interface RuleOptions$2 {
   /**
    * enforce line breaks after opening and before closing array brackets
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-newline.html
@@ -504,6 +508,44 @@ type JsoncSpaceUnaryOps = []|[{
 
 interface Config extends Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> {
     plugins?: Record<string, any>;
+}
+
+interface StylisticParameters extends Partial<StylisticConfig> {
+}
+interface StylisticConfig {
+    enabled: boolean;
+    indent: NonNullable<StylisticCustomizeOptions['indent']>;
+    quotes: NonNullable<StylisticCustomizeOptions['quotes']>;
+    jsx: NonNullable<StylisticCustomizeOptions['jsx']>;
+    semi: NonNullable<StylisticCustomizeOptions['semi']>;
+}
+/**
+ * @namespace
+ */
+declare const StylisticConfig: {
+    /**
+     * Default config
+     */
+    default: {
+        enabled: true;
+        indent: number;
+        quotes: "single";
+        jsx: true;
+        semi: true;
+    };
+    /**
+     * Return a new StylisticConfig from input
+     *
+     * @param input
+     */
+    from(input: boolean | StylisticParameters): StylisticConfig;
+};
+
+interface PluginOptionsBase {
+    /**
+     * Stylistic options
+     */
+    stylistic?: boolean | StylisticParameters;
 }
 
 declare function jsonc(options?: jsonc.Options): Promise<[{
@@ -1384,11 +1426,10 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
     };
 }]>;
 declare namespace jsonc {
-    type Rules = RuleOptions$1;
-    interface Options {
+    type Rules = RuleOptions$2;
+    interface Options extends PluginOptionsBase {
         files?: Config['files'];
         rules?: Rules;
-        rulesStylistic?: boolean;
     }
 }
 
@@ -1399,11 +1440,11 @@ declare namespace jsonc {
 
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions {}
+    interface RulesRecord extends RuleOptions$1 {}
   }
 }
 
-interface RuleOptions {
+interface RuleOptions$1 {
   /**
    * Enforce or ban the use of inline type-only markers for named imports.
    * @see https://github.com/import-js/eslint-plugin-import/blob/v2.31.0/docs/rules/consistent-type-specifier-style.md
@@ -1876,17 +1917,4955 @@ declare function imports(options?: imports.Options): Promise<[{
     readonly rules: any;
 }]>;
 declare namespace imports {
-    type Rules = RuleOptions;
+    type Rules = RuleOptions$1;
     interface Options {
         rules?: Rules;
         rulesStylistic?: boolean;
     }
 }
 
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions {}
+  }
+}
+
+interface RuleOptions {
+  /**
+   * require or disallow block style mappings.
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping.html
+   */
+  'yml/block-mapping'?: Linter.RuleEntry<YmlBlockMapping>
+  /**
+   * enforce consistent line breaks after `:` indicator
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping-colon-indicator-newline.html
+   */
+  'yml/block-mapping-colon-indicator-newline'?: Linter.RuleEntry<YmlBlockMappingColonIndicatorNewline>
+  /**
+   * enforce consistent line breaks after `?` indicator
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping-question-indicator-newline.html
+   */
+  'yml/block-mapping-question-indicator-newline'?: Linter.RuleEntry<YmlBlockMappingQuestionIndicatorNewline>
+  /**
+   * require or disallow block style sequences.
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-sequence.html
+   */
+  'yml/block-sequence'?: Linter.RuleEntry<YmlBlockSequence>
+  /**
+   * enforce consistent line breaks after `-` indicator
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-sequence-hyphen-indicator-newline.html
+   */
+  'yml/block-sequence-hyphen-indicator-newline'?: Linter.RuleEntry<YmlBlockSequenceHyphenIndicatorNewline>
+  /**
+   * enforce YAML file extension
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/file-extension.html
+   */
+  'yml/file-extension'?: Linter.RuleEntry<YmlFileExtension>
+  /**
+   * enforce consistent line breaks inside braces
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-newline.html
+   */
+  'yml/flow-mapping-curly-newline'?: Linter.RuleEntry<YmlFlowMappingCurlyNewline>
+  /**
+   * enforce consistent spacing inside braces
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-spacing.html
+   */
+  'yml/flow-mapping-curly-spacing'?: Linter.RuleEntry<YmlFlowMappingCurlySpacing>
+  /**
+   * enforce linebreaks after opening and before closing flow sequence brackets
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-newline.html
+   */
+  'yml/flow-sequence-bracket-newline'?: Linter.RuleEntry<YmlFlowSequenceBracketNewline>
+  /**
+   * enforce consistent spacing inside flow sequence brackets
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-spacing.html
+   */
+  'yml/flow-sequence-bracket-spacing'?: Linter.RuleEntry<YmlFlowSequenceBracketSpacing>
+  /**
+   * enforce consistent indentation
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/indent.html
+   */
+  'yml/indent'?: Linter.RuleEntry<YmlIndent>
+  /**
+   * enforce naming convention to key names
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/key-name-casing.html
+   */
+  'yml/key-name-casing'?: Linter.RuleEntry<YmlKeyNameCasing>
+  /**
+   * enforce consistent spacing between keys and values in mapping pairs
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/key-spacing.html
+   */
+  'yml/key-spacing'?: Linter.RuleEntry<YmlKeySpacing>
+  /**
+   * disallow empty document
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-document.html
+   */
+  'yml/no-empty-document'?: Linter.RuleEntry<[]>
+  /**
+   * disallow empty mapping keys
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-key.html
+   */
+  'yml/no-empty-key'?: Linter.RuleEntry<[]>
+  /**
+   * disallow empty mapping values
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-mapping-value.html
+   */
+  'yml/no-empty-mapping-value'?: Linter.RuleEntry<[]>
+  /**
+   * disallow empty sequence entries
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-sequence-entry.html
+   */
+  'yml/no-empty-sequence-entry'?: Linter.RuleEntry<[]>
+  /**
+   * disallow irregular whitespace
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-irregular-whitespace.html
+   */
+  'yml/no-irregular-whitespace'?: Linter.RuleEntry<YmlNoIrregularWhitespace>
+  /**
+   * disallow multiple empty lines
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-multiple-empty-lines.html
+   */
+  'yml/no-multiple-empty-lines'?: Linter.RuleEntry<YmlNoMultipleEmptyLines>
+  /**
+   * disallow tabs for indentation.
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-tab-indent.html
+   */
+  'yml/no-tab-indent'?: Linter.RuleEntry<[]>
+  /**
+   * disallow trailing zeros for floats
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-trailing-zeros.html
+   */
+  'yml/no-trailing-zeros'?: Linter.RuleEntry<[]>
+  /**
+   * require or disallow plain style scalar.
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/plain-scalar.html
+   */
+  'yml/plain-scalar'?: Linter.RuleEntry<YmlPlainScalar>
+  /**
+   * enforce the consistent use of either double, or single quotes
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/quotes.html
+   */
+  'yml/quotes'?: Linter.RuleEntry<YmlQuotes>
+  /**
+   * disallow mapping keys other than strings
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/require-string-key.html
+   */
+  'yml/require-string-key'?: Linter.RuleEntry<[]>
+  /**
+   * require mapping keys to be sorted
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/sort-keys.html
+   */
+  'yml/sort-keys'?: Linter.RuleEntry<YmlSortKeys>
+  /**
+   * require sequence values to be sorted
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/sort-sequence-values.html
+   */
+  'yml/sort-sequence-values'?: Linter.RuleEntry<YmlSortSequenceValues>
+  /**
+   * enforce consistent spacing after the `#` in a comment
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/spaced-comment.html
+   */
+  'yml/spaced-comment'?: Linter.RuleEntry<YmlSpacedComment>
+  /**
+   * disallow parsing errors in Vue custom blocks
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/vue-custom-block/no-parsing-error.html
+   */
+  'yml/vue-custom-block/no-parsing-error'?: Linter.RuleEntry<[]>
+}
+
+/* ======= Declarations ======= */
+// ----- yml/block-mapping -----
+type YmlBlockMapping = []|[(("always" | "never") | {
+  singleline?: ("always" | "never" | "ignore")
+  multiline?: ("always" | "never" | "ignore")
+})]
+// ----- yml/block-mapping-colon-indicator-newline -----
+type YmlBlockMappingColonIndicatorNewline = []|[("always" | "never")]
+// ----- yml/block-mapping-question-indicator-newline -----
+type YmlBlockMappingQuestionIndicatorNewline = []|[("always" | "never")]
+// ----- yml/block-sequence -----
+type YmlBlockSequence = []|[(("always" | "never") | {
+  singleline?: ("always" | "never" | "ignore")
+  multiline?: ("always" | "never" | "ignore")
+})]
+// ----- yml/block-sequence-hyphen-indicator-newline -----
+type YmlBlockSequenceHyphenIndicatorNewline = []|[("always" | "never")]|[("always" | "never"), {
+  nestedHyphen?: ("always" | "never")
+  blockMapping?: ("always" | "never")
+}]
+// ----- yml/file-extension -----
+type YmlFileExtension = []|[{
+  extension?: ("yaml" | "yml")
+  caseSensitive?: boolean
+}]
+// ----- yml/flow-mapping-curly-newline -----
+type YmlFlowMappingCurlyNewline = []|[(("always" | "never") | {
+  multiline?: boolean
+  minProperties?: number
+  consistent?: boolean
+})]
+// ----- yml/flow-mapping-curly-spacing -----
+type YmlFlowMappingCurlySpacing = []|[("always" | "never")]|[("always" | "never"), {
+  arraysInObjects?: boolean
+  objectsInObjects?: boolean
+}]
+// ----- yml/flow-sequence-bracket-newline -----
+type YmlFlowSequenceBracketNewline = []|[(("always" | "never" | "consistent") | {
+  multiline?: boolean
+  minItems?: (number | null)
+})]
+// ----- yml/flow-sequence-bracket-spacing -----
+type YmlFlowSequenceBracketSpacing = []|[("always" | "never")]|[("always" | "never"), {
+  singleValue?: boolean
+  objectsInArrays?: boolean
+  arraysInArrays?: boolean
+}]
+// ----- yml/indent -----
+type YmlIndent = []|[number]|[number, {
+  indentBlockSequences?: boolean
+  indicatorValueIndent?: number
+}]
+// ----- yml/key-name-casing -----
+type YmlKeyNameCasing = []|[{
+  camelCase?: boolean
+  PascalCase?: boolean
+  SCREAMING_SNAKE_CASE?: boolean
+  "kebab-case"?: boolean
+  snake_case?: boolean
+  ignores?: string[]
+}]
+// ----- yml/key-spacing -----
+type YmlKeySpacing = []|[({
+  align?: (("colon" | "value") | {
+    on?: ("colon" | "value")
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  })
+  mode?: ("strict" | "minimum")
+  beforeColon?: boolean
+  afterColon?: boolean
+} | {
+  singleLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  multiLine?: {
+    align?: (("colon" | "value") | {
+      on?: ("colon" | "value")
+      mode?: ("strict" | "minimum")
+      beforeColon?: boolean
+      afterColon?: boolean
+    })
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+} | {
+  singleLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  multiLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  align?: {
+    on?: ("colon" | "value")
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+})]
+// ----- yml/no-irregular-whitespace -----
+type YmlNoIrregularWhitespace = []|[{
+  skipComments?: boolean
+  skipQuotedScalars?: boolean
+}]
+// ----- yml/no-multiple-empty-lines -----
+type YmlNoMultipleEmptyLines = []|[{
+  max: number
+  maxEOF?: number
+  maxBOF?: number
+}]
+// ----- yml/plain-scalar -----
+type YmlPlainScalar = []|[("always" | "never")]|[("always" | "never"), {
+  ignorePatterns?: string[]
+  overrides?: {
+    mappingKey?: ("always" | "never" | null)
+  }
+}]
+// ----- yml/quotes -----
+type YmlQuotes = []|[{
+  prefer?: ("double" | "single")
+  avoidEscape?: boolean
+}]
+// ----- yml/sort-keys -----
+type YmlSortKeys = ([{
+  pathPattern: string
+  hasProperties?: string[]
+  order: ((string | {
+    keyPattern?: string
+    order?: {
+      type?: ("asc" | "desc")
+      caseSensitive?: boolean
+      natural?: boolean
+    }
+  })[] | {
+    type?: ("asc" | "desc")
+    caseSensitive?: boolean
+    natural?: boolean
+  })
+  minKeys?: number
+  allowLineSeparatedGroups?: boolean
+}, ...({
+  pathPattern: string
+  hasProperties?: string[]
+  order: ((string | {
+    keyPattern?: string
+    order?: {
+      type?: ("asc" | "desc")
+      caseSensitive?: boolean
+      natural?: boolean
+    }
+  })[] | {
+    type?: ("asc" | "desc")
+    caseSensitive?: boolean
+    natural?: boolean
+  })
+  minKeys?: number
+  allowLineSeparatedGroups?: boolean
+})[]] | []|[("asc" | "desc")]|[("asc" | "desc"), {
+  caseSensitive?: boolean
+  natural?: boolean
+  minKeys?: number
+  allowLineSeparatedGroups?: boolean
+}])
+// ----- yml/sort-sequence-values -----
+type YmlSortSequenceValues = [{
+  pathPattern: string
+  order: ((string | {
+    valuePattern?: string
+    order?: {
+      type?: ("asc" | "desc")
+      caseSensitive?: boolean
+      natural?: boolean
+    }
+  })[] | {
+    type?: ("asc" | "desc")
+    caseSensitive?: boolean
+    natural?: boolean
+  })
+  minValues?: number
+}, ...({
+  pathPattern: string
+  order: ((string | {
+    valuePattern?: string
+    order?: {
+      type?: ("asc" | "desc")
+      caseSensitive?: boolean
+      natural?: boolean
+    }
+  })[] | {
+    type?: ("asc" | "desc")
+    caseSensitive?: boolean
+    natural?: boolean
+  })
+  minValues?: number
+})[]]
+// ----- yml/spaced-comment -----
+type YmlSpacedComment = []|[("always" | "never")]|[("always" | "never"), {
+  exceptions?: string[]
+  markers?: string[]
+}]
+
+declare function yml(options?: yml.Options): Promise<[{
+    readonly name: "w5s/yml/setup";
+    readonly plugins: {
+        readonly yml: {
+            meta: typeof eslint_plugin_yml_lib_meta_js;
+            configs: {
+                base: {
+                    plugins: string[];
+                    overrides: {
+                        files: string[];
+                        parser: string;
+                        rules: {
+                            "no-irregular-whitespace": string;
+                            "no-unused-vars": string;
+                            "spaced-comment": string;
+                        };
+                    }[];
+                };
+                recommended: {
+                    extends: string[];
+                    rules: {
+                        "yml/no-empty-document": string;
+                        "yml/no-empty-key": string;
+                        "yml/no-empty-mapping-value": string;
+                        "yml/no-empty-sequence-entry": string;
+                        "yml/no-irregular-whitespace": string;
+                        "yml/no-tab-indent": string;
+                        "yml/vue-custom-block/no-parsing-error": string;
+                    };
+                };
+                standard: {
+                    extends: string[];
+                    rules: {
+                        "yml/block-mapping-question-indicator-newline": string;
+                        "yml/block-mapping": string;
+                        "yml/block-sequence-hyphen-indicator-newline": string;
+                        "yml/block-sequence": string;
+                        "yml/flow-mapping-curly-newline": string;
+                        "yml/flow-mapping-curly-spacing": string;
+                        "yml/flow-sequence-bracket-newline": string;
+                        "yml/flow-sequence-bracket-spacing": string;
+                        "yml/indent": string;
+                        "yml/key-spacing": string;
+                        "yml/no-empty-document": string;
+                        "yml/no-empty-key": string;
+                        "yml/no-empty-mapping-value": string;
+                        "yml/no-empty-sequence-entry": string;
+                        "yml/no-irregular-whitespace": string;
+                        "yml/no-tab-indent": string;
+                        "yml/plain-scalar": string;
+                        "yml/quotes": string;
+                        "yml/spaced-comment": string;
+                        "yml/vue-custom-block/no-parsing-error": string;
+                    };
+                };
+                prettier: {
+                    extends: string[];
+                    rules: {
+                        "yml/block-mapping-colon-indicator-newline": string;
+                        "yml/block-mapping-question-indicator-newline": string;
+                        "yml/block-sequence-hyphen-indicator-newline": string;
+                        "yml/flow-mapping-curly-newline": string;
+                        "yml/flow-mapping-curly-spacing": string;
+                        "yml/flow-sequence-bracket-newline": string;
+                        "yml/flow-sequence-bracket-spacing": string;
+                        "yml/indent": string;
+                        "yml/key-spacing": string;
+                        "yml/no-multiple-empty-lines": string;
+                        "yml/no-trailing-zeros": string;
+                        "yml/quotes": string;
+                    };
+                };
+                "flat/base": ({
+                    plugins: {
+                        readonly yml: eslint.ESLint.Plugin;
+                    };
+                    files?: undefined;
+                    languageOptions?: undefined;
+                    rules?: undefined;
+                } | {
+                    files: string[];
+                    languageOptions: {
+                        parser: typeof yaml_eslint_parser;
+                    };
+                    rules: {
+                        "no-irregular-whitespace": "off";
+                        "no-unused-vars": "off";
+                        "spaced-comment": "off";
+                    };
+                    plugins?: undefined;
+                })[];
+                "flat/recommended": ({
+                    plugins: {
+                        readonly yml: eslint.ESLint.Plugin;
+                    };
+                    files?: undefined;
+                    languageOptions?: undefined;
+                    rules?: undefined;
+                } | {
+                    files: string[];
+                    languageOptions: {
+                        parser: typeof yaml_eslint_parser;
+                    };
+                    rules: {
+                        "no-irregular-whitespace": "off";
+                        "no-unused-vars": "off";
+                        "spaced-comment": "off";
+                    };
+                    plugins?: undefined;
+                } | {
+                    rules: {
+                        "yml/no-empty-document": "error";
+                        "yml/no-empty-key": "error";
+                        "yml/no-empty-mapping-value": "error";
+                        "yml/no-empty-sequence-entry": "error";
+                        "yml/no-irregular-whitespace": "error";
+                        "yml/no-tab-indent": "error";
+                        "yml/vue-custom-block/no-parsing-error": "error";
+                    };
+                })[];
+                "flat/standard": ({
+                    plugins: {
+                        readonly yml: eslint.ESLint.Plugin;
+                    };
+                    files?: undefined;
+                    languageOptions?: undefined;
+                    rules?: undefined;
+                } | {
+                    files: string[];
+                    languageOptions: {
+                        parser: typeof yaml_eslint_parser;
+                    };
+                    rules: {
+                        "no-irregular-whitespace": "off";
+                        "no-unused-vars": "off";
+                        "spaced-comment": "off";
+                    };
+                    plugins?: undefined;
+                } | {
+                    rules: {
+                        "yml/block-mapping-question-indicator-newline": "error";
+                        "yml/block-mapping": "error";
+                        "yml/block-sequence-hyphen-indicator-newline": "error";
+                        "yml/block-sequence": "error";
+                        "yml/flow-mapping-curly-newline": "error";
+                        "yml/flow-mapping-curly-spacing": "error";
+                        "yml/flow-sequence-bracket-newline": "error";
+                        "yml/flow-sequence-bracket-spacing": "error";
+                        "yml/indent": "error";
+                        "yml/key-spacing": "error";
+                        "yml/no-empty-document": "error";
+                        "yml/no-empty-key": "error";
+                        "yml/no-empty-mapping-value": "error";
+                        "yml/no-empty-sequence-entry": "error";
+                        "yml/no-irregular-whitespace": "error";
+                        "yml/no-tab-indent": "error";
+                        "yml/plain-scalar": "error";
+                        "yml/quotes": "error";
+                        "yml/spaced-comment": "error";
+                        "yml/vue-custom-block/no-parsing-error": "error";
+                    };
+                })[];
+                "flat/prettier": ({
+                    plugins: {
+                        readonly yml: eslint.ESLint.Plugin;
+                    };
+                    files?: undefined;
+                    languageOptions?: undefined;
+                    rules?: undefined;
+                } | {
+                    files: string[];
+                    languageOptions: {
+                        parser: typeof yaml_eslint_parser;
+                    };
+                    rules: {
+                        "no-irregular-whitespace": "off";
+                        "no-unused-vars": "off";
+                        "spaced-comment": "off";
+                    };
+                    plugins?: undefined;
+                } | {
+                    rules: {
+                        "yml/block-mapping-colon-indicator-newline": "off";
+                        "yml/block-mapping-question-indicator-newline": "off";
+                        "yml/block-sequence-hyphen-indicator-newline": "off";
+                        "yml/flow-mapping-curly-newline": "off";
+                        "yml/flow-mapping-curly-spacing": "off";
+                        "yml/flow-sequence-bracket-newline": "off";
+                        "yml/flow-sequence-bracket-spacing": "off";
+                        "yml/indent": "off";
+                        "yml/key-spacing": "off";
+                        "yml/no-multiple-empty-lines": "off";
+                        "yml/no-trailing-zeros": "off";
+                        "yml/quotes": "off";
+                    };
+                })[];
+            };
+            rules: {
+                [key: string]: eslint_plugin_yml_lib_types_js.RuleModule;
+            };
+        };
+    };
+}, {
+    readonly files: (string | string[])[];
+    readonly languageOptions: {
+        readonly parser: typeof yaml_eslint_parser;
+    };
+    readonly name: "w5s/yml/rules";
+    readonly rules: {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-tab-indent'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-tab-indent'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-tab-indent'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-tab-indent'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-tab-indent'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-tab-indent'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-tab-indent'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-tab-indent'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+        readonly "no-irregular-whitespace": "off";
+        readonly "no-unused-vars": "off";
+        readonly "spaced-comment": "off";
+    } | {
+        "yml/block-mapping": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/block-mapping-question-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        "yml/block-sequence": eslint.Linter.RuleEntry<undefined>;
+        'yml/block-sequence-hyphen-indicator-newline': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-mapping-curly-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-newline': eslint.Linter.RuleEntry<undefined>;
+        'yml/flow-sequence-bracket-spacing': eslint.Linter.RuleEntry<undefined>;
+        'yml/indent': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/key-spacing': eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/no-tab-indent': eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        "yml/plain-scalar": eslint.Linter.RuleEntry<undefined>;
+        'yml/quotes': eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        'yml/spaced-comment': eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/array-bracket-spacing': ["error", string];
+        readonly 'yml/comma-dangle': ["error", string];
+        readonly 'yml/comma-style': ["error", string];
+        readonly 'yml/object-curly-newline': ["error", {
+            consistent: boolean;
+            multiline: boolean;
+        }];
+        readonly 'yml/object-curly-spacing': ["error", string];
+        readonly 'yml/object-property-newline': ["error", {
+            allowMultiplePropertiesPerLine: boolean;
+        }];
+        readonly 'yml/quote-props': "error";
+    } | {
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-empty-document": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-key": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-mapping-value": eslint.Linter.RuleEntry<[]>;
+        "yml/no-empty-sequence-entry": eslint.Linter.RuleEntry<[]>;
+        "yml/no-irregular-whitespace": eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/no-tab-indent": eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        "yml/vue-custom-block/no-parsing-error": eslint.Linter.RuleEntry<[]>;
+    };
+}]>;
+declare namespace yml {
+    type Rules = RuleOptions;
+    interface Options extends PluginOptionsBase {
+        files?: Config['files'];
+        rules?: Rules;
+    }
+}
+
 interface DefineConfigOptions {
     import?: boolean | imports.Options;
     jsonc?: boolean | jsonc.Options;
+    yml?: boolean | yml.Options;
 }
 declare function defineConfig(options?: DefineConfigOptions): Promise<Config[]>;
 
-export { type DefineConfigOptions, defineConfig as default, defineConfig, imports, jsonc };
+export { type DefineConfigOptions, defineConfig as default, defineConfig, imports, jsonc, yml };

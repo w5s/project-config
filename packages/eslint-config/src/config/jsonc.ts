@@ -1,22 +1,17 @@
 import { interopDefault, Project } from '@w5s/dev';
-import type { Config } from '../type.js';
+import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/jsonc.js';
 import { configs as jsoncConfigs } from 'eslint-plugin-jsonc';
 
 const defaultFiles = [Project.extensionsToGlob(['.json', '.json5', '.jsonc'])];
-const defaultStylistic = { indent: 2 };
 
 export async function jsonc(options: jsonc.Options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
     interopDefault(import('eslint-plugin-jsonc')),
     interopDefault(import('jsonc-eslint-parser')),
   ] as const);
-  const { files = defaultFiles, rules = {}, rulesStylistic = true } = options;
-
-  const { indent } = {
-    ...defaultStylistic,
-    ...(typeof rulesStylistic === 'boolean' ? {} : rulesStylistic),
-  };
+  const { files = defaultFiles, rules = {}, stylistic = true } = options;
+  const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic);
 
   return [
     {
@@ -33,7 +28,7 @@ export async function jsonc(options: jsonc.Options = {}) {
       name: 'w5s/jsonc/rules',
       rules: {
         ...(jsoncConfigs['flat/recommended-with-json'][0]?.rules),
-        ...(rulesStylistic
+        ...(stylisticEnabled
           ? {
               'jsonc/array-bracket-spacing': ['error', 'never'],
               'jsonc/comma-dangle': ['error', 'never'],
@@ -56,9 +51,8 @@ export async function jsonc(options: jsonc.Options = {}) {
 export namespace jsonc {
   export type Rules = RuleOptions;
 
-  export interface Options {
+  export interface Options extends PluginOptionsBase {
     files?: Config['files'];
     rules?: Rules;
-    rulesStylistic?: boolean;
   }
 }
