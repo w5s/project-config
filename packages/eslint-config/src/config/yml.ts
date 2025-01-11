@@ -1,22 +1,17 @@
 import { interopDefault, Project } from '@w5s/dev';
-import type { Config } from '../type.js';
+import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js';
 import type { RuleOptions } from '../typegen/yml.js';
 import { configs as ymlConfigs } from 'eslint-plugin-yml';
 
 const defaultFiles = [Project.extensionsToGlob(Project.queryExtensions(['yaml']))];
-const defaultStylistic = { indent: 2, quotes: 'single' };
 
 export async function yml(options: yml.Options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
     interopDefault(import('eslint-plugin-yml')),
     interopDefault(import('yaml-eslint-parser')),
   ] as const);
-  const { files = defaultFiles, rules = {}, rulesStylistic = true } = options;
-
-  const { indent, quotes } = {
-    ...defaultStylistic,
-    ...(typeof rulesStylistic === 'boolean' ? {} : rulesStylistic),
-  };
+  const { files = defaultFiles, rules = {}, stylistic = true } = options;
+  const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic);
 
   return [
     {
@@ -35,7 +30,7 @@ export async function yml(options: yml.Options = {}) {
         ...(ymlConfigs['flat/recommended'][0]!.rules),
         ...(ymlConfigs['flat/recommended'][1]!.rules),
         ...(ymlConfigs['flat/recommended'][2]!.rules),
-        ...(rulesStylistic
+        ...(stylisticEnabled
           ? {
               ...(ymlConfigs['flat/standard'][3]!.rules),
               'yml/array-bracket-spacing': ['error', 'never'],
@@ -56,7 +51,7 @@ export async function yml(options: yml.Options = {}) {
               'yml/indent': ['error', indent === 'tab' ? 2 : indent],
               'yml/key-spacing': ['error', { afterColon: true, beforeColon: false }],
               'yml/no-tab-indent': 'error',
-              'yml/quotes': ['error', { avoidEscape: true, prefer: quotes === 'backtick' ? 'single' : quotes }],
+              'yml/quotes': ['error', { avoidEscape: true, prefer: quotes === 'backtick' ? 'single' as const : quotes }],
               'yml/spaced-comment': 'error',
             }
           : {}),
@@ -69,9 +64,8 @@ export async function yml(options: yml.Options = {}) {
 export namespace yml {
   export type Rules = RuleOptions;
 
-  export interface Options {
+  export interface Options extends PluginOptionsBase {
     files?: Config['files'];
     rules?: Rules;
-    rulesStylistic?: boolean;
   }
 }
