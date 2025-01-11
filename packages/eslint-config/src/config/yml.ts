@@ -7,7 +7,7 @@ const defaultFiles = [Project.extensionsToGlob(Project.queryExtensions(['yaml'])
 
 export async function yml(options: yml.Options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
-    interopDefault(import('eslint-plugin-yml')),
+    import('eslint-plugin-yml'),
     interopDefault(import('yaml-eslint-parser')),
   ] as const);
   const { files = defaultFiles, rules = {}, stylistic = true } = options;
@@ -17,7 +17,7 @@ export async function yml(options: yml.Options = {}) {
     {
       name: 'w5s/yml/setup',
       plugins: {
-        yml: ymlPlugin,
+        yml: await interopDefault(ymlPlugin),
       },
     },
     {
