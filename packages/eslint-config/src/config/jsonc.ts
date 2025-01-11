@@ -7,7 +7,7 @@ const defaultFiles = [Project.extensionsToGlob(['.json', '.json5', '.jsonc'])];
 export async function jsonc(options: jsonc.Options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
     import('eslint-plugin-jsonc'),
-    import('jsonc-eslint-parser'),
+    interopDefault(import('jsonc-eslint-parser')),
   ] as const);
   const { files = defaultFiles, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic);
