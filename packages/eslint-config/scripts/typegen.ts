@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
+import nodePlugin from 'eslint-plugin-n';
 import ymlPlugin from 'eslint-plugin-yml';
 import { pluginsToRulesDTS } from 'eslint-typegen/core';
 
@@ -15,6 +16,7 @@ await Promise.all(
       ['import', importPlugin],
       ['jsdoc', jsdocPlugin],
       ['jsonc', jsoncPlugin],
+      ['node', nodePlugin],
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {
