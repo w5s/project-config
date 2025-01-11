@@ -10437,9 +10437,9 @@ __metadata:
   linkType: hard
 
 "readdirp@npm:^4.0.1":
-  version: 4.0.2
-  resolution: "readdirp@npm:4.0.2"
-  checksum: 10c0/a16ecd8ef3286dcd90648c3b103e3826db2b766cdb4a988752c43a83f683d01c7059158d623cbcd8bdfb39e65d302d285be2d208e7d9f34d022d912b929217dd
+  version: 4.1.0
+  resolution: "readdirp@npm:4.1.0"
+  checksum: 10c0/36c70a99b0f577bd24824fdb51250f5c0756bba59cc76599d71d3745adcaaa3162a5dd37c8aec4cf914007bc3fbe80287b2de3a2427a977ba2ba392c0c38e784
   languageName: node
   linkType: hard
 
