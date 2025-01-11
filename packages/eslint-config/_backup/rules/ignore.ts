@@ -9,7 +9,7 @@ const getGitignore = (prefix = '') => {
   const cwd = process.cwd();
   const gitIgnoreFile = findUp.sync(nodePath.join(prefix, '.gitignore'), { cwd });
   if (gitIgnoreFile != null) {
-    // eslint-disable-next-line n/no-sync
+    // eslint-disable-next-line node/no-sync
     const { patterns } = parseGitignore.parse(readFileSync(gitIgnoreFile));
     const returnValue = patterns.map((pattern) => nodePath.join(prefix, pattern));
     return returnValue;

@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { defineConfig } from '@w5s/eslint-config';
 
 console.log(await defineConfig({
