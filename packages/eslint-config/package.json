@@ -62,14 +62,11 @@
     "test_:rule-coverage": "eslint-find-rules --unused"
   },
   "dependencies": {
-    "@rushstack/eslint-patch": "^1.1.0",
     "@stylistic/eslint-plugin": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "@w5s/dev": "^2.5.4",
     "@w5s/prettier-config": "^2.2.11",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^10.0.0",
     "eslint-plugin-import": "^2.25.0",
     "eslint-plugin-jest": "^29.0.0",
     "eslint-plugin-jsdoc": "^60.0.0",
@@ -81,7 +78,8 @@
     "eslint-plugin-yml": "^1.1.0",
     "find-up": "^5.0.0",
     "jsonc-eslint-parser": "^2.0.0",
-    "parse-gitignore": "^2.0.0"
+    "parse-gitignore": "^2.0.0",
+    "yaml-eslint-parser": "^1.0.0"
   },
   "devDependencies": {
     "@types/eslint": "8.56.12",
