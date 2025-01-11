@@ -543,7 +543,12 @@ declare const StylisticConfig: {
     from(input: boolean | StylisticParameters): StylisticConfig;
 };
 
-interface PluginOptionsBase {
+interface PluginOptionsBase<Rules> {
+    files?: Linter.Config['files'];
+    /**
+     * Plugin rules
+     */
+    rules?: Rules;
     /**
      * Stylistic options
      */
@@ -1441,9 +1446,7 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
 }]>;
 declare namespace jsonc {
     type Rules = RuleOptions$2;
-    interface Options extends PluginOptionsBase {
-        files?: Config['files'];
-        rules?: Rules;
+    interface Options extends PluginOptionsBase<Rules> {
     }
 }
 
@@ -1932,8 +1935,7 @@ declare function imports(options?: imports.Options): Promise<[{
 }]>;
 declare namespace imports {
     type Rules = RuleOptions$1;
-    interface Options extends PluginOptionsBase {
-        rules?: Rules;
+    interface Options extends PluginOptionsBase<Rules> {
     }
 }
 
@@ -6868,9 +6870,7 @@ declare function yml(options?: yml.Options): Promise<[{
 }]>;
 declare namespace yml {
     type Rules = RuleOptions;
-    interface Options extends PluginOptionsBase {
-        files?: Config['files'];
-        rules?: Rules;
+    interface Options extends PluginOptionsBase<Rules> {
     }
 }
 
