@@ -1,5 +1,7 @@
 import * as eslint from 'eslint';
 import { Linter } from 'eslint';
+import * as jsonc_eslint_parser_lib_meta_js from 'jsonc-eslint-parser/lib/meta.js';
+import * as jsonc_eslint_parser_lib_parser_ast_js from 'jsonc-eslint-parser/lib/parser/ast.js';
 import * as eslint_plugin_jsonc from 'eslint-plugin-jsonc';
 import * as eslint_plugin_jsonc_types from 'eslint-plugin-jsonc/types';
 import * as jsonc_eslint_parser from 'jsonc-eslint-parser';
@@ -917,31 +919,43 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
 }, {
     readonly files: (string | string[])[];
     readonly languageOptions: {
-        readonly parser: typeof jsonc_eslint_parser;
+        readonly parser: {
+            default: typeof jsonc_eslint_parser;
+            parseJSON(code: string, options?: any): jsonc_eslint_parser_lib_parser_ast_js.JSONProgram;
+            meta: typeof jsonc_eslint_parser_lib_meta_js;
+            name: "jsonc-eslint-parser";
+            parseForESLint: typeof eslint_plugin_jsonc.parseForESLint;
+            VisitorKeys: eslint.SourceCode.VisitorKeys;
+            traverseNodes: typeof eslint_plugin_jsonc.traverseNodes;
+            getStaticJSONValue: typeof eslint_plugin_jsonc.getStaticJSONValue;
+            isExpression: typeof jsonc_eslint_parser.isExpression;
+            isNumberIdentifier: typeof jsonc_eslint_parser.isNumberIdentifier;
+            isUndefinedIdentifier: typeof jsonc_eslint_parser.isUndefinedIdentifier;
+        };
     };
     readonly name: "w5s/jsonc/rules";
     readonly rules: {
         readonly 'jsonc/array-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
-        'jsonc/array-bracket-spacing'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
+        'jsonc/array-bracket-spacing'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
             singleValue?: boolean;
             objectsInArrays?: boolean;
             arraysInArrays?: boolean;
         }?];
         readonly 'jsonc/array-element-newline'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'jsonc/auto'?: eslint.Linter.RuleEntry<[]>;
-        'jsonc/comma-dangle'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, (undefined | {
+        'jsonc/comma-dangle'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, (undefined | {
             arrays?: undefined;
             objects?: undefined;
             imports?: undefined;
             exports?: undefined;
             functions?: undefined;
         })?];
-        'jsonc/comma-style'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("first" | "last")?, {
+        'jsonc/comma-style'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("first" | "last")?, {
             exceptions?: {
                 [k: string]: boolean | undefined;
             };
         }?];
-        'jsonc/indent'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, (number | "tab")?, {
+        'jsonc/indent'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, (number | "tab")?, {
             SwitchCase?: number;
             VariableDeclarator?: ((number | ("first" | "off")) | {
                 var?: (number | ("first" | "off"));
@@ -973,7 +987,7 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
             ignoreComments?: boolean;
         }?];
         readonly 'jsonc/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
-        'jsonc/key-spacing'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ({
+        'jsonc/key-spacing'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ({
             align?: (("colon" | "value") | {
                 mode?: ("strict" | "minimum");
                 on?: ("colon" | "value");
@@ -1043,7 +1057,7 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
         readonly 'jsonc/no-undefined-value'?: eslint.Linter.RuleEntry<[]>;
         readonly 'jsonc/no-unicode-codepoint-escapes'?: eslint.Linter.RuleEntry<[]>;
         readonly 'jsonc/no-useless-escape'?: eslint.Linter.RuleEntry<[]>;
-        'jsonc/object-curly-newline'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "never" | {
+        'jsonc/object-curly-newline'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "never" | {
             multiline?: boolean;
             minProperties?: number;
             consistent?: boolean;
@@ -1069,20 +1083,20 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
                 consistent?: boolean;
             });
         })?];
-        'jsonc/object-curly-spacing'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
+        'jsonc/object-curly-spacing'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
             arraysInObjects?: boolean;
             objectsInObjects?: boolean;
         }?];
-        'jsonc/object-property-newline'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, {
+        'jsonc/object-property-newline'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, {
             allowAllPropertiesOnSameLine?: boolean;
             allowMultiplePropertiesPerLine?: boolean;
         }?];
-        'jsonc/quote-props'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "consistent" | "as-needed" | "consistent-as-needed")?, {
+        'jsonc/quote-props'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "consistent" | "as-needed" | "consistent-as-needed")?, {
             keywords?: boolean;
             unnecessary?: boolean;
             numbers?: boolean;
         }?];
-        'jsonc/quotes'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("single" | "double" | "backtick")?, ("avoid-escape" | {
+        'jsonc/quotes'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("single" | "double" | "backtick")?, ("avoid-escape" | {
             avoidEscape?: boolean;
             allowTemplateLiterals?: boolean;
         })?];
@@ -1093,26 +1107,26 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
         readonly 'jsonc/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
     } | {
         readonly 'jsonc/array-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
-        'jsonc/array-bracket-spacing'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
+        'jsonc/array-bracket-spacing'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
             singleValue?: boolean;
             objectsInArrays?: boolean;
             arraysInArrays?: boolean;
         }?];
         readonly 'jsonc/array-element-newline'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'jsonc/auto'?: eslint.Linter.RuleEntry<[]>;
-        'jsonc/comma-dangle'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, (undefined | {
+        'jsonc/comma-dangle'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, (undefined | {
             arrays?: undefined;
             objects?: undefined;
             imports?: undefined;
             exports?: undefined;
             functions?: undefined;
         })?];
-        'jsonc/comma-style'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("first" | "last")?, {
+        'jsonc/comma-style'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("first" | "last")?, {
             exceptions?: {
                 [k: string]: boolean | undefined;
             };
         }?];
-        'jsonc/indent'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, (number | "tab")?, {
+        'jsonc/indent'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, (number | "tab")?, {
             SwitchCase?: number;
             VariableDeclarator?: ((number | ("first" | "off")) | {
                 var?: (number | ("first" | "off"));
@@ -1144,7 +1158,7 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
             ignoreComments?: boolean;
         }?];
         readonly 'jsonc/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
-        'jsonc/key-spacing'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ({
+        'jsonc/key-spacing'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ({
             align?: (("colon" | "value") | {
                 mode?: ("strict" | "minimum");
                 on?: ("colon" | "value");
@@ -1214,7 +1228,7 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
         readonly 'jsonc/no-undefined-value'?: eslint.Linter.RuleEntry<[]>;
         readonly 'jsonc/no-unicode-codepoint-escapes'?: eslint.Linter.RuleEntry<[]>;
         readonly 'jsonc/no-useless-escape'?: eslint.Linter.RuleEntry<[]>;
-        'jsonc/object-curly-newline'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "never" | {
+        'jsonc/object-curly-newline'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "never" | {
             multiline?: boolean;
             minProperties?: number;
             consistent?: boolean;
@@ -1240,20 +1254,20 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
                 consistent?: boolean;
             });
         })?];
-        'jsonc/object-curly-spacing'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
+        'jsonc/object-curly-spacing'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
             arraysInObjects?: boolean;
             objectsInObjects?: boolean;
         }?];
-        'jsonc/object-property-newline'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, {
+        'jsonc/object-property-newline'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, {
             allowAllPropertiesOnSameLine?: boolean;
             allowMultiplePropertiesPerLine?: boolean;
         }?];
-        'jsonc/quote-props'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "consistent" | "as-needed" | "consistent-as-needed")?, {
+        'jsonc/quote-props'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "consistent" | "as-needed" | "consistent-as-needed")?, {
             keywords?: boolean;
             unnecessary?: boolean;
             numbers?: boolean;
         }?];
-        'jsonc/quotes'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("single" | "double" | "backtick")?, ("avoid-escape" | {
+        'jsonc/quotes'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("single" | "double" | "backtick")?, ("avoid-escape" | {
             avoidEscape?: boolean;
             allowTemplateLiterals?: boolean;
         })?];
@@ -1267,7 +1281,7 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
         readonly "no-unused-vars": "off";
     } | {
         readonly 'jsonc/array-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
-        'jsonc/array-bracket-spacing'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
+        'jsonc/array-bracket-spacing'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
             singleValue?: boolean;
             objectsInArrays?: boolean;
             arraysInArrays?: boolean;
@@ -1275,12 +1289,12 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
         readonly 'jsonc/array-element-newline'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'jsonc/auto'?: eslint.Linter.RuleEntry<[]>;
         "jsonc/comma-dangle": eslint.Linter.RuleEntry<undefined>;
-        'jsonc/comma-style'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("first" | "last")?, {
+        'jsonc/comma-style'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("first" | "last")?, {
             exceptions?: {
                 [k: string]: boolean | undefined;
             };
         }?];
-        'jsonc/indent'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, (number | "tab")?, {
+        'jsonc/indent'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, (number | "tab")?, {
             SwitchCase?: number;
             VariableDeclarator?: ((number | ("first" | "off")) | {
                 var?: (number | ("first" | "off"));
@@ -1312,7 +1326,7 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
             ignoreComments?: boolean;
         }?];
         readonly 'jsonc/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
-        'jsonc/key-spacing'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ({
+        'jsonc/key-spacing'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ({
             align?: (("colon" | "value") | {
                 mode?: ("strict" | "minimum");
                 on?: ("colon" | "value");
@@ -1382,7 +1396,7 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
         "jsonc/no-undefined-value": eslint.Linter.RuleEntry<[]>;
         "jsonc/no-unicode-codepoint-escapes": eslint.Linter.RuleEntry<[]>;
         "jsonc/no-useless-escape": eslint.Linter.RuleEntry<[]>;
-        'jsonc/object-curly-newline'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "never" | {
+        'jsonc/object-curly-newline'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "never" | {
             multiline?: boolean;
             minProperties?: number;
             consistent?: boolean;
@@ -1408,11 +1422,11 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
                 consistent?: boolean;
             });
         })?];
-        'jsonc/object-curly-spacing'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
+        'jsonc/object-curly-spacing'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, ("always" | "never")?, {
             arraysInObjects?: boolean;
             objectsInObjects?: boolean;
         }?];
-        'jsonc/object-property-newline'?: 0 | 2 | 1 | "off" | "error" | "warn" | [eslint.Linter.RuleSeverity, {
+        'jsonc/object-property-newline'?: 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, {
             allowAllPropertiesOnSameLine?: boolean;
             allowMultiplePropertiesPerLine?: boolean;
         }?];
@@ -1918,9 +1932,8 @@ declare function imports(options?: imports.Options): Promise<[{
 }]>;
 declare namespace imports {
     type Rules = RuleOptions$1;
-    interface Options {
+    interface Options extends PluginOptionsBase {
         rules?: Rules;
-        rulesStylistic?: boolean;
     }
 }
 
