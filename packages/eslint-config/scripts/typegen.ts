@@ -4,6 +4,7 @@ import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
 import nodePlugin from 'eslint-plugin-n';
+import tsPlugin from '@typescript-eslint/eslint-plugin';
 import ymlPlugin from 'eslint-plugin-yml';
 import { pluginsToRulesDTS } from 'eslint-typegen/core';
 
@@ -18,6 +19,7 @@ await Promise.all(
       ['jsdoc', jsdocPlugin],
       ['jsonc', jsoncPlugin],
       ['node', nodePlugin],
+      ['ts', tsPlugin],
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {
