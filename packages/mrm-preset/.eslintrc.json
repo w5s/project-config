@@ -1,6 +1,6 @@
 {
   "rules": {
-    "n/no-sync": "off",
+    "node/no-sync": "off",
     "import/no-unresolved": "off"
   }
 }
