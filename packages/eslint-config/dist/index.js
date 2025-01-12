@@ -1,4 +1,4 @@
-import { Project, interopDefault } from '@w5s/dev';
+import { Project, interopDefault, ESLintConfig } from '@w5s/dev';
 import importPlugin from 'eslint-plugin-import';
 import { configs } from 'eslint-plugin-yml';
 
@@ -121,13 +121,65 @@ async function node(options = {}) {
     }
   ];
 }
-var defaultFiles2 = [Project.extensionsToGlob(Project.queryExtensions(["yaml"]))];
+var defaultFiles2 = [Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))];
+async function ts(options = {}) {
+  const [tsPlugin, tsParser] = await Promise.all([
+    import('@typescript-eslint/eslint-plugin'),
+    interopDefault(import('@typescript-eslint/parser'))
+  ]);
+  const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
+  const tsStrictRules = tsPlugin.configs["strict"].rules;
+  const { files = defaultFiles2, rules = {}, stylistic = true } = options;
+  const { enabled: stylisticEnabled} = StylisticConfig.from(stylistic);
+  return [
+    {
+      name: "w5s/ts/setup",
+      plugins: {
+        ts: await interopDefault(tsPlugin)
+      }
+    },
+    {
+      files,
+      languageOptions: {
+        parser: tsParser,
+        parserOptions: {
+          sourceType: "module"
+          // extraFileExtensions: componentExts.map(ext => `.${ext}`),
+          // ...typeAware
+          //   ? {
+          //       projectService: {
+          //         allowDefaultProject: ['./*.js'],
+          //         defaultProject: tsconfigPath,
+          //       },
+          //       tsconfigRootDir: process.cwd(),
+          //     }
+          //   : {},
+          // ...parserOptions as any,
+        }
+      },
+      name: "w5s/ts/rules",
+      rules: {
+        ...ESLintConfig.renameRules(
+          tsRecommendedRules,
+          { "@typescript-eslint": "ts" }
+        ),
+        ...ESLintConfig.renameRules(
+          tsStrictRules,
+          { "@typescript-eslint": "ts" }
+        ),
+        ...stylisticEnabled ? {} : {},
+        ...rules
+      }
+    }
+  ];
+}
+var defaultFiles3 = [Project.extensionsToGlob(Project.queryExtensions(["yaml"]))];
 async function yml(options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
     import('eslint-plugin-yml'),
     interopDefault(import('yaml-eslint-parser'))
   ]);
-  const { files = defaultFiles2, rules = {}, stylistic = true } = options;
+  const { files = defaultFiles3, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic);
   return [
     {
@@ -178,6 +230,7 @@ async function defineConfig(options = {}) {
   const importOptions = typeof options.import === "boolean" ? { enabled: options.import } : { enabled: true, ...options.import };
   const jsoncOptions = typeof options.jsonc === "boolean" ? { enabled: options.jsonc } : { enabled: true, ...options.jsonc };
   const nodeOptions = typeof options.node === "boolean" ? { enabled: options.node } : { enabled: true, ...options.node };
+  const tsOptions = typeof options.ts === "boolean" ? { enabled: options.ts } : { enabled: true, ...options.ts };
   const ymlOptions = typeof options.yml === "boolean" ? { enabled: options.yml } : { enabled: false, ...options.yml };
   let returnValue = [];
   const append = async (config) => {
@@ -192,6 +245,9 @@ async function defineConfig(options = {}) {
   if (nodeOptions.enabled) {
     append(await node(nodeOptions));
   }
+  if (tsOptions.enabled) {
+    append(await ts(tsOptions));
+  }
   if (ymlOptions.enabled) {
     append(await yml(ymlOptions));
   }
@@ -201,6 +257,6 @@ async function defineConfig(options = {}) {
 // src/index.ts
 var index_default = defineConfig;
 
-export { index_default as default, defineConfig, imports, jsonc, node, yml };
+export { index_default as default, defineConfig, imports, jsonc, node, ts, yml };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
