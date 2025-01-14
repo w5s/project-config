@@ -31,7 +31,7 @@ function task() {
       name: `${project.prepare}:githooks`,
       state: gitSupported ? 'present' : 'absent',
       // eslint-disable-next-line no-template-curly-in-string
-      update: (_) => '[ -n "${CI:-}" ] || git config core.hooksPath .githooks',
+      update: (_) => 'if [ -z "${CI:-}" ]; then git config core.hooksPath .githooks; fi',
     });
   });
 
