@@ -118,7 +118,7 @@ var CommitConventionalType = (() => {
     return typeData[commitType];
   }
   function parse(anyValue) {
-    return hasInstance(anyValue) ? anyValue : void 0;
+    return hasInstance(anyValue) ? anyValue : undefined;
   }
   function values() {
     return enumValues;
@@ -205,7 +205,7 @@ var GitmojiCode;
 
 // src/recommended-bump-opts.ts
 function toConventionalCommitType(text) {
-  return GitmojiCode.isValid(text) ? GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
+  return GitmojiCode.isValid(text) ? GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : undefined;
 }
 var recommendedBumpOpts = {
   parserOpts,
@@ -255,7 +255,7 @@ function createTransform(config) {
       ...note,
       title: `${config.withEmoji === false ? "" : "\u{1F4A5} "}BREAKING CHANGES`
     }));
-    const conventionalType = commit.type == null ? void 0 : CommitConventionalType.parse(commit.type) ?? (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : void 0);
+    const conventionalType = commit.type == null ? undefined : CommitConventionalType.parse(commit.type) ?? (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : undefined);
     if (ignoreType(conventionalType) && discard) return false;
     const type = conventionalType == null ? conventionalType : displayType(conventionalType, {
       withEmoji: config.withEmoji
