@@ -54,4 +54,26 @@ export namespace ESLintConfig {
   export function fixme(_status: Linter.RuleLevel | [Linter.RuleLevel, ...any[]] | undefined) {
     return 'off' as const;
   }
+
+  /**
+   * Renames rules in the given object according to the given map.
+   *
+   * Given a map `{ 'old-prefix': 'new-prefix' }`, and a rule object
+   * `{ 'old-prefix/rule-name': 'error' }`, this function will return
+   * `{ 'new-prefix/rule-name': 'error' }`.
+   *
+   * @param rules - The object containing the rules to rename.
+   * @param map - The object containing the rename map.
+   * @returns The object with the renamed rules.
+   */
+  export function renameRules(rules: Record<string, any>, map: Record<string, string>): Record<string, any> {
+    return Object.fromEntries(
+      Object.entries(rules).map(([key, value]) => {
+        for (const [from, to] of Object.entries(map)) {
+          if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
+        }
+        return [key, value];
+      }),
+    );
+  }
 }

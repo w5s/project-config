@@ -81,6 +81,17 @@ exports.ESLintConfig = void 0;
     return "off";
   }
   ESLintConfig2.fixme = fixme;
+  function renameRules(rules, map) {
+    return Object.fromEntries(
+      Object.entries(rules).map(([key, value]) => {
+        for (const [from, to] of Object.entries(map)) {
+          if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
+        }
+        return [key, value];
+      })
+    );
+  }
+  ESLintConfig2.renameRules = renameRules;
 })(exports.ESLintConfig || (exports.ESLintConfig = {}));
 async function exists2(path) {
   try {

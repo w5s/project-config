@@ -51,6 +51,18 @@ declare namespace ESLintConfig {
      * @param _status
      */
     function fixme(_status: Linter.RuleLevel | [Linter.RuleLevel, ...any[]] | undefined): "off";
+    /**
+     * Renames rules in the given object according to the given map.
+     *
+     * Given a map `{ 'old-prefix': 'new-prefix' }`, and a rule object
+     * `{ 'old-prefix/rule-name': 'error' }`, this function will return
+     * `{ 'new-prefix/rule-name': 'error' }`.
+     *
+     * @param rules - The object containing the rules to rename.
+     * @param map - The object containing the rename map.
+     * @returns The object with the renamed rules.
+     */
+    function renameRules(rules: Record<string, any>, map: Record<string, string>): Record<string, any>;
 }
 
 interface BlockOptions {
