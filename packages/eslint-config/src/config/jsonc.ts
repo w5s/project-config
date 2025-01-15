@@ -2,7 +2,7 @@ import { interopDefault, Project } from '@w5s/dev';
 import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/jsonc.js';
 
-const defaultFiles = [Project.extensionsToGlob(['.json', '.json5', '.jsonc'])];
+const defaultFiles = [`**/${Project.extensionsToGlob(['.json', '.json5', '.jsonc'])}`];
 
 export async function jsonc(options: jsonc.Options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
