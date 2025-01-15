@@ -67,9 +67,6 @@
       "eslint"
     ]
   },
-  "eslintIgnore": [
-    "**/dist/**"
-  ],
   "devDependencies": {
     "@lerna-lite/publish": "4.9.1",
     "@types/node": "20.19.23",
