@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ESLintConfig } from './eslint.js';
+import { ESLintConfig } from './ESLintConfig.js';
 
 describe('ESLintConfig', () => {
   describe('.concat()', () => {

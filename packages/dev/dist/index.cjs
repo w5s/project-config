@@ -35,7 +35,7 @@ function directorySync(options) {
   }
 }
 
-// src/eslint.ts
+// src/ESLintConfig.ts
 function toArray(value) {
   if (value == null) {
     return [];
