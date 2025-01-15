@@ -1,4 +1,4 @@
-import { ESLint, Linter } from 'eslint';
+import { ESLint } from 'eslint';
 
 interface DirectoryOptions {
     /**
@@ -50,7 +50,7 @@ declare namespace ESLintConfig {
      *
      * @param _status
      */
-    function fixme(_status: Linter.RuleLevel | [Linter.RuleLevel, ...any[]] | undefined): "off";
+    function fixme(_status: string | number | [string | number, ...any[]] | undefined): "off";
     /**
      * Renames rules in the given object according to the given map.
      *

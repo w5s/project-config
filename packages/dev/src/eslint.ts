@@ -1,4 +1,4 @@
-import type { ESLint, Linter } from 'eslint';
+import type { ESLint } from 'eslint';
 
 function toArray<T>(value: T[] | T | undefined): T[] {
   if (value == null) {
@@ -51,7 +51,7 @@ export namespace ESLintConfig {
    *
    * @param _status
    */
-  export function fixme(_status: Linter.RuleLevel | [Linter.RuleLevel, ...any[]] | undefined) {
+  export function fixme(_status: string | number | [string | number, ...any[]] | undefined) {
     return 'off' as const;
   }
 
