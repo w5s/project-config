@@ -235,7 +235,7 @@ function jsonSync(options) {
   return fileSync(toFileOption(options));
 }
 
-// src/project.ts
+// src/Project.ts
 function escapeRegExp(value) {
   return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
 }
@@ -306,7 +306,7 @@ exports.Project = void 0;
   Project2.extensionsToGlob = extensionsToGlob;
 })(exports.Project || (exports.Project = {}));
 
-// src/projectScript.ts
+// src/ProjectScript.ts
 var ProjectScript = {
   Build: "build",
   Clean: "clean",
