@@ -23,7 +23,7 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },
     "lint": {
-      "dependsOn": ["^build", "//#lint:root"]
+      "dependsOn": ["//#lint:root"]
     },
     "//#lint:root": {
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]

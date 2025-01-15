@@ -2,15 +2,88 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var fs = require('fs');
+var nodePath = require('path');
+var process = require('process');
+var findUp = require('find-up');
+var parseGitignore = require('parse-gitignore');
 var dev = require('@w5s/dev');
 var importPlugin = require('eslint-plugin-import');
 var eslintPluginYml = require('eslint-plugin-yml');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
+var fs__default = /*#__PURE__*/_interopDefault(fs);
+var nodePath__default = /*#__PURE__*/_interopDefault(nodePath);
+var process__default = /*#__PURE__*/_interopDefault(process);
+var findUp__default = /*#__PURE__*/_interopDefault(findUp);
+var parseGitignore__default = /*#__PURE__*/_interopDefault(parseGitignore);
 var importPlugin__default = /*#__PURE__*/_interopDefault(importPlugin);
 
-// src/config/jsonc.ts
+// src/config/ignores.ts
+var getGitignore = async (cwd, prefix = "") => {
+  const gitIgnoreFile = await findUp__default.default(nodePath__default.default.join(prefix, ".gitignore"), { cwd });
+  if (gitIgnoreFile != null) {
+    const { patterns } = parseGitignore__default.default.parse(await fs__default.default.promises.readFile(gitIgnoreFile));
+    const returnValue = patterns.map((pattern) => nodePath__default.default.join(prefix, pattern));
+    return returnValue;
+  }
+  return [];
+};
+async function ignores(options = {}) {
+  const cwd = process__default.default.cwd();
+  return [
+    {
+      ignores: [
+        "**/node_modules",
+        "**/dist",
+        "**/package-lock.json",
+        "**/yarn.lock",
+        "**/pnpm-lock.yaml",
+        "**/bun.lockb",
+        "**/.docusaurus",
+        "**/output",
+        "**/coverage",
+        "**/temp",
+        "**/.temp",
+        "**/tmp",
+        "**/.tmp",
+        "**/.history",
+        "**/.vitepress/cache",
+        "**/.nuxt",
+        "**/.next",
+        "**/.svelte-kit",
+        "**/.vercel",
+        "**/.changeset",
+        "**/.idea",
+        "**/.cache",
+        "**/.output",
+        "**/.vite-inspect",
+        "**/.yarn",
+        "**/vendor",
+        "**/vendors",
+        "**/*.min.*",
+        "**/*.timestamp-*.mjs",
+        // esbuild/vite temporary files
+        // '!.*',
+        // '.common/',
+        // '.go/',
+        // '.modules/',
+        // '.pnpm-store/',
+        // '.venv/',
+        // 'deprecated/',
+        // 'test-output/',
+        // 'venv/',
+        // '_generated_/',
+        ...await getGitignore(cwd),
+        ...await getGitignore(cwd, "android"),
+        ...await getGitignore(cwd, "ios"),
+        ...options.ignores ?? []
+      ],
+      name: "w5s/ignore"
+    }
+  ];
+}
 
 // src/type/StylisticConfig.ts
 var defaultConfig = {
@@ -36,7 +109,7 @@ var StylisticConfig = {
 };
 
 // src/config/jsonc.ts
-var defaultFiles = [dev.Project.extensionsToGlob([".json", ".json5", ".jsonc"])];
+var defaultFiles = [`**/${dev.Project.extensionsToGlob([".json", ".json5", ".jsonc"])}`];
 async function jsonc(options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
     import('eslint-plugin-jsonc'),
@@ -129,7 +202,7 @@ async function node(options = {}) {
     }
   ];
 }
-var defaultFiles2 = [dev.Project.extensionsToGlob(dev.Project.queryExtensions(["typescript", "typescriptreact"]))];
+var defaultFiles2 = [`**/${dev.Project.extensionsToGlob(dev.Project.queryExtensions(["typescript", "typescriptreact"]))}`];
 async function ts(options = {}) {
   const [tsPlugin, tsParser] = await Promise.all([
     import('@typescript-eslint/eslint-plugin'),
@@ -181,7 +254,7 @@ async function ts(options = {}) {
     }
   ];
 }
-var defaultFiles3 = [dev.Project.extensionsToGlob(dev.Project.queryExtensions(["yaml"]))];
+var defaultFiles3 = [`**/${dev.Project.extensionsToGlob(dev.Project.queryExtensions(["yaml"]))}`];
 async function yml(options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
     import('eslint-plugin-yml'),
@@ -244,6 +317,7 @@ async function defineConfig(options = {}) {
   const append = async (config) => {
     returnValue = [...returnValue, ...config];
   };
+  append(await ignores(options));
   if (jsoncOptions.enabled) {
     append(await jsonc(jsoncOptions));
   }
@@ -267,6 +341,7 @@ var index_default = defineConfig;
 
 exports.default = index_default;
 exports.defineConfig = defineConfig;
+exports.ignores = ignores;
 exports.imports = imports;
 exports.jsonc = jsonc;
 exports.node = node;

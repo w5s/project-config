@@ -1,8 +1,76 @@
+import fs from 'fs';
+import nodePath from 'path';
+import process from 'process';
+import findUp from 'find-up';
+import parseGitignore from 'parse-gitignore';
 import { Project, interopDefault, ESLintConfig } from '@w5s/dev';
 import importPlugin from 'eslint-plugin-import';
 import { configs } from 'eslint-plugin-yml';
 
-// src/config/jsonc.ts
+// src/config/ignores.ts
+var getGitignore = async (cwd, prefix = "") => {
+  const gitIgnoreFile = await findUp(nodePath.join(prefix, ".gitignore"), { cwd });
+  if (gitIgnoreFile != null) {
+    const { patterns } = parseGitignore.parse(await fs.promises.readFile(gitIgnoreFile));
+    const returnValue = patterns.map((pattern) => nodePath.join(prefix, pattern));
+    return returnValue;
+  }
+  return [];
+};
+async function ignores(options = {}) {
+  const cwd = process.cwd();
+  return [
+    {
+      ignores: [
+        "**/node_modules",
+        "**/dist",
+        "**/package-lock.json",
+        "**/yarn.lock",
+        "**/pnpm-lock.yaml",
+        "**/bun.lockb",
+        "**/.docusaurus",
+        "**/output",
+        "**/coverage",
+        "**/temp",
+        "**/.temp",
+        "**/tmp",
+        "**/.tmp",
+        "**/.history",
+        "**/.vitepress/cache",
+        "**/.nuxt",
+        "**/.next",
+        "**/.svelte-kit",
+        "**/.vercel",
+        "**/.changeset",
+        "**/.idea",
+        "**/.cache",
+        "**/.output",
+        "**/.vite-inspect",
+        "**/.yarn",
+        "**/vendor",
+        "**/vendors",
+        "**/*.min.*",
+        "**/*.timestamp-*.mjs",
+        // esbuild/vite temporary files
+        // '!.*',
+        // '.common/',
+        // '.go/',
+        // '.modules/',
+        // '.pnpm-store/',
+        // '.venv/',
+        // 'deprecated/',
+        // 'test-output/',
+        // 'venv/',
+        // '_generated_/',
+        ...await getGitignore(cwd),
+        ...await getGitignore(cwd, "android"),
+        ...await getGitignore(cwd, "ios"),
+        ...options.ignores ?? []
+      ],
+      name: "w5s/ignore"
+    }
+  ];
+}
 
 // src/type/StylisticConfig.ts
 var defaultConfig = {
@@ -28,7 +96,7 @@ var StylisticConfig = {
 };
 
 // src/config/jsonc.ts
-var defaultFiles = [Project.extensionsToGlob([".json", ".json5", ".jsonc"])];
+var defaultFiles = [`**/${Project.extensionsToGlob([".json", ".json5", ".jsonc"])}`];
 async function jsonc(options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
     import('eslint-plugin-jsonc'),
@@ -121,7 +189,7 @@ async function node(options = {}) {
     }
   ];
 }
-var defaultFiles2 = [Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))];
+var defaultFiles2 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`];
 async function ts(options = {}) {
   const [tsPlugin, tsParser] = await Promise.all([
     import('@typescript-eslint/eslint-plugin'),
@@ -173,7 +241,7 @@ async function ts(options = {}) {
     }
   ];
 }
-var defaultFiles3 = [Project.extensionsToGlob(Project.queryExtensions(["yaml"]))];
+var defaultFiles3 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`];
 async function yml(options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
     import('eslint-plugin-yml'),
@@ -236,6 +304,7 @@ async function defineConfig(options = {}) {
   const append = async (config) => {
     returnValue = [...returnValue, ...config];
   };
+  append(await ignores(options));
   if (jsoncOptions.enabled) {
     append(await jsonc(jsoncOptions));
   }
@@ -257,6 +326,6 @@ async function defineConfig(options = {}) {
 // src/index.ts
 var index_default = defineConfig;
 
-export { index_default as default, defineConfig, imports, jsonc, node, ts, yml };
+export { index_default as default, defineConfig, ignores, imports, jsonc, node, ts, yml };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
