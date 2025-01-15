@@ -1,3 +1,5 @@
+import type { LanguageId } from './LanguageId.js';
+
 function escapeRegExp(value: string) {
   // eslint-disable-next-line unicorn/prefer-string-raw
   return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, '\\$&'); // $& means the whole matched string
@@ -12,20 +14,7 @@ export namespace Project {
   /**
    * Object hash of all well-known file extension category to file extensions mapping
    */
-  export interface ExtensionRegistry {
-    graphql: readonly Extension[];
-    jpeg: readonly Extension[];
-    javascript: readonly Extension[];
-    javascriptreact: readonly Extension[];
-    typescript: readonly Extension[];
-    typescriptreact: readonly Extension[];
-    yaml: readonly Extension[];
-  }
-
-  /**
-   * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
-   */
-  export type LanguageId = keyof ExtensionRegistry;
+  export type ExtensionRegistry = { [K in LanguageId]: readonly Extension[] };
 
   /**
    * Supported ECMA version
@@ -40,12 +29,20 @@ export namespace Project {
   }
 
   const registry: ExtensionRegistry = {
+    css: ['.css'],
     graphql: ['.gql', '.graphql'],
-    jpeg: ['.jpg', '.jpeg'],
     javascript: ['.js', '.cjs', '.mjs'],
     javascriptreact: ['.jsx'],
+    jpeg: ['.jpg', '.jpeg'],
+    json: ['.json'],
+    jsonc: ['.jsonc'],
+    less: ['.less'],
+    markdown: ['.markdown', '.mdown', '.mkd', '.md'],
+    sass: ['.sass'],
+    scss: ['.scss'],
     typescript: ['.ts', '.cts', '.mts'],
     typescriptreact: ['.tsx'],
+    vue: ['.vue'],
     yaml: ['.yaml', '.yml'],
   };
 
@@ -62,11 +59,10 @@ export namespace Project {
    */
   export function queryExtensions(languages: LanguageId[]): readonly Extension[] {
     return languages
-      .reduce<Extension[]>(
+      .reduce<
+        Extension[]
         // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        (previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? ([] as Extension[])),
-        [],
-      )
+      >((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? ([] as Extension[])), [])
       .sort();
   }
 
@@ -83,14 +79,10 @@ export namespace Project {
   }
 
   const RESOURCE_EXTENSIONS: readonly Extension[] = Object.freeze([
-    '.css',
-    '.sass',
-    '.scss',
-    '.less',
     '.gif',
     '.png',
     '.svg',
-    ...queryExtensions(['graphql', 'jpeg', 'yaml']),
+    ...queryExtensions(['css', 'graphql', 'jpeg', 'less', 'sass', 'sass', 'yaml']),
   ]);
 
   /**

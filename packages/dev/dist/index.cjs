@@ -246,20 +246,24 @@ exports.Project = void 0;
   }
   Project2.ecmaVersion = ecmaVersion;
   const registry = {
+    css: [".css"],
     graphql: [".gql", ".graphql"],
-    jpeg: [".jpg", ".jpeg"],
     javascript: [".js", ".cjs", ".mjs"],
     javascriptreact: [".jsx"],
+    jpeg: [".jpg", ".jpeg"],
+    json: [".json"],
+    jsonc: [".jsonc"],
+    less: [".less"],
+    markdown: [".markdown", ".mdown", ".mkd", ".md"],
+    sass: [".sass"],
+    scss: [".scss"],
     typescript: [".ts", ".cts", ".mts"],
     typescriptreact: [".tsx"],
+    vue: [".vue"],
     yaml: [".yaml", ".yml"]
   };
   function queryExtensions(languages) {
-    return languages.reduce(
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      (previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []),
-      []
-    ).sort();
+    return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort();
   }
   Project2.queryExtensions = queryExtensions;
   function sourceExtensions() {
@@ -267,14 +271,10 @@ exports.Project = void 0;
   }
   Project2.sourceExtensions = sourceExtensions;
   const RESOURCE_EXTENSIONS = Object.freeze([
-    ".css",
-    ".sass",
-    ".scss",
-    ".less",
     ".gif",
     ".png",
     ".svg",
-    ...queryExtensions(["graphql", "jpeg", "yaml"])
+    ...queryExtensions(["css", "graphql", "jpeg", "less", "sass", "sass", "yaml"])
   ]);
   function resourceExtensions() {
     return RESOURCE_EXTENSIONS;

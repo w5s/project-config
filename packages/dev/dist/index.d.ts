@@ -165,6 +165,28 @@ declare function interopDefault<T>(m: T | PromiseLike<T>): Promise<T extends {
     default: infer U;
 } ? U : T>;
 
+interface LanguageIdMap {
+    css: true;
+    graphql: true;
+    javascript: true;
+    javascriptreact: true;
+    jpeg: true;
+    json: true;
+    jsonc: true;
+    less: true;
+    markdown: true;
+    sass: true;
+    scss: true;
+    typescript: true;
+    typescriptreact: true;
+    vue: true;
+    yaml: true;
+}
+/**
+ * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
+ */
+type LanguageId = keyof LanguageIdMap;
+
 type JSONValue = null | number | string | boolean | JSONValue[] | {
     [key: string]: JSONValue;
 };
@@ -209,19 +231,9 @@ declare namespace Project {
     /**
      * Object hash of all well-known file extension category to file extensions mapping
      */
-    interface ExtensionRegistry {
-        graphql: readonly Extension[];
-        jpeg: readonly Extension[];
-        javascript: readonly Extension[];
-        javascriptreact: readonly Extension[];
-        typescript: readonly Extension[];
-        typescriptreact: readonly Extension[];
-        yaml: readonly Extension[];
-    }
-    /**
-     * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
-     */
-    type LanguageId = keyof ExtensionRegistry;
+    type ExtensionRegistry = {
+        [K in LanguageId]: readonly Extension[];
+    };
     /**
      * Supported ECMA version
      *
@@ -312,4 +324,4 @@ declare const ProjectScript: {
 };
 type ProjectScript = (typeof ProjectScript)[keyof typeof ProjectScript];
 
-export { type BlockOptions, type DirectoryOptions, ESLintConfig, type FileOptions, type JSONOption, type JSONValue, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync };
+export { type BlockOptions, type DirectoryOptions, ESLintConfig, type FileOptions, type JSONOption, type JSONValue, type LanguageId, type LanguageIdMap, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync };
