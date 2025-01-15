@@ -2,7 +2,7 @@ import { ESLintConfig, interopDefault, Project } from '@w5s/dev';
 import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/ts.js';
 
-const defaultFiles = [Project.extensionsToGlob(Project.queryExtensions(['typescript', 'typescriptreact']))];
+const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['typescript', 'typescriptreact']))}`];
 
 export async function ts(options: ts.Options = {}) {
   const [tsPlugin, tsParser] = await Promise.all([

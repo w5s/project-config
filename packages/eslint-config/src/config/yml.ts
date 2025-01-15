@@ -3,7 +3,7 @@ import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js
 import type { RuleOptions } from '../typegen/yml.js';
 import { configs as ymlConfigs } from 'eslint-plugin-yml';
 
-const defaultFiles = [Project.extensionsToGlob(Project.queryExtensions(['yaml']))];
+const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['yaml']))}`];
 
 export async function yml(options: yml.Options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
