@@ -13,6 +13,16 @@ import * as eslint_plugin_yml_lib_types_js from 'eslint-plugin-yml/lib/types.js'
 import * as yaml_eslint_parser from 'yaml-eslint-parser';
 import * as eslint_plugin_yml_lib_meta_js from 'eslint-plugin-yml/lib/meta.js';
 
+declare function ignores(options?: ignores.Options): Promise<[{
+    readonly ignores: Array<string>;
+    readonly name: "w5s/ignore";
+}]>;
+declare namespace ignores {
+    interface Options {
+        ignores?: string[];
+    }
+}
+
 /* eslint-disable unicorn/no-abusive-eslint-disable */
 /* eslint-disable */
 /* prettier-ignore */
@@ -9365,7 +9375,7 @@ declare namespace yml {
     }
 }
 
-interface DefineConfigOptions {
+interface DefineConfigOptions extends ignores.Options {
     import?: boolean | imports.Options;
     jsonc?: boolean | jsonc.Options;
     node?: boolean | node.Options;
@@ -9374,4 +9384,4 @@ interface DefineConfigOptions {
 }
 declare function defineConfig(options?: DefineConfigOptions): Promise<Config[]>;
 
-export { type DefineConfigOptions, defineConfig as default, defineConfig, imports, jsonc, node, ts, yml };
+export { type DefineConfigOptions, defineConfig as default, defineConfig, ignores, imports, jsonc, node, ts, yml };

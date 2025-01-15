@@ -19,7 +19,7 @@
     },
     "//#test:root": {},
     "lint": {
-      "dependsOn": ["^build", "//#lint:root"]
+      "dependsOn": ["//#lint:root"]
     },
     "//#lint:root": {},
     "prepare": {},
