@@ -1,7 +1,7 @@
-import { jsonc, imports, node, ts, yml } from './config.js';
-import { Config } from './type.js';
+import { jsonc, ignores, imports, node, ts, yml } from './config.js';
+import type { Config } from './type.js';
 
-export interface DefineConfigOptions {
+export interface DefineConfigOptions extends ignores.Options {
   import?: boolean | imports.Options;
   jsonc?: boolean | jsonc.Options;
   node?: boolean | node.Options;
@@ -20,6 +20,8 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
   const append = async (config: any[]) =>  {
     returnValue = [...returnValue, ...config as any];
   };
+
+  append(await ignores(options));
 
   if (jsoncOptions.enabled) {
     append(await jsonc(jsoncOptions));
