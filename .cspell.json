@@ -6,7 +6,7 @@
   "flagWords": [],
   "ignorePaths": [
     "packages/cspell-config/dict/**",
-    "packages/eslint-config/rules/**",
+    "packages/eslint-config/src/typegen/**",
     "packages/mrm-preset/_tester/**",
     "packages/mrm-preset/ci/_autodevops/**"
   ],
