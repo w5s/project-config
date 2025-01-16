@@ -5,6 +5,7 @@ github
 gitlab
 Infima
 jpolo
+nuxt
 plop
 plopjs
 Raygun
