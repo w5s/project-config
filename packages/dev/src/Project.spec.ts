@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { Project } from './project.js';
+import { Project } from './Project.js';
 
 describe('Project', () => {
   describe('.ecmaVersion()', () => {
