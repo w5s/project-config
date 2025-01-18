@@ -254,6 +254,71 @@ async function ts(options = {}) {
     }
   ];
 }
+async function unicorn(options = {}) {
+  const [unicornPlugin] = await Promise.all([
+    import('eslint-plugin-unicorn')
+  ]);
+  const { rules = {}, stylistic = true } = options;
+  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  return [
+    {
+      name: "w5s/unicorn/setup",
+      plugins: {
+        unicorn: await dev.interopDefault(unicornPlugin)
+      }
+    },
+    {
+      name: "w5s/unicorn/rules",
+      rules: {
+        ...unicornPlugin.configs.recommended?.rules,
+        // Disabled for safety
+        "unicorn/consistent-destructuring": "off",
+        "unicorn/consistent-function-scoping": "off",
+        // Too many false positive
+        "unicorn/filename-case": "off",
+        "unicorn/import-index": "off",
+        // Not playing well with ES Module
+        "unicorn/new-for-builtins": "off",
+        // error, @see https://github.com/sindresorhus/eslint-plugin-unicorn/issues/122
+        "unicorn/no-array-callback-reference": "off",
+        // Many false positive reported
+        "unicorn/no-array-for-each": "off",
+        // This rule could change browser compatibility
+        "unicorn/no-array-method-this-argument": "off",
+        // Many false positive reported
+        "unicorn/no-array-reduce": "off",
+        // Array#reduce can be used
+        "unicorn/no-console-spaces": "off",
+        "unicorn/no-fn-reference-in-iterator": "off",
+        // error ?
+        "unicorn/no-null": "off",
+        // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/612
+        "unicorn/no-object-as-default-parameter": "off",
+        "unicorn/no-process-exit": "off",
+        "unicorn/no-unreadable-array-destructuring": "off",
+        "unicorn/no-unused-properties": "warn",
+        "unicorn/no-useless-undefined": "off",
+        "unicorn/prefer-add-event-listener": "off",
+        "unicorn/prefer-default-parameters": "off",
+        "unicorn/prefer-set-has": "off",
+        "unicorn/prevent-abbreviations": "off",
+        // This rule is so dangerous : it potentially break code while fixing in many cases !!
+        "unicorn/throw-new-error": "off",
+        // Creating errors with call signature is OK
+        ...stylisticEnabled ? {} : {},
+        ...rules
+      }
+    },
+    // TODO: move to another file ?
+    {
+      name: "w5s/unicorn/overrides",
+      files: ["**/*.config.cjs", "**/*.config.js"],
+      rules: {
+        "unicorn/prefer-module": "off"
+      }
+    }
+  ];
+}
 var defaultFiles3 = [`**/${dev.Project.extensionsToGlob(dev.Project.queryExtensions(["yaml"]))}`];
 async function yml(options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
@@ -312,6 +377,7 @@ async function defineConfig(options = {}) {
   const jsoncOptions = typeof options.jsonc === "boolean" ? { enabled: options.jsonc } : { enabled: true, ...options.jsonc };
   const nodeOptions = typeof options.node === "boolean" ? { enabled: options.node } : { enabled: true, ...options.node };
   const tsOptions = typeof options.ts === "boolean" ? { enabled: options.ts } : { enabled: true, ...options.ts };
+  const unicornOptions = typeof options.unicorn === "boolean" ? { enabled: options.unicorn } : { enabled: true, ...options.unicorn };
   const ymlOptions = typeof options.yml === "boolean" ? { enabled: options.yml } : { enabled: false, ...options.yml };
   let returnValue = [];
   const append = async (config) => {
@@ -333,6 +399,9 @@ async function defineConfig(options = {}) {
   if (ymlOptions.enabled) {
     append(await yml(ymlOptions));
   }
+  if (unicornOptions.enabled) {
+    append(await unicorn(unicornOptions));
+  }
   return returnValue;
 }
 
@@ -346,6 +415,7 @@ exports.imports = imports;
 exports.jsonc = jsonc;
 exports.node = node;
 exports.ts = ts;
+exports.unicorn = unicorn;
 exports.yml = yml;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map

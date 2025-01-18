@@ -5,10 +5,11 @@ import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
 import nodePlugin from 'eslint-plugin-n';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
+import unicornPlugin from 'eslint-plugin-unicorn';
 import ymlPlugin from 'eslint-plugin-yml';
 import { pluginsToRulesDTS } from 'eslint-typegen/core';
 
-// eslint-disable-next-line no-console
+
 console.log('Generating types...');
 
 await Promise.all(
@@ -20,6 +21,7 @@ await Promise.all(
       ['jsonc', jsoncPlugin],
       ['node', nodePlugin],
       ['ts', tsPlugin],
+      ['unicorn', unicornPlugin],
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {
