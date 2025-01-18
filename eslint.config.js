@@ -1,4 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
+ 
 import { defineConfig } from '@w5s/eslint-config';
 
 // console.log((await defineConfig({
@@ -7,8 +7,16 @@ import { defineConfig } from '@w5s/eslint-config';
 // })))
 export default [
   ...(await defineConfig({
-    ignores: [],
+    ignores: [
+      '**/dist',
+    ],
   })),
+  {
+    rules: {
+      'node/no-sync': 'off',
+      'import/no-unresolved': 'off',
+    },
+  }
  //{
     // "parserOptions": {
     //   "project": "./tsconfig.json"
