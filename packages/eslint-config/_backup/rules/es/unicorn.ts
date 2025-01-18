@@ -9,44 +9,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
     // extends: ['plugin:unicorn/recommended'],
     plugins: ['unicorn'],
     rules: {
-      'unicorn/better-regex': 'error',
-      'unicorn/catch-error-name': ['error', { name: 'error' }],
-      'unicorn/custom-error-definition': 'error',
-      'unicorn/error-message': 'error',
-      'unicorn/explicit-length-check': ['error', { 'non-zero': 'greater-than' }],
-      'unicorn/filename-case': 'off',
-      'unicorn/import-index': 'off', // Not playing well with ES Module
-      'unicorn/new-for-builtins': 'off', // error, @see https://github.com/sindresorhus/eslint-plugin-unicorn/issues/122
-      'unicorn/no-abusive-eslint-disable': 'error',
-      'unicorn/no-array-instanceof': 'error',
-      'unicorn/no-console-spaces': 'off',
-      'unicorn/no-fn-reference-in-iterator': 'off', // error ?
-      'unicorn/no-for-loop': 'error',
-      'unicorn/no-hex-escape': 'error',
-      'unicorn/no-new-buffer': 'error',
-      'unicorn/no-null': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/612
-      'unicorn/no-process-exit': 'off',
-      'unicorn/no-unreadable-array-destructuring': 'off',
-      'unicorn/no-unsafe-regex': 'error',
-      'unicorn/no-unused-properties': 'warn',
-      'unicorn/no-useless-undefined': 'off',
-      'unicorn/no-zero-fractions': 'error',
-      'unicorn/number-literal-case': 'error',
-      'unicorn/prefer-add-event-listener': 'off',
-      'unicorn/prefer-event-key': 'error',
-      'unicorn/prefer-exponentiation-operator': 'error',
-      'unicorn/prefer-flat-map': 'error',
-      'unicorn/prefer-includes': 'error',
-      'unicorn/prefer-node-append': 'error',
-      'unicorn/prefer-node-remove': 'error',
-      'unicorn/prefer-number-properties': 'error',
-      'unicorn/prefer-query-selector': 'error',
-      'unicorn/prefer-set-has': 'off',
-      'unicorn/prefer-spread': 'off',
-      'unicorn/prefer-starts-ends-with': 'error',
-      'unicorn/prefer-text-content': 'error',
-      'unicorn/prefer-type-error': 'error',
-      'unicorn/throw-new-error': 'off', // Creating errors with call signature is OK
+
     },
   },
   {
