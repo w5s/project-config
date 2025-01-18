@@ -5,7 +5,6 @@ import findUp from 'find-up';
 import parseGitignore from 'parse-gitignore';
 import { Project, interopDefault, ESLintConfig } from '@w5s/dev';
 import importPlugin from 'eslint-plugin-import';
-import { configs } from 'eslint-plugin-yml';
 
 // src/config/ignores.ts
 var getGitignore = async (cwd, prefix = "") => {
@@ -328,11 +327,11 @@ async function yml(options = {}) {
       },
       name: "w5s/yml/rules",
       rules: {
-        ...configs["flat/recommended"][0].rules,
-        ...configs["flat/recommended"][1].rules,
-        ...configs["flat/recommended"][2].rules,
+        ...ymlPlugin.configs["flat/recommended"][0].rules,
+        ...ymlPlugin.configs["flat/recommended"][1].rules,
+        ...ymlPlugin.configs["flat/recommended"][2].rules,
         ...stylisticEnabled ? {
-          ...configs["flat/standard"][3].rules,
+          ...ymlPlugin.configs["flat/standard"][3].rules,
           "yml/array-bracket-spacing": ["error", "never"],
           "yml/comma-dangle": ["error", "never"],
           "yml/comma-style": ["error", "last"],

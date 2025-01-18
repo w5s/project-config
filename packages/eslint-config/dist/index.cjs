@@ -9,7 +9,6 @@ var findUp = require('find-up');
 var parseGitignore = require('parse-gitignore');
 var dev = require('@w5s/dev');
 var importPlugin = require('eslint-plugin-import');
-var eslintPluginYml = require('eslint-plugin-yml');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
@@ -341,11 +340,11 @@ async function yml(options = {}) {
       },
       name: "w5s/yml/rules",
       rules: {
-        ...eslintPluginYml.configs["flat/recommended"][0].rules,
-        ...eslintPluginYml.configs["flat/recommended"][1].rules,
-        ...eslintPluginYml.configs["flat/recommended"][2].rules,
+        ...ymlPlugin.configs["flat/recommended"][0].rules,
+        ...ymlPlugin.configs["flat/recommended"][1].rules,
+        ...ymlPlugin.configs["flat/recommended"][2].rules,
         ...stylisticEnabled ? {
-          ...eslintPluginYml.configs["flat/standard"][3].rules,
+          ...ymlPlugin.configs["flat/standard"][3].rules,
           "yml/array-bracket-spacing": ["error", "never"],
           "yml/comma-dangle": ["error", "never"],
           "yml/comma-style": ["error", "last"],
