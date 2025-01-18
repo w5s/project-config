@@ -1,7 +1,6 @@
 import { interopDefault, Project } from '@w5s/dev';
 import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js';
 import type { RuleOptions } from '../typegen/yml.js';
-import { configs as ymlConfigs } from 'eslint-plugin-yml';
 
 const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['yaml']))}`];
 
@@ -27,12 +26,12 @@ export async function yml(options: yml.Options = {}) {
       },
       name: 'w5s/yml/rules',
       rules: {
-        ...(ymlConfigs['flat/recommended'][0]!.rules),
-        ...(ymlConfigs['flat/recommended'][1]!.rules),
-        ...(ymlConfigs['flat/recommended'][2]!.rules),
+        ...(ymlPlugin.configs['flat/recommended'][0]!.rules),
+        ...(ymlPlugin.configs['flat/recommended'][1]!.rules),
+        ...(ymlPlugin.configs['flat/recommended'][2]!.rules),
         ...(stylisticEnabled
           ? {
-              ...(ymlConfigs['flat/standard'][3]!.rules),
+              ...(ymlPlugin.configs['flat/standard'][3]!.rules),
               'yml/array-bracket-spacing': ['error', 'never'],
               'yml/comma-dangle': ['error', 'never'],
               'yml/comma-style': ['error', 'last'],
