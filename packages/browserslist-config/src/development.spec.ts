@@ -10,6 +10,6 @@ describe('browserslist latest config', () => {
 
   it('should contain minimalist configuration', () => {
     const browsers = browserslist(config);
-    expect(Array.from(new Set(browsers.map((_) => _.split(' ')[0])))).toEqual(['chrome', 'firefox', 'safari']);
+    expect([...new Set(browsers.map((_) => _.split(' ')[0]))]).toEqual(['chrome', 'firefox', 'safari']);
   });
 });

@@ -4345,7 +4345,27 @@ declare function ts(options?: ts.Options): Promise<[{
         readonly 'ts/adjacent-overload-signatures'?: eslint.Linter.RuleEntry<[]>;
         readonly 'ts/array-type'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/await-thenable'?: eslint.Linter.RuleEntry<[]>;
-        readonly 'ts/ban-ts-comment'?: eslint.Linter.RuleEntry<undefined>;
+        'ts/ban-ts-comment': 0 | 2 | 1 | "off" | "warn" | "error" | [eslint.Linter.RuleSeverity, {
+            minimumDescriptionLength?: number;
+            "ts-check"?: (boolean | "allow-with-description" | {
+                descriptionFormat?: string;
+            });
+            "ts-expect-error"?: (boolean | "allow-with-description" | {
+                descriptionFormat?: string;
+            });
+            "ts-ignore"?: (boolean | "allow-with-description" | {
+                descriptionFormat?: string;
+            });
+            "ts-nocheck"?: (boolean | "allow-with-description" | {
+                descriptionFormat?: string;
+            });
+        }?] | ["warn", {
+            readonly minimumDescriptionLength: 3;
+            readonly 'ts-check': false;
+            readonly 'ts-expect-error': "allow-with-description";
+            readonly 'ts-ignore': "allow-with-description";
+            readonly 'ts-nocheck': true;
+        }];
         readonly 'ts/ban-tslint-comment'?: eslint.Linter.RuleEntry<[]>;
         readonly 'ts/class-literal-property-style'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/class-methods-use-this'?: eslint.Linter.RuleEntry<undefined>;
@@ -4378,8 +4398,8 @@ declare function ts(options?: ts.Options): Promise<[{
         readonly 'ts/no-dynamic-delete'?: eslint.Linter.RuleEntry<[]>;
         readonly 'ts/no-empty-function'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/no-empty-interface'?: eslint.Linter.RuleEntry<undefined>;
-        readonly 'ts/no-empty-object-type'?: eslint.Linter.RuleEntry<undefined>;
-        readonly 'ts/no-explicit-any'?: eslint.Linter.RuleEntry<undefined>;
+        'ts/no-empty-object-type': eslint.Linter.RuleEntry<undefined>;
+        'ts/no-explicit-any': eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/no-extra-non-null-assertion'?: eslint.Linter.RuleEntry<[]>;
         readonly 'ts/no-extraneous-class'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/no-floating-promises'?: eslint.Linter.RuleEntry<undefined>;
@@ -4397,7 +4417,7 @@ declare function ts(options?: ts.Options): Promise<[{
         readonly 'ts/no-misused-promises'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/no-misused-spread'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/no-mixed-enums'?: eslint.Linter.RuleEntry<[]>;
-        readonly 'ts/no-namespace'?: eslint.Linter.RuleEntry<undefined>;
+        'ts/no-namespace': eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/no-non-null-asserted-nullish-coalescing'?: eslint.Linter.RuleEntry<[]>;
         readonly 'ts/no-non-null-asserted-optional-chain'?: eslint.Linter.RuleEntry<[]>;
         readonly 'ts/no-non-null-assertion'?: eslint.Linter.RuleEntry<[]>;
@@ -4473,10 +4493,17 @@ declare function ts(options?: ts.Options): Promise<[{
         readonly 'ts/unified-signatures'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/use-unknown-in-catch-callback-variable'?: eslint.Linter.RuleEntry<[]>;
     };
-}]>;
+}, ...{
+    files: string[];
+    name: string;
+    rules: {
+        [x: string]: any;
+    };
+}[]]>;
 declare namespace ts {
     type Rules = RuleOptions$3;
     interface Options extends PluginOptionsBase<Rules> {
+        typeChecked?: boolean;
     }
 }
 
@@ -6574,7 +6601,7 @@ declare function unicorn(options?: unicorn.Options): Promise<[{
         'unicorn/no-magic-array-flat-depth'?: eslint.Linter.RuleEntry<[]>;
         'unicorn/no-negated-condition'?: eslint.Linter.RuleEntry<[]>;
         'unicorn/no-negation-in-equality-check'?: eslint.Linter.RuleEntry<[]>;
-        'unicorn/no-nested-ternary'?: eslint.Linter.RuleEntry<[]>;
+        'unicorn/no-nested-ternary': eslint.Linter.RuleEntry<[]>;
         'unicorn/no-new-array'?: eslint.Linter.RuleEntry<[]>;
         'unicorn/no-new-buffer'?: eslint.Linter.RuleEntry<[]>;
         'unicorn/no-null': eslint.Linter.RuleEntry<undefined>;
