@@ -209,8 +209,9 @@ async function ts(options = {}) {
   ]);
   const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
   const tsStrictRules = tsPlugin.configs["strict"].rules;
-  const { files = defaultFiles2, rules = {}, stylistic = true } = options;
-  const { enabled: stylisticEnabled} = StylisticConfig.from(stylistic);
+  const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
+  const { files = defaultFiles2, rules = {}, stylistic = true, typeChecked = true } = options;
+  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
   return [
     {
       name: "w5s/ts/setup",
@@ -247,10 +248,36 @@ async function ts(options = {}) {
           tsStrictRules,
           { "@typescript-eslint": "ts" }
         ),
+        "ts/ban-ts-comment": [
+          "warn",
+          {
+            minimumDescriptionLength: 3,
+            "ts-check": false,
+            "ts-expect-error": "allow-with-description",
+            "ts-ignore": "allow-with-description",
+            "ts-nocheck": true
+          }
+        ],
+        "ts/no-empty-object-type": "off",
+        "ts/no-explicit-any": "off",
+        // if any is explicit then it's wanted
+        "ts/no-namespace": "off",
+        // We don't agree with community, namespaces are great and not deprecated
         ...stylisticEnabled ? {} : {},
         ...rules
       }
-    }
+    },
+    ...typeChecked ? [{
+      files: defaultFiles2,
+      // ignores: ignoresTypeAware,
+      name: "w5s/ts/rules-type-checked",
+      rules: {
+        ...dev.ESLintConfig.renameRules(
+          tsTypeCheckedRules,
+          { "@typescript-eslint": "ts" }
+        )
+      }
+    }] : []
   ];
 }
 async function unicorn(options = {}) {
@@ -290,6 +317,7 @@ async function unicorn(options = {}) {
         "unicorn/no-console-spaces": "off",
         "unicorn/no-fn-reference-in-iterator": "off",
         // error ?
+        "unicorn/no-nested-ternary": "off",
         "unicorn/no-null": "off",
         // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/612
         "unicorn/no-object-as-default-parameter": "off",

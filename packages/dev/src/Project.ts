@@ -61,7 +61,7 @@ export namespace Project {
     return languages
       .reduce<
         Extension[]
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+        // eslint-disable-next-line unicorn/prefer-spread
       >((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? ([] as Extension[])), [])
       .sort();
   }

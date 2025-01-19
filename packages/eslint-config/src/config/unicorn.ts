@@ -32,6 +32,7 @@ export async function unicorn(options: unicorn.Options = {}) {
         'unicorn/no-array-reduce': 'off', // Array#reduce can be used
         'unicorn/no-console-spaces': 'off',
         'unicorn/no-fn-reference-in-iterator': 'off', // error ?
+        'unicorn/no-nested-ternary': 'off',
         'unicorn/no-null': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/612
         'unicorn/no-object-as-default-parameter': 'off',
         'unicorn/no-process-exit': 'off',
@@ -44,9 +45,7 @@ export async function unicorn(options: unicorn.Options = {}) {
         'unicorn/prevent-abbreviations': 'off', // This rule is so dangerous : it potentially break code while fixing in many cases !!
         'unicorn/throw-new-error': 'off', // Creating errors with call signature is OK
         ...(stylisticEnabled
-          ? {
-
-            }
+          ? {}
           : {}),
         ...rules,
       },
