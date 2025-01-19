@@ -4,7 +4,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import TsUp from 'tsup';
 import { defaultConfig } from './defaultConfig.js';
-
 function awaitableMap(awaitable, mapFn) {
     return awaitable != null && typeof awaitable.then === 'function'
         ? // eslint-disable-next-line promise/prefer-await-to-then
