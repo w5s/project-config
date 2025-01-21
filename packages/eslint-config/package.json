@@ -76,7 +76,7 @@
     "@typescript-eslint/parser": "8.21.0",
     "eslint": "8.57.1",
     "eslint-config-prettier": "10.0.1",
-    "eslint-find-rules": "4.2.0",
+    "eslint-find-rules": "5.0.0",
     "prettier": "3.4.2",
     "react": "19.0.0",
     "vite": "6.0.11",
