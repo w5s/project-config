@@ -104,7 +104,7 @@
     "markdown-magic-subpackage-list": "1.1.2",
     "npm-run-all2": "7.0.2",
     "prettier": "3.4.2",
-    "turbo": "2.3.3",
+    "turbo": "2.3.4",
     "typescript": "5.7.3",
     "vite": "6.0.11",
     "vitest": "3.0.3"
