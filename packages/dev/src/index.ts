@@ -7,3 +7,4 @@ export * from './LanguageId.js';
 export * from './json.js';
 export * from './Project.js';
 export * from './ProjectScript.js';
+export * from './yarnConfig.js';

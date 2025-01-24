@@ -2,6 +2,7 @@
 
 var fs = require('fs');
 var promises = require('fs/promises');
+var child_process = require('child_process');
 
 // src/directory.ts
 async function exists(path) {
@@ -335,6 +336,53 @@ var ProjectScript = {
   Test: "test",
   Validate: "validate"
 };
+function execSync(command, args, options) {
+  const { stdout, stderr } = child_process.spawnSync(command, args, { cwd: process.cwd(), ...options });
+  const encoding = "utf8";
+  return { stdout: stdout.toString(encoding), stderr: stderr.toString(encoding) };
+}
+async function exec(command, args, options) {
+  return new Promise((resolve, reject) => {
+    const encoding = "utf8";
+    const child = child_process.spawn(command, args, { cwd: process.cwd(), ...options });
+    let stdout = "";
+    let stderr = "";
+    if (child.stdout != null) {
+      child.stdout.on("data", (data) => {
+        stdout += data.toString(encoding);
+      });
+    }
+    if (child.stderr != null) {
+      child.stderr.on("data", (data) => {
+        stderr += data.toString(encoding);
+      });
+    }
+    child.on("close", (_code) => {
+      resolve({ stdout, stderr });
+    });
+    child.on("error", reject);
+  });
+}
+
+// src/yarnConfig.ts
+function yarnConfigSync(options) {
+  const { key, state, update } = options;
+  if (state === "present") {
+    const { stdout } = execSync("yarn", ["config", "get", key]);
+    execSync("yarn", ["config", "set", `${update == null ? "" : update(stdout)}`]);
+  } else {
+    execSync("yarn", ["config", "unset"]);
+  }
+}
+async function yarnConfig(options) {
+  const { key, state, update } = options;
+  if (state === "present") {
+    const { stdout } = await exec("yarn", ["config", "get", key]);
+    await exec("yarn", ["config", "set", `${update == null ? "" : update(stdout)}`]);
+  } else {
+    await exec("yarn", ["config", "unset"]);
+  }
+}
 
 exports.ProjectScript = ProjectScript;
 exports.block = block;
@@ -346,5 +394,7 @@ exports.fileSync = fileSync;
 exports.interopDefault = interopDefault;
 exports.json = json;
 exports.jsonSync = jsonSync;
+exports.yarnConfig = yarnConfig;
+exports.yarnConfigSync = yarnConfigSync;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map

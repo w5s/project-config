@@ -18,6 +18,8 @@ describe('index', () => {
         'interopDefault',
         'json',
         'jsonSync',
+        'yarnConfig',
+        'yarnConfigSync',
       ].sort(),
     );
   });

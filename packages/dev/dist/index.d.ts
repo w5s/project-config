@@ -336,4 +336,43 @@ declare const ProjectScript: {
 };
 type ProjectScript = (typeof ProjectScript)[keyof typeof ProjectScript];
 
-export { type BlockOptions, type DirectoryOptions, ESLintConfig, type FileOptions, type JSONOption, type JSONValue, type LanguageId, type LanguageIdMap, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync };
+interface YarnConfigOptions {
+    /**
+     * Configuration key
+     */
+    readonly key: string;
+    /**
+     * Option target state
+     */
+    readonly state: 'present' | 'absent';
+    /**
+     * File content mapping function
+     *
+     * @param content
+     */
+    readonly update?: ((content: string) => string | undefined) | undefined;
+}
+/**
+ * Synchronous version of {@link yarnConfig}
+ *
+ * @example
+ * yarnConfigSync({
+ *   key: 'nodeLinker',
+ *   state: 'present',
+ *   update: (content) => content.replace('node-modules', 'hoisted'),
+ * })
+ */
+declare function yarnConfigSync(options: YarnConfigOptions): void;
+/**
+ * Set/Unset yarn configuration value
+ *
+ * @example
+ * await yarnConfig({
+ *   key: 'nodeLinker',
+ *   state: 'present',
+ *   update: (content) => content.replace('node-modules', 'hoisted'),
+ * })
+ */
+declare function yarnConfig(options: YarnConfigOptions): Promise<void>;
+
+export { type BlockOptions, type DirectoryOptions, ESLintConfig, type FileOptions, type JSONOption, type JSONValue, type LanguageId, type LanguageIdMap, Project, ProjectScript, type YarnConfigOptions, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, yarnConfig, yarnConfigSync };
