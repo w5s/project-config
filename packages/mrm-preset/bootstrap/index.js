@@ -12,9 +12,9 @@ const { gitIgnore } = require('../core/git.js');
  *   packageArchetype: 'application'|'library'|'workspace',
  *   packageManager: 'npm'|'yarn@classic'|'yarn@berry'
  * }} config
- * @returns {void}
+ * @returns {Promise<void>}
  */
-function task({ mrmPreset, mrmTask, packageManager }) {
+async function task({ mrmPreset, mrmTask, packageManager }) {
   /**
    * setup package.json from following object
    */
@@ -28,7 +28,7 @@ function task({ mrmPreset, mrmTask, packageManager }) {
   }).save();
   gitIgnore(['macOS', 'NodeJS', 'VisualStudioCode']);
 
-  npm.bootstrap(packageManager);
+  await npm.bootstrap(packageManager);
 
   // npm.dependency({
   //   dev: true,

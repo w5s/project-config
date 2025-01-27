@@ -1,4 +1,5 @@
 /* eslint-disable default-param-last */
+const { yarnVersion, yarnConfig } = require('@w5s/dev');
 
 /* eslint-disable import/no-extraneous-dependencies */
 /* cSpell: disable */
@@ -257,19 +258,27 @@ function isYarnBerry() {
 /**
  * @param {'npm'|`yarn@${'classic'|'berry'}`} defaultPackageManager
  */
-function bootstrap(defaultPackageManager) {
+async function bootstrap(defaultPackageManager) {
   const packageFile = json(`./package.json`);
   const isYarn = isUsingYarn() || defaultPackageManager.startsWith('yarn@');
+
   if (!packageFile.get('packageManager') && isYarn) {
-    execCommand(undefined, 'yarn', ['set', 'version', 'berry']);
-    yaml('.yarnrc.yml')
-      .merge({
-        nodeLinker: 'node-modules',
-      })
-      .save();
     // Downgrade
     if (defaultPackageManager.endsWith('@classic')) {
-      execCommand(undefined, 'yarn', ['set', 'version', 'classic']);
+      await yarnVersion({
+        state: 'present',
+        update: () => 'classic',
+      });
+    } else {
+      await yarnVersion({
+        state: 'present',
+        update: () => 'berry',
+      });
+      await yarnConfig({
+        key: 'nodeLinker',
+        state: 'present',
+        update: () => 'node-modules',
+      });
     }
   }
 

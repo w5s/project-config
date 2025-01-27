@@ -20,6 +20,8 @@ describe('index', () => {
         'jsonSync',
         'yarnConfig',
         'yarnConfigSync',
+        'yarnVersion',
+        'yarnVersionSync',
       ].sort(),
     );
   });
