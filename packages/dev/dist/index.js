@@ -382,6 +382,24 @@ async function yarnConfig(options) {
   }
 }
 
-export { ESLintConfig, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, yarnConfig, yarnConfigSync };
+// src/yarnVersion.ts
+function yarnVersionSync(options) {
+  const { state, update } = options;
+  if (state === "present") {
+    execSync("yarn", ["set", "version", `${update == null ? "berry" : update()}`]);
+  } else {
+    throw new Error("Not implemented");
+  }
+}
+async function yarnVersion(options) {
+  const { state, update } = options;
+  if (state === "present") {
+    await exec("yarn", ["set", "version", `${update == null ? "berry" : update()}`]);
+  } else {
+    throw new Error("Not implemented");
+  }
+}
+
+export { ESLintConfig, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

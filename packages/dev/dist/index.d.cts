@@ -375,4 +375,38 @@ declare function yarnConfigSync(options: YarnConfigOptions): void;
  */
 declare function yarnConfig(options: YarnConfigOptions): Promise<void>;
 
-export { type BlockOptions, type DirectoryOptions, ESLintConfig, type FileOptions, type JSONOption, type JSONValue, type LanguageId, type LanguageIdMap, Project, ProjectScript, type YarnConfigOptions, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, yarnConfig, yarnConfigSync };
+type YarnVersionKind = 'berry' | 'classic';
+interface YarnVersionOptions {
+    /**
+     * Option target state
+     */
+    readonly state: 'present' | 'absent';
+    /**
+     * Version mapping function
+     *
+     * @param content
+     */
+    readonly update?: (() => YarnVersionKind | undefined) | undefined;
+}
+/**
+ * Synchronous version of {@link yarnVersion}
+ *
+ * @example
+ * yarnVersionSync({
+ *   state: 'present',
+ *   update: () => 'berry', // or 'classic'
+ * })
+ */
+declare function yarnVersionSync(options: YarnVersionOptions): void;
+/**
+ * Set/Unset yarn configuration value
+ *
+ * @example
+ * await yarnVersion({
+ *   state: 'present',
+ *   update: () => 'berry', // or 'classic'
+ * })
+ */
+declare function yarnVersion(options: YarnVersionOptions): Promise<void>;
+
+export { type BlockOptions, type DirectoryOptions, ESLintConfig, type FileOptions, type JSONOption, type JSONValue, type LanguageId, type LanguageIdMap, Project, ProjectScript, type YarnConfigOptions, type YarnVersionKind, type YarnVersionOptions, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };

@@ -384,6 +384,24 @@ async function yarnConfig(options) {
   }
 }
 
+// src/yarnVersion.ts
+function yarnVersionSync(options) {
+  const { state, update } = options;
+  if (state === "present") {
+    execSync("yarn", ["set", "version", `${update == null ? "berry" : update()}`]);
+  } else {
+    throw new Error("Not implemented");
+  }
+}
+async function yarnVersion(options) {
+  const { state, update } = options;
+  if (state === "present") {
+    await exec("yarn", ["set", "version", `${update == null ? "berry" : update()}`]);
+  } else {
+    throw new Error("Not implemented");
+  }
+}
+
 exports.ProjectScript = ProjectScript;
 exports.block = block;
 exports.blockSync = blockSync;
@@ -396,5 +414,7 @@ exports.json = json;
 exports.jsonSync = jsonSync;
 exports.yarnConfig = yarnConfig;
 exports.yarnConfigSync = yarnConfigSync;
+exports.yarnVersion = yarnVersion;
+exports.yarnVersionSync = yarnVersionSync;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map
