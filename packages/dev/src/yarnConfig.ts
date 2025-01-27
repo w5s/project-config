@@ -32,8 +32,8 @@ export interface YarnConfigOptions {
 export function yarnConfigSync(options: YarnConfigOptions) {
   const { key, state, update } = options;
   if (state === 'present') {
-    const { stdout } = execSync('yarn', ['config', 'get', key]);
-    execSync('yarn', ['config', 'set', `${update == null ? '' : update(stdout)}`]);
+    const { stdout } = execSync('yarn', ['config', 'get', String(key)]);
+    execSync('yarn', ['config', 'set', String(key), `${update == null ? '' : update(stdout)}`]);
   } else {
     execSync('yarn', ['config', 'unset']);
   }
@@ -52,8 +52,8 @@ export function yarnConfigSync(options: YarnConfigOptions) {
 export async function yarnConfig(options: YarnConfigOptions): Promise<void> {
   const { key, state, update } = options;
   if (state === 'present') {
-    const { stdout } = await exec('yarn', ['config', 'get', key]);
-    await exec('yarn', ['config', 'set', `${update == null ? '' : update(stdout)}`]);
+    const { stdout } = await exec('yarn', ['config', 'get', String(key)]);
+    await exec('yarn', ['config', 'set', String(key), `${update == null ? '' : update(stdout)}`]);
   } else {
     await exec('yarn', ['config', 'unset']);
   }

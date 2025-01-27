@@ -24,9 +24,10 @@ export function execSync(
   args: ReadonlyArray<string>,
   options?: ExecOptions,
 ): { stdout: string; stderr: string } {
-  const { stdout, stderr } = spawnSync(command, args, { cwd: process.cwd(), ...options });
+  const result = spawnSync(command, args, { ...options });
   const encoding = 'utf8';
-  return { stdout: stdout.toString(encoding), stderr: stderr.toString(encoding) };
+
+  return { stdout: result.stdout.toString(encoding), stderr: result.stderr.toString(encoding) };
 }
 
 /**
@@ -44,7 +45,7 @@ export async function exec(
 ): Promise<{ stdout: string; stderr: string }> {
   return new Promise((resolve, reject) => {
     const encoding = 'utf8';
-    const child = spawn(command, args, { cwd: process.cwd(), ...options });
+    const child = spawn(command, args, { ...options });
     let stdout = '';
     let stderr = '';
 

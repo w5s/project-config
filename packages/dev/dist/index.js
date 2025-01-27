@@ -335,14 +335,14 @@ var ProjectScript = {
   Validate: "validate"
 };
 function execSync(command, args, options) {
-  const { stdout, stderr } = spawnSync(command, args, { cwd: process.cwd(), ...options });
+  const result = spawnSync(command, args, { ...options });
   const encoding = "utf8";
-  return { stdout: stdout.toString(encoding), stderr: stderr.toString(encoding) };
+  return { stdout: result.stdout.toString(encoding), stderr: result.stderr.toString(encoding) };
 }
 async function exec(command, args, options) {
   return new Promise((resolve, reject) => {
     const encoding = "utf8";
-    const child = spawn(command, args, { cwd: process.cwd(), ...options });
+    const child = spawn(command, args, { ...options });
     let stdout = "";
     let stderr = "";
     if (child.stdout != null) {
@@ -366,8 +366,8 @@ async function exec(command, args, options) {
 function yarnConfigSync(options) {
   const { key, state, update } = options;
   if (state === "present") {
-    const { stdout } = execSync("yarn", ["config", "get", key]);
-    execSync("yarn", ["config", "set", `${update == null ? "" : update(stdout)}`]);
+    const { stdout } = execSync("yarn", ["config", "get", String(key)]);
+    execSync("yarn", ["config", "set", String(key), `${update == null ? "" : update(stdout)}`]);
   } else {
     execSync("yarn", ["config", "unset"]);
   }
@@ -375,8 +375,8 @@ function yarnConfigSync(options) {
 async function yarnConfig(options) {
   const { key, state, update } = options;
   if (state === "present") {
-    const { stdout } = await exec("yarn", ["config", "get", key]);
-    await exec("yarn", ["config", "set", `${update == null ? "" : update(stdout)}`]);
+    const { stdout } = await exec("yarn", ["config", "get", String(key)]);
+    await exec("yarn", ["config", "set", String(key), `${update == null ? "" : update(stdout)}`]);
   } else {
     await exec("yarn", ["config", "unset"]);
   }
