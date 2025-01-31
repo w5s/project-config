@@ -86,7 +86,7 @@
     "**/dist/**"
   ],
   "devDependencies": {
-    "@lerna-lite/publish": "3.11.0",
+    "@lerna-lite/publish": "3.12.0",
     "@types/node": "20.17.16",
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/conventional-changelog": "workspace:*",
