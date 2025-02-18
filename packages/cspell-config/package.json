@@ -63,7 +63,7 @@
     "@cspell/cspell-tools": "8.17.3",
     "@cspell/cspell-types": "8.17.3",
     "vite": "6.1.0",
-    "vitest": "3.0.5"
+    "vitest": "3.0.6"
   },
   "peerDependencies": {
     "cspell": "^6.0.0 || ^7.0.0 || ^8.0.0"
