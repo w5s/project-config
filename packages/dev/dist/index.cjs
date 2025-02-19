@@ -235,7 +235,7 @@ function toFileOption({ update, ...otherOptions }) {
   return {
     ...otherOptions,
     update: update == null ? update : (content) => {
-      const jsonValue = content === "" ? undefined : JSON.parse(content);
+      const jsonValue = content === "" ? void 0 : JSON.parse(content);
       return JSON.stringify(update(jsonValue));
     }
   };
