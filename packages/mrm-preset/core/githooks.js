@@ -1,3 +1,4 @@
+/* eslint-disable node/no-sync */
 const path = require('node:path');
 const { blockSync, directorySync, fileSync } = require('@w5s/dev');
 
