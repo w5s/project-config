@@ -25,6 +25,7 @@ const config: eslint.Linter.Config = {
     '.common/',
     '.config/package-lock.json',
     '.config/yarn.lock',
+    '.git/',
     '.go/',
     '.modules/',
     '.pnpm-store/',
