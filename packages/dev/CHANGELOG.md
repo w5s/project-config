@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.5.0](https://github.com/w5s/project-config/compare/@w5s/dev@2.4.0...@w5s/dev@2.5.0) (2025-02-19)
+
+### ✨ Features
+
+- Add ESLintConfig.renameRules ([5acc73d](https://github.com/w5s/project-config/commit/5acc73d)) 
+- Add exec, execSync and yarnConfig ([3e6343e](https://github.com/w5s/project-config/commit/3e6343e)) 
+- Add new languages ids ([2999c20](https://github.com/w5s/project-config/commit/2999c20)) 
+- Add yarnVersion ([de78b13](https://github.com/w5s/project-config/commit/de78b13)) 
+
+### 🐛 Bug Fixes
+
+- Fix import case ([0bed4a7](https://github.com/w5s/project-config/commit/0bed4a7)) 
+- Fix yarn config task ([a1d8a67](https://github.com/w5s/project-config/commit/a1d8a67))
+
+**Note:** Version bump only for package @w5s/dev
+
 # [2.4.0](https://github.com/w5s/project-config/compare/@w5s/dev@2.3.0...@w5s/dev@2.4.0) (2025-01-10)
 
 ### ✨ Features

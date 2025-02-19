@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.2](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.11.1...@w5s/mrm-preset@2.11.2) (2025-02-19)
+
+### 🐛 Bug Fixes
+
+- Fix githook installation ([ee6d054](https://github.com/w5s/project-config/commit/ee6d054))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [2.11.1](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.11.0...@w5s/mrm-preset@2.11.1) (2025-01-10)
 
 **Note:** Version bump only for package @w5s/mrm-preset
