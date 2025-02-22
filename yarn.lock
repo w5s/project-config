@@ -7131,11 +7131,11 @@ __metadata:
   linkType: hard
 
 "jackspeak@npm:^4.0.1":
-  version: 4.0.3
-  resolution: "jackspeak@npm:4.0.3"
+  version: 4.1.0
+  resolution: "jackspeak@npm:4.1.0"
   dependencies:
     "@isaacs/cliui": "npm:^8.0.2"
-  checksum: 10c0/3d252c84fe3ea2b44da70ea3bb46a4a6fb13cd22c9e256ee254684be86ace87f5ce40cb181d279dd6ee1de5d82b88b7f231335e9f45dcbce17b6d64fcb04de23
+  checksum: 10c0/08a6a24a366c90b83aef3ad6ec41dcaaa65428ffab8d80bc7172add0fbb8b134a34f415ad288b2a6fbd406526e9a62abdb40ed4f399fbe00cb45c44056d4dce0
   languageName: node
   linkType: hard
 
