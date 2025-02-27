@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Make CI
 on:
   merge_group: {}
   push:
@@ -17,6 +17,6 @@ jobs:
         with:
           node-version-file: .tool-versions
           cache: yarn
-      - run: yarn install --immutable
-      - run: yarn run build
+      - run: make build
+      # TODO: migrate this code to make
       - run: yarn validate
