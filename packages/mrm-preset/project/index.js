@@ -262,9 +262,7 @@ function task() {
     state: 'present',
     update: (_) => ({
       ..._,
-      globalEnv: Array.from(
-        new Set([...(_.globalEnv ?? []), 'ASDF_*', 'CI', 'CI_*', 'DATABASE_URL', 'NODE_ENV']),
-      ).sort(),
+      globalEnv: Array.from(new Set([...(_.globalEnv ?? []), 'ASDF_*', 'CI', 'DATABASE_URL', 'NODE_ENV'])).sort(),
       globalDependencies: ['.tool-versions', 'tsconfig.settings.json', '**/.env.*local', '.env'],
       tasks: {
         ..._.tasks,
