@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:1@sha256:dbbd5e059e8a07ff7ea6233b213b36aa516b4c53c645f1817a4dd18b83cbea56
+# syntax = docker/dockerfile:1@sha256:93bfd3b68c109427185cd78b4779fc82b484b0b7618e36d0f104d4d801e66d25
 
 #==================================================================================================
 #                                         ┓ ┏┏━┏┓
