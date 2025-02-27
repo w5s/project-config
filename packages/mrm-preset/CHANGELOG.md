@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.3](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.11.2...@w5s/mrm-preset@2.11.3) (2025-02-27)
+
+### 🐛 Bug Fixes
+
+- Remove CI_* so it does not trigger turbo cache miss ([a4b9cb2](https://github.com/w5s/project-config/commit/a4b9cb2))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [2.11.2](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@2.11.1...@w5s/mrm-preset@2.11.2) (2025-02-19)
 
 ### 🐛 Bug Fixes
