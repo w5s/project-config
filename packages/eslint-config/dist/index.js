@@ -51,11 +51,10 @@ async function ignores(options = {}) {
         "**/*.min.*",
         "**/*.timestamp-*.mjs",
         // esbuild/vite temporary files
+        ".modules/",
+        ".go/",
+        ".pnpm-store/",
         // '!.*',
-        // '.common/',
-        // '.go/',
-        // '.modules/',
-        // '.pnpm-store/',
         // '.venv/',
         // 'deprecated/',
         // 'test-output/',
@@ -197,7 +196,7 @@ async function ts(options = {}) {
   const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
   const tsStrictRules = tsPlugin.configs["strict"].rules;
   const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
-  const { files = defaultFiles2, rules = {}, stylistic = true, typeChecked = true } = options;
+  const { files = defaultFiles2, rules = {}, stylistic = true, typeChecked = false } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
   return [
     {

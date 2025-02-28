@@ -52,11 +52,10 @@ export async function ignores(options: ignores.Options = {}) {
 
         '**/*.timestamp-*.mjs', // esbuild/vite temporary files
 
+        '.modules/',
+        '.go/',
+        '.pnpm-store/',
         // '!.*',
-        // '.common/',
-        // '.go/',
-        // '.modules/',
-        // '.pnpm-store/',
         // '.venv/',
         // 'deprecated/',
         // 'test-output/',
