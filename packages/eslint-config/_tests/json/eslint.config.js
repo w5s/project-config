@@ -1,8 +1,6 @@
 /* eslint-env node */
+import baseConfig from '../../dist/index.js';
 
 export default [
-  await ((await import('../../dist/index')).default()),
-  {
-    root: true,
-  }
+  ...(await baseConfig()),
 ];

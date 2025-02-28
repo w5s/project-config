@@ -1,5 +1,3 @@
-import { defineConfig } from './defineConfig.js';
-
 export * from './defineConfig.js';
 export * from './config.js';
-export default defineConfig;
+export { defineConfig as default } from './defineConfig.js';

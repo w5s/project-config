@@ -11,7 +11,7 @@ function toArray<T>(value: T[] | T | undefined): T[] {
 }
 
 function concatArray<T>(left: T[] | T | undefined, right: T[] | T | undefined): T[] {
-  return toArray(left).concat(toArray(right));
+  return [...toArray(left), ...toArray(right)];
 }
 
 export namespace ESLintConfig {
