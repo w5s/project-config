@@ -2486,7 +2486,7 @@ declare function node(options?: node.Options): Promise<[{
 }]>;
 declare namespace node {
     type Rules = RuleOptions$4;
-    interface Options extends Omit<PluginOptionsBase<Rules>, 'files'> {
+    interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {
     }
 }
 

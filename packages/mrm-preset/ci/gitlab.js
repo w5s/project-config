@@ -23,7 +23,7 @@ function task() {
       (include) => (typeof include === 'string' ? include : include.local) === includePath,
     );
   const addInclude = (/** @type {string} */ includePath) =>
-    gitlabCIConfig.set('include', gitlabCIConfig.get('include', []).concat([{ local: includePath }]));
+    gitlabCIConfig.set('include', [...gitlabCIConfig.get('include', []), { local: includePath }]);
 
   if (!hasInclude(autoDevopsPath)) {
     addInclude(autoDevopsPath);

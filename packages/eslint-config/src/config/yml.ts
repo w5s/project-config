@@ -1,3 +1,4 @@
+/* eslint-disable ts/no-non-null-assertion */
 import { interopDefault, Project } from '@w5s/dev';
 import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js';
 import type { RuleOptions } from '../typegen/yml.js';

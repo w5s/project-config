@@ -156,7 +156,7 @@ async function node(options = {}) {
   const [nodePlugin] = await Promise.all([
     import('eslint-plugin-n')
   ]);
-  const { rules = {}, stylistic = true } = options;
+  const { rules = {} } = options;
   return [
     {
       name: "w5s/node/setup",
@@ -179,14 +179,20 @@ async function node(options = {}) {
         "node/prefer-global/url": ["error", "always"],
         "node/prefer-global/url-search-params": ["error", "always"],
         "node/process-exit-as-throw": "error",
-        // ...(stylisticEnabled
-        //   ? {}
-        //   : {}),
         ...rules
       }
     }
   ];
 }
+
+// src/config/createRules.ts
+function createRules(prefix) {
+  return {
+    [`${prefix}no-unused-vars`]: ["error", { argsIgnorePattern: "^_" }]
+  };
+}
+
+// src/config/ts.ts
 var defaultFiles2 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`];
 async function ts(options = {}) {
   const [tsPlugin, tsParser] = await Promise.all([
@@ -249,6 +255,7 @@ async function ts(options = {}) {
         // if any is explicit then it's wanted
         "ts/no-namespace": "off",
         // We don't agree with community, namespaces are great and not deprecated
+        ...createRules("ts/"),
         ...stylisticEnabled ? {} : {},
         ...rules
       }
@@ -418,9 +425,6 @@ async function defineConfig(options = {}) {
   return returnValue;
 }
 
-// src/index.ts
-var index_default = defineConfig;
-
-export { index_default as default, defineConfig, ignores, imports, jsonc, node, ts, unicorn, yml };
+export { defineConfig as default, defineConfig, ignores, imports, jsonc, node, ts, unicorn, yml };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

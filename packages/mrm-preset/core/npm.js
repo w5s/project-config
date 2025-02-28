@@ -1,7 +1,7 @@
-/* eslint-disable default-param-last */
+
 const { yarnVersion, yarnConfig } = require('@w5s/dev');
 
-/* eslint-disable import/no-extraneous-dependencies */
+
 /* cSpell: disable */
 // @ts-check
 // @ts-ignore
@@ -78,7 +78,7 @@ function install(deps, options = {}, exec) {
   log.info(`Installing ${listify(newDeps)}...`);
   const versionedDeps = newDeps.map((dep) => getVersionedDep(dep, versions));
 
-  // eslint-disable-next-line consistent-return
+
   return run(versionedDeps, { dev }, exec);
 }
 
@@ -90,7 +90,7 @@ function install(deps, options = {}, exec) {
  * @param {Function=} exec
  */
 function uninstall(deps, options = {}, exec) {
-  // eslint-disable-next-line no-param-reassign
+
   deps = _.castArray(deps);
   const dev = options.dev !== false;
   const run = options.yarn || isUsingYarn() ? runYarn : runNpm;
@@ -106,7 +106,7 @@ function uninstall(deps, options = {}, exec) {
 
   log.info(`Uninstalling ${listify(newDeps)}...`);
 
-  // eslint-disable-next-line consistent-return
+
   return run(newDeps, { dev, remove: true }, exec);
 }
 
@@ -118,7 +118,7 @@ function uninstall(deps, options = {}, exec) {
  * @param {Function} [exec]
  */
 function runNpm(deps, options = {}, exec) {
-  const args = [options.remove ? 'uninstall' : 'install', options.dev ? '--save-dev' : '--save'].concat(deps);
+  const args = [options.remove ? 'uninstall' : 'install', options.dev ? '--save-dev' : '--save', ...deps];
 
   return execCommand(exec, 'npm', args, {
     cwd: options.cwd,
@@ -136,6 +136,7 @@ function runNpm(deps, options = {}, exec) {
 function runYarn(deps, options = {}, exec) {
   const add = options.dev ? ['add', '--dev'] : ['add'];
   const remove = ['remove'];
+  // eslint-disable-next-line unicorn/prefer-spread
   const args = (options.remove ? remove : add).concat(isUsingWorkspaces() && !isYarnBerry() ? ['-W'] : []).concat(deps);
 
   return execCommand(exec, 'yarn', args, {
