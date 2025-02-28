@@ -13,7 +13,7 @@ export async function ts(options: ts.Options = {}) {
   const tsRecommendedRules = tsPlugin.configs['eslint-recommended']!.overrides![0]!.rules!;
   const tsStrictRules = tsPlugin.configs['strict']!.rules!;
   const tsTypeCheckedRules = tsPlugin.configs['recommended-type-checked-only']!.rules!;
-  const { files = defaultFiles, rules = {}, stylistic = true, typeChecked = true } = options;
+  const { files = defaultFiles, rules = {}, stylistic = true, typeChecked = false } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
