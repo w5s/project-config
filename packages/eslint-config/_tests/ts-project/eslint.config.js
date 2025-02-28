@@ -1,12 +1,13 @@
 /* eslint-env node */
+import baseConfig from '../../dist/index.js';
+import testConfig from '../testRules.js';
 
 export default [
-  ...(await ((await import('../../dist/index')).default())),
-  (await import('../testRules')).rules,
+  ...(await baseConfig()),
+  testConfig,
   {
-    root: true,
-    parserOptions: {
-      project: require.resolve('./tsconfig.json'),
-    },
+    // parserOptions: {
+    //   project: require.resolve('./tsconfig.json'),
+    // },
   }
 ];

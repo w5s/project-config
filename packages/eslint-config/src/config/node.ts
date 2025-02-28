@@ -6,8 +6,7 @@ export async function node(options: node.Options = {}) {
   const [nodePlugin] = await Promise.all([
     import('eslint-plugin-n'),
   ] as const);
-  const { rules = {}, stylistic = true } = options;
-  // const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  const { rules = {} } = options;
   return [
     {
       name: 'w5s/node/setup',
@@ -30,9 +29,6 @@ export async function node(options: node.Options = {}) {
         'node/prefer-global/url': ['error', 'always'],
         'node/prefer-global/url-search-params': ['error', 'always'],
         'node/process-exit-as-throw': 'error',
-        // ...(stylisticEnabled
-        //   ? {}
-        //   : {}),
         ...rules,
       },
     },
@@ -42,5 +38,5 @@ export async function node(options: node.Options = {}) {
 export namespace node {
   export type Rules = RuleOptions;
 
-  export interface Options extends Omit<PluginOptionsBase<Rules>, 'files'> {}
+  export interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {}
 }

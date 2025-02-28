@@ -8,9 +8,7 @@ const config: eslint.Linter.Config = ESLintConfig.concat(
   {
     // extends: ['plugin:unicorn/recommended'],
     plugins: ['unicorn'],
-    rules: {
-
-    },
+    rules: {},
   },
   {
     overrides: [

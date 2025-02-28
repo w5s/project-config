@@ -1,4 +1,4 @@
- 
+
 import { defineConfig } from '@w5s/eslint-config';
 
 // console.log((await defineConfig({
@@ -12,22 +12,17 @@ export default [
     ],
   })),
   {
+    // parserOptions: {
+    //   project: './tsconfig.json',
+    // },
     rules: {
       'node/no-sync': 'off',
       'import/no-unresolved': 'off',
+      'unicorn/prefer-module': 'off',
     },
-  }
- //{
-    // "parserOptions": {
-    //   "project": "./tsconfig.json"
-    // },
-    // "plugins": [
-    //   "sort-keys"
+    // plugins: [
+    //   'sort-keys'
     // ],
-    // "rules": {
-    //   "unicorn/prefer-module": "off"
-    // },
-    // "root": true
-  // }
+  }
 ]
 

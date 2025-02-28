@@ -45,7 +45,7 @@ function toArray(value) {
   return [value];
 }
 function concatArray(left, right) {
-  return toArray(left).concat(toArray(right));
+  return [...toArray(left), ...toArray(right)];
 }
 var ESLintConfig;
 ((ESLintConfig2) => {

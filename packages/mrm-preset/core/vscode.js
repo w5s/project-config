@@ -47,7 +47,7 @@ function vscodeTask(newTask) {
       tasks.map((task) => (task.script === newTask.script ? newTask : task)),
     );
   } else {
-    vscodeTaskFile.set('tasks', [newTask].concat(tasks));
+    vscodeTaskFile.set('tasks', [newTask, ...tasks]);
   }
   vscodeTaskFile.save();
 }

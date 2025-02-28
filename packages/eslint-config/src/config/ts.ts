@@ -2,6 +2,7 @@
 import { ESLintConfig, interopDefault, Project } from '@w5s/dev';
 import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/ts.js';
+import { createRules } from './createRules.js';
 
 const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['typescript', 'typescriptreact']))}`];
 
@@ -65,6 +66,7 @@ export async function ts(options: ts.Options = {}) {
         'ts/no-empty-object-type': 'off',
         'ts/no-explicit-any': 'off', // if any is explicit then it's wanted
         'ts/no-namespace': 'off', // We don't agree with community, namespaces are great and not deprecated
+        ...createRules('ts/'),
         ...(stylisticEnabled
           ? {}
           : {}),
