@@ -2714,7 +2714,7 @@ interface RuleOptions$3 {
    */
   'ts/no-for-in-array'?: Linter.RuleEntry<[]>
   /**
-   * Disallow the use of `eval()`-like methods
+   * Disallow the use of `eval()`-like functions
    * @see https://typescript-eslint.io/rules/no-implied-eval
    */
   'ts/no-implied-eval'?: Linter.RuleEntry<[]>
