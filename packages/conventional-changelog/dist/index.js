@@ -180,7 +180,7 @@ var GitmojiCode;
       entries.reduce(
         (acc, [commitType, gitmojiUnicodeArray]) => acc.concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [gitmojiUnicode, commitType])).concat(
           gitmojiUnicodeArray.map((gitmojiUnicode) => [
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
+            // eslint-disable-next-line ts/no-non-null-assertion, ts/no-non-null-asserted-optional-chain
             index.emoji.get(gitmojiUnicode)?.code,
             commitType
           ])

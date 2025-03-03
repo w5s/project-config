@@ -40,6 +40,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
         extends: [eslintPreset],
         parserOptions: {
           project: hasTypescript ? './tsconfig.json' : undefined,
+          // @ts-ignore FIXME: implement for eslint v9
           ...config.parserOptions,
         },
       }),
@@ -60,7 +61,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       yaml: hasYAML,
     };
     const extList = Object.keys(extsMap).filter((ext) => extsMap[ext]);
-    const extOption = ` --ext=${extList.join(',')}`;
+    const extOption = '';// ` --ext=${extList.join(',')}`;
 
     pkg.withPackageJson((packageFile) => {
       const ignorePatterns = pkg
@@ -127,8 +128,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
         'editor.codeActionsOnSave': settings['editor.codeActionsOnSave'] || {
           'source.fixAll': true,
         },
-        'eslint.validate': Array.from(
-          new Set(
+        'eslint.validate': [...new Set(
             extList.map(
               (ext) =>
                 ({
@@ -142,8 +142,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
                   yml: 'yaml',
                 })[ext] || ext,
             ),
-          ),
-        ),
+          )],
       }),
     });
   }
