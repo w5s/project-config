@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import stylisticPlugin from '@stylistic/eslint-plugin';
 // @ts-ignore
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
@@ -20,6 +21,7 @@ await Promise.all(
       ['jsdoc', jsdocPlugin],
       ['jsonc', jsoncPlugin],
       ['node', nodePlugin],
+      ['style', stylisticPlugin],
       ['ts', tsPlugin],
       ['unicorn', unicornPlugin],
       ['yml', ymlPlugin],
