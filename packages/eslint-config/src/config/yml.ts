@@ -58,7 +58,7 @@ export async function yml(options: yml.Options = {}) {
         ...rules,
       },
     },
-  ]  as const satisfies Array<Config>;
+  ] as [Config, Config] satisfies Array<Config>;
 }
 
 export namespace yml {
