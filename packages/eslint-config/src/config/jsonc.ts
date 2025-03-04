@@ -4,7 +4,7 @@ import type { RuleOptions } from '../typegen/jsonc.js';
 
 const defaultFiles = [`**/${Project.extensionsToGlob(['.json', '.json5', '.jsonc'])}`];
 
-export async function jsonc(options: jsonc.Options = {}) {
+export async function jsonc(options: jsonc.Options = {}): Promise<readonly Config[]> {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
     import('eslint-plugin-jsonc'),
     interopDefault(import('jsonc-eslint-parser')),
@@ -44,7 +44,7 @@ export async function jsonc(options: jsonc.Options = {}) {
         ...rules,
       },
     },
-  ]  as const satisfies Array<Config>;
+  ] as const satisfies Array<Config>;
 }
 
 export namespace jsonc {

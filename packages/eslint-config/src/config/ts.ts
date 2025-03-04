@@ -56,7 +56,7 @@ export async function ts(options: ts.Options = {}) {
         'ts/ban-ts-comment': [
           'warn',
           {
-            minimumDescriptionLength: 3,
+            'minimumDescriptionLength': 3,
             'ts-check': false,
             'ts-expect-error': 'allow-with-description',
             'ts-ignore': 'allow-with-description',

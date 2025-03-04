@@ -1,7 +1,6 @@
 const { readFileSync } = require('node:fs');
 const process = require('node:process');
 
-// eslint-disable-next-line node/no-sync
 const { scripts = {} } = JSON.parse(readFileSync(`${process.cwd()}/package.json`, 'utf8'));
 
 const cleanPackageConfig = {
@@ -13,8 +12,8 @@ const cleanPackageConfig = {
     'packageManager',
     'stylelint',
     ...Object.keys(scripts)
-      .filter((_) => _ !== 'postpack')
-      .map((_) => `scripts.${_}`),
+      .filter(_ => _ !== 'postpack')
+      .map(_ => `scripts.${_}`),
   ],
 };
 

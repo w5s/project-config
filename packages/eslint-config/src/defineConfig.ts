@@ -1,25 +1,29 @@
-import { jsonc, ignores, imports, node, ts, yml, unicorn } from './config.js';
+import { jsonc, ignores, imports, node, ts, yml, unicorn, stylistic } from './config.js';
 import type { Config } from './type.js';
 
 export interface DefineConfigOptions extends ignores.Options {
   import?: boolean | imports.Options;
   jsonc?: boolean | jsonc.Options;
   node?: boolean | node.Options;
+  stylistic?: boolean | stylistic.Options;
   ts?: boolean | ts.Options;
   unicorn?: boolean | unicorn.Options;
   yml?: boolean | yml.Options;
 }
 
 export async function defineConfig(options: DefineConfigOptions = {}) {
-  const importOptions = typeof options.import === 'boolean' ? { enabled: options.import } : { enabled: true, ...options.import };
-  const jsoncOptions = typeof options.jsonc === 'boolean' ? { enabled: options.jsonc } : { enabled: true, ...options.jsonc };
-  const nodeOptions = typeof options.node === 'boolean' ? { enabled: options.node } : { enabled: true, ...options.node };
-  const tsOptions = typeof options.ts === 'boolean' ? { enabled: options.ts } : { enabled: true, ...options.ts };
-  const unicornOptions = typeof options.unicorn === 'boolean' ? { enabled: options.unicorn } : { enabled: true, ...options.unicorn };
-  const ymlOptions = typeof options.yml === 'boolean' ? { enabled: options.yml } : { enabled: false, ...options.yml };
+  const stylisticOptions = typeof options.stylistic === 'boolean' ? { enabled: options.stylistic } : { enabled: true, ...options.stylistic };
+  const withDefaultStylistic = <T>(options: T) => ({ stylistic: stylisticOptions, ...options });
+  const toOption = <T extends {}>(optionsOrBoolean: T | boolean | undefined) => withDefaultStylistic((typeof optionsOrBoolean === 'boolean' ? { enabled: optionsOrBoolean } : ({ enabled: true, ...optionsOrBoolean })) as T & { enabled: boolean });
+  const importOptions = toOption(options.import);
+  const jsoncOptions = toOption(options.jsonc);
+  const nodeOptions = toOption(options.node);
+  const tsOptions = toOption(options.ts);
+  const unicornOptions = toOption(options.unicorn);
+  const ymlOptions = toOption(options.yml);
 
   let returnValue: Array<Config> = [];
-  const append = async (config: any[]) =>  {
+  const append = async (config: ReadonlyArray<any>) => {
     returnValue = [...returnValue, ...config as any];
   };
 
@@ -29,6 +33,9 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     append(await jsonc(jsoncOptions));
     // sortPackageJson()
     // sortTsconfig()
+  }
+  if (stylisticOptions.enabled) {
+    append(await stylistic(stylisticOptions));
   }
   if (importOptions.enabled) {
     append(await imports(importOptions));

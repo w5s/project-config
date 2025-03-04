@@ -1,4 +1,5 @@
 import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin';
+import prettierConfig from '@w5s/prettier-config';
 
 export interface StylisticConfig {
   enabled: boolean;
@@ -12,11 +13,12 @@ export interface StylisticParameters extends Partial<StylisticConfig> {}
 
 const defaultConfig = {
   enabled: true,
-  indent: 2,
-  quotes: 'single',
+  indent: prettierConfig.tabWidth ?? 2,
+  quotes: prettierConfig.singleQuote ? 'single' : 'double',
   jsx: true,
-  semi: true,
+  semi: prettierConfig.semi ?? true,
 } satisfies StylisticConfig;
+
 /**
  * @namespace
  */
@@ -33,9 +35,5 @@ export const StylisticConfig = {
    */
   from(input: boolean | StylisticParameters): StylisticConfig {
     return typeof input === 'boolean' ? { ...defaultConfig, enabled: input } : { ...defaultConfig, ...input };
-  }
-}
-
-
-
-
+  },
+};

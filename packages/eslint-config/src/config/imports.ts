@@ -11,7 +11,7 @@ export async function imports(options: imports.Options = {}) {
   return [
     {
       name: 'w5s/import/rules',
-      plugins: importConfig.plugins,
+      plugins: importConfig.plugins ?? {},
       rules: {
         ...(importConfig?.rules),
         ...(stylisticEnabled

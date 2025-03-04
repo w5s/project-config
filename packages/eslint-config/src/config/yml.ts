@@ -32,15 +32,17 @@ export async function yml(options: yml.Options = {}) {
         ...(ymlPlugin.configs['flat/recommended'][2]!.rules),
         ...(stylisticEnabled
           ? {
-              ...(ymlPlugin.configs['flat/standard'][3]!.rules),
-              'yml/array-bracket-spacing': ['error', 'never'],
-              'yml/comma-dangle': ['error', 'never'],
-              'yml/comma-style': ['error', 'last'],
+              // ...(ymlPlugin.configs['flat/standard'][3]!.rules),
+              // 'yml/array-bracket-spacing': ['error', 'never'],
+              // 'yml/comma-dangle': ['error', 'never'],
+              // 'yml/comma-style': ['error', 'last'],
 
-              'yml/object-curly-newline': ['error', { consistent: true, multiline: true }],
-              'yml/object-curly-spacing': ['error', 'always'],
-              'yml/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
-              'yml/quote-props': 'error',
+              // 'yml/object-curly-newline': ['error', { consistent: true, multiline: true }],
+              // 'yml/object-curly-spacing': ['error', 'always'],
+              // 'yml/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
+              // 'yml/quote-props': 'error',
+
+              'style/spaced-comment': 'off', // Fix
 
               'yml/block-mapping-question-indicator-newline': 'error',
               'yml/block-sequence-hyphen-indicator-newline': 'error',

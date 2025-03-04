@@ -1,4 +1,3 @@
-
 import { defineConfig } from '@w5s/eslint-config';
 
 // console.log((await defineConfig({
@@ -23,6 +22,5 @@ export default [
     // plugins: [
     //   'sort-keys'
     // ],
-  }
-]
-
+  },
+];

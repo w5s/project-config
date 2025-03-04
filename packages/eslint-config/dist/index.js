@@ -4,6 +4,7 @@ import process from 'process';
 import findUp from 'find-up';
 import parseGitignore from 'parse-gitignore';
 import { Project, interopDefault, ESLintConfig } from '@w5s/dev';
+import prettierConfig from '@w5s/prettier-config';
 import importPlugin from 'eslint-plugin-import';
 
 // src/config/ignores.ts
@@ -69,14 +70,12 @@ async function ignores(options = {}) {
     }
   ];
 }
-
-// src/type/StylisticConfig.ts
 var defaultConfig = {
   enabled: true,
-  indent: 2,
-  quotes: "single",
+  indent: prettierConfig.tabWidth ?? 2,
+  quotes: prettierConfig.singleQuote ? "single" : "double",
   jsx: true,
-  semi: true
+  semi: prettierConfig.semi ?? true
 };
 var StylisticConfig = {
   /**
@@ -100,8 +99,8 @@ async function jsonc(options = {}) {
     import('eslint-plugin-jsonc'),
     interopDefault(import('jsonc-eslint-parser'))
   ]);
-  const { files = defaultFiles, rules = {}, stylistic = true } = options;
-  const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic);
+  const { files = defaultFiles, rules = {}, stylistic: stylistic2 = true } = options;
+  const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic2);
   return [
     {
       name: "w5s/jsonc/setup",
@@ -136,12 +135,12 @@ async function jsonc(options = {}) {
 }
 var importConfig = importPlugin.flatConfigs["recommended"];
 async function imports(options = {}) {
-  const { rules = {}, stylistic = true } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  const { rules = {}, stylistic: stylistic2 = true } = options;
+  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
   return [
     {
       name: "w5s/import/rules",
-      plugins: importConfig.plugins,
+      plugins: importConfig.plugins ?? {},
       rules: {
         ...importConfig?.rules,
         ...stylisticEnabled ? {
@@ -184,6 +183,35 @@ async function node(options = {}) {
     }
   ];
 }
+async function stylistic(options = {}) {
+  const [stylisticPlugin] = await Promise.all([
+    interopDefault(import('@stylistic/eslint-plugin'))
+  ]);
+  const { rules = {} } = options;
+  const { enabled: stylisticEnabled, indent, jsx, quotes, semi } = StylisticConfig.from(options);
+  const config = stylisticEnabled ? stylisticPlugin.configs.customize({
+    indent,
+    jsx,
+    pluginName: "style",
+    quotes,
+    semi
+  }) : { rules: {} };
+  return [
+    {
+      name: "w5s/style/setup",
+      plugins: {
+        style: stylisticPlugin
+      }
+    },
+    {
+      name: "w5s/style/rules",
+      rules: {
+        ...stylisticEnabled ? config.rules : {},
+        ...rules
+      }
+    }
+  ];
+}
 
 // src/config/createRules.ts
 function createRules(prefix) {
@@ -202,8 +230,8 @@ async function ts(options = {}) {
   const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
   const tsStrictRules = tsPlugin.configs["strict"].rules;
   const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
-  const { files = defaultFiles2, rules = {}, stylistic = true, typeChecked = false } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  const { files = defaultFiles2, rules = {}, stylistic: stylistic2 = true, typeChecked = false } = options;
+  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
   return [
     {
       name: "w5s/ts/setup",
@@ -243,7 +271,7 @@ async function ts(options = {}) {
         "ts/ban-ts-comment": [
           "warn",
           {
-            minimumDescriptionLength: 3,
+            "minimumDescriptionLength": 3,
             "ts-check": false,
             "ts-expect-error": "allow-with-description",
             "ts-ignore": "allow-with-description",
@@ -277,8 +305,8 @@ async function unicorn(options = {}) {
   const [unicornPlugin] = await Promise.all([
     import('eslint-plugin-unicorn')
   ]);
-  const { rules = {}, stylistic = true } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  const { rules = {}, stylistic: stylistic2 = true } = options;
+  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
   return [
     {
       name: "w5s/unicorn/setup",
@@ -345,8 +373,8 @@ async function yml(options = {}) {
     import('eslint-plugin-yml'),
     interopDefault(import('yaml-eslint-parser'))
   ]);
-  const { files = defaultFiles3, rules = {}, stylistic = true } = options;
-  const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic);
+  const { files = defaultFiles3, rules = {}, stylistic: stylistic2 = true } = options;
+  const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic2);
   return [
     {
       name: "w5s/yml/setup",
@@ -365,14 +393,16 @@ async function yml(options = {}) {
         ...ymlPlugin.configs["flat/recommended"][1].rules,
         ...ymlPlugin.configs["flat/recommended"][2].rules,
         ...stylisticEnabled ? {
-          ...ymlPlugin.configs["flat/standard"][3].rules,
-          "yml/array-bracket-spacing": ["error", "never"],
-          "yml/comma-dangle": ["error", "never"],
-          "yml/comma-style": ["error", "last"],
-          "yml/object-curly-newline": ["error", { consistent: true, multiline: true }],
-          "yml/object-curly-spacing": ["error", "always"],
-          "yml/object-property-newline": ["error", { allowMultiplePropertiesPerLine: true }],
-          "yml/quote-props": "error",
+          // ...(ymlPlugin.configs['flat/standard'][3]!.rules),
+          // 'yml/array-bracket-spacing': ['error', 'never'],
+          // 'yml/comma-dangle': ['error', 'never'],
+          // 'yml/comma-style': ['error', 'last'],
+          // 'yml/object-curly-newline': ['error', { consistent: true, multiline: true }],
+          // 'yml/object-curly-spacing': ['error', 'always'],
+          // 'yml/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
+          // 'yml/quote-props': 'error',
+          "style/spaced-comment": "off",
+          // Fix
           "yml/block-mapping-question-indicator-newline": "error",
           "yml/block-sequence-hyphen-indicator-newline": "error",
           "yml/flow-mapping-curly-newline": "error",
@@ -393,12 +423,15 @@ async function yml(options = {}) {
 
 // src/defineConfig.ts
 async function defineConfig(options = {}) {
-  const importOptions = typeof options.import === "boolean" ? { enabled: options.import } : { enabled: true, ...options.import };
-  const jsoncOptions = typeof options.jsonc === "boolean" ? { enabled: options.jsonc } : { enabled: true, ...options.jsonc };
-  const nodeOptions = typeof options.node === "boolean" ? { enabled: options.node } : { enabled: true, ...options.node };
-  const tsOptions = typeof options.ts === "boolean" ? { enabled: options.ts } : { enabled: true, ...options.ts };
-  const unicornOptions = typeof options.unicorn === "boolean" ? { enabled: options.unicorn } : { enabled: true, ...options.unicorn };
-  const ymlOptions = typeof options.yml === "boolean" ? { enabled: options.yml } : { enabled: false, ...options.yml };
+  const stylisticOptions = typeof options.stylistic === "boolean" ? { enabled: options.stylistic } : { enabled: true, ...options.stylistic };
+  const withDefaultStylistic = (options2) => ({ stylistic: stylisticOptions, ...options2 });
+  const toOption = (optionsOrBoolean) => withDefaultStylistic(typeof optionsOrBoolean === "boolean" ? { enabled: optionsOrBoolean } : { enabled: true, ...optionsOrBoolean });
+  const importOptions = toOption(options.import);
+  const jsoncOptions = toOption(options.jsonc);
+  const nodeOptions = toOption(options.node);
+  const tsOptions = toOption(options.ts);
+  const unicornOptions = toOption(options.unicorn);
+  const ymlOptions = toOption(options.yml);
   let returnValue = [];
   const append = async (config) => {
     returnValue = [...returnValue, ...config];
@@ -406,6 +439,9 @@ async function defineConfig(options = {}) {
   append(await ignores(options));
   if (jsoncOptions.enabled) {
     append(await jsonc(jsoncOptions));
+  }
+  if (stylisticOptions.enabled) {
+    append(await stylistic(stylisticOptions));
   }
   if (importOptions.enabled) {
     append(await imports(importOptions));
@@ -425,6 +461,6 @@ async function defineConfig(options = {}) {
   return returnValue;
 }
 
-export { defineConfig as default, defineConfig, ignores, imports, jsonc, node, ts, unicorn, yml };
+export { defineConfig as default, defineConfig, ignores, imports, jsonc, node, stylistic, ts, unicorn, yml };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
