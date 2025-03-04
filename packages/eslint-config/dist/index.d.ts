@@ -4,6 +4,7 @@ import * as eslint_plugin_jsonc from 'eslint-plugin-jsonc';
 import * as eslint_plugin_jsonc_types from 'eslint-plugin-jsonc/types';
 import * as jsonc_eslint_parser from 'jsonc-eslint-parser';
 import * as eslint_plugin_jsonc_meta from 'eslint-plugin-jsonc/meta';
+import * as _stylistic_eslint_plugin from '@stylistic/eslint-plugin';
 import { StylisticCustomizeOptions } from '@stylistic/eslint-plugin';
 import * as eslint_plugin_n from 'eslint-plugin-n';
 import * as _typescript_eslint_parser from '@typescript-eslint/parser';
@@ -27,11 +28,11 @@ declare namespace ignores {
 
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$6 {}
+    interface RulesRecord extends RuleOptions$7 {}
   }
 }
 
-interface RuleOptions$6 {
+interface RuleOptions$7 {
   /**
    * enforce line breaks after opening and before closing array brackets
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-newline.html
@@ -540,9 +541,9 @@ declare const StylisticConfig: {
     default: {
         enabled: true;
         indent: number;
-        quotes: "single";
+        quotes: "single" | "double";
         jsx: true;
-        semi: true;
+        semi: boolean;
     };
     /**
      * Return a new StylisticConfig from input
@@ -1442,7 +1443,7 @@ declare function jsonc(options?: jsonc.Options): Promise<[{
     };
 }]>;
 declare namespace jsonc {
-    type Rules = RuleOptions$6;
+    type Rules = RuleOptions$7;
     interface Options extends PluginOptionsBase<Rules> {
     }
 }
@@ -1454,11 +1455,11 @@ declare namespace jsonc {
 
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$5 {}
+    interface RulesRecord extends RuleOptions$6 {}
   }
 }
 
-interface RuleOptions$5 {
+interface RuleOptions$6 {
   /**
    * Enforce or ban the use of inline type-only markers for named imports.
    * @see https://github.com/import-js/eslint-plugin-import/blob/v2.31.0/docs/rules/consistent-type-specifier-style.md
@@ -1931,7 +1932,7 @@ declare function imports(options?: imports.Options): Promise<[{
     readonly rules: any;
 }]>;
 declare namespace imports {
-    type Rules = RuleOptions$5;
+    type Rules = RuleOptions$6;
     interface Options extends PluginOptionsBase<Rules> {
     }
 }
@@ -1943,11 +1944,11 @@ declare namespace imports {
 
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$4 {}
+    interface RulesRecord extends RuleOptions$5 {}
   }
 }
 
-interface RuleOptions$4 {
+interface RuleOptions$5 {
   /**
    * require `return` statements after callbacks
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
@@ -2493,10 +2494,771 @@ declare function node(options?: node.Options): Promise<[{
     };
 }]>;
 declare namespace node {
-    type Rules = RuleOptions$4;
+    type Rules = RuleOptions$5;
     interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {
     }
 }
+
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$4 {}
+  }
+}
+
+interface RuleOptions$4 {
+  /**
+   * Checks that `@access` tags have a valid value.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-access.md#repos-sticky-header
+   */
+  'jsdoc/check-access'?: Linter.RuleEntry<[]>
+  /**
+   * Reports invalid alignment of JSDoc block asterisks.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-alignment.md#repos-sticky-header
+   */
+  'jsdoc/check-alignment'?: Linter.RuleEntry<[]>
+  /**
+   * Ensures that (JavaScript) examples within JSDoc adhere to ESLint rules.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-examples.md#repos-sticky-header
+   */
+  'jsdoc/check-examples'?: Linter.RuleEntry<JsdocCheckExamples>
+  /**
+   * Reports invalid padding inside JSDoc blocks.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-indentation.md#repos-sticky-header
+   */
+  'jsdoc/check-indentation'?: Linter.RuleEntry<JsdocCheckIndentation>
+  /**
+   * Reports invalid alignment of JSDoc block lines.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-line-alignment.md#repos-sticky-header
+   */
+  'jsdoc/check-line-alignment'?: Linter.RuleEntry<JsdocCheckLineAlignment>
+  /**
+   * Ensures that parameter names in JSDoc match those in the function declaration.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-param-names.md#repos-sticky-header
+   */
+  'jsdoc/check-param-names'?: Linter.RuleEntry<JsdocCheckParamNames>
+  /**
+   * Ensures that property names in JSDoc are not duplicated on the same block and that nested properties have defined roots.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-property-names.md#repos-sticky-header
+   */
+  'jsdoc/check-property-names'?: Linter.RuleEntry<JsdocCheckPropertyNames>
+  /**
+   * Reports against syntax not valid for the mode (e.g., Google Closure Compiler in non-Closure mode).
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-syntax.md#repos-sticky-header
+   */
+  'jsdoc/check-syntax'?: Linter.RuleEntry<[]>
+  /**
+   * Reports invalid block tag names.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-tag-names.md#repos-sticky-header
+   */
+  'jsdoc/check-tag-names'?: Linter.RuleEntry<JsdocCheckTagNames>
+  /**
+   * Checks that any `@template` names are actually used in the connected `@typedef` or type alias.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-template-names.md#repos-sticky-header
+   */
+  'jsdoc/check-template-names'?: Linter.RuleEntry<[]>
+  /**
+   * Reports invalid types.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-types.md#repos-sticky-header
+   */
+  'jsdoc/check-types'?: Linter.RuleEntry<JsdocCheckTypes>
+  /**
+   * This rule checks the values for a handful of tags: `@version`, `@since`, `@license` and `@author`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-values.md#repos-sticky-header
+   */
+  'jsdoc/check-values'?: Linter.RuleEntry<JsdocCheckValues>
+  /**
+   * Converts non-JSDoc comments preceding or following nodes into JSDoc ones
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/convert-to-jsdoc-comments.md#repos-sticky-header
+   */
+  'jsdoc/convert-to-jsdoc-comments'?: Linter.RuleEntry<JsdocConvertToJsdocComments>
+  /**
+   * Expects specific tags to be empty of any content.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/empty-tags.md#repos-sticky-header
+   */
+  'jsdoc/empty-tags'?: Linter.RuleEntry<JsdocEmptyTags>
+  /**
+   * Reports an issue with any non-constructor function using `@implements`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/implements-on-classes.md#repos-sticky-header
+   */
+  'jsdoc/implements-on-classes'?: Linter.RuleEntry<JsdocImplementsOnClasses>
+  /**
+   * Reports if JSDoc `import()` statements point to a package which is not listed in `dependencies` or `devDependencies`
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/imports-as-dependencies.md#repos-sticky-header
+   */
+  'jsdoc/imports-as-dependencies'?: Linter.RuleEntry<[]>
+  /**
+   * This rule reports doc comments that only restate their attached name.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/informative-docs.md#repos-sticky-header
+   */
+  'jsdoc/informative-docs'?: Linter.RuleEntry<JsdocInformativeDocs>
+  /**
+   * Enforces minimum number of newlines before JSDoc comment blocks
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/lines-before-block.md#repos-sticky-header
+   */
+  'jsdoc/lines-before-block'?: Linter.RuleEntry<JsdocLinesBeforeBlock>
+  /**
+   * Enforces a regular expression pattern on descriptions.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/match-description.md#repos-sticky-header
+   */
+  'jsdoc/match-description'?: Linter.RuleEntry<JsdocMatchDescription>
+  /**
+   * Reports the name portion of a JSDoc tag if matching or not matching a given regular expression.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/match-name.md#repos-sticky-header
+   */
+  'jsdoc/match-name'?: Linter.RuleEntry<JsdocMatchName>
+  /**
+   * Controls how and whether jsdoc blocks can be expressed as single or multiple line blocks.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/multiline-blocks.md#repos-sticky-header
+   */
+  'jsdoc/multiline-blocks'?: Linter.RuleEntry<JsdocMultilineBlocks>
+  /**
+   * This rule checks for multi-line-style comments which fail to meet the criteria of a jsdoc block.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-bad-blocks.md#repos-sticky-header
+   */
+  'jsdoc/no-bad-blocks'?: Linter.RuleEntry<JsdocNoBadBlocks>
+  /**
+   * Detects and removes extra lines of a blank block description
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-blank-block-descriptions.md#repos-sticky-header
+   */
+  'jsdoc/no-blank-block-descriptions'?: Linter.RuleEntry<[]>
+  /**
+   * Removes empty blocks with nothing but possibly line breaks
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-blank-blocks.md#repos-sticky-header
+   */
+  'jsdoc/no-blank-blocks'?: Linter.RuleEntry<JsdocNoBlankBlocks>
+  /**
+   * This rule reports defaults being used on the relevant portion of `@param` or `@default`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-defaults.md#repos-sticky-header
+   */
+  'jsdoc/no-defaults'?: Linter.RuleEntry<JsdocNoDefaults>
+  /**
+   * Reports when certain comment structures are always expected.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-missing-syntax.md#repos-sticky-header
+   */
+  'jsdoc/no-missing-syntax'?: Linter.RuleEntry<JsdocNoMissingSyntax>
+  /**
+   * Prevents use of multiple asterisks at the beginning of lines.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-multi-asterisks.md#repos-sticky-header
+   */
+  'jsdoc/no-multi-asterisks'?: Linter.RuleEntry<JsdocNoMultiAsterisks>
+  /**
+   * Reports when certain comment structures are present.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-restricted-syntax.md#repos-sticky-header
+   */
+  'jsdoc/no-restricted-syntax'?: Linter.RuleEntry<JsdocNoRestrictedSyntax>
+  /**
+   * This rule reports types being used on `@param` or `@returns`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-types.md#repos-sticky-header
+   */
+  'jsdoc/no-types'?: Linter.RuleEntry<JsdocNoTypes>
+  /**
+   * Checks that types in jsdoc comments are defined.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-undefined-types.md#repos-sticky-header
+   */
+  'jsdoc/no-undefined-types'?: Linter.RuleEntry<JsdocNoUndefinedTypes>
+  /**
+   * Requires that each JSDoc line starts with an `*`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-asterisk-prefix.md#repos-sticky-header
+   */
+  'jsdoc/require-asterisk-prefix'?: Linter.RuleEntry<JsdocRequireAsteriskPrefix>
+  /**
+   * Requires that all functions have a description.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-description.md#repos-sticky-header
+   */
+  'jsdoc/require-description'?: Linter.RuleEntry<JsdocRequireDescription>
+  /**
+   * Requires that block description, explicit `@description`, and `@param`/`@returns` tag descriptions are written in complete sentences.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-description-complete-sentence.md#repos-sticky-header
+   */
+  'jsdoc/require-description-complete-sentence'?: Linter.RuleEntry<JsdocRequireDescriptionCompleteSentence>
+  /**
+   * Requires that all functions have examples.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-example.md#repos-sticky-header
+   */
+  'jsdoc/require-example'?: Linter.RuleEntry<JsdocRequireExample>
+  /**
+   * Checks that all files have one `@file`, `@fileoverview`, or `@overview` tag at the beginning of the file.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-file-overview.md#repos-sticky-header
+   */
+  'jsdoc/require-file-overview'?: Linter.RuleEntry<JsdocRequireFileOverview>
+  /**
+   * Requires a hyphen before the `@param` description.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-hyphen-before-param-description.md#repos-sticky-header
+   */
+  'jsdoc/require-hyphen-before-param-description'?: Linter.RuleEntry<JsdocRequireHyphenBeforeParamDescription>
+  /**
+   * Require JSDoc comments
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-jsdoc.md#repos-sticky-header
+   */
+  'jsdoc/require-jsdoc'?: Linter.RuleEntry<JsdocRequireJsdoc>
+  /**
+   * Requires that all function parameters are documented.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-param.md#repos-sticky-header
+   */
+  'jsdoc/require-param'?: Linter.RuleEntry<JsdocRequireParam>
+  /**
+   * Requires that each `@param` tag has a `description` value.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-param-description.md#repos-sticky-header
+   */
+  'jsdoc/require-param-description'?: Linter.RuleEntry<JsdocRequireParamDescription>
+  /**
+   * Requires that all function parameters have names.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-param-name.md#repos-sticky-header
+   */
+  'jsdoc/require-param-name'?: Linter.RuleEntry<JsdocRequireParamName>
+  /**
+   * Requires that each `@param` tag has a `type` value.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-param-type.md#repos-sticky-header
+   */
+  'jsdoc/require-param-type'?: Linter.RuleEntry<JsdocRequireParamType>
+  /**
+   * Requires that all `@typedef` and `@namespace` tags have `@property` when their type is a plain `object`, `Object`, or `PlainObject`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property.md#repos-sticky-header
+   */
+  'jsdoc/require-property'?: Linter.RuleEntry<[]>
+  /**
+   * Requires that each `@property` tag has a `description` value.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property-description.md#repos-sticky-header
+   */
+  'jsdoc/require-property-description'?: Linter.RuleEntry<[]>
+  /**
+   * Requires that all function `@property` tags have names.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property-name.md#repos-sticky-header
+   */
+  'jsdoc/require-property-name'?: Linter.RuleEntry<[]>
+  /**
+   * Requires that each `@property` tag has a `type` value.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property-type.md#repos-sticky-header
+   */
+  'jsdoc/require-property-type'?: Linter.RuleEntry<[]>
+  /**
+   * Requires that returns are documented.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns.md#repos-sticky-header
+   */
+  'jsdoc/require-returns'?: Linter.RuleEntry<JsdocRequireReturns>
+  /**
+   * Requires a return statement in function body if a `@returns` tag is specified in jsdoc comment.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns-check.md#repos-sticky-header
+   */
+  'jsdoc/require-returns-check'?: Linter.RuleEntry<JsdocRequireReturnsCheck>
+  /**
+   * Requires that the `@returns` tag has a `description` value.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns-description.md#repos-sticky-header
+   */
+  'jsdoc/require-returns-description'?: Linter.RuleEntry<JsdocRequireReturnsDescription>
+  /**
+   * Requires that `@returns` tag has `type` value.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns-type.md#repos-sticky-header
+   */
+  'jsdoc/require-returns-type'?: Linter.RuleEntry<JsdocRequireReturnsType>
+  /**
+   * Requires template tags for each generic type parameter
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-template.md#repos-sticky-header
+   */
+  'jsdoc/require-template'?: Linter.RuleEntry<JsdocRequireTemplate>
+  /**
+   * Requires that throw statements are documented.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-throws.md#repos-sticky-header
+   */
+  'jsdoc/require-throws'?: Linter.RuleEntry<JsdocRequireThrows>
+  /**
+   * Requires yields are documented.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-yields.md#repos-sticky-header
+   */
+  'jsdoc/require-yields'?: Linter.RuleEntry<JsdocRequireYields>
+  /**
+   * Requires a yield statement in function body if a `@yields` tag is specified in jsdoc comment.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-yields-check.md#repos-sticky-header
+   */
+  'jsdoc/require-yields-check'?: Linter.RuleEntry<JsdocRequireYieldsCheck>
+  /**
+   * Sorts tags by a specified sequence according to tag name.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/sort-tags.md#repos-sticky-header
+   */
+  'jsdoc/sort-tags'?: Linter.RuleEntry<JsdocSortTags>
+  /**
+   * Enforces lines (or no lines) between tags.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/tag-lines.md#repos-sticky-header
+   */
+  'jsdoc/tag-lines'?: Linter.RuleEntry<JsdocTagLines>
+  /**
+   * Auto-escape certain characters that are input within block and tag descriptions.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/text-escaping.md#repos-sticky-header
+   */
+  'jsdoc/text-escaping'?: Linter.RuleEntry<JsdocTextEscaping>
+  /**
+   * Requires all types to be valid JSDoc or Closure compiler types without syntax errors.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/valid-types.md#repos-sticky-header
+   */
+  'jsdoc/valid-types'?: Linter.RuleEntry<JsdocValidTypes>
+}
+
+/* ======= Declarations ======= */
+// ----- jsdoc/check-examples -----
+type JsdocCheckExamples = []|[{
+  allowInlineConfig?: boolean
+  baseConfig?: {
+    [k: string]: unknown | undefined
+  }
+  captionRequired?: boolean
+  checkDefaults?: boolean
+  checkEslintrc?: boolean
+  checkParams?: boolean
+  checkProperties?: boolean
+  configFile?: string
+  exampleCodeRegex?: string
+  matchingFileName?: string
+  matchingFileNameDefaults?: string
+  matchingFileNameParams?: string
+  matchingFileNameProperties?: string
+  noDefaultExampleRules?: boolean
+  paddedIndent?: number
+  rejectExampleCodeRegex?: string
+  reportUnusedDisableDirectives?: boolean
+}]
+// ----- jsdoc/check-indentation -----
+type JsdocCheckIndentation = []|[{
+  excludeTags?: string[]
+}]
+// ----- jsdoc/check-line-alignment -----
+type JsdocCheckLineAlignment = []|[("always" | "never" | "any")]|[("always" | "never" | "any"), {
+  customSpacings?: {
+    postDelimiter?: number
+    postHyphen?: number
+    postName?: number
+    postTag?: number
+    postType?: number
+  }
+  preserveMainDescriptionPostDelimiter?: boolean
+  tags?: string[]
+  wrapIndent?: string
+  disableWrapIndent?: boolean
+}]
+// ----- jsdoc/check-param-names -----
+type JsdocCheckParamNames = []|[{
+  allowExtraTrailingParamDocs?: boolean
+  checkDestructured?: boolean
+  checkRestProperty?: boolean
+  checkTypesPattern?: string
+  disableExtraPropertyReporting?: boolean
+  disableMissingParamChecks?: boolean
+  enableFixer?: boolean
+  useDefaultObjectProperties?: boolean
+}]
+// ----- jsdoc/check-property-names -----
+type JsdocCheckPropertyNames = []|[{
+  enableFixer?: boolean
+}]
+// ----- jsdoc/check-tag-names -----
+type JsdocCheckTagNames = []|[{
+  definedTags?: string[]
+  enableFixer?: boolean
+  jsxTags?: boolean
+  typed?: boolean
+}]
+// ----- jsdoc/check-types -----
+type JsdocCheckTypes = []|[{
+  exemptTagContexts?: {
+    tag?: string
+    types?: (boolean | string[])
+  }[]
+  noDefaults?: boolean
+  unifyParentAndChildTypeChecks?: boolean
+}]
+// ----- jsdoc/check-values -----
+type JsdocCheckValues = []|[{
+  allowedAuthors?: string[]
+  allowedLicenses?: (string[] | boolean)
+  licensePattern?: string
+  numericOnlyVariation?: boolean
+}]
+// ----- jsdoc/convert-to-jsdoc-comments -----
+type JsdocConvertToJsdocComments = []|[{
+  allowedPrefixes?: string[]
+  contexts?: (string | {
+    context?: string
+    inlineCommentBlock?: boolean
+  })[]
+  contextsAfter?: (string | {
+    context?: string
+    inlineCommentBlock?: boolean
+  })[]
+  contextsBeforeAndAfter?: (string | {
+    context?: string
+    inlineCommentBlock?: boolean
+  })[]
+  enableFixer?: boolean
+  enforceJsdocLineStyle?: ("multi" | "single")
+  lineOrBlockStyle?: ("block" | "line" | "both")
+}]
+// ----- jsdoc/empty-tags -----
+type JsdocEmptyTags = []|[{
+  tags?: string[]
+}]
+// ----- jsdoc/implements-on-classes -----
+type JsdocImplementsOnClasses = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+}]
+// ----- jsdoc/informative-docs -----
+type JsdocInformativeDocs = []|[{
+  aliases?: {
+    [k: string]: string[]
+  }
+  excludedTags?: string[]
+  uselessWords?: string[]
+}]
+// ----- jsdoc/lines-before-block -----
+type JsdocLinesBeforeBlock = []|[{
+  checkBlockStarts?: boolean
+  excludedTags?: string[]
+  ignoreSameLine?: boolean
+  lines?: number
+}]
+// ----- jsdoc/match-description -----
+type JsdocMatchDescription = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  mainDescription?: (string | boolean | {
+    match?: (string | boolean)
+    message?: string
+  })
+  matchDescription?: string
+  message?: string
+  nonemptyTags?: boolean
+  tags?: {
+    [k: string]: (string | true | {
+      match?: (string | true)
+      message?: string
+    })
+  }
+}]
+// ----- jsdoc/match-name -----
+type JsdocMatchName = []|[{
+  match: {
+    allowName?: string
+    comment?: string
+    context?: string
+    disallowName?: string
+    message?: string
+    tags?: string[]
+    [k: string]: unknown | undefined
+  }[]
+}]
+// ----- jsdoc/multiline-blocks -----
+type JsdocMultilineBlocks = []|[{
+  allowMultipleTags?: boolean
+  minimumLengthForMultiline?: number
+  multilineTags?: ("*" | string[])
+  noFinalLineText?: boolean
+  noMultilineBlocks?: boolean
+  noSingleLineBlocks?: boolean
+  noZeroLineText?: boolean
+  singleLineTags?: string[]
+}]
+// ----- jsdoc/no-bad-blocks -----
+type JsdocNoBadBlocks = []|[{
+  ignore?: string[]
+  preventAllMultiAsteriskBlocks?: boolean
+}]
+// ----- jsdoc/no-blank-blocks -----
+type JsdocNoBlankBlocks = []|[{
+  enableFixer?: boolean
+}]
+// ----- jsdoc/no-defaults -----
+type JsdocNoDefaults = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  noOptionalParamNames?: boolean
+}]
+// ----- jsdoc/no-missing-syntax -----
+type JsdocNoMissingSyntax = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+    message?: string
+    minimum?: number
+  })[]
+}]
+// ----- jsdoc/no-multi-asterisks -----
+type JsdocNoMultiAsterisks = []|[{
+  allowWhitespace?: boolean
+  preventAtEnd?: boolean
+  preventAtMiddleLines?: boolean
+}]
+// ----- jsdoc/no-restricted-syntax -----
+type JsdocNoRestrictedSyntax = []|[{
+  contexts: (string | {
+    comment?: string
+    context?: string
+    message?: string
+  })[]
+}]
+// ----- jsdoc/no-types -----
+type JsdocNoTypes = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+}]
+// ----- jsdoc/no-undefined-types -----
+type JsdocNoUndefinedTypes = []|[{
+  definedTypes?: string[]
+  disableReporting?: boolean
+  markVariablesAsUsed?: boolean
+}]
+// ----- jsdoc/require-asterisk-prefix -----
+type JsdocRequireAsteriskPrefix = []|[("always" | "never" | "any")]|[("always" | "never" | "any"), {
+  tags?: {
+    always?: string[]
+    any?: string[]
+    never?: string[]
+    [k: string]: unknown | undefined
+  }
+}]
+// ----- jsdoc/require-description -----
+type JsdocRequireDescription = []|[{
+  checkConstructors?: boolean
+  checkGetters?: boolean
+  checkSetters?: boolean
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  descriptionStyle?: ("body" | "tag" | "any")
+  exemptedBy?: string[]
+}]
+// ----- jsdoc/require-description-complete-sentence -----
+type JsdocRequireDescriptionCompleteSentence = []|[{
+  abbreviations?: string[]
+  newlineBeforeCapsAssumesBadSentenceEnd?: boolean
+  tags?: string[]
+}]
+// ----- jsdoc/require-example -----
+type JsdocRequireExample = []|[{
+  checkConstructors?: boolean
+  checkGetters?: boolean
+  checkSetters?: boolean
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  enableFixer?: boolean
+  exemptedBy?: string[]
+  exemptNoArguments?: boolean
+}]
+// ----- jsdoc/require-file-overview -----
+type JsdocRequireFileOverview = []|[{
+  tags?: {
+    [k: string]: {
+      initialCommentsOnly?: boolean
+      mustExist?: boolean
+      preventDuplicates?: boolean
+    }
+  }
+}]
+// ----- jsdoc/require-hyphen-before-param-description -----
+type JsdocRequireHyphenBeforeParamDescription = []|[("always" | "never")]|[("always" | "never"), {
+  tags?: ({
+    [k: string]: ("always" | "never")
+  } | "any")
+}]
+// ----- jsdoc/require-jsdoc -----
+type JsdocRequireJsdoc = []|[{
+  checkConstructors?: boolean
+  checkGetters?: (boolean | "no-setter")
+  checkSetters?: (boolean | "no-getter")
+  contexts?: (string | {
+    context?: string
+    inlineCommentBlock?: boolean
+    minLineCount?: number
+  })[]
+  enableFixer?: boolean
+  exemptEmptyConstructors?: boolean
+  exemptEmptyFunctions?: boolean
+  fixerMessage?: string
+  minLineCount?: number
+  publicOnly?: (boolean | {
+    ancestorsOnly?: boolean
+    cjs?: boolean
+    esm?: boolean
+    window?: boolean
+  })
+  require?: {
+    ArrowFunctionExpression?: boolean
+    ClassDeclaration?: boolean
+    ClassExpression?: boolean
+    FunctionDeclaration?: boolean
+    FunctionExpression?: boolean
+    MethodDefinition?: boolean
+  }
+}]
+// ----- jsdoc/require-param -----
+type JsdocRequireParam = []|[{
+  autoIncrementBase?: number
+  checkConstructors?: boolean
+  checkDestructured?: boolean
+  checkDestructuredRoots?: boolean
+  checkGetters?: boolean
+  checkRestProperty?: boolean
+  checkSetters?: boolean
+  checkTypesPattern?: string
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  enableFixer?: boolean
+  enableRestElementFixer?: boolean
+  enableRootFixer?: boolean
+  exemptedBy?: string[]
+  ignoreWhenAllParamsMissing?: boolean
+  unnamedRootBase?: string[]
+  useDefaultObjectProperties?: boolean
+}]
+// ----- jsdoc/require-param-description -----
+type JsdocRequireParamDescription = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  defaultDestructuredRootDescription?: string
+  setDefaultDestructuredRootDescription?: boolean
+}]
+// ----- jsdoc/require-param-name -----
+type JsdocRequireParamName = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+}]
+// ----- jsdoc/require-param-type -----
+type JsdocRequireParamType = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  defaultDestructuredRootType?: string
+  setDefaultDestructuredRootType?: boolean
+}]
+// ----- jsdoc/require-returns -----
+type JsdocRequireReturns = []|[{
+  checkConstructors?: boolean
+  checkGetters?: boolean
+  contexts?: (string | {
+    comment?: string
+    context?: string
+    forceRequireReturn?: boolean
+  })[]
+  enableFixer?: boolean
+  exemptedBy?: string[]
+  forceRequireReturn?: boolean
+  forceReturnsWithAsync?: boolean
+  publicOnly?: (boolean | {
+    ancestorsOnly?: boolean
+    cjs?: boolean
+    esm?: boolean
+    window?: boolean
+  })
+}]
+// ----- jsdoc/require-returns-check -----
+type JsdocRequireReturnsCheck = []|[{
+  exemptAsync?: boolean
+  exemptGenerators?: boolean
+  reportMissingReturnForUndefinedTypes?: boolean
+}]
+// ----- jsdoc/require-returns-description -----
+type JsdocRequireReturnsDescription = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+}]
+// ----- jsdoc/require-returns-type -----
+type JsdocRequireReturnsType = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+}]
+// ----- jsdoc/require-template -----
+type JsdocRequireTemplate = []|[{
+  requireSeparateTemplates?: boolean
+}]
+// ----- jsdoc/require-throws -----
+type JsdocRequireThrows = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  exemptedBy?: string[]
+}]
+// ----- jsdoc/require-yields -----
+type JsdocRequireYields = []|[{
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  exemptedBy?: string[]
+  forceRequireNext?: boolean
+  forceRequireYields?: boolean
+  next?: boolean
+  nextWithGeneratorTag?: boolean
+  withGeneratorTag?: boolean
+}]
+// ----- jsdoc/require-yields-check -----
+type JsdocRequireYieldsCheck = []|[{
+  checkGeneratorsOnly?: boolean
+  contexts?: (string | {
+    comment?: string
+    context?: string
+  })[]
+  exemptedBy?: string[]
+  next?: boolean
+}]
+// ----- jsdoc/sort-tags -----
+type JsdocSortTags = []|[{
+  alphabetizeExtras?: boolean
+  linesBetween?: number
+  reportIntraTagGroupSpacing?: boolean
+  reportTagGroupSpacing?: boolean
+  tagSequence?: {
+    tags?: string[]
+    [k: string]: unknown | undefined
+  }[]
+}]
+// ----- jsdoc/tag-lines -----
+type JsdocTagLines = []|[("always" | "any" | "never")]|[("always" | "any" | "never"), {
+  applyToEndTag?: boolean
+  count?: number
+  endLines?: (number | null)
+  startLines?: (number | null)
+  tags?: {
+    [k: string]: {
+      count?: number
+      lines?: ("always" | "never" | "any")
+    }
+  }
+}]
+// ----- jsdoc/text-escaping -----
+type JsdocTextEscaping = []|[{
+  escapeHTML?: boolean
+  escapeMarkdown?: boolean
+}]
+// ----- jsdoc/valid-types -----
+type JsdocValidTypes = []|[{
+  allowEmptyNamepaths?: boolean
+}]
 
 /* eslint-disable unicorn/no-abusive-eslint-disable */
 /* eslint-disable */
@@ -2510,6 +3272,1283 @@ declare module 'eslint' {
 }
 
 interface RuleOptions$3 {
+  /**
+   * require or disallow block style mappings.
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping.html
+   */
+  'yml/block-mapping'?: Linter.RuleEntry<YmlBlockMapping>
+  /**
+   * enforce consistent line breaks after `:` indicator
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping-colon-indicator-newline.html
+   */
+  'yml/block-mapping-colon-indicator-newline'?: Linter.RuleEntry<YmlBlockMappingColonIndicatorNewline>
+  /**
+   * enforce consistent line breaks after `?` indicator
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping-question-indicator-newline.html
+   */
+  'yml/block-mapping-question-indicator-newline'?: Linter.RuleEntry<YmlBlockMappingQuestionIndicatorNewline>
+  /**
+   * require or disallow block style sequences.
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-sequence.html
+   */
+  'yml/block-sequence'?: Linter.RuleEntry<YmlBlockSequence>
+  /**
+   * enforce consistent line breaks after `-` indicator
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-sequence-hyphen-indicator-newline.html
+   */
+  'yml/block-sequence-hyphen-indicator-newline'?: Linter.RuleEntry<YmlBlockSequenceHyphenIndicatorNewline>
+  /**
+   * enforce YAML file extension
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/file-extension.html
+   */
+  'yml/file-extension'?: Linter.RuleEntry<YmlFileExtension>
+  /**
+   * enforce consistent line breaks inside braces
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-newline.html
+   */
+  'yml/flow-mapping-curly-newline'?: Linter.RuleEntry<YmlFlowMappingCurlyNewline>
+  /**
+   * enforce consistent spacing inside braces
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-spacing.html
+   */
+  'yml/flow-mapping-curly-spacing'?: Linter.RuleEntry<YmlFlowMappingCurlySpacing>
+  /**
+   * enforce linebreaks after opening and before closing flow sequence brackets
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-newline.html
+   */
+  'yml/flow-sequence-bracket-newline'?: Linter.RuleEntry<YmlFlowSequenceBracketNewline>
+  /**
+   * enforce consistent spacing inside flow sequence brackets
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-spacing.html
+   */
+  'yml/flow-sequence-bracket-spacing'?: Linter.RuleEntry<YmlFlowSequenceBracketSpacing>
+  /**
+   * enforce consistent indentation
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/indent.html
+   */
+  'yml/indent'?: Linter.RuleEntry<YmlIndent>
+  /**
+   * enforce naming convention to key names
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/key-name-casing.html
+   */
+  'yml/key-name-casing'?: Linter.RuleEntry<YmlKeyNameCasing>
+  /**
+   * enforce consistent spacing between keys and values in mapping pairs
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/key-spacing.html
+   */
+  'yml/key-spacing'?: Linter.RuleEntry<YmlKeySpacing>
+  /**
+   * disallow empty document
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-document.html
+   */
+  'yml/no-empty-document'?: Linter.RuleEntry<[]>
+  /**
+   * disallow empty mapping keys
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-key.html
+   */
+  'yml/no-empty-key'?: Linter.RuleEntry<[]>
+  /**
+   * disallow empty mapping values
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-mapping-value.html
+   */
+  'yml/no-empty-mapping-value'?: Linter.RuleEntry<[]>
+  /**
+   * disallow empty sequence entries
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-sequence-entry.html
+   */
+  'yml/no-empty-sequence-entry'?: Linter.RuleEntry<[]>
+  /**
+   * disallow irregular whitespace
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-irregular-whitespace.html
+   */
+  'yml/no-irregular-whitespace'?: Linter.RuleEntry<YmlNoIrregularWhitespace>
+  /**
+   * disallow multiple empty lines
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-multiple-empty-lines.html
+   */
+  'yml/no-multiple-empty-lines'?: Linter.RuleEntry<YmlNoMultipleEmptyLines>
+  /**
+   * disallow tabs for indentation.
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-tab-indent.html
+   */
+  'yml/no-tab-indent'?: Linter.RuleEntry<[]>
+  /**
+   * disallow trailing zeros for floats
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-trailing-zeros.html
+   */
+  'yml/no-trailing-zeros'?: Linter.RuleEntry<[]>
+  /**
+   * require or disallow plain style scalar.
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/plain-scalar.html
+   */
+  'yml/plain-scalar'?: Linter.RuleEntry<YmlPlainScalar>
+  /**
+   * enforce the consistent use of either double, or single quotes
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/quotes.html
+   */
+  'yml/quotes'?: Linter.RuleEntry<YmlQuotes>
+  /**
+   * disallow mapping keys other than strings
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/require-string-key.html
+   */
+  'yml/require-string-key'?: Linter.RuleEntry<[]>
+  /**
+   * require mapping keys to be sorted
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/sort-keys.html
+   */
+  'yml/sort-keys'?: Linter.RuleEntry<YmlSortKeys>
+  /**
+   * require sequence values to be sorted
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/sort-sequence-values.html
+   */
+  'yml/sort-sequence-values'?: Linter.RuleEntry<YmlSortSequenceValues>
+  /**
+   * enforce consistent spacing after the `#` in a comment
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/spaced-comment.html
+   */
+  'yml/spaced-comment'?: Linter.RuleEntry<YmlSpacedComment>
+  /**
+   * disallow parsing errors in Vue custom blocks
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/vue-custom-block/no-parsing-error.html
+   */
+  'yml/vue-custom-block/no-parsing-error'?: Linter.RuleEntry<[]>
+}
+
+/* ======= Declarations ======= */
+// ----- yml/block-mapping -----
+type YmlBlockMapping = []|[(("always" | "never") | {
+  singleline?: ("always" | "never" | "ignore")
+  multiline?: ("always" | "never" | "ignore")
+})]
+// ----- yml/block-mapping-colon-indicator-newline -----
+type YmlBlockMappingColonIndicatorNewline = []|[("always" | "never")]
+// ----- yml/block-mapping-question-indicator-newline -----
+type YmlBlockMappingQuestionIndicatorNewline = []|[("always" | "never")]
+// ----- yml/block-sequence -----
+type YmlBlockSequence = []|[(("always" | "never") | {
+  singleline?: ("always" | "never" | "ignore")
+  multiline?: ("always" | "never" | "ignore")
+})]
+// ----- yml/block-sequence-hyphen-indicator-newline -----
+type YmlBlockSequenceHyphenIndicatorNewline = []|[("always" | "never")]|[("always" | "never"), {
+  nestedHyphen?: ("always" | "never")
+  blockMapping?: ("always" | "never")
+}]
+// ----- yml/file-extension -----
+type YmlFileExtension = []|[{
+  extension?: ("yaml" | "yml")
+  caseSensitive?: boolean
+}]
+// ----- yml/flow-mapping-curly-newline -----
+type YmlFlowMappingCurlyNewline = []|[(("always" | "never") | {
+  multiline?: boolean
+  minProperties?: number
+  consistent?: boolean
+})]
+// ----- yml/flow-mapping-curly-spacing -----
+type YmlFlowMappingCurlySpacing = []|[("always" | "never")]|[("always" | "never"), {
+  arraysInObjects?: boolean
+  objectsInObjects?: boolean
+}]
+// ----- yml/flow-sequence-bracket-newline -----
+type YmlFlowSequenceBracketNewline = []|[(("always" | "never" | "consistent") | {
+  multiline?: boolean
+  minItems?: (number | null)
+})]
+// ----- yml/flow-sequence-bracket-spacing -----
+type YmlFlowSequenceBracketSpacing = []|[("always" | "never")]|[("always" | "never"), {
+  singleValue?: boolean
+  objectsInArrays?: boolean
+  arraysInArrays?: boolean
+}]
+// ----- yml/indent -----
+type YmlIndent = []|[number]|[number, {
+  indentBlockSequences?: boolean
+  indicatorValueIndent?: number
+}]
+// ----- yml/key-name-casing -----
+type YmlKeyNameCasing = []|[{
+  camelCase?: boolean
+  PascalCase?: boolean
+  SCREAMING_SNAKE_CASE?: boolean
+  "kebab-case"?: boolean
+  snake_case?: boolean
+  ignores?: string[]
+}]
+// ----- yml/key-spacing -----
+type YmlKeySpacing = []|[({
+  align?: (("colon" | "value") | {
+    on?: ("colon" | "value")
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  })
+  mode?: ("strict" | "minimum")
+  beforeColon?: boolean
+  afterColon?: boolean
+} | {
+  singleLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  multiLine?: {
+    align?: (("colon" | "value") | {
+      on?: ("colon" | "value")
+      mode?: ("strict" | "minimum")
+      beforeColon?: boolean
+      afterColon?: boolean
+    })
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+} | {
+  singleLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  multiLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  align?: {
+    on?: ("colon" | "value")
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+})]
+// ----- yml/no-irregular-whitespace -----
+type YmlNoIrregularWhitespace = []|[{
+  skipComments?: boolean
+  skipQuotedScalars?: boolean
+}]
+// ----- yml/no-multiple-empty-lines -----
+type YmlNoMultipleEmptyLines = []|[{
+  max: number
+  maxEOF?: number
+  maxBOF?: number
+}]
+// ----- yml/plain-scalar -----
+type YmlPlainScalar = []|[("always" | "never")]|[("always" | "never"), {
+  ignorePatterns?: string[]
+  overrides?: {
+    mappingKey?: ("always" | "never" | null)
+  }
+}]
+// ----- yml/quotes -----
+type YmlQuotes = []|[{
+  prefer?: ("double" | "single")
+  avoidEscape?: boolean
+}]
+// ----- yml/sort-keys -----
+type YmlSortKeys = ([{
+  pathPattern: string
+  hasProperties?: string[]
+  order: ((string | {
+    keyPattern?: string
+    order?: {
+      type?: ("asc" | "desc")
+      caseSensitive?: boolean
+      natural?: boolean
+    }
+  })[] | {
+    type?: ("asc" | "desc")
+    caseSensitive?: boolean
+    natural?: boolean
+  })
+  minKeys?: number
+  allowLineSeparatedGroups?: boolean
+}, ...({
+  pathPattern: string
+  hasProperties?: string[]
+  order: ((string | {
+    keyPattern?: string
+    order?: {
+      type?: ("asc" | "desc")
+      caseSensitive?: boolean
+      natural?: boolean
+    }
+  })[] | {
+    type?: ("asc" | "desc")
+    caseSensitive?: boolean
+    natural?: boolean
+  })
+  minKeys?: number
+  allowLineSeparatedGroups?: boolean
+})[]] | []|[("asc" | "desc")]|[("asc" | "desc"), {
+  caseSensitive?: boolean
+  natural?: boolean
+  minKeys?: number
+  allowLineSeparatedGroups?: boolean
+}])
+// ----- yml/sort-sequence-values -----
+type YmlSortSequenceValues = [{
+  pathPattern: string
+  order: ((string | {
+    valuePattern?: string
+    order?: {
+      type?: ("asc" | "desc")
+      caseSensitive?: boolean
+      natural?: boolean
+    }
+  })[] | {
+    type?: ("asc" | "desc")
+    caseSensitive?: boolean
+    natural?: boolean
+  })
+  minValues?: number
+}, ...({
+  pathPattern: string
+  order: ((string | {
+    valuePattern?: string
+    order?: {
+      type?: ("asc" | "desc")
+      caseSensitive?: boolean
+      natural?: boolean
+    }
+  })[] | {
+    type?: ("asc" | "desc")
+    caseSensitive?: boolean
+    natural?: boolean
+  })
+  minValues?: number
+})[]]
+// ----- yml/spaced-comment -----
+type YmlSpacedComment = []|[("always" | "never")]|[("always" | "never"), {
+  exceptions?: string[]
+  markers?: string[]
+}]
+
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$2 {}
+  }
+}
+
+interface RuleOptions$2 {
+  /**
+   * Improve regexes by making them shorter, consistent, and safer.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/better-regex.md
+   */
+  'unicorn/better-regex'?: Linter.RuleEntry<UnicornBetterRegex>
+  /**
+   * Enforce a specific parameter name in catch clauses.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/catch-error-name.md
+   */
+  'unicorn/catch-error-name'?: Linter.RuleEntry<UnicornCatchErrorName>
+  /**
+   * Use destructured variables over properties.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/consistent-destructuring.md
+   */
+  'unicorn/consistent-destructuring'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer consistent types when spreading a ternary in an array literal.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/consistent-empty-array-spread.md
+   */
+  'unicorn/consistent-empty-array-spread'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce consistent style for element existence checks with `indexOf()`, `lastIndexOf()`, `findIndex()`, and `findLastIndex()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/consistent-existence-index-check.md
+   */
+  'unicorn/consistent-existence-index-check'?: Linter.RuleEntry<[]>
+  /**
+   * Move function definitions to the highest possible scope.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/consistent-function-scoping.md
+   */
+  'unicorn/consistent-function-scoping'?: Linter.RuleEntry<UnicornConsistentFunctionScoping>
+  /**
+   * Enforce correct `Error` subclassing.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/custom-error-definition.md
+   */
+  'unicorn/custom-error-definition'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce no spaces between braces.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/empty-brace-spaces.md
+   */
+  'unicorn/empty-brace-spaces'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce passing a `message` value when creating a built-in error.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/error-message.md
+   */
+  'unicorn/error-message'?: Linter.RuleEntry<[]>
+  /**
+   * Require escape sequences to use uppercase values.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/escape-case.md
+   */
+  'unicorn/escape-case'?: Linter.RuleEntry<[]>
+  /**
+   * Add expiration conditions to TODO comments.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/expiring-todo-comments.md
+   */
+  'unicorn/expiring-todo-comments'?: Linter.RuleEntry<UnicornExpiringTodoComments>
+  /**
+   * Enforce explicitly comparing the `length` or `size` property of a value.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/explicit-length-check.md
+   */
+  'unicorn/explicit-length-check'?: Linter.RuleEntry<UnicornExplicitLengthCheck>
+  /**
+   * Enforce a case style for filenames.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/filename-case.md
+   */
+  'unicorn/filename-case'?: Linter.RuleEntry<UnicornFilenameCase>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#import-index
+   * @deprecated
+   */
+  'unicorn/import-index'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce specific import styles per module.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/import-style.md
+   */
+  'unicorn/import-style'?: Linter.RuleEntry<UnicornImportStyle>
+  /**
+   * Enforce the use of `new` for all builtins, except `String`, `Number`, `Boolean`, `Symbol` and `BigInt`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/new-for-builtins.md
+   */
+  'unicorn/new-for-builtins'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce specifying rules to disable in `eslint-disable` comments.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-abusive-eslint-disable.md
+   */
+  'unicorn/no-abusive-eslint-disable'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow anonymous functions and classes as the default export.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-anonymous-default-export.md
+   */
+  'unicorn/no-anonymous-default-export'?: Linter.RuleEntry<[]>
+  /**
+   * Prevent passing a function reference directly to iterator methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-callback-reference.md
+   */
+  'unicorn/no-array-callback-reference'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `for…of` over the `forEach` method.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-for-each.md
+   */
+  'unicorn/no-array-for-each'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#no-array-instanceof
+   * @deprecated
+   */
+  'unicorn/no-array-instanceof'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow using the `this` argument in array methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-method-this-argument.md
+   */
+  'unicorn/no-array-method-this-argument'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce combining multiple `Array#push()` into one call.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-push-push.md
+   */
+  'unicorn/no-array-push-push'?: Linter.RuleEntry<UnicornNoArrayPushPush>
+  /**
+   * Disallow `Array#reduce()` and `Array#reduceRight()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-reduce.md
+   */
+  'unicorn/no-array-reduce'?: Linter.RuleEntry<UnicornNoArrayReduce>
+  /**
+   * Disallow member access from await expression.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-await-expression-member.md
+   */
+  'unicorn/no-await-expression-member'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow using `await` in `Promise` method parameters.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-await-in-promise-methods.md
+   */
+  'unicorn/no-await-in-promise-methods'?: Linter.RuleEntry<[]>
+  /**
+   * Do not use leading/trailing space between `console.log` parameters.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-console-spaces.md
+   */
+  'unicorn/no-console-spaces'?: Linter.RuleEntry<[]>
+  /**
+   * Do not use `document.cookie` directly.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-document-cookie.md
+   */
+  'unicorn/no-document-cookie'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow empty files.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-empty-file.md
+   */
+  'unicorn/no-empty-file'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#no-fn-reference-in-iterator
+   * @deprecated
+   */
+  'unicorn/no-fn-reference-in-iterator'?: Linter.RuleEntry<[]>
+  /**
+   * Do not use a `for` loop that can be replaced with a `for-of` loop.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-for-loop.md
+   */
+  'unicorn/no-for-loop'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce the use of Unicode escapes instead of hexadecimal escapes.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-hex-escape.md
+   */
+  'unicorn/no-hex-escape'?: Linter.RuleEntry<[]>
+  /**
+   * Require `Array.isArray()` instead of `instanceof Array`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-instanceof-array.md
+   */
+  'unicorn/no-instanceof-array'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow invalid options in `fetch()` and `new Request()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-invalid-fetch-options.md
+   */
+  'unicorn/no-invalid-fetch-options'?: Linter.RuleEntry<[]>
+  /**
+   * Prevent calling `EventTarget#removeEventListener()` with the result of an expression.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-invalid-remove-event-listener.md
+   */
+  'unicorn/no-invalid-remove-event-listener'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow identifiers starting with `new` or `class`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-keyword-prefix.md
+   */
+  'unicorn/no-keyword-prefix'?: Linter.RuleEntry<UnicornNoKeywordPrefix>
+  /**
+   * Disallow using `.length` as the `end` argument of `{Array,String,TypedArray}#slice()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-length-as-slice-end.md
+   */
+  'unicorn/no-length-as-slice-end'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `if` statements as the only statement in `if` blocks without `else`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-lonely-if.md
+   */
+  'unicorn/no-lonely-if'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow a magic number as the `depth` argument in `Array#flat(…).`
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-magic-array-flat-depth.md
+   */
+  'unicorn/no-magic-array-flat-depth'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow negated conditions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-negated-condition.md
+   */
+  'unicorn/no-negated-condition'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow negated expression in equality check.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-negation-in-equality-check.md
+   */
+  'unicorn/no-negation-in-equality-check'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow nested ternary expressions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-nested-ternary.md
+   */
+  'unicorn/no-nested-ternary'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `new Array()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-new-array.md
+   */
+  'unicorn/no-new-array'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce the use of `Buffer.from()` and `Buffer.alloc()` instead of the deprecated `new Buffer()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-new-buffer.md
+   */
+  'unicorn/no-new-buffer'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow the use of the `null` literal.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-null.md
+   */
+  'unicorn/no-null'?: Linter.RuleEntry<UnicornNoNull>
+  /**
+   * Disallow the use of objects as default parameters.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-object-as-default-parameter.md
+   */
+  'unicorn/no-object-as-default-parameter'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `process.exit()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-process-exit.md
+   */
+  'unicorn/no-process-exit'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#no-reduce
+   * @deprecated
+   */
+  'unicorn/no-reduce'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow passing single-element arrays to `Promise` methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-single-promise-in-promise-methods.md
+   */
+  'unicorn/no-single-promise-in-promise-methods'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow classes that only have static members.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-static-only-class.md
+   */
+  'unicorn/no-static-only-class'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow `then` property.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-thenable.md
+   */
+  'unicorn/no-thenable'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow assigning `this` to a variable.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-this-assignment.md
+   */
+  'unicorn/no-this-assignment'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow comparing `undefined` using `typeof`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-typeof-undefined.md
+   */
+  'unicorn/no-typeof-undefined'?: Linter.RuleEntry<UnicornNoTypeofUndefined>
+  /**
+   * Disallow awaiting non-promise values.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unnecessary-await.md
+   */
+  'unicorn/no-unnecessary-await'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce the use of built-in methods instead of unnecessary polyfills.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unnecessary-polyfills.md
+   */
+  'unicorn/no-unnecessary-polyfills'?: Linter.RuleEntry<UnicornNoUnnecessaryPolyfills>
+  /**
+   * Disallow unreadable array destructuring.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unreadable-array-destructuring.md
+   */
+  'unicorn/no-unreadable-array-destructuring'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unreadable IIFEs.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unreadable-iife.md
+   */
+  'unicorn/no-unreadable-iife'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#no-unsafe-regex
+   * @deprecated
+   */
+  'unicorn/no-unsafe-regex'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unused object properties.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unused-properties.md
+   */
+  'unicorn/no-unused-properties'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow useless fallback when spreading in object literals.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-fallback-in-spread.md
+   */
+  'unicorn/no-useless-fallback-in-spread'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow useless array length check.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-length-check.md
+   */
+  'unicorn/no-useless-length-check'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow returning/yielding `Promise.resolve/reject()` in async functions or promise callbacks
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-promise-resolve-reject.md
+   */
+  'unicorn/no-useless-promise-resolve-reject'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unnecessary spread.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-spread.md
+   */
+  'unicorn/no-useless-spread'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow useless case in switch statements.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-switch-case.md
+   */
+  'unicorn/no-useless-switch-case'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow useless `undefined`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-undefined.md
+   */
+  'unicorn/no-useless-undefined'?: Linter.RuleEntry<UnicornNoUselessUndefined>
+  /**
+   * Disallow number literals with zero fractions or dangling dots.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-zero-fractions.md
+   */
+  'unicorn/no-zero-fractions'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce proper case for numeric literals.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/number-literal-case.md
+   */
+  'unicorn/number-literal-case'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce the style of numeric separators by correctly grouping digits.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/numeric-separators-style.md
+   */
+  'unicorn/numeric-separators-style'?: Linter.RuleEntry<UnicornNumericSeparatorsStyle>
+  /**
+   * Prefer `.addEventListener()` and `.removeEventListener()` over `on`-functions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-add-event-listener.md
+   */
+  'unicorn/prefer-add-event-listener'?: Linter.RuleEntry<UnicornPreferAddEventListener>
+  /**
+   * Prefer `.find(…)` and `.findLast(…)` over the first or last element from `.filter(…)`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-find.md
+   */
+  'unicorn/prefer-array-find'?: Linter.RuleEntry<UnicornPreferArrayFind>
+  /**
+   * Prefer `Array#flat()` over legacy techniques to flatten arrays.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-flat.md
+   */
+  'unicorn/prefer-array-flat'?: Linter.RuleEntry<UnicornPreferArrayFlat>
+  /**
+   * Prefer `.flatMap(…)` over `.map(…).flat()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-flat-map.md
+   */
+  'unicorn/prefer-array-flat-map'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Array#{indexOf,lastIndexOf}()` over `Array#{findIndex,findLastIndex}()` when looking for the index of an item.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-index-of.md
+   */
+  'unicorn/prefer-array-index-of'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `.some(…)` over `.filter(…).length` check and `.{find,findLast,findIndex,findLastIndex}(…)`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-some.md
+   */
+  'unicorn/prefer-array-some'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `.at()` method for index access and `String#charAt()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-at.md
+   */
+  'unicorn/prefer-at'?: Linter.RuleEntry<UnicornPreferAt>
+  /**
+   * Prefer `Blob#arrayBuffer()` over `FileReader#readAsArrayBuffer(…)` and `Blob#text()` over `FileReader#readAsText(…)`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-blob-reading-methods.md
+   */
+  'unicorn/prefer-blob-reading-methods'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `String#codePointAt(…)` over `String#charCodeAt(…)` and `String.fromCodePoint(…)` over `String.fromCharCode(…)`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-code-point.md
+   */
+  'unicorn/prefer-code-point'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-dataset
+   * @deprecated
+   */
+  'unicorn/prefer-dataset'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Date.now()` to get the number of milliseconds since the Unix Epoch.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-date-now.md
+   */
+  'unicorn/prefer-date-now'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer default parameters over reassignment.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-default-parameters.md
+   */
+  'unicorn/prefer-default-parameters'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Node#append()` over `Node#appendChild()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-dom-node-append.md
+   */
+  'unicorn/prefer-dom-node-append'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using `.dataset` on DOM elements over calling attribute methods.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-dom-node-dataset.md
+   */
+  'unicorn/prefer-dom-node-dataset'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `childNode.remove()` over `parentNode.removeChild(childNode)`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-dom-node-remove.md
+   */
+  'unicorn/prefer-dom-node-remove'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `.textContent` over `.innerText`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-dom-node-text-content.md
+   */
+  'unicorn/prefer-dom-node-text-content'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-event-key
+   * @deprecated
+   */
+  'unicorn/prefer-event-key'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `EventTarget` over `EventEmitter`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-event-target.md
+   */
+  'unicorn/prefer-event-target'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-exponentiation-operator
+   * @deprecated
+   */
+  'unicorn/prefer-exponentiation-operator'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `export…from` when re-exporting.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-export-from.md
+   */
+  'unicorn/prefer-export-from'?: Linter.RuleEntry<UnicornPreferExportFrom>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-flat-map
+   * @deprecated
+   */
+  'unicorn/prefer-flat-map'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `globalThis` over `window`, `self`, and `global`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-global-this.md
+   */
+  'unicorn/prefer-global-this'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `.includes()` over `.indexOf()`, `.lastIndexOf()`, and `Array#some()` when checking for existence or non-existence.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-includes.md
+   */
+  'unicorn/prefer-includes'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer reading a JSON file as a buffer.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-json-parse-buffer.md
+   */
+  'unicorn/prefer-json-parse-buffer'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `KeyboardEvent#key` over `KeyboardEvent#keyCode`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-keyboard-event-key.md
+   */
+  'unicorn/prefer-keyboard-event-key'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using a logical operator over a ternary.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-logical-operator-over-ternary.md
+   */
+  'unicorn/prefer-logical-operator-over-ternary'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Math.min()` and `Math.max()` over ternaries for simple comparisons.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-math-min-max.md
+   */
+  'unicorn/prefer-math-min-max'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce the use of `Math.trunc` instead of bitwise operators.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-math-trunc.md
+   */
+  'unicorn/prefer-math-trunc'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `.before()` over `.insertBefore()`, `.replaceWith()` over `.replaceChild()`, prefer one of `.before()`, `.after()`, `.append()` or `.prepend()` over `insertAdjacentText()` and `insertAdjacentElement()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-modern-dom-apis.md
+   */
+  'unicorn/prefer-modern-dom-apis'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer modern `Math` APIs over legacy patterns.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-modern-math-apis.md
+   */
+  'unicorn/prefer-modern-math-apis'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer JavaScript modules (ESM) over CommonJS.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-module.md
+   */
+  'unicorn/prefer-module'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using `String`, `Number`, `BigInt`, `Boolean`, and `Symbol` directly.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-native-coercion-functions.md
+   */
+  'unicorn/prefer-native-coercion-functions'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer negative index over `.length - index` when possible.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-negative-index.md
+   */
+  'unicorn/prefer-negative-index'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-node-append
+   * @deprecated
+   */
+  'unicorn/prefer-node-append'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using the `node:` protocol when importing Node.js builtin modules.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-node-protocol.md
+   */
+  'unicorn/prefer-node-protocol'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-node-remove
+   * @deprecated
+   */
+  'unicorn/prefer-node-remove'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Number` static properties over global ones.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-number-properties.md
+   */
+  'unicorn/prefer-number-properties'?: Linter.RuleEntry<UnicornPreferNumberProperties>
+  /**
+   * Prefer using `Object.fromEntries(…)` to transform a list of key-value pairs into an object.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-object-from-entries.md
+   */
+  'unicorn/prefer-object-from-entries'?: Linter.RuleEntry<UnicornPreferObjectFromEntries>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-object-has-own
+   * @deprecated
+   */
+  'unicorn/prefer-object-has-own'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer omitting the `catch` binding parameter.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-optional-catch-binding.md
+   */
+  'unicorn/prefer-optional-catch-binding'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer borrowing methods from the prototype instead of the instance.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-prototype-methods.md
+   */
+  'unicorn/prefer-prototype-methods'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `.querySelector()` over `.getElementById()`, `.querySelectorAll()` over `.getElementsByClassName()` and `.getElementsByTagName()` and `.getElementsByName()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-query-selector.md
+   */
+  'unicorn/prefer-query-selector'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Reflect.apply()` over `Function#apply()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-reflect-apply.md
+   */
+  'unicorn/prefer-reflect-apply'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `RegExp#test()` over `String#match()` and `RegExp#exec()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-regexp-test.md
+   */
+  'unicorn/prefer-regexp-test'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-replace-all
+   * @deprecated
+   */
+  'unicorn/prefer-replace-all'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Set#has()` over `Array#includes()` when checking for existence or non-existence.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-set-has.md
+   */
+  'unicorn/prefer-set-has'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using `Set#size` instead of `Array#length`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-set-size.md
+   */
+  'unicorn/prefer-set-size'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer the spread operator over `Array.from(…)`, `Array#concat(…)`, `Array#{slice,toSpliced}()` and `String#split('')`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-spread.md
+   */
+  'unicorn/prefer-spread'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-starts-ends-with
+   * @deprecated
+   */
+  'unicorn/prefer-starts-ends-with'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using the `String.raw` tag to avoid escaping `\`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-raw.md
+   */
+  'unicorn/prefer-string-raw'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `String#replaceAll()` over regex searches with the global flag.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-replace-all.md
+   */
+  'unicorn/prefer-string-replace-all'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `String#slice()` over `String#substr()` and `String#substring()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-slice.md
+   */
+  'unicorn/prefer-string-slice'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-starts-ends-with.md
+   */
+  'unicorn/prefer-string-starts-ends-with'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `String#trimStart()` / `String#trimEnd()` over `String#trimLeft()` / `String#trimRight()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-trim-start-end.md
+   */
+  'unicorn/prefer-string-trim-start-end'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer using `structuredClone` to create a deep clone.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-structured-clone.md
+   */
+  'unicorn/prefer-structured-clone'?: Linter.RuleEntry<UnicornPreferStructuredClone>
+  /**
+   * Prefer `switch` over multiple `else-if`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-switch.md
+   */
+  'unicorn/prefer-switch'?: Linter.RuleEntry<UnicornPreferSwitch>
+  /**
+   * Prefer ternary expressions over simple `if-else` statements.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-ternary.md
+   */
+  'unicorn/prefer-ternary'?: Linter.RuleEntry<UnicornPreferTernary>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-text-content
+   * @deprecated
+   */
+  'unicorn/prefer-text-content'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer top-level await over top-level promises and async function calls.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-top-level-await.md
+   */
+  'unicorn/prefer-top-level-await'?: Linter.RuleEntry<[]>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-trim-start-end
+   * @deprecated
+   */
+  'unicorn/prefer-trim-start-end'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce throwing `TypeError` in type checking conditions.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-type-error.md
+   */
+  'unicorn/prefer-type-error'?: Linter.RuleEntry<[]>
+  /**
+   * Prevent abbreviations.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prevent-abbreviations.md
+   */
+  'unicorn/prevent-abbreviations'?: Linter.RuleEntry<UnicornPreventAbbreviations>
+  /**
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#regex-shorthand
+   * @deprecated
+   */
+  'unicorn/regex-shorthand'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce consistent relative URL style.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/relative-url-style.md
+   */
+  'unicorn/relative-url-style'?: Linter.RuleEntry<UnicornRelativeUrlStyle>
+  /**
+   * Enforce using the separator argument with `Array#join()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/require-array-join-separator.md
+   */
+  'unicorn/require-array-join-separator'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce using the digits argument with `Number#toFixed()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/require-number-to-fixed-digits-argument.md
+   */
+  'unicorn/require-number-to-fixed-digits-argument'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce using the `targetOrigin` argument with `window.postMessage()`.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/require-post-message-target-origin.md
+   */
+  'unicorn/require-post-message-target-origin'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce better string content.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/string-content.md
+   */
+  'unicorn/string-content'?: Linter.RuleEntry<UnicornStringContent>
+  /**
+   * Enforce consistent brace style for `case` clauses.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/switch-case-braces.md
+   */
+  'unicorn/switch-case-braces'?: Linter.RuleEntry<UnicornSwitchCaseBraces>
+  /**
+   * Fix whitespace-insensitive template indentation.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/template-indent.md
+   */
+  'unicorn/template-indent'?: Linter.RuleEntry<UnicornTemplateIndent>
+  /**
+   * Enforce consistent case for text encoding identifiers.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/text-encoding-identifier-case.md
+   */
+  'unicorn/text-encoding-identifier-case'?: Linter.RuleEntry<[]>
+  /**
+   * Require `new` when creating an error.
+   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/throw-new-error.md
+   */
+  'unicorn/throw-new-error'?: Linter.RuleEntry<[]>
+}
+
+/* ======= Declarations ======= */
+// ----- unicorn/better-regex -----
+type UnicornBetterRegex = []|[{
+  sortCharacterClasses?: boolean
+}]
+// ----- unicorn/catch-error-name -----
+type UnicornCatchErrorName = []|[{
+  name?: string
+  ignore?: unknown[]
+}]
+// ----- unicorn/consistent-function-scoping -----
+type UnicornConsistentFunctionScoping = []|[{
+  checkArrowFunctions?: boolean
+}]
+// ----- unicorn/expiring-todo-comments -----
+type UnicornExpiringTodoComments = []|[{
+  terms?: string[]
+  ignore?: unknown[]
+  ignoreDatesOnPullRequests?: boolean
+  allowWarningComments?: boolean
+  date?: string
+}]
+// ----- unicorn/explicit-length-check -----
+type UnicornExplicitLengthCheck = []|[{
+  "non-zero"?: ("greater-than" | "not-equal")
+}]
+// ----- unicorn/filename-case -----
+type UnicornFilenameCase = []|[({
+  case?: ("camelCase" | "snakeCase" | "kebabCase" | "pascalCase")
+  ignore?: unknown[]
+  multipleFileExtensions?: boolean
+} | {
+  cases?: {
+    camelCase?: boolean
+    snakeCase?: boolean
+    kebabCase?: boolean
+    pascalCase?: boolean
+  }
+  ignore?: unknown[]
+  multipleFileExtensions?: boolean
+})]
+// ----- unicorn/import-style -----
+type UnicornImportStyle = []|[{
+  checkImport?: boolean
+  checkDynamicImport?: boolean
+  checkExportFrom?: boolean
+  checkRequire?: boolean
+  extendDefaultStyles?: boolean
+  styles?: _UnicornImportStyle_ModuleStyles
+}]
+type _UnicornImportStyleStyles = (false | _UnicornImportStyle_BooleanObject) | undefined
+interface _UnicornImportStyle_ModuleStyles {
+  [k: string]: _UnicornImportStyleStyles | undefined
+}
+interface _UnicornImportStyle_BooleanObject {
+  [k: string]: boolean | undefined
+}
+// ----- unicorn/no-array-push-push -----
+type UnicornNoArrayPushPush = []|[{
+  ignore?: unknown[]
+}]
+// ----- unicorn/no-array-reduce -----
+type UnicornNoArrayReduce = []|[{
+  allowSimpleOperations?: boolean
+}]
+// ----- unicorn/no-keyword-prefix -----
+type UnicornNoKeywordPrefix = []|[{
+  
+  disallowedPrefixes?: []|[string]
+  checkProperties?: boolean
+  onlyCamelCase?: boolean
+}]
+// ----- unicorn/no-null -----
+type UnicornNoNull = []|[{
+  checkStrictEquality?: boolean
+}]
+// ----- unicorn/no-typeof-undefined -----
+type UnicornNoTypeofUndefined = []|[{
+  checkGlobalVariables?: boolean
+}]
+// ----- unicorn/no-unnecessary-polyfills -----
+type UnicornNoUnnecessaryPolyfills = []|[{
+  targets: (string | unknown[] | {
+    [k: string]: unknown | undefined
+  })
+}]
+// ----- unicorn/no-useless-undefined -----
+type UnicornNoUselessUndefined = []|[{
+  checkArguments?: boolean
+  checkArrowFunctionBody?: boolean
+}]
+// ----- unicorn/numeric-separators-style -----
+type UnicornNumericSeparatorsStyle = []|[{
+  binary?: {
+    onlyIfContainsSeparator?: boolean
+    minimumDigits?: number
+    groupLength?: number
+  }
+  octal?: {
+    onlyIfContainsSeparator?: boolean
+    minimumDigits?: number
+    groupLength?: number
+  }
+  hexadecimal?: {
+    onlyIfContainsSeparator?: boolean
+    minimumDigits?: number
+    groupLength?: number
+  }
+  number?: {
+    onlyIfContainsSeparator?: boolean
+    minimumDigits?: number
+    groupLength?: number
+  }
+  onlyIfContainsSeparator?: boolean
+}]
+// ----- unicorn/prefer-add-event-listener -----
+type UnicornPreferAddEventListener = []|[{
+  excludedPackages?: string[]
+}]
+// ----- unicorn/prefer-array-find -----
+type UnicornPreferArrayFind = []|[{
+  checkFromLast?: boolean
+}]
+// ----- unicorn/prefer-array-flat -----
+type UnicornPreferArrayFlat = []|[{
+  functions?: unknown[]
+}]
+// ----- unicorn/prefer-at -----
+type UnicornPreferAt = []|[{
+  getLastElementFunctions?: unknown[]
+  checkAllIndexAccess?: boolean
+}]
+// ----- unicorn/prefer-export-from -----
+type UnicornPreferExportFrom = []|[{
+  ignoreUsedVariables?: boolean
+}]
+// ----- unicorn/prefer-number-properties -----
+type UnicornPreferNumberProperties = []|[{
+  checkInfinity?: boolean
+  checkNaN?: boolean
+}]
+// ----- unicorn/prefer-object-from-entries -----
+type UnicornPreferObjectFromEntries = []|[{
+  functions?: unknown[]
+}]
+// ----- unicorn/prefer-structured-clone -----
+type UnicornPreferStructuredClone = []|[{
+  functions?: unknown[]
+}]
+// ----- unicorn/prefer-switch -----
+type UnicornPreferSwitch = []|[{
+  minimumCases?: number
+  emptyDefaultCase?: ("no-default-comment" | "do-nothing-comment" | "no-default-case")
+}]
+// ----- unicorn/prefer-ternary -----
+type UnicornPreferTernary = []|[("always" | "only-single-line")]
+// ----- unicorn/prevent-abbreviations -----
+type UnicornPreventAbbreviations = []|[{
+  checkProperties?: boolean
+  checkVariables?: boolean
+  checkDefaultAndNamespaceImports?: (boolean | string)
+  checkShorthandImports?: (boolean | string)
+  checkShorthandProperties?: boolean
+  checkFilenames?: boolean
+  extendDefaultReplacements?: boolean
+  replacements?: _UnicornPreventAbbreviations_Abbreviations
+  extendDefaultAllowList?: boolean
+  allowList?: _UnicornPreventAbbreviations_BooleanObject
+  ignore?: unknown[]
+}]
+type _UnicornPreventAbbreviationsReplacements = (false | _UnicornPreventAbbreviations_BooleanObject) | undefined
+interface _UnicornPreventAbbreviations_Abbreviations {
+  [k: string]: _UnicornPreventAbbreviationsReplacements | undefined
+}
+interface _UnicornPreventAbbreviations_BooleanObject {
+  [k: string]: boolean | undefined
+}
+// ----- unicorn/relative-url-style -----
+type UnicornRelativeUrlStyle = []|[("never" | "always")]
+// ----- unicorn/string-content -----
+type UnicornStringContent = []|[{
+  patterns?: {
+    [k: string]: (string | {
+      suggest: string
+      fix?: boolean
+      message?: string
+    }) | undefined
+  }
+}]
+// ----- unicorn/switch-case-braces -----
+type UnicornSwitchCaseBraces = []|[("always" | "avoid")]
+// ----- unicorn/template-indent -----
+type UnicornTemplateIndent = []|[{
+  indent?: (string | number)
+  tags?: string[]
+  functions?: string[]
+  selectors?: string[]
+  comments?: string[]
+}]
+
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$1 {}
+  }
+}
+
+interface RuleOptions$1 {
   /**
    * Require that function overload signatures be consecutive
    * @see https://typescript-eslint.io/rules/adjacent-overload-signatures
@@ -4333,6 +6372,2240 @@ type TsUnifiedSignatures = []|[{
   ignoreDifferentlyNamedParameters?: boolean
 }]
 
+/* eslint-disable unicorn/no-abusive-eslint-disable */
+/* eslint-disable */
+/* prettier-ignore */
+
+
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions {}
+  }
+}
+
+interface RuleOptions {
+  /**
+   * Enforce linebreaks after opening and before closing array brackets
+   * @see https://eslint.style/rules/js/array-bracket-newline
+   */
+  'style/array-bracket-newline'?: Linter.RuleEntry<StyleArrayBracketNewline>
+  /**
+   * Enforce consistent spacing inside array brackets
+   * @see https://eslint.style/rules/js/array-bracket-spacing
+   */
+  'style/array-bracket-spacing'?: Linter.RuleEntry<StyleArrayBracketSpacing>
+  /**
+   * Enforce line breaks after each array element
+   * @see https://eslint.style/rules/js/array-element-newline
+   */
+  'style/array-element-newline'?: Linter.RuleEntry<StyleArrayElementNewline>
+  /**
+   * Require parentheses around arrow function arguments
+   * @see https://eslint.style/rules/js/arrow-parens
+   */
+  'style/arrow-parens'?: Linter.RuleEntry<StyleArrowParens>
+  /**
+   * Enforce consistent spacing before and after the arrow in arrow functions
+   * @see https://eslint.style/rules/js/arrow-spacing
+   */
+  'style/arrow-spacing'?: Linter.RuleEntry<StyleArrowSpacing>
+  /**
+   * Disallow or enforce spaces inside of blocks after opening block and before closing block
+   * @see https://eslint.style/rules/ts/block-spacing
+   */
+  'style/block-spacing'?: Linter.RuleEntry<StyleBlockSpacing>
+  /**
+   * Enforce consistent brace style for blocks
+   * @see https://eslint.style/rules/ts/brace-style
+   */
+  'style/brace-style'?: Linter.RuleEntry<StyleBraceStyle>
+  /**
+   * Require or disallow trailing commas
+   * @see https://eslint.style/rules/ts/comma-dangle
+   */
+  'style/comma-dangle'?: Linter.RuleEntry<StyleCommaDangle>
+  /**
+   * Enforce consistent spacing before and after commas
+   * @see https://eslint.style/rules/ts/comma-spacing
+   */
+  'style/comma-spacing'?: Linter.RuleEntry<StyleCommaSpacing>
+  /**
+   * Enforce consistent comma style
+   * @see https://eslint.style/rules/js/comma-style
+   */
+  'style/comma-style'?: Linter.RuleEntry<StyleCommaStyle>
+  /**
+   * Enforce consistent spacing inside computed property brackets
+   * @see https://eslint.style/rules/js/computed-property-spacing
+   */
+  'style/computed-property-spacing'?: Linter.RuleEntry<StyleComputedPropertySpacing>
+  /**
+   * Enforce consistent line breaks after opening and before closing braces
+   * @see https://eslint.style/rules/plus/curly-newline
+   */
+  'style/curly-newline'?: Linter.RuleEntry<StyleCurlyNewline>
+  /**
+   * Enforce consistent newlines before and after dots
+   * @see https://eslint.style/rules/js/dot-location
+   */
+  'style/dot-location'?: Linter.RuleEntry<StyleDotLocation>
+  /**
+   * Require or disallow newline at the end of files
+   * @see https://eslint.style/rules/js/eol-last
+   */
+  'style/eol-last'?: Linter.RuleEntry<StyleEolLast>
+  /**
+   * Require or disallow spacing between function identifiers and their invocations
+   * @see https://eslint.style/rules/ts/function-call-spacing
+   */
+  'style/func-call-spacing'?: Linter.RuleEntry<StyleFuncCallSpacing>
+  /**
+   * Enforce line breaks between arguments of a function call
+   * @see https://eslint.style/rules/js/function-call-argument-newline
+   */
+  'style/function-call-argument-newline'?: Linter.RuleEntry<StyleFunctionCallArgumentNewline>
+  /**
+   * Require or disallow spacing between function identifiers and their invocations
+   * @see https://eslint.style/rules/ts/function-call-spacing
+   */
+  'style/function-call-spacing'?: Linter.RuleEntry<StyleFunctionCallSpacing>
+  /**
+   * Enforce consistent line breaks inside function parentheses
+   * @see https://eslint.style/rules/js/function-paren-newline
+   */
+  'style/function-paren-newline'?: Linter.RuleEntry<StyleFunctionParenNewline>
+  /**
+   * Enforce consistent spacing around `*` operators in generator functions
+   * @see https://eslint.style/rules/js/generator-star-spacing
+   */
+  'style/generator-star-spacing'?: Linter.RuleEntry<StyleGeneratorStarSpacing>
+  /**
+   * Enforce the location of arrow function bodies
+   * @see https://eslint.style/rules/js/implicit-arrow-linebreak
+   */
+  'style/implicit-arrow-linebreak'?: Linter.RuleEntry<StyleImplicitArrowLinebreak>
+  /**
+   * Enforce consistent indentation
+   * @see https://eslint.style/rules/ts/indent
+   */
+  'style/indent'?: Linter.RuleEntry<StyleIndent>
+  /**
+   * Indentation for binary operators
+   * @see https://eslint.style/rules/plus/indent-binary-ops
+   */
+  'style/indent-binary-ops'?: Linter.RuleEntry<StyleIndentBinaryOps>
+  /**
+   * Enforce or disallow spaces inside of curly braces in JSX attributes and expressions
+   * @see https://eslint.style/rules/jsx/jsx-child-element-spacing
+   */
+  'style/jsx-child-element-spacing'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce closing bracket location in JSX
+   * @see https://eslint.style/rules/jsx/jsx-closing-bracket-location
+   */
+  'style/jsx-closing-bracket-location'?: Linter.RuleEntry<StyleJsxClosingBracketLocation>
+  /**
+   * Enforce closing tag location for multiline JSX
+   * @see https://eslint.style/rules/jsx/jsx-closing-tag-location
+   */
+  'style/jsx-closing-tag-location'?: Linter.RuleEntry<StyleJsxClosingTagLocation>
+  /**
+   * Disallow unnecessary JSX expressions when literals alone are sufficient or enforce JSX expressions on literals in JSX children or attributes
+   * @see https://eslint.style/rules/jsx/jsx-curly-brace-presence
+   */
+  'style/jsx-curly-brace-presence'?: Linter.RuleEntry<StyleJsxCurlyBracePresence>
+  /**
+   * Enforce consistent linebreaks in curly braces in JSX attributes and expressions
+   * @see https://eslint.style/rules/jsx/jsx-curly-newline
+   */
+  'style/jsx-curly-newline'?: Linter.RuleEntry<StyleJsxCurlyNewline>
+  /**
+   * Enforce or disallow spaces inside of curly braces in JSX attributes and expressions
+   * @see https://eslint.style/rules/jsx/jsx-curly-spacing
+   */
+  'style/jsx-curly-spacing'?: Linter.RuleEntry<StyleJsxCurlySpacing>
+  /**
+   * Enforce or disallow spaces around equal signs in JSX attributes
+   * @see https://eslint.style/rules/jsx/jsx-equals-spacing
+   */
+  'style/jsx-equals-spacing'?: Linter.RuleEntry<StyleJsxEqualsSpacing>
+  /**
+   * Enforce proper position of the first property in JSX
+   * @see https://eslint.style/rules/jsx/jsx-first-prop-new-line
+   */
+  'style/jsx-first-prop-new-line'?: Linter.RuleEntry<StyleJsxFirstPropNewLine>
+  /**
+   * Enforce line breaks before and after JSX elements when they are used as arguments to a function.
+   * @see https://eslint.style/rules/jsx/jsx-function-call-newline
+   */
+  'style/jsx-function-call-newline'?: Linter.RuleEntry<StyleJsxFunctionCallNewline>
+  /**
+   * Enforce JSX indentation. Deprecated, use `indent` rule instead.
+   * @see https://eslint.style/rules/jsx/jsx-indent
+   * @deprecated
+   */
+  'style/jsx-indent'?: Linter.RuleEntry<StyleJsxIndent>
+  /**
+   * Enforce props indentation in JSX
+   * @see https://eslint.style/rules/jsx/jsx-indent-props
+   */
+  'style/jsx-indent-props'?: Linter.RuleEntry<StyleJsxIndentProps>
+  /**
+   * Enforce maximum of props on a single line in JSX
+   * @see https://eslint.style/rules/jsx/jsx-max-props-per-line
+   */
+  'style/jsx-max-props-per-line'?: Linter.RuleEntry<StyleJsxMaxPropsPerLine>
+  /**
+   * Require or prevent a new line after jsx elements and expressions.
+   * @see https://eslint.style/rules/jsx/jsx-newline
+   */
+  'style/jsx-newline'?: Linter.RuleEntry<StyleJsxNewline>
+  /**
+   * Require one JSX element per line
+   * @see https://eslint.style/rules/jsx/jsx-one-expression-per-line
+   */
+  'style/jsx-one-expression-per-line'?: Linter.RuleEntry<StyleJsxOneExpressionPerLine>
+  /**
+   * Enforce PascalCase for user-defined JSX components
+   * @see https://eslint.style/rules/jsx/jsx-pascal-case
+   */
+  'style/jsx-pascal-case'?: Linter.RuleEntry<StyleJsxPascalCase>
+  /**
+   * Disallow multiple spaces between inline JSX props
+   * @see https://eslint.style/rules/jsx/jsx-props-no-multi-spaces
+   */
+  'style/jsx-props-no-multi-spaces'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce the consistent use of either double or single quotes in JSX attributes
+   * @see https://eslint.style/rules/js/jsx-quotes
+   */
+  'style/jsx-quotes'?: Linter.RuleEntry<StyleJsxQuotes>
+  /**
+   * Disallow extra closing tags for components without children
+   * @see https://eslint.style/rules/jsx/jsx-self-closing-comp
+   */
+  'style/jsx-self-closing-comp'?: Linter.RuleEntry<StyleJsxSelfClosingComp>
+  /**
+   * Enforce props alphabetical sorting
+   * @see https://eslint.style/rules/jsx/jsx-sort-props
+   */
+  'style/jsx-sort-props'?: Linter.RuleEntry<StyleJsxSortProps>
+  /**
+   * Enforce whitespace in and around the JSX opening and closing brackets
+   * @see https://eslint.style/rules/jsx/jsx-tag-spacing
+   */
+  'style/jsx-tag-spacing'?: Linter.RuleEntry<StyleJsxTagSpacing>
+  /**
+   * Disallow missing parentheses around multiline JSX
+   * @see https://eslint.style/rules/jsx/jsx-wrap-multilines
+   */
+  'style/jsx-wrap-multilines'?: Linter.RuleEntry<StyleJsxWrapMultilines>
+  /**
+   * Enforce consistent spacing between property names and type annotations in types and interfaces
+   * @see https://eslint.style/rules/ts/key-spacing
+   */
+  'style/key-spacing'?: Linter.RuleEntry<StyleKeySpacing>
+  /**
+   * Enforce consistent spacing before and after keywords
+   * @see https://eslint.style/rules/ts/keyword-spacing
+   */
+  'style/keyword-spacing'?: Linter.RuleEntry<StyleKeywordSpacing>
+  /**
+   * Enforce position of line comments
+   * @see https://eslint.style/rules/js/line-comment-position
+   */
+  'style/line-comment-position'?: Linter.RuleEntry<StyleLineCommentPosition>
+  /**
+   * Enforce consistent linebreak style
+   * @see https://eslint.style/rules/js/linebreak-style
+   */
+  'style/linebreak-style'?: Linter.RuleEntry<StyleLinebreakStyle>
+  /**
+   * Require empty lines around comments
+   * @see https://eslint.style/rules/ts/lines-around-comment
+   */
+  'style/lines-around-comment'?: Linter.RuleEntry<StyleLinesAroundComment>
+  /**
+   * Require or disallow an empty line between class members
+   * @see https://eslint.style/rules/ts/lines-between-class-members
+   */
+  'style/lines-between-class-members'?: Linter.RuleEntry<StyleLinesBetweenClassMembers>
+  /**
+   * Enforce a maximum line length
+   * @see https://eslint.style/rules/js/max-len
+   */
+  'style/max-len'?: Linter.RuleEntry<StyleMaxLen>
+  /**
+   * Enforce a maximum number of statements allowed per line
+   * @see https://eslint.style/rules/js/max-statements-per-line
+   */
+  'style/max-statements-per-line'?: Linter.RuleEntry<StyleMaxStatementsPerLine>
+  /**
+   * Require a specific member delimiter style for interfaces and type literals
+   * @see https://eslint.style/rules/ts/member-delimiter-style
+   */
+  'style/member-delimiter-style'?: Linter.RuleEntry<StyleMemberDelimiterStyle>
+  /**
+   * Enforce a particular style for multiline comments
+   * @see https://eslint.style/rules/js/multiline-comment-style
+   */
+  'style/multiline-comment-style'?: Linter.RuleEntry<StyleMultilineCommentStyle>
+  /**
+   * Enforce newlines between operands of ternary expressions
+   * @see https://eslint.style/rules/js/multiline-ternary
+   */
+  'style/multiline-ternary'?: Linter.RuleEntry<StyleMultilineTernary>
+  /**
+   * Enforce or disallow parentheses when invoking a constructor with no arguments
+   * @see https://eslint.style/rules/js/new-parens
+   */
+  'style/new-parens'?: Linter.RuleEntry<StyleNewParens>
+  /**
+   * Require a newline after each call in a method chain
+   * @see https://eslint.style/rules/js/newline-per-chained-call
+   */
+  'style/newline-per-chained-call'?: Linter.RuleEntry<StyleNewlinePerChainedCall>
+  /**
+   * Disallow arrow functions where they could be confused with comparisons
+   * @see https://eslint.style/rules/js/no-confusing-arrow
+   */
+  'style/no-confusing-arrow'?: Linter.RuleEntry<StyleNoConfusingArrow>
+  /**
+   * Disallow unnecessary parentheses
+   * @see https://eslint.style/rules/ts/no-extra-parens
+   */
+  'style/no-extra-parens'?: Linter.RuleEntry<StyleNoExtraParens>
+  /**
+   * Disallow unnecessary semicolons
+   * @see https://eslint.style/rules/ts/no-extra-semi
+   */
+  'style/no-extra-semi'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow leading or trailing decimal points in numeric literals
+   * @see https://eslint.style/rules/js/no-floating-decimal
+   */
+  'style/no-floating-decimal'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow mixed binary operators
+   * @see https://eslint.style/rules/js/no-mixed-operators
+   */
+  'style/no-mixed-operators'?: Linter.RuleEntry<StyleNoMixedOperators>
+  /**
+   * Disallow mixed spaces and tabs for indentation
+   * @see https://eslint.style/rules/js/no-mixed-spaces-and-tabs
+   */
+  'style/no-mixed-spaces-and-tabs'?: Linter.RuleEntry<StyleNoMixedSpacesAndTabs>
+  /**
+   * Disallow multiple spaces
+   * @see https://eslint.style/rules/js/no-multi-spaces
+   */
+  'style/no-multi-spaces'?: Linter.RuleEntry<StyleNoMultiSpaces>
+  /**
+   * Disallow multiple empty lines
+   * @see https://eslint.style/rules/js/no-multiple-empty-lines
+   */
+  'style/no-multiple-empty-lines'?: Linter.RuleEntry<StyleNoMultipleEmptyLines>
+  /**
+   * Disallow all tabs
+   * @see https://eslint.style/rules/js/no-tabs
+   */
+  'style/no-tabs'?: Linter.RuleEntry<StyleNoTabs>
+  /**
+   * Disallow trailing whitespace at the end of lines
+   * @see https://eslint.style/rules/js/no-trailing-spaces
+   */
+  'style/no-trailing-spaces'?: Linter.RuleEntry<StyleNoTrailingSpaces>
+  /**
+   * Disallow whitespace before properties
+   * @see https://eslint.style/rules/js/no-whitespace-before-property
+   */
+  'style/no-whitespace-before-property'?: Linter.RuleEntry<[]>
+  /**
+   * Enforce the location of single-line statements
+   * @see https://eslint.style/rules/js/nonblock-statement-body-position
+   */
+  'style/nonblock-statement-body-position'?: Linter.RuleEntry<StyleNonblockStatementBodyPosition>
+  /**
+   * Enforce consistent line breaks after opening and before closing braces
+   * @see https://eslint.style/rules/ts/object-curly-newline
+   */
+  'style/object-curly-newline'?: Linter.RuleEntry<StyleObjectCurlyNewline>
+  /**
+   * Enforce consistent spacing inside braces
+   * @see https://eslint.style/rules/ts/object-curly-spacing
+   */
+  'style/object-curly-spacing'?: Linter.RuleEntry<StyleObjectCurlySpacing>
+  /**
+   * Enforce placing object properties on separate lines
+   * @see https://eslint.style/rules/ts/object-property-newline
+   */
+  'style/object-property-newline'?: Linter.RuleEntry<StyleObjectPropertyNewline>
+  /**
+   * Require or disallow newlines around variable declarations
+   * @see https://eslint.style/rules/js/one-var-declaration-per-line
+   */
+  'style/one-var-declaration-per-line'?: Linter.RuleEntry<StyleOneVarDeclarationPerLine>
+  /**
+   * Enforce consistent linebreak style for operators
+   * @see https://eslint.style/rules/js/operator-linebreak
+   */
+  'style/operator-linebreak'?: Linter.RuleEntry<StyleOperatorLinebreak>
+  /**
+   * Require or disallow padding within blocks
+   * @see https://eslint.style/rules/js/padded-blocks
+   */
+  'style/padded-blocks'?: Linter.RuleEntry<StylePaddedBlocks>
+  /**
+   * Require or disallow padding lines between statements
+   * @see https://eslint.style/rules/ts/padding-line-between-statements
+   */
+  'style/padding-line-between-statements'?: Linter.RuleEntry<StylePaddingLineBetweenStatements>
+  /**
+   * Require quotes around object literal, type literal, interfaces and enums property names
+   * @see https://eslint.style/rules/ts/quote-props
+   */
+  'style/quote-props'?: Linter.RuleEntry<StyleQuoteProps>
+  /**
+   * Enforce the consistent use of either backticks, double, or single quotes
+   * @see https://eslint.style/rules/ts/quotes
+   */
+  'style/quotes'?: Linter.RuleEntry<StyleQuotes>
+  /**
+   * Enforce spacing between rest and spread operators and their expressions
+   * @see https://eslint.style/rules/js/rest-spread-spacing
+   */
+  'style/rest-spread-spacing'?: Linter.RuleEntry<StyleRestSpreadSpacing>
+  /**
+   * Require or disallow semicolons instead of ASI
+   * @see https://eslint.style/rules/ts/semi
+   */
+  'style/semi'?: Linter.RuleEntry<StyleSemi>
+  /**
+   * Enforce consistent spacing before and after semicolons
+   * @see https://eslint.style/rules/js/semi-spacing
+   */
+  'style/semi-spacing'?: Linter.RuleEntry<StyleSemiSpacing>
+  /**
+   * Enforce location of semicolons
+   * @see https://eslint.style/rules/js/semi-style
+   */
+  'style/semi-style'?: Linter.RuleEntry<StyleSemiStyle>
+  /**
+   * Enforce consistent spacing before blocks
+   * @see https://eslint.style/rules/ts/space-before-blocks
+   */
+  'style/space-before-blocks'?: Linter.RuleEntry<StyleSpaceBeforeBlocks>
+  /**
+   * Enforce consistent spacing before function parenthesis
+   * @see https://eslint.style/rules/ts/space-before-function-paren
+   */
+  'style/space-before-function-paren'?: Linter.RuleEntry<StyleSpaceBeforeFunctionParen>
+  /**
+   * Enforce consistent spacing inside parentheses
+   * @see https://eslint.style/rules/js/space-in-parens
+   */
+  'style/space-in-parens'?: Linter.RuleEntry<StyleSpaceInParens>
+  /**
+   * Require spacing around infix operators
+   * @see https://eslint.style/rules/ts/space-infix-ops
+   */
+  'style/space-infix-ops'?: Linter.RuleEntry<StyleSpaceInfixOps>
+  /**
+   * Enforce consistent spacing before or after unary operators
+   * @see https://eslint.style/rules/js/space-unary-ops
+   */
+  'style/space-unary-ops'?: Linter.RuleEntry<StyleSpaceUnaryOps>
+  /**
+   * Enforce consistent spacing after the `//` or `/*` in a comment
+   * @see https://eslint.style/rules/js/spaced-comment
+   */
+  'style/spaced-comment'?: Linter.RuleEntry<StyleSpacedComment>
+  /**
+   * Enforce spacing around colons of switch statements
+   * @see https://eslint.style/rules/js/switch-colon-spacing
+   */
+  'style/switch-colon-spacing'?: Linter.RuleEntry<StyleSwitchColonSpacing>
+  /**
+   * Require or disallow spacing around embedded expressions of template strings
+   * @see https://eslint.style/rules/js/template-curly-spacing
+   */
+  'style/template-curly-spacing'?: Linter.RuleEntry<StyleTemplateCurlySpacing>
+  /**
+   * Require or disallow spacing between template tags and their literals
+   * @see https://eslint.style/rules/js/template-tag-spacing
+   */
+  'style/template-tag-spacing'?: Linter.RuleEntry<StyleTemplateTagSpacing>
+  /**
+   * Require consistent spacing around type annotations
+   * @see https://eslint.style/rules/ts/type-annotation-spacing
+   */
+  'style/type-annotation-spacing'?: Linter.RuleEntry<StyleTypeAnnotationSpacing>
+  /**
+   * Enforces consistent spacing inside TypeScript type generics
+   * @see https://eslint.style/rules/plus/type-generic-spacing
+   */
+  'style/type-generic-spacing'?: Linter.RuleEntry<[]>
+  /**
+   * Expect space before the type declaration in the named tuple
+   * @see https://eslint.style/rules/plus/type-named-tuple-spacing
+   */
+  'style/type-named-tuple-spacing'?: Linter.RuleEntry<[]>
+  /**
+   * Require parentheses around immediate `function` invocations
+   * @see https://eslint.style/rules/js/wrap-iife
+   */
+  'style/wrap-iife'?: Linter.RuleEntry<StyleWrapIife>
+  /**
+   * Require parenthesis around regex literals
+   * @see https://eslint.style/rules/js/wrap-regex
+   */
+  'style/wrap-regex'?: Linter.RuleEntry<[]>
+  /**
+   * Require or disallow spacing around the `*` in `yield*` expressions
+   * @see https://eslint.style/rules/js/yield-star-spacing
+   */
+  'style/yield-star-spacing'?: Linter.RuleEntry<StyleYieldStarSpacing>
+}
+
+/* ======= Declarations ======= */
+// ----- style/array-bracket-newline -----
+type StyleArrayBracketNewline = []|[(("always" | "never" | "consistent") | {
+  multiline?: boolean
+  minItems?: (number | null)
+})]
+// ----- style/array-bracket-spacing -----
+type StyleArrayBracketSpacing = []|[("always" | "never")]|[("always" | "never"), {
+  singleValue?: boolean
+  objectsInArrays?: boolean
+  arraysInArrays?: boolean
+}]
+// ----- style/array-element-newline -----
+type StyleArrayElementNewline = []|[(_StyleArrayElementNewlineBasicConfig | {
+  ArrayExpression?: _StyleArrayElementNewlineBasicConfig
+  ArrayPattern?: _StyleArrayElementNewlineBasicConfig
+})]
+type _StyleArrayElementNewlineBasicConfig = (("always" | "never" | "consistent") | {
+  consistent?: boolean
+  multiline?: boolean
+  minItems?: (number | null)
+})
+// ----- style/arrow-parens -----
+type StyleArrowParens = []|[("always" | "as-needed")]|[("always" | "as-needed"), {
+  requireForBlockBody?: boolean
+}]
+// ----- style/arrow-spacing -----
+type StyleArrowSpacing = []|[{
+  before?: boolean
+  after?: boolean
+}]
+// ----- style/block-spacing -----
+type StyleBlockSpacing = []|[("always" | "never")]
+// ----- style/brace-style -----
+type StyleBraceStyle = []|[("1tbs" | "stroustrup" | "allman")]|[("1tbs" | "stroustrup" | "allman"), {
+  allowSingleLine?: boolean
+}]
+// ----- style/comma-dangle -----
+type StyleCommaDangle = []|[(_StyleCommaDangleValue | {
+  arrays?: _StyleCommaDangleValueWithIgnore
+  objects?: _StyleCommaDangleValueWithIgnore
+  imports?: _StyleCommaDangleValueWithIgnore
+  exports?: _StyleCommaDangleValueWithIgnore
+  functions?: _StyleCommaDangleValueWithIgnore
+  importAttributes?: _StyleCommaDangleValueWithIgnore
+  dynamicImports?: _StyleCommaDangleValueWithIgnore
+  enums?: _StyleCommaDangleValueWithIgnore
+  generics?: _StyleCommaDangleValueWithIgnore
+  tuples?: _StyleCommaDangleValueWithIgnore
+})]
+type _StyleCommaDangleValue = ("always-multiline" | "always" | "never" | "only-multiline")
+type _StyleCommaDangleValueWithIgnore = ("always-multiline" | "always" | "never" | "only-multiline" | "ignore")
+// ----- style/comma-spacing -----
+type StyleCommaSpacing = []|[{
+  before?: boolean
+  after?: boolean
+}]
+// ----- style/comma-style -----
+type StyleCommaStyle = []|[("first" | "last")]|[("first" | "last"), {
+  exceptions?: {
+    [k: string]: boolean | undefined
+  }
+}]
+// ----- style/computed-property-spacing -----
+type StyleComputedPropertySpacing = []|[("always" | "never")]|[("always" | "never"), {
+  enforceForClassMembers?: boolean
+}]
+// ----- style/curly-newline -----
+type StyleCurlyNewline = []|[(("always" | "never") | {
+  IfStatementConsequent?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  IfStatementAlternative?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  DoWhileStatement?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  ForInStatement?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  ForOfStatement?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  ForStatement?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  WhileStatement?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  SwitchStatement?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  SwitchCase?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  TryStatementBlock?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  TryStatementHandler?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  TryStatementFinalizer?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  BlockStatement?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  ArrowFunctionExpression?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  FunctionDeclaration?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  FunctionExpression?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  Property?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  ClassBody?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  StaticBlock?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  WithStatement?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  TSEnumBody?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  TSInterfaceBody?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  TSModuleBlock?: (("always" | "never") | {
+    multiline?: boolean
+    minElements?: number
+    consistent?: boolean
+  })
+  multiline?: boolean
+  minElements?: number
+  consistent?: boolean
+})]
+// ----- style/dot-location -----
+type StyleDotLocation = []|[("object" | "property")]
+// ----- style/eol-last -----
+type StyleEolLast = []|[("always" | "never" | "unix" | "windows")]
+// ----- style/func-call-spacing -----
+type StyleFuncCallSpacing = ([]|["never"] | []|["always"]|["always", {
+  allowNewlines?: boolean
+  optionalChain?: {
+    before?: boolean
+    after?: boolean
+  }
+}])
+// ----- style/function-call-argument-newline -----
+type StyleFunctionCallArgumentNewline = []|[("always" | "never" | "consistent")]
+// ----- style/function-call-spacing -----
+type StyleFunctionCallSpacing = ([]|["never"] | []|["always"]|["always", {
+  allowNewlines?: boolean
+  optionalChain?: {
+    before?: boolean
+    after?: boolean
+  }
+}])
+// ----- style/function-paren-newline -----
+type StyleFunctionParenNewline = []|[(("always" | "never" | "consistent" | "multiline" | "multiline-arguments") | {
+  minItems?: number
+})]
+// ----- style/generator-star-spacing -----
+type StyleGeneratorStarSpacing = []|[(("before" | "after" | "both" | "neither") | {
+  before?: boolean
+  after?: boolean
+  named?: (("before" | "after" | "both" | "neither") | {
+    before?: boolean
+    after?: boolean
+  })
+  anonymous?: (("before" | "after" | "both" | "neither") | {
+    before?: boolean
+    after?: boolean
+  })
+  method?: (("before" | "after" | "both" | "neither") | {
+    before?: boolean
+    after?: boolean
+  })
+})]
+// ----- style/implicit-arrow-linebreak -----
+type StyleImplicitArrowLinebreak = []|[("beside" | "below")]
+// ----- style/indent -----
+type StyleIndent = []|[("tab" | number)]|[("tab" | number), {
+  SwitchCase?: number
+  VariableDeclarator?: ((number | ("first" | "off")) | {
+    var?: (number | ("first" | "off"))
+    let?: (number | ("first" | "off"))
+    const?: (number | ("first" | "off"))
+  })
+  outerIIFEBody?: (number | "off")
+  MemberExpression?: (number | "off")
+  FunctionDeclaration?: {
+    parameters?: (number | ("first" | "off"))
+    body?: number
+  }
+  FunctionExpression?: {
+    parameters?: (number | ("first" | "off"))
+    body?: number
+  }
+  StaticBlock?: {
+    body?: number
+  }
+  CallExpression?: {
+    arguments?: (number | ("first" | "off"))
+  }
+  ArrayExpression?: (number | ("first" | "off"))
+  ObjectExpression?: (number | ("first" | "off"))
+  ImportDeclaration?: (number | ("first" | "off"))
+  flatTernaryExpressions?: boolean
+  offsetTernaryExpressions?: boolean
+  offsetTernaryExpressionsOffsetCallExpressions?: boolean
+  ignoredNodes?: string[]
+  ignoreComments?: boolean
+  tabLength?: number
+}]
+// ----- style/indent-binary-ops -----
+type StyleIndentBinaryOps = []|[(number | "tab")]
+// ----- style/jsx-closing-bracket-location -----
+type StyleJsxClosingBracketLocation = []|[(("after-props" | "props-aligned" | "tag-aligned" | "line-aligned") | {
+  location?: ("after-props" | "props-aligned" | "tag-aligned" | "line-aligned")
+} | {
+  nonEmpty?: (("after-props" | "props-aligned" | "tag-aligned" | "line-aligned") | false)
+  selfClosing?: (("after-props" | "props-aligned" | "tag-aligned" | "line-aligned") | false)
+})]
+// ----- style/jsx-closing-tag-location -----
+type StyleJsxClosingTagLocation = []|[("tag-aligned" | "line-aligned")]
+// ----- style/jsx-curly-brace-presence -----
+type StyleJsxCurlyBracePresence = []|[({
+  props?: ("always" | "never" | "ignore")
+  children?: ("always" | "never" | "ignore")
+  propElementValues?: ("always" | "never" | "ignore")
+} | ("always" | "never" | "ignore"))]
+// ----- style/jsx-curly-newline -----
+type StyleJsxCurlyNewline = []|[(("consistent" | "never") | {
+  singleline?: ("consistent" | "require" | "forbid")
+  multiline?: ("consistent" | "require" | "forbid")
+})]
+// ----- style/jsx-curly-spacing -----
+type StyleJsxCurlySpacing = []|[((_StyleJsxCurlySpacing_BasicConfig & {
+  attributes?: _StyleJsxCurlySpacingBasicConfigOrBoolean
+  children?: _StyleJsxCurlySpacingBasicConfigOrBoolean
+  [k: string]: unknown | undefined
+}) | ("always" | "never"))]|[((_StyleJsxCurlySpacing_BasicConfig & {
+  attributes?: _StyleJsxCurlySpacingBasicConfigOrBoolean
+  children?: _StyleJsxCurlySpacingBasicConfigOrBoolean
+  [k: string]: unknown | undefined
+}) | ("always" | "never")), {
+  allowMultiline?: boolean
+  spacing?: {
+    objectLiterals?: ("always" | "never")
+    [k: string]: unknown | undefined
+  }
+}]
+type _StyleJsxCurlySpacingBasicConfigOrBoolean = (_StyleJsxCurlySpacing_BasicConfig | boolean)
+interface _StyleJsxCurlySpacing_BasicConfig {
+  when?: ("always" | "never")
+  allowMultiline?: boolean
+  spacing?: {
+    objectLiterals?: ("always" | "never")
+    [k: string]: unknown | undefined
+  }
+  [k: string]: unknown | undefined
+}
+// ----- style/jsx-equals-spacing -----
+type StyleJsxEqualsSpacing = []|[("always" | "never")]
+// ----- style/jsx-first-prop-new-line -----
+type StyleJsxFirstPropNewLine = []|[("always" | "never" | "multiline" | "multiline-multiprop" | "multiprop")]
+// ----- style/jsx-function-call-newline -----
+type StyleJsxFunctionCallNewline = []|[("always" | "multiline")]
+// ----- style/jsx-indent -----
+type StyleJsxIndent = []|[("tab" | number)]|[("tab" | number), {
+  checkAttributes?: boolean
+  indentLogicalExpressions?: boolean
+}]
+// ----- style/jsx-indent-props -----
+type StyleJsxIndentProps = []|[(("tab" | "first") | number | {
+  indentMode?: (("tab" | "first") | number)
+  ignoreTernaryOperator?: boolean
+  [k: string]: unknown | undefined
+})]
+// ----- style/jsx-max-props-per-line -----
+type StyleJsxMaxPropsPerLine = []|[({
+  maximum?: {
+    single?: number
+    multi?: number
+    [k: string]: unknown | undefined
+  }
+} | {
+  maximum?: number
+  when?: ("always" | "multiline")
+})]
+// ----- style/jsx-newline -----
+type StyleJsxNewline = []|[{
+  prevent?: boolean
+  allowMultilines?: boolean
+}]
+// ----- style/jsx-one-expression-per-line -----
+type StyleJsxOneExpressionPerLine = []|[{
+  allow?: ("none" | "literal" | "single-child" | "single-line" | "non-jsx")
+}]
+// ----- style/jsx-pascal-case -----
+type StyleJsxPascalCase = []|[{
+  allowAllCaps?: boolean
+  allowLeadingUnderscore?: boolean
+  allowNamespace?: boolean
+  ignore?: string[]
+}]
+// ----- style/jsx-quotes -----
+type StyleJsxQuotes = []|[("prefer-single" | "prefer-double")]
+// ----- style/jsx-self-closing-comp -----
+type StyleJsxSelfClosingComp = []|[{
+  component?: boolean
+  html?: boolean
+}]
+// ----- style/jsx-sort-props -----
+type StyleJsxSortProps = []|[{
+  callbacksLast?: boolean
+  shorthandFirst?: boolean
+  shorthandLast?: boolean
+  multiline?: ("ignore" | "first" | "last")
+  ignoreCase?: boolean
+  noSortAlphabetically?: boolean
+  reservedFirst?: (unknown[] | boolean)
+  locale?: string
+}]
+// ----- style/jsx-tag-spacing -----
+type StyleJsxTagSpacing = []|[{
+  closingSlash?: ("always" | "never" | "allow")
+  beforeSelfClosing?: ("always" | "proportional-always" | "never" | "allow")
+  afterOpening?: ("always" | "allow-multiline" | "never" | "allow")
+  beforeClosing?: ("always" | "proportional-always" | "never" | "allow")
+}]
+// ----- style/jsx-wrap-multilines -----
+type StyleJsxWrapMultilines = []|[{
+  declaration?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
+  assignment?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
+  return?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
+  arrow?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
+  condition?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
+  logical?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
+  prop?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
+  propertyValue?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"))
+}]
+// ----- style/key-spacing -----
+type StyleKeySpacing = []|[({
+  align?: (("colon" | "value") | {
+    mode?: ("strict" | "minimum")
+    on?: ("colon" | "value")
+    beforeColon?: boolean
+    afterColon?: boolean
+  })
+  mode?: ("strict" | "minimum")
+  beforeColon?: boolean
+  afterColon?: boolean
+} | {
+  singleLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  multiLine?: {
+    align?: (("colon" | "value") | {
+      mode?: ("strict" | "minimum")
+      on?: ("colon" | "value")
+      beforeColon?: boolean
+      afterColon?: boolean
+    })
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+} | {
+  singleLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  multiLine?: {
+    mode?: ("strict" | "minimum")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+  align?: {
+    mode?: ("strict" | "minimum")
+    on?: ("colon" | "value")
+    beforeColon?: boolean
+    afterColon?: boolean
+  }
+})]
+// ----- style/keyword-spacing -----
+type StyleKeywordSpacing = []|[{
+  before?: boolean
+  after?: boolean
+  overrides?: {
+    abstract?: {
+      before?: boolean
+      after?: boolean
+    }
+    as?: {
+      before?: boolean
+      after?: boolean
+    }
+    async?: {
+      before?: boolean
+      after?: boolean
+    }
+    await?: {
+      before?: boolean
+      after?: boolean
+    }
+    boolean?: {
+      before?: boolean
+      after?: boolean
+    }
+    break?: {
+      before?: boolean
+      after?: boolean
+    }
+    byte?: {
+      before?: boolean
+      after?: boolean
+    }
+    case?: {
+      before?: boolean
+      after?: boolean
+    }
+    catch?: {
+      before?: boolean
+      after?: boolean
+    }
+    char?: {
+      before?: boolean
+      after?: boolean
+    }
+    class?: {
+      before?: boolean
+      after?: boolean
+    }
+    const?: {
+      before?: boolean
+      after?: boolean
+    }
+    continue?: {
+      before?: boolean
+      after?: boolean
+    }
+    debugger?: {
+      before?: boolean
+      after?: boolean
+    }
+    default?: {
+      before?: boolean
+      after?: boolean
+    }
+    delete?: {
+      before?: boolean
+      after?: boolean
+    }
+    do?: {
+      before?: boolean
+      after?: boolean
+    }
+    double?: {
+      before?: boolean
+      after?: boolean
+    }
+    else?: {
+      before?: boolean
+      after?: boolean
+    }
+    enum?: {
+      before?: boolean
+      after?: boolean
+    }
+    export?: {
+      before?: boolean
+      after?: boolean
+    }
+    extends?: {
+      before?: boolean
+      after?: boolean
+    }
+    false?: {
+      before?: boolean
+      after?: boolean
+    }
+    final?: {
+      before?: boolean
+      after?: boolean
+    }
+    finally?: {
+      before?: boolean
+      after?: boolean
+    }
+    float?: {
+      before?: boolean
+      after?: boolean
+    }
+    for?: {
+      before?: boolean
+      after?: boolean
+    }
+    from?: {
+      before?: boolean
+      after?: boolean
+    }
+    function?: {
+      before?: boolean
+      after?: boolean
+    }
+    get?: {
+      before?: boolean
+      after?: boolean
+    }
+    goto?: {
+      before?: boolean
+      after?: boolean
+    }
+    if?: {
+      before?: boolean
+      after?: boolean
+    }
+    implements?: {
+      before?: boolean
+      after?: boolean
+    }
+    import?: {
+      before?: boolean
+      after?: boolean
+    }
+    in?: {
+      before?: boolean
+      after?: boolean
+    }
+    instanceof?: {
+      before?: boolean
+      after?: boolean
+    }
+    int?: {
+      before?: boolean
+      after?: boolean
+    }
+    interface?: {
+      before?: boolean
+      after?: boolean
+    }
+    let?: {
+      before?: boolean
+      after?: boolean
+    }
+    long?: {
+      before?: boolean
+      after?: boolean
+    }
+    native?: {
+      before?: boolean
+      after?: boolean
+    }
+    new?: {
+      before?: boolean
+      after?: boolean
+    }
+    null?: {
+      before?: boolean
+      after?: boolean
+    }
+    of?: {
+      before?: boolean
+      after?: boolean
+    }
+    package?: {
+      before?: boolean
+      after?: boolean
+    }
+    private?: {
+      before?: boolean
+      after?: boolean
+    }
+    protected?: {
+      before?: boolean
+      after?: boolean
+    }
+    public?: {
+      before?: boolean
+      after?: boolean
+    }
+    return?: {
+      before?: boolean
+      after?: boolean
+    }
+    satisfies?: {
+      before?: boolean
+      after?: boolean
+    }
+    set?: {
+      before?: boolean
+      after?: boolean
+    }
+    short?: {
+      before?: boolean
+      after?: boolean
+    }
+    static?: {
+      before?: boolean
+      after?: boolean
+    }
+    super?: {
+      before?: boolean
+      after?: boolean
+    }
+    switch?: {
+      before?: boolean
+      after?: boolean
+    }
+    synchronized?: {
+      before?: boolean
+      after?: boolean
+    }
+    this?: {
+      before?: boolean
+      after?: boolean
+    }
+    throw?: {
+      before?: boolean
+      after?: boolean
+    }
+    throws?: {
+      before?: boolean
+      after?: boolean
+    }
+    transient?: {
+      before?: boolean
+      after?: boolean
+    }
+    true?: {
+      before?: boolean
+      after?: boolean
+    }
+    try?: {
+      before?: boolean
+      after?: boolean
+    }
+    typeof?: {
+      before?: boolean
+      after?: boolean
+    }
+    var?: {
+      before?: boolean
+      after?: boolean
+    }
+    void?: {
+      before?: boolean
+      after?: boolean
+    }
+    volatile?: {
+      before?: boolean
+      after?: boolean
+    }
+    while?: {
+      before?: boolean
+      after?: boolean
+    }
+    with?: {
+      before?: boolean
+      after?: boolean
+    }
+    yield?: {
+      before?: boolean
+      after?: boolean
+    }
+    type?: {
+      before?: boolean
+      after?: boolean
+    }
+  }
+}]
+// ----- style/line-comment-position -----
+type StyleLineCommentPosition = []|[(("above" | "beside") | {
+  position?: ("above" | "beside")
+  ignorePattern?: string
+  applyDefaultPatterns?: boolean
+  applyDefaultIgnorePatterns?: boolean
+})]
+// ----- style/linebreak-style -----
+type StyleLinebreakStyle = []|[("unix" | "windows")]
+// ----- style/lines-around-comment -----
+type StyleLinesAroundComment = []|[{
+  beforeBlockComment?: boolean
+  afterBlockComment?: boolean
+  beforeLineComment?: boolean
+  afterLineComment?: boolean
+  allowBlockStart?: boolean
+  allowBlockEnd?: boolean
+  allowClassStart?: boolean
+  allowClassEnd?: boolean
+  allowObjectStart?: boolean
+  allowObjectEnd?: boolean
+  allowArrayStart?: boolean
+  allowArrayEnd?: boolean
+  allowInterfaceStart?: boolean
+  allowInterfaceEnd?: boolean
+  allowTypeStart?: boolean
+  allowTypeEnd?: boolean
+  allowEnumStart?: boolean
+  allowEnumEnd?: boolean
+  allowModuleStart?: boolean
+  allowModuleEnd?: boolean
+  ignorePattern?: string
+  applyDefaultIgnorePatterns?: boolean
+  afterHashbangComment?: boolean
+}]
+// ----- style/lines-between-class-members -----
+type StyleLinesBetweenClassMembers = []|[({
+  
+  enforce: [{
+    blankLine: ("always" | "never")
+    prev: ("method" | "field" | "*")
+    next: ("method" | "field" | "*")
+  }, ...({
+    blankLine: ("always" | "never")
+    prev: ("method" | "field" | "*")
+    next: ("method" | "field" | "*")
+  })[]]
+} | ("always" | "never"))]|[({
+  
+  enforce: [{
+    blankLine: ("always" | "never")
+    prev: ("method" | "field" | "*")
+    next: ("method" | "field" | "*")
+  }, ...({
+    blankLine: ("always" | "never")
+    prev: ("method" | "field" | "*")
+    next: ("method" | "field" | "*")
+  })[]]
+} | ("always" | "never")), {
+  exceptAfterSingleLine?: boolean
+  exceptAfterOverload?: boolean
+}]
+// ----- style/max-len -----
+type StyleMaxLen = []|[({
+  code?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreStrings?: boolean
+  ignoreUrls?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreTrailingComments?: boolean
+} | number)]|[({
+  code?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreStrings?: boolean
+  ignoreUrls?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreTrailingComments?: boolean
+} | number), ({
+  code?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreStrings?: boolean
+  ignoreUrls?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreTrailingComments?: boolean
+} | number)]|[({
+  code?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreStrings?: boolean
+  ignoreUrls?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreTrailingComments?: boolean
+} | number), ({
+  code?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreStrings?: boolean
+  ignoreUrls?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreTrailingComments?: boolean
+} | number), {
+  code?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreStrings?: boolean
+  ignoreUrls?: boolean
+  ignoreTemplateLiterals?: boolean
+  ignoreRegExpLiterals?: boolean
+  ignoreTrailingComments?: boolean
+}]
+// ----- style/max-statements-per-line -----
+type StyleMaxStatementsPerLine = []|[{
+  max?: number
+  ignoredNodes?: ("BreakStatement" | "ClassDeclaration" | "ContinueStatement" | "DebuggerStatement" | "DoWhileStatement" | "ExpressionStatement" | "ForInStatement" | "ForOfStatement" | "ForStatement" | "FunctionDeclaration" | "IfStatement" | "ImportDeclaration" | "LabeledStatement" | "ReturnStatement" | "SwitchStatement" | "ThrowStatement" | "TryStatement" | "VariableDeclaration" | "WhileStatement" | "WithStatement" | "ExportNamedDeclaration" | "ExportDefaultDeclaration" | "ExportAllDeclaration")[]
+}]
+// ----- style/member-delimiter-style -----
+type StyleMemberDelimiterStyle = []|[{
+  multiline?: {
+    delimiter?: ("none" | "semi" | "comma")
+    requireLast?: boolean
+  }
+  singleline?: {
+    delimiter?: ("semi" | "comma")
+    requireLast?: boolean
+  }
+  overrides?: {
+    interface?: _StyleMemberDelimiterStyle_DelimiterConfig
+    typeLiteral?: _StyleMemberDelimiterStyle_DelimiterConfig
+  }
+  multilineDetection?: ("brackets" | "last-member")
+}]
+interface _StyleMemberDelimiterStyle_DelimiterConfig {
+  multiline?: {
+    delimiter?: ("none" | "semi" | "comma")
+    requireLast?: boolean
+  }
+  singleline?: {
+    delimiter?: ("semi" | "comma")
+    requireLast?: boolean
+  }
+}
+// ----- style/multiline-comment-style -----
+type StyleMultilineCommentStyle = ([]|[("starred-block" | "bare-block")] | []|["separate-lines"]|["separate-lines", {
+  checkJSDoc?: boolean
+}])
+// ----- style/multiline-ternary -----
+type StyleMultilineTernary = []|[("always" | "always-multiline" | "never")]|[("always" | "always-multiline" | "never"), {
+  ignoreJSX?: boolean
+  [k: string]: unknown | undefined
+}]
+// ----- style/new-parens -----
+type StyleNewParens = []|[("always" | "never")]
+// ----- style/newline-per-chained-call -----
+type StyleNewlinePerChainedCall = []|[{
+  ignoreChainWithDepth?: number
+}]
+// ----- style/no-confusing-arrow -----
+type StyleNoConfusingArrow = []|[{
+  allowParens?: boolean
+  onlyOneSimpleParam?: boolean
+}]
+// ----- style/no-extra-parens -----
+type StyleNoExtraParens = ([]|["functions"] | []|["all"]|["all", {
+  conditionalAssign?: boolean
+  ternaryOperandBinaryExpressions?: boolean
+  nestedBinaryExpressions?: boolean
+  returnAssign?: boolean
+  ignoreJSX?: ("none" | "all" | "single-line" | "multi-line")
+  enforceForArrowConditionals?: boolean
+  enforceForSequenceExpressions?: boolean
+  enforceForNewInMemberExpressions?: boolean
+  enforceForFunctionPrototypeMethods?: boolean
+  allowParensAfterCommentPattern?: string
+}])
+// ----- style/no-mixed-operators -----
+type StyleNoMixedOperators = []|[{
+  groups?: [("+" | "-" | "*" | "/" | "%" | "**" | "&" | "|" | "^" | "~" | "<<" | ">>" | ">>>" | "==" | "!=" | "===" | "!==" | ">" | ">=" | "<" | "<=" | "&&" | "||" | "in" | "instanceof" | "?:" | "??"), ("+" | "-" | "*" | "/" | "%" | "**" | "&" | "|" | "^" | "~" | "<<" | ">>" | ">>>" | "==" | "!=" | "===" | "!==" | ">" | ">=" | "<" | "<=" | "&&" | "||" | "in" | "instanceof" | "?:" | "??"), ...(("+" | "-" | "*" | "/" | "%" | "**" | "&" | "|" | "^" | "~" | "<<" | ">>" | ">>>" | "==" | "!=" | "===" | "!==" | ">" | ">=" | "<" | "<=" | "&&" | "||" | "in" | "instanceof" | "?:" | "??"))[]][]
+  allowSamePrecedence?: boolean
+}]
+// ----- style/no-mixed-spaces-and-tabs -----
+type StyleNoMixedSpacesAndTabs = []|[("smart-tabs" | boolean)]
+// ----- style/no-multi-spaces -----
+type StyleNoMultiSpaces = []|[{
+  exceptions?: {
+    [k: string]: boolean
+  }
+  ignoreEOLComments?: boolean
+  includeTabs?: boolean
+}]
+// ----- style/no-multiple-empty-lines -----
+type StyleNoMultipleEmptyLines = []|[{
+  max: number
+  maxEOF?: number
+  maxBOF?: number
+}]
+// ----- style/no-tabs -----
+type StyleNoTabs = []|[{
+  allowIndentationTabs?: boolean
+}]
+// ----- style/no-trailing-spaces -----
+type StyleNoTrailingSpaces = []|[{
+  skipBlankLines?: boolean
+  ignoreComments?: boolean
+}]
+// ----- style/nonblock-statement-body-position -----
+type StyleNonblockStatementBodyPosition = []|[("beside" | "below" | "any")]|[("beside" | "below" | "any"), {
+  overrides?: {
+    if?: ("beside" | "below" | "any")
+    else?: ("beside" | "below" | "any")
+    while?: ("beside" | "below" | "any")
+    do?: ("beside" | "below" | "any")
+    for?: ("beside" | "below" | "any")
+  }
+}]
+// ----- style/object-curly-newline -----
+type StyleObjectCurlyNewline = []|[((("always" | "never") | {
+  multiline?: boolean
+  minProperties?: number
+  consistent?: boolean
+}) | {
+  ObjectExpression?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
+  ObjectPattern?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
+  ImportDeclaration?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
+  ExportDeclaration?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
+  TSTypeLiteral?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
+  TSInterfaceBody?: (("always" | "never") | {
+    multiline?: boolean
+    minProperties?: number
+    consistent?: boolean
+  })
+})]
+// ----- style/object-curly-spacing -----
+type StyleObjectCurlySpacing = []|[("always" | "never")]|[("always" | "never"), {
+  arraysInObjects?: boolean
+  objectsInObjects?: boolean
+}]
+// ----- style/object-property-newline -----
+type StyleObjectPropertyNewline = []|[{
+  allowAllPropertiesOnSameLine?: boolean
+  allowMultiplePropertiesPerLine?: boolean
+}]
+// ----- style/one-var-declaration-per-line -----
+type StyleOneVarDeclarationPerLine = []|[("always" | "initializations")]
+// ----- style/operator-linebreak -----
+type StyleOperatorLinebreak = []|[(("after" | "before" | "none") | null)]|[(("after" | "before" | "none") | null), {
+  overrides?: {
+    [k: string]: ("after" | "before" | "none" | "ignore") | undefined
+  }
+}]
+// ----- style/padded-blocks -----
+type StylePaddedBlocks = []|[(("always" | "never") | {
+  blocks?: ("always" | "never")
+  switches?: ("always" | "never")
+  classes?: ("always" | "never")
+})]|[(("always" | "never") | {
+  blocks?: ("always" | "never")
+  switches?: ("always" | "never")
+  classes?: ("always" | "never")
+}), {
+  allowSingleLineBlocks?: boolean
+}]
+// ----- style/padding-line-between-statements -----
+type _StylePaddingLineBetweenStatementsPaddingType = ("any" | "never" | "always")
+type _StylePaddingLineBetweenStatementsStatementType = (("*" | "block-like" | "exports" | "require" | "directive" | "expression" | "iife" | "multiline-block-like" | "multiline-expression" | "multiline-const" | "multiline-export" | "multiline-let" | "multiline-var" | "singleline-const" | "singleline-export" | "singleline-let" | "singleline-var" | "block" | "empty" | "function" | "ts-method" | "break" | "case" | "class" | "const" | "continue" | "debugger" | "default" | "do" | "export" | "for" | "if" | "import" | "let" | "return" | "switch" | "throw" | "try" | "var" | "while" | "with" | "cjs-export" | "cjs-import" | "enum" | "interface" | "type" | "function-overload") | [("*" | "block-like" | "exports" | "require" | "directive" | "expression" | "iife" | "multiline-block-like" | "multiline-expression" | "multiline-const" | "multiline-export" | "multiline-let" | "multiline-var" | "singleline-const" | "singleline-export" | "singleline-let" | "singleline-var" | "block" | "empty" | "function" | "ts-method" | "break" | "case" | "class" | "const" | "continue" | "debugger" | "default" | "do" | "export" | "for" | "if" | "import" | "let" | "return" | "switch" | "throw" | "try" | "var" | "while" | "with" | "cjs-export" | "cjs-import" | "enum" | "interface" | "type" | "function-overload"), ...(("*" | "block-like" | "exports" | "require" | "directive" | "expression" | "iife" | "multiline-block-like" | "multiline-expression" | "multiline-const" | "multiline-export" | "multiline-let" | "multiline-var" | "singleline-const" | "singleline-export" | "singleline-let" | "singleline-var" | "block" | "empty" | "function" | "ts-method" | "break" | "case" | "class" | "const" | "continue" | "debugger" | "default" | "do" | "export" | "for" | "if" | "import" | "let" | "return" | "switch" | "throw" | "try" | "var" | "while" | "with" | "cjs-export" | "cjs-import" | "enum" | "interface" | "type" | "function-overload"))[]])
+type StylePaddingLineBetweenStatements = {
+  blankLine: _StylePaddingLineBetweenStatementsPaddingType
+  prev: _StylePaddingLineBetweenStatementsStatementType
+  next: _StylePaddingLineBetweenStatementsStatementType
+}[]
+// ----- style/quote-props -----
+type StyleQuoteProps = ([]|[("always" | "as-needed" | "consistent" | "consistent-as-needed")] | []|[("always" | "as-needed" | "consistent" | "consistent-as-needed")]|[("always" | "as-needed" | "consistent" | "consistent-as-needed"), {
+  keywords?: boolean
+  unnecessary?: boolean
+  numbers?: boolean
+}])
+// ----- style/quotes -----
+type StyleQuotes = []|[("single" | "double" | "backtick")]|[("single" | "double" | "backtick"), ("avoid-escape" | {
+  avoidEscape?: boolean
+  allowTemplateLiterals?: boolean
+  ignoreStringLiterals?: boolean
+})]
+// ----- style/rest-spread-spacing -----
+type StyleRestSpreadSpacing = []|[("always" | "never")]
+// ----- style/semi -----
+type StyleSemi = ([]|["never"]|["never", {
+  beforeStatementContinuationChars?: ("always" | "any" | "never")
+}] | []|["always"]|["always", {
+  omitLastInOneLineBlock?: boolean
+  omitLastInOneLineClassBody?: boolean
+}])
+// ----- style/semi-spacing -----
+type StyleSemiSpacing = []|[{
+  before?: boolean
+  after?: boolean
+}]
+// ----- style/semi-style -----
+type StyleSemiStyle = []|[("last" | "first")]
+// ----- style/space-before-blocks -----
+type StyleSpaceBeforeBlocks = []|[(("always" | "never") | {
+  keywords?: ("always" | "never" | "off")
+  functions?: ("always" | "never" | "off")
+  classes?: ("always" | "never" | "off")
+})]
+// ----- style/space-before-function-paren -----
+type StyleSpaceBeforeFunctionParen = []|[(("always" | "never") | {
+  anonymous?: ("always" | "never" | "ignore")
+  named?: ("always" | "never" | "ignore")
+  asyncArrow?: ("always" | "never" | "ignore")
+})]
+// ----- style/space-in-parens -----
+type StyleSpaceInParens = []|[("always" | "never")]|[("always" | "never"), {
+  exceptions?: ("{}" | "[]" | "()" | "empty")[]
+}]
+// ----- style/space-infix-ops -----
+type StyleSpaceInfixOps = []|[{
+  int32Hint?: boolean
+}]
+// ----- style/space-unary-ops -----
+type StyleSpaceUnaryOps = []|[{
+  words?: boolean
+  nonwords?: boolean
+  overrides?: {
+    [k: string]: boolean | undefined
+  }
+}]
+// ----- style/spaced-comment -----
+type StyleSpacedComment = []|[("always" | "never")]|[("always" | "never"), {
+  exceptions?: string[]
+  markers?: string[]
+  line?: {
+    exceptions?: string[]
+    markers?: string[]
+  }
+  block?: {
+    exceptions?: string[]
+    markers?: string[]
+    balanced?: boolean
+  }
+}]
+// ----- style/switch-colon-spacing -----
+type StyleSwitchColonSpacing = []|[{
+  before?: boolean
+  after?: boolean
+}]
+// ----- style/template-curly-spacing -----
+type StyleTemplateCurlySpacing = []|[("always" | "never")]
+// ----- style/template-tag-spacing -----
+type StyleTemplateTagSpacing = []|[("always" | "never")]
+// ----- style/type-annotation-spacing -----
+type StyleTypeAnnotationSpacing = []|[{
+  before?: boolean
+  after?: boolean
+  overrides?: {
+    colon?: _StyleTypeAnnotationSpacing_SpacingConfig
+    arrow?: _StyleTypeAnnotationSpacing_SpacingConfig
+    variable?: _StyleTypeAnnotationSpacing_SpacingConfig
+    parameter?: _StyleTypeAnnotationSpacing_SpacingConfig
+    property?: _StyleTypeAnnotationSpacing_SpacingConfig
+    returnType?: _StyleTypeAnnotationSpacing_SpacingConfig
+  }
+}]
+interface _StyleTypeAnnotationSpacing_SpacingConfig {
+  before?: boolean
+  after?: boolean
+}
+// ----- style/wrap-iife -----
+type StyleWrapIife = []|[("outside" | "inside" | "any")]|[("outside" | "inside" | "any"), {
+  functionPrototypeMethods?: boolean
+}]
+// ----- style/yield-star-spacing -----
+type StyleYieldStarSpacing = []|[(("before" | "after" | "both" | "neither") | {
+  before?: boolean
+  after?: boolean
+})]
+
+declare function stylistic(options?: stylistic.Options): Promise<[{
+    readonly name: "w5s/style/setup";
+    readonly plugins: {
+        readonly style: typeof _stylistic_eslint_plugin;
+    };
+}, {
+    readonly name: "w5s/style/rules";
+    readonly rules: {
+        'style/array-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/array-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/array-element-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/arrow-parens'?: eslint.Linter.RuleEntry<undefined>;
+        'style/arrow-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/block-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/brace-style'?: eslint.Linter.RuleEntry<undefined>;
+        'style/comma-dangle'?: eslint.Linter.RuleEntry<undefined>;
+        'style/comma-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/comma-style'?: eslint.Linter.RuleEntry<undefined>;
+        'style/computed-property-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/dot-location'?: eslint.Linter.RuleEntry<undefined>;
+        'style/eol-last'?: eslint.Linter.RuleEntry<undefined>;
+        'style/func-call-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/function-call-argument-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/function-call-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/function-paren-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/generator-star-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/implicit-arrow-linebreak'?: eslint.Linter.RuleEntry<undefined>;
+        'style/indent'?: eslint.Linter.RuleEntry<undefined>;
+        'style/indent-binary-ops'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-child-element-spacing'?: eslint.Linter.RuleEntry<[]>;
+        'style/jsx-closing-bracket-location'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-closing-tag-location'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-curly-brace-presence'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-equals-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-first-prop-new-line'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-function-call-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-indent'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-indent-props'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-max-props-per-line'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-one-expression-per-line'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-pascal-case'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-props-no-multi-spaces'?: eslint.Linter.RuleEntry<[]>;
+        'style/jsx-quotes'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-self-closing-comp'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-sort-props'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-tag-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/jsx-wrap-multilines'?: eslint.Linter.RuleEntry<undefined>;
+        'style/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/keyword-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/line-comment-position'?: eslint.Linter.RuleEntry<undefined>;
+        'style/linebreak-style'?: eslint.Linter.RuleEntry<undefined>;
+        'style/lines-around-comment'?: eslint.Linter.RuleEntry<undefined>;
+        'style/lines-between-class-members'?: eslint.Linter.RuleEntry<undefined>;
+        'style/max-len'?: eslint.Linter.RuleEntry<undefined>;
+        'style/max-statements-per-line'?: eslint.Linter.RuleEntry<undefined>;
+        'style/member-delimiter-style'?: eslint.Linter.RuleEntry<undefined>;
+        'style/multiline-comment-style'?: eslint.Linter.RuleEntry<undefined>;
+        'style/multiline-ternary'?: eslint.Linter.RuleEntry<undefined>;
+        'style/new-parens'?: eslint.Linter.RuleEntry<undefined>;
+        'style/newline-per-chained-call'?: eslint.Linter.RuleEntry<undefined>;
+        'style/no-confusing-arrow'?: eslint.Linter.RuleEntry<undefined>;
+        'style/no-extra-parens'?: eslint.Linter.RuleEntry<undefined>;
+        'style/no-extra-semi'?: eslint.Linter.RuleEntry<[]>;
+        'style/no-floating-decimal'?: eslint.Linter.RuleEntry<[]>;
+        'style/no-mixed-operators'?: eslint.Linter.RuleEntry<undefined>;
+        'style/no-mixed-spaces-and-tabs'?: eslint.Linter.RuleEntry<undefined>;
+        'style/no-multi-spaces'?: eslint.Linter.RuleEntry<undefined>;
+        'style/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        'style/no-tabs'?: eslint.Linter.RuleEntry<undefined>;
+        'style/no-trailing-spaces'?: eslint.Linter.RuleEntry<undefined>;
+        'style/no-whitespace-before-property'?: eslint.Linter.RuleEntry<[]>;
+        'style/nonblock-statement-body-position'?: eslint.Linter.RuleEntry<undefined>;
+        'style/object-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/object-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/object-property-newline'?: eslint.Linter.RuleEntry<undefined>;
+        'style/one-var-declaration-per-line'?: eslint.Linter.RuleEntry<undefined>;
+        'style/operator-linebreak'?: eslint.Linter.RuleEntry<undefined>;
+        'style/padded-blocks'?: eslint.Linter.RuleEntry<undefined>;
+        'style/padding-line-between-statements'?: eslint.Linter.RuleEntry<undefined>;
+        'style/quote-props'?: eslint.Linter.RuleEntry<undefined>;
+        'style/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        'style/rest-spread-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/semi'?: eslint.Linter.RuleEntry<undefined>;
+        'style/semi-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/semi-style'?: eslint.Linter.RuleEntry<undefined>;
+        'style/space-before-blocks'?: eslint.Linter.RuleEntry<undefined>;
+        'style/space-before-function-paren'?: eslint.Linter.RuleEntry<undefined>;
+        'style/space-in-parens'?: eslint.Linter.RuleEntry<undefined>;
+        'style/space-infix-ops'?: eslint.Linter.RuleEntry<undefined>;
+        'style/space-unary-ops'?: eslint.Linter.RuleEntry<undefined>;
+        'style/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        'style/switch-colon-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/template-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/template-tag-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/type-annotation-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        'style/type-generic-spacing'?: eslint.Linter.RuleEntry<[]>;
+        'style/type-named-tuple-spacing'?: eslint.Linter.RuleEntry<[]>;
+        'style/wrap-iife'?: eslint.Linter.RuleEntry<undefined>;
+        'style/wrap-regex'?: eslint.Linter.RuleEntry<[]>;
+        'style/yield-star-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/array-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/array-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/array-element-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/auto'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/comma-dangle'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/comma-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/no-bigint-literals'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-binary-expression'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-binary-numeric-literals'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-comments'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-dupe-keys'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-escape-sequence-in-identifier'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-floating-decimal'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-hexadecimal-numeric-literals'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-infinity'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/no-multi-str'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-nan'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-number-props'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-numeric-separators'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-octal'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-octal-escape'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-octal-numeric-literals'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-parenthesized'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-plus-sign'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-regexp-literals'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-sparse-arrays'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-template-literals'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-undefined-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-unicode-codepoint-escapes'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/no-useless-escape'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/object-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/object-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/object-property-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/quote-props'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/sort-array-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/space-unary-ops'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsonc/valid-json-number'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsonc/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/consistent-type-specifier-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/default'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/dynamic-import-chunkname'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/export'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/exports-last'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/extensions'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/first'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/group-exports'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/imports-first'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/max-dependencies'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/named'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/namespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/newline-after-import'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-absolute-path'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-amd'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-anonymous-default-export'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-commonjs'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-cycle'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-default-export'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-deprecated'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-duplicates'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-dynamic-require'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-empty-named-blocks'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-extraneous-dependencies'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-import-module-exports'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-internal-modules'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-mutable-exports'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-named-as-default'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-named-as-default-member'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-named-default'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-named-export'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-namespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-nodejs-modules'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-relative-packages'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-relative-parent-imports'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-restricted-paths'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-self-import'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/no-unassigned-import'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-unresolved'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-unused-modules'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-useless-path-segments'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/no-webpack-loader-syntax'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'import/order'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/prefer-default-export'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'import/unambiguous'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/callback-return'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/exports-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/file-extension-in-import'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/global-require'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/handle-callback-err'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/hashbang'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-callback-literal'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/no-deprecated-api'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-exports-assign'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/no-extraneous-import'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-extraneous-require'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-hide-core-modules'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-missing-import'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-missing-require'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-mixed-requires'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-new-require'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/no-path-concat'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/no-process-env'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-process-exit'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/no-restricted-import'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-restricted-require'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-sync'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-unpublished-bin'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-unpublished-import'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-unpublished-require'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-unsupported-features/es-builtins'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-unsupported-features/es-syntax'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/no-unsupported-features/node-builtins'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/prefer-global/buffer'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/prefer-global/console'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/prefer-global/process'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/prefer-global/text-decoder'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/prefer-global/text-encoder'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/prefer-global/url'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/prefer-global/url-search-params'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/prefer-node-protocol'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'node/prefer-promises/dns'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/prefer-promises/fs'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/process-exit-as-throw'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'node/shebang'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/adjacent-overload-signatures'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/array-type'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/await-thenable'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/ban-ts-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/ban-tslint-comment'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/class-literal-property-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/class-methods-use-this'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/consistent-generic-constructors'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/consistent-indexed-object-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/consistent-return'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/consistent-type-assertions'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/consistent-type-definitions'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/consistent-type-exports'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/consistent-type-imports'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/default-param-last'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/dot-notation'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/explicit-function-return-type'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/explicit-member-accessibility'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/explicit-module-boundary-types'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/init-declarations'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/max-params'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/member-ordering'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/method-signature-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/naming-convention'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-array-constructor'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-array-delete'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-base-to-string'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-confusing-non-null-assertion'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-confusing-void-expression'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-deprecated'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-dupe-class-members'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-duplicate-enum-values'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-duplicate-type-constituents'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-dynamic-delete'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-empty-function'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-empty-interface'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-empty-object-type'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-explicit-any'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-extra-non-null-assertion'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-extraneous-class'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-floating-promises'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-for-in-array'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-implied-eval'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-import-type-side-effects'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-inferrable-types'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-invalid-this'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-invalid-void-type'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-loop-func'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-loss-of-precision'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-magic-numbers'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-meaningless-void-operator'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-misused-new'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-misused-promises'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-misused-spread'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-mixed-enums'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-namespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-non-null-asserted-nullish-coalescing'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-non-null-asserted-optional-chain'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-non-null-assertion'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-redeclare'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-redundant-type-constituents'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-require-imports'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-restricted-imports'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-restricted-types'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-shadow'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-this-alias'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-type-alias'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-unnecessary-boolean-literal-compare'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-unnecessary-condition'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-unnecessary-parameter-property-assignment'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unnecessary-qualifier'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unnecessary-template-expression'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unnecessary-type-arguments'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unnecessary-type-assertion'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-unnecessary-type-constraint'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unnecessary-type-parameters'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-argument'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-assignment'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-call'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-declaration-merging'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-enum-comparison'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-function-type'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-member-access'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-return'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-type-assertion'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unsafe-unary-minus'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-unused-expressions'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-unused-vars'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-use-before-define'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-useless-constructor'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-useless-empty-export'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/no-var-requires'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/no-wrapper-object-types'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/non-nullable-type-assertion-style'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/only-throw-error'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/parameter-properties'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/prefer-as-const'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-destructuring'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/prefer-enum-initializers'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-find'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-for-of'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-function-type'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-includes'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-literal-enum-member'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/prefer-namespace-keyword'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-nullish-coalescing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/prefer-optional-chain'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/prefer-promise-reject-errors'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/prefer-readonly'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/prefer-readonly-parameter-types'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/prefer-reduce-type-parameter'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-regexp-exec'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-return-this-type'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/prefer-string-starts-ends-with'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/prefer-ts-expect-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/promise-function-async'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/related-getter-setter-pairs'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/require-array-sort-compare'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/require-await'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'ts/restrict-plus-operands'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/restrict-template-expressions'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/return-await'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/sort-type-constituents'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/strict-boolean-expressions'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/switch-exhaustiveness-check'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/triple-slash-reference'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/typedef'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/unbound-method'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/unified-signatures'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'ts/use-unknown-in-catch-callback-variable'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/better-regex'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/catch-error-name'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/consistent-destructuring'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/consistent-empty-array-spread'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/consistent-existence-index-check'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/consistent-function-scoping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/custom-error-definition'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/empty-brace-spaces'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/error-message'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/escape-case'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/expiring-todo-comments'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/explicit-length-check'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/filename-case'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/import-index'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/import-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/new-for-builtins'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-abusive-eslint-disable'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-anonymous-default-export'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-array-callback-reference'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-array-for-each'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-array-instanceof'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-array-method-this-argument'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-array-push-push'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/no-array-reduce'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/no-await-expression-member'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-await-in-promise-methods'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-console-spaces'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-document-cookie'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-empty-file'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-fn-reference-in-iterator'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-for-loop'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-hex-escape'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-instanceof-array'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-invalid-fetch-options'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-invalid-remove-event-listener'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-keyword-prefix'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/no-length-as-slice-end'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-lonely-if'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-magic-array-flat-depth'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-negated-condition'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-negation-in-equality-check'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-nested-ternary'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-new-array'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-new-buffer'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-null'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/no-object-as-default-parameter'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-process-exit'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-reduce'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-single-promise-in-promise-methods'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-static-only-class'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-thenable'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-this-assignment'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-typeof-undefined'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/no-unnecessary-await'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-unnecessary-polyfills'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/no-unreadable-array-destructuring'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-unreadable-iife'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-unsafe-regex'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-unused-properties'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-useless-fallback-in-spread'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-useless-length-check'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-useless-promise-resolve-reject'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-useless-spread'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-useless-switch-case'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/no-useless-undefined'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/no-zero-fractions'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/number-literal-case'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/numeric-separators-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-add-event-listener'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-array-find'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-array-flat'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-array-flat-map'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-array-index-of'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-array-some'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-at'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-blob-reading-methods'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-code-point'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-dataset'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-date-now'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-default-parameters'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-dom-node-append'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-dom-node-dataset'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-dom-node-remove'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-dom-node-text-content'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-event-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-event-target'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-exponentiation-operator'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-export-from'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-flat-map'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-global-this'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-includes'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-json-parse-buffer'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-keyboard-event-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-logical-operator-over-ternary'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-math-min-max'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-math-trunc'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-modern-dom-apis'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-modern-math-apis'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-module'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-native-coercion-functions'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-negative-index'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-node-append'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-node-protocol'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-node-remove'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-number-properties'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-object-from-entries'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-object-has-own'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-optional-catch-binding'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-prototype-methods'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-query-selector'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-reflect-apply'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-regexp-test'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-replace-all'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-set-has'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-set-size'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-spread'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-starts-ends-with'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-string-raw'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-string-replace-all'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-string-slice'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-string-starts-ends-with'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-string-trim-start-end'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-structured-clone'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-switch'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-ternary'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/prefer-text-content'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-top-level-await'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-trim-start-end'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prefer-type-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/prevent-abbreviations'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/regex-shorthand'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/relative-url-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/require-array-join-separator'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/require-number-to-fixed-digits-argument'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/require-post-message-target-origin'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/string-content'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/switch-case-braces'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/template-indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'unicorn/text-encoding-identifier-case'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'unicorn/throw-new-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/block-mapping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-colon-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-mapping-question-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/block-sequence-hyphen-indicator-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/file-extension'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-mapping-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/flow-sequence-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-name-casing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-empty-document'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-mapping-value'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-empty-sequence-entry'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-irregular-whitespace'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/no-tab-indent'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/no-trailing-zeros'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/plain-scalar'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/require-string-key'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'yml/sort-keys'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/sort-sequence-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'yml/vue-custom-block/no-parsing-error'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/check-access'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/check-alignment'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/check-examples'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/check-indentation'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/check-line-alignment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/check-param-names'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/check-property-names'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/check-syntax'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/check-tag-names'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/check-template-names'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/check-types'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/check-values'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/convert-to-jsdoc-comments'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/empty-tags'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/implements-on-classes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/imports-as-dependencies'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/informative-docs'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/lines-before-block'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/match-description'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/match-name'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/multiline-blocks'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/no-bad-blocks'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/no-blank-block-descriptions'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/no-blank-blocks'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/no-defaults'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/no-missing-syntax'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/no-multi-asterisks'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/no-restricted-syntax'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/no-types'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/no-undefined-types'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-asterisk-prefix'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-description'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-description-complete-sentence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-example'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-file-overview'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-hyphen-before-param-description'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-jsdoc'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-param'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-param-description'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-param-name'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-param-type'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-property'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/require-property-description'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/require-property-name'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/require-property-type'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'jsdoc/require-returns'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-returns-check'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-returns-description'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-returns-type'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-template'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-throws'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-yields'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/require-yields-check'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/sort-tags'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/tag-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/text-escaping'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'jsdoc/valid-types'?: eslint.Linter.RuleEntry<undefined>;
+    };
+}]>;
+declare namespace stylistic {
+    type Rules = RuleOptions;
+    interface Options extends Pick<PluginOptionsBase<Rules>, 'rules'>, StylisticParameters {
+    }
+}
+
 declare function ts(options?: ts.Options): Promise<[{
     readonly name: "w5s/ts/setup";
     readonly plugins: {
@@ -4511,2049 +8784,11 @@ declare function ts(options?: ts.Options): Promise<[{
     };
 }[]]>;
 declare namespace ts {
-    type Rules = RuleOptions$3;
+    type Rules = RuleOptions$1;
     interface Options extends PluginOptionsBase<Rules> {
         typeChecked?: boolean;
     }
 }
-
-/* eslint-disable unicorn/no-abusive-eslint-disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-declare module 'eslint' {
-  namespace Linter {
-    interface RulesRecord extends RuleOptions$2 {}
-  }
-}
-
-interface RuleOptions$2 {
-  /**
-   * Checks that `@access` tags have a valid value.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-access.md#repos-sticky-header
-   */
-  'jsdoc/check-access'?: Linter.RuleEntry<[]>
-  /**
-   * Reports invalid alignment of JSDoc block asterisks.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-alignment.md#repos-sticky-header
-   */
-  'jsdoc/check-alignment'?: Linter.RuleEntry<[]>
-  /**
-   * Ensures that (JavaScript) examples within JSDoc adhere to ESLint rules.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-examples.md#repos-sticky-header
-   */
-  'jsdoc/check-examples'?: Linter.RuleEntry<JsdocCheckExamples>
-  /**
-   * Reports invalid padding inside JSDoc blocks.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-indentation.md#repos-sticky-header
-   */
-  'jsdoc/check-indentation'?: Linter.RuleEntry<JsdocCheckIndentation>
-  /**
-   * Reports invalid alignment of JSDoc block lines.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-line-alignment.md#repos-sticky-header
-   */
-  'jsdoc/check-line-alignment'?: Linter.RuleEntry<JsdocCheckLineAlignment>
-  /**
-   * Ensures that parameter names in JSDoc match those in the function declaration.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-param-names.md#repos-sticky-header
-   */
-  'jsdoc/check-param-names'?: Linter.RuleEntry<JsdocCheckParamNames>
-  /**
-   * Ensures that property names in JSDoc are not duplicated on the same block and that nested properties have defined roots.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-property-names.md#repos-sticky-header
-   */
-  'jsdoc/check-property-names'?: Linter.RuleEntry<JsdocCheckPropertyNames>
-  /**
-   * Reports against syntax not valid for the mode (e.g., Google Closure Compiler in non-Closure mode).
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-syntax.md#repos-sticky-header
-   */
-  'jsdoc/check-syntax'?: Linter.RuleEntry<[]>
-  /**
-   * Reports invalid block tag names.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-tag-names.md#repos-sticky-header
-   */
-  'jsdoc/check-tag-names'?: Linter.RuleEntry<JsdocCheckTagNames>
-  /**
-   * Checks that any `@template` names are actually used in the connected `@typedef` or type alias.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-template-names.md#repos-sticky-header
-   */
-  'jsdoc/check-template-names'?: Linter.RuleEntry<[]>
-  /**
-   * Reports invalid types.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-types.md#repos-sticky-header
-   */
-  'jsdoc/check-types'?: Linter.RuleEntry<JsdocCheckTypes>
-  /**
-   * This rule checks the values for a handful of tags: `@version`, `@since`, `@license` and `@author`.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-values.md#repos-sticky-header
-   */
-  'jsdoc/check-values'?: Linter.RuleEntry<JsdocCheckValues>
-  /**
-   * Converts non-JSDoc comments preceding or following nodes into JSDoc ones
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/convert-to-jsdoc-comments.md#repos-sticky-header
-   */
-  'jsdoc/convert-to-jsdoc-comments'?: Linter.RuleEntry<JsdocConvertToJsdocComments>
-  /**
-   * Expects specific tags to be empty of any content.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/empty-tags.md#repos-sticky-header
-   */
-  'jsdoc/empty-tags'?: Linter.RuleEntry<JsdocEmptyTags>
-  /**
-   * Reports an issue with any non-constructor function using `@implements`.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/implements-on-classes.md#repos-sticky-header
-   */
-  'jsdoc/implements-on-classes'?: Linter.RuleEntry<JsdocImplementsOnClasses>
-  /**
-   * Reports if JSDoc `import()` statements point to a package which is not listed in `dependencies` or `devDependencies`
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/imports-as-dependencies.md#repos-sticky-header
-   */
-  'jsdoc/imports-as-dependencies'?: Linter.RuleEntry<[]>
-  /**
-   * This rule reports doc comments that only restate their attached name.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/informative-docs.md#repos-sticky-header
-   */
-  'jsdoc/informative-docs'?: Linter.RuleEntry<JsdocInformativeDocs>
-  /**
-   * Enforces minimum number of newlines before JSDoc comment blocks
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/lines-before-block.md#repos-sticky-header
-   */
-  'jsdoc/lines-before-block'?: Linter.RuleEntry<JsdocLinesBeforeBlock>
-  /**
-   * Enforces a regular expression pattern on descriptions.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/match-description.md#repos-sticky-header
-   */
-  'jsdoc/match-description'?: Linter.RuleEntry<JsdocMatchDescription>
-  /**
-   * Reports the name portion of a JSDoc tag if matching or not matching a given regular expression.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/match-name.md#repos-sticky-header
-   */
-  'jsdoc/match-name'?: Linter.RuleEntry<JsdocMatchName>
-  /**
-   * Controls how and whether jsdoc blocks can be expressed as single or multiple line blocks.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/multiline-blocks.md#repos-sticky-header
-   */
-  'jsdoc/multiline-blocks'?: Linter.RuleEntry<JsdocMultilineBlocks>
-  /**
-   * This rule checks for multi-line-style comments which fail to meet the criteria of a jsdoc block.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-bad-blocks.md#repos-sticky-header
-   */
-  'jsdoc/no-bad-blocks'?: Linter.RuleEntry<JsdocNoBadBlocks>
-  /**
-   * Detects and removes extra lines of a blank block description
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-blank-block-descriptions.md#repos-sticky-header
-   */
-  'jsdoc/no-blank-block-descriptions'?: Linter.RuleEntry<[]>
-  /**
-   * Removes empty blocks with nothing but possibly line breaks
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-blank-blocks.md#repos-sticky-header
-   */
-  'jsdoc/no-blank-blocks'?: Linter.RuleEntry<JsdocNoBlankBlocks>
-  /**
-   * This rule reports defaults being used on the relevant portion of `@param` or `@default`.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-defaults.md#repos-sticky-header
-   */
-  'jsdoc/no-defaults'?: Linter.RuleEntry<JsdocNoDefaults>
-  /**
-   * Reports when certain comment structures are always expected.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-missing-syntax.md#repos-sticky-header
-   */
-  'jsdoc/no-missing-syntax'?: Linter.RuleEntry<JsdocNoMissingSyntax>
-  /**
-   * Prevents use of multiple asterisks at the beginning of lines.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-multi-asterisks.md#repos-sticky-header
-   */
-  'jsdoc/no-multi-asterisks'?: Linter.RuleEntry<JsdocNoMultiAsterisks>
-  /**
-   * Reports when certain comment structures are present.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-restricted-syntax.md#repos-sticky-header
-   */
-  'jsdoc/no-restricted-syntax'?: Linter.RuleEntry<JsdocNoRestrictedSyntax>
-  /**
-   * This rule reports types being used on `@param` or `@returns`.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-types.md#repos-sticky-header
-   */
-  'jsdoc/no-types'?: Linter.RuleEntry<JsdocNoTypes>
-  /**
-   * Checks that types in jsdoc comments are defined.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/no-undefined-types.md#repos-sticky-header
-   */
-  'jsdoc/no-undefined-types'?: Linter.RuleEntry<JsdocNoUndefinedTypes>
-  /**
-   * Requires that each JSDoc line starts with an `*`.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-asterisk-prefix.md#repos-sticky-header
-   */
-  'jsdoc/require-asterisk-prefix'?: Linter.RuleEntry<JsdocRequireAsteriskPrefix>
-  /**
-   * Requires that all functions have a description.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-description.md#repos-sticky-header
-   */
-  'jsdoc/require-description'?: Linter.RuleEntry<JsdocRequireDescription>
-  /**
-   * Requires that block description, explicit `@description`, and `@param`/`@returns` tag descriptions are written in complete sentences.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-description-complete-sentence.md#repos-sticky-header
-   */
-  'jsdoc/require-description-complete-sentence'?: Linter.RuleEntry<JsdocRequireDescriptionCompleteSentence>
-  /**
-   * Requires that all functions have examples.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-example.md#repos-sticky-header
-   */
-  'jsdoc/require-example'?: Linter.RuleEntry<JsdocRequireExample>
-  /**
-   * Checks that all files have one `@file`, `@fileoverview`, or `@overview` tag at the beginning of the file.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-file-overview.md#repos-sticky-header
-   */
-  'jsdoc/require-file-overview'?: Linter.RuleEntry<JsdocRequireFileOverview>
-  /**
-   * Requires a hyphen before the `@param` description.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-hyphen-before-param-description.md#repos-sticky-header
-   */
-  'jsdoc/require-hyphen-before-param-description'?: Linter.RuleEntry<JsdocRequireHyphenBeforeParamDescription>
-  /**
-   * Require JSDoc comments
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-jsdoc.md#repos-sticky-header
-   */
-  'jsdoc/require-jsdoc'?: Linter.RuleEntry<JsdocRequireJsdoc>
-  /**
-   * Requires that all function parameters are documented.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-param.md#repos-sticky-header
-   */
-  'jsdoc/require-param'?: Linter.RuleEntry<JsdocRequireParam>
-  /**
-   * Requires that each `@param` tag has a `description` value.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-param-description.md#repos-sticky-header
-   */
-  'jsdoc/require-param-description'?: Linter.RuleEntry<JsdocRequireParamDescription>
-  /**
-   * Requires that all function parameters have names.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-param-name.md#repos-sticky-header
-   */
-  'jsdoc/require-param-name'?: Linter.RuleEntry<JsdocRequireParamName>
-  /**
-   * Requires that each `@param` tag has a `type` value.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-param-type.md#repos-sticky-header
-   */
-  'jsdoc/require-param-type'?: Linter.RuleEntry<JsdocRequireParamType>
-  /**
-   * Requires that all `@typedef` and `@namespace` tags have `@property` when their type is a plain `object`, `Object`, or `PlainObject`.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property.md#repos-sticky-header
-   */
-  'jsdoc/require-property'?: Linter.RuleEntry<[]>
-  /**
-   * Requires that each `@property` tag has a `description` value.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property-description.md#repos-sticky-header
-   */
-  'jsdoc/require-property-description'?: Linter.RuleEntry<[]>
-  /**
-   * Requires that all function `@property` tags have names.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property-name.md#repos-sticky-header
-   */
-  'jsdoc/require-property-name'?: Linter.RuleEntry<[]>
-  /**
-   * Requires that each `@property` tag has a `type` value.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-property-type.md#repos-sticky-header
-   */
-  'jsdoc/require-property-type'?: Linter.RuleEntry<[]>
-  /**
-   * Requires that returns are documented.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns.md#repos-sticky-header
-   */
-  'jsdoc/require-returns'?: Linter.RuleEntry<JsdocRequireReturns>
-  /**
-   * Requires a return statement in function body if a `@returns` tag is specified in jsdoc comment.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns-check.md#repos-sticky-header
-   */
-  'jsdoc/require-returns-check'?: Linter.RuleEntry<JsdocRequireReturnsCheck>
-  /**
-   * Requires that the `@returns` tag has a `description` value.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns-description.md#repos-sticky-header
-   */
-  'jsdoc/require-returns-description'?: Linter.RuleEntry<JsdocRequireReturnsDescription>
-  /**
-   * Requires that `@returns` tag has `type` value.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-returns-type.md#repos-sticky-header
-   */
-  'jsdoc/require-returns-type'?: Linter.RuleEntry<JsdocRequireReturnsType>
-  /**
-   * Requires template tags for each generic type parameter
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-template.md#repos-sticky-header
-   */
-  'jsdoc/require-template'?: Linter.RuleEntry<JsdocRequireTemplate>
-  /**
-   * Requires that throw statements are documented.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-throws.md#repos-sticky-header
-   */
-  'jsdoc/require-throws'?: Linter.RuleEntry<JsdocRequireThrows>
-  /**
-   * Requires yields are documented.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-yields.md#repos-sticky-header
-   */
-  'jsdoc/require-yields'?: Linter.RuleEntry<JsdocRequireYields>
-  /**
-   * Requires a yield statement in function body if a `@yields` tag is specified in jsdoc comment.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/require-yields-check.md#repos-sticky-header
-   */
-  'jsdoc/require-yields-check'?: Linter.RuleEntry<JsdocRequireYieldsCheck>
-  /**
-   * Sorts tags by a specified sequence according to tag name.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/sort-tags.md#repos-sticky-header
-   */
-  'jsdoc/sort-tags'?: Linter.RuleEntry<JsdocSortTags>
-  /**
-   * Enforces lines (or no lines) between tags.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/tag-lines.md#repos-sticky-header
-   */
-  'jsdoc/tag-lines'?: Linter.RuleEntry<JsdocTagLines>
-  /**
-   * Auto-escape certain characters that are input within block and tag descriptions.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/text-escaping.md#repos-sticky-header
-   */
-  'jsdoc/text-escaping'?: Linter.RuleEntry<JsdocTextEscaping>
-  /**
-   * Requires all types to be valid JSDoc or Closure compiler types without syntax errors.
-   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/valid-types.md#repos-sticky-header
-   */
-  'jsdoc/valid-types'?: Linter.RuleEntry<JsdocValidTypes>
-}
-
-/* ======= Declarations ======= */
-// ----- jsdoc/check-examples -----
-type JsdocCheckExamples = []|[{
-  allowInlineConfig?: boolean
-  baseConfig?: {
-    [k: string]: unknown | undefined
-  }
-  captionRequired?: boolean
-  checkDefaults?: boolean
-  checkEslintrc?: boolean
-  checkParams?: boolean
-  checkProperties?: boolean
-  configFile?: string
-  exampleCodeRegex?: string
-  matchingFileName?: string
-  matchingFileNameDefaults?: string
-  matchingFileNameParams?: string
-  matchingFileNameProperties?: string
-  noDefaultExampleRules?: boolean
-  paddedIndent?: number
-  rejectExampleCodeRegex?: string
-  reportUnusedDisableDirectives?: boolean
-}]
-// ----- jsdoc/check-indentation -----
-type JsdocCheckIndentation = []|[{
-  excludeTags?: string[]
-}]
-// ----- jsdoc/check-line-alignment -----
-type JsdocCheckLineAlignment = []|[("always" | "never" | "any")]|[("always" | "never" | "any"), {
-  customSpacings?: {
-    postDelimiter?: number
-    postHyphen?: number
-    postName?: number
-    postTag?: number
-    postType?: number
-  }
-  preserveMainDescriptionPostDelimiter?: boolean
-  tags?: string[]
-  wrapIndent?: string
-  disableWrapIndent?: boolean
-}]
-// ----- jsdoc/check-param-names -----
-type JsdocCheckParamNames = []|[{
-  allowExtraTrailingParamDocs?: boolean
-  checkDestructured?: boolean
-  checkRestProperty?: boolean
-  checkTypesPattern?: string
-  disableExtraPropertyReporting?: boolean
-  disableMissingParamChecks?: boolean
-  enableFixer?: boolean
-  useDefaultObjectProperties?: boolean
-}]
-// ----- jsdoc/check-property-names -----
-type JsdocCheckPropertyNames = []|[{
-  enableFixer?: boolean
-}]
-// ----- jsdoc/check-tag-names -----
-type JsdocCheckTagNames = []|[{
-  definedTags?: string[]
-  enableFixer?: boolean
-  jsxTags?: boolean
-  typed?: boolean
-}]
-// ----- jsdoc/check-types -----
-type JsdocCheckTypes = []|[{
-  exemptTagContexts?: {
-    tag?: string
-    types?: (boolean | string[])
-  }[]
-  noDefaults?: boolean
-  unifyParentAndChildTypeChecks?: boolean
-}]
-// ----- jsdoc/check-values -----
-type JsdocCheckValues = []|[{
-  allowedAuthors?: string[]
-  allowedLicenses?: (string[] | boolean)
-  licensePattern?: string
-  numericOnlyVariation?: boolean
-}]
-// ----- jsdoc/convert-to-jsdoc-comments -----
-type JsdocConvertToJsdocComments = []|[{
-  allowedPrefixes?: string[]
-  contexts?: (string | {
-    context?: string
-    inlineCommentBlock?: boolean
-  })[]
-  contextsAfter?: (string | {
-    context?: string
-    inlineCommentBlock?: boolean
-  })[]
-  contextsBeforeAndAfter?: (string | {
-    context?: string
-    inlineCommentBlock?: boolean
-  })[]
-  enableFixer?: boolean
-  enforceJsdocLineStyle?: ("multi" | "single")
-  lineOrBlockStyle?: ("block" | "line" | "both")
-}]
-// ----- jsdoc/empty-tags -----
-type JsdocEmptyTags = []|[{
-  tags?: string[]
-}]
-// ----- jsdoc/implements-on-classes -----
-type JsdocImplementsOnClasses = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-}]
-// ----- jsdoc/informative-docs -----
-type JsdocInformativeDocs = []|[{
-  aliases?: {
-    [k: string]: string[]
-  }
-  excludedTags?: string[]
-  uselessWords?: string[]
-}]
-// ----- jsdoc/lines-before-block -----
-type JsdocLinesBeforeBlock = []|[{
-  checkBlockStarts?: boolean
-  excludedTags?: string[]
-  ignoreSameLine?: boolean
-  lines?: number
-}]
-// ----- jsdoc/match-description -----
-type JsdocMatchDescription = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  mainDescription?: (string | boolean | {
-    match?: (string | boolean)
-    message?: string
-  })
-  matchDescription?: string
-  message?: string
-  nonemptyTags?: boolean
-  tags?: {
-    [k: string]: (string | true | {
-      match?: (string | true)
-      message?: string
-    })
-  }
-}]
-// ----- jsdoc/match-name -----
-type JsdocMatchName = []|[{
-  match: {
-    allowName?: string
-    comment?: string
-    context?: string
-    disallowName?: string
-    message?: string
-    tags?: string[]
-    [k: string]: unknown | undefined
-  }[]
-}]
-// ----- jsdoc/multiline-blocks -----
-type JsdocMultilineBlocks = []|[{
-  allowMultipleTags?: boolean
-  minimumLengthForMultiline?: number
-  multilineTags?: ("*" | string[])
-  noFinalLineText?: boolean
-  noMultilineBlocks?: boolean
-  noSingleLineBlocks?: boolean
-  noZeroLineText?: boolean
-  singleLineTags?: string[]
-}]
-// ----- jsdoc/no-bad-blocks -----
-type JsdocNoBadBlocks = []|[{
-  ignore?: string[]
-  preventAllMultiAsteriskBlocks?: boolean
-}]
-// ----- jsdoc/no-blank-blocks -----
-type JsdocNoBlankBlocks = []|[{
-  enableFixer?: boolean
-}]
-// ----- jsdoc/no-defaults -----
-type JsdocNoDefaults = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  noOptionalParamNames?: boolean
-}]
-// ----- jsdoc/no-missing-syntax -----
-type JsdocNoMissingSyntax = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-    message?: string
-    minimum?: number
-  })[]
-}]
-// ----- jsdoc/no-multi-asterisks -----
-type JsdocNoMultiAsterisks = []|[{
-  allowWhitespace?: boolean
-  preventAtEnd?: boolean
-  preventAtMiddleLines?: boolean
-}]
-// ----- jsdoc/no-restricted-syntax -----
-type JsdocNoRestrictedSyntax = []|[{
-  contexts: (string | {
-    comment?: string
-    context?: string
-    message?: string
-  })[]
-}]
-// ----- jsdoc/no-types -----
-type JsdocNoTypes = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-}]
-// ----- jsdoc/no-undefined-types -----
-type JsdocNoUndefinedTypes = []|[{
-  definedTypes?: string[]
-  disableReporting?: boolean
-  markVariablesAsUsed?: boolean
-}]
-// ----- jsdoc/require-asterisk-prefix -----
-type JsdocRequireAsteriskPrefix = []|[("always" | "never" | "any")]|[("always" | "never" | "any"), {
-  tags?: {
-    always?: string[]
-    any?: string[]
-    never?: string[]
-    [k: string]: unknown | undefined
-  }
-}]
-// ----- jsdoc/require-description -----
-type JsdocRequireDescription = []|[{
-  checkConstructors?: boolean
-  checkGetters?: boolean
-  checkSetters?: boolean
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  descriptionStyle?: ("body" | "tag" | "any")
-  exemptedBy?: string[]
-}]
-// ----- jsdoc/require-description-complete-sentence -----
-type JsdocRequireDescriptionCompleteSentence = []|[{
-  abbreviations?: string[]
-  newlineBeforeCapsAssumesBadSentenceEnd?: boolean
-  tags?: string[]
-}]
-// ----- jsdoc/require-example -----
-type JsdocRequireExample = []|[{
-  checkConstructors?: boolean
-  checkGetters?: boolean
-  checkSetters?: boolean
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  enableFixer?: boolean
-  exemptedBy?: string[]
-  exemptNoArguments?: boolean
-}]
-// ----- jsdoc/require-file-overview -----
-type JsdocRequireFileOverview = []|[{
-  tags?: {
-    [k: string]: {
-      initialCommentsOnly?: boolean
-      mustExist?: boolean
-      preventDuplicates?: boolean
-    }
-  }
-}]
-// ----- jsdoc/require-hyphen-before-param-description -----
-type JsdocRequireHyphenBeforeParamDescription = []|[("always" | "never")]|[("always" | "never"), {
-  tags?: ({
-    [k: string]: ("always" | "never")
-  } | "any")
-}]
-// ----- jsdoc/require-jsdoc -----
-type JsdocRequireJsdoc = []|[{
-  checkConstructors?: boolean
-  checkGetters?: (boolean | "no-setter")
-  checkSetters?: (boolean | "no-getter")
-  contexts?: (string | {
-    context?: string
-    inlineCommentBlock?: boolean
-    minLineCount?: number
-  })[]
-  enableFixer?: boolean
-  exemptEmptyConstructors?: boolean
-  exemptEmptyFunctions?: boolean
-  fixerMessage?: string
-  minLineCount?: number
-  publicOnly?: (boolean | {
-    ancestorsOnly?: boolean
-    cjs?: boolean
-    esm?: boolean
-    window?: boolean
-  })
-  require?: {
-    ArrowFunctionExpression?: boolean
-    ClassDeclaration?: boolean
-    ClassExpression?: boolean
-    FunctionDeclaration?: boolean
-    FunctionExpression?: boolean
-    MethodDefinition?: boolean
-  }
-}]
-// ----- jsdoc/require-param -----
-type JsdocRequireParam = []|[{
-  autoIncrementBase?: number
-  checkConstructors?: boolean
-  checkDestructured?: boolean
-  checkDestructuredRoots?: boolean
-  checkGetters?: boolean
-  checkRestProperty?: boolean
-  checkSetters?: boolean
-  checkTypesPattern?: string
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  enableFixer?: boolean
-  enableRestElementFixer?: boolean
-  enableRootFixer?: boolean
-  exemptedBy?: string[]
-  ignoreWhenAllParamsMissing?: boolean
-  unnamedRootBase?: string[]
-  useDefaultObjectProperties?: boolean
-}]
-// ----- jsdoc/require-param-description -----
-type JsdocRequireParamDescription = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  defaultDestructuredRootDescription?: string
-  setDefaultDestructuredRootDescription?: boolean
-}]
-// ----- jsdoc/require-param-name -----
-type JsdocRequireParamName = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-}]
-// ----- jsdoc/require-param-type -----
-type JsdocRequireParamType = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  defaultDestructuredRootType?: string
-  setDefaultDestructuredRootType?: boolean
-}]
-// ----- jsdoc/require-returns -----
-type JsdocRequireReturns = []|[{
-  checkConstructors?: boolean
-  checkGetters?: boolean
-  contexts?: (string | {
-    comment?: string
-    context?: string
-    forceRequireReturn?: boolean
-  })[]
-  enableFixer?: boolean
-  exemptedBy?: string[]
-  forceRequireReturn?: boolean
-  forceReturnsWithAsync?: boolean
-  publicOnly?: (boolean | {
-    ancestorsOnly?: boolean
-    cjs?: boolean
-    esm?: boolean
-    window?: boolean
-  })
-}]
-// ----- jsdoc/require-returns-check -----
-type JsdocRequireReturnsCheck = []|[{
-  exemptAsync?: boolean
-  exemptGenerators?: boolean
-  reportMissingReturnForUndefinedTypes?: boolean
-}]
-// ----- jsdoc/require-returns-description -----
-type JsdocRequireReturnsDescription = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-}]
-// ----- jsdoc/require-returns-type -----
-type JsdocRequireReturnsType = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-}]
-// ----- jsdoc/require-template -----
-type JsdocRequireTemplate = []|[{
-  requireSeparateTemplates?: boolean
-}]
-// ----- jsdoc/require-throws -----
-type JsdocRequireThrows = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  exemptedBy?: string[]
-}]
-// ----- jsdoc/require-yields -----
-type JsdocRequireYields = []|[{
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  exemptedBy?: string[]
-  forceRequireNext?: boolean
-  forceRequireYields?: boolean
-  next?: boolean
-  nextWithGeneratorTag?: boolean
-  withGeneratorTag?: boolean
-}]
-// ----- jsdoc/require-yields-check -----
-type JsdocRequireYieldsCheck = []|[{
-  checkGeneratorsOnly?: boolean
-  contexts?: (string | {
-    comment?: string
-    context?: string
-  })[]
-  exemptedBy?: string[]
-  next?: boolean
-}]
-// ----- jsdoc/sort-tags -----
-type JsdocSortTags = []|[{
-  alphabetizeExtras?: boolean
-  linesBetween?: number
-  reportIntraTagGroupSpacing?: boolean
-  reportTagGroupSpacing?: boolean
-  tagSequence?: {
-    tags?: string[]
-    [k: string]: unknown | undefined
-  }[]
-}]
-// ----- jsdoc/tag-lines -----
-type JsdocTagLines = []|[("always" | "any" | "never")]|[("always" | "any" | "never"), {
-  applyToEndTag?: boolean
-  count?: number
-  endLines?: (number | null)
-  startLines?: (number | null)
-  tags?: {
-    [k: string]: {
-      count?: number
-      lines?: ("always" | "never" | "any")
-    }
-  }
-}]
-// ----- jsdoc/text-escaping -----
-type JsdocTextEscaping = []|[{
-  escapeHTML?: boolean
-  escapeMarkdown?: boolean
-}]
-// ----- jsdoc/valid-types -----
-type JsdocValidTypes = []|[{
-  allowEmptyNamepaths?: boolean
-}]
-
-/* eslint-disable unicorn/no-abusive-eslint-disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-declare module 'eslint' {
-  namespace Linter {
-    interface RulesRecord extends RuleOptions$1 {}
-  }
-}
-
-interface RuleOptions$1 {
-  /**
-   * require or disallow block style mappings.
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping.html
-   */
-  'yml/block-mapping'?: Linter.RuleEntry<YmlBlockMapping>
-  /**
-   * enforce consistent line breaks after `:` indicator
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping-colon-indicator-newline.html
-   */
-  'yml/block-mapping-colon-indicator-newline'?: Linter.RuleEntry<YmlBlockMappingColonIndicatorNewline>
-  /**
-   * enforce consistent line breaks after `?` indicator
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-mapping-question-indicator-newline.html
-   */
-  'yml/block-mapping-question-indicator-newline'?: Linter.RuleEntry<YmlBlockMappingQuestionIndicatorNewline>
-  /**
-   * require or disallow block style sequences.
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-sequence.html
-   */
-  'yml/block-sequence'?: Linter.RuleEntry<YmlBlockSequence>
-  /**
-   * enforce consistent line breaks after `-` indicator
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/block-sequence-hyphen-indicator-newline.html
-   */
-  'yml/block-sequence-hyphen-indicator-newline'?: Linter.RuleEntry<YmlBlockSequenceHyphenIndicatorNewline>
-  /**
-   * enforce YAML file extension
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/file-extension.html
-   */
-  'yml/file-extension'?: Linter.RuleEntry<YmlFileExtension>
-  /**
-   * enforce consistent line breaks inside braces
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-newline.html
-   */
-  'yml/flow-mapping-curly-newline'?: Linter.RuleEntry<YmlFlowMappingCurlyNewline>
-  /**
-   * enforce consistent spacing inside braces
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-mapping-curly-spacing.html
-   */
-  'yml/flow-mapping-curly-spacing'?: Linter.RuleEntry<YmlFlowMappingCurlySpacing>
-  /**
-   * enforce linebreaks after opening and before closing flow sequence brackets
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-newline.html
-   */
-  'yml/flow-sequence-bracket-newline'?: Linter.RuleEntry<YmlFlowSequenceBracketNewline>
-  /**
-   * enforce consistent spacing inside flow sequence brackets
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/flow-sequence-bracket-spacing.html
-   */
-  'yml/flow-sequence-bracket-spacing'?: Linter.RuleEntry<YmlFlowSequenceBracketSpacing>
-  /**
-   * enforce consistent indentation
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/indent.html
-   */
-  'yml/indent'?: Linter.RuleEntry<YmlIndent>
-  /**
-   * enforce naming convention to key names
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/key-name-casing.html
-   */
-  'yml/key-name-casing'?: Linter.RuleEntry<YmlKeyNameCasing>
-  /**
-   * enforce consistent spacing between keys and values in mapping pairs
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/key-spacing.html
-   */
-  'yml/key-spacing'?: Linter.RuleEntry<YmlKeySpacing>
-  /**
-   * disallow empty document
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-document.html
-   */
-  'yml/no-empty-document'?: Linter.RuleEntry<[]>
-  /**
-   * disallow empty mapping keys
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-key.html
-   */
-  'yml/no-empty-key'?: Linter.RuleEntry<[]>
-  /**
-   * disallow empty mapping values
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-mapping-value.html
-   */
-  'yml/no-empty-mapping-value'?: Linter.RuleEntry<[]>
-  /**
-   * disallow empty sequence entries
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-sequence-entry.html
-   */
-  'yml/no-empty-sequence-entry'?: Linter.RuleEntry<[]>
-  /**
-   * disallow irregular whitespace
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-irregular-whitespace.html
-   */
-  'yml/no-irregular-whitespace'?: Linter.RuleEntry<YmlNoIrregularWhitespace>
-  /**
-   * disallow multiple empty lines
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-multiple-empty-lines.html
-   */
-  'yml/no-multiple-empty-lines'?: Linter.RuleEntry<YmlNoMultipleEmptyLines>
-  /**
-   * disallow tabs for indentation.
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-tab-indent.html
-   */
-  'yml/no-tab-indent'?: Linter.RuleEntry<[]>
-  /**
-   * disallow trailing zeros for floats
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-trailing-zeros.html
-   */
-  'yml/no-trailing-zeros'?: Linter.RuleEntry<[]>
-  /**
-   * require or disallow plain style scalar.
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/plain-scalar.html
-   */
-  'yml/plain-scalar'?: Linter.RuleEntry<YmlPlainScalar>
-  /**
-   * enforce the consistent use of either double, or single quotes
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/quotes.html
-   */
-  'yml/quotes'?: Linter.RuleEntry<YmlQuotes>
-  /**
-   * disallow mapping keys other than strings
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/require-string-key.html
-   */
-  'yml/require-string-key'?: Linter.RuleEntry<[]>
-  /**
-   * require mapping keys to be sorted
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/sort-keys.html
-   */
-  'yml/sort-keys'?: Linter.RuleEntry<YmlSortKeys>
-  /**
-   * require sequence values to be sorted
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/sort-sequence-values.html
-   */
-  'yml/sort-sequence-values'?: Linter.RuleEntry<YmlSortSequenceValues>
-  /**
-   * enforce consistent spacing after the `#` in a comment
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/spaced-comment.html
-   */
-  'yml/spaced-comment'?: Linter.RuleEntry<YmlSpacedComment>
-  /**
-   * disallow parsing errors in Vue custom blocks
-   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/vue-custom-block/no-parsing-error.html
-   */
-  'yml/vue-custom-block/no-parsing-error'?: Linter.RuleEntry<[]>
-}
-
-/* ======= Declarations ======= */
-// ----- yml/block-mapping -----
-type YmlBlockMapping = []|[(("always" | "never") | {
-  singleline?: ("always" | "never" | "ignore")
-  multiline?: ("always" | "never" | "ignore")
-})]
-// ----- yml/block-mapping-colon-indicator-newline -----
-type YmlBlockMappingColonIndicatorNewline = []|[("always" | "never")]
-// ----- yml/block-mapping-question-indicator-newline -----
-type YmlBlockMappingQuestionIndicatorNewline = []|[("always" | "never")]
-// ----- yml/block-sequence -----
-type YmlBlockSequence = []|[(("always" | "never") | {
-  singleline?: ("always" | "never" | "ignore")
-  multiline?: ("always" | "never" | "ignore")
-})]
-// ----- yml/block-sequence-hyphen-indicator-newline -----
-type YmlBlockSequenceHyphenIndicatorNewline = []|[("always" | "never")]|[("always" | "never"), {
-  nestedHyphen?: ("always" | "never")
-  blockMapping?: ("always" | "never")
-}]
-// ----- yml/file-extension -----
-type YmlFileExtension = []|[{
-  extension?: ("yaml" | "yml")
-  caseSensitive?: boolean
-}]
-// ----- yml/flow-mapping-curly-newline -----
-type YmlFlowMappingCurlyNewline = []|[(("always" | "never") | {
-  multiline?: boolean
-  minProperties?: number
-  consistent?: boolean
-})]
-// ----- yml/flow-mapping-curly-spacing -----
-type YmlFlowMappingCurlySpacing = []|[("always" | "never")]|[("always" | "never"), {
-  arraysInObjects?: boolean
-  objectsInObjects?: boolean
-}]
-// ----- yml/flow-sequence-bracket-newline -----
-type YmlFlowSequenceBracketNewline = []|[(("always" | "never" | "consistent") | {
-  multiline?: boolean
-  minItems?: (number | null)
-})]
-// ----- yml/flow-sequence-bracket-spacing -----
-type YmlFlowSequenceBracketSpacing = []|[("always" | "never")]|[("always" | "never"), {
-  singleValue?: boolean
-  objectsInArrays?: boolean
-  arraysInArrays?: boolean
-}]
-// ----- yml/indent -----
-type YmlIndent = []|[number]|[number, {
-  indentBlockSequences?: boolean
-  indicatorValueIndent?: number
-}]
-// ----- yml/key-name-casing -----
-type YmlKeyNameCasing = []|[{
-  camelCase?: boolean
-  PascalCase?: boolean
-  SCREAMING_SNAKE_CASE?: boolean
-  "kebab-case"?: boolean
-  snake_case?: boolean
-  ignores?: string[]
-}]
-// ----- yml/key-spacing -----
-type YmlKeySpacing = []|[({
-  align?: (("colon" | "value") | {
-    on?: ("colon" | "value")
-    mode?: ("strict" | "minimum")
-    beforeColon?: boolean
-    afterColon?: boolean
-  })
-  mode?: ("strict" | "minimum")
-  beforeColon?: boolean
-  afterColon?: boolean
-} | {
-  singleLine?: {
-    mode?: ("strict" | "minimum")
-    beforeColon?: boolean
-    afterColon?: boolean
-  }
-  multiLine?: {
-    align?: (("colon" | "value") | {
-      on?: ("colon" | "value")
-      mode?: ("strict" | "minimum")
-      beforeColon?: boolean
-      afterColon?: boolean
-    })
-    mode?: ("strict" | "minimum")
-    beforeColon?: boolean
-    afterColon?: boolean
-  }
-} | {
-  singleLine?: {
-    mode?: ("strict" | "minimum")
-    beforeColon?: boolean
-    afterColon?: boolean
-  }
-  multiLine?: {
-    mode?: ("strict" | "minimum")
-    beforeColon?: boolean
-    afterColon?: boolean
-  }
-  align?: {
-    on?: ("colon" | "value")
-    mode?: ("strict" | "minimum")
-    beforeColon?: boolean
-    afterColon?: boolean
-  }
-})]
-// ----- yml/no-irregular-whitespace -----
-type YmlNoIrregularWhitespace = []|[{
-  skipComments?: boolean
-  skipQuotedScalars?: boolean
-}]
-// ----- yml/no-multiple-empty-lines -----
-type YmlNoMultipleEmptyLines = []|[{
-  max: number
-  maxEOF?: number
-  maxBOF?: number
-}]
-// ----- yml/plain-scalar -----
-type YmlPlainScalar = []|[("always" | "never")]|[("always" | "never"), {
-  ignorePatterns?: string[]
-  overrides?: {
-    mappingKey?: ("always" | "never" | null)
-  }
-}]
-// ----- yml/quotes -----
-type YmlQuotes = []|[{
-  prefer?: ("double" | "single")
-  avoidEscape?: boolean
-}]
-// ----- yml/sort-keys -----
-type YmlSortKeys = ([{
-  pathPattern: string
-  hasProperties?: string[]
-  order: ((string | {
-    keyPattern?: string
-    order?: {
-      type?: ("asc" | "desc")
-      caseSensitive?: boolean
-      natural?: boolean
-    }
-  })[] | {
-    type?: ("asc" | "desc")
-    caseSensitive?: boolean
-    natural?: boolean
-  })
-  minKeys?: number
-  allowLineSeparatedGroups?: boolean
-}, ...({
-  pathPattern: string
-  hasProperties?: string[]
-  order: ((string | {
-    keyPattern?: string
-    order?: {
-      type?: ("asc" | "desc")
-      caseSensitive?: boolean
-      natural?: boolean
-    }
-  })[] | {
-    type?: ("asc" | "desc")
-    caseSensitive?: boolean
-    natural?: boolean
-  })
-  minKeys?: number
-  allowLineSeparatedGroups?: boolean
-})[]] | []|[("asc" | "desc")]|[("asc" | "desc"), {
-  caseSensitive?: boolean
-  natural?: boolean
-  minKeys?: number
-  allowLineSeparatedGroups?: boolean
-}])
-// ----- yml/sort-sequence-values -----
-type YmlSortSequenceValues = [{
-  pathPattern: string
-  order: ((string | {
-    valuePattern?: string
-    order?: {
-      type?: ("asc" | "desc")
-      caseSensitive?: boolean
-      natural?: boolean
-    }
-  })[] | {
-    type?: ("asc" | "desc")
-    caseSensitive?: boolean
-    natural?: boolean
-  })
-  minValues?: number
-}, ...({
-  pathPattern: string
-  order: ((string | {
-    valuePattern?: string
-    order?: {
-      type?: ("asc" | "desc")
-      caseSensitive?: boolean
-      natural?: boolean
-    }
-  })[] | {
-    type?: ("asc" | "desc")
-    caseSensitive?: boolean
-    natural?: boolean
-  })
-  minValues?: number
-})[]]
-// ----- yml/spaced-comment -----
-type YmlSpacedComment = []|[("always" | "never")]|[("always" | "never"), {
-  exceptions?: string[]
-  markers?: string[]
-}]
-
-/* eslint-disable unicorn/no-abusive-eslint-disable */
-/* eslint-disable */
-/* prettier-ignore */
-
-
-declare module 'eslint' {
-  namespace Linter {
-    interface RulesRecord extends RuleOptions {}
-  }
-}
-
-interface RuleOptions {
-  /**
-   * Improve regexes by making them shorter, consistent, and safer.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/better-regex.md
-   */
-  'unicorn/better-regex'?: Linter.RuleEntry<UnicornBetterRegex>
-  /**
-   * Enforce a specific parameter name in catch clauses.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/catch-error-name.md
-   */
-  'unicorn/catch-error-name'?: Linter.RuleEntry<UnicornCatchErrorName>
-  /**
-   * Use destructured variables over properties.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/consistent-destructuring.md
-   */
-  'unicorn/consistent-destructuring'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer consistent types when spreading a ternary in an array literal.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/consistent-empty-array-spread.md
-   */
-  'unicorn/consistent-empty-array-spread'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce consistent style for element existence checks with `indexOf()`, `lastIndexOf()`, `findIndex()`, and `findLastIndex()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/consistent-existence-index-check.md
-   */
-  'unicorn/consistent-existence-index-check'?: Linter.RuleEntry<[]>
-  /**
-   * Move function definitions to the highest possible scope.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/consistent-function-scoping.md
-   */
-  'unicorn/consistent-function-scoping'?: Linter.RuleEntry<UnicornConsistentFunctionScoping>
-  /**
-   * Enforce correct `Error` subclassing.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/custom-error-definition.md
-   */
-  'unicorn/custom-error-definition'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce no spaces between braces.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/empty-brace-spaces.md
-   */
-  'unicorn/empty-brace-spaces'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce passing a `message` value when creating a built-in error.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/error-message.md
-   */
-  'unicorn/error-message'?: Linter.RuleEntry<[]>
-  /**
-   * Require escape sequences to use uppercase values.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/escape-case.md
-   */
-  'unicorn/escape-case'?: Linter.RuleEntry<[]>
-  /**
-   * Add expiration conditions to TODO comments.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/expiring-todo-comments.md
-   */
-  'unicorn/expiring-todo-comments'?: Linter.RuleEntry<UnicornExpiringTodoComments>
-  /**
-   * Enforce explicitly comparing the `length` or `size` property of a value.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/explicit-length-check.md
-   */
-  'unicorn/explicit-length-check'?: Linter.RuleEntry<UnicornExplicitLengthCheck>
-  /**
-   * Enforce a case style for filenames.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/filename-case.md
-   */
-  'unicorn/filename-case'?: Linter.RuleEntry<UnicornFilenameCase>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#import-index
-   * @deprecated
-   */
-  'unicorn/import-index'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce specific import styles per module.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/import-style.md
-   */
-  'unicorn/import-style'?: Linter.RuleEntry<UnicornImportStyle>
-  /**
-   * Enforce the use of `new` for all builtins, except `String`, `Number`, `Boolean`, `Symbol` and `BigInt`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/new-for-builtins.md
-   */
-  'unicorn/new-for-builtins'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce specifying rules to disable in `eslint-disable` comments.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-abusive-eslint-disable.md
-   */
-  'unicorn/no-abusive-eslint-disable'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow anonymous functions and classes as the default export.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-anonymous-default-export.md
-   */
-  'unicorn/no-anonymous-default-export'?: Linter.RuleEntry<[]>
-  /**
-   * Prevent passing a function reference directly to iterator methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-callback-reference.md
-   */
-  'unicorn/no-array-callback-reference'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `for…of` over the `forEach` method.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-for-each.md
-   */
-  'unicorn/no-array-for-each'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#no-array-instanceof
-   * @deprecated
-   */
-  'unicorn/no-array-instanceof'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow using the `this` argument in array methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-method-this-argument.md
-   */
-  'unicorn/no-array-method-this-argument'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce combining multiple `Array#push()` into one call.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-push-push.md
-   */
-  'unicorn/no-array-push-push'?: Linter.RuleEntry<UnicornNoArrayPushPush>
-  /**
-   * Disallow `Array#reduce()` and `Array#reduceRight()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-array-reduce.md
-   */
-  'unicorn/no-array-reduce'?: Linter.RuleEntry<UnicornNoArrayReduce>
-  /**
-   * Disallow member access from await expression.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-await-expression-member.md
-   */
-  'unicorn/no-await-expression-member'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow using `await` in `Promise` method parameters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-await-in-promise-methods.md
-   */
-  'unicorn/no-await-in-promise-methods'?: Linter.RuleEntry<[]>
-  /**
-   * Do not use leading/trailing space between `console.log` parameters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-console-spaces.md
-   */
-  'unicorn/no-console-spaces'?: Linter.RuleEntry<[]>
-  /**
-   * Do not use `document.cookie` directly.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-document-cookie.md
-   */
-  'unicorn/no-document-cookie'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow empty files.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-empty-file.md
-   */
-  'unicorn/no-empty-file'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#no-fn-reference-in-iterator
-   * @deprecated
-   */
-  'unicorn/no-fn-reference-in-iterator'?: Linter.RuleEntry<[]>
-  /**
-   * Do not use a `for` loop that can be replaced with a `for-of` loop.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-for-loop.md
-   */
-  'unicorn/no-for-loop'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce the use of Unicode escapes instead of hexadecimal escapes.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-hex-escape.md
-   */
-  'unicorn/no-hex-escape'?: Linter.RuleEntry<[]>
-  /**
-   * Require `Array.isArray()` instead of `instanceof Array`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-instanceof-array.md
-   */
-  'unicorn/no-instanceof-array'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow invalid options in `fetch()` and `new Request()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-invalid-fetch-options.md
-   */
-  'unicorn/no-invalid-fetch-options'?: Linter.RuleEntry<[]>
-  /**
-   * Prevent calling `EventTarget#removeEventListener()` with the result of an expression.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-invalid-remove-event-listener.md
-   */
-  'unicorn/no-invalid-remove-event-listener'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow identifiers starting with `new` or `class`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-keyword-prefix.md
-   */
-  'unicorn/no-keyword-prefix'?: Linter.RuleEntry<UnicornNoKeywordPrefix>
-  /**
-   * Disallow using `.length` as the `end` argument of `{Array,String,TypedArray}#slice()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-length-as-slice-end.md
-   */
-  'unicorn/no-length-as-slice-end'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow `if` statements as the only statement in `if` blocks without `else`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-lonely-if.md
-   */
-  'unicorn/no-lonely-if'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow a magic number as the `depth` argument in `Array#flat(…).`
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-magic-array-flat-depth.md
-   */
-  'unicorn/no-magic-array-flat-depth'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow negated conditions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-negated-condition.md
-   */
-  'unicorn/no-negated-condition'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow negated expression in equality check.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-negation-in-equality-check.md
-   */
-  'unicorn/no-negation-in-equality-check'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow nested ternary expressions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-nested-ternary.md
-   */
-  'unicorn/no-nested-ternary'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow `new Array()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-new-array.md
-   */
-  'unicorn/no-new-array'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce the use of `Buffer.from()` and `Buffer.alloc()` instead of the deprecated `new Buffer()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-new-buffer.md
-   */
-  'unicorn/no-new-buffer'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow the use of the `null` literal.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-null.md
-   */
-  'unicorn/no-null'?: Linter.RuleEntry<UnicornNoNull>
-  /**
-   * Disallow the use of objects as default parameters.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-object-as-default-parameter.md
-   */
-  'unicorn/no-object-as-default-parameter'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow `process.exit()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-process-exit.md
-   */
-  'unicorn/no-process-exit'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#no-reduce
-   * @deprecated
-   */
-  'unicorn/no-reduce'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow passing single-element arrays to `Promise` methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-single-promise-in-promise-methods.md
-   */
-  'unicorn/no-single-promise-in-promise-methods'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow classes that only have static members.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-static-only-class.md
-   */
-  'unicorn/no-static-only-class'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow `then` property.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-thenable.md
-   */
-  'unicorn/no-thenable'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow assigning `this` to a variable.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-this-assignment.md
-   */
-  'unicorn/no-this-assignment'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow comparing `undefined` using `typeof`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-typeof-undefined.md
-   */
-  'unicorn/no-typeof-undefined'?: Linter.RuleEntry<UnicornNoTypeofUndefined>
-  /**
-   * Disallow awaiting non-promise values.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unnecessary-await.md
-   */
-  'unicorn/no-unnecessary-await'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce the use of built-in methods instead of unnecessary polyfills.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unnecessary-polyfills.md
-   */
-  'unicorn/no-unnecessary-polyfills'?: Linter.RuleEntry<UnicornNoUnnecessaryPolyfills>
-  /**
-   * Disallow unreadable array destructuring.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unreadable-array-destructuring.md
-   */
-  'unicorn/no-unreadable-array-destructuring'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow unreadable IIFEs.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unreadable-iife.md
-   */
-  'unicorn/no-unreadable-iife'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#no-unsafe-regex
-   * @deprecated
-   */
-  'unicorn/no-unsafe-regex'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow unused object properties.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-unused-properties.md
-   */
-  'unicorn/no-unused-properties'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow useless fallback when spreading in object literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-fallback-in-spread.md
-   */
-  'unicorn/no-useless-fallback-in-spread'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow useless array length check.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-length-check.md
-   */
-  'unicorn/no-useless-length-check'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow returning/yielding `Promise.resolve/reject()` in async functions or promise callbacks
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-promise-resolve-reject.md
-   */
-  'unicorn/no-useless-promise-resolve-reject'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow unnecessary spread.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-spread.md
-   */
-  'unicorn/no-useless-spread'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow useless case in switch statements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-switch-case.md
-   */
-  'unicorn/no-useless-switch-case'?: Linter.RuleEntry<[]>
-  /**
-   * Disallow useless `undefined`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-useless-undefined.md
-   */
-  'unicorn/no-useless-undefined'?: Linter.RuleEntry<UnicornNoUselessUndefined>
-  /**
-   * Disallow number literals with zero fractions or dangling dots.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/no-zero-fractions.md
-   */
-  'unicorn/no-zero-fractions'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce proper case for numeric literals.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/number-literal-case.md
-   */
-  'unicorn/number-literal-case'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce the style of numeric separators by correctly grouping digits.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/numeric-separators-style.md
-   */
-  'unicorn/numeric-separators-style'?: Linter.RuleEntry<UnicornNumericSeparatorsStyle>
-  /**
-   * Prefer `.addEventListener()` and `.removeEventListener()` over `on`-functions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-add-event-listener.md
-   */
-  'unicorn/prefer-add-event-listener'?: Linter.RuleEntry<UnicornPreferAddEventListener>
-  /**
-   * Prefer `.find(…)` and `.findLast(…)` over the first or last element from `.filter(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-find.md
-   */
-  'unicorn/prefer-array-find'?: Linter.RuleEntry<UnicornPreferArrayFind>
-  /**
-   * Prefer `Array#flat()` over legacy techniques to flatten arrays.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-flat.md
-   */
-  'unicorn/prefer-array-flat'?: Linter.RuleEntry<UnicornPreferArrayFlat>
-  /**
-   * Prefer `.flatMap(…)` over `.map(…).flat()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-flat-map.md
-   */
-  'unicorn/prefer-array-flat-map'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `Array#{indexOf,lastIndexOf}()` over `Array#{findIndex,findLastIndex}()` when looking for the index of an item.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-index-of.md
-   */
-  'unicorn/prefer-array-index-of'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `.some(…)` over `.filter(…).length` check and `.{find,findLast,findIndex,findLastIndex}(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-array-some.md
-   */
-  'unicorn/prefer-array-some'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `.at()` method for index access and `String#charAt()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-at.md
-   */
-  'unicorn/prefer-at'?: Linter.RuleEntry<UnicornPreferAt>
-  /**
-   * Prefer `Blob#arrayBuffer()` over `FileReader#readAsArrayBuffer(…)` and `Blob#text()` over `FileReader#readAsText(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-blob-reading-methods.md
-   */
-  'unicorn/prefer-blob-reading-methods'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `String#codePointAt(…)` over `String#charCodeAt(…)` and `String.fromCodePoint(…)` over `String.fromCharCode(…)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-code-point.md
-   */
-  'unicorn/prefer-code-point'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-dataset
-   * @deprecated
-   */
-  'unicorn/prefer-dataset'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `Date.now()` to get the number of milliseconds since the Unix Epoch.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-date-now.md
-   */
-  'unicorn/prefer-date-now'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer default parameters over reassignment.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-default-parameters.md
-   */
-  'unicorn/prefer-default-parameters'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `Node#append()` over `Node#appendChild()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-dom-node-append.md
-   */
-  'unicorn/prefer-dom-node-append'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer using `.dataset` on DOM elements over calling attribute methods.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-dom-node-dataset.md
-   */
-  'unicorn/prefer-dom-node-dataset'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `childNode.remove()` over `parentNode.removeChild(childNode)`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-dom-node-remove.md
-   */
-  'unicorn/prefer-dom-node-remove'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `.textContent` over `.innerText`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-dom-node-text-content.md
-   */
-  'unicorn/prefer-dom-node-text-content'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-event-key
-   * @deprecated
-   */
-  'unicorn/prefer-event-key'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `EventTarget` over `EventEmitter`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-event-target.md
-   */
-  'unicorn/prefer-event-target'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-exponentiation-operator
-   * @deprecated
-   */
-  'unicorn/prefer-exponentiation-operator'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `export…from` when re-exporting.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-export-from.md
-   */
-  'unicorn/prefer-export-from'?: Linter.RuleEntry<UnicornPreferExportFrom>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-flat-map
-   * @deprecated
-   */
-  'unicorn/prefer-flat-map'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `globalThis` over `window`, `self`, and `global`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-global-this.md
-   */
-  'unicorn/prefer-global-this'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `.includes()` over `.indexOf()`, `.lastIndexOf()`, and `Array#some()` when checking for existence or non-existence.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-includes.md
-   */
-  'unicorn/prefer-includes'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer reading a JSON file as a buffer.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-json-parse-buffer.md
-   */
-  'unicorn/prefer-json-parse-buffer'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `KeyboardEvent#key` over `KeyboardEvent#keyCode`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-keyboard-event-key.md
-   */
-  'unicorn/prefer-keyboard-event-key'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer using a logical operator over a ternary.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-logical-operator-over-ternary.md
-   */
-  'unicorn/prefer-logical-operator-over-ternary'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `Math.min()` and `Math.max()` over ternaries for simple comparisons.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-math-min-max.md
-   */
-  'unicorn/prefer-math-min-max'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce the use of `Math.trunc` instead of bitwise operators.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-math-trunc.md
-   */
-  'unicorn/prefer-math-trunc'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `.before()` over `.insertBefore()`, `.replaceWith()` over `.replaceChild()`, prefer one of `.before()`, `.after()`, `.append()` or `.prepend()` over `insertAdjacentText()` and `insertAdjacentElement()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-modern-dom-apis.md
-   */
-  'unicorn/prefer-modern-dom-apis'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer modern `Math` APIs over legacy patterns.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-modern-math-apis.md
-   */
-  'unicorn/prefer-modern-math-apis'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer JavaScript modules (ESM) over CommonJS.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-module.md
-   */
-  'unicorn/prefer-module'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer using `String`, `Number`, `BigInt`, `Boolean`, and `Symbol` directly.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-native-coercion-functions.md
-   */
-  'unicorn/prefer-native-coercion-functions'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer negative index over `.length - index` when possible.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-negative-index.md
-   */
-  'unicorn/prefer-negative-index'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-node-append
-   * @deprecated
-   */
-  'unicorn/prefer-node-append'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer using the `node:` protocol when importing Node.js builtin modules.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-node-protocol.md
-   */
-  'unicorn/prefer-node-protocol'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-node-remove
-   * @deprecated
-   */
-  'unicorn/prefer-node-remove'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `Number` static properties over global ones.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-number-properties.md
-   */
-  'unicorn/prefer-number-properties'?: Linter.RuleEntry<UnicornPreferNumberProperties>
-  /**
-   * Prefer using `Object.fromEntries(…)` to transform a list of key-value pairs into an object.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-object-from-entries.md
-   */
-  'unicorn/prefer-object-from-entries'?: Linter.RuleEntry<UnicornPreferObjectFromEntries>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-object-has-own
-   * @deprecated
-   */
-  'unicorn/prefer-object-has-own'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer omitting the `catch` binding parameter.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-optional-catch-binding.md
-   */
-  'unicorn/prefer-optional-catch-binding'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer borrowing methods from the prototype instead of the instance.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-prototype-methods.md
-   */
-  'unicorn/prefer-prototype-methods'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `.querySelector()` over `.getElementById()`, `.querySelectorAll()` over `.getElementsByClassName()` and `.getElementsByTagName()` and `.getElementsByName()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-query-selector.md
-   */
-  'unicorn/prefer-query-selector'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `Reflect.apply()` over `Function#apply()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-reflect-apply.md
-   */
-  'unicorn/prefer-reflect-apply'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `RegExp#test()` over `String#match()` and `RegExp#exec()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-regexp-test.md
-   */
-  'unicorn/prefer-regexp-test'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-replace-all
-   * @deprecated
-   */
-  'unicorn/prefer-replace-all'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `Set#has()` over `Array#includes()` when checking for existence or non-existence.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-set-has.md
-   */
-  'unicorn/prefer-set-has'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer using `Set#size` instead of `Array#length`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-set-size.md
-   */
-  'unicorn/prefer-set-size'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer the spread operator over `Array.from(…)`, `Array#concat(…)`, `Array#{slice,toSpliced}()` and `String#split('')`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-spread.md
-   */
-  'unicorn/prefer-spread'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-starts-ends-with
-   * @deprecated
-   */
-  'unicorn/prefer-starts-ends-with'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer using the `String.raw` tag to avoid escaping `\`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-raw.md
-   */
-  'unicorn/prefer-string-raw'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `String#replaceAll()` over regex searches with the global flag.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-replace-all.md
-   */
-  'unicorn/prefer-string-replace-all'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `String#slice()` over `String#substr()` and `String#substring()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-slice.md
-   */
-  'unicorn/prefer-string-slice'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `String#startsWith()` & `String#endsWith()` over `RegExp#test()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-starts-ends-with.md
-   */
-  'unicorn/prefer-string-starts-ends-with'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer `String#trimStart()` / `String#trimEnd()` over `String#trimLeft()` / `String#trimRight()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-string-trim-start-end.md
-   */
-  'unicorn/prefer-string-trim-start-end'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer using `structuredClone` to create a deep clone.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-structured-clone.md
-   */
-  'unicorn/prefer-structured-clone'?: Linter.RuleEntry<UnicornPreferStructuredClone>
-  /**
-   * Prefer `switch` over multiple `else-if`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-switch.md
-   */
-  'unicorn/prefer-switch'?: Linter.RuleEntry<UnicornPreferSwitch>
-  /**
-   * Prefer ternary expressions over simple `if-else` statements.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-ternary.md
-   */
-  'unicorn/prefer-ternary'?: Linter.RuleEntry<UnicornPreferTernary>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-text-content
-   * @deprecated
-   */
-  'unicorn/prefer-text-content'?: Linter.RuleEntry<[]>
-  /**
-   * Prefer top-level await over top-level promises and async function calls.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-top-level-await.md
-   */
-  'unicorn/prefer-top-level-await'?: Linter.RuleEntry<[]>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#prefer-trim-start-end
-   * @deprecated
-   */
-  'unicorn/prefer-trim-start-end'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce throwing `TypeError` in type checking conditions.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prefer-type-error.md
-   */
-  'unicorn/prefer-type-error'?: Linter.RuleEntry<[]>
-  /**
-   * Prevent abbreviations.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/prevent-abbreviations.md
-   */
-  'unicorn/prevent-abbreviations'?: Linter.RuleEntry<UnicornPreventAbbreviations>
-  /**
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/deprecated-rules.md#regex-shorthand
-   * @deprecated
-   */
-  'unicorn/regex-shorthand'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce consistent relative URL style.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/relative-url-style.md
-   */
-  'unicorn/relative-url-style'?: Linter.RuleEntry<UnicornRelativeUrlStyle>
-  /**
-   * Enforce using the separator argument with `Array#join()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/require-array-join-separator.md
-   */
-  'unicorn/require-array-join-separator'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce using the digits argument with `Number#toFixed()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/require-number-to-fixed-digits-argument.md
-   */
-  'unicorn/require-number-to-fixed-digits-argument'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce using the `targetOrigin` argument with `window.postMessage()`.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/require-post-message-target-origin.md
-   */
-  'unicorn/require-post-message-target-origin'?: Linter.RuleEntry<[]>
-  /**
-   * Enforce better string content.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/string-content.md
-   */
-  'unicorn/string-content'?: Linter.RuleEntry<UnicornStringContent>
-  /**
-   * Enforce consistent brace style for `case` clauses.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/switch-case-braces.md
-   */
-  'unicorn/switch-case-braces'?: Linter.RuleEntry<UnicornSwitchCaseBraces>
-  /**
-   * Fix whitespace-insensitive template indentation.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/template-indent.md
-   */
-  'unicorn/template-indent'?: Linter.RuleEntry<UnicornTemplateIndent>
-  /**
-   * Enforce consistent case for text encoding identifiers.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/text-encoding-identifier-case.md
-   */
-  'unicorn/text-encoding-identifier-case'?: Linter.RuleEntry<[]>
-  /**
-   * Require `new` when creating an error.
-   * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v56.0.1/docs/rules/throw-new-error.md
-   */
-  'unicorn/throw-new-error'?: Linter.RuleEntry<[]>
-}
-
-/* ======= Declarations ======= */
-// ----- unicorn/better-regex -----
-type UnicornBetterRegex = []|[{
-  sortCharacterClasses?: boolean
-}]
-// ----- unicorn/catch-error-name -----
-type UnicornCatchErrorName = []|[{
-  name?: string
-  ignore?: unknown[]
-}]
-// ----- unicorn/consistent-function-scoping -----
-type UnicornConsistentFunctionScoping = []|[{
-  checkArrowFunctions?: boolean
-}]
-// ----- unicorn/expiring-todo-comments -----
-type UnicornExpiringTodoComments = []|[{
-  terms?: string[]
-  ignore?: unknown[]
-  ignoreDatesOnPullRequests?: boolean
-  allowWarningComments?: boolean
-  date?: string
-}]
-// ----- unicorn/explicit-length-check -----
-type UnicornExplicitLengthCheck = []|[{
-  "non-zero"?: ("greater-than" | "not-equal")
-}]
-// ----- unicorn/filename-case -----
-type UnicornFilenameCase = []|[({
-  case?: ("camelCase" | "snakeCase" | "kebabCase" | "pascalCase")
-  ignore?: unknown[]
-  multipleFileExtensions?: boolean
-} | {
-  cases?: {
-    camelCase?: boolean
-    snakeCase?: boolean
-    kebabCase?: boolean
-    pascalCase?: boolean
-  }
-  ignore?: unknown[]
-  multipleFileExtensions?: boolean
-})]
-// ----- unicorn/import-style -----
-type UnicornImportStyle = []|[{
-  checkImport?: boolean
-  checkDynamicImport?: boolean
-  checkExportFrom?: boolean
-  checkRequire?: boolean
-  extendDefaultStyles?: boolean
-  styles?: _UnicornImportStyle_ModuleStyles
-}]
-type _UnicornImportStyleStyles = (false | _UnicornImportStyle_BooleanObject) | undefined
-interface _UnicornImportStyle_ModuleStyles {
-  [k: string]: _UnicornImportStyleStyles | undefined
-}
-interface _UnicornImportStyle_BooleanObject {
-  [k: string]: boolean | undefined
-}
-// ----- unicorn/no-array-push-push -----
-type UnicornNoArrayPushPush = []|[{
-  ignore?: unknown[]
-}]
-// ----- unicorn/no-array-reduce -----
-type UnicornNoArrayReduce = []|[{
-  allowSimpleOperations?: boolean
-}]
-// ----- unicorn/no-keyword-prefix -----
-type UnicornNoKeywordPrefix = []|[{
-  
-  disallowedPrefixes?: []|[string]
-  checkProperties?: boolean
-  onlyCamelCase?: boolean
-}]
-// ----- unicorn/no-null -----
-type UnicornNoNull = []|[{
-  checkStrictEquality?: boolean
-}]
-// ----- unicorn/no-typeof-undefined -----
-type UnicornNoTypeofUndefined = []|[{
-  checkGlobalVariables?: boolean
-}]
-// ----- unicorn/no-unnecessary-polyfills -----
-type UnicornNoUnnecessaryPolyfills = []|[{
-  targets: (string | unknown[] | {
-    [k: string]: unknown | undefined
-  })
-}]
-// ----- unicorn/no-useless-undefined -----
-type UnicornNoUselessUndefined = []|[{
-  checkArguments?: boolean
-  checkArrowFunctionBody?: boolean
-}]
-// ----- unicorn/numeric-separators-style -----
-type UnicornNumericSeparatorsStyle = []|[{
-  binary?: {
-    onlyIfContainsSeparator?: boolean
-    minimumDigits?: number
-    groupLength?: number
-  }
-  octal?: {
-    onlyIfContainsSeparator?: boolean
-    minimumDigits?: number
-    groupLength?: number
-  }
-  hexadecimal?: {
-    onlyIfContainsSeparator?: boolean
-    minimumDigits?: number
-    groupLength?: number
-  }
-  number?: {
-    onlyIfContainsSeparator?: boolean
-    minimumDigits?: number
-    groupLength?: number
-  }
-  onlyIfContainsSeparator?: boolean
-}]
-// ----- unicorn/prefer-add-event-listener -----
-type UnicornPreferAddEventListener = []|[{
-  excludedPackages?: string[]
-}]
-// ----- unicorn/prefer-array-find -----
-type UnicornPreferArrayFind = []|[{
-  checkFromLast?: boolean
-}]
-// ----- unicorn/prefer-array-flat -----
-type UnicornPreferArrayFlat = []|[{
-  functions?: unknown[]
-}]
-// ----- unicorn/prefer-at -----
-type UnicornPreferAt = []|[{
-  getLastElementFunctions?: unknown[]
-  checkAllIndexAccess?: boolean
-}]
-// ----- unicorn/prefer-export-from -----
-type UnicornPreferExportFrom = []|[{
-  ignoreUsedVariables?: boolean
-}]
-// ----- unicorn/prefer-number-properties -----
-type UnicornPreferNumberProperties = []|[{
-  checkInfinity?: boolean
-  checkNaN?: boolean
-}]
-// ----- unicorn/prefer-object-from-entries -----
-type UnicornPreferObjectFromEntries = []|[{
-  functions?: unknown[]
-}]
-// ----- unicorn/prefer-structured-clone -----
-type UnicornPreferStructuredClone = []|[{
-  functions?: unknown[]
-}]
-// ----- unicorn/prefer-switch -----
-type UnicornPreferSwitch = []|[{
-  minimumCases?: number
-  emptyDefaultCase?: ("no-default-comment" | "do-nothing-comment" | "no-default-case")
-}]
-// ----- unicorn/prefer-ternary -----
-type UnicornPreferTernary = []|[("always" | "only-single-line")]
-// ----- unicorn/prevent-abbreviations -----
-type UnicornPreventAbbreviations = []|[{
-  checkProperties?: boolean
-  checkVariables?: boolean
-  checkDefaultAndNamespaceImports?: (boolean | string)
-  checkShorthandImports?: (boolean | string)
-  checkShorthandProperties?: boolean
-  checkFilenames?: boolean
-  extendDefaultReplacements?: boolean
-  replacements?: _UnicornPreventAbbreviations_Abbreviations
-  extendDefaultAllowList?: boolean
-  allowList?: _UnicornPreventAbbreviations_BooleanObject
-  ignore?: unknown[]
-}]
-type _UnicornPreventAbbreviationsReplacements = (false | _UnicornPreventAbbreviations_BooleanObject) | undefined
-interface _UnicornPreventAbbreviations_Abbreviations {
-  [k: string]: _UnicornPreventAbbreviationsReplacements | undefined
-}
-interface _UnicornPreventAbbreviations_BooleanObject {
-  [k: string]: boolean | undefined
-}
-// ----- unicorn/relative-url-style -----
-type UnicornRelativeUrlStyle = []|[("never" | "always")]
-// ----- unicorn/string-content -----
-type UnicornStringContent = []|[{
-  patterns?: {
-    [k: string]: (string | {
-      suggest: string
-      fix?: boolean
-      message?: string
-    }) | undefined
-  }
-}]
-// ----- unicorn/switch-case-braces -----
-type UnicornSwitchCaseBraces = []|[("always" | "avoid")]
-// ----- unicorn/template-indent -----
-type UnicornTemplateIndent = []|[{
-  indent?: (string | number)
-  tags?: string[]
-  functions?: string[]
-  selectors?: string[]
-  comments?: string[]
-}]
 
 declare function unicorn(options?: unicorn.Options): Promise<[{
     readonly name: "w5s/unicorn/setup";
@@ -6839,6 +9074,102 @@ declare function unicorn(options?: unicorn.Options): Promise<[{
         readonly 'node/prefer-promises/fs'?: eslint.Linter.RuleEntry<[]>;
         readonly 'node/process-exit-as-throw'?: eslint.Linter.RuleEntry<[]>;
         readonly 'node/shebang'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/array-bracket-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/array-bracket-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/array-element-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/arrow-parens'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/arrow-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/block-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/brace-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/comma-dangle'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/comma-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/comma-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/computed-property-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/dot-location'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/eol-last'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/func-call-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/function-call-argument-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/function-call-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/function-paren-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/generator-star-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/implicit-arrow-linebreak'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/indent-binary-ops'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-child-element-spacing'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'style/jsx-closing-bracket-location'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-closing-tag-location'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-curly-brace-presence'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-equals-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-first-prop-new-line'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-function-call-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-indent'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-indent-props'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-max-props-per-line'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-one-expression-per-line'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-pascal-case'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-props-no-multi-spaces'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'style/jsx-quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-self-closing-comp'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-sort-props'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-tag-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/jsx-wrap-multilines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/key-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/keyword-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/line-comment-position'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/linebreak-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/lines-around-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/lines-between-class-members'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/max-len'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/max-statements-per-line'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/member-delimiter-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/multiline-comment-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/multiline-ternary'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/new-parens'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/newline-per-chained-call'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/no-confusing-arrow'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/no-extra-parens'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/no-extra-semi'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'style/no-floating-decimal'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'style/no-mixed-operators'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/no-mixed-spaces-and-tabs'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/no-multi-spaces'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/no-multiple-empty-lines'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/no-tabs'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/no-trailing-spaces'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/no-whitespace-before-property'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'style/nonblock-statement-body-position'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/object-curly-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/object-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/object-property-newline'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/one-var-declaration-per-line'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/operator-linebreak'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/padded-blocks'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/padding-line-between-statements'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/quote-props'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/quotes'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/rest-spread-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/semi'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/semi-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/semi-style'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/space-before-blocks'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/space-before-function-paren'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/space-in-parens'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/space-infix-ops'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/space-unary-ops'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/spaced-comment'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/switch-colon-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/template-curly-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/template-tag-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/type-annotation-spacing'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/type-generic-spacing'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'style/type-named-tuple-spacing'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'style/wrap-iife'?: eslint.Linter.RuleEntry<undefined>;
+        readonly 'style/wrap-regex'?: eslint.Linter.RuleEntry<[]>;
+        readonly 'style/yield-star-spacing'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/adjacent-overload-signatures'?: eslint.Linter.RuleEntry<[]>;
         readonly 'ts/array-type'?: eslint.Linter.RuleEntry<undefined>;
         readonly 'ts/await-thenable'?: eslint.Linter.RuleEntry<[]>;
@@ -7063,14 +9394,14 @@ declare function unicorn(options?: unicorn.Options): Promise<[{
     };
 }]>;
 declare namespace unicorn {
-    type Rules = RuleOptions;
+    type Rules = RuleOptions$2;
     interface Options extends PluginOptionsBase<Rules> {
     }
 }
 
 declare function yml(options?: yml.Options): Promise<[Config, Config]>;
 declare namespace yml {
-    type Rules = RuleOptions$1;
+    type Rules = RuleOptions$3;
     interface Options extends PluginOptionsBase<Rules> {
     }
 }
@@ -7079,10 +9410,11 @@ interface DefineConfigOptions extends ignores.Options {
     import?: boolean | imports.Options;
     jsonc?: boolean | jsonc.Options;
     node?: boolean | node.Options;
+    stylistic?: boolean | stylistic.Options;
     ts?: boolean | ts.Options;
     unicorn?: boolean | unicorn.Options;
     yml?: boolean | yml.Options;
 }
 declare function defineConfig(options?: DefineConfigOptions): Promise<Config[]>;
 
-export { type DefineConfigOptions, defineConfig as default, defineConfig, ignores, imports, jsonc, node, ts, unicorn, yml };
+export { type DefineConfigOptions, defineConfig as default, defineConfig, ignores, imports, jsonc, node, stylistic, ts, unicorn, yml };
