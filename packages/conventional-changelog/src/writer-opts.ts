@@ -1,4 +1,3 @@
- 
 import { readFileSync } from 'node:fs';
 import nodePath from 'node:path';
 import type { Options } from 'conventional-changelog-writer';
@@ -8,7 +7,6 @@ import { CommitConventionalType } from './data.js';
 
 export interface WriterOptions extends Options {}
 
-// eslint-disable-next-line unicorn/prefer-module
 const _dirname = typeof __dirname === 'undefined' ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
 const basePath = nodePath.resolve(nodePath.dirname(_dirname), './template');
 

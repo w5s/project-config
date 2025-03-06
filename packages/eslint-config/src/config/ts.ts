@@ -84,9 +84,9 @@ export async function ts(options: ts.Options = {}) {
               { '@typescript-eslint': 'ts' },
             ),
           },
-        }]
+        }] as const
       : []),
-  ] as const satisfies Array<Config>;
+  ] as ([Config, Config] | [Config, Config, Config]) satisfies Array<Config>;
 }
 export namespace ts {
   export type Rules = RuleOptions;

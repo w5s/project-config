@@ -31,14 +31,14 @@ function task() {
         ...config.jobs,
         build: {
           'runs-on': 'ubuntu-latest',
-          steps: [
+          'steps': [
             { uses: 'actions/checkout@v4' },
             { uses: 'rharkor/caching-for-turbo@v1.3' },
             {
               uses: 'actions/setup-node@v3',
               with: {
                 'node-version-file': '.tool-versions',
-                cache: packageManager,
+                'cache': packageManager,
               },
             },
             { run: packageInstall },

@@ -3,8 +3,8 @@ import Changelog from '@w5s/conventional-changelog';
 
 const $if =
   (when: RuleConfigCondition | undefined = 'always') =>
-  (cond: boolean) =>
-    when === 'always' ? cond : !cond;
+    (cond: boolean) =>
+      when === 'always' ? cond : !cond;
 
 export const typeGitmojiStyle: Rule<'unicode' | 'emoji'> = (parsed, when = 'always', value = 'unicode') => {
   const isUnicode = parsed.type != null && Changelog.Emoji.isUnicode(parsed.type);

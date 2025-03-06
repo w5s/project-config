@@ -129,20 +129,20 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
           'source.fixAll': true,
         },
         'eslint.validate': [...new Set(
-            extList.map(
-              (ext) =>
-                ({
-                  cjs: 'javascript',
-                  mjs: 'javascript',
-                  jsx: 'javascriptreact',
-                  js: 'javascript',
-                  tsx: 'typescriptreact',
-                  ts: 'typescript',
-                  yaml: 'yaml',
-                  yml: 'yaml',
-                })[ext] || ext,
-            ),
-          )],
+          extList.map(
+            (ext) =>
+              ({
+                cjs: 'javascript',
+                mjs: 'javascript',
+                jsx: 'javascriptreact',
+                js: 'javascript',
+                tsx: 'typescriptreact',
+                ts: 'typescript',
+                yaml: 'yaml',
+                yml: 'yaml',
+              })[ext] || ext,
+          ),
+        )],
       }),
     });
   }

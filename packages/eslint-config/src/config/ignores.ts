@@ -9,7 +9,7 @@ const getGitignore = async (cwd: string, prefix = ''): Promise<Array<string>> =>
   const gitIgnoreFile = await findUp(nodePath.join(prefix, '.gitignore'), { cwd });
   if (gitIgnoreFile != null) {
     const { patterns } = parseGitignore.parse(await fs.promises.readFile(gitIgnoreFile));
-    const returnValue = patterns.map(pattern => nodePath.join(prefix, pattern));
+    const returnValue = patterns.map((pattern) => nodePath.join(prefix, pattern));
     return returnValue;
   }
   return [];

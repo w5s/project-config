@@ -38,64 +38,64 @@ export const CommitConventionalType = (() => {
 
   const typeData: Record<CommitConventionalType, CommitConventionalTypeData> = {
     feat: {
-      emoji: '✨',
+      'emoji': '✨',
       'en-US': 'Features',
-      changelog: true,
+      'changelog': true,
     },
     fix: {
-      emoji: '🐛',
+      'emoji': '🐛',
       'en-US': 'Bug Fixes',
-      changelog: true,
+      'changelog': true,
     },
     build: {
-      emoji: '👷',
+      'emoji': '👷',
       'en-US': 'Build System',
-      changelog: false,
+      'changelog': false,
     },
     chore: {
-      emoji: '🎫',
+      'emoji': '🎫',
       'en-US': 'Chores',
-      changelog: false,
+      'changelog': false,
     },
     ci: {
-      emoji: '🔧',
+      'emoji': '🔧',
       'en-US': 'Continuous Integration',
-      changelog: false,
+      'changelog': false,
     },
     docs: {
-      emoji: '📝',
+      'emoji': '📝',
       'en-US': 'Documentation',
-      changelog: false,
+      'changelog': false,
     },
     test: {
-      emoji: '✅',
+      'emoji': '✅',
       'en-US': 'Tests',
-      changelog: false,
+      'changelog': false,
     },
     perf: {
-      emoji: '⚡',
+      'emoji': '⚡',
       'en-US': 'Performance Improvements',
-      changelog: true,
+      'changelog': true,
     },
     refactor: {
-      emoji: '♻',
+      'emoji': '♻',
       'en-US': 'Code Refactoring',
-      changelog: false,
+      'changelog': false,
     },
     revert: {
-      emoji: '⏪',
+      'emoji': '⏪',
       'en-US': 'Reverts',
-      changelog: true,
+      'changelog': true,
     },
     style: {
-      emoji: '💄',
+      'emoji': '💄',
       'en-US': 'Styles',
-      changelog: false,
+      'changelog': false,
     },
     wip: {
-      emoji: '🚧',
+      'emoji': '🚧',
       'en-US': 'Work in progress',
-      changelog: false,
+      'changelog': false,
     },
   };
 
@@ -123,7 +123,7 @@ export const CommitConventionalType = (() => {
 })();
 
 export interface CommitConventionalTypeData {
-  emoji: string;
+  'emoji': string;
   'en-US': string;
-  changelog: boolean;
+  'changelog': boolean;
 }

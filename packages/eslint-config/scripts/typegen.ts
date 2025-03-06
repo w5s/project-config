@@ -10,7 +10,6 @@ import unicornPlugin from 'eslint-plugin-unicorn';
 import ymlPlugin from 'eslint-plugin-yml';
 import { pluginsToRulesDTS } from 'eslint-typegen/core';
 
-
 console.log('Generating types...');
 
 await Promise.all(

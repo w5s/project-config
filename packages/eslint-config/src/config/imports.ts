@@ -22,7 +22,7 @@ export async function imports(options: imports.Options = {}) {
         ...rules,
       },
     },
-  ] as const satisfies Array<Config>;
+  ] as [Config] satisfies Array<Config>;
 }
 
 export namespace imports {

@@ -9,5 +9,5 @@ export default [
     // parserOptions: {
     //   project: require.resolve('./tsconfig.json'),
     // },
-  }
+  },
 ];
