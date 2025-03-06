@@ -6,6 +6,7 @@ import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
 import nodePlugin from 'eslint-plugin-n';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
+import vitestPlugin from '@vitest/eslint-plugin';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import ymlPlugin from 'eslint-plugin-yml';
 import { pluginsToRulesDTS } from 'eslint-typegen/core';
@@ -23,6 +24,7 @@ await Promise.all(
       ['style', stylisticPlugin],
       ['ts', tsPlugin],
       ['unicorn', unicornPlugin],
+      ['test', vitestPlugin],
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {
