@@ -273,7 +273,10 @@ var Project;
     yaml: [".yaml", ".yml"]
   };
   function queryExtensions(languages) {
-    return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort();
+    return languages.reduce((previousValue, currentValue) => (
+      // eslint-disable-next-line unicorn/prefer-spread
+      previousValue.concat(registry[currentValue] ?? [])
+    ), []).sort();
   }
   Project2.queryExtensions = queryExtensions;
   function sourceExtensions() {

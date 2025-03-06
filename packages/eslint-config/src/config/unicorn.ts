@@ -58,7 +58,7 @@ export async function unicorn(options: unicorn.Options = {}) {
         'unicorn/prefer-module': 'off',
       },
     },
-  ] as const satisfies Array<Config>;
+  ] as [Config, Config, Config] satisfies Array<Config>;
 }
 
 export namespace unicorn {

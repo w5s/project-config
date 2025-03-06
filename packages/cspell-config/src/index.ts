@@ -53,11 +53,11 @@ const settings: AdvancedCSpellSettings = {
   dictionaries: [
     ...toArray(defaultSettings.dictionaries),
     ...dictionaryDefinitions
-      .map(dictionaryDefinition => dictionaryDefinition.name)
-      .filter(name => !['w5s-typescript'].includes(name)),
+      .map((dictionaryDefinition) => dictionaryDefinition.name)
+      .filter((name) => !['w5s-typescript'].includes(name)),
   ],
   ignoreWords: [],
-  import: toArray(defaultSettings.import).filter(dict => !excludeImport.has(dict)),
+  import: toArray(defaultSettings.import).filter((dict) => !excludeImport.has(dict)),
   ignorePaths: [
     ...toArray(defaultSettings.ignorePaths),
     '**/CHANGELOG.md',

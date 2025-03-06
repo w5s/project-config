@@ -1,3 +1,4 @@
+export * from './config/es.js';
 export * from './config/ignores.js';
 export * from './config/jsonc.js';
 export * from './config/imports.js';

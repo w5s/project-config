@@ -32,7 +32,7 @@ export async function node(options: node.Options = {}) {
         ...rules,
       },
     },
-  ] as const satisfies Array<Config>;
+  ] as [Config, Config] satisfies Array<Config>;
 }
 
 export namespace node {

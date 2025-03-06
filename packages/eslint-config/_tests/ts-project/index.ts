@@ -38,6 +38,5 @@ export function ternary(): boolean {
   const booleanValue = true;
   const falsyValue = undefined;
 
-   
   return falsyValue == null ? false : booleanValue;
 }

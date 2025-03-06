@@ -1,6 +1,4 @@
-
 const { yarnVersion, yarnConfig } = require('@w5s/dev');
-
 
 /* cSpell: disable */
 // @ts-check
@@ -78,7 +76,6 @@ function install(deps, options = {}, exec) {
   log.info(`Installing ${listify(newDeps)}...`);
   const versionedDeps = newDeps.map((dep) => getVersionedDep(dep, versions));
 
-
   return run(versionedDeps, { dev }, exec);
 }
 
@@ -90,7 +87,6 @@ function install(deps, options = {}, exec) {
  * @param {Function=} exec
  */
 function uninstall(deps, options = {}, exec) {
-
   deps = _.castArray(deps);
   const dev = options.dev !== false;
   const run = options.yarn || isUsingYarn() ? runYarn : runNpm;
@@ -105,7 +101,6 @@ function uninstall(deps, options = {}, exec) {
   }
 
   log.info(`Uninstalling ${listify(newDeps)}...`);
-
 
   return run(newDeps, { dev, remove: true }, exec);
 }

@@ -29,12 +29,18 @@ export async function stylistic(options: stylistic.Options = {}) {
       name: 'w5s/style/rules',
       rules: {
         ...(stylisticEnabled
-          ? config.rules
+          ? {
+              ...config.rules,
+              'style/arrow-parens': ['error', 'always'],
+              'style/brace-style': ['error', '1tbs'],
+              'style/operator-linebreak': ['error', 'after', { overrides: { ':': 'before', '?': 'before', '|>': 'before' } }],
+              'style/quotes': ['error', quotes ?? StylisticConfig.default.quotes, { avoidEscape: true, allowTemplateLiterals: true }],
+            }
           : {}),
         ...rules,
       },
     },
-  ] as const satisfies Array<Config>;
+  ] as [Config, Config] satisfies Array<Config>;
 }
 
 export namespace stylistic {

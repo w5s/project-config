@@ -1,7 +1,8 @@
-import { jsonc, ignores, imports, node, ts, yml, unicorn, stylistic } from './config.js';
+import { jsonc, ignores, imports, node, ts, yml, unicorn, stylistic, es } from './config.js';
 import type { Config } from './type.js';
 
 export interface DefineConfigOptions extends ignores.Options {
+  es?: boolean | es.Options;
   import?: boolean | imports.Options;
   jsonc?: boolean | jsonc.Options;
   node?: boolean | node.Options;
@@ -15,6 +16,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
   const stylisticOptions = typeof options.stylistic === 'boolean' ? { enabled: options.stylistic } : { enabled: true, ...options.stylistic };
   const withDefaultStylistic = <T>(options: T) => ({ stylistic: stylisticOptions, ...options });
   const toOption = <T extends {}>(optionsOrBoolean: T | boolean | undefined) => withDefaultStylistic((typeof optionsOrBoolean === 'boolean' ? { enabled: optionsOrBoolean } : ({ enabled: true, ...optionsOrBoolean })) as T & { enabled: boolean });
+  const esOptions = toOption(options.es);
   const importOptions = toOption(options.import);
   const jsoncOptions = toOption(options.jsonc);
   const nodeOptions = toOption(options.node);
@@ -26,7 +28,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
   const append = async (config: ReadonlyArray<any>) => {
     returnValue = [...returnValue, ...config as any];
   };
-
+  append(await es(esOptions));
   append(await ignores(options));
 
   if (jsoncOptions.enabled) {

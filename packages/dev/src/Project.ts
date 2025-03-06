@@ -59,10 +59,9 @@ export namespace Project {
    */
   export function queryExtensions(languages: LanguageId[]): readonly Extension[] {
     return languages
-      .reduce<
-        Extension[]
+      .reduce<Extension[]>((previousValue, currentValue) =>
         // eslint-disable-next-line unicorn/prefer-spread
-      >((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? ([] as Extension[])), [])
+        previousValue.concat(registry[currentValue] ?? ([] as Extension[])), [])
       .sort();
   }
 

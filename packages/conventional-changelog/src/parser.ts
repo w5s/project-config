@@ -6,10 +6,10 @@ export const createParserOpts = (): ParserOptions => ({
   headerPattern: new RegExp(
     // Type
     `^(?<type>\\S*)? ` +
-      // Scope
-      `(?:\\((?<scope>.*)\\):? )?` +
-      // Subject
-      `(?<subject>.*)$`,
+    // Scope
+    `(?:\\((?<scope>.*)\\):? )?` +
+    // Subject
+    `(?<subject>.*)$`,
     'u',
   ),
   headerCorrespondence: ['type', 'scope', 'subject'],

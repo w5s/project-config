@@ -44,7 +44,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<readonly Confi
         ...rules,
       },
     },
-  ] as const satisfies Array<Config>;
+  ] as [Config, Config] satisfies Array<Config>;
 }
 
 export namespace jsonc {

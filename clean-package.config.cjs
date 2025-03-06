@@ -12,8 +12,8 @@ const cleanPackageConfig = {
     'packageManager',
     'stylelint',
     ...Object.keys(scripts)
-      .filter(_ => _ !== 'postpack')
-      .map(_ => `scripts.${_}`),
+      .filter((_) => _ !== 'postpack')
+      .map((_) => `scripts.${_}`),
   ],
 };
 

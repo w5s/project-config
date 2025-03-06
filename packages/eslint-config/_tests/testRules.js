@@ -4,4 +4,4 @@ export default {
     'import/no-extraneous-dependencies': 'off',
     'no-unused-vars': 'off',
   },
-}
+};
