@@ -30,14 +30,12 @@ function createRenovate({ renovatePresetApplication, renovatePresetLibrary }) {
       });
       renovateFile.set(
         'extends',
-        [renovatePresetResolved].concat(
-          renovateFile.get('extends', []).filter(
-            /**
-             * @param {string} extension
-             */
-            (extension) => extension !== renovatePresetApplication && extension !== renovatePresetLibrary,
-          ),
-        ),
+        [renovatePresetResolved, ...renovateFile.get('extends', []).filter(
+          /**
+           * @param {string} extension
+           */
+          (extension) => extension !== renovatePresetApplication && extension !== renovatePresetLibrary,
+        )],
       );
       renovateFile.save();
     }

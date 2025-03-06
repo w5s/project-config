@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { dep } from './dep.js';
 
 export function test(): 'zero' | 'one' | 'other' {
@@ -37,6 +38,5 @@ export function ternary(): boolean {
   const booleanValue = true;
   const falsyValue = undefined;
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
   return falsyValue == null ? false : booleanValue;
 }

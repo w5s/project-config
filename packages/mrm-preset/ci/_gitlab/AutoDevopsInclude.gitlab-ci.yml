@@ -28,14 +28,14 @@ variables:
 .autodevops_base_rules:
   rules:
     - &autodevops_schedule_skip_rule
-      if: '$CI_PIPELINE_SOURCE == "schedule"'
-      when: never
+        if: '$CI_PIPELINE_SOURCE == "schedule"'
+        when: never
     - &autodevops_renovate_skip_rule
-      if: $RENOVATE
-      when: never
+        if: $RENOVATE
+        when: never
     - &autodevops_default_branch_only_rule
-      if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-      when: never
+        if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+        when: never
     - when: on_success
 
 # #

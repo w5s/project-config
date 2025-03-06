@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-spread */
 import emojiRegexp from 'emoji-regex';
 import { type Gitmoji, gitmojis } from 'gitmojis';
 import type { CommitConventionalType } from './data.js';
@@ -82,7 +83,7 @@ export namespace GitmojiCode {
 
             .concat(
               gitmojiUnicodeArray.map((gitmojiUnicode) => [
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
+                // eslint-disable-next-line ts/no-non-null-assertion, ts/no-non-null-asserted-optional-chain
                 index.emoji.get(gitmojiUnicode)?.code! as GitmojiCode,
                 commitType,
               ]),

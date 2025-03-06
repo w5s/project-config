@@ -27,9 +27,9 @@ declare const CommitConventionalType: {
     Chore: "chore";
 };
 interface CommitConventionalTypeData {
-    emoji: string;
+    'emoji': string;
     'en-US': string;
-    changelog: boolean;
+    'changelog': boolean;
 }
 
 interface WriterOptions extends Options$1 {

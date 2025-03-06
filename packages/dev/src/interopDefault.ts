@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access
 const getDefaultOrElse = (_: any) => _?.default ?? _;
 /**
  * Resolves a module or promise-like object, returning the default export if available.
@@ -25,6 +24,5 @@ export function interopDefault<T>(m: PromiseLike<T>): Promise<T extends { defaul
 export function interopDefault<T>(m: T): T extends { default: infer U } ? U : T;
 export function interopDefault<T>(m: T | PromiseLike<T>): Promise<T extends { default: infer U } ? U : T> {
   // @ts-ignore We know what we are doing
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-return, promise/prefer-await-to-then
   return m != null && typeof m.then === 'function' ? Promise.resolve(m).then(getDefaultOrElse) : getDefaultOrElse(m);
 }
