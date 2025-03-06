@@ -17,7 +17,7 @@ export async function es(
         ecmaVersion: Project.ecmaVersion(),
         globals: {
           ...globals.browser,
-          ...globals[`es${Project.ecmaVersion()}`],
+          ...globals[`es2021`],
           ...globals.node,
           __DEV__: 'readonly',
           __PROD__: 'readonly',

@@ -2415,7 +2415,7 @@ async function es(options) {
         ecmaVersion: dev.Project.ecmaVersion(),
         globals: {
           ...import_globals.default.browser,
-          ...import_globals.default[`es${dev.Project.ecmaVersion()}`],
+          ...import_globals.default[`es2021`],
           ...import_globals.default.node,
           __DEV__: "readonly",
           __PROD__: "readonly",
