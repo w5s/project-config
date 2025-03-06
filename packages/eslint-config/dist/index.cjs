@@ -3659,7 +3659,37 @@ async function stylistic(options = {}) {
     }
   ];
 }
-var defaultFiles2 = [`**/${dev.Project.extensionsToGlob(dev.Project.queryExtensions(["typescript", "typescriptreact"]))}`];
+var sourceGlob = dev.Project.extensionsToGlob(dev.Project.sourceExtensions());
+var defaultFiles2 = [
+  `**/__mocks__/**/${sourceGlob}`,
+  `**/__tests__/**/${sourceGlob}`,
+  `**/?(*.)+(spec|test)${sourceGlob.slice(1)}`
+];
+async function test(options = {}) {
+  const [vitestPlugin] = await Promise.all([
+    import('@vitest/eslint-plugin')
+  ]);
+  const { files = defaultFiles2, rules = {}, stylistic: stylistic2 = true } = options;
+  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
+  return [
+    {
+      name: "w5s/test/setup",
+      plugins: {
+        test: dev.interopDefault(vitestPlugin)
+      }
+    },
+    {
+      files,
+      name: "w5s/test/rules",
+      rules: {
+        ...vitestPlugin.default.configs.recommended.rules,
+        ...stylisticEnabled ? {} : {},
+        ...rules
+      }
+    }
+  ];
+}
+var defaultFiles3 = [`**/${dev.Project.extensionsToGlob(dev.Project.queryExtensions(["typescript", "typescriptreact"]))}`];
 async function ts(options = {}) {
   const [tsPlugin, tsParser] = await Promise.all([
     import('@typescript-eslint/eslint-plugin'),
@@ -3668,7 +3698,7 @@ async function ts(options = {}) {
   const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
   const tsStrictRules = tsPlugin.configs["strict"].rules;
   const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
-  const { files = defaultFiles2, rules = {}, stylistic: stylistic2 = true, typeChecked = false } = options;
+  const { files = defaultFiles3, rules = {}, stylistic: stylistic2 = true, typeChecked = false } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
   return [
     {
@@ -3727,7 +3757,7 @@ async function ts(options = {}) {
       }
     },
     ...typeChecked ? [{
-      files: defaultFiles2,
+      files: defaultFiles3,
       // ignores: ignoresTypeAware,
       name: "w5s/ts/rules-type-checked",
       rules: {
@@ -3805,13 +3835,13 @@ async function unicorn(options = {}) {
     }
   ];
 }
-var defaultFiles3 = [`**/${dev.Project.extensionsToGlob(dev.Project.queryExtensions(["yaml"]))}`];
+var defaultFiles4 = [`**/${dev.Project.extensionsToGlob(dev.Project.queryExtensions(["yaml"]))}`];
 async function yml(options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
     import('eslint-plugin-yml'),
     dev.interopDefault(import('yaml-eslint-parser'))
   ]);
-  const { files = defaultFiles3, rules = {}, stylistic: stylistic2 = true } = options;
+  const { files = defaultFiles4, rules = {}, stylistic: stylistic2 = true } = options;
   const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic2);
   return [
     {
@@ -3909,6 +3939,7 @@ exports.imports = imports;
 exports.jsonc = jsonc;
 exports.node = node;
 exports.stylistic = stylistic;
+exports.test = test;
 exports.ts = ts;
 exports.unicorn = unicorn;
 exports.yml = yml;
