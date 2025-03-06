@@ -166,16 +166,28 @@ declare function fileSync(options: FileOptions): void;
  *
  * @example
  * ```ts
- * await interopDefault(import('./module'));// Can be a commonjs or esm module
+ * // modules.ts
+ * export default {
+ *   foo: true
+ * };
+ * // Async API
+ * const modPromise = import('./module');
+ * interopDefault(modPromise); // == Promise.resolve({ foo: true })
+ * // Sync API
+ * const mod = await import('./module');
+ * interopDefault(mod); // == { foo: true }
  * ```
  *
  * @template T - The type of the module or promise-like object.
- * @param {T | PromiseLike<T>} m - The module or promise-like object to resolve.
- * @returns {Promise<T extends { default: infer U } ? U : T>} A promise resolving to the default export if present, otherwise the module itself.
+ * @param m - The module or promise-like object to resolve.
+ * @returns A promise resolving to the default export if present, otherwise the module itself.
  */
-declare function interopDefault<T>(m: T | PromiseLike<T>): Promise<T extends {
+declare function interopDefault<T>(m: PromiseLike<T>): Promise<T extends {
     default: infer U;
 } ? U : T>;
+declare function interopDefault<T>(m: T): T extends {
+    default: infer U;
+} ? U : T;
 
 interface LanguageIdMap {
     css: true;

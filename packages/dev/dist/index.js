@@ -223,9 +223,9 @@ function blockSync(options) {
 }
 
 // src/interopDefault.ts
-async function interopDefault(m) {
-  const resolved = await m;
-  return resolved.default ?? resolved;
+var getDefaultOrElse = (_) => _?.default ?? _;
+function interopDefault(m) {
+  return m != null && typeof m.then === "function" ? Promise.resolve(m).then(getDefaultOrElse) : getDefaultOrElse(m);
 }
 
 // src/json.ts
