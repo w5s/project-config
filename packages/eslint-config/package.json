@@ -69,7 +69,6 @@
     "@w5s/dev": "^2.5.4",
     "@w5s/prettier-config": "^2.2.11",
     "eslint-plugin-import": "^2.25.0",
-    "eslint-plugin-jest": "^29.0.0",
     "eslint-plugin-jsdoc": "^60.0.0",
     "eslint-plugin-jsonc": "^2.4.0",
     "eslint-plugin-n": "^17.0.0",
