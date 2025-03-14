@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@commitlint/lint": "19.8.0",
-    "vite": "6.2.1",
+    "vite": "6.2.2",
     "vitest": "3.0.8"
   },
   "peerDependencies": {
