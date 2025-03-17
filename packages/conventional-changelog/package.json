@@ -68,7 +68,7 @@
     "@w5s/tsup-config": "workspace:*",
     "tsup": "8.4.0",
     "vite": "6.2.2",
-    "vitest": "3.0.8"
+    "vitest": "3.0.9"
   },
   "clean-package": "../../clean-package.config.cjs",
   "engines": {
