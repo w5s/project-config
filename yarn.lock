@@ -2537,7 +2537,7 @@ __metadata:
     cspell: "npm:8.17.5"
     eslint: "npm:8.57.1"
     eslint-plugin-sort-keys: "npm:2.3.5"
-    markdown-magic: "npm:3.4.0"
+    markdown-magic: "npm:3.4.1"
     markdown-magic-package-json: "npm:2.0.2"
     markdown-magic-subpackage-list: "npm:1.1.2"
     npm-run-all2: "npm:7.0.2"
@@ -7812,9 +7812,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-magic@npm:3.4.0":
-  version: 3.4.0
-  resolution: "markdown-magic@npm:3.4.0"
+"markdown-magic@npm:3.4.1":
+  version: 3.4.1
+  resolution: "markdown-magic@npm:3.4.1"
   dependencies:
     "@davidwells/md-utils": "npm:^0.0.44"
     globrex: "npm:^0.1.2"
@@ -7832,7 +7832,8 @@ __metadata:
   bin:
     markdown: cli.js
     md-magic: cli.js
-  checksum: 10c0/9f6c82c257d42c1e02ad73728911248465f23740b9b8d05514626cd440b5ac025127161ebb3424af63598401e09aa83b5eb06425b7c4f79c8eacaad73f19845a
+    mdm: cli.js
+  checksum: 10c0/0417391ce66a0d21e3c1fe4ca4b4372f05c4e9624f16874f5af5ec807efa49b8508d416dd79ca4cfc854b8d2ee0740e8af4b0f0c741c075f62021a9b18fa6415
   languageName: node
   linkType: hard
 
