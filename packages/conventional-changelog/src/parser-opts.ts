@@ -1,6 +1,6 @@
-import type { Options } from 'conventional-commits-parser';
+import type { ParserOptions as ParserOptionsDefault } from 'conventional-commits-parser';
 
-export interface ParserOptions extends Options {}
+export interface ParserOptions extends ParserOptionsDefault {}
 
 export const parserOpts: ParserOptions = {
   headerPattern: new RegExp(

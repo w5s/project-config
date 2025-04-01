@@ -249,12 +249,12 @@ function createTransform(config) {
     }));
     const conventionalType = commit.type == null ? void 0 : CommitConventionalType.parse(commit.type) ?? (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : void 0);
     if (ignoreType(conventionalType) && discard) return false;
-    const type = conventionalType == null ? conventionalType : displayType(conventionalType, {
+    const type = conventionalType == null ? null : displayType(conventionalType, {
       withEmoji: config.withEmoji
     });
     if (ignoreScope(commit.scope)) return false;
     const scopeIntermediate = commit.scope === "*" ? "" : commit.scope;
-    const scope = config.scopeDisplayName == null ? scopeIntermediate : displayScope(scopeIntermediate, config.scopeDisplayName);
+    const scope = config.scopeDisplayName == null ? null : displayScope(scopeIntermediate, config.scopeDisplayName) ?? null;
     const hash = typeof commit.hash === "string" ? commit.hash.slice(0, 7) : commit.hash;
     const subject = typeof commit.subject === "string" ? (() => {
       let returnValue = commit.subject;
@@ -309,6 +309,7 @@ var writerOpts = {
   }),
   groupBy: "type",
   commitGroupsSort: "title",
+  // @ts-ignore
   commitsSort: ["scope", "subject"],
   noteGroupsSort: "title",
   mainTemplate,

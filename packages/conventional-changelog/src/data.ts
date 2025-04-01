@@ -1,7 +1,10 @@
 import type { Commit as CommitDefault } from 'conventional-commits-parser';
 
-export type Commit = CommitDefault<never> & {
-  hash?: string;
+export type Commit = CommitDefault & {
+  type: string | null;
+  subject: string | null;
+  scope: string | null;
+  hash: string | null;
 };
 
 export type CommitConventionalType =

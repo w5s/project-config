@@ -22,6 +22,7 @@ var gitmojiPlugin = {
 // src/index.ts
 var { Error, Warning, Disabled } = RuleConfigSeverity;
 var parserPreset = {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   parserOpts: Changelog.parserOpts
 };
 var rules = {
