@@ -67,7 +67,7 @@
     "@types/conventional-commits-parser": "5.0.1",
     "@w5s/tsup-config": "workspace:*",
     "tsup": "8.4.0",
-    "vite": "6.2.3",
+    "vite": "6.2.4",
     "vitest": "3.0.9"
   },
   "clean-package": "../../clean-package.config.cjs",
