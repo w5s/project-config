@@ -5,6 +5,7 @@ import { gitmojiPlugin } from './plugin.js';
 const { Error, Warning, Disabled } = RuleConfigSeverity;
 
 const parserPreset = {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   parserOpts: conventionalChangelog.parserOpts as Exclude<LintOptions['parserOpts'], undefined>,
 } satisfies LintOptions;
 

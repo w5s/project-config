@@ -1,4 +1,4 @@
-import type { Context, Options as WriterOptions } from 'conventional-changelog-writer';
+import type { CommitTransformFunction, Context } from 'conventional-changelog-writer';
 import { CommitConventionalType, Commit } from './data.js';
 import { GitmojiCode } from './gitmoji.js';
 
@@ -33,12 +33,12 @@ export function displayType(type: string, options: displayType.Options = {}): st
 }
 export namespace displayType {
   export interface Options {
-    readonly withEmoji?: boolean;
+    readonly withEmoji?: boolean | undefined;
     readonly language?: Language;
   }
 }
 
-export function createTransform(config: TransformConfig): WriterOptions.Transform.Function {
+export function createTransform(config: TransformConfig): CommitTransformFunction<Commit> {
   const displayTypes = new Set(config.displayTypes == null ? CommitConventionalType.values() : config.displayTypes);
   const ignoreType = (type: string | undefined) => type == null || !displayTypes.has(type as CommitConventionalType);
   const ignoreScope = (scope: string | undefined | null) =>
@@ -61,7 +61,7 @@ export function createTransform(config: TransformConfig): WriterOptions.Transfor
 
     const type =
       conventionalType == null
-        ? conventionalType
+        ? null
         : displayType(conventionalType, {
             withEmoji: config.withEmoji,
           });
@@ -70,7 +70,7 @@ export function createTransform(config: TransformConfig): WriterOptions.Transfor
 
     const scopeIntermediate = commit.scope === '*' ? '' : commit.scope;
     const scope =
-      config.scopeDisplayName == null ? scopeIntermediate : displayScope(scopeIntermediate, config.scopeDisplayName);
+      config.scopeDisplayName == null ? null : (displayScope(scopeIntermediate, config.scopeDisplayName) ?? null);
     const hash = typeof commit.hash === 'string' ? commit.hash.slice(0, 7) : commit.hash;
 
     const subject =
@@ -102,6 +102,7 @@ export function createTransform(config: TransformConfig): WriterOptions.Transfor
     // Remove references that already appear in the subject
     const references = commit.references.filter((reference) => !issues.has(reference.issue));
 
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
     return {
       ...commit,
       type,
@@ -116,8 +117,8 @@ export function createTransform(config: TransformConfig): WriterOptions.Transfor
       revert: commit.revert,
       notes,
       mentions: commit.mentions,
-    };
+    } as Commit;
   };
 
-  return transform as unknown as WriterOptions.Transform.Function;
+  return transform as unknown as CommitTransformFunction<Commit>;
 }

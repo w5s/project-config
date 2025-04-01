@@ -1,11 +1,17 @@
-import { Options, Commit as Commit$1 } from 'conventional-commits-parser';
-import { Options as Options$1 } from 'conventional-changelog-writer';
+import { ParserOptions as ParserOptions$1, Commit as Commit$2 } from 'conventional-commits-parser';
+import { Options } from 'conventional-changelog-writer';
 
-interface ParserOptions extends Options {
+interface ParserOptions extends ParserOptions$1 {
 }
 
-type Commit = Commit$1;
+type Commit$1 = Commit$2;
 
+type Commit = Commit$2 & {
+    type: string | null;
+    subject: string | null;
+    scope: string | null;
+    hash: string | null;
+};
 type CommitConventionalType = 'build' | 'ci' | 'docs' | 'feat' | 'fix' | 'perf' | 'refactor' | 'revert' | 'style' | 'test' | 'wip' | 'chore';
 declare const CommitConventionalType: {
     hasInstance: (anyValue: unknown) => anyValue is CommitConventionalType;
@@ -32,7 +38,7 @@ interface CommitConventionalTypeData {
     changelog: boolean;
 }
 
-interface WriterOptions extends Options$1 {
+interface WriterOptions extends Options<Commit> {
 }
 
 type Emoji = Emoji.Unicode | Emoji.Text;
@@ -70,7 +76,7 @@ declare const _default: {
     writerOpts: WriterOptions;
     recommendedBumpOpts: {
         parserOpts: ParserOptions;
-        whatBump: (commits: ReadonlyArray<Commit>) => {
+        whatBump: (commits: ReadonlyArray<Commit$1>) => {
             level: number;
             reason: string;
         };

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import { FinalOptions } from 'conventional-changelog-writer';
 import type { Commit } from './data.js';
 import { createTransform } from './transform.js';
 
@@ -11,9 +12,13 @@ const generateCommit = (commit: Partial<Commit>): Commit => ({
   footer: null,
   merge: null,
   revert: null,
+  scope: null,
+  hash: null,
   ...commit,
 });
 const defaultContext = { commit: '', date: '', issue: '' };
+// eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+const defaultOptions = {} as FinalOptions<Commit>;
 
 describe('createTransform', () => {
   it('return commit if has feat', () => {
@@ -24,11 +29,14 @@ describe('createTransform', () => {
       type: 'feat',
     });
 
-    expect(transform(commit, defaultContext)).toEqual({
+    expect(transform(commit, defaultContext, defaultOptions)).toEqual({
       body: null,
       footer: null,
       merge: null,
       revert: null,
+      hash: null,
+      scope: null,
+      subject: undefined,
       type: '✨ Features',
       header: 'amazing new module',
       mentions: [],
@@ -45,11 +53,13 @@ describe('createTransform', () => {
       hash: '12345678abc',
     });
 
-    expect(transform(commit, defaultContext)).toEqual({
+    expect(transform(commit, defaultContext, defaultOptions)).toEqual({
       body: null,
       footer: null,
       merge: null,
       revert: null,
+      scope: null,
+      subject: undefined,
       hash: '1234567',
       header: '',
       mentions: [],
@@ -71,12 +81,15 @@ describe('createTransform', () => {
         type: 'fix',
       });
 
-      expect(transform(featCommit, defaultContext)).toBe(false);
-      expect(transform(fixCommit, defaultContext)).toEqual({
+      expect(transform(featCommit, defaultContext, defaultOptions)).toBe(false);
+      expect(transform(fixCommit, defaultContext, defaultOptions)).toEqual({
         body: null,
         footer: null,
         merge: null,
         revert: null,
+        hash: null,
+        scope: null,
+        subject: undefined,
         header: '',
         mentions: [],
         notes: [],
@@ -94,6 +107,9 @@ describe('createTransform', () => {
           footer: null,
           merge: null,
           revert: null,
+          hash: null,
+          scope: null,
+          subject: undefined,
           header: '',
           mentions: [],
           notes: [],
@@ -110,6 +126,9 @@ describe('createTransform', () => {
           footer: null,
           merge: null,
           revert: null,
+          hash: null,
+          scope: null,
+          subject: undefined,
           header: '',
           mentions: [],
           notes: [],
@@ -126,6 +145,9 @@ describe('createTransform', () => {
           footer: null,
           merge: null,
           revert: null,
+          hash: null,
+          scope: null,
+          subject: undefined,
           header: '',
           mentions: [],
           notes: [],
@@ -136,7 +158,7 @@ describe('createTransform', () => {
     ])('should handle type as unicode gitmoji', (commit, expected) => {
       const transform = createTransform({});
 
-      expect(transform(commit, defaultContext)).toEqual(expected);
+      expect(transform(commit, defaultContext, defaultOptions)).toEqual(expected);
     });
 
     it('should show scope display name', () => {
@@ -150,11 +172,13 @@ describe('createTransform', () => {
         scope: 'foo',
       });
 
-      expect(transform(commit, defaultContext)).toEqual({
+      expect(transform(commit, defaultContext, defaultOptions)).toEqual({
         body: null,
         footer: null,
         merge: null,
         revert: null,
+        hash: null,
+        subject: undefined,
         header: '',
         mentions: [],
         notes: [],

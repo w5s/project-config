@@ -4,9 +4,9 @@ import nodePath from 'node:path';
 import type { Options } from 'conventional-changelog-writer';
 import { fileURLToPath } from 'node:url';
 import { createTransform } from './transform.js';
-import { CommitConventionalType } from './data.js';
+import { Commit, CommitConventionalType } from './data.js';
 
-export interface WriterOptions extends Options {}
+export interface WriterOptions extends Options<Commit> {}
 
 const _dirname = typeof __dirname === 'undefined' ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
 const basePath = nodePath.resolve(nodePath.dirname(_dirname), './template');
@@ -25,6 +25,7 @@ export const writerOpts: WriterOptions = {
   }),
   groupBy: 'type',
   commitGroupsSort: 'title',
+  // @ts-ignore
   commitsSort: ['scope', 'subject'],
   noteGroupsSort: 'title',
   mainTemplate,
