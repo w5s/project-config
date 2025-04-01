@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.5.2 (2025-04-01)</small>
+
+* ✨ Add interopDefault ([7d649b3](https://github.com/w5s/project-config/commit/7d649b3))
+* 🔖 Publish ([3f7abf9](https://github.com/w5s/project-config/commit/3f7abf9))
+* 🔨 Upgrade dependency tsup to v8.4.0 ([b03f717](https://github.com/w5s/project-config/commit/b03f717))
+* 🔨 Upgrade dependency vite to v6.2.0 ([33e259e](https://github.com/w5s/project-config/commit/33e259e))
+* 🔨 Upgrade dependency vite to v6.2.1 ([c1e55d0](https://github.com/w5s/project-config/commit/c1e55d0))
+* 🔨 Upgrade dependency vite to v6.2.2 ([e6cce24](https://github.com/w5s/project-config/commit/e6cce24))
+* 🔨 Upgrade dependency vite to v6.2.3 ([38a83fe](https://github.com/w5s/project-config/commit/38a83fe))
+* 🔨 Upgrade dependency vite to v6.2.4 [SECURITY] ([4b265dc](https://github.com/w5s/project-config/commit/4b265dc))
+* 🔨 Upgrade dependency vitest to v3.0.7 ([f890e55](https://github.com/w5s/project-config/commit/f890e55))
+* 🔨 Upgrade dependency vitest to v3.0.8 ([46e1d95](https://github.com/w5s/project-config/commit/46e1d95))
+* 🔨 Upgrade dependency vitest to v3.0.9 ([c5e7f07](https://github.com/w5s/project-config/commit/c5e7f07))
+* 🔨 Upgrade dependency vitest to v3.1.1 ([85ca45c](https://github.com/w5s/project-config/commit/85ca45c))
+
 ## [2.5.1](https://github.com/w5s/project-config/compare/@w5s/dev@2.5.0...@w5s/dev@2.5.1) (2025-02-27)
 
 **Note:** Version bump only for package @w5s/dev

@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## <small>2.4.3 (2025-04-01)</small>
+
+* 🔖 Publish ([3f7abf9](https://github.com/w5s/project-config/commit/3f7abf9))
+* 🔨 Upgrade dependency @types/react to v19.0.11 ([ae94446](https://github.com/w5s/project-config/commit/ae94446))
+* 🔨 Upgrade dependency @types/react to v19.0.12 ([4d1501c](https://github.com/w5s/project-config/commit/4d1501c))
+* 🔨 Upgrade dependency @typescript-eslint/parser to v8.25.0 ([acecade](https://github.com/w5s/project-config/commit/acecade))
+* 🔨 Upgrade dependency @typescript-eslint/parser to v8.26.0 ([a256f3c](https://github.com/w5s/project-config/commit/a256f3c))
+* 🔨 Upgrade dependency @typescript-eslint/parser to v8.26.1 ([4bfe2b9](https://github.com/w5s/project-config/commit/4bfe2b9))
+* 🔨 Upgrade dependency @typescript-eslint/parser to v8.27.0 ([07d546a](https://github.com/w5s/project-config/commit/07d546a))
+* 🔨 Upgrade dependency @typescript-eslint/parser to v8.28.0 ([6cf9bec](https://github.com/w5s/project-config/commit/6cf9bec))
+* 🔨 Upgrade dependency @typescript-eslint/parser to v8.29.0 ([29c620b](https://github.com/w5s/project-config/commit/29c620b))
+* 🔨 Upgrade dependency eslint-config-prettier to v10.0.2 ([bb2a2e7](https://github.com/w5s/project-config/commit/bb2a2e7))
+* 🔨 Upgrade dependency eslint-config-prettier to v10.0.3 ([25e552e](https://github.com/w5s/project-config/commit/25e552e))
+* 🔨 Upgrade dependency eslint-config-prettier to v10.1.1 ([48185a5](https://github.com/w5s/project-config/commit/48185a5))
+* 🔨 Upgrade dependency prettier to v3.5.2 ([2413f79](https://github.com/w5s/project-config/commit/2413f79))
+* 🔨 Upgrade dependency prettier to v3.5.3 ([db7a9c6](https://github.com/w5s/project-config/commit/db7a9c6))
+* 🔨 Upgrade dependency react to v19.1.0 ([ca87b73](https://github.com/w5s/project-config/commit/ca87b73))
+* 🔨 Upgrade dependency vite to v6.2.0 ([33e259e](https://github.com/w5s/project-config/commit/33e259e))
+* 🔨 Upgrade dependency vite to v6.2.1 ([c1e55d0](https://github.com/w5s/project-config/commit/c1e55d0))
+* 🔨 Upgrade dependency vite to v6.2.2 ([e6cce24](https://github.com/w5s/project-config/commit/e6cce24))
+* 🔨 Upgrade dependency vite to v6.2.3 ([38a83fe](https://github.com/w5s/project-config/commit/38a83fe))
+* 🔨 Upgrade dependency vite to v6.2.4 [SECURITY] ([4b265dc](https://github.com/w5s/project-config/commit/4b265dc))
+* 🔨 Upgrade dependency vitest to v3.0.7 ([f890e55](https://github.com/w5s/project-config/commit/f890e55))
+* 🔨 Upgrade dependency vitest to v3.0.8 ([46e1d95](https://github.com/w5s/project-config/commit/46e1d95))
+* 🔨 Upgrade dependency vitest to v3.0.9 ([c5e7f07](https://github.com/w5s/project-config/commit/c5e7f07))
+* 🔨 Upgrade dependency vitest to v3.1.1 ([85ca45c](https://github.com/w5s/project-config/commit/85ca45c))
+
 ## [2.4.2](https://github.com/w5s/project-config/compare/@w5s/eslint-config@2.4.1...@w5s/eslint-config@2.4.2) (2025-02-27)
 
 **Note:** Version bump only for package @w5s/eslint-config

@@ -1,6 +1,6 @@
 {
   "name": "@w5s/browserslist-config",
-  "version": "2.0.37",
+  "version": "2.0.38",
   "description": "Browserslist support shared configuration",
   "keywords": [
     "browserslist",
