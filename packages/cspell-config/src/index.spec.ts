@@ -1,15 +1,9 @@
 import { describe, it, expect } from 'vitest';
-import * as Module from './index.js';
+import config from './index.js';
 
 describe('index', () => {
   it('should match snapshot', () => {
-    const {
-      import: importProperty,
-      // @ts-ignore
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      default: _dropDefaultBecauseOfVitest,
-      ...otherProperties
-    } = Module;
+    const { import: importProperty, ...otherProperties } = config;
     expect(otherProperties).toMatchSnapshot();
     expect(importProperty).toEqual(
       expect.arrayContaining([

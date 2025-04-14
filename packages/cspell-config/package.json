@@ -16,14 +16,14 @@
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
-  "type": "commonjs",
+  "type": "module",
   "exports": {
     ".": "./cspell-ext.json",
     "./cspell-ext.json": "./cspell-ext.json",
     "./dist/*": "./dist/*",
     "./dict/*": "./dict/*"
   },
-  "typings": "./index.d.ts",
+  "typings": "./dist/index.d.ts",
   "files": [
     "cspell-ext.json",
     "dict/",
@@ -38,7 +38,7 @@
   "scripts": {
     "__build:dict": "cd dict;cspell-tools-cli compile filetypes.txt",
     "build": "npx run-p \"build:*\"",
-    "build:tsc": "tsc -b tsconfig.build.json",
+    "build:tsc": "npx tsup",
     "clean": "npx run-p \"clean:*\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
