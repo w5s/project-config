@@ -710,14 +710,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@davidwells/md-utils@npm:^0.0.44":
-  version: 0.0.44
-  resolution: "@davidwells/md-utils@npm:0.0.44"
+"@davidwells/md-utils@npm:^0.0.46":
+  version: 0.0.46
+  resolution: "@davidwells/md-utils@npm:0.0.46"
   dependencies:
     gray-matter: "npm:^4.0.3"
     micro-mdx-parser: "npm:^1.1.1"
     oparser: "npm:^3.0.1"
-  checksum: 10c0/969e20a9e226771d1ecf4d1076617cb6095c810d0ac1c34e59c1932c93c0a503354ca35d55bd76e2ff61bcd505eb0f18a01e101f7da862255416f29e8b70cdd9
+  checksum: 10c0/069086171ef893efff135129b33ee7116108bb7ce862778533d965b887467270b07ab7878e51d2bc39d8f3c521a8389f4d50353394417f280bd7bd9df2799be7
   languageName: node
   linkType: hard
 
@@ -2577,7 +2577,7 @@ __metadata:
     cspell: "npm:8.18.1"
     eslint: "npm:8.57.1"
     eslint-plugin-sort-keys: "npm:2.3.5"
-    markdown-magic: "npm:3.4.1"
+    markdown-magic: "npm:3.4.2"
     markdown-magic-package-json: "npm:2.0.2"
     markdown-magic-subpackage-list: "npm:1.1.2"
     npm-run-all2: "npm:7.0.2"
@@ -7812,20 +7812,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-magic@npm:3.4.1":
-  version: 3.4.1
-  resolution: "markdown-magic@npm:3.4.1"
+"markdown-magic@npm:3.4.2":
+  version: 3.4.2
+  resolution: "markdown-magic@npm:3.4.2"
   dependencies:
-    "@davidwells/md-utils": "npm:^0.0.44"
+    "@davidwells/md-utils": "npm:^0.0.46"
     globrex: "npm:^0.1.2"
     gray-matter: "npm:^4.0.3"
     is-glob: "npm:^4.0.3"
     is-local-path: "npm:^0.1.6"
     is-valid-path: "npm:^0.1.1"
     micro-mdx-parser: "npm:^1.1.0"
+    module-alias: "npm:^2.2.3"
     mri: "npm:^1.2.0"
     node-fetch: "npm:^2.7.0"
     oparser: "npm:^3.0.22"
+    punycode: "npm:^2.3.1"
     smart-glob: "npm:^1.0.2"
     string-width: "npm:^4.2.3"
     sync-request: "npm:^6.1.0"
@@ -7833,7 +7835,7 @@ __metadata:
     markdown: cli.js
     md-magic: cli.js
     mdm: cli.js
-  checksum: 10c0/0417391ce66a0d21e3c1fe4ca4b4372f05c4e9624f16874f5af5ec807efa49b8508d416dd79ca4cfc854b8d2ee0740e8af4b0f0c741c075f62021a9b18fa6415
+  checksum: 10c0/9a9dcae22e60ef4bffcb6fd3e99c4c10790cbfaf34687133e14ad050b09a62158b1c90aff1b8fce438c6073b99f34e167487e6c99b8ef5f0f02971c9d4aa4974
   languageName: node
   linkType: hard
 
@@ -8116,6 +8118,13 @@ __metadata:
   bin:
     mkdirp: dist/cjs/src/bin.js
   checksum: 10c0/9f2b975e9246351f5e3a40dcfac99fcd0baa31fbfab615fe059fb11e51f10e4803c63de1f384c54d656e4db31d000e4767e9ef076a22e12a641357602e31d57d
+  languageName: node
+  linkType: hard
+
+"module-alias@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "module-alias@npm:2.2.3"
+  checksum: 10c0/47dc5b6d04f6e7df0ff330ca9b2a37c688a682ed661e9432b0b327e1e6c43eedad052151b8d50d6beea8b924828d2a92fa4625c18d651bf2d93d8f03aa0172fa
   languageName: node
   linkType: hard
 
@@ -9554,7 +9563,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"punycode@npm:^2.1.0":
+"punycode@npm:^2.1.0, punycode@npm:^2.3.1":
   version: 2.3.1
   resolution: "punycode@npm:2.3.1"
   checksum: 10c0/14f76a8206bc3464f794fb2e3d3cc665ae416c01893ad7a02b23766eb07159144ee612ad67af5e84fa4479ccfe67678c4feb126b0485651b302babf66f04f9e9
