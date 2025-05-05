@@ -61,7 +61,7 @@
     "test:src": "vitest run"
   },
   "dependencies": {
-    "@types/eslint": "^8.44.0"
+    "@types/eslint": "^9.0.0"
   },
   "devDependencies": {
     "@w5s/tsup-config": "workspace:*",
