@@ -2384,6 +2384,7 @@ __metadata:
     "@commitlint/lint": "npm:19.8.0"
     "@commitlint/types": "npm:^19.0.0"
     "@w5s/conventional-changelog": "npm:^2.2.3"
+    "@w5s/tsup-config": "workspace:*"
     vite: "npm:6.3.5"
     vitest: "npm:3.1.2"
   peerDependencies:
@@ -2417,6 +2418,7 @@ __metadata:
     "@cspell/cspell-bundled-dicts": "npm:9.0.0"
     "@cspell/cspell-tools": "npm:9.0.0"
     "@cspell/cspell-types": "npm:9.0.0"
+    "@w5s/tsup-config": "workspace:*"
     vite: "npm:6.3.5"
     vitest: "npm:3.1.2"
   peerDependencies:
