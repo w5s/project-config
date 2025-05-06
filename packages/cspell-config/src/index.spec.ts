@@ -16,7 +16,6 @@ describe('index', () => {
         '@cspell/dict-docker/cspell-ext.json',
         '@cspell/dict-en_us/cspell-ext.json',
         '@cspell/dict-en-common-misspellings/cspell-ext.json',
-        '@cspell/dict-en-gb/cspell-ext.json',
         '@cspell/dict-filetypes/cspell-ext.json',
         '@cspell/dict-flutter/cspell-ext.json',
         '@cspell/dict-fonts/cspell-ext.json',

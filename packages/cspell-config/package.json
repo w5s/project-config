@@ -62,6 +62,7 @@
     "@cspell/cspell-bundled-dicts": "9.0.0",
     "@cspell/cspell-tools": "9.0.0",
     "@cspell/cspell-types": "9.0.0",
+    "@w5s/tsup-config": "workspace:*",
     "vite": "6.3.5",
     "vitest": "3.1.3"
   },
