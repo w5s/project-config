@@ -56,7 +56,7 @@
     "test:src": "vitest run"
   },
   "dependencies": {
-    "@cspell/cspell-bundled-dicts": "^8.0.0"
+    "@cspell/cspell-bundled-dicts": "^9.0.0"
   },
   "devDependencies": {
     "@cspell/cspell-bundled-dicts": "9.0.1",
