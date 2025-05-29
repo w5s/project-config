@@ -2074,12 +2074,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:20.17.52":
-  version: 20.17.52
-  resolution: "@types/node@npm:20.17.52"
+"@types/node@npm:20.17.53":
+  version: 20.17.53
+  resolution: "@types/node@npm:20.17.53"
   dependencies:
     undici-types: "npm:~6.19.2"
-  checksum: 10c0/564d8655d9eb0cdc28b015afe9fd2b38e30c55a6e1a19cd1b67864afe8227513b77a54f84c1c0f9b236fae9cb3c23414d7f9be7c1f78a25e49ee9076eee8a4ba
+  checksum: 10c0/2808b76cef2219b981c8d934610ec3b937a601ba3e59c478fa51c8f7fbc8e9a2b31ae7c4321a944a8d6cc39eeb6a262ede1b2f6e3878b11c897430ea85109630
   languageName: node
   linkType: hard
 
@@ -2573,7 +2573,7 @@ __metadata:
   resolution: "@w5s/project-config-src@workspace:."
   dependencies:
     "@lerna-lite/publish": "npm:4.3.0"
-    "@types/node": "npm:20.17.52"
+    "@types/node": "npm:20.17.53"
     "@w5s/commitlint-config": "workspace:*"
     "@w5s/conventional-changelog": "workspace:*"
     "@w5s/cspell-config": "workspace:*"
