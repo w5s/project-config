@@ -106,7 +106,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@conventional-changelog/git-client@npm:^2.1.0, @conventional-changelog/git-client@npm:^2.2.0, @conventional-changelog/git-client@npm:^2.4.0":
+"@conventional-changelog/git-client@npm:^2.4.0, @conventional-changelog/git-client@npm:^2.5.1":
   version: 2.5.1
   resolution: "@conventional-changelog/git-client@npm:2.5.1"
   dependencies:
@@ -3810,10 +3810,10 @@ __metadata:
   linkType: hard
 
 "conventional-changelog@npm:^7.0.2":
-  version: 7.0.2
-  resolution: "conventional-changelog@npm:7.0.2"
+  version: 7.1.0
+  resolution: "conventional-changelog@npm:7.1.0"
   dependencies:
-    "@conventional-changelog/git-client": "npm:^2.2.0"
+    "@conventional-changelog/git-client": "npm:^2.5.1"
     "@types/normalize-package-data": "npm:^2.4.4"
     conventional-changelog-preset-loader: "npm:^5.0.0"
     conventional-changelog-writer: "npm:^8.1.0"
@@ -3823,7 +3823,7 @@ __metadata:
     normalize-package-data: "npm:^7.0.0"
   bin:
     conventional-changelog: dist/cli/index.js
-  checksum: 10c0/a702de1f4a73dd881136d715dc8f6000ac77e50d871ac6f22df86c6123a45932ffbf45ed99afd0aa89258354de13a3b0a5ef45642ce16c1af11f8e0c3d891853
+  checksum: 10c0/62aeb96a4feb5574119b7e2d091861fc620622f89c12ebe3c3cc123e0c852fc24dfe83d10a10259be537df2f7ca67b9d35d59bef3b43b3ede9cc0d2a327516d9
   languageName: node
   linkType: hard
 
@@ -3860,17 +3860,17 @@ __metadata:
   linkType: hard
 
 "conventional-recommended-bump@npm:^11.1.0":
-  version: 11.1.0
-  resolution: "conventional-recommended-bump@npm:11.1.0"
+  version: 11.2.0
+  resolution: "conventional-recommended-bump@npm:11.2.0"
   dependencies:
-    "@conventional-changelog/git-client": "npm:^2.1.0"
+    "@conventional-changelog/git-client": "npm:^2.5.1"
     conventional-changelog-preset-loader: "npm:^5.0.0"
     conventional-commits-filter: "npm:^5.0.0"
     conventional-commits-parser: "npm:^6.1.0"
     meow: "npm:^13.0.0"
   bin:
     conventional-recommended-bump: dist/cli/index.js
-  checksum: 10c0/f5ef746b3a32a1094b408653badee879b4e1a5c51ac75e1f718da4e995b3da7354e61d51904a15a6820a2b7fd2587d26e0bfa93ff47ef8192189d388b1a3c80d
+  checksum: 10c0/a1ace1f5d1a23ef2e5eb4284013546f6d6b41952a2b2e30cede2a56bb615f3d461a5c9b1810ade7361f60bbbb3c9ba8993d746c462233e9f65d31c9ca7d12846
   languageName: node
   linkType: hard
 
