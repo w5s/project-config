@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.17](github.com/w5s/project-config/compare/@w5s/tsup-config@1.0.16...@w5s/tsup-config@1.0.17) (2025-06-26)
+
+**Note:** Version bump only for package @w5s/tsup-config
+
 ## <small>1.0.16 (2025-04-01)</small>
 
 * 🔖 Publish ([3f7abf9](https://github.com/w5s/project-config/commit/3f7abf9))

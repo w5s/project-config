@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.4](github.com/w5s/project-config/compare/@w5s/conventional-changelog@2.2.3...@w5s/conventional-changelog@2.2.4) (2025-06-26)
+
+### 🐛 Bug Fixes
+
+- Fix changelog config format ([a57ada5](github.com/w5s/project-config/commits/a57ada5))
+
+**Note:** Version bump only for package @w5s/conventional-changelog
+
 ## <small>2.2.3 (2025-04-01)</small>
 
 * 🏷️ Fix types ([035b4ae](https://github.com/w5s/project-config/commit/035b4ae))
