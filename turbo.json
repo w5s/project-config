@@ -13,20 +13,28 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
     },
-    "//#build:root": {},
+    "//#build:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
     "test": {
       "dependsOn": ["^build", "//#test:root"]
     },
-    "//#test:root": {},
+    "//#test:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
     "lint": {
       "dependsOn": ["^build", "//#lint:root"]
     },
-    "//#lint:root": {},
+    "//#lint:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
     "prepare": {},
     "format": {
       "dependsOn": ["//#format:root"]
     },
-    "//#format:root": {},
+    "//#format:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
     "docs": {
       "dependsOn": ["//#docs:root"],
       "cache": false
@@ -34,7 +42,9 @@
     "spellcheck": {
       "dependsOn": ["//#spellcheck:root"]
     },
-    "//#spellcheck:root": {},
+    "//#spellcheck:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
     "clean": {
       "dependsOn": ["//#clean:root"],
       "cache": false
@@ -43,8 +53,11 @@
       "cache": false
     },
     "develop": {
+      "persistent": true,
       "cache": false
     },
-    "//#docs:root": {}
+    "//#docs:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    }
   }
 }
