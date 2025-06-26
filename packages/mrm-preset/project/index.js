@@ -257,6 +257,13 @@ function task() {
 
   rootPackageFile.save();
 
+  const packageInputs = ['$TURBO_DEFAULT$', '.env*'];
+  const rootInputs = [
+    ...packageInputs,
+    // Ignore workspaces
+    ...pkg.listWorkspaceMatchers(rootPackageFile).map((_) => `!${_.replace(/\/\*$/, '/**')}`),
+  ];
+
   // Turbo config
   turbo({
     state: 'present',
@@ -268,32 +275,44 @@ function task() {
         ..._.tasks,
         [project.build]: {
           dependsOn: [`^${project.build}`, `//#${project.build}:root`],
-          inputs: ['$TURBO_DEFAULT$', '.env*'],
+          inputs: packageInputs,
           outputs: ['dist/**', '.next/**', '!.next/cache/**'],
         },
-        [`//#${project.build}:root`]: {},
+        [`//#${project.build}:root`]: {
+          inputs: rootInputs,
+        },
         [project.test]: {
           dependsOn: [`^${project.build}`, `//#${project.test}:root`],
         },
-        [`//#${project.test}:root`]: {},
+        [`//#${project.test}:root`]: {
+          inputs: rootInputs,
+        },
         [project.lint]: {
           dependsOn: [`^${project.build}`, `//#${project.lint}:root`],
         },
-        [`//#${project.lint}:root`]: {},
+        [`//#${project.lint}:root`]: {
+          inputs: rootInputs,
+        },
         [project.prepare]: {},
         [project.format]: {
           dependsOn: [`//#${project.format}:root`],
         },
-        [`//#${project.format}:root`]: {},
+        [`//#${project.format}:root`]: {
+          inputs: rootInputs,
+        },
         [project.docs]: {
           dependsOn: [`//#${project.docs}:root`],
           cache: false,
         },
-        [`//#${project.docs}:root`]: {},
+        [`//#${project.docs}:root`]: {
+          inputs: rootInputs,
+        },
         [project.spellcheck]: {
           dependsOn: [`//#${project.spellcheck}:root`],
         },
-        [`//#${project.spellcheck}:root`]: {},
+        [`//#${project.spellcheck}:root`]: {
+          inputs: rootInputs,
+        },
         [project.clean]: {
           dependsOn: [`//#${project.clean}:root`],
           cache: false,
@@ -302,6 +321,7 @@ function task() {
           cache: false,
         },
         [project.develop]: {
+          persistent: true,
           cache: false,
         },
       },
