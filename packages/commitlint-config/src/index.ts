@@ -1,12 +1,12 @@
 import { RuleConfigSeverity, type QualifiedRules, type LintOptions } from '@commitlint/types';
-import conventionalChangelog from '@w5s/conventional-changelog';
+import conventionalChangelogPreset from '@w5s/conventional-changelog';
 import { gitmojiPlugin } from './plugin.js';
 
 const { Error, Warning, Disabled } = RuleConfigSeverity;
 
 const parserPreset = {
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  parserOpts: conventionalChangelog.parserOpts as Exclude<LintOptions['parserOpts'], undefined>,
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, unicorn/no-await-expression-member, @typescript-eslint/no-unsafe-member-access
+  parserOpts: (await conventionalChangelogPreset()).parser as any,
 } satisfies LintOptions;
 
 const rules: QualifiedRules = {

@@ -9,8 +9,8 @@ var gitRawCommitOpts = {
   format: "%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n-authorName-%n%an%n-authorEmail-%n%ae"
 };
 
-// src/parser-opts.ts
-var parserOpts = {
+// src/parser.ts
+var createParserOpts = () => ({
   headerPattern: new RegExp(
     // Type
     `^(?<type>\\S*)? (?:\\((?<scope>.*)\\):? )?(?<subject>.*)$`,
@@ -21,7 +21,7 @@ var parserOpts = {
   noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES"],
   // revertPattern: /revert:\s([\S\s]*?)\s*this reverts commit (\w*)\./i,
   revertCorrespondence: [`header`, `hash`]
-};
+});
 
 // src/data.ts
 var CommitConventionalType = (() => {
@@ -195,33 +195,30 @@ var GitmojiCode;
   GitmojiCode2.toConventionalCommitType = toConventionalCommitType2;
 })(GitmojiCode || (GitmojiCode = {}));
 
-// src/recommended-bump-opts.ts
+// src/whatBump.ts
 function toConventionalCommitType(text) {
   return GitmojiCode.isValid(text) ? GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
 }
-var recommendedBumpOpts = {
-  parserOpts,
-  whatBump: (commits) => {
-    let level = 2;
-    let breakings = 0;
-    let features = 0;
-    for (const { type, notes } of commits) {
-      const conventionalType = type == null ? type : toConventionalCommitType(type);
-      if (notes.length > 0) {
-        breakings += notes.length;
-        level = 0;
-      } else if (conventionalType === CommitConventionalType.Feat) {
-        features += 1;
-        if (level === 2) {
-          level = 1;
-        }
+var whatBump = (commits) => {
+  let level = 2;
+  let breakings = 0;
+  let features = 0;
+  for (const { type, notes } of commits) {
+    const conventionalType = type == null ? type : toConventionalCommitType(type);
+    if (notes.length > 0) {
+      breakings += notes.length;
+      level = 0;
+    } else if (conventionalType === CommitConventionalType.Feat) {
+      features += 1;
+      if (level === 2) {
+        level = 1;
       }
     }
-    return {
-      level,
-      reason: breakings === 1 ? `There is ${breakings} BREAKING CHANGE and ${features} features` : `There are ${breakings} BREAKING CHANGES and ${features} features`
-    };
   }
+  return {
+    level,
+    reason: breakings === 1 ? `There is ${breakings} BREAKING CHANGE and ${features} features` : `There are ${breakings} BREAKING CHANGES and ${features} features`
+  };
 };
 
 // src/transform.ts
@@ -294,41 +291,43 @@ function createTransform(config) {
   return transform;
 }
 
-// src/writer-opts.ts
+// src/writer.ts
 var _dirname = typeof __dirname === "undefined" ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
 var basePath = nodePath.resolve(nodePath.dirname(_dirname), "./template");
-var mainTemplate = readFileSync(`${basePath}/template.hbs`, "utf8");
-var headerPartial = readFileSync(`${basePath}/header.hbs`, "utf8");
-var commitPartial = readFileSync(`${basePath}/commit.hbs`, "utf8");
-var footerPartial = readFileSync(`${basePath}/footer.hbs`, "utf8");
-var author = readFileSync(`${basePath}/author.hbs`, "utf8");
 var defaultDisplayTypes = CommitConventionalType.findWhere((_) => _.changelog);
-var writerOpts = {
-  transform: createTransform({
-    displayTypes: defaultDisplayTypes
-  }),
-  groupBy: "type",
-  commitGroupsSort: "title",
-  // @ts-ignore
-  commitsSort: ["scope", "subject"],
-  noteGroupsSort: "title",
-  mainTemplate,
-  headerPartial,
-  // eslint-disable-next-line unicorn/prefer-string-replace-all
-  commitPartial: commitPartial.replace(/{{gitUserInfo}}/g, author),
-  footerPartial
+var createWriterOpts = async () => {
+  const mainTemplate = readFileSync(`${basePath}/template.hbs`, "utf8");
+  const headerPartial = readFileSync(`${basePath}/header.hbs`, "utf8");
+  const commitPartial = readFileSync(`${basePath}/commit.hbs`, "utf8");
+  const footerPartial = readFileSync(`${basePath}/footer.hbs`, "utf8");
+  const author = readFileSync(`${basePath}/author.hbs`, "utf8");
+  return {
+    transform: createTransform({
+      displayTypes: defaultDisplayTypes
+    }),
+    groupBy: "type",
+    commitGroupsSort: "title",
+    // @ts-ignore
+    commitsSort: ["scope", "subject"],
+    noteGroupsSort: "title",
+    mainTemplate,
+    headerPartial,
+    // eslint-disable-next-line unicorn/prefer-string-replace-all
+    commitPartial: commitPartial.replace(/{{gitUserInfo}}/g, author),
+    footerPartial
+  };
 };
 
 // src/index.ts
-var index_default = {
-  Emoji,
-  GitmojiCode,
-  parserOpts,
-  writerOpts,
-  recommendedBumpOpts,
-  gitRawCommitOpts
-};
+async function createPreset() {
+  return {
+    gitRawCommitOpts,
+    parser: createParserOpts(),
+    writer: await createWriterOpts(),
+    whatBump
+  };
+}
 
-export { index_default as default };
+export { Emoji, GitmojiCode, createPreset as default };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

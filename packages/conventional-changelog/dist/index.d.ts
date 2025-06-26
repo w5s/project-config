@@ -1,8 +1,5 @@
-import { ParserOptions as ParserOptions$1, Commit as Commit$2 } from 'conventional-commits-parser';
+import { Commit as Commit$2, ParserOptions as ParserOptions$1 } from 'conventional-commits-parser';
 import { Options } from 'conventional-changelog-writer';
-
-interface ParserOptions extends ParserOptions$1 {
-}
 
 type Commit$1 = Commit$2;
 
@@ -41,6 +38,9 @@ interface CommitConventionalTypeData {
 interface WriterOptions extends Options<Commit> {
 }
 
+interface ParserOptions extends ParserOptions$1 {
+}
+
 type Emoji = Emoji.Unicode | Emoji.Text;
 declare namespace Emoji {
     const reEmojiUnicode: RegExp;
@@ -69,21 +69,16 @@ declare namespace GitmojiCode {
     function toConventionalCommitType(gitmoji: GitmojiCode): CommitConventionalType;
 }
 
-declare const _default: {
-    Emoji: typeof Emoji;
-    GitmojiCode: typeof GitmojiCode;
-    parserOpts: ParserOptions;
-    writerOpts: WriterOptions;
-    recommendedBumpOpts: {
-        parserOpts: ParserOptions;
-        whatBump: (commits: ReadonlyArray<Commit$1>) => {
-            level: number;
-            reason: string;
-        };
-    };
+declare function createPreset(): Promise<{
     gitRawCommitOpts: {
         format: string;
     };
-};
+    parser: ParserOptions;
+    writer: WriterOptions;
+    whatBump: (commits: ReadonlyArray<Commit$1>) => {
+        level: number;
+        reason: string;
+    };
+}>;
 
-export { _default as default };
+export { Emoji, GitmojiCode, createPreset as default };

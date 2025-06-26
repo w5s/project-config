@@ -1,0 +1,156 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`conventional-changelog > should export data 1`] = `
+{
+  "gitRawCommitOpts": {
+    "format": "%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n-authorName-%n%an%n-authorEmail-%n%ae",
+  },
+  "parser": {
+    "headerCorrespondence": [
+      "type",
+      "scope",
+      "subject",
+    ],
+    "headerPattern": /\\^\\(\\?<type>\\\\S\\*\\)\\? \\(\\?:\\\\\\(\\(\\?<scope>\\.\\*\\)\\\\\\):\\? \\)\\?\\(\\?<subject>\\.\\*\\)\\$/u,
+    "noteKeywords": [
+      "BREAKING CHANGE",
+      "BREAKING CHANGES",
+    ],
+    "revertCorrespondence": [
+      "header",
+      "hash",
+    ],
+    "revertPattern": /\\^\\(\\?:revert\\|revert:\\)\\\\s"\\?\\(\\[\\\\S\\\\s\\]\\+\\?\\)"\\?\\\\s\\*this reverts commit \\(\\\\w\\*\\)\\\\\\./i,
+  },
+  "whatBump": [Function],
+  "writer": {
+    "commitGroupsSort": "title",
+    "commitPartial": "-{{#if scope}} **{{scope}}**:
+{{~/if}} {{#if subject}}
+  {{~subject}}
+{{~else}}
+  {{~header}}
+{{~/if}}
+
+{{~!-- commit link --}} {{#if @root.linkReferences~}}
+  ([{{hash}}](
+  {{~#if @root.repository}}
+    {{~#if @root.host}}
+      {{~@root.host}}/
+    {{~/if}}
+    {{~#if @root.owner}}
+      {{~@root.owner}}/
+    {{~/if}}
+    {{~@root.repository}}
+  {{~else}}
+    {{~@root.repoUrl}}
+  {{~/if}}/
+  {{~@root.commit}}/{{hash}})) {{#if authorName}}by: **{{authorName}}**{{#if authorEmail}}<{{authorEmail}}>{{/if}}{{/if}}
+
+{{~else}}
+  {{~hash}}
+{{~/if}}
+
+{{~!-- commit references --}}
+{{~#if references~}}
+  , closes
+  {{~#each references}} {{#if @root.linkReferences~}}
+    [
+    {{~#if this.owner}}
+      {{~this.owner}}/
+    {{~/if}}
+    {{~this.repository}}#{{this.issue}}](
+	{{~#if this.bugsUrl}}
+      {{~this.bugsUrl}}{{this.issue}}
+    {{~else}}
+    {{~#if @root.repository}}
+      {{~#if @root.host}}
+        {{~@root.host}}/
+      {{~/if}}
+      {{~#if this.repository}}
+        {{~#if this.owner}}
+          {{~this.owner}}/
+        {{~/if}}
+        {{~this.repository}}
+      {{~else}}
+        {{~#if @root.owner}}
+          {{~@root.owner}}/
+        {{~/if}}
+          {{~@root.repository}}
+        {{~/if}}
+    {{~else}}
+      {{~@root.repoUrl}}
+    {{~/if}}/
+    {{~@root.issue}}/{{this.issue}}
+	{{~/if}})
+  {{~else}}
+    {{~#if this.owner}}
+      {{~this.owner}}/
+    {{~/if}}
+    {{~this.repository}}#{{this.issue}}
+  {{~/if}}{{/each}}
+{{~/if}}
+",
+    "commitsSort": [
+      "scope",
+      "subject",
+    ],
+    "footerPartial": "{{#if noteGroups}}
+{{#each noteGroups}}
+
+### {{title}}
+
+{{#each notes}}
+* {{#if commit.scope}}**{{commit.scope}}**: {{/if}}{{text}}
+{{/each}}
+{{/each}}
+
+{{/if}}
+",
+    "groupBy": "type",
+    "headerPartial": "{{#if isPatch~}}
+  ##
+{{~else~}}
+  #
+{{~/if}} {{#if @root.linkCompare~}}
+  [{{version}}](
+  {{~#if @root.repository~}}
+    {{~#if @root.host}}
+      {{~@root.host}}/
+    {{~/if}}
+    {{~#if @root.owner}}
+      {{~@root.owner}}/
+    {{~/if}}
+    {{~@root.repository}}
+  {{~else}}
+    {{~@root.repoUrl}}
+  {{~/if~}}
+  /compare/{{previousTag}}...{{currentTag}})
+{{~else}}
+  {{~version}}
+{{~/if}}
+{{~#if title}} "{{title}}"
+{{~/if}}
+{{~#if date}} ({{date}})
+{{/if}}
+",
+    "mainTemplate": "{{> header}}
+
+{{#each commitGroups}}
+
+{{#if title}}
+### {{title}}
+
+{{/if}}
+{{#each commits}}
+{{> commit root=@root}}{{nl}}
+{{/each}}
+
+{{/each}}
+{{> footer}}
+",
+    "noteGroupsSort": "title",
+    "transform": [Function],
+  },
+}
+`;

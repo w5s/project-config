@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var emojiRegexp = require('emoji-regex');
 var gitmojis = require('gitmojis');
 var fs = require('fs');
@@ -17,8 +19,8 @@ var gitRawCommitOpts = {
   format: "%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n-authorName-%n%an%n-authorEmail-%n%ae"
 };
 
-// src/parser-opts.ts
-var parserOpts = {
+// src/parser.ts
+var createParserOpts = () => ({
   headerPattern: new RegExp(
     // Type
     `^(?<type>\\S*)? (?:\\((?<scope>.*)\\):? )?(?<subject>.*)$`,
@@ -29,7 +31,7 @@ var parserOpts = {
   noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES"],
   // revertPattern: /revert:\s([\S\s]*?)\s*this reverts commit (\w*)\./i,
   revertCorrespondence: [`header`, `hash`]
-};
+});
 
 // src/data.ts
 var CommitConventionalType = (() => {
@@ -128,7 +130,7 @@ var CommitConventionalType = (() => {
   }
   return { ...enumObject, hasInstance, getData, values, parse, findWhere };
 })();
-var Emoji;
+exports.Emoji = void 0;
 ((Emoji2) => {
   Emoji2.reEmojiUnicode = emojiRegexp__default.default();
   Emoji2.reEmojiText = /:\w*:/;
@@ -147,8 +149,8 @@ var Emoji;
     return isText(anyValue) || isUnicode(anyValue);
   }
   Emoji2.hasInstance = hasInstance;
-})(Emoji || (Emoji = {}));
-var GitmojiCode;
+})(exports.Emoji || (exports.Emoji = {}));
+exports.GitmojiCode = void 0;
 ((GitmojiCode2) => {
   const allGitmojiCodes = new Set(
     gitmojis.gitmojis.map((gitmoji) => gitmoji.code).concat(gitmojis.gitmojis.map((gitmoji) => gitmoji.emoji))
@@ -201,35 +203,32 @@ var GitmojiCode;
     return conversionMap.get(gitmoji) ?? defaultType;
   }
   GitmojiCode2.toConventionalCommitType = toConventionalCommitType2;
-})(GitmojiCode || (GitmojiCode = {}));
+})(exports.GitmojiCode || (exports.GitmojiCode = {}));
 
-// src/recommended-bump-opts.ts
+// src/whatBump.ts
 function toConventionalCommitType(text) {
-  return GitmojiCode.isValid(text) ? GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
+  return exports.GitmojiCode.isValid(text) ? exports.GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
 }
-var recommendedBumpOpts = {
-  parserOpts,
-  whatBump: (commits) => {
-    let level = 2;
-    let breakings = 0;
-    let features = 0;
-    for (const { type, notes } of commits) {
-      const conventionalType = type == null ? type : toConventionalCommitType(type);
-      if (notes.length > 0) {
-        breakings += notes.length;
-        level = 0;
-      } else if (conventionalType === CommitConventionalType.Feat) {
-        features += 1;
-        if (level === 2) {
-          level = 1;
-        }
+var whatBump = (commits) => {
+  let level = 2;
+  let breakings = 0;
+  let features = 0;
+  for (const { type, notes } of commits) {
+    const conventionalType = type == null ? type : toConventionalCommitType(type);
+    if (notes.length > 0) {
+      breakings += notes.length;
+      level = 0;
+    } else if (conventionalType === CommitConventionalType.Feat) {
+      features += 1;
+      if (level === 2) {
+        level = 1;
       }
     }
-    return {
-      level,
-      reason: breakings === 1 ? `There is ${breakings} BREAKING CHANGE and ${features} features` : `There are ${breakings} BREAKING CHANGES and ${features} features`
-    };
   }
+  return {
+    level,
+    reason: breakings === 1 ? `There is ${breakings} BREAKING CHANGE and ${features} features` : `There are ${breakings} BREAKING CHANGES and ${features} features`
+  };
 };
 
 // src/transform.ts
@@ -255,7 +254,7 @@ function createTransform(config) {
       ...note,
       title: `${config.withEmoji === false ? "" : "\u{1F4A5} "}BREAKING CHANGES`
     }));
-    const conventionalType = commit.type == null ? void 0 : CommitConventionalType.parse(commit.type) ?? (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : void 0);
+    const conventionalType = commit.type == null ? void 0 : CommitConventionalType.parse(commit.type) ?? (exports.GitmojiCode.isValid(commit.type) ? exports.GitmojiCode.toConventionalCommitType(commit.type) : void 0);
     if (ignoreType(conventionalType) && discard) return false;
     const type = conventionalType == null ? null : displayType(conventionalType, {
       withEmoji: config.withEmoji
@@ -302,41 +301,43 @@ function createTransform(config) {
   return transform;
 }
 
-// src/writer-opts.ts
+// src/writer.ts
 var _dirname = typeof __dirname === "undefined" ? nodePath__default.default.dirname(url.fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.tagName.toUpperCase() === 'SCRIPT' && _documentCurrentScript.src || new URL('index.cjs', document.baseURI).href)))) : __dirname;
 var basePath = nodePath__default.default.resolve(nodePath__default.default.dirname(_dirname), "./template");
-var mainTemplate = fs.readFileSync(`${basePath}/template.hbs`, "utf8");
-var headerPartial = fs.readFileSync(`${basePath}/header.hbs`, "utf8");
-var commitPartial = fs.readFileSync(`${basePath}/commit.hbs`, "utf8");
-var footerPartial = fs.readFileSync(`${basePath}/footer.hbs`, "utf8");
-var author = fs.readFileSync(`${basePath}/author.hbs`, "utf8");
 var defaultDisplayTypes = CommitConventionalType.findWhere((_) => _.changelog);
-var writerOpts = {
-  transform: createTransform({
-    displayTypes: defaultDisplayTypes
-  }),
-  groupBy: "type",
-  commitGroupsSort: "title",
-  // @ts-ignore
-  commitsSort: ["scope", "subject"],
-  noteGroupsSort: "title",
-  mainTemplate,
-  headerPartial,
-  // eslint-disable-next-line unicorn/prefer-string-replace-all
-  commitPartial: commitPartial.replace(/{{gitUserInfo}}/g, author),
-  footerPartial
+var createWriterOpts = async () => {
+  const mainTemplate = fs.readFileSync(`${basePath}/template.hbs`, "utf8");
+  const headerPartial = fs.readFileSync(`${basePath}/header.hbs`, "utf8");
+  const commitPartial = fs.readFileSync(`${basePath}/commit.hbs`, "utf8");
+  const footerPartial = fs.readFileSync(`${basePath}/footer.hbs`, "utf8");
+  const author = fs.readFileSync(`${basePath}/author.hbs`, "utf8");
+  return {
+    transform: createTransform({
+      displayTypes: defaultDisplayTypes
+    }),
+    groupBy: "type",
+    commitGroupsSort: "title",
+    // @ts-ignore
+    commitsSort: ["scope", "subject"],
+    noteGroupsSort: "title",
+    mainTemplate,
+    headerPartial,
+    // eslint-disable-next-line unicorn/prefer-string-replace-all
+    commitPartial: commitPartial.replace(/{{gitUserInfo}}/g, author),
+    footerPartial
+  };
 };
 
 // src/index.ts
-var index_default = {
-  Emoji,
-  GitmojiCode,
-  parserOpts,
-  writerOpts,
-  recommendedBumpOpts,
-  gitRawCommitOpts
-};
+async function createPreset() {
+  return {
+    gitRawCommitOpts,
+    parser: createParserOpts(),
+    writer: await createWriterOpts(),
+    whatBump
+  };
+}
 
-module.exports = index_default;
+exports.default = createPreset;
 //# sourceMappingURL=index.cjs.map
 //# sourceMappingURL=index.cjs.map

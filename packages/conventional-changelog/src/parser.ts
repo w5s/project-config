@@ -2,7 +2,7 @@ import type { ParserOptions as ParserOptionsDefault } from 'conventional-commits
 
 export interface ParserOptions extends ParserOptionsDefault {}
 
-export const parserOpts: ParserOptions = {
+export const createParserOpts = (): ParserOptions => ({
   headerPattern: new RegExp(
     // Type
     `^(?<type>\\S*)? ` +
@@ -17,4 +17,4 @@ export const parserOpts: ParserOptions = {
   noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'],
   // revertPattern: /revert:\s([\S\s]*?)\s*this reverts commit (\w*)\./i,
   revertCorrespondence: [`header`, `hash`],
-};
+});
