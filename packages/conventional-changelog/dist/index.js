@@ -1,8 +1,8 @@
 import emojiRegexp from 'emoji-regex';
 import { gitmojis } from 'gitmojis';
-import { readFileSync } from 'node:fs';
-import nodePath from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { readFileSync } from 'fs';
+import nodePath from 'path';
+import { fileURLToPath } from 'url';
 
 // src/git-raw-commit-opts.ts
 var gitRawCommitOpts = {

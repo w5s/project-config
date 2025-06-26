@@ -1,6 +1,6 @@
-import { existsSync, mkdirSync, rmSync, readFileSync, writeFileSync, constants as constants$1, accessSync } from 'node:fs';
-import { mkdir, rm, readFile, writeFile, access, constants } from 'node:fs/promises';
-import { spawnSync, spawn } from 'node:child_process';
+import { existsSync, mkdirSync, rmSync, readFileSync, writeFileSync, constants as constants$1, accessSync } from 'fs';
+import { mkdir, rm, readFile, writeFile, access, constants } from 'fs/promises';
+import { spawnSync, spawn } from 'child_process';
 
 // src/directory.ts
 async function exists(path) {
