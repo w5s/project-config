@@ -145,7 +145,7 @@ filter-false = $(filter-out 0 n no f false,$(call lowercase,$(1)))
 # 	NODE_VERSION_MANAGER := $(call resolve-command,asdf nodenv nvm)
 #
 define resolve-command
-$(firstword $(foreach cmd,$(1),$(shell which $(cmd) &>/dev/null && echo $(cmd))))
+$(firstword $(foreach cmd,$(1),$(shell which $(cmd) &>$(NULL) && echo $(cmd))))
 endef
 
 #⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
@@ -322,12 +322,12 @@ export MAKE_PPID
 
 # Read uname (Linux|Darwin|...|Unknown)
 ifndef UNAME
-UNAME := $(shell uname 2>/dev/null || echo Unknown)
+UNAME := $(shell uname 2>$(NULL) || echo Unknown)
 endif
 
 # Read uname short name (Linux|Darwin|...|Unknown)
 ifndef OS
-OS := $(shell uname -s 2>/dev/null || echo Unknown)
+OS := $(shell uname -s 2>$(NULL) || echo Unknown)
 endif
 
 # Host name (ex: MacBook-Pro-13-de-Julien.local)
@@ -551,11 +551,7 @@ eval: $(call core-hooks,.eval) ## command=<string> Evaluate command in make envi
 #⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
 
 # Variables that are defined in makefile
-define .VARIABLES_ENV
-$(foreach V,$(.VARIABLES), \
-	$(if $(filter-out environment% default automatic, $(origin $V)), $V) \
-)
-endef
+.VARIABLES_ENV = $(foreach V,$(.VARIABLES),$(if $(filter-out environment% default automatic,$(origin $V)),$V))
 
 # Not portable variables
 .VARIABLES_INTERNAL_HIDDEN := PWD SHELL MAKEFLAGS MAKE_PID MAKE_PPID
