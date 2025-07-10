@@ -63,7 +63,7 @@
     "@cspell/cspell-tools": "9.1.3",
     "@cspell/cspell-types": "9.1.3",
     "@w5s/tsup-config": "workspace:*",
-    "vite": "6.3.5",
+    "vite": "7.0.4",
     "vitest": "3.2.4"
   },
   "peerDependencies": {
