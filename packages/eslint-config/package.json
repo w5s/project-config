@@ -74,7 +74,7 @@
     "@types/parse-gitignore": "1.0.2",
     "@types/react": "19.1.8",
     "@typescript-eslint/parser": "8.36.0",
-    "eslint": "8.57.1",
+    "eslint": "9.31.0",
     "eslint-config-prettier": "10.1.5",
     "eslint-find-rules": "5.0.0",
     "prettier": "3.6.2",
@@ -83,7 +83,7 @@
     "vitest": "3.2.4"
   },
   "peerDependencies": {
-    "eslint": "8.x",
+    "eslint": "8.x || 9.x",
     "prettier": "2.x || 3.x",
     "typescript": "4.x || 5.x"
   },
