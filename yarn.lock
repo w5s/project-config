@@ -363,16 +363,16 @@ __metadata:
   linkType: hard
 
 "@cspell/dict-en-gb-mit@npm:^3.1.3":
-  version: 3.1.4
-  resolution: "@cspell/dict-en-gb-mit@npm:3.1.4"
-  checksum: 10c0/6a6cf9645b2dfb16a6c5cf19fba3014dcd7cb2a15b51c9a117af2bca01570cd5d119a12e9003f50e271d7c9e7d2c326186211a56bab387a2c942b6bc1988a89e
+  version: 3.1.5
+  resolution: "@cspell/dict-en-gb-mit@npm:3.1.5"
+  checksum: 10c0/c19028b51051a5b8388c3afe4705c45d6c9699f04ec3928f70a616f60e17f207bf9cc1fe2d02a0184b343f6bbae3b393525db505fe3ec1be04fe8c1aa65fa6d4
   languageName: node
   linkType: hard
 
 "@cspell/dict-en_us@npm:^4.4.13":
-  version: 4.4.14
-  resolution: "@cspell/dict-en_us@npm:4.4.14"
-  checksum: 10c0/304c174de08703fdc8d5484703ae59b48d98d732f13712732669357ee3bee007a42579a2fe502ca353638f5640d90948f0d7df4362f4cd77b53b176352019af7
+  version: 4.4.15
+  resolution: "@cspell/dict-en_us@npm:4.4.15"
+  checksum: 10c0/663220a4281cb09c7404b6969c687267a4efe1417790b34829000f55d055fe96d2917a4421fe543a60d2655c001d4425e9f9641f99f170ea96e371819ef2e572
   languageName: node
   linkType: hard
 
@@ -2779,9 +2779,9 @@ __metadata:
   linkType: hard
 
 "aproba@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "aproba@npm:2.0.0"
-  checksum: 10c0/d06e26384a8f6245d8c8896e138c0388824e259a329e0c9f196b4fa533c82502a6fd449586e3604950a0c42921832a458bb3aa0aa9f0ba449cfd4f50fd0d09b5
+  version: 2.1.0
+  resolution: "aproba@npm:2.1.0"
+  checksum: 10c0/ec8c1d351bac0717420c737eb062766fb63bde1552900e0f4fdad9eb064c3824fef23d1c416aa5f7a80f21ca682808e902d79b7c9ae756d342b5f1884f36932f
   languageName: node
   linkType: hard
 
