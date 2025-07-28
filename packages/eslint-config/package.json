@@ -78,7 +78,7 @@
     "eslint-config-prettier": "10.1.8",
     "eslint-find-rules": "5.0.0",
     "prettier": "3.6.2",
-    "react": "19.1.0",
+    "react": "19.1.1",
     "vite": "7.0.6",
     "vitest": "3.2.4"
   },
