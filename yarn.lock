@@ -2471,7 +2471,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/browserslist-config@workspace:packages/browserslist-config"
   dependencies:
-    browserslist: "npm:4.25.2"
+    browserslist: "npm:4.25.3"
     lodash-es: "npm:4.17.21"
     vite: "npm:7.1.2"
     vitest: "npm:3.2.4"
@@ -3119,7 +3119,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:4.25.2, browserslist@npm:^4.25.1":
+"browserslist@npm:4.25.3":
+  version: 4.25.3
+  resolution: "browserslist@npm:4.25.3"
+  dependencies:
+    caniuse-lite: "npm:^1.0.30001735"
+    electron-to-chromium: "npm:^1.5.204"
+    node-releases: "npm:^2.0.19"
+    update-browserslist-db: "npm:^1.1.3"
+  bin:
+    browserslist: cli.js
+  checksum: 10c0/cefbbf962b7c0f0d77e952a4b4b37469db7f7f02bc2be7297810ac3cf086660f48daf78d00f7aad8a11b682f88b0ee0022594165ead749e9e4158a0aa49cd161
+  languageName: node
+  linkType: hard
+
+"browserslist@npm:^4.25.1":
   version: 4.25.2
   resolution: "browserslist@npm:4.25.2"
   dependencies:
@@ -3321,7 +3335,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"caniuse-lite@npm:^1.0.30001733":
+"caniuse-lite@npm:^1.0.30001733, caniuse-lite@npm:^1.0.30001735":
   version: 1.0.30001735
   resolution: "caniuse-lite@npm:1.0.30001735"
   checksum: 10c0/1cb74221f16f8835c903770c1cf88fb73a07298b8398396a2b97570136e8f691053ee5840eb589fe34b4ede14ab828c9421d893a67e43c26ef91ab052813cb8c
@@ -4494,6 +4508,13 @@ __metadata:
   version: 1.5.203
   resolution: "electron-to-chromium@npm:1.5.203"
   checksum: 10c0/abe3ad155e5941e595e0d037ff1a26e4473edb04dd35150d6764ef424886c9b6908dadb1097f5bf1ecc3d23f6a42a287426b914a27c415d904d73a07cec7bba7
+  languageName: node
+  linkType: hard
+
+"electron-to-chromium@npm:^1.5.204":
+  version: 1.5.205
+  resolution: "electron-to-chromium@npm:1.5.205"
+  checksum: 10c0/495a472993660a9dfc82d24f3d5ae2ac6ef643043da169589194652005b097ad5a857b27e8b4777df54cfea0a8591b75e27f664e8a693cc40b3d85072a6d0a1c
   languageName: node
   linkType: hard
 
