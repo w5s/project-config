@@ -105,7 +105,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
           : _;
       pkg.script(packageFile, {
         name: `${project.lint}:src`,
-        update: updater(),
+        update: updater(false),
         state: 'present',
       });
       pkg.script(packageFile, {
