@@ -2582,7 +2582,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/browserslist-config@workspace:packages/browserslist-config"
   dependencies:
-    browserslist: "npm:4.26.0"
+    browserslist: "npm:4.26.2"
     lodash-es: "npm:4.17.21"
     vite: "npm:7.1.5"
     vitest: "npm:3.2.4"
@@ -3153,6 +3153,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"baseline-browser-mapping@npm:^2.8.3":
+  version: 2.8.4
+  resolution: "baseline-browser-mapping@npm:2.8.4"
+  bin:
+    baseline-browser-mapping: dist/cli.js
+  checksum: 10c0/d85c8e9b919d4f7d5b46cf3d89e6a8be6e74086934ff6f362b720be8e06656021a0207e2ba1efe8ae2563dec893a76ad15633e06f3e153984fab8118e2dc4ae7
+  languageName: node
+  linkType: hard
+
 "before-after-hook@npm:^4.0.0":
   version: 4.0.0
   resolution: "before-after-hook@npm:4.0.0"
@@ -3239,7 +3248,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"browserslist@npm:4.26.0, browserslist@npm:^4.25.3":
+"browserslist@npm:4.26.2":
+  version: 4.26.2
+  resolution: "browserslist@npm:4.26.2"
+  dependencies:
+    baseline-browser-mapping: "npm:^2.8.3"
+    caniuse-lite: "npm:^1.0.30001741"
+    electron-to-chromium: "npm:^1.5.218"
+    node-releases: "npm:^2.0.21"
+    update-browserslist-db: "npm:^1.1.3"
+  bin:
+    browserslist: cli.js
+  checksum: 10c0/1146339dad33fda77786b11ea07f1c40c48899edd897d73a9114ee0dbb1ee6475bb4abda263a678c104508bdca8e66760ff8e10be1947d3e20d34bae01d8b89b
+  languageName: node
+  linkType: hard
+
+"browserslist@npm:^4.25.3":
   version: 4.26.0
   resolution: "browserslist@npm:4.26.0"
   dependencies:
