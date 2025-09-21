@@ -1,4 +1,4 @@
-# syntax = docker/dockerfile:1@sha256:9857836c9ee4268391bb5b09f9f157f3c91bb15821bb77969642813b0d00518d
+# syntax = docker/dockerfile:1@sha256:38387523653efa0039f8e1c89bb74a30504e76ee9f565e25c9a09841f9427b05
 
 #==================================================================================================
 #                                         ┓ ┏┏━┏┓
@@ -72,7 +72,7 @@
 #     - Procfile is used for startup
 #
 
-ARG FROM_IMAGE=ubuntu:22.04@sha256:3c61d3759c2639d4b836d32a2d3c83fa0214e36f195a3421018dbaaf79cbe37f
+ARG FROM_IMAGE=ubuntu:22.04@sha256:1aa979d85661c488ce030ac292876cf6ed04535d3a237e49f61542d8e5de5ae0
 
 # Core dependencies (required for asdf)
 ARG APT_CORE_DEPENDENCIES="\
