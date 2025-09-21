@@ -111,7 +111,7 @@
   },
   "packageManager": "yarn@4.9.4",
   "engines": {
-    "node": ">=18.0.0",
+    "node": ">=20.0.0",
     "npm": ">=6.0.0",
     "yarn": ">=1.0.0"
   },
