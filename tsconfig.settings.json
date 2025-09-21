@@ -3,6 +3,7 @@
   "extends": "@w5s/ts-config",
   "compilerOptions": {
     "declarationMap": false,
+    "erasableSyntaxOnly": false,
     "esModuleInterop": true,
     "sourceMap": false,
     "verbatimModuleSyntax": false
