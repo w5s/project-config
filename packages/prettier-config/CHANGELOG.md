@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.2.11](github.com/w5s/project-config/compare/@w5s/prettier-config@2.2.10...@w5s/prettier-config@2.2.11) (2025-09-21)
+
+**Note:** Version bump only for package @w5s/prettier-config
+
 ## [2.2.10](github.com/w5s/project-config/compare/@w5s/prettier-config@2.2.9...@w5s/prettier-config@2.2.10) (2025-06-26)
 
 ### 🐛 Bug Fixes

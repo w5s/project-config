@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.11.6](github.com/w5s/project-config/compare/@w5s/mrm-preset@2.11.5...@w5s/mrm-preset@2.11.6) (2025-09-21)
+
+### 🐛 Bug Fixes
+
+- Fix wrong implicit boolean conversion ([56e7f54](github.com/w5s/project-config/commits/56e7f54))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [2.11.5](github.com/w5s/project-config/compare/@w5s/mrm-preset@2.11.4...@w5s/mrm-preset@2.11.5) (2025-06-26)
 
 ### 🐛 Bug Fixes
