@@ -10,7 +10,11 @@
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2023" // Use the most compatible value with bundlers, this can be overridden in project
+    ],
     "module": "Node16",
     "moduleDetection": "force",
     "moduleResolution": "Node16",
