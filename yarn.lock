@@ -4483,9 +4483,9 @@ __metadata:
   linkType: hard
 
 "electron-to-chromium@npm:^1.5.218":
-  version: 1.5.225
-  resolution: "electron-to-chromium@npm:1.5.225"
-  checksum: 10c0/37daad0c571a239d5f394dd2a6643a3c7f0bcebdc40d47e3a6e4bfa375d380951ee97ef6f44f852d4e8f24f94abcaf23660996a6a8ff4d88abae05e83001aa9b
+  version: 1.5.226
+  resolution: "electron-to-chromium@npm:1.5.226"
+  checksum: 10c0/a59a307944b849496b662dcafd9a837c1cb6b6c7e483015f01c5cfee7252cde72dd5bf41f1bbdea21d41c14038bed57ff1d0b63a70301828b82f7ee12b1a1ae1
   languageName: node
   linkType: hard
 
@@ -5033,8 +5033,8 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-jsdoc@npm:^60.0.0":
-  version: 60.4.1
-  resolution: "eslint-plugin-jsdoc@npm:60.4.1"
+  version: 60.5.0
+  resolution: "eslint-plugin-jsdoc@npm:60.5.0"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.62.0"
     are-docs-informative: "npm:^0.0.2"
@@ -5050,7 +5050,7 @@ __metadata:
     spdx-expression-parse: "npm:^4.0.0"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/fd2e802ca5f4e51c66103e2d90853eb9687ee0b956c9ecfb1e3535d85098be648bd2fca795cc9a1e8ec68e1a7e40b26aa433dbe3f04e8bee9d9411ff16727e67
+  checksum: 10c0/8fe765ecfdb9ff6a3b7c7a1f715bb6735caafd9c26d139e8cbccce9fd94b7e379b02d7998810c250886e0d8656688d8bd21b129c7b3b926770f716b9970df2c2
   languageName: node
   linkType: hard
 
@@ -7254,9 +7254,9 @@ __metadata:
   linkType: hard
 
 "jsdoc-type-pratt-parser@npm:~5.9.0":
-  version: 5.9.1
-  resolution: "jsdoc-type-pratt-parser@npm:5.9.1"
-  checksum: 10c0/c445f5fe571299b63defd5823195820f9e6bb3474ebc53aed19d6c9955f95cc01d7c1ddf56152905d7df374c0a4af664f4bc65359e848e8d939f873783e7d1ec
+  version: 5.9.2
+  resolution: "jsdoc-type-pratt-parser@npm:5.9.2"
+  checksum: 10c0/fbd396dee4fc9347d0bcc156391da4f579651a7d2f6500db48c314bd96f6c340206ed7854be0197d1f960e2250eca1e2e22a311a68944ea5c872abfe8f5e4b0d
   languageName: node
   linkType: hard
 
