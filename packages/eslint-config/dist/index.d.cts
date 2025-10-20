@@ -229,7 +229,7 @@ interface RuleOptions$7 {
    * disallow unnecessary escape usage
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/no-useless-escape.html
    */
-  'jsonc/no-useless-escape'?: Linter.RuleEntry<[]>
+  'jsonc/no-useless-escape'?: Linter.RuleEntry<JsoncNoUselessEscape>
   /**
    * enforce consistent line breaks inside braces
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/object-curly-newline.html
@@ -414,6 +414,10 @@ type JsoncNoIrregularWhitespace = []|[{
   skipTemplates?: boolean
   skipRegExps?: boolean
   skipJSXText?: boolean
+}]
+// ----- jsonc/no-useless-escape -----
+type JsoncNoUselessEscape = []|[{
+  allowRegexCharacters?: string[]
 }]
 // ----- jsonc/object-curly-newline -----
 type JsoncObjectCurlyNewline = []|[((("always" | "never") | {
@@ -5281,6 +5285,7 @@ type TsNoUnusedExpressions = []|[{
   allowTernary?: boolean
   allowTaggedTemplates?: boolean
   enforceForJSX?: boolean
+  ignoreDirectives?: boolean
 }]
 // ----- ts/no-unused-vars -----
 type TsNoUnusedVars = []|[(("all" | "local") | {

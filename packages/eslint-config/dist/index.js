@@ -3045,13 +3045,14 @@ var require_globals2 = __commonJS({
   }
 });
 
-// ../../node_modules/@eslint/js/package.json
+// node_modules/@eslint/js/package.json
 var require_package = __commonJS({
-  "../../node_modules/@eslint/js/package.json"(exports, module) {
+  "node_modules/@eslint/js/package.json"(exports, module) {
     module.exports = {
       name: "@eslint/js",
-      version: "9.21.0",
+      version: "9.38.0",
       description: "ESLint JavaScript language implementation",
+      funding: "https://eslint.org/donate",
       main: "./src/index.js",
       types: "./types/index.d.ts",
       scripts: {
@@ -3086,11 +3087,11 @@ var require_package = __commonJS({
   }
 });
 
-// ../../node_modules/@eslint/js/src/configs/eslint-all.js
+// node_modules/@eslint/js/src/configs/eslint-all.js
 var require_eslint_all = __commonJS({
-  "../../node_modules/@eslint/js/src/configs/eslint-all.js"(exports, module) {
+  "node_modules/@eslint/js/src/configs/eslint-all.js"(exports, module) {
     module.exports = Object.freeze({
-      "rules": {
+      rules: Object.freeze({
         "accessor-pairs": "error",
         "array-callback-return": "error",
         "arrow-body-style": "error",
@@ -3226,6 +3227,7 @@ var require_eslint_all = __commonJS({
         "no-ternary": "error",
         "no-this-before-super": "error",
         "no-throw-literal": "error",
+        "no-unassigned-vars": "error",
         "no-undef": "error",
         "no-undef-init": "error",
         "no-undefined": "error",
@@ -3273,6 +3275,7 @@ var require_eslint_all = __commonJS({
         "prefer-rest-params": "error",
         "prefer-spread": "error",
         "prefer-template": "error",
+        "preserve-caught-error": "error",
         "radix": "error",
         "require-atomic-updates": "error",
         "require-await": "error",
@@ -3288,14 +3291,14 @@ var require_eslint_all = __commonJS({
         "valid-typeof": "error",
         "vars-on-top": "error",
         "yoda": "error"
-      }
+      })
     });
   }
 });
 
-// ../../node_modules/@eslint/js/src/configs/eslint-recommended.js
+// node_modules/@eslint/js/src/configs/eslint-recommended.js
 var require_eslint_recommended = __commonJS({
-  "../../node_modules/@eslint/js/src/configs/eslint-recommended.js"(exports, module) {
+  "node_modules/@eslint/js/src/configs/eslint-recommended.js"(exports, module) {
     module.exports = Object.freeze({
       rules: Object.freeze({
         "constructor-super": "error",
@@ -3364,9 +3367,9 @@ var require_eslint_recommended = __commonJS({
   }
 });
 
-// ../../node_modules/@eslint/js/src/index.js
+// node_modules/@eslint/js/src/index.js
 var require_src = __commonJS({
-  "../../node_modules/@eslint/js/src/index.js"(exports, module) {
+  "node_modules/@eslint/js/src/index.js"(exports, module) {
     var { name, version } = require_package();
     module.exports = {
       meta: {
