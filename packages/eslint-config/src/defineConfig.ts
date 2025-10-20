@@ -1,9 +1,10 @@
-import { jsonc, ignores, imports, node, ts, yml, unicorn, stylistic, es } from './config.js';
+import { jsdoc, jsonc, ignores, imports, node, ts, yml, unicorn, stylistic, es } from './config.js';
 import type { Config } from './type.js';
 
 export interface DefineConfigOptions extends ignores.Options {
   es?: boolean | es.Options;
   import?: boolean | imports.Options;
+  jsdoc?: boolean | jsdoc.Options;
   jsonc?: boolean | jsonc.Options;
   node?: boolean | node.Options;
   stylistic?: boolean | stylistic.Options;
@@ -18,6 +19,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
   const toOption = <T extends {}>(optionsOrBoolean: T | boolean | undefined) => withDefaultStylistic((typeof optionsOrBoolean === 'boolean' ? { enabled: optionsOrBoolean } : ({ enabled: true, ...optionsOrBoolean })) as T & { enabled: boolean });
   const esOptions = toOption(options.es);
   const importOptions = toOption(options.import);
+  const jsdocOptions = toOption(options.jsdoc);
   const jsoncOptions = toOption(options.jsonc);
   const nodeOptions = toOption(options.node);
   const tsOptions = toOption(options.ts);
@@ -35,6 +37,9 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     append(await jsonc(jsoncOptions));
     // sortPackageJson()
     // sortTsconfig()
+  }
+  if (jsdocOptions.enabled) {
+    append(await jsdoc(jsdocOptions));
   }
   if (stylisticOptions.enabled) {
     append(await stylistic(stylisticOptions));

@@ -3536,7 +3536,49 @@ var StylisticConfig = {
   }
 };
 
-// src/config/jsonc.ts
+// src/config/jsdoc.ts
+async function jsdoc(options = {}) {
+  const [jsdocPlugin] = await Promise.all([
+    dev.interopDefault(import('eslint-plugin-jsdoc'))
+  ]);
+  const { rules = {}, stylistic: stylistic2 = true } = options;
+  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
+  return [
+    {
+      name: "w5s/jsdoc/setup",
+      plugins: {
+        jsdoc: jsdocPlugin
+      }
+    },
+    {
+      name: "w5s/jsdoc/rules",
+      rules: {
+        ...jsdocPlugin.configs["flat/recommended"].rules,
+        "jsdoc/no-undefined-types": "off",
+        // https://github.com/gajus/eslint-plugin-jsdoc/issues/839
+        "jsdoc/require-hyphen-before-param-description": ["warn", "always"],
+        "jsdoc/require-jsdoc": "off",
+        "jsdoc/require-param-description": "off",
+        "jsdoc/require-returns": "off",
+        "jsdoc/tag-lines": ["warn", "any", { startLines: 1 }],
+        "jsdoc/valid-types": "off",
+        // FIXME: reports lots of false positive
+        // 'strict': ['error', 'safe'],
+        ...stylisticEnabled ? {
+          // ...(jsdocPlugin.configs['flat/stylistic'].rules),
+          "jsdoc/check-alignment": "warn",
+          "jsdoc/multiline-blocks": "warn"
+        } : {},
+        ...rules
+      },
+      settings: {
+        jsdoc: {
+          mode: "typescript"
+        }
+      }
+    }
+  ];
+}
 var defaultFiles = [`**/${dev.Project.extensionsToGlob([".json", ".json5", ".jsonc"])}`];
 async function jsonc(options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
@@ -3899,6 +3941,7 @@ async function defineConfig(options = {}) {
   const toOption = (optionsOrBoolean) => withDefaultStylistic(typeof optionsOrBoolean === "boolean" ? { enabled: optionsOrBoolean } : { enabled: true, ...optionsOrBoolean });
   const esOptions = toOption(options.es);
   const importOptions = toOption(options.import);
+  const jsdocOptions = toOption(options.jsdoc);
   const jsoncOptions = toOption(options.jsonc);
   const nodeOptions = toOption(options.node);
   const tsOptions = toOption(options.ts);
@@ -3912,6 +3955,9 @@ async function defineConfig(options = {}) {
   append(await ignores(options));
   if (jsoncOptions.enabled) {
     append(await jsonc(jsoncOptions));
+  }
+  if (jsdocOptions.enabled) {
+    append(await jsdoc(jsdocOptions));
   }
   if (stylisticOptions.enabled) {
     append(await stylistic(stylisticOptions));
@@ -3939,6 +3985,7 @@ exports.defineConfig = defineConfig;
 exports.es = es;
 exports.ignores = ignores;
 exports.imports = imports;
+exports.jsdoc = jsdoc;
 exports.jsonc = jsonc;
 exports.node = node;
 exports.stylistic = stylistic;
