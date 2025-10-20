@@ -3526,7 +3526,7 @@ var StylisticConfig = {
 var defaultFiles = [`**/${Project.extensionsToGlob([".json", ".json5", ".jsonc"])}`];
 async function jsonc(options = {}) {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
-    import('eslint-plugin-jsonc'),
+    interopDefault(import('eslint-plugin-jsonc')),
     interopDefault(import('jsonc-eslint-parser'))
   ]);
   const { files = defaultFiles, rules = {}, stylistic: stylistic2 = true } = options;
@@ -3535,7 +3535,7 @@ async function jsonc(options = {}) {
     {
       name: "w5s/jsonc/setup",
       plugins: {
-        jsonc: await interopDefault(jsoncPlugin)
+        jsonc: jsoncPlugin
       }
     },
     {
@@ -3583,14 +3583,14 @@ async function imports(options = {}) {
 }
 async function node(options = {}) {
   const [nodePlugin] = await Promise.all([
-    import('eslint-plugin-n')
+    interopDefault(import('eslint-plugin-n'))
   ]);
   const { rules = {} } = options;
   return [
     {
       name: "w5s/node/setup",
       plugins: {
-        node: await interopDefault(nodePlugin)
+        node: nodePlugin
       }
     },
     {
@@ -3693,7 +3693,7 @@ async function ts(options = {}) {
     {
       name: "w5s/ts/setup",
       plugins: {
-        ts: await interopDefault(tsPlugin)
+        ts: tsPlugin
       }
     },
     {
@@ -3760,7 +3760,7 @@ async function ts(options = {}) {
 }
 async function unicorn(options = {}) {
   const [unicornPlugin] = await Promise.all([
-    import('eslint-plugin-unicorn')
+    interopDefault(import('eslint-plugin-unicorn'))
   ]);
   const { rules = {}, stylistic: stylistic2 = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
@@ -3768,7 +3768,7 @@ async function unicorn(options = {}) {
     {
       name: "w5s/unicorn/setup",
       plugins: {
-        unicorn: await interopDefault(unicornPlugin)
+        unicorn: unicornPlugin
       }
     },
     {
@@ -3827,7 +3827,7 @@ async function unicorn(options = {}) {
 var defaultFiles4 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`];
 async function yml(options = {}) {
   const [ymlPlugin, ymlParser] = await Promise.all([
-    import('eslint-plugin-yml'),
+    interopDefault(import('eslint-plugin-yml')),
     interopDefault(import('yaml-eslint-parser'))
   ]);
   const { files = defaultFiles4, rules = {}, stylistic: stylistic2 = true } = options;
@@ -3836,7 +3836,7 @@ async function yml(options = {}) {
     {
       name: "w5s/yml/setup",
       plugins: {
-        yml: await interopDefault(ymlPlugin)
+        yml: ymlPlugin
       }
     },
     {

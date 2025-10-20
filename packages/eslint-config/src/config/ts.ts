@@ -21,7 +21,7 @@ export async function ts(options: ts.Options = {}) {
     {
       name: 'w5s/ts/setup',
       plugins: {
-        ts: await interopDefault(tsPlugin),
+        ts: tsPlugin,
       },
     },
     {

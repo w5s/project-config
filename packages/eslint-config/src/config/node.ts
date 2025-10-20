@@ -4,14 +4,14 @@ import type { RuleOptions } from '../typegen/node.js';
 
 export async function node(options: node.Options = {}) {
   const [nodePlugin] = await Promise.all([
-    import('eslint-plugin-n'),
+    interopDefault(import('eslint-plugin-n')),
   ] as const);
   const { rules = {} } = options;
   return [
     {
       name: 'w5s/node/setup',
       plugins: {
-        node: await interopDefault(nodePlugin),
+        node: nodePlugin,
       },
     },
     {

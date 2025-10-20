@@ -4,7 +4,7 @@ import type { RuleOptions } from '../typegen/unicorn.js';
 
 export async function unicorn(options: unicorn.Options = {}) {
   const [unicornPlugin] = await Promise.all([
-    import('eslint-plugin-unicorn'),
+    interopDefault(import('eslint-plugin-unicorn')),
   ] as const);
   const { rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
@@ -13,7 +13,7 @@ export async function unicorn(options: unicorn.Options = {}) {
     {
       name: 'w5s/unicorn/setup',
       plugins: {
-        unicorn: await interopDefault(unicornPlugin),
+        unicorn: unicornPlugin,
       },
     },
     {

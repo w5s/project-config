@@ -6,7 +6,7 @@ const defaultFiles = [`**/${Project.extensionsToGlob(['.json', '.json5', '.jsonc
 
 export async function jsonc(options: jsonc.Options = {}): Promise<readonly Config[]> {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
-    import('eslint-plugin-jsonc'),
+    interopDefault(import('eslint-plugin-jsonc')),
     interopDefault(import('jsonc-eslint-parser')),
   ] as const);
   const { files = defaultFiles, rules = {}, stylistic = true } = options;
@@ -16,7 +16,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<readonly Confi
     {
       name: 'w5s/jsonc/setup',
       plugins: {
-        jsonc: await interopDefault(jsoncPlugin),
+        jsonc: jsoncPlugin,
       },
     },
     {
