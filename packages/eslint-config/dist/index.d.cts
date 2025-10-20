@@ -2516,6 +2516,7 @@ type StyleKeySpacing = []|[({
   mode?: ("strict" | "minimum")
   beforeColon?: boolean
   afterColon?: boolean
+  ignoredNodes?: ("ObjectExpression" | "ObjectPattern" | "ImportDeclaration" | "ExportNamedDeclaration" | "ExportAllDeclaration" | "TSTypeLiteral" | "TSInterfaceBody" | "ClassBody")[]
 } | {
   singleLine?: {
     mode?: ("strict" | "minimum")
@@ -3031,6 +3032,7 @@ type StyleNoExtraParens = ([]|["functions"] | []|["all"]|["all", {
   enforceForNewInMemberExpressions?: boolean
   enforceForFunctionPrototypeMethods?: boolean
   allowParensAfterCommentPattern?: string
+  nestedConditionalExpressions?: boolean
 }])
 // ----- style/no-mixed-operators -----
 type StyleNoMixedOperators = []|[{
@@ -3128,14 +3130,14 @@ type StyleOperatorLinebreak = []|[(("after" | "before" | "none") | null)]|[(("af
   }
 }]
 // ----- style/padded-blocks -----
-type StylePaddedBlocks = []|[(("always" | "never") | {
-  blocks?: ("always" | "never")
-  switches?: ("always" | "never")
-  classes?: ("always" | "never")
-})]|[(("always" | "never") | {
-  blocks?: ("always" | "never")
-  switches?: ("always" | "never")
-  classes?: ("always" | "never")
+type StylePaddedBlocks = []|[(("always" | "never" | "start" | "end") | {
+  blocks?: ("always" | "never" | "start" | "end")
+  switches?: ("always" | "never" | "start" | "end")
+  classes?: ("always" | "never" | "start" | "end")
+})]|[(("always" | "never" | "start" | "end") | {
+  blocks?: ("always" | "never" | "start" | "end")
+  switches?: ("always" | "never" | "start" | "end")
+  classes?: ("always" | "never" | "start" | "end")
 }), {
   allowSingleLineBlocks?: boolean
 }]
@@ -3273,7 +3275,7 @@ declare module 'eslint' {
 
 interface RuleOptions$3 {
   /**
-   * require .spec test file pattern
+   * require test file pattern
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-filename.md
    */
   'test/consistent-test-filename'?: Linter.RuleEntry<TestConsistentTestFilename>
@@ -3283,10 +3285,20 @@ interface RuleOptions$3 {
    */
   'test/consistent-test-it'?: Linter.RuleEntry<TestConsistentTestIt>
   /**
+   * enforce using vitest or vi but not both
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-vitest-vi.md
+   */
+  'test/consistent-vitest-vi'?: Linter.RuleEntry<TestConsistentVitestVi>
+  /**
    * enforce having expectation in test body
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/expect-expect.md
    */
   'test/expect-expect'?: Linter.RuleEntry<TestExpectExpect>
+  /**
+   * enforce hoisted APIs to be on top of the file
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/hoisted-apis-on-top.md
+   */
+  'test/hoisted-apis-on-top'?: Linter.RuleEntry<[]>
   /**
    * enforce a maximum number of expect per test
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/max-expects.md
@@ -3359,6 +3371,11 @@ interface RuleOptions$3 {
    */
   'test/no-import-node-test'?: Linter.RuleEntry<[]>
   /**
+   * disallow importing Vitest globals
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-importing-vitest-globals.md
+   */
+  'test/no-importing-vitest-globals'?: Linter.RuleEntry<[]>
+  /**
    * disallow string interpolation in snapshots
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-interpolation-in-snapshots.md
    */
@@ -3389,7 +3406,7 @@ interface RuleOptions$3 {
    */
   'test/no-standalone-expect'?: Linter.RuleEntry<TestNoStandaloneExpect>
   /**
-   * disallow using `test` as a prefix
+   * disallow using the `f` and `x` prefixes in favour of `.only` and `.skip`
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-test-prefixes.md
    */
   'test/no-test-prefixes'?: Linter.RuleEntry<[]>
@@ -3439,6 +3456,21 @@ interface RuleOptions$3 {
    */
   'test/padding-around-test-blocks'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `toHaveBeenCalledExactlyOnceWith` over `toHaveBeenCalledOnce` and `toHaveBeenCalledWith`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-called-exactly-once-with.md
+   */
+  'test/prefer-called-exactly-once-with'?: Linter.RuleEntry<[]>
+  /**
+   * enforce using `toBeCalledOnce()` or `toHaveBeenCalledOnce()`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-called-once.md
+   */
+  'test/prefer-called-once'?: Linter.RuleEntry<[]>
+  /**
+   * enforce using `toBeCalledTimes(1)` or `toHaveBeenCalledTimes(1)`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-called-times.md
+   */
+  'test/prefer-called-times'?: Linter.RuleEntry<[]>
+  /**
    * enforce using `toBeCalledWith()` or `toHaveBeenCalledWith()`
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-called-with.md
    */
@@ -3448,6 +3480,11 @@ interface RuleOptions$3 {
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-comparison-matcher.md
    */
   'test/prefer-comparison-matcher'?: Linter.RuleEntry<[]>
+  /**
+   * enforce using a function as a describe title over an equivalent string
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-describe-function-title.md
+   */
+  'test/prefer-describe-function-title'?: Linter.RuleEntry<[]>
   /**
    * enforce using `each` rather than manual loops
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-each.md
@@ -3469,6 +3506,11 @@ interface RuleOptions$3 {
    */
   'test/prefer-expect-resolves'?: Linter.RuleEntry<[]>
   /**
+   * enforce using `expectTypeOf` instead of `expect(typeof ...)`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-expect-type-of.md
+   */
+  'test/prefer-expect-type-of'?: Linter.RuleEntry<[]>
+  /**
    * enforce having hooks in consistent order
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-hooks-in-order.md
    */
@@ -3478,6 +3520,16 @@ interface RuleOptions$3 {
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-hooks-on-top.md
    */
   'test/prefer-hooks-on-top'?: Linter.RuleEntry<[]>
+  /**
+   * prefer dynamic import in mock
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-import-in-mock.md
+   */
+  'test/prefer-import-in-mock'?: Linter.RuleEntry<[]>
+  /**
+   * enforce importing Vitest globals
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-importing-vitest-globals.md
+   */
+  'test/prefer-importing-vitest-globals'?: Linter.RuleEntry<[]>
   /**
    * enforce lowercase titles
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-lowercase-title.md
@@ -3593,6 +3645,11 @@ interface RuleOptions$3 {
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/valid-title.md
    */
   'test/valid-title'?: Linter.RuleEntry<TestValidTitle>
+  /**
+   * disallow `.todo` usage
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/warn-todo.md
+   */
+  'test/warn-todo'?: Linter.RuleEntry<[]>
 }
 
 /* ======= Declarations ======= */
@@ -3605,6 +3662,10 @@ type TestConsistentTestFilename = []|[{
 type TestConsistentTestIt = []|[{
   fn?: ("test" | "it")
   withinDescribe?: ("test" | "it")
+}]
+// ----- test/consistent-vitest-vi -----
+type TestConsistentVitestVi = []|[{
+  fn?: ("vi" | "vitest")
 }]
 // ----- test/expect-expect -----
 type TestExpectExpect = []|[{
