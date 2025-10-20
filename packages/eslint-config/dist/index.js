@@ -3653,7 +3653,7 @@ var defaultFiles2 = [
 ];
 async function test(options = {}) {
   const [vitestPlugin] = await Promise.all([
-    import('@vitest/eslint-plugin')
+    interopDefault(import('@vitest/eslint-plugin'))
   ]);
   const { files = defaultFiles2, rules = {}, stylistic: stylistic2 = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
@@ -3661,14 +3661,14 @@ async function test(options = {}) {
     {
       name: "w5s/test/setup",
       plugins: {
-        test: interopDefault(vitestPlugin)
+        test: vitestPlugin
       }
     },
     {
       files,
       name: "w5s/test/rules",
       rules: {
-        ...vitestPlugin.default.configs.recommended.rules,
+        ...vitestPlugin.configs.recommended.rules,
         ...stylisticEnabled ? {} : {},
         ...rules
       }
@@ -3678,7 +3678,7 @@ async function test(options = {}) {
 var defaultFiles3 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`];
 async function ts(options = {}) {
   const [tsPlugin, tsParser] = await Promise.all([
-    import('@typescript-eslint/eslint-plugin'),
+    interopDefault(import('@typescript-eslint/eslint-plugin')),
     interopDefault(import('@typescript-eslint/parser'))
   ]);
   const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;

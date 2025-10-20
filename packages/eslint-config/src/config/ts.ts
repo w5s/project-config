@@ -8,7 +8,7 @@ const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['t
 
 export async function ts(options: ts.Options = {}) {
   const [tsPlugin, tsParser] = await Promise.all([
-    import('@typescript-eslint/eslint-plugin'),
+    interopDefault(import('@typescript-eslint/eslint-plugin')),
     interopDefault(import('@typescript-eslint/parser')),
   ] as const);
   const tsRecommendedRules = tsPlugin.configs['eslint-recommended']!.overrides![0]!.rules!;

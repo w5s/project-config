@@ -11,7 +11,7 @@ const defaultFiles = [
 
 export async function test(options: test.Options = {}) {
   const [vitestPlugin] = await Promise.all([
-    import('@vitest/eslint-plugin'),
+    interopDefault(import('@vitest/eslint-plugin')),
   ] as const);
   const { files = defaultFiles, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
@@ -20,14 +20,14 @@ export async function test(options: test.Options = {}) {
     {
       name: 'w5s/test/setup',
       plugins: {
-        test: interopDefault(vitestPlugin),
+        test: vitestPlugin,
       },
     },
     {
       files,
       name: 'w5s/test/rules',
       rules: {
-        ...vitestPlugin.default.configs.recommended.rules,
+        ...vitestPlugin.configs.recommended.rules,
         ...(stylisticEnabled
           ? {}
           : {}),
