@@ -899,7 +899,6 @@ type StyleKeySpacing = []|[({
   mode?: ("strict" | "minimum")
   beforeColon?: boolean
   afterColon?: boolean
-  ignoredNodes?: ("ObjectExpression" | "ObjectPattern" | "ImportDeclaration" | "ExportNamedDeclaration" | "ExportAllDeclaration" | "TSTypeLiteral" | "TSInterfaceBody" | "ClassBody")[]
 } | {
   singleLine?: {
     mode?: ("strict" | "minimum")
@@ -1415,7 +1414,6 @@ type StyleNoExtraParens = ([]|["functions"] | []|["all"]|["all", {
   enforceForNewInMemberExpressions?: boolean
   enforceForFunctionPrototypeMethods?: boolean
   allowParensAfterCommentPattern?: string
-  nestedConditionalExpressions?: boolean
 }])
 // ----- style/no-mixed-operators -----
 type StyleNoMixedOperators = []|[{
@@ -1513,14 +1511,14 @@ type StyleOperatorLinebreak = []|[(("after" | "before" | "none") | null)]|[(("af
   }
 }]
 // ----- style/padded-blocks -----
-type StylePaddedBlocks = []|[(("always" | "never" | "start" | "end") | {
-  blocks?: ("always" | "never" | "start" | "end")
-  switches?: ("always" | "never" | "start" | "end")
-  classes?: ("always" | "never" | "start" | "end")
-})]|[(("always" | "never" | "start" | "end") | {
-  blocks?: ("always" | "never" | "start" | "end")
-  switches?: ("always" | "never" | "start" | "end")
-  classes?: ("always" | "never" | "start" | "end")
+type StylePaddedBlocks = []|[(("always" | "never") | {
+  blocks?: ("always" | "never")
+  switches?: ("always" | "never")
+  classes?: ("always" | "never")
+})]|[(("always" | "never") | {
+  blocks?: ("always" | "never")
+  switches?: ("always" | "never")
+  classes?: ("always" | "never")
 }), {
   allowSingleLineBlocks?: boolean
 }]
