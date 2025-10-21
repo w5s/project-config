@@ -26,37 +26,37 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
   const unicornOptions = toOption(options.unicorn);
   const ymlOptions = toOption(options.yml);
 
-  let returnValue: Array<Config> = [];
-  const append = async (config: ReadonlyArray<any>) => {
-    returnValue = [...returnValue, ...config as any];
+  const returnValue: Array<Promise<Array<Config>>> = [];
+  const append = (config: Promise<ReadonlyArray<any>>) => {
+    returnValue.push(config as any);
   };
-  append(await es(esOptions));
-  append(await ignores(options));
+  append(es(esOptions));
+  append(ignores(options));
 
   if (jsoncOptions.enabled) {
-    append(await jsonc(jsoncOptions));
-    // sortTsconfig()
+    append(jsonc(jsoncOptions));
   }
   if (jsdocOptions.enabled) {
-    append(await jsdoc(jsdocOptions));
+    append(jsdoc(jsdocOptions));
   }
   if (stylisticOptions.enabled) {
-    append(await stylistic(stylisticOptions));
+    append(stylistic(stylisticOptions));
   }
   if (importOptions.enabled) {
-    append(await imports(importOptions));
+    append(imports(importOptions));
   }
   if (nodeOptions.enabled) {
-    append(await node(nodeOptions));
+    append(node(nodeOptions));
   }
   if (tsOptions.enabled) {
-    append(await ts(tsOptions));
+    append(ts(tsOptions));
   }
   if (ymlOptions.enabled) {
-    append(await yml(ymlOptions));
+    append(yml(ymlOptions));
   }
   if (unicornOptions.enabled) {
-    append(await unicorn(unicornOptions));
+    append(unicorn(unicornOptions));
   }
-  return returnValue;
+  const nested = await Promise.all(returnValue);
+  return nested.reduce((acc, curr) => [...acc, ...curr], [] as Array<Config>);
 }

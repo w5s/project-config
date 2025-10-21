@@ -4148,37 +4148,38 @@ async function defineConfig(options = {}) {
   const tsOptions = toOption(options.ts);
   const unicornOptions = toOption(options.unicorn);
   const ymlOptions = toOption(options.yml);
-  let returnValue = [];
-  const append = async (config) => {
-    returnValue = [...returnValue, ...config];
+  const returnValue = [];
+  const append = (config) => {
+    returnValue.push(config);
   };
-  append(await es(esOptions));
-  append(await ignores(options));
+  append(es(esOptions));
+  append(ignores(options));
   if (jsoncOptions.enabled) {
-    append(await jsonc(jsoncOptions));
+    append(jsonc(jsoncOptions));
   }
   if (jsdocOptions.enabled) {
-    append(await jsdoc(jsdocOptions));
+    append(jsdoc(jsdocOptions));
   }
   if (stylisticOptions.enabled) {
-    append(await stylistic(stylisticOptions));
+    append(stylistic(stylisticOptions));
   }
   if (importOptions.enabled) {
-    append(await imports(importOptions));
+    append(imports(importOptions));
   }
   if (nodeOptions.enabled) {
-    append(await node(nodeOptions));
+    append(node(nodeOptions));
   }
   if (tsOptions.enabled) {
-    append(await ts(tsOptions));
+    append(ts(tsOptions));
   }
   if (ymlOptions.enabled) {
-    append(await yml(ymlOptions));
+    append(yml(ymlOptions));
   }
   if (unicornOptions.enabled) {
-    append(await unicorn(unicornOptions));
+    append(unicorn(unicornOptions));
   }
-  return returnValue;
+  const nested = await Promise.all(returnValue);
+  return nested.reduce((acc, curr) => [...acc, ...curr], []);
 }
 
 exports.default = defineConfig;
