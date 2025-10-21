@@ -4,7 +4,7 @@ export const defaultConfig = {
     format: ['esm'],
     dts: true,
     clean: true,
-    treeshake: 'recommended',
-    splitting: false,
+    // treeshake: 'recommended',
+    // splitting: false,
     tsconfig: 'tsconfig.build.json',
 };
