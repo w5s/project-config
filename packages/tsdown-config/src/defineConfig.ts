@@ -1,4 +1,4 @@
-import TsUp from 'tsup';
+import * as TsDown from 'tsdown';
 import { defaultConfig } from './defaultConfig.js';
 
 type MaybePromise<T> = Promise<T> | T;
@@ -12,16 +12,20 @@ function awaitableMap<T, U>(awaitable: MaybePromise<T>, mapFn: (value: T) => U):
     : mapFn(awaitable as any);
 }
 
-const mergeWithDefault = (options: TsUp.Options): TsUp.Options => ({
-  ...defaultConfig,
-  ...options,
-});
+const mergeAllWithDefault = (options: TsDown.UserConfig): TsDown.UserConfig =>
+  Array.isArray(options)
+    ? options.map((_) => ({
+        ...defaultConfig,
+        ..._,
+      }))
+    : {
+        ...defaultConfig,
+        ...options,
+      };
 
-const mergeAllWithDefault = (options: TsUp.Options | Array<TsUp.Options>): TsUp.Options | Array<TsUp.Options> =>
-  Array.isArray(options) ? options.map(mergeWithDefault) : mergeWithDefault(options);
-
-export const defineConfig: typeof TsUp.defineConfig = (configOrGetter) =>
-  TsUp.defineConfig(
+export const defineConfig: typeof TsDown.defineConfig = (configOrGetter) =>
+  TsDown.defineConfig(
+    // @ts-ignore
     typeof configOrGetter === 'function'
       ? (config) => awaitableMap(configOrGetter(config), mergeAllWithDefault)
       : awaitableMap(configOrGetter, mergeAllWithDefault),

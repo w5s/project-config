@@ -43,7 +43,7 @@
   ],
   "scripts": {
     "build": "npx run-p \"build:*\"",
-    "build:tsc": "node --experimental-strip-types scripts/typegen.ts && tsup",
+    "build:tsc": "node --experimental-strip-types scripts/typegen.ts && tsdown",
     "clean": "npx run-p \"clean:*\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",

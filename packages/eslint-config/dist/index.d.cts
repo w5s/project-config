@@ -1,5 +1,5 @@
-import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 import { Linter } from "eslint";
+import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 
 //#region src/type/Config.d.ts
 interface Config extends Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> {
@@ -7593,4 +7593,4 @@ interface DefineConfigOptions extends ignores.Options {
 declare function defineConfig(options?: DefineConfigOptions): Promise<Config[]>;
 //#endregion
 export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, node, stylistic, test, ts, unicorn, yml };
-//# sourceMappingURL=index.d.ts.map
+//# sourceMappingURL=index.d.cts.map
