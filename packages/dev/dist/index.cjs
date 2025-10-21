@@ -47,7 +47,7 @@ function toArray(value) {
   return [value];
 }
 function concatArray(left, right) {
-  return toArray(left).concat(toArray(right));
+  return [...toArray(left), ...toArray(right)];
 }
 exports.ESLintConfig = void 0;
 ((ESLintConfig2) => {
@@ -275,7 +275,10 @@ exports.Project = void 0;
     yaml: [".yaml", ".yml"]
   };
   function queryExtensions(languages) {
-    return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort();
+    return languages.reduce((previousValue, currentValue) => (
+      // eslint-disable-next-line unicorn/prefer-spread
+      previousValue.concat(registry[currentValue] ?? [])
+    ), []).sort();
   }
   Project2.queryExtensions = queryExtensions;
   function sourceExtensions() {

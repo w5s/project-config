@@ -52,13 +52,13 @@ export async function exec(
     // Capture the stdout and stderr streams
     if (child.stdout != null) {
       child.stdout.on('data', (data) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line ts/no-unsafe-call, ts/no-unsafe-member-access
         stdout += data.toString(encoding);
       });
     }
     if (child.stderr != null) {
       child.stderr.on('data', (data) => {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+        // eslint-disable-next-line ts/no-unsafe-call, ts/no-unsafe-member-access
         stderr += data.toString(encoding);
       });
     }

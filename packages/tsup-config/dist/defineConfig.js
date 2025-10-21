@@ -1,13 +1,12 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable ts/no-unsafe-return */
+/* eslint-disable ts/no-unsafe-member-access */
+/* eslint-disable ts/no-unsafe-argument */
+/* eslint-disable ts/no-unsafe-call */
 import TsUp from 'tsup';
 import { defaultConfig } from './defaultConfig.js';
 function awaitableMap(awaitable, mapFn) {
     return awaitable != null && typeof awaitable.then === 'function'
-        ? // eslint-disable-next-line promise/prefer-await-to-then
-            awaitable.then(mapFn)
+        ? awaitable.then(mapFn)
         : mapFn(awaitable);
 }
 const mergeWithDefault = (options) => ({

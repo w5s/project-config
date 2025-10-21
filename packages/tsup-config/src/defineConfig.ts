@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable ts/no-unsafe-return */
+/* eslint-disable ts/no-unsafe-member-access */
+/* eslint-disable ts/no-unsafe-argument */
+/* eslint-disable ts/no-unsafe-call */
 import TsUp from 'tsup';
 import { defaultConfig } from './defaultConfig.js';
 
@@ -12,8 +12,7 @@ function awaitableMap<T, U>(awaitable: T, mapFn: (value: T) => U): U;
 function awaitableMap<T, U>(awaitable: MaybePromise<T>, mapFn: (value: T) => U): MaybePromise<U>;
 function awaitableMap<T, U>(awaitable: MaybePromise<T>, mapFn: (value: T) => U): MaybePromise<U> {
   return awaitable != null && typeof (awaitable as any).then === 'function'
-    ? // eslint-disable-next-line promise/prefer-await-to-then
-      (awaitable as any).then(mapFn)
+    ? (awaitable as any).then(mapFn)
     : mapFn(awaitable as any);
 }
 
