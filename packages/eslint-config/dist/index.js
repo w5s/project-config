@@ -3449,6 +3449,11 @@ var getGitignore = async (cwd, prefix = "") => {
 };
 async function ignores(options = {}) {
   const cwd = process.cwd();
+  const [ignoreRoot, ignoreAndroid, ignoreIOS] = await Promise.all([
+    getGitignore(cwd),
+    getGitignore(cwd, "android"),
+    getGitignore(cwd, "ios")
+  ]);
   return [
     {
       ignores: [
@@ -3491,9 +3496,9 @@ async function ignores(options = {}) {
         // 'test-output/',
         // 'venv/',
         // '_generated_/',
-        ...await getGitignore(cwd),
-        ...await getGitignore(cwd, "android"),
-        ...await getGitignore(cwd, "ios"),
+        ...ignoreRoot,
+        ...ignoreAndroid,
+        ...ignoreIOS,
         ...options.ignores ?? []
       ],
       name: "w5s/ignore"

@@ -17,6 +17,12 @@ const getGitignore = async (cwd: string, prefix = ''): Promise<Array<string>> =>
 
 export async function ignores(options: ignores.Options = {}) {
   const cwd = process.cwd();
+  const [ignoreRoot, ignoreAndroid, ignoreIOS] = await Promise.all([
+    getGitignore(cwd),
+    getGitignore(cwd, 'android'),
+    getGitignore(cwd, 'ios'),
+  ]);
+
   return [
     {
       ignores: [
@@ -62,9 +68,9 @@ export async function ignores(options: ignores.Options = {}) {
         // 'venv/',
         // '_generated_/',
 
-        ...await getGitignore(cwd),
-        ...await getGitignore(cwd, 'android'),
-        ...await getGitignore(cwd, 'ios'),
+        ...ignoreRoot,
+        ...ignoreAndroid,
+        ...ignoreIOS,
         ...(options.ignores ?? []),
       ] as Array<string>,
       name: 'w5s/ignore',
