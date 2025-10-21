@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0](github.com/w5s/project-config/compare/@w5s/mrm-preset@2.11.6...@w5s/mrm-preset@3.0.0) (2025-10-21)
+
+### 🎫 Chores
+
+- Upgrade eslint v9 peer deps ([640db8b](github.com/w5s/project-config/commits/640db8b)) 
+
+### 💥 BREAKING CHANGES
+
+* This commit upgrades ESLint to version 9, which may introduce breaking changes
+
 ## [2.11.6](github.com/w5s/project-config/compare/@w5s/mrm-preset@2.11.5...@w5s/mrm-preset@2.11.6) (2025-09-21)
 
 ### 🐛 Bug Fixes
