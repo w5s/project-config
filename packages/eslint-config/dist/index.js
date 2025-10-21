@@ -2,7 +2,7 @@ import { Project, interopDefault, ESLintConfig } from '@w5s/dev';
 import fs from 'fs';
 import nodePath from 'path';
 import process from 'process';
-import findUp from 'find-up';
+import { findUp } from 'find-up';
 import parseGitignore from 'parse-gitignore';
 import prettierConfig from '@w5s/prettier-config';
 import importPlugin from 'eslint-plugin-import';

@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import nodePath from 'node:path';
 import process from 'node:process';
-import findUp from 'find-up';
+import { findUp } from 'find-up';
 import parseGitignore from 'parse-gitignore';
 import type { Config } from '../type.js';
 
