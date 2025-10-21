@@ -1,6 +1,6 @@
 #!/bin/sh
-cd $(dirname $(dirname $0))
-ROOT=`pwd`
+cd $(dirname $(dirname "$0"))
+ROOT=$(pwd)
 
 set -e;
 
@@ -17,9 +17,9 @@ test_project ()
 
   shift;
   eslint . $@;
-  cd $ROOT;
+  cd "$ROOT";
 }
 
 test_project es-project;
-test_project ts-project --ext .ts,.tsx;
-test_project json --ext .js,.json;
+test_project ts-project;
+test_project json;

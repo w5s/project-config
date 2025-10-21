@@ -28,10 +28,12 @@ export class MarkupView extends React.PureComponent<ReactComponentProps, ReactCo
   handlePress = () => null;
 
   override render(): React.ReactNode {
-    return this.state.fooState ? (
-      <FunctionComponent onLongPress={() => null} onPress={this.handlePress}>
-        {this.props.foo}
-      </FunctionComponent>
-    ) : null;
+    return this.state.fooState
+      ? (
+          <FunctionComponent onLongPress={() => null} onPress={this.handlePress}>
+            {this.props.foo}
+          </FunctionComponent>
+        )
+      : null;
   }
 }

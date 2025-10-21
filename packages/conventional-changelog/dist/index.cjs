@@ -53,64 +53,64 @@ var CommitConventionalType = (() => {
   const enumValuesSet = new Set(enumValues);
   const typeData = {
     feat: {
-      emoji: "\u2728",
+      "emoji": "\u2728",
       "en-US": "Features",
-      changelog: true
+      "changelog": true
     },
     fix: {
-      emoji: "\u{1F41B}",
+      "emoji": "\u{1F41B}",
       "en-US": "Bug Fixes",
-      changelog: true
+      "changelog": true
     },
     build: {
-      emoji: "\u{1F477}",
+      "emoji": "\u{1F477}",
       "en-US": "Build System",
-      changelog: false
+      "changelog": false
     },
     chore: {
-      emoji: "\u{1F3AB}",
+      "emoji": "\u{1F3AB}",
       "en-US": "Chores",
-      changelog: false
+      "changelog": false
     },
     ci: {
-      emoji: "\u{1F527}",
+      "emoji": "\u{1F527}",
       "en-US": "Continuous Integration",
-      changelog: false
+      "changelog": false
     },
     docs: {
-      emoji: "\u{1F4DD}",
+      "emoji": "\u{1F4DD}",
       "en-US": "Documentation",
-      changelog: false
+      "changelog": false
     },
     test: {
-      emoji: "\u2705",
+      "emoji": "\u2705",
       "en-US": "Tests",
-      changelog: false
+      "changelog": false
     },
     perf: {
-      emoji: "\u26A1",
+      "emoji": "\u26A1",
       "en-US": "Performance Improvements",
-      changelog: true
+      "changelog": true
     },
     refactor: {
-      emoji: "\u267B",
+      "emoji": "\u267B",
       "en-US": "Code Refactoring",
-      changelog: false
+      "changelog": false
     },
     revert: {
-      emoji: "\u23EA",
+      "emoji": "\u23EA",
       "en-US": "Reverts",
-      changelog: true
+      "changelog": true
     },
     style: {
-      emoji: "\u{1F484}",
+      "emoji": "\u{1F484}",
       "en-US": "Styles",
-      changelog: false
+      "changelog": false
     },
     wip: {
-      emoji: "\u{1F6A7}",
+      "emoji": "\u{1F6A7}",
       "en-US": "Work in progress",
-      changelog: false
+      "changelog": false
     }
   };
   function hasInstance(anyValue) {
@@ -190,7 +190,7 @@ exports.GitmojiCode = void 0;
       entries.reduce(
         (acc, [commitType, gitmojiUnicodeArray]) => acc.concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [gitmojiUnicode, commitType])).concat(
           gitmojiUnicodeArray.map((gitmojiUnicode) => [
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion, @typescript-eslint/no-non-null-asserted-optional-chain
+            // eslint-disable-next-line ts/no-non-null-assertion, ts/no-non-null-asserted-optional-chain
             index.emoji.get(gitmojiUnicode)?.code,
             commitType
           ])

@@ -2,7 +2,7 @@ import { writeFile, readFile } from 'node:fs/promises';
 import nodePath from 'node:path';
 import { fileURLToPath } from 'node:url';
 import browserslist from 'browserslist';
-// eslint-disable-next-line import/no-extraneous-dependencies
+
 import { groupBy, entries } from 'lodash-es';
 
 const Package = {

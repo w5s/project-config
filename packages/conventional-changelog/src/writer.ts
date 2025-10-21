@@ -1,4 +1,4 @@
-/* eslint-disable n/no-sync */
+/* eslint-disable node/no-sync */
 import { readFileSync } from 'node:fs';
 import nodePath from 'node:path';
 import type { Options } from 'conventional-changelog-writer';
