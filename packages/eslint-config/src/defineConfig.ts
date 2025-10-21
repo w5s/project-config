@@ -35,7 +35,6 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
 
   if (jsoncOptions.enabled) {
     append(await jsonc(jsoncOptions));
-    // sortPackageJson()
     // sortTsconfig()
   }
   if (jsdocOptions.enabled) {
