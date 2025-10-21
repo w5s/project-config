@@ -1,4 +1,4 @@
-import { defineConfig } from '@w5s/tsup-config';
+import { defineConfig } from '@w5s/tsdown-config';
 
 export default defineConfig({
   format: ['esm'],

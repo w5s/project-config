@@ -44,7 +44,7 @@
   ],
   "scripts": {
     "build": "npx run-p \"build:*\"",
-    "build:tsc": "npx tsup",
+    "build:tsc": "npx tsdown",
     "clean": "npx run-p \"clean:*\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
@@ -67,7 +67,7 @@
   },
   "devDependencies": {
     "@commitlint/lint": "20.0.0",
-    "@w5s/tsup-config": "workspace:*",
+    "@w5s/tsdown-config": "workspace:*",
     "vite": "7.1.12",
     "vitest": "4.0.5"
   },

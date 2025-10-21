@@ -1,409 +1,581 @@
-import { existsSync, mkdirSync, rmSync, readFileSync, writeFileSync, constants as constants$1, accessSync } from 'fs';
-import { mkdir, rm, readFile, writeFile, access, constants } from 'fs/promises';
-import { spawnSync, spawn } from 'child_process';
+import { accessSync, constants, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { access, constants as constants$1, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { spawn, spawnSync } from "node:child_process";
 
-// src/directory.ts
-async function exists(path) {
-  try {
-    await access(path, constants.F_OK);
-    return true;
-  } catch {
-    return false;
-  }
+//#region src/directory.ts
+async function exists$1(path) {
+	try {
+		await access(path, constants$1.F_OK);
+		return true;
+	} catch {
+		return false;
+	}
 }
+/**
+* Ensure directory is present/absent
+*
+* @example
+* ```ts
+* await directory({
+*   path: 'foo/bar',
+*   state: 'present',
+* })
+* ```
+*
+* @param options
+*/
 async function directory(options) {
-  const { path, state } = options;
-  const isPresent = await exists(path);
-  if (state === "present") {
-    if (!isPresent) {
-      await mkdir(path, { recursive: true });
-    }
-  } else if (isPresent) {
-    await rm(path, { recursive: true });
-  }
+	const { path, state } = options;
+	const isPresent = await exists$1(path);
+	if (state === "present") {
+		if (!isPresent) await mkdir(path, { recursive: true });
+	} else if (isPresent) await rm(path, { recursive: true });
 }
+/**
+* Ensure directory is present/absent
+*
+* @example
+* ```ts
+* await directorySync({
+*   path: 'foo/bar',
+*   state: 'present',
+* })
+* ```
+*
+* @param options
+*/
 function directorySync(options) {
-  const { path, state } = options;
-  const isPresent = existsSync(path);
-  if (state === "present") {
-    if (!isPresent) {
-      mkdirSync(path, { recursive: true });
-    }
-  } else if (isPresent) {
-    rmSync(path, { recursive: true });
-  }
+	const { path, state } = options;
+	const isPresent = existsSync(path);
+	if (state === "present") {
+		if (!isPresent) mkdirSync(path, { recursive: true });
+	} else if (isPresent) rmSync(path, { recursive: true });
 }
 
-// src/ESLintConfig.ts
+//#endregion
+//#region src/ESLintConfig.ts
 function toArray(value) {
-  if (value == null) {
-    return [];
-  }
-  if (Array.isArray(value)) {
-    return value;
-  }
-  return [value];
+	if (value == null) return [];
+	if (Array.isArray(value)) return value;
+	return [value];
 }
 function concatArray(left, right) {
-  return [...toArray(left), ...toArray(right)];
+	return [...toArray(left), ...toArray(right)];
 }
-var ESLintConfig;
-((ESLintConfig2) => {
-  function concat(...configs) {
-    return configs.reduce(
-      (returnValue, config) => ({
-        ...returnValue,
-        ...config,
-        env: { ...returnValue.env, ...config.env },
-        extends: concatArray(returnValue.extends, config.extends),
-        globals: { ...returnValue.globals, ...config.globals },
-        overrides: concatArray(returnValue.overrides, config.overrides),
-        parserOptions: { ...returnValue.parserOptions, ...config.parserOptions },
-        plugins: concatArray(returnValue.plugins, config.plugins),
-        rules: { ...returnValue.rules, ...config.rules },
-        settings: { ...returnValue.settings, ...config.settings }
-      }),
-      {
-        env: {},
-        extends: [],
-        globals: {},
-        overrides: [],
-        parserOptions: {},
-        plugins: [],
-        rules: {},
-        settings: {}
-      }
-    );
-  }
-  ESLintConfig2.concat = concat;
-  function fixme(_status) {
-    return "off";
-  }
-  ESLintConfig2.fixme = fixme;
-  function renameRules(rules, map) {
-    return Object.fromEntries(
-      Object.entries(rules).map(([key, value]) => {
-        for (const [from, to] of Object.entries(map)) {
-          if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
-          else if (from === "" && !key.includes("/") && to !== "") return [to + key, value];
-        }
-        return [key, value];
-      })
-    );
-  }
-  ESLintConfig2.renameRules = renameRules;
+let ESLintConfig;
+(function(_ESLintConfig) {
+	function concat(...configs) {
+		return configs.reduce((returnValue, config) => ({
+			...returnValue,
+			...config,
+			env: {
+				...returnValue.env,
+				...config.env
+			},
+			extends: concatArray(returnValue.extends, config.extends),
+			globals: {
+				...returnValue.globals,
+				...config.globals
+			},
+			overrides: concatArray(returnValue.overrides, config.overrides),
+			parserOptions: {
+				...returnValue.parserOptions,
+				...config.parserOptions
+			},
+			plugins: concatArray(returnValue.plugins, config.plugins),
+			rules: {
+				...returnValue.rules,
+				...config.rules
+			},
+			settings: {
+				...returnValue.settings,
+				...config.settings
+			}
+		}), {
+			env: {},
+			extends: [],
+			globals: {},
+			overrides: [],
+			parserOptions: {},
+			plugins: [],
+			rules: {},
+			settings: {}
+		});
+	}
+	_ESLintConfig.concat = concat;
+	function fixme(_status) {
+		return "off";
+	}
+	_ESLintConfig.fixme = fixme;
+	function renameRules(rules, map) {
+		return Object.fromEntries(Object.entries(rules).map(([key, value]) => {
+			for (const [from, to] of Object.entries(map)) if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
+			else if (from === "" && !key.includes("/") && to !== "") return [to + key, value];
+			return [key, value];
+		}));
+	}
+	_ESLintConfig.renameRules = renameRules;
 })(ESLintConfig || (ESLintConfig = {}));
-async function exists2(path) {
-  try {
-    await access(path, constants$1.F_OK);
-    return true;
-  } catch {
-    return false;
-  }
+
+//#endregion
+//#region src/file.ts
+async function exists(path) {
+	try {
+		await access(path, constants.F_OK);
+		return true;
+	} catch {
+		return false;
+	}
 }
-function existsSync2(path) {
-  try {
-    accessSync(path, constants$1.F_OK);
-    return true;
-  } catch {
-    return false;
-  }
+function existsSync$1(path) {
+	try {
+		accessSync(path, constants.F_OK);
+		return true;
+	} catch {
+		return false;
+	}
 }
+/**
+* Ensure file is present/absent with content initialized or modified with `update
+*
+* @example
+* ```ts
+* await file({
+*   path: 'foo/bar',
+*   state: 'present',
+*   update: (content) => content + '_test', // This will append '_test' after current content
+* })
+* ```
+*
+* @param options
+*/
 async function file(options) {
-  const { path, state, update, encoding = "utf8" } = options;
-  if (state === "present") {
-    const isPresent = await exists2(path);
-    const previousContent = isPresent ? await readFile(path, encoding) : "";
-    const newContent = update == null ? "" : update(previousContent);
-    if (newContent != null) {
-      await writeFile(path, newContent, encoding);
-    }
-  } else {
-    await rm(path, { force: true });
-  }
+	const { path, state, update, encoding = "utf8" } = options;
+	if (state === "present") {
+		const previousContent = await exists(path) ? await readFile(path, encoding) : "";
+		const newContent = update == null ? "" : update(previousContent);
+		if (newContent != null) await writeFile(path, newContent, encoding);
+	} else await rm(path, { force: true });
 }
+/**
+* Ensure file is present/absent with content initialized or modified with `update
+*
+* @example
+* ```ts
+* fileSync({
+*   path: 'foo/bar',
+*   state: 'present',
+*   update: (content) => content + '_test', // This will append '_test' after current content
+* })
+* ```
+*
+* @param options
+*/
 function fileSync(options) {
-  const { path, state, update, encoding = "utf8" } = options;
-  if (state === "present") {
-    const isPresent = existsSync2(path);
-    const previousContent = isPresent ? readFileSync(path, encoding) : "";
-    const newContent = update == null ? "" : update(previousContent);
-    if (newContent != null) {
-      writeFileSync(path, newContent, encoding);
-    }
-  } else {
-    rmSync(path, { force: true });
-  }
+	const { path, state, update, encoding = "utf8" } = options;
+	if (state === "present") {
+		const previousContent = existsSync$1(path) ? readFileSync(path, encoding) : "";
+		const newContent = update == null ? "" : update(previousContent);
+		if (newContent != null) writeFileSync(path, newContent, encoding);
+	} else rmSync(path, { force: true });
 }
 
-// src/block.ts
-var EOF = "EndOfFile";
-var BOF = "BeginningOfFile";
-var insertAt = (str, index, toInsert) => str.slice(0, index) + toInsert + str.slice(index);
-var matchLast = (string, regexp) => {
-  const matcher = new RegExp(regexp.source, `${regexp.flags}g`);
-  let firstIndex = -1;
-  let lastIndex = -1;
-  let matches;
-  while (true) {
-    matches = matcher.exec(string);
-    if (matches == null) {
-      break;
-    }
-    firstIndex = matches.index;
-    lastIndex = matcher.lastIndex;
-  }
-  return { firstIndex, lastIndex };
+//#endregion
+//#region src/block.ts
+const EOF = "EndOfFile";
+const BOF = "BeginningOfFile";
+const insertAt = (str, index, toInsert) => str.slice(0, index) + toInsert + str.slice(index);
+const matchLast = (string, regexp) => {
+	const matcher = new RegExp(regexp.source, `${regexp.flags}g`);
+	let firstIndex = -1;
+	let lastIndex = -1;
+	let matches;
+	while (true) {
+		matches = matcher.exec(string);
+		if (matches == null) break;
+		firstIndex = matches.index;
+		lastIndex = matcher.lastIndex;
+	}
+	return {
+		firstIndex,
+		lastIndex
+	};
 };
 function toFileOptions(options) {
-  const {
-    marker = (mark) => `# ${mark.toUpperCase()} MANAGED BLOCK`,
-    path,
-    block: blockName,
-    insertPosition = ["after", EOF],
-    state = "present"
-  } = options;
-  const EOL = "\n";
-  const beginBlock = marker("Begin");
-  const endBlock = marker("End");
-  function findBlock(content) {
-    const startIndex = content.indexOf(beginBlock);
-    const endIndex = content.indexOf(endBlock) + endBlock.length;
-    return {
-      endIndex,
-      exists: startIndex !== -1 && endIndex >= 0,
-      startIndex
-    };
-  }
-  function apply(fullContent, blockContent) {
-    const found = findBlock(fullContent);
-    const remove = state === "absent";
-    const replaceBlock = remove ? "" : beginBlock + EOL + blockContent + EOL + endBlock;
-    const [positionDirection, positionAnchor] = insertPosition;
-    if (found.exists) {
-      return fullContent.slice(0, found.startIndex) + replaceBlock + fullContent.slice(found.endIndex);
-    }
-    if (remove) {
-      return fullContent;
-    }
-    switch (positionDirection) {
-      case "before": {
-        if (positionAnchor !== BOF) {
-          const { firstIndex } = matchLast(fullContent, positionAnchor);
-          if (firstIndex >= 0) {
-            return insertAt(fullContent, firstIndex, replaceBlock + EOL);
-          }
-        }
-        return replaceBlock + EOL + fullContent;
-      }
-      case "after": {
-        if (positionAnchor !== EOF) {
-          const { lastIndex } = matchLast(fullContent, positionAnchor);
-          if (lastIndex >= 0) {
-            return insertAt(fullContent, lastIndex, EOL + replaceBlock);
-          }
-        }
-        return fullContent + EOL + replaceBlock;
-      }
-      default: {
-        throw new Error(`Unsupported position ${String(positionDirection)}`);
-      }
-    }
-  }
-  return {
-    path,
-    state: "present",
-    update: (sourceContent) => apply(sourceContent, blockName)
-  };
+	const { marker = (mark) => `# ${mark.toUpperCase()} MANAGED BLOCK`, path, block: blockName, insertPosition = ["after", EOF], state = "present" } = options;
+	const EOL = "\n";
+	const beginBlock = marker("Begin");
+	const endBlock = marker("End");
+	/**
+	* @param content
+	*/
+	function findBlock(content) {
+		const startIndex = content.indexOf(beginBlock);
+		const endIndex = content.indexOf(endBlock) + endBlock.length;
+		return {
+			endIndex,
+			exists: startIndex !== -1 && endIndex >= 0,
+			startIndex
+		};
+	}
+	function apply(fullContent, blockContent) {
+		const found = findBlock(fullContent);
+		const remove = state === "absent";
+		const replaceBlock = remove ? "" : beginBlock + EOL + blockContent + EOL + endBlock;
+		const [positionDirection, positionAnchor] = insertPosition;
+		if (found.exists) return fullContent.slice(0, found.startIndex) + replaceBlock + fullContent.slice(found.endIndex);
+		if (remove) return fullContent;
+		switch (positionDirection) {
+			case "before":
+				if (positionAnchor !== BOF) {
+					const { firstIndex } = matchLast(fullContent, positionAnchor);
+					if (firstIndex >= 0) return insertAt(fullContent, firstIndex, replaceBlock + EOL);
+				}
+				return replaceBlock + EOL + fullContent;
+			case "after":
+				if (positionAnchor !== EOF) {
+					const { lastIndex } = matchLast(fullContent, positionAnchor);
+					if (lastIndex >= 0) return insertAt(fullContent, lastIndex, EOL + replaceBlock);
+				}
+				return fullContent + EOL + replaceBlock;
+			default: throw new Error(`Unsupported position ${String(positionDirection)}`);
+		}
+	}
+	return {
+		path,
+		state: "present",
+		update: (sourceContent) => apply(sourceContent, blockName)
+	};
 }
+/**
+* Replace asynchronously a block in file that follows pattern :
+*
+* marker(markerBegin)
+* ...
+* marker(markerEnd)
+*
+* @param options
+*/
 function block(options) {
-  return file(toFileOptions(options));
+	return file(toFileOptions(options));
 }
+/**
+* Replace synchronously a block in file that follows pattern :
+*
+* marker(markerBegin)
+* ...
+* marker(markerEnd)
+*
+* @param options
+*/
 function blockSync(options) {
-  return fileSync(toFileOptions(options));
+	return fileSync(toFileOptions(options));
 }
 
-// src/interopDefault.ts
-var getDefaultOrElse = (_) => _?.default ?? _;
+//#endregion
+//#region src/interopDefault.ts
+const getDefaultOrElse = (_) => _?.default ?? _;
 function interopDefault(m) {
-  return m != null && typeof m.then === "function" ? Promise.resolve(m).then(getDefaultOrElse) : getDefaultOrElse(m);
+	return m != null && typeof m.then === "function" ? Promise.resolve(m).then(getDefaultOrElse) : getDefaultOrElse(m);
 }
 
-// src/json.ts
-function toFileOption({ update, ...otherOptions }) {
-  return {
-    ...otherOptions,
-    update: update == null ? update : (content) => {
-      const jsonValue = content === "" ? void 0 : JSON.parse(content);
-      return JSON.stringify(update(jsonValue));
-    }
-  };
+//#endregion
+//#region src/json.ts
+function toFileOption({ update,...otherOptions }) {
+	return {
+		...otherOptions,
+		update: update == null ? update : (content) => {
+			const jsonValue = content === "" ? void 0 : JSON.parse(content);
+			return JSON.stringify(update(jsonValue));
+		}
+	};
 }
+/**
+* Ensure file is present/absent asynchronously with content value initialized or modified with `update`
+*
+* @param options
+*/
 async function json(options) {
-  return file(toFileOption(options));
+	return file(toFileOption(options));
 }
+/**
+* Ensure file is present/absent synchronously with content value initialized or modified with `update`
+*
+* @param options
+*/
 function jsonSync(options) {
-  return fileSync(toFileOption(options));
+	return fileSync(toFileOption(options));
 }
 
-// src/Project.ts
+//#endregion
+//#region src/Project.ts
 function escapeRegExp(value) {
-  return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
+	return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
 }
-var Project;
-((Project2) => {
-  function ecmaVersion() {
-    return 2022;
-  }
-  Project2.ecmaVersion = ecmaVersion;
-  const registry = {
-    css: [".css"],
-    graphql: [".gql", ".graphql"],
-    javascript: [".js", ".cjs", ".mjs"],
-    javascriptreact: [".jsx"],
-    jpeg: [".jpg", ".jpeg"],
-    json: [".json"],
-    jsonc: [".jsonc"],
-    less: [".less"],
-    markdown: [".markdown", ".mdown", ".mkd", ".md"],
-    sass: [".sass"],
-    scss: [".scss"],
-    typescript: [".ts", ".cts", ".mts"],
-    typescriptreact: [".tsx"],
-    vue: [".vue"],
-    yaml: [".yaml", ".yml"]
-  };
-  function queryExtensions(languages) {
-    return languages.reduce((previousValue, currentValue) => (
-      // eslint-disable-next-line unicorn/prefer-spread
-      previousValue.concat(registry[currentValue] ?? [])
-    ), []).sort();
-  }
-  Project2.queryExtensions = queryExtensions;
-  function sourceExtensions() {
-    return queryExtensions(["javascript", "javascriptreact", "typescript", "typescriptreact"]);
-  }
-  Project2.sourceExtensions = sourceExtensions;
-  const RESOURCE_EXTENSIONS = Object.freeze([
-    ".gif",
-    ".png",
-    ".svg",
-    ...queryExtensions(["css", "graphql", "jpeg", "less", "sass", "sass", "yaml"])
-  ]);
-  function resourceExtensions() {
-    return RESOURCE_EXTENSIONS;
-  }
-  Project2.resourceExtensions = resourceExtensions;
-  const IGNORED = Object.freeze([
-    "node_modules/",
-    "build/",
-    "cjs/",
-    "coverage/",
-    "dist/",
-    "dts/",
-    "esm/",
-    "lib/",
-    "mjs/",
-    "umd/"
-  ]);
-  function ignored() {
-    return IGNORED;
-  }
-  Project2.ignored = ignored;
-  function extensionsToMatcher(extensions) {
-    return new RegExp(`(${extensions.map(escapeRegExp).join("|")})$`);
-  }
-  Project2.extensionsToMatcher = extensionsToMatcher;
-  function extensionsToGlob(extensions) {
-    return `*.+(${extensions.map((_) => _.replace(/^\./, "")).join("|")})`;
-  }
-  Project2.extensionsToGlob = extensionsToGlob;
+let Project;
+(function(_Project) {
+	function ecmaVersion() {
+		return 2022;
+	}
+	_Project.ecmaVersion = ecmaVersion;
+	const registry = {
+		css: [".css"],
+		graphql: [".gql", ".graphql"],
+		javascript: [
+			".js",
+			".cjs",
+			".mjs"
+		],
+		javascriptreact: [".jsx"],
+		jpeg: [".jpg", ".jpeg"],
+		json: [".json"],
+		jsonc: [".jsonc"],
+		less: [".less"],
+		markdown: [
+			".markdown",
+			".mdown",
+			".mkd",
+			".md"
+		],
+		sass: [".sass"],
+		scss: [".scss"],
+		typescript: [
+			".ts",
+			".cts",
+			".mts"
+		],
+		typescriptreact: [".tsx"],
+		vue: [".vue"],
+		yaml: [".yaml", ".yml"]
+	};
+	function queryExtensions(languages) {
+		return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort();
+	}
+	_Project.queryExtensions = queryExtensions;
+	function sourceExtensions() {
+		return queryExtensions([
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact"
+		]);
+	}
+	_Project.sourceExtensions = sourceExtensions;
+	const RESOURCE_EXTENSIONS = Object.freeze([
+		".gif",
+		".png",
+		".svg",
+		...queryExtensions([
+			"css",
+			"graphql",
+			"jpeg",
+			"less",
+			"sass",
+			"sass",
+			"yaml"
+		])
+	]);
+	function resourceExtensions() {
+		return RESOURCE_EXTENSIONS;
+	}
+	_Project.resourceExtensions = resourceExtensions;
+	const IGNORED = Object.freeze([
+		"node_modules/",
+		"build/",
+		"cjs/",
+		"coverage/",
+		"dist/",
+		"dts/",
+		"esm/",
+		"lib/",
+		"mjs/",
+		"umd/"
+	]);
+	function ignored() {
+		return IGNORED;
+	}
+	_Project.ignored = ignored;
+	function extensionsToMatcher(extensions) {
+		return /* @__PURE__ */ new RegExp(`(${extensions.map(escapeRegExp).join("|")})$`);
+	}
+	_Project.extensionsToMatcher = extensionsToMatcher;
+	function extensionsToGlob(extensions) {
+		return `*.+(${extensions.map((_) => _.replace(/^\./, "")).join("|")})`;
+	}
+	_Project.extensionsToGlob = extensionsToGlob;
 })(Project || (Project = {}));
 
-// src/ProjectScript.ts
-var ProjectScript = {
-  Build: "build",
-  Clean: "clean",
-  CodeAnalysis: "code-analysis",
-  Coverage: "coverage",
-  Develop: "develop",
-  Docs: "docs",
-  Format: "format",
-  Install: "install",
-  Lint: "lint",
-  Prepare: "prepare",
-  Release: "release",
-  Rescue: "rescue",
-  Spellcheck: "spellcheck",
-  Test: "test",
-  Validate: "validate"
+//#endregion
+//#region src/ProjectScript.ts
+/**
+* Project common scripts
+*/
+const ProjectScript = {
+	Build: "build",
+	Clean: "clean",
+	CodeAnalysis: "code-analysis",
+	Coverage: "coverage",
+	Develop: "develop",
+	Docs: "docs",
+	Format: "format",
+	Install: "install",
+	Lint: "lint",
+	Prepare: "prepare",
+	Release: "release",
+	Rescue: "rescue",
+	Spellcheck: "spellcheck",
+	Test: "test",
+	Validate: "validate"
 };
+
+//#endregion
+//#region src/exec.ts
+/**
+* Runs a command in a shell and returns a promise that resolves with an object
+* containing the stdout and stderr strings.
+*
+* @param command - The command to run
+* @param args - The arguments to pass to the command
+* @param options
+* @returns A promise that resolves with an object like `{ stdout: string, stderr: string }`
+*/
 function execSync(command, args, options) {
-  const result = spawnSync(command, args, { ...options });
-  const encoding = "utf8";
-  return { stdout: result.stdout.toString(encoding), stderr: result.stderr.toString(encoding) };
+	const result = spawnSync(command, args, { ...options });
+	const encoding = "utf8";
+	return {
+		stdout: result.stdout.toString(encoding),
+		stderr: result.stderr.toString(encoding)
+	};
 }
+/**
+* Runs a command in a shell and returns a promise that resolves with an object
+* containing the stdout and stderr strings.
+*
+* @param command - The command to run
+* @param args - The arguments to pass to the command
+* @param options
+* @returns A promise that resolves with an object containing the stdout and stderr strings
+*/
 async function exec(command, args, options) {
-  return new Promise((resolve, reject) => {
-    const encoding = "utf8";
-    const child = spawn(command, args, { ...options });
-    let stdout = "";
-    let stderr = "";
-    if (child.stdout != null) {
-      child.stdout.on("data", (data) => {
-        stdout += data.toString(encoding);
-      });
-    }
-    if (child.stderr != null) {
-      child.stderr.on("data", (data) => {
-        stderr += data.toString(encoding);
-      });
-    }
-    child.on("close", (_code) => {
-      resolve({ stdout, stderr });
-    });
-    child.on("error", reject);
-  });
+	return new Promise((resolve, reject) => {
+		const encoding = "utf8";
+		const child = spawn(command, args, { ...options });
+		let stdout = "";
+		let stderr = "";
+		if (child.stdout != null) child.stdout.on("data", (data) => {
+			stdout += data.toString(encoding);
+		});
+		if (child.stderr != null) child.stderr.on("data", (data) => {
+			stderr += data.toString(encoding);
+		});
+		child.on("close", (_code) => {
+			resolve({
+				stdout,
+				stderr
+			});
+		});
+		child.on("error", reject);
+	});
 }
 
-// src/yarnConfig.ts
+//#endregion
+//#region src/yarnConfig.ts
+/**
+* Synchronous version of {@link yarnConfig}
+*
+* @param options
+* @example
+* yarnConfigSync({
+*   key: 'nodeLinker',
+*   state: 'present',
+*   update: (content) => content.replace('node-modules', 'hoisted'),
+* })
+*/
 function yarnConfigSync(options) {
-  const { key, state, update } = options;
-  if (state === "present") {
-    const { stdout } = execSync("yarn", ["config", "get", String(key)]);
-    execSync("yarn", ["config", "set", String(key), `${update == null ? "" : update(stdout)}`]);
-  } else {
-    execSync("yarn", ["config", "unset"]);
-  }
+	const { key, state, update } = options;
+	if (state === "present") {
+		const { stdout } = execSync("yarn", [
+			"config",
+			"get",
+			String(key)
+		]);
+		execSync("yarn", [
+			"config",
+			"set",
+			String(key),
+			`${update == null ? "" : update(stdout)}`
+		]);
+	} else execSync("yarn", ["config", "unset"]);
 }
+/**
+* Set/Unset yarn configuration value
+*
+* @param options
+* @example
+* await yarnConfig({
+*   key: 'nodeLinker',
+*   state: 'present',
+*   update: (content) => content.replace('node-modules', 'hoisted'),
+* })
+*/
 async function yarnConfig(options) {
-  const { key, state, update } = options;
-  if (state === "present") {
-    const { stdout } = await exec("yarn", ["config", "get", String(key)]);
-    await exec("yarn", ["config", "set", String(key), `${update == null ? "" : update(stdout)}`]);
-  } else {
-    await exec("yarn", ["config", "unset"]);
-  }
+	const { key, state, update } = options;
+	if (state === "present") {
+		const { stdout } = await exec("yarn", [
+			"config",
+			"get",
+			String(key)
+		]);
+		await exec("yarn", [
+			"config",
+			"set",
+			String(key),
+			`${update == null ? "" : update(stdout)}`
+		]);
+	} else await exec("yarn", ["config", "unset"]);
 }
 
-// src/yarnVersion.ts
+//#endregion
+//#region src/yarnVersion.ts
+/**
+* Synchronous version of {@link yarnVersion}
+*
+* @param options
+* @example
+* yarnVersionSync({
+*   state: 'present',
+*   update: () => 'berry', // or 'classic'
+* })
+*/
 function yarnVersionSync(options) {
-  const { state, update } = options;
-  if (state === "present") {
-    execSync("yarn", ["set", "version", `${update == null ? "berry" : update()}`]);
-  } else {
-    throw new Error("Not implemented");
-  }
+	const { state, update } = options;
+	if (state === "present") execSync("yarn", [
+		"set",
+		"version",
+		`${update == null ? "berry" : update()}`
+	]);
+	else throw new Error("Not implemented");
 }
+/**
+* Set/Unset yarn configuration value
+*
+* @param options
+* @example
+* await yarnVersion({
+*   state: 'present',
+*   update: () => 'berry', // or 'classic'
+* })
+*/
 async function yarnVersion(options) {
-  const { state, update } = options;
-  if (state === "present") {
-    await exec("yarn", ["set", "version", `${update == null ? "berry" : update()}`]);
-  } else {
-    throw new Error("Not implemented");
-  }
+	const { state, update } = options;
+	if (state === "present") await exec("yarn", [
+		"set",
+		"version",
+		`${update == null ? "berry" : update()}`
+	]);
+	else throw new Error("Not implemented");
 }
 
+//#endregion
 export { ESLintConfig, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
-//# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
