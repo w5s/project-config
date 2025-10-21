@@ -23,10 +23,9 @@
     "./dist/*": "./dist/*",
     "./dict/*": "./dict/*"
   },
-  "typings": "./dist/index.d.ts",
+  "typings": "./dist/index.d.mts",
   "files": [
     "cspell-ext.json",
-    "dict/",
     "dist/",
     "src/",
     "index.js",
@@ -38,7 +37,7 @@
   "scripts": {
     "__build:dict": "cd dict;cspell-tools-cli compile filetypes.txt",
     "build": "pnpm run \"/build:.*/\"",
-    "build:tsc": "tsup",
+    "build:tsc": "tsdown",
     "clean": "pnpm run \"/clean:.*/\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
@@ -60,8 +59,8 @@
     "@cspell/cspell-bundled-dicts": "9.7.0",
     "@cspell/cspell-tools": "9.7.0",
     "@cspell/cspell-types": "9.7.0",
-    "@w5s/tsup-config": "workspace:*",
-    "tsup": "8.5.1",
+    "@w5s/tsdown-config": "workspace:*",
+    "tsdown": "0.20.3",
     "vite": "7.3.1",
     "vitest": "4.0.18"
   },

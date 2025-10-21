@@ -39,7 +39,7 @@
   ],
   "scripts": {
     "build": "pnpm run \"/build:.*/\"",
-    "build:tsc": "node --experimental-strip-types scripts/typegen.ts && tsup",
+    "build:tsc": "node --experimental-strip-types scripts/typegen.ts && tsdown",
     "clean": "pnpm run \"/clean:.*/\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
@@ -80,12 +80,12 @@
     "@types/parse-gitignore": "1.0.2",
     "@types/react": "19.2.14",
     "@typescript-eslint/parser": "8.56.1",
-    "@w5s/tsup-config": "workspace:*",
+    "@w5s/tsdown-config": "workspace:*",
     "eslint": "9.39.3",
     "eslint-find-rules": "5.0.0",
     "eslint-typegen": "2.3.1",
     "react": "19.2.4",
-    "tsup": "8.5.1",
+    "tsdown": "0.20.3",
     "vite": "7.3.1",
     "vitest": "4.0.18"
   },
