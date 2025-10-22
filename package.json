@@ -78,7 +78,7 @@
     "@w5s/prettier-config": "workspace:*",
     "@w5s/ts-config": "workspace:*",
     "clean-package": "2.2.0",
-    "cspell": "9.2.1",
+    "cspell": "9.2.2",
     "eslint": "9.38.0",
     "eslint-plugin-sort-keys": "2.3.5",
     "markdown-magic": "3.7.0",
