@@ -3045,9 +3045,9 @@ var require_globals2 = __commonJS({
   }
 });
 
-// node_modules/@eslint/js/package.json
+// ../../node_modules/@eslint/js/package.json
 var require_package = __commonJS({
-  "node_modules/@eslint/js/package.json"(exports, module) {
+  "../../node_modules/@eslint/js/package.json"(exports, module) {
     module.exports = {
       name: "@eslint/js",
       version: "9.38.0",
@@ -3087,9 +3087,9 @@ var require_package = __commonJS({
   }
 });
 
-// node_modules/@eslint/js/src/configs/eslint-all.js
+// ../../node_modules/@eslint/js/src/configs/eslint-all.js
 var require_eslint_all = __commonJS({
-  "node_modules/@eslint/js/src/configs/eslint-all.js"(exports, module) {
+  "../../node_modules/@eslint/js/src/configs/eslint-all.js"(exports, module) {
     module.exports = Object.freeze({
       rules: Object.freeze({
         "accessor-pairs": "error",
@@ -3296,9 +3296,9 @@ var require_eslint_all = __commonJS({
   }
 });
 
-// node_modules/@eslint/js/src/configs/eslint-recommended.js
+// ../../node_modules/@eslint/js/src/configs/eslint-recommended.js
 var require_eslint_recommended = __commonJS({
-  "node_modules/@eslint/js/src/configs/eslint-recommended.js"(exports, module) {
+  "../../node_modules/@eslint/js/src/configs/eslint-recommended.js"(exports, module) {
     module.exports = Object.freeze({
       rules: Object.freeze({
         "constructor-super": "error",
@@ -3367,9 +3367,9 @@ var require_eslint_recommended = __commonJS({
   }
 });
 
-// node_modules/@eslint/js/src/index.js
+// ../../node_modules/@eslint/js/src/index.js
 var require_src = __commonJS({
-  "node_modules/@eslint/js/src/index.js"(exports, module) {
+  "../../node_modules/@eslint/js/src/index.js"(exports, module) {
     var { name, version } = require_package();
     module.exports = {
       meta: {
@@ -4168,6 +4168,6 @@ async function defineConfig(options = {}) {
   return nested.reduce((acc, curr) => [...acc, ...curr], []);
 }
 
-export { defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, node, stylistic, test, ts, unicorn, yml };
+export { StylisticConfig, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, node, stylistic, test, ts, unicorn, yml };
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

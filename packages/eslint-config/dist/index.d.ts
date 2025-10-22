@@ -8051,4 +8051,4 @@ interface DefineConfigOptions extends ignores.Options {
 }
 declare function defineConfig(options?: DefineConfigOptions): Promise<Config[]>;
 
-export { type DefineConfigOptions, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, node, stylistic, test, ts, unicorn, yml };
+export { type Config, type DefineConfigOptions, type PluginOptionsBase, StylisticConfig, type StylisticParameters, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, node, stylistic, test, ts, unicorn, yml };
