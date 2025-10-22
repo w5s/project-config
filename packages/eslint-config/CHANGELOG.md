@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2](github.com/w5s/project-config/compare/@w5s/eslint-config@3.0.1...@w5s/eslint-config@3.0.2) (2025-10-22)
+
+### 🐛 Bug Fixes
+
+-  Export type definitions from type.js required for using defineConfig ([140397f](github.com/w5s/project-config/commits/140397f))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 ## [3.0.1](github.com/w5s/project-config/compare/@w5s/eslint-config@3.0.0...@w5s/eslint-config@3.0.1) (2025-10-21)
 
 **Note:** Version bump only for package @w5s/eslint-config
