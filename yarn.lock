@@ -2794,6 +2794,7 @@ __metadata:
     eslint-plugin-yml: "npm:^1.1.0"
     eslint-typegen: "npm:2.3.0"
     find-up: "npm:^8.0.0"
+    globals: "npm:^16.0.0"
     jsonc-eslint-parser: "npm:^2.0.0"
     parse-gitignore: "npm:^2.0.0"
     react: "npm:19.2.0"
@@ -6239,7 +6240,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^16.3.0":
+"globals@npm:^16.0.0, globals@npm:^16.3.0":
   version: 16.4.0
   resolution: "globals@npm:16.4.0"
   checksum: 10c0/a14b447a78b664b42f6d324e8675fcae6fe5e57924fecc1f6328dce08af9b2ca3a3138501e1b1f244a49814a732dc60cfc1aa24e714e0b64ac8bd18910bfac90
@@ -10321,7 +10322,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"semver@npm:^7.1.1, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.6.0, semver@npm:^7.6.3, semver@npm:^7.7.3":
+"semver@npm:^7.1.1, semver@npm:^7.3.5, semver@npm:^7.3.7, semver@npm:^7.5.2, semver@npm:^7.5.3, semver@npm:^7.5.4, semver@npm:^7.6.0, semver@npm:^7.6.3, semver@npm:^7.7.2, semver@npm:^7.7.3":
   version: 7.7.3
   resolution: "semver@npm:7.7.3"
   bin:

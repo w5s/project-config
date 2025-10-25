@@ -62,6 +62,7 @@ export namespace Project {
       .reduce<Extension[]>((previousValue, currentValue) =>
         // eslint-disable-next-line unicorn/prefer-spread
         previousValue.concat(registry[currentValue] ?? ([] as Extension[])), [])
+      // eslint-disable-next-line unicorn/no-array-sort
       .sort();
   }
 
@@ -124,6 +125,7 @@ export namespace Project {
   /**
    * Return a RegExp that will match any list of extensions
    *
+   * @param extensions
    * @example
    * ```ts
    * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
@@ -136,6 +138,7 @@ export namespace Project {
   /**
    * Return a glob matcher that will match any list of extensions
    *
+   * @param extensions
    * @example
    * ```ts
    * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'

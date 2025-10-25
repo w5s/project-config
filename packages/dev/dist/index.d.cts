@@ -309,6 +309,7 @@ declare namespace Project {
     /**
      * Return a RegExp that will match any list of extensions
      *
+     * @param extensions
      * @example
      * ```ts
      * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
@@ -318,6 +319,7 @@ declare namespace Project {
     /**
      * Return a glob matcher that will match any list of extensions
      *
+     * @param extensions
      * @example
      * ```ts
      * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
