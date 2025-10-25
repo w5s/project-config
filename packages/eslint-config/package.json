@@ -62,7 +62,7 @@
     "test_:rule-coverage": "eslint-find-rules --unused"
   },
   "dependencies": {
-    "@stylistic/eslint-plugin": "^2.0.0",
+    "@stylistic/eslint-plugin": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "@vitest/eslint-plugin": "^1.0.0",
