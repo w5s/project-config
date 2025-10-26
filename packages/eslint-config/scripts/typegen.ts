@@ -28,7 +28,7 @@ await Promise.all(
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {
-    const content = `/* eslint-disable unicorn/no-abusive-eslint-disable */\n${await pluginsToRulesDTS({
+    const content = `${await pluginsToRulesDTS({
       [pluginName]: plugin,
     } as any)}`;
 

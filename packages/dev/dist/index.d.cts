@@ -369,6 +369,7 @@ interface YarnConfigOptions {
 /**
  * Synchronous version of {@link yarnConfig}
  *
+ * @param options
  * @example
  * yarnConfigSync({
  *   key: 'nodeLinker',
@@ -380,6 +381,7 @@ declare function yarnConfigSync(options: YarnConfigOptions): void;
 /**
  * Set/Unset yarn configuration value
  *
+ * @param options
  * @example
  * await yarnConfig({
  *   key: 'nodeLinker',
@@ -405,6 +407,7 @@ interface YarnVersionOptions {
 /**
  * Synchronous version of {@link yarnVersion}
  *
+ * @param options
  * @example
  * yarnVersionSync({
  *   state: 'present',
@@ -415,6 +418,7 @@ declare function yarnVersionSync(options: YarnVersionOptions): void;
 /**
  * Set/Unset yarn configuration value
  *
+ * @param options
  * @example
  * await yarnVersion({
  *   state: 'present',

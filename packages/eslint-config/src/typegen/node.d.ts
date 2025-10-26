@@ -1,4 +1,3 @@
-/* eslint-disable unicorn/no-abusive-eslint-disable */
 /* eslint-disable */
 /* prettier-ignore */
 import type { Linter } from 'eslint'

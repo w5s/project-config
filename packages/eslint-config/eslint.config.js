@@ -2,7 +2,7 @@ import rootConfig from '../../eslint.config.js';
 import { globalIgnores } from 'eslint/config';
 
 export default [
-  globalIgnores(['_tests/**/*'], 'Ignore Test Directory'),
+  globalIgnores(['_tests/**/*', '**/typegen/'], 'Ignore Test Directory'),
   ...rootConfig, {
     rules: {
       'ts/naming-convention': 'off',

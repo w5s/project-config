@@ -1,7 +1,3 @@
-/* eslint-disable ts/no-unsafe-return */
-/* eslint-disable ts/no-unsafe-member-access */
-/* eslint-disable ts/no-unsafe-argument */
-/* eslint-disable ts/no-unsafe-call */
 import TsUp from 'tsup';
 import { defaultConfig } from './defaultConfig.js';
 function awaitableMap(awaitable, mapFn) {

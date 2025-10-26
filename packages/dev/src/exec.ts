@@ -17,6 +17,7 @@ export interface ExecOptions {
  *
  * @param command - The command to run
  * @param args - The arguments to pass to the command
+ * @param options
  * @returns A promise that resolves with an object like `{ stdout: string, stderr: string }`
  */
 export function execSync(
@@ -36,6 +37,7 @@ export function execSync(
  *
  * @param command - The command to run
  * @param args - The arguments to pass to the command
+ * @param options
  * @returns A promise that resolves with an object containing the stdout and stderr strings
  */
 export async function exec(
@@ -52,13 +54,11 @@ export async function exec(
     // Capture the stdout and stderr streams
     if (child.stdout != null) {
       child.stdout.on('data', (data) => {
-        // eslint-disable-next-line ts/no-unsafe-call, ts/no-unsafe-member-access
         stdout += data.toString(encoding);
       });
     }
     if (child.stderr != null) {
       child.stderr.on('data', (data) => {
-        // eslint-disable-next-line ts/no-unsafe-call, ts/no-unsafe-member-access
         stderr += data.toString(encoding);
       });
     }

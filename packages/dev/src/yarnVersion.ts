@@ -19,6 +19,7 @@ export interface YarnVersionOptions {
 /**
  * Synchronous version of {@link yarnVersion}
  *
+ * @param options
  * @example
  * yarnVersionSync({
  *   state: 'present',
@@ -38,6 +39,7 @@ export function yarnVersionSync(options: YarnVersionOptions) {
 /**
  * Set/Unset yarn configuration value
  *
+ * @param options
  * @example
  * await yarnVersion({
  *   state: 'present',

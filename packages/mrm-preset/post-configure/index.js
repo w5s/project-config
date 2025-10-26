@@ -16,7 +16,6 @@ function task() {
   const packageManager = pkg.manager(packageFile);
   const formatResult = spawnSync(packageManager, ['run', project.format]);
   if (formatResult.status !== 0) {
-    // eslint-disable-next-line no-console
     console.error('Error: to format code\n', formatResult.output.join(''));
   }
 }

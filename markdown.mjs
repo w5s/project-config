@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 // import path from 'node:path';
 import markdownMagic from 'markdown-magic';
 import markdownPackageJSON from 'markdown-magic-package-json';
