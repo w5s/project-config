@@ -99,4 +99,29 @@ describe('ESLintConfig', () => {
       });
     });
   });
+
+  describe(ESLintConfig.renameRules, () => {
+    it('should rename rules according to the given map', () => {
+      const rules = {
+        'old-prefix/rule-one': 'error',
+        'old-prefix/rule-two': 'warn',
+        'another-prefix/rule-three': 'off',
+        'rule-four': 'error',
+        'rule-five': 'error',
+      };
+
+      const map = {
+        'old-prefix': 'new-prefix',
+        '': 'custom/',
+      };
+
+      expect(ESLintConfig.renameRules(rules, map)).toEqual({
+        'new-prefix/rule-one': 'error',
+        'new-prefix/rule-two': 'warn',
+        'another-prefix/rule-three': 'off',
+        'custom/rule-four': 'error',
+        'custom/rule-five': 'error',
+      });
+    });
+  });
 });
