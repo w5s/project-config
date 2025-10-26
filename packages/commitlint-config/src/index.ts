@@ -5,7 +5,7 @@ import { gitmojiPlugin } from './plugin.js';
 const { Error, Warning, Disabled } = RuleConfigSeverity;
 
 const parserPreset = {
-  // eslint-disable-next-line ts/no-unsafe-assignment, unicorn/no-await-expression-member, ts/no-unsafe-member-access
+  // eslint-disable-next-line unicorn/no-await-expression-member
   parserOpts: (await conventionalChangelogPreset()).parser as any,
 } satisfies LintOptions;
 
@@ -33,5 +33,4 @@ const config = {
   plugins: [gitmojiPlugin],
 };
 
-// eslint-disable-next-line import/no-default-export
 export default config;

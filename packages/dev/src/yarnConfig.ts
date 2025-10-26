@@ -22,6 +22,7 @@ export interface YarnConfigOptions {
 /**
  * Synchronous version of {@link yarnConfig}
  *
+ * @param options
  * @example
  * yarnConfigSync({
  *   key: 'nodeLinker',
@@ -42,6 +43,7 @@ export function yarnConfigSync(options: YarnConfigOptions) {
 /**
  * Set/Unset yarn configuration value
  *
+ * @param options
  * @example
  * await yarnConfig({
  *   key: 'nodeLinker',

@@ -5,7 +5,6 @@ import { createWriterOpts } from './writer.js';
 
 export { Emoji, GitmojiCode } from './gitmoji.js';
 
-// eslint-disable-next-line import/no-default-export
 export default async function createPreset() {
   return {
     gitRawCommitOpts,

@@ -871,7 +871,7 @@ async function stylistic(options = {}) {
           ...config.rules,
           "style/arrow-parens": ["error", "always"],
           "style/brace-style": ["error", "1tbs"],
-          "style/operator-linebreak": ["error", "after", { overrides: { ":": "before", "?": "before", "|>": "before" } }],
+          "style/operator-linebreak": ["error", "after", { overrides: { ":": "before", "?": "before", "|>": "before", "|": "before" } }],
           "style/quotes": ["error", quotes ?? StylisticConfig.default.quotes, { avoidEscape: true, allowTemplateLiterals: true }]
         } : {},
         ...rules
