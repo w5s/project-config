@@ -375,12 +375,12 @@ var require_src = __commonJS({
 
 // src/config/es.ts
 var import_js = __toESM(require_src());
-
-// src/config/createRules.ts
 function createRules(prefix) {
-  return {
-    [`${prefix}no-unused-vars`]: ["error", { argsIgnorePattern: "^_" }]
-  };
+  return ESLintConfig.renameRules({
+    "no-unused-vars": ["error", { argsIgnorePattern: "^_" }]
+  }, {
+    "": prefix
+  });
 }
 
 // src/config/es.ts
