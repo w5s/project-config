@@ -4,6 +4,9 @@ import { Project } from '@w5s/dev';
 import { type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/jsonc.js';
 import { createRules } from './createRules.js';
+import { esRules } from '../rules/esRules.js';
+
+const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['javascript', 'javascriptreact']))}`];
 
 export async function es(
   options: es.Options,
@@ -41,10 +44,11 @@ export async function es(
     },
     {
       name: 'w5s/es/rules',
-      plugins: {},
+      files: defaultFiles,
       rules: {
         ...eslintConfig.configs.recommended.rules,
         ...createRules(''),
+        ...esRules(),
         ...rules,
       },
     },

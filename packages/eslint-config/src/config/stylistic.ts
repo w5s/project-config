@@ -34,7 +34,7 @@ export async function stylistic(options: stylistic.Options = {}) {
               'style/arrow-parens': ['error', 'always'],
               'style/brace-style': ['error', '1tbs'],
               'style/operator-linebreak': ['error', 'after', { overrides: { ':': 'before', '?': 'before', '|>': 'before', '|': 'before' } }],
-              'style/quotes': ['error', quotes ?? StylisticConfig.default.quotes, { avoidEscape: true, allowTemplateLiterals: true }],
+              'style/quotes': ['error', quotes ?? StylisticConfig.default.quotes, { avoidEscape: true, allowTemplateLiterals: 'always' }],
             }
           : {}),
         ...rules,
