@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](github.com/w5s/project-config/compare/@w5s/dev@3.0.0...@w5s/dev@3.1.0) (2025-10-27)
+
+### ✨ Features
+
+- Add '' special case for ESLintConfig.renameRules ([5d5474a](github.com/w5s/project-config/commits/5d5474a))
+
+**Note:** Version bump only for package @w5s/dev
+
 # [3.0.0](github.com/w5s/project-config/compare/@w5s/dev@2.5.4...@w5s/dev@3.0.0) (2025-10-21)
 
 ### 🎫 Chores

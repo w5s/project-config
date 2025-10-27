@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0](github.com/w5s/project-config/compare/@w5s/mrm-preset@3.0.0...@w5s/mrm-preset@3.1.0) (2025-10-27)
+
+### ✨ Features
+
+- Enhance ESLint configuration with new rules and stylistic adjustments ([44d4bf3](github.com/w5s/project-config/commits/44d4bf3))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 # [3.0.0](github.com/w5s/project-config/compare/@w5s/mrm-preset@2.11.6...@w5s/mrm-preset@3.0.0) (2025-10-21)
 
 ### 🎫 Chores
