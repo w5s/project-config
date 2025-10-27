@@ -60,7 +60,7 @@ exports[`index > should match snapshot 1`] = `
     "**/renovate.json",
     "**/vscode-extension/**",
     "**/yarn.lock",
-    "pnpm-lock.yaml",
+    "**/pnpm-lock.yaml",
     "**/*.svg",
     "**/*.webp",
     "**/*.webm",

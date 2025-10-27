@@ -72,7 +72,7 @@ const settings: AdvancedCSpellSettings = {
     '**/renovate.json',
     '**/vscode-extension/**',
     '**/yarn.lock',
-    'pnpm-lock.yaml',
+    '**/pnpm-lock.yaml',
 
     // Ignore common media files
     '**/*.svg',
