@@ -1,8 +1,13 @@
 {
   "version": "0.2",
   "language": "en",
-  "import": ["@w5s/cspell-config"],
-  "ignoreWords": ["venv", "nofunc"],
+  "import": [
+    "@w5s/cspell-config"
+  ],
+  "ignoreWords": [
+    "venv",
+    "nofunc"
+  ],
   "flagWords": [],
   "ignorePaths": [
     "packages/cspell-config/dict/**",
@@ -10,5 +15,12 @@
     "packages/mrm-preset/_tester/**",
     "packages/mrm-preset/ci/_autodevops/**"
   ],
-  "words": ["rharkor", "dtinth", "monkeyc", "pipefail"]
+  "words": [
+    "dtinth",
+    "monkeyc",
+    "nonconstructor",
+    "nonoctal",
+    "pipefail",
+    "rharkor"
+  ]
 }
