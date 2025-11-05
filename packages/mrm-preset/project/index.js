@@ -182,12 +182,12 @@ function task() {
       path: 'repository',
       state: 'present',
       update: () =>
-        gitRepository
+        (gitRepository
           ? {
               type: 'git',
               url: gitRepository,
             }
-          : undefined,
+          : undefined),
     });
 
     setDefault(packageFile, false);
@@ -207,13 +207,13 @@ function task() {
       path: 'repository',
       state: 'present',
       update: () =>
-        gitRepository
+        (gitRepository
           ? {
               type: 'git',
               url: gitRepository,
               directory: workspace.projectDir,
             }
-          : undefined,
+          : undefined),
     });
     setDefault(workspace.packageFile, false);
     addScripts(workspace.packageFile, false);

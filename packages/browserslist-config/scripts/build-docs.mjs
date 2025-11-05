@@ -88,9 +88,9 @@ async function buildPageContent() {
     const getPrefix = (browser) => browser.split(' ')[0];
 
     const deviceMap = groupBy(browserList, (browser) =>
-      browser.startsWith('ios_') || browser.startsWith('and_') || browser.startsWith('op_') || browser.startsWith('ie_')
+      (browser.startsWith('ios_') || browser.startsWith('and_') || browser.startsWith('op_') || browser.startsWith('ie_')
         ? 'mobile'
-        : 'desktop',
+        : 'desktop'),
     );
 
     return {

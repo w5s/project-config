@@ -14,7 +14,7 @@ function vitest({ state }) {
   const hasWorkspace = pkg.hasWorkspaces(packageJson());
   const vitestScript = 'vitest run';
   const update = (/** @type {string|undefined} */ _) =>
-    hasVitest ? vitestScript : _ === vitestScript ? pkg.emptyScript : _;
+    (hasVitest ? vitestScript : _ === vitestScript ? pkg.emptyScript : _);
 
   // Dependencies
   npm.dependency({

@@ -101,9 +101,9 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     });
     pkg.forEachWorkspace(({ packageFile }) => {
       const updater = (/** @type {boolean} */ format) => (/** @type {string} */ _) =>
-        _ == null || _ === '' || _.trimStart().startsWith('eslint')
+        (_ == null || _ === '' || _.trimStart().startsWith('eslint')
           ? `eslint .${format ? ' --fix' : ''}${extOption}`
-          : _;
+          : _);
       pkg.script(packageFile, {
         name: `${project.lint}:src`,
         update: updater(false),
