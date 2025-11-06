@@ -38,7 +38,7 @@
   "scripts": {
     "__build:dict": "cd dict;cspell-tools-cli compile filetypes.txt",
     "build": "npx run-p \"build:*\"",
-    "build:tsc": "npx tsup",
+    "build:tsc": "npx tsdown",
     "clean": "npx run-p \"clean:*\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
@@ -62,7 +62,7 @@
     "@cspell/cspell-bundled-dicts": "9.2.2",
     "@cspell/cspell-tools": "9.2.2",
     "@cspell/cspell-types": "9.2.2",
-    "@w5s/tsup-config": "workspace:*",
+    "@w5s/tsdown-config": "workspace:*",
     "vite": "7.1.12",
     "vitest": "4.0.5"
   },

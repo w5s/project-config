@@ -1,22 +1,22 @@
 {
-  "name": "@w5s/tsup-config",
-  "version": "2.0.1",
+  "name": "@w5s/tsdown-config",
+  "version": "1.0.0",
   "private": true,
   "description": "Prettier shared configuration",
   "keywords": [
     "typescript",
     "config",
     "tsc",
-    "tsup"
+    "tsdown"
   ],
-  "homepage": "https://github.com/w5s/project-config/blob/main/packages/tsup-config#readme",
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/tsdown-config#readme",
   "bugs": {
     "url": "https://github.com/w5s/project-config/issues"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:w5s/project-config.git",
-    "directory": "packages/tsup-config"
+    "directory": "packages/tsdown-config"
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
@@ -37,7 +37,7 @@
     "!**/*.spec.*",
     "!**/__tests__/**"
   ],
-  "tsup": {
+  "tsdown": {
     "entry": [
       "src/index.ts"
     ],
@@ -68,15 +68,15 @@
     "test:src": "vitest run"
   },
   "devDependencies": {
-    "tsup": "8.5.0",
+    "tsdown": "0.15.9",
     "vite": "7.1.12",
     "vitest": "4.0.5"
   },
   "peerDependencies": {
-    "tsup": "8.x"
+    "tsdown": "8.x"
   },
   "peerDependenciesMeta": {
-    "tsup": {
+    "tsdown": {
       "optional": true
     }
   },

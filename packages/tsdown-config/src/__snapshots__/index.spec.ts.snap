@@ -15,8 +15,6 @@ exports[`index > should match snapshot 1`] = `
       "esm",
     ],
     "sourcemap": true,
-    "splitting": false,
-    "treeshake": "recommended",
     "tsconfig": "tsconfig.build.json",
   },
   "defineConfig": [Function],

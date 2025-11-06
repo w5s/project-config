@@ -1,13 +1,4 @@
-import globals from "globals";
-import { ESLintConfig, Project, interopDefault } from "@w5s/dev";
-import fs from "node:fs";
-import nodePath from "node:path";
-import process from "node:process";
-import { findUp } from "find-up";
-import parseGitignore from "parse-gitignore";
-import prettierConfig from "@w5s/prettier-config";
-import importPlugin from "eslint-plugin-import";
-
+Object.defineProperty(exports, '__esModule', { value: true });
 //#region rolldown:runtime
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -34,6 +25,25 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 }) : target, mod));
 
 //#endregion
+let globals = require("globals");
+globals = __toESM(globals);
+let __w5s_dev = require("@w5s/dev");
+__w5s_dev = __toESM(__w5s_dev);
+let node_fs = require("node:fs");
+node_fs = __toESM(node_fs);
+let node_path = require("node:path");
+node_path = __toESM(node_path);
+let node_process = require("node:process");
+node_process = __toESM(node_process);
+let find_up = require("find-up");
+find_up = __toESM(find_up);
+let parse_gitignore = require("parse-gitignore");
+parse_gitignore = __toESM(parse_gitignore);
+let __w5s_prettier_config = require("@w5s/prettier-config");
+__w5s_prettier_config = __toESM(__w5s_prettier_config);
+let eslint_plugin_import = require("eslint-plugin-import");
+eslint_plugin_import = __toESM(eslint_plugin_import);
+
 //#region ../../node_modules/@eslint/js/package.json
 var require_package = /* @__PURE__ */ __commonJS({ "../../node_modules/@eslint/js/package.json": ((exports, module) => {
 	module.exports = {
@@ -362,7 +372,7 @@ var require_src = /* @__PURE__ */ __commonJS({ "../../node_modules/@eslint/js/sr
 //#region src/config/createRules.ts
 var import_src = /* @__PURE__ */ __toESM(require_src(), 1);
 function createRules(prefix) {
-	return ESLintConfig.renameRules({ "no-unused-vars": ["error", { argsIgnorePattern: "^_" }] }, { "": prefix });
+	return __w5s_dev.ESLintConfig.renameRules({ "no-unused-vars": ["error", { argsIgnorePattern: "^_" }] }, { "": prefix });
 }
 
 //#endregion
@@ -777,17 +787,17 @@ const esRules = () => ({
 
 //#endregion
 //#region src/config/es.ts
-const defaultFiles$4 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`];
+const defaultFiles$4 = [`**/${__w5s_dev.Project.extensionsToGlob(__w5s_dev.Project.queryExtensions(["javascript", "javascriptreact"]))}`];
 async function es(options) {
 	const { rules = {} } = options;
 	return [{
 		name: "w5s/es/setup",
 		languageOptions: {
-			ecmaVersion: Project.ecmaVersion(),
+			ecmaVersion: __w5s_dev.Project.ecmaVersion(),
 			globals: {
-				...globals.browser,
-				...globals[`es${Project.ecmaVersion()}`],
-				...globals.node,
+				...globals.default.browser,
+				...globals.default[`es${__w5s_dev.Project.ecmaVersion()}`],
+				...globals.default.node,
 				__DEV__: "readonly",
 				__PROD__: "readonly",
 				__TEST__: "readonly",
@@ -797,7 +807,7 @@ async function es(options) {
 			},
 			parserOptions: {
 				ecmaFeatures: { jsx: true },
-				ecmaVersion: Project.ecmaVersion(),
+				ecmaVersion: __w5s_dev.Project.ecmaVersion(),
 				sourceType: "module"
 			},
 			sourceType: "module"
@@ -818,15 +828,15 @@ async function es(options) {
 //#endregion
 //#region src/config/ignores.ts
 const getGitignore = async (cwd, prefix = "") => {
-	const gitIgnoreFile = await findUp(nodePath.join(prefix, ".gitignore"), { cwd });
+	const gitIgnoreFile = await (0, find_up.findUp)(node_path.default.join(prefix, ".gitignore"), { cwd });
 	if (gitIgnoreFile != null) {
-		const { patterns } = parseGitignore.parse(await fs.promises.readFile(gitIgnoreFile));
-		return patterns.map((pattern) => nodePath.join(prefix, pattern));
+		const { patterns } = parse_gitignore.default.parse(await node_fs.default.promises.readFile(gitIgnoreFile));
+		return patterns.map((pattern) => node_path.default.join(prefix, pattern));
 	}
 	return [];
 };
 async function ignores(options = {}) {
-	const cwd = process.cwd();
+	const cwd = node_process.default.cwd();
 	const [ignoreRoot, ignoreAndroid, ignoreIOS] = await Promise.all([
 		getGitignore(cwd),
 		getGitignore(cwd, "android"),
@@ -879,10 +889,10 @@ async function ignores(options = {}) {
 //#region src/type/StylisticConfig.ts
 const defaultConfig = {
 	enabled: true,
-	indent: prettierConfig.tabWidth ?? 2,
-	quotes: prettierConfig.singleQuote ? "single" : "double",
+	indent: __w5s_prettier_config.default.tabWidth ?? 2,
+	quotes: __w5s_prettier_config.default.singleQuote ? "single" : "double",
 	jsx: true,
-	semi: prettierConfig.semi ?? true
+	semi: __w5s_prettier_config.default.semi ?? true
 };
 /**
 * @namespace
@@ -903,7 +913,7 @@ const StylisticConfig = {
 //#endregion
 //#region src/config/jsdoc.ts
 async function jsdoc(options = {}) {
-	const [jsdocPlugin] = await Promise.all([interopDefault(import("eslint-plugin-jsdoc"))]);
+	const [jsdocPlugin] = await Promise.all([(0, __w5s_dev.interopDefault)(import("eslint-plugin-jsdoc"))]);
 	const { rules = {}, stylistic: stylistic$1 = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic$1);
 	return [{
@@ -936,13 +946,13 @@ async function jsdoc(options = {}) {
 
 //#endregion
 //#region src/config/jsonc.ts
-const defaultFiles$3 = [`**/${Project.extensionsToGlob([
+const defaultFiles$3 = [`**/${__w5s_dev.Project.extensionsToGlob([
 	".json",
 	".json5",
 	".jsonc"
 ])}`];
 async function jsonc(options = {}) {
-	const [jsoncPlugin, jsoncParser] = await Promise.all([interopDefault(import("eslint-plugin-jsonc")), interopDefault(import("jsonc-eslint-parser"))]);
+	const [jsoncPlugin, jsoncParser] = await Promise.all([(0, __w5s_dev.interopDefault)(import("eslint-plugin-jsonc")), (0, __w5s_dev.interopDefault)(import("jsonc-eslint-parser"))]);
 	const { files = defaultFiles$3, rules = {}, stylistic: stylistic$1 = true } = options;
 	const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic$1);
 	return [
@@ -1180,7 +1190,7 @@ function sortPackageJson() {
 
 //#endregion
 //#region src/config/imports.ts
-const importConfig = importPlugin.flatConfigs["recommended"];
+const importConfig = eslint_plugin_import.default.flatConfigs["recommended"];
 async function imports(options = {}) {
 	const { rules = {}, stylistic: stylistic$1 = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic$1);
@@ -1198,7 +1208,7 @@ async function imports(options = {}) {
 //#endregion
 //#region src/config/node.ts
 async function node(options = {}) {
-	const [nodePlugin] = await Promise.all([interopDefault(import("eslint-plugin-n"))]);
+	const [nodePlugin] = await Promise.all([(0, __w5s_dev.interopDefault)(import("eslint-plugin-n"))]);
 	const { rules = {} } = options;
 	return [{
 		name: "w5s/node/setup",
@@ -1224,7 +1234,7 @@ async function node(options = {}) {
 //#endregion
 //#region src/config/stylistic.ts
 async function stylistic(options = {}) {
-	const [stylisticPlugin] = await Promise.all([interopDefault(import("@stylistic/eslint-plugin"))]);
+	const [stylisticPlugin] = await Promise.all([(0, __w5s_dev.interopDefault)(import("@stylistic/eslint-plugin"))]);
 	const { rules = {} } = options;
 	const { enabled: stylisticEnabled, indent, jsx, quotes, semi } = StylisticConfig.from(options);
 	const config = stylisticEnabled ? stylisticPlugin.configs.customize({
@@ -1270,14 +1280,14 @@ async function stylistic(options = {}) {
 
 //#endregion
 //#region src/config/test.ts
-const sourceGlob = Project.extensionsToGlob(Project.sourceExtensions());
+const sourceGlob = __w5s_dev.Project.extensionsToGlob(__w5s_dev.Project.sourceExtensions());
 const defaultFiles$2 = [
 	`**/__mocks__/**/${sourceGlob}`,
 	`**/__tests__/**/${sourceGlob}`,
 	`**/?(*.)+(spec|test)${sourceGlob.slice(1)}`
 ];
 async function test(options = {}) {
-	const [vitestPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin"))]);
+	const [vitestPlugin] = await Promise.all([(0, __w5s_dev.interopDefault)(import("@vitest/eslint-plugin"))]);
 	const { files = defaultFiles$2, rules = {}, stylistic: stylistic$1 = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic$1);
 	return [{
@@ -1296,9 +1306,9 @@ async function test(options = {}) {
 
 //#endregion
 //#region src/config/ts.ts
-const defaultFiles$1 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`];
+const defaultFiles$1 = [`**/${__w5s_dev.Project.extensionsToGlob(__w5s_dev.Project.queryExtensions(["typescript", "typescriptreact"]))}`];
 async function ts(options = {}) {
-	const [tsPlugin, tsParser] = await Promise.all([interopDefault(import("@typescript-eslint/eslint-plugin")), interopDefault(import("@typescript-eslint/parser"))]);
+	const [tsPlugin, tsParser] = await Promise.all([(0, __w5s_dev.interopDefault)(import("@typescript-eslint/eslint-plugin")), (0, __w5s_dev.interopDefault)(import("@typescript-eslint/parser"))]);
 	const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
 	const tsStrictRules = tsPlugin.configs["strict"].rules;
 	const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
@@ -1317,8 +1327,8 @@ async function ts(options = {}) {
 			},
 			name: "w5s/ts/rules",
 			rules: {
-				...ESLintConfig.renameRules(tsRecommendedRules, { "@typescript-eslint": "ts" }),
-				...ESLintConfig.renameRules(tsStrictRules, { "@typescript-eslint": "ts" }),
+				...__w5s_dev.ESLintConfig.renameRules(tsRecommendedRules, { "@typescript-eslint": "ts" }),
+				...__w5s_dev.ESLintConfig.renameRules(tsStrictRules, { "@typescript-eslint": "ts" }),
 				"ts/ban-ts-comment": ["warn", {
 					"minimumDescriptionLength": 3,
 					"ts-check": false,
@@ -1337,7 +1347,7 @@ async function ts(options = {}) {
 		...typeChecked ? [{
 			files: defaultFiles$1,
 			name: "w5s/ts/rules-type-checked",
-			rules: { ...ESLintConfig.renameRules(tsTypeCheckedRules, { "@typescript-eslint": "ts" }) }
+			rules: { ...__w5s_dev.ESLintConfig.renameRules(tsTypeCheckedRules, { "@typescript-eslint": "ts" }) }
 		}] : []
 	];
 }
@@ -1345,7 +1355,7 @@ async function ts(options = {}) {
 //#endregion
 //#region src/config/unicorn.ts
 async function unicorn(options = {}) {
-	const [unicornPlugin] = await Promise.all([interopDefault(import("eslint-plugin-unicorn"))]);
+	const [unicornPlugin] = await Promise.all([(0, __w5s_dev.interopDefault)(import("eslint-plugin-unicorn"))]);
 	const { rules = {}, stylistic: stylistic$1 = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic$1);
 	return [
@@ -1394,9 +1404,9 @@ async function unicorn(options = {}) {
 
 //#endregion
 //#region src/config/yml.ts
-const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`];
+const defaultFiles = [`**/${__w5s_dev.Project.extensionsToGlob(__w5s_dev.Project.queryExtensions(["yaml"]))}`];
 async function yml(options = {}) {
-	const [ymlPlugin, ymlParser] = await Promise.all([interopDefault(import("eslint-plugin-yml")), interopDefault(import("yaml-eslint-parser"))]);
+	const [ymlPlugin, ymlParser] = await Promise.all([(0, __w5s_dev.interopDefault)(import("eslint-plugin-yml")), (0, __w5s_dev.interopDefault)(import("yaml-eslint-parser"))]);
 	const { files = defaultFiles, rules = {}, stylistic: stylistic$1 = true } = options;
 	const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic$1);
 	return [{
@@ -1476,5 +1486,18 @@ async function defineConfig(options = {}) {
 }
 
 //#endregion
-export { StylisticConfig, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, node, stylistic, test, ts, unicorn, yml };
-//# sourceMappingURL=index.js.map
+exports.StylisticConfig = StylisticConfig;
+exports.default = defineConfig;
+exports.defineConfig = defineConfig;
+exports.es = es;
+exports.ignores = ignores;
+exports.imports = imports;
+exports.jsdoc = jsdoc;
+exports.jsonc = jsonc;
+exports.node = node;
+exports.stylistic = stylistic;
+exports.test = test;
+exports.ts = ts;
+exports.unicorn = unicorn;
+exports.yml = yml;
+//# sourceMappingURL=index.cjs.map
