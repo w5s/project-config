@@ -28,9 +28,9 @@ endif
 
 # Corepack enable command
 ifeq ($(NODEJS_VERSION_MANAGER),asdf)
-	COREPACK_ENABLE := corepack enable && asdf reshim nodejs
+	.NODEJS_INSTALL_PACKAGE_MANAGER_COMMAND = npm install -g $(NODEJS_PACKAGE_MANAGER_COMMAND) && asdf reshim nodejs
 else
-	COREPACK_ENABLE := corepack enable
+	.NODEJS_INSTALL_PACKAGE_MANAGER_COMMAND = npm install -g $(NODEJS_PACKAGE_MANAGER_COMMAND)
 endif
 
 ## NodeJS version
@@ -191,7 +191,7 @@ ifneq ($(NODEJS_PACKAGE_MANAGER),npm)
 # Only for asdf we have to reshim after corepack
 	$(Q)if ! $(NODEJS_PACKAGE_MANAGER_COMMAND) -v &>/dev/null; then \
 	  $(call log,info,"[NodeJS] Install $(NODEJS_PACKAGE_MANAGER)...",1); \
-		$(COREPACK_ENABLE); \
+		$(.NODEJS_INSTALL_PACKAGE_MANAGER_COMMAND); \
 	fi
 endif
 .setup:: node-setup # Add to `make setup`
