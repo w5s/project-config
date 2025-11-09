@@ -39,7 +39,7 @@ var require_package = __commonJS({
   "../../node_modules/@eslint/js/package.json"(exports, module) {
     module.exports = {
       name: "@eslint/js",
-      version: "9.38.0",
+      version: "9.39.1",
       description: "ESLint JavaScript language implementation",
       funding: "https://eslint.org/donate",
       main: "./src/index.js",
