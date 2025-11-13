@@ -83,7 +83,7 @@
   "devDependencies": {
     "@types/eslint": "9.6.1",
     "@types/parse-gitignore": "1.0.2",
-    "@types/react": "19.2.3",
+    "@types/react": "19.2.4",
     "@typescript-eslint/parser": "8.46.4",
     "eslint": "9.39.1",
     "eslint-find-rules": "5.0.0",
