@@ -70,7 +70,7 @@
   "devDependencies": {
     "tsup": "8.5.1",
     "vite": "7.2.2",
-    "vitest": "4.0.8"
+    "vitest": "4.0.9"
   },
   "peerDependencies": {
     "tsup": "8.x"
