@@ -87,7 +87,7 @@
     "npm-run-all2": "8.0.4",
     "turbo": "2.6.1",
     "typescript": "5.9.3",
-    "vite": "7.2.2",
+    "vite": "7.2.4",
     "vitest": "4.0.12"
   },
   "packageManager": "yarn@4.11.0",
