@@ -60,7 +60,7 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
           state: hasTypecript ? 'present' : 'absent',
           update: () => 'rm -rf dist',
         });
-        if (hasTypecript && projectPackageFile.get('name') !== '@w5s/ts-config') {
+        if (hasTypecript && projectPackageFile.get('name') !== '@w5s/tsconfig') {
           projectTsConfig
             .merge({
               $schema: 'https://json.schemastore.org/tsconfig.json',
@@ -174,5 +174,5 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
 
 module.exports = createLang({
   language: 'typescript',
-  tsConfig: '@w5s/ts-config',
+  tsConfig: '@w5s/tsconfig',
 });

@@ -1,5 +1,5 @@
 {
-  "name": "@w5s/ts-config",
+  "name": "@w5s/tsconfig",
   "version": "3.0.0",
   "description": "Typescript compiler configuration presets",
   "keywords": [
@@ -7,14 +7,14 @@
     "config",
     "tsc"
   ],
-  "homepage": "https://github.com/w5s/project-config/blob/main/packages/ts-config#readme",
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/tsconfig#readme",
   "bugs": {
     "url": "https://github.com/w5s/project-config/issues"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:w5s/project-config.git",
-    "directory": "packages/ts-config"
+    "directory": "packages/tsconfig"
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",

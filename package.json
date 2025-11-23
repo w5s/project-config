@@ -76,7 +76,7 @@
     "@w5s/eslint-config": "workspace:*",
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/prettier-config": "workspace:*",
-    "@w5s/ts-config": "workspace:*",
+    "@w5s/tsconfig": "workspace:*",
     "clean-package": "2.2.0",
     "cspell": "9.3.2",
     "eslint": "9.39.1",

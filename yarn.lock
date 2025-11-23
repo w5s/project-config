@@ -3066,7 +3066,7 @@ __metadata:
     "@w5s/eslint-config": "workspace:*"
     "@w5s/mrm-preset": "workspace:*"
     "@w5s/prettier-config": "workspace:*"
-    "@w5s/ts-config": "workspace:*"
+    "@w5s/tsconfig": "workspace:*"
     clean-package: "npm:2.2.0"
     cspell: "npm:9.3.2"
     eslint: "npm:9.39.1"
@@ -3082,9 +3082,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/ts-config@workspace:*, @w5s/ts-config@workspace:packages/ts-config":
+"@w5s/tsconfig@workspace:*, @w5s/tsconfig@workspace:packages/tsconfig":
   version: 0.0.0-use.local
-  resolution: "@w5s/ts-config@workspace:packages/ts-config"
+  resolution: "@w5s/tsconfig@workspace:packages/tsconfig"
   dependencies:
     typescript: "npm:5.9.3"
   peerDependencies:

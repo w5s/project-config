@@ -1,5 +1,5 @@
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5S Typescript configuration _(${name})_) -->
-# W5S Typescript configuration _(@w5s/ts-config)_
+# W5S Typescript configuration _(@w5s/tsconfig)_
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 [![NPM Version][package-version-svg]][package-url]
@@ -13,7 +13,7 @@
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```console\nnpm install --save-dev ${name}\n```) -->
 ```console
-npm install --save-dev @w5s/ts-config
+npm install --save-dev @w5s/tsconfig
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -23,7 +23,7 @@ In the `tsconfig.json` for your project
 
 ```json
 {
-    "extends": "@w5s/ts-config"
+    "extends": "@w5s/tsconfig"
 }
 ```
 
@@ -48,10 +48,10 @@ Typescript: >=5.x
 <!-- VARIABLES -->
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[package-version-svg]: https://img.shields.io/npm/v/${name}.svg?style=flat-square) -->
-[package-version-svg]: https://img.shields.io/npm/v/@w5s/ts-config.svg?style=flat-square
+[package-version-svg]: https://img.shields.io/npm/v/@w5s/tsconfig.svg?style=flat-square
 <!-- AUTO-GENERATED-CONTENT:END -->
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[package-url]: https://www.npmjs.com/package/${name}) -->
-[package-url]: https://www.npmjs.com/package/@w5s/ts-config
+[package-url]: https://www.npmjs.com/package/@w5s/tsconfig
 <!-- AUTO-GENERATED-CONTENT:END -->
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[license-image]: https://img.shields.io/badge/license-${license}-green.svg?style=flat-square) -->
 [license-image]: https://img.shields.io/badge/license-MIT-green.svg?style=flat-square
