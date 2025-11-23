@@ -2923,7 +2923,7 @@ __metadata:
     "@commitlint/lint": "npm:20.0.0"
     "@commitlint/types": "npm:^20.0.0"
     "@w5s/conventional-changelog": "npm:^3.0.2"
-    "@w5s/tsup-config": "npm:2.0.2"
+    "@w5s/tsup-config": "workspace:*"
     vite: "npm:7.2.4"
     vitest: "npm:4.0.13"
   peerDependencies:
@@ -2941,7 +2941,7 @@ __metadata:
     "@commitlint/types": "npm:^20.0.0"
     "@types/conventional-changelog-writer": "npm:4.0.11"
     "@types/conventional-commits-parser": "npm:5.0.2"
-    "@w5s/tsup-config": "npm:2.0.2"
+    "@w5s/tsup-config": "workspace:*"
     emoji-regex: "npm:^10.2.1"
     gitmojis: "npm:^3.13.4"
     tsup: "npm:8.5.1"
@@ -2957,7 +2957,7 @@ __metadata:
     "@cspell/cspell-bundled-dicts": "npm:9.3.2"
     "@cspell/cspell-tools": "npm:9.3.2"
     "@cspell/cspell-types": "npm:9.3.2"
-    "@w5s/tsup-config": "npm:2.0.2"
+    "@w5s/tsup-config": "workspace:*"
     vite: "npm:7.2.4"
     vitest: "npm:4.0.13"
   peerDependencies:
@@ -2973,7 +2973,7 @@ __metadata:
   resolution: "@w5s/dev@workspace:packages/dev"
   dependencies:
     "@types/eslint": "npm:^9.0.0"
-    "@w5s/tsup-config": "npm:2.0.2"
+    "@w5s/tsup-config": "workspace:*"
     tsup: "npm:8.5.1"
     vite: "npm:7.2.4"
     vitest: "npm:4.0.13"
@@ -3041,7 +3041,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/prettier-config@workspace:packages/prettier-config"
   dependencies:
-    "@w5s/tsup-config": "npm:2.0.2"
+    "@w5s/tsup-config": "workspace:*"
     prettier: "npm:3.6.2"
     tsup: "npm:8.5.1"
     vite: "npm:7.2.4"
@@ -3095,7 +3095,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@w5s/tsup-config@npm:2.0.2, @w5s/tsup-config@workspace:packages/tsup-config":
+"@w5s/tsup-config@workspace:*, @w5s/tsup-config@workspace:packages/tsup-config":
   version: 0.0.0-use.local
   resolution: "@w5s/tsup-config@workspace:packages/tsup-config"
   dependencies:
