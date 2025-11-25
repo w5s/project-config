@@ -65,7 +65,7 @@
     "prettier": "3.6.2",
     "tsup": "8.5.1",
     "vite": "7.2.4",
-    "vitest": "4.0.13"
+    "vitest": "4.0.14"
   },
   "peerDependencies": {
     "prettier": "2.x || 3.x"
