@@ -68,7 +68,7 @@
   "devDependencies": {
     "@commitlint/lint": "20.0.0",
     "@w5s/tsup-config": "workspace:*",
-    "vite": "7.2.4",
+    "vite": "7.2.6",
     "vitest": "4.0.14"
   },
   "peerDependencies": {
