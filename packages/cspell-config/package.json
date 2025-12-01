@@ -59,9 +59,9 @@
     "@cspell/cspell-bundled-dicts": "^9.0.0"
   },
   "devDependencies": {
-    "@cspell/cspell-bundled-dicts": "9.3.2",
-    "@cspell/cspell-tools": "9.3.2",
-    "@cspell/cspell-types": "9.3.2",
+    "@cspell/cspell-bundled-dicts": "9.4.0",
+    "@cspell/cspell-tools": "9.4.0",
+    "@cspell/cspell-types": "9.4.0",
     "@w5s/tsup-config": "workspace:*",
     "vite": "7.2.6",
     "vitest": "4.0.14"
