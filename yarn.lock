@@ -222,10 +222,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/cspell-pipe@npm:9.4.0, @cspell/cspell-pipe@npm:^9.4.0":
+"@cspell/cspell-pipe@npm:9.4.0":
   version: 9.4.0
   resolution: "@cspell/cspell-pipe@npm:9.4.0"
   checksum: 10c0/9a82d7ebf05d36817d90ec4cf1d8bb42f8085396b391f88e00b81c19b4418ccbfa8dbe18cb72c5ae06b22cee3764d0f44d36194e16416fb9895759e9c782bc29
+  languageName: node
+  linkType: hard
+
+"@cspell/cspell-pipe@npm:9.5.0, @cspell/cspell-pipe@npm:^9.5.0":
+  version: 9.5.0
+  resolution: "@cspell/cspell-pipe@npm:9.5.0"
+  checksum: 10c0/5bf0aaf2b305be5133518e8963b5442fce02b0764e2aa4c9e3c6d62517fb174e7037da3b2f6ac0b9788135becd037992eeebc44f14897d86743ee25cf8cfbb4e
   languageName: node
   linkType: hard
 
@@ -245,28 +252,35 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cspell/cspell-tools@npm:9.4.0":
-  version: 9.4.0
-  resolution: "@cspell/cspell-tools@npm:9.4.0"
+"@cspell/cspell-tools@npm:9.5.0":
+  version: 9.5.0
+  resolution: "@cspell/cspell-tools@npm:9.5.0"
   dependencies:
-    "@cspell/cspell-pipe": "npm:9.4.0"
+    "@cspell/cspell-pipe": "npm:9.5.0"
     commander: "npm:^14.0.2"
     cosmiconfig: "npm:9.0.0"
-    cspell-trie-lib: "npm:9.4.0"
+    cspell-trie-lib: "npm:9.5.0"
     glob: "npm:^13.0.0"
-    hunspell-reader: "npm:9.4.0"
+    hunspell-reader: "npm:9.5.0"
     yaml: "npm:^2.8.2"
   bin:
     cspell-tools: bin.mjs
     cspell-tools-cli: bin.mjs
-  checksum: 10c0/d32e048610ce58920aa8f3363996dc35010b2cfeebb36673a95bcf17e767400e11a25114876214014dde7d1f9ab0f2aa22503c6289c6fd02185d698880daffb5
+  checksum: 10c0/920fa0f4f08b344af5422950c22f2992f1603ae8fc55453770adfb205a3410771159df793937767f49856edad3552a8c63abfb258a9593afd6c9c2fd1de27c72
   languageName: node
   linkType: hard
 
-"@cspell/cspell-types@npm:9.4.0, @cspell/cspell-types@npm:^9.4.0":
+"@cspell/cspell-types@npm:9.4.0":
   version: 9.4.0
   resolution: "@cspell/cspell-types@npm:9.4.0"
   checksum: 10c0/d3b421d6a84a39b198c02e8d268b50baeae5242dc12a50d50403652cfc9ee1f7c1338a2b431c60d12ab22b6e7141591f738bb8ee0ae7a9efff114ba627863050
+  languageName: node
+  linkType: hard
+
+"@cspell/cspell-types@npm:9.5.0, @cspell/cspell-types@npm:^9.5.0":
+  version: 9.5.0
+  resolution: "@cspell/cspell-types@npm:9.5.0"
+  checksum: 10c0/317995bda4517f9d994f303326ffc90de3ed7975334bef503b8e1859721a73bd0a0002f079e897f451f08906e9844e62214aa2072601e61d72e10288abb17bd3
   languageName: node
   linkType: hard
 
@@ -2973,8 +2987,8 @@ __metadata:
   resolution: "@w5s/cspell-config@workspace:packages/cspell-config"
   dependencies:
     "@cspell/cspell-bundled-dicts": "npm:9.4.0"
-    "@cspell/cspell-tools": "npm:9.4.0"
-    "@cspell/cspell-types": "npm:9.4.0"
+    "@cspell/cspell-tools": "npm:9.5.0"
+    "@cspell/cspell-types": "npm:9.5.0"
     "@w5s/tsup-config": "workspace:*"
     vite: "npm:7.3.0"
     vitest: "npm:4.0.16"
@@ -4637,6 +4651,17 @@ __metadata:
     "@cspell/cspell-types": "npm:9.4.0"
     gensequence: "npm:^8.0.8"
   checksum: 10c0/08aa19f7e9e17acae08c3b6cf11d98b556a1fc4329be0e567a6ad1c16507155b0a58d457f9e976b6da0a7a1f0da1180bf77742d08eca81ca4cfa9f53d0f51aee
+  languageName: node
+  linkType: hard
+
+"cspell-trie-lib@npm:9.5.0":
+  version: 9.5.0
+  resolution: "cspell-trie-lib@npm:9.5.0"
+  dependencies:
+    "@cspell/cspell-pipe": "npm:9.5.0"
+    "@cspell/cspell-types": "npm:9.5.0"
+    gensequence: "npm:^8.0.8"
+  checksum: 10c0/73335eb6fc45f11174b85e1ce906ac2889a0deedad808c60378d624634174ba5d91c1fe486ad1d661388cde3fca1b9c469d8bc430c0d87c9b1e958b4664905e2
   languageName: node
   linkType: hard
 
@@ -6984,19 +7009,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hunspell-reader@npm:9.4.0":
-  version: 9.4.0
-  resolution: "hunspell-reader@npm:9.4.0"
+"hunspell-reader@npm:9.5.0":
+  version: 9.5.0
+  resolution: "hunspell-reader@npm:9.5.0"
   dependencies:
-    "@cspell/cspell-pipe": "npm:^9.4.0"
-    "@cspell/cspell-types": "npm:^9.4.0"
+    "@cspell/cspell-pipe": "npm:^9.5.0"
+    "@cspell/cspell-types": "npm:^9.5.0"
     commander: "npm:^14.0.2"
     gensequence: "npm:^8.0.8"
     html-entities: "npm:^2.6.0"
-    iconv-lite: "npm:^0.7.0"
+    iconv-lite: "npm:0.7.0"
   bin:
     hunspell-reader: bin.js
-  checksum: 10c0/a502388c46f3f54b61ee2ed7029013f792dc08571a971ddc613067fe508da2f069e3be5cec949d86ce5b72e8cdd9481e72a8a570917daecde71beb98c7602920
+  checksum: 10c0/f727b4a903400322aef50bc28e3d661c6c12493e4c6710e143c901f5c25f162c1701c0d416c758c3a914f6fdbd3954d96becf1d2f90d2be83db43376a55cc128
   languageName: node
   linkType: hard
 
@@ -7006,6 +7031,15 @@ __metadata:
   bin:
     husky: lib/bin.js
   checksum: 10c0/aacb2b8fbfed0ec161f94e9b08d422c51fec073def4e165e57da42f47c10f520a5f0a88b42efc667784e314a1af83cf1994b582cd6f4b0333739921a601c6187
+  languageName: node
+  linkType: hard
+
+"iconv-lite@npm:0.7.0":
+  version: 0.7.0
+  resolution: "iconv-lite@npm:0.7.0"
+  dependencies:
+    safer-buffer: "npm:>= 2.1.2 < 3.0.0"
+  checksum: 10c0/2382400469071c55b6746c531eed5fa4d033e5db6690b7331fb2a5f59a30d7a9782932e92253db26df33c1cf46fa200a3fbe524a2a7c62037c762283f188ec2f
   languageName: node
   linkType: hard
 
@@ -7024,15 +7058,6 @@ __metadata:
   dependencies:
     safer-buffer: "npm:>= 2.1.2 < 3.0.0"
   checksum: 10c0/98102bc66b33fcf5ac044099d1257ba0b7ad5e3ccd3221f34dd508ab4070edff183276221684e1e0555b145fce0850c9f7d2b60a9fcac50fbb4ea0d6e845a3b1
-  languageName: node
-  linkType: hard
-
-"iconv-lite@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "iconv-lite@npm:0.7.0"
-  dependencies:
-    safer-buffer: "npm:>= 2.1.2 < 3.0.0"
-  checksum: 10c0/2382400469071c55b6746c531eed5fa4d033e5db6690b7331fb2a5f59a30d7a9782932e92253db26df33c1cf46fa200a3fbe524a2a7c62037c762283f188ec2f
   languageName: node
   linkType: hard
 

@@ -60,8 +60,8 @@
   },
   "devDependencies": {
     "@cspell/cspell-bundled-dicts": "9.4.0",
-    "@cspell/cspell-tools": "9.4.0",
-    "@cspell/cspell-types": "9.4.0",
+    "@cspell/cspell-tools": "9.5.0",
+    "@cspell/cspell-types": "9.5.0",
     "@w5s/tsup-config": "workspace:*",
     "vite": "7.3.0",
     "vitest": "4.0.16"
