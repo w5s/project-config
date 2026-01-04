@@ -3020,7 +3020,7 @@ __metadata:
     "@types/debug": "npm:4.1.12"
     "@w5s/dev": "npm:^3.1.1"
     debug: "npm:^4.3.3"
-    glob: "npm:^11.0.0"
+    glob: "npm:^13.0.0"
     mrm: "npm:4.1.22"
     mrm-core: "npm:^7.0.0"
     mrm-preset-default: "npm:4.1.11"
@@ -6450,7 +6450,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^11.0.0, glob@npm:^11.0.3":
+"glob@npm:^11.0.3":
   version: 11.1.0
   resolution: "glob@npm:11.1.0"
   dependencies:
