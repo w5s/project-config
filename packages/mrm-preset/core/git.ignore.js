@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-string-raw */
 /* cSpell: disable */
 
 // A dictionary of { tool: git_ignore_section}

@@ -4,6 +4,7 @@ import cSpellSettings from '@cspell/cspell-bundled-dicts/cspell-default.config.j
 
 const toArray = <T>(value: T | T[] | undefined) => (Array.isArray(value) ? value : value == null ? [] : [value]);
 const defaultSettings = cSpellSettings as AdvancedCSpellSettings;
+// eslint-disable-next-line unicorn/no-useless-collection-argument
 const excludeImport = new Set<string>([
   // Put here the imports you want to exclude
 ]);
