@@ -23,6 +23,7 @@ var gitRawCommitOpts = {
 var createParserOpts = () => ({
   headerPattern: new RegExp(
     // Type
+    // eslint-disable-next-line unicorn/prefer-string-raw
     `^(?<type>\\S*)? (?:\\((?<scope>.*)\\):? )?(?<subject>.*)$`,
     "u"
   ),

@@ -5,8 +5,10 @@ export interface ParserOptions extends ParserOptionsDefault {}
 export const createParserOpts = (): ParserOptions => ({
   headerPattern: new RegExp(
     // Type
+    // eslint-disable-next-line unicorn/prefer-string-raw
     `^(?<type>\\S*)? ` +
     // Scope
+    // eslint-disable-next-line unicorn/prefer-string-raw
     `(?:\\((?<scope>.*)\\):? )?` +
     // Subject
     `(?<subject>.*)$`,
