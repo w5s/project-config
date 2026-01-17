@@ -1298,14 +1298,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@lerna-lite/publish@npm:4.11.0":
-  version: 4.11.0
-  resolution: "@lerna-lite/publish@npm:4.11.0"
+"@lerna-lite/publish@npm:4.11.1":
+  version: 4.11.1
+  resolution: "@lerna-lite/publish@npm:4.11.1"
   dependencies:
     "@lerna-lite/cli": "npm:4.11.0"
     "@lerna-lite/core": "npm:4.11.0"
     "@lerna-lite/npmlog": "npm:4.11.0"
-    "@lerna-lite/version": "npm:4.11.0"
+    "@lerna-lite/version": "npm:4.11.1"
     "@npmcli/arborist": "npm:^9.1.9"
     "@npmcli/package-json": "npm:^7.0.4"
     byte-size: "npm:^9.0.1"
@@ -1324,16 +1324,16 @@ __metadata:
     pacote: "npm:^21.0.4"
     semver: "npm:^7.7.3"
     ssri: "npm:^13.0.0"
-    tar: "npm:^7.5.2"
+    tar: "npm:^7.5.3"
     tinyglobby: "npm:^0.2.15"
     tinyrainbow: "npm:^3.0.3"
-  checksum: 10c0/20b3a76081815ac9e54d0fd2ce0d40e97398724ae25567a45e18bcb1b1789a6f600654f7052bfddde2866b79ee3a7150d742e9425060ff5e141614b1bc9f43b3
+  checksum: 10c0/e16b71f348b5724d715efff81508332fbfc9dfc95eac9f00e6ef2dc5a34af95cd9c1abc76760202d1de450c3ebbba68b8c54d53264bd65f46dd1835cafaeec2c
   languageName: node
   linkType: hard
 
-"@lerna-lite/version@npm:4.11.0":
-  version: 4.11.0
-  resolution: "@lerna-lite/version@npm:4.11.0"
+"@lerna-lite/version@npm:4.11.1":
+  version: 4.11.1
+  resolution: "@lerna-lite/version@npm:4.11.1"
   dependencies:
     "@conventional-changelog/git-client": "npm:^2.5.1"
     "@lerna-lite/cli": "npm:4.11.0"
@@ -1364,7 +1364,7 @@ __metadata:
     uuid: "npm:^13.0.0"
     write-json-file: "npm:^7.0.0"
     zeptomatch: "npm:^2.1.0"
-  checksum: 10c0/05d6374cab6e6c6d4d426b10fdcad207e0223be5c572d4d3a4dd67a18fd7b6634b35391b72d43e2cbeaf368e30b3168d44b99e45fa42f9a4295ff20a2ca3c788
+  checksum: 10c0/b67cefd0cd15c807f9d28d138fae117c5b84986b528e8a06472766c8f5006a489d2514d98c57b8c255f67c5484e7d591e279de4dfd039749ce07d506137421d0
   languageName: node
   linkType: hard
 
@@ -2615,7 +2615,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@w5s/project-config-src@workspace:."
   dependencies:
-    "@lerna-lite/publish": "npm:4.11.0"
+    "@lerna-lite/publish": "npm:4.11.1"
     "@types/node": "npm:20.19.30"
     "@w5s/commitlint-config": "workspace:*"
     "@w5s/conventional-changelog": "workspace:*"
@@ -10399,7 +10399,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tar@npm:^7.4.3, tar@npm:^7.5.2":
+"tar@npm:^7.4.3, tar@npm:^7.5.2, tar@npm:^7.5.3":
   version: 7.5.3
   resolution: "tar@npm:7.5.3"
   dependencies:
