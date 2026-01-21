@@ -53,7 +53,7 @@
   },
   "devDependencies": {
     "browserslist": "4.28.1",
-    "lodash-es": "4.17.22",
+    "lodash-es": "4.17.23",
     "vite": "7.3.1",
     "vitest": "4.0.17"
   },
