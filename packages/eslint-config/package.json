@@ -78,7 +78,7 @@
     "globals": "^17.0.0",
     "jsonc-eslint-parser": "^2.0.0",
     "parse-gitignore": "^2.0.0",
-    "yaml-eslint-parser": "^1.0.0"
+    "yaml-eslint-parser": "^2.0.0"
   },
   "devDependencies": {
     "@types/eslint": "9.6.1",
