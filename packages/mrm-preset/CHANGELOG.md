@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.1](github.com/w5s/project-config/compare/@w5s/mrm-preset@3.2.0...@w5s/mrm-preset@3.2.1) (2026-01-25)
+
+### 🐛 Bug Fixes
+
+- Fix vitest typing ([a3ebaa0](github.com/w5s/project-config/commits/a3ebaa0))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 # [3.2.0](github.com/w5s/project-config/compare/@w5s/mrm-preset@3.1.0...@w5s/mrm-preset@3.2.0) (2025-11-23)
 
 ### ✨ Features
