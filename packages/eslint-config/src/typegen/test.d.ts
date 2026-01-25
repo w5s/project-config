@@ -10,7 +10,12 @@ declare module 'eslint' {
 
 export interface RuleOptions {
   /**
-   * require .spec test file pattern
+   * enforce using `.each` or `.for` consistently
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-each-for.md
+   */
+  'test/consistent-each-for'?: Linter.RuleEntry<TestConsistentEachFor>
+  /**
+   * require test file pattern
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-test-filename.md
    */
   'test/consistent-test-filename'?: Linter.RuleEntry<TestConsistentTestFilename>
@@ -20,10 +25,20 @@ export interface RuleOptions {
    */
   'test/consistent-test-it'?: Linter.RuleEntry<TestConsistentTestIt>
   /**
+   * enforce using vitest or vi but not both
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-vitest-vi.md
+   */
+  'test/consistent-vitest-vi'?: Linter.RuleEntry<TestConsistentVitestVi>
+  /**
    * enforce having expectation in test body
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/expect-expect.md
    */
   'test/expect-expect'?: Linter.RuleEntry<TestExpectExpect>
+  /**
+   * enforce hoisted APIs to be on top of the file
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/hoisted-apis-on-top.md
+   */
+  'test/hoisted-apis-on-top'?: Linter.RuleEntry<[]>
   /**
    * enforce a maximum number of expect per test
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/max-expects.md
@@ -48,7 +63,7 @@ export interface RuleOptions {
    * disallow conditional expects
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-conditional-expect.md
    */
-  'test/no-conditional-expect'?: Linter.RuleEntry<[]>
+  'test/no-conditional-expect'?: Linter.RuleEntry<TestNoConditionalExpect>
   /**
    * disallow conditional tests
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-conditional-in-test.md
@@ -96,6 +111,11 @@ export interface RuleOptions {
    */
   'test/no-import-node-test'?: Linter.RuleEntry<[]>
   /**
+   * disallow importing Vitest globals
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-importing-vitest-globals.md
+   */
+  'test/no-importing-vitest-globals'?: Linter.RuleEntry<[]>
+  /**
    * disallow string interpolation in snapshots
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-interpolation-in-snapshots.md
    */
@@ -126,7 +146,7 @@ export interface RuleOptions {
    */
   'test/no-standalone-expect'?: Linter.RuleEntry<TestNoStandaloneExpect>
   /**
-   * disallow using `test` as a prefix
+   * disallow using the `f` and `x` prefixes in favour of `.only` and `.skip`
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-test-prefixes.md
    */
   'test/no-test-prefixes'?: Linter.RuleEntry<[]>
@@ -135,6 +155,11 @@ export interface RuleOptions {
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-test-return-statement.md
    */
   'test/no-test-return-statement'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow unnecessary async function wrapper for expected promises
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/no-unneeded-async-expect-function.md
+   */
+  'test/no-unneeded-async-expect-function'?: Linter.RuleEntry<[]>
   /**
    * Enforce padding around `afterAll` blocks
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/padding-around-after-all-blocks.md
@@ -176,6 +201,21 @@ export interface RuleOptions {
    */
   'test/padding-around-test-blocks'?: Linter.RuleEntry<[]>
   /**
+   * Prefer `toHaveBeenCalledExactlyOnceWith` over `toHaveBeenCalledOnce` and `toHaveBeenCalledWith`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-called-exactly-once-with.md
+   */
+  'test/prefer-called-exactly-once-with'?: Linter.RuleEntry<[]>
+  /**
+   * enforce using `toBeCalledOnce()` or `toHaveBeenCalledOnce()`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-called-once.md
+   */
+  'test/prefer-called-once'?: Linter.RuleEntry<[]>
+  /**
+   * enforce using `toBeCalledTimes(1)` or `toHaveBeenCalledTimes(1)`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-called-times.md
+   */
+  'test/prefer-called-times'?: Linter.RuleEntry<[]>
+  /**
    * enforce using `toBeCalledWith()` or `toHaveBeenCalledWith()`
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-called-with.md
    */
@@ -186,12 +226,17 @@ export interface RuleOptions {
    */
   'test/prefer-comparison-matcher'?: Linter.RuleEntry<[]>
   /**
+   * enforce using a function as a describe title over an equivalent string
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-describe-function-title.md
+   */
+  'test/prefer-describe-function-title'?: Linter.RuleEntry<[]>
+  /**
    * enforce using `each` rather than manual loops
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-each.md
    */
   'test/prefer-each'?: Linter.RuleEntry<[]>
   /**
-   * enforce using the built-in quality matchers
+   * enforce using the built-in equality matchers
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-equality-matcher.md
    */
   'test/prefer-equality-matcher'?: Linter.RuleEntry<[]>
@@ -206,6 +251,11 @@ export interface RuleOptions {
    */
   'test/prefer-expect-resolves'?: Linter.RuleEntry<[]>
   /**
+   * enforce using `expectTypeOf` instead of `expect(typeof ...)`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-expect-type-of.md
+   */
+  'test/prefer-expect-type-of'?: Linter.RuleEntry<[]>
+  /**
    * enforce having hooks in consistent order
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-hooks-in-order.md
    */
@@ -216,6 +266,16 @@ export interface RuleOptions {
    */
   'test/prefer-hooks-on-top'?: Linter.RuleEntry<[]>
   /**
+   * prefer dynamic import in mock
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-import-in-mock.md
+   */
+  'test/prefer-import-in-mock'?: Linter.RuleEntry<TestPreferImportInMock>
+  /**
+   * enforce importing Vitest globals
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-importing-vitest-globals.md
+   */
+  'test/prefer-importing-vitest-globals'?: Linter.RuleEntry<[]>
+  /**
    * enforce lowercase titles
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-lowercase-title.md
    */
@@ -225,6 +285,11 @@ export interface RuleOptions {
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-mock-promise-shorthand.md
    */
   'test/prefer-mock-promise-shorthand'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer mock return shorthands
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-mock-return-shorthand.md
+   */
+  'test/prefer-mock-return-shorthand'?: Linter.RuleEntry<[]>
   /**
    * enforce including a hint with external snapshots
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-snapshot-hint.md
@@ -271,6 +336,11 @@ export interface RuleOptions {
    */
   'test/prefer-to-contain'?: Linter.RuleEntry<[]>
   /**
+   * Suggest using `toHaveBeenCalledTimes()`
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-have-been-called-times.md
+   */
+  'test/prefer-to-have-been-called-times'?: Linter.RuleEntry<[]>
+  /**
    * enforce using toHaveLength()
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-to-have-length.md
    */
@@ -286,6 +356,11 @@ export interface RuleOptions {
    */
   'test/prefer-vi-mocked'?: Linter.RuleEntry<[]>
   /**
+   * ensure that every `expect.poll` call is awaited
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/require-awaited-expect-poll.md
+   */
+  'test/require-awaited-expect-poll'?: Linter.RuleEntry<[]>
+  /**
    * require setup and teardown to be within a hook
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/require-hook.md
    */
@@ -300,6 +375,11 @@ export interface RuleOptions {
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/require-mock-type-parameters.md
    */
   'test/require-mock-type-parameters'?: Linter.RuleEntry<TestRequireMockTypeParameters>
+  /**
+   * require tests to declare a timeout
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/require-test-timeout.md
+   */
+  'test/require-test-timeout'?: Linter.RuleEntry<[]>
   /**
    * require toThrow() to be called with an error message
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/require-to-throw-message.md
@@ -330,9 +410,21 @@ export interface RuleOptions {
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/valid-title.md
    */
   'test/valid-title'?: Linter.RuleEntry<TestValidTitle>
+  /**
+   * disallow `.todo` usage
+   * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/warn-todo.md
+   */
+  'test/warn-todo'?: Linter.RuleEntry<[]>
 }
 
 /* ======= Declarations ======= */
+// ----- test/consistent-each-for -----
+type TestConsistentEachFor = []|[{
+  test?: ("each" | "for")
+  it?: ("each" | "for")
+  describe?: ("each" | "for")
+  suite?: ("each" | "for")
+}]
 // ----- test/consistent-test-filename -----
 type TestConsistentTestFilename = []|[{
   pattern?: string
@@ -342,6 +434,10 @@ type TestConsistentTestFilename = []|[{
 type TestConsistentTestIt = []|[{
   fn?: ("test" | "it")
   withinDescribe?: ("test" | "it")
+}]
+// ----- test/consistent-vitest-vi -----
+type TestConsistentVitestVi = []|[{
+  fn?: ("vi" | "vitest")
 }]
 // ----- test/expect-expect -----
 type TestExpectExpect = []|[{
@@ -356,13 +452,19 @@ type TestMaxExpects = []|[{
 type TestMaxNestedDescribe = []|[{
   max?: number
 }]
+// ----- test/no-conditional-expect -----
+type TestNoConditionalExpect = []|[{
+  
+  expectAssertions?: boolean
+}]
 // ----- test/no-focused-tests -----
 type TestNoFocusedTests = []|[{
   fixable?: boolean
 }]
 // ----- test/no-hooks -----
 type TestNoHooks = []|[{
-  allow?: unknown[]
+  
+  allow?: ("beforeAll" | "beforeEach" | "afterAll" | "afterEach")[]
 }]
 // ----- test/no-large-snapshots -----
 type TestNoLargeSnapshots = []|[{
@@ -389,6 +491,10 @@ type TestPreferExpectAssertions = []|[{
   onlyFunctionsWithAsyncKeyword?: boolean
   onlyFunctionsWithExpectInLoop?: boolean
   onlyFunctionsWithExpectInCallback?: boolean
+}]
+// ----- test/prefer-import-in-mock -----
+type TestPreferImportInMock = []|[{
+  fixable?: boolean
 }]
 // ----- test/prefer-lowercase-title -----
 type TestPreferLowercaseTitle = []|[{

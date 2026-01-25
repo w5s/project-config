@@ -214,6 +214,7 @@ export interface RuleOptions {
   /**
    * Enforce props alphabetical sorting
    * @see https://eslint.style/rules/jsx-sort-props
+   * @deprecated
    */
   'style/jsx-sort-props'?: Linter.RuleEntry<StyleJsxSortProps>
   /**
@@ -1718,7 +1719,7 @@ type StyleTypeAnnotationSpacing = []|[{
   after?: boolean
   overrides?: {
     colon?: _StyleTypeAnnotationSpacing_SpacingConfig
-    arrow?: _StyleTypeAnnotationSpacing_SpacingConfig
+    arrow?: ("ignore" | _StyleTypeAnnotationSpacing_SpacingConfig)
     variable?: _StyleTypeAnnotationSpacing_SpacingConfig
     parameter?: _StyleTypeAnnotationSpacing_SpacingConfig
     property?: _StyleTypeAnnotationSpacing_SpacingConfig

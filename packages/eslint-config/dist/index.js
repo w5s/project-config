@@ -36,7 +36,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 
 // ../../node_modules/@eslint/js/package.json
 var require_package = __commonJS({
-  "../../node_modules/@eslint/js/package.json"(exports, module) {
+  "../../node_modules/@eslint/js/package.json"(exports$1, module) {
     module.exports = {
       name: "@eslint/js",
       version: "9.39.2",
@@ -78,7 +78,7 @@ var require_package = __commonJS({
 
 // ../../node_modules/@eslint/js/src/configs/eslint-all.js
 var require_eslint_all = __commonJS({
-  "../../node_modules/@eslint/js/src/configs/eslint-all.js"(exports, module) {
+  "../../node_modules/@eslint/js/src/configs/eslint-all.js"(exports$1, module) {
     module.exports = Object.freeze({
       rules: Object.freeze({
         "accessor-pairs": "error",
@@ -287,7 +287,7 @@ var require_eslint_all = __commonJS({
 
 // ../../node_modules/@eslint/js/src/configs/eslint-recommended.js
 var require_eslint_recommended = __commonJS({
-  "../../node_modules/@eslint/js/src/configs/eslint-recommended.js"(exports, module) {
+  "../../node_modules/@eslint/js/src/configs/eslint-recommended.js"(exports$1, module) {
     module.exports = Object.freeze({
       rules: Object.freeze({
         "constructor-super": "error",
@@ -358,7 +358,7 @@ var require_eslint_recommended = __commonJS({
 
 // ../../node_modules/@eslint/js/src/index.js
 var require_src = __commonJS({
-  "../../node_modules/@eslint/js/src/index.js"(exports, module) {
+  "../../node_modules/@eslint/js/src/index.js"(exports$1, module) {
     var { name, version } = require_package();
     module.exports = {
       meta: {

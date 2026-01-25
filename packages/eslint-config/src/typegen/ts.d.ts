@@ -453,6 +453,11 @@ export interface RuleOptions {
    */
   'ts/no-unused-expressions'?: Linter.RuleEntry<TsNoUnusedExpressions>
   /**
+   * Disallow unused private class members
+   * @see https://typescript-eslint.io/rules/no-unused-private-class-members
+   */
+  'ts/no-unused-private-class-members'?: Linter.RuleEntry<[]>
+  /**
    * Disallow unused variables
    * @see https://typescript-eslint.io/rules/no-unused-vars
    */
@@ -467,6 +472,11 @@ export interface RuleOptions {
    * @see https://typescript-eslint.io/rules/no-useless-constructor
    */
   'ts/no-useless-constructor'?: Linter.RuleEntry<[]>
+  /**
+   * Disallow default values that will never be used
+   * @see https://typescript-eslint.io/rules/no-useless-default-assignment
+   */
+  'ts/no-useless-default-assignment'?: Linter.RuleEntry<[]>
   /**
    * Disallow empty exports that don't change anything in a module file
    * @see https://typescript-eslint.io/rules/no-useless-empty-export
@@ -640,6 +650,11 @@ export interface RuleOptions {
    * @see https://typescript-eslint.io/rules/strict-boolean-expressions
    */
   'ts/strict-boolean-expressions'?: Linter.RuleEntry<TsStrictBooleanExpressions>
+  /**
+   * Disallow passing a value-returning function in a position accepting a void function
+   * @see https://typescript-eslint.io/rules/strict-void-return
+   */
+  'ts/strict-void-return'?: Linter.RuleEntry<TsStrictVoidReturn>
   /**
    * Require switch-case statements to be exhaustive
    * @see https://typescript-eslint.io/rules/switch-exhaustiveness-check
@@ -1534,6 +1549,11 @@ type TsNoUnusedVars = []|[(("all" | "local") | {
   
   destructuredArrayIgnorePattern?: string
   
+  enableAutofixRemoval?: {
+    
+    imports?: boolean
+  }
+  
   ignoreClassWithStaticInitBlock?: boolean
   
   ignoreRestSiblings?: boolean
@@ -1817,6 +1837,11 @@ type TsStrictBooleanExpressions = []|[{
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean
   
   allowString?: boolean
+}]
+// ----- ts/strict-void-return -----
+type TsStrictVoidReturn = []|[{
+  
+  allowReturnAny?: boolean
 }]
 // ----- ts/switch-exhaustiveness-check -----
 type TsSwitchExhaustivenessCheck = []|[{
