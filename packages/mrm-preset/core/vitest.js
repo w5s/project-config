@@ -60,7 +60,7 @@ function vitest({ state }) {
       viteConfig.delete();
     } else if (!viteConfig.exists()) {
       viteConfig.save(
-        `/// <reference types="vitest" />
+        `/// <reference types="vitest/config" />
 import { defineConfig } from 'vite';
 
 export default defineConfig({
