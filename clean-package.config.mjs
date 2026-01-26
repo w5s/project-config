@@ -1,9 +1,9 @@
-const { readFileSync } = require('node:fs');
-const process = require('node:process');
+import { readFileSync } from 'node:fs';
+import { cwd } from 'node:process';
 
-const { scripts = {} } = JSON.parse(readFileSync(`${process.cwd()}/package.json`, 'utf8'));
+const { scripts = {} } = JSON.parse(readFileSync(`${cwd()}/package.json`, 'utf8'));
 
-const cleanPackageConfig = {
+export default {
   extends: ['clean-package/common'],
   indent: 2,
   remove: [
@@ -16,5 +16,3 @@ const cleanPackageConfig = {
       .map((_) => `scripts.${_}`),
   ],
 };
-
-module.exports = cleanPackageConfig;
