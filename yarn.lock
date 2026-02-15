@@ -2392,8 +2392,8 @@ __metadata:
   linkType: hard
 
 "@vitest/eslint-plugin@npm:^1.0.0":
-  version: 1.6.7
-  resolution: "@vitest/eslint-plugin@npm:1.6.7"
+  version: 1.6.9
+  resolution: "@vitest/eslint-plugin@npm:1.6.9"
   dependencies:
     "@typescript-eslint/scope-manager": "npm:^8.55.0"
     "@typescript-eslint/utils": "npm:^8.55.0"
@@ -2406,7 +2406,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 10c0/8dcfa507da5cf2a63826950770ff83426047560e713dedad25c92a6afcf32564993d2053d143d4accff7b812ac5f3d5159d6aeb0caf12248001e5e11e30fd83b
+  checksum: 10c0/37325e6e50c812fba52477683a8c46fe5a98d2ef441d108736309236889850af466e56af0ec625af0df036cb841005cc5c916266319453c316e661b3ce539a10
   languageName: node
   linkType: hard
 
@@ -3323,9 +3323,9 @@ __metadata:
   linkType: hard
 
 "caniuse-lite@npm:^1.0.30001759":
-  version: 1.0.30001769
-  resolution: "caniuse-lite@npm:1.0.30001769"
-  checksum: 10c0/161b8c30ab967371807d45d361f0d5bc06e38ef2dbf811493d70cd97c21e1522f5b91fd944c419a00047ee09c931ca64627f125a9ffa7a17a9fdff8dad9765b0
+  version: 1.0.30001770
+  resolution: "caniuse-lite@npm:1.0.30001770"
+  checksum: 10c0/02d15a8b723af65318cb4d888a52bb090076898da7b0de99e8676d537f8d1d2ae4797e81518e1e30cbfe84c33b048c322e8bfafc5b23cfee8defb0d2bf271149
   languageName: node
   linkType: hard
 
@@ -4919,8 +4919,8 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-jsdoc@npm:^62.0.0":
-  version: 62.5.4
-  resolution: "eslint-plugin-jsdoc@npm:62.5.4"
+  version: 62.5.5
+  resolution: "eslint-plugin-jsdoc@npm:62.5.5"
   dependencies:
     "@es-joy/jsdoccomment": "npm:~0.84.0"
     "@es-joy/resolve.exports": "npm:1.2.0"
@@ -4938,7 +4938,7 @@ __metadata:
     to-valid-identifier: "npm:^1.0.0"
   peerDependencies:
     eslint: ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/576a3dd2279c09ec579cbb944afed78029d5525a18dbef37097d510a0241c3792a597c440e80a299240772d49a6d0624bc90ffec32a72fca1e806e0554ac2119
+  checksum: 10c0/1b7ebfe401031d28c1055898d1321deb8aff85c130d8c9f3975d2359627d7ba09202c47fbd4c43c34817c4a378e507f4cc7b8f80200fdb68e4800324eb1e17c3
   languageName: node
   linkType: hard
 
@@ -4962,8 +4962,8 @@ __metadata:
   linkType: hard
 
 "eslint-plugin-n@npm:^17.0.0":
-  version: 17.23.2
-  resolution: "eslint-plugin-n@npm:17.23.2"
+  version: 17.24.0
+  resolution: "eslint-plugin-n@npm:17.24.0"
   dependencies:
     "@eslint-community/eslint-utils": "npm:^4.5.0"
     enhanced-resolve: "npm:^5.17.1"
@@ -4976,7 +4976,7 @@ __metadata:
     ts-declaration-location: "npm:^1.0.6"
   peerDependencies:
     eslint: ">=8.23.0"
-  checksum: 10c0/3808dad65628bc2dd74ebb9e7a255398f87ca348b4970307898b422bfe2302764d518f6a70d891b1fc45b08ea99ccf5ea4b3cd2d1f21f872bb60a4cdbfb22b68
+  checksum: 10c0/65b6c9ccd4d69296df9bdc0517bdbbc71e5f1ec065e80623c49148ff7813829bd3568154a016fefc06749476f3fdadc0e1afa61a15695893a3ca3da161c9fe86
   languageName: node
   linkType: hard
 
@@ -6020,9 +6020,9 @@ __metadata:
   linkType: hard
 
 "graphmatch@npm:^1.1.0":
-  version: 1.1.0
-  resolution: "graphmatch@npm:1.1.0"
-  checksum: 10c0/4536c1fae054d205b3ae8038cd9dac08c3251443a6eca65cf8221dada78b9f370a1ac6476502483d9149e0dbb01141ee5c41d7b6604b15e0c76c123a78e5b294
+  version: 1.1.1
+  resolution: "graphmatch@npm:1.1.1"
+  checksum: 10c0/98570352e8e62f5e18e397fb9a1ca90a31f18c46240529d5f9ee0020efa3642857337643ae731bd2667957821956dc315badc98243db284d7e5c76aedcf49b4d
   languageName: node
   linkType: hard
 
