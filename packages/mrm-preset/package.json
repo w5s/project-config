@@ -51,7 +51,7 @@
     "mrm": "4.1.22",
     "mrm-preset-default": "4.1.11"
   },
-  "clean-package": "../../clean-package.config.cjs",
+  "clean-package": "../../clean-package.config.mjs",
   "engines": {
     "node": ">=20.0.0"
   },

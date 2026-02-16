@@ -75,7 +75,7 @@
       "optional": true
     }
   },
-  "clean-package": "../../clean-package.config.cjs",
+  "clean-package": "../../clean-package.config.mjs",
   "engines": {
     "node": ">=20.0.0"
   },
