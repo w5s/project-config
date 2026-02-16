@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.5](github.com/w5s/project-config/compare/@w5s/conventional-changelog@3.0.4...@w5s/conventional-changelog@3.0.5) (2026-02-16)
+
+### 🐛 Bug Fixes
+
+- Improve compatibility between typescript and js ([300819f](github.com/w5s/project-config/commits/300819f))
+
+**Note:** Version bump only for package @w5s/conventional-changelog
+
 ## [3.0.4](github.com/w5s/project-config/compare/@w5s/conventional-changelog@3.0.3...@w5s/conventional-changelog@3.0.4) (2026-02-16)
 
 **Note:** Version bump only for package @w5s/conventional-changelog

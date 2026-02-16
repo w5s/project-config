@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.1](github.com/w5s/project-config/compare/@w5s/tsconfig@3.1.0...@w5s/tsconfig@3.1.1) (2026-02-16)
+
+**Note:** Version bump only for package @w5s/tsconfig
+
 # [3.1.0](github.com/w5s/project-config/compare/@w5s/tsconfig@3.0.1...@w5s/tsconfig@3.1.0) (2025-11-23)
 
 ### ✨ Features

@@ -1,6 +1,6 @@
 {
   "name": "@w5s/commitlint-config",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "description": "Commitlint configuration presets",
   "keywords": [
     "commitlint",
@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@commitlint/types": "^20.0.0",
-    "@w5s/conventional-changelog": "^3.0.4"
+    "@w5s/conventional-changelog": "^3.0.5"
   },
   "devDependencies": {
     "@commitlint/lint": "20.4.1",
