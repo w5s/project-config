@@ -1,3 +1,4 @@
+/* eslint-disable ts/naming-convention */
 import { RuleConfigSeverity, type QualifiedRules, type LintOptions } from '@commitlint/types';
 import conventionalChangelogPreset from '@w5s/conventional-changelog';
 import { gitmojiPlugin } from './plugin.js';

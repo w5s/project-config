@@ -18,6 +18,7 @@ const generateCommit = (commit: Partial<Commit>): Commit => ({
 });
 const defaultContext = { commit: '', date: '', issue: '' };
 
+// eslint-disable-next-line ts/consistent-type-assertions
 const defaultOptions = {} as FinalOptions<Commit>;
 
 describe('createTransform', () => {

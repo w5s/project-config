@@ -2,7 +2,7 @@
 import { ESLintConfig, interopDefault, Project } from '@w5s/dev';
 import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/ts.js';
-import { createRules } from './createRules.js';
+import { tsRules } from '../rules/tsRules.js';
 
 const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['typescript', 'typescriptreact']))}`];
 
@@ -45,48 +45,26 @@ export async function ts(options: ts.Options = {}) {
       },
       name: 'w5s/ts/rules',
       rules: {
-        ...ESLintConfig.renameRules(
-          tsRecommendedRules,
-          { '@typescript-eslint': 'ts' },
-        ),
-        ...ESLintConfig.renameRules(
-          tsStrictRules,
-          { '@typescript-eslint': 'ts' },
-        ),
-        'ts/ban-ts-comment': [
-          'warn',
-          {
-            'minimumDescriptionLength': 3,
-            'ts-check': false,
-            'ts-expect-error': 'allow-with-description',
-            'ts-ignore': 'allow-with-description',
-            'ts-nocheck': true,
-          },
-        ],
-        'ts/no-empty-object-type': 'off',
-        'ts/no-explicit-any': 'off', // if any is explicit then it's wanted
-        'ts/no-namespace': 'off', // We don't agree with community, namespaces are great and not deprecated
-        ...createRules('ts/'),
-        ...(stylisticEnabled
-          ? {}
-          : {}),
+        ...ESLintConfig.renameRules(tsRecommendedRules, { '@typescript-eslint': 'ts' }),
+        ...ESLintConfig.renameRules(tsStrictRules, { '@typescript-eslint': 'ts' }),
+        ...tsRules(),
+        ...(stylisticEnabled ? {} : {}),
         ...rules,
       },
     },
     ...(typeChecked
-      ? [{
-          files: defaultFiles,
-          // ignores: ignoresTypeAware,
-          name: 'w5s/ts/rules-type-checked',
-          rules: {
-            ...ESLintConfig.renameRules(
-              tsTypeCheckedRules,
-              { '@typescript-eslint': 'ts' },
-            ),
+      ? ([
+          {
+            files: defaultFiles,
+            // ignores: ignoresTypeAware,
+            name: 'w5s/ts/rules-type-checked',
+            rules: {
+              ...ESLintConfig.renameRules(tsTypeCheckedRules, { '@typescript-eslint': 'ts' }),
+            },
           },
-        }] as const
+        ] as const)
       : []),
-  ] as ([Config, Config] | [Config, Config, Config]) satisfies Array<Config>;
+  ] as [Config, Config] | [Config, Config, Config] satisfies Array<Config>;
 }
 export namespace ts {
   export type Rules = RuleOptions;

@@ -14,9 +14,15 @@ export interface DefineConfigOptions extends ignores.Options {
 }
 
 export async function defineConfig(options: DefineConfigOptions = {}) {
-  const stylisticOptions = typeof options.stylistic === 'boolean' ? { enabled: options.stylistic } : { enabled: true, ...options.stylistic };
-  const withDefaultStylistic = <T>(options: T) => ({ stylistic: stylisticOptions, ...options });
-  const toOption = <T extends {}>(optionsOrBoolean: T | boolean | undefined) => withDefaultStylistic((typeof optionsOrBoolean === 'boolean' ? { enabled: optionsOrBoolean } : ({ enabled: true, ...optionsOrBoolean })) as T & { enabled: boolean });
+  const stylisticOptions =
+    typeof options.stylistic === 'boolean' ? { enabled: options.stylistic } : { enabled: true, ...options.stylistic };
+  const withDefaultStylistic = <T>(_options: T) => ({ stylistic: stylisticOptions, ..._options });
+  const toOption = <T extends {}>(optionsOrBoolean: T | boolean | undefined) =>
+    withDefaultStylistic(
+      (typeof optionsOrBoolean === 'boolean'
+        ? { enabled: optionsOrBoolean }
+        : { enabled: true, ...optionsOrBoolean }) as T & { enabled: boolean },
+    );
   const esOptions = toOption(options.es);
   const importOptions = toOption(options.import);
   const jsdocOptions = toOption(options.jsdoc);

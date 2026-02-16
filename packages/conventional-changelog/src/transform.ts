@@ -102,6 +102,7 @@ export function createTransform(config: TransformConfig): CommitTransformFunctio
     // Remove references that already appear in the subject
     const references = commit.references.filter((reference) => !issues.has(reference.issue));
 
+    // eslint-disable-next-line ts/consistent-type-assertions
     return {
       ...commit,
       type,
