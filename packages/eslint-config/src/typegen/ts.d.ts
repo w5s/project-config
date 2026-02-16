@@ -476,7 +476,7 @@ export interface RuleOptions {
    * Disallow default values that will never be used
    * @see https://typescript-eslint.io/rules/no-useless-default-assignment
    */
-  'ts/no-useless-default-assignment'?: Linter.RuleEntry<[]>
+  'ts/no-useless-default-assignment'?: Linter.RuleEntry<TsNoUselessDefaultAssignment>
   /**
    * Disallow empty exports that don't change anything in a module file
    * @see https://typescript-eslint.io/rules/no-useless-empty-export
@@ -1583,6 +1583,11 @@ type TsNoUseBeforeDefine = []|[("nofunc" | {
   
   variables?: boolean
 })]
+// ----- ts/no-useless-default-assignment -----
+type TsNoUselessDefaultAssignment = []|[{
+  
+  allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean
+}]
 // ----- ts/no-var-requires -----
 type TsNoVarRequires = []|[{
   

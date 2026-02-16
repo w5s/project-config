@@ -2437,6 +2437,11 @@ interface RuleOptions$5 {
    */
   'node/prefer-global/console'?: Linter.RuleEntry<NodePreferGlobalConsole>
   /**
+   * enforce either `crypto` or `require("crypto").webcrypto`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/crypto.md
+   */
+  'node/prefer-global/crypto'?: Linter.RuleEntry<NodePreferGlobalCrypto>
+  /**
    * enforce either `process` or `require("process")`
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/process.md
    */
@@ -2451,6 +2456,11 @@ interface RuleOptions$5 {
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/text-encoder.md
    */
   'node/prefer-global/text-encoder'?: Linter.RuleEntry<NodePreferGlobalTextEncoder>
+  /**
+   * enforce either global timer functions or `require("timers")`
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/timers.md
+   */
+  'node/prefer-global/timers'?: Linter.RuleEntry<NodePreferGlobalTimers>
   /**
    * enforce either `URL` or `require("url").URL`
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-global/url.md
@@ -2759,12 +2769,16 @@ type NodeNoUnsupportedFeaturesNodeBuiltins = []|[{
 type NodePreferGlobalBuffer = []|[("always" | "never")]
 // ----- node/prefer-global/console -----
 type NodePreferGlobalConsole = []|[("always" | "never")]
+// ----- node/prefer-global/crypto -----
+type NodePreferGlobalCrypto = []|[("always" | "never")]
 // ----- node/prefer-global/process -----
 type NodePreferGlobalProcess = []|[("always" | "never")]
 // ----- node/prefer-global/text-decoder -----
 type NodePreferGlobalTextDecoder = []|[("always" | "never")]
 // ----- node/prefer-global/text-encoder -----
 type NodePreferGlobalTextEncoder = []|[("always" | "never")]
+// ----- node/prefer-global/timers -----
+type NodePreferGlobalTimers = []|[("always" | "never")]
 // ----- node/prefer-global/url -----
 type NodePreferGlobalUrl = []|[("always" | "never")]
 // ----- node/prefer-global/url-search-params -----
@@ -2886,6 +2900,11 @@ interface RuleOptions$4 {
    * @see https://eslint.style/rules/eol-last
    */
   'style/eol-last'?: Linter.RuleEntry<StyleEolLast>
+  /**
+   * Enforce consistent line break styles for JSX props
+   * @see https://eslint.style/rules/jsx-props-style
+   */
+  'style/exp-jsx-props-style'?: Linter.RuleEntry<StyleExpJsxPropsStyle>
   /**
    * Enforce consistent spacing and line break styles inside brackets.
    * @see https://eslint.style/rules/list-style
@@ -3483,15 +3502,25 @@ type StyleCurlyNewline = []|[(("always" | "never") | {
 type StyleDotLocation = []|[("object" | "property")]
 // ----- style/eol-last -----
 type StyleEolLast = []|[("always" | "never" | "unix" | "windows")]
+// ----- style/exp-jsx-props-style -----
+type StyleExpJsxPropsStyle = []|[{
+  singleLine?: {
+    maxItems?: number
+  }
+  multiLine?: {
+    minItems?: number
+    maxItemsPerLine?: number
+  }
+}]
 // ----- style/exp-list-style -----
 type StyleExpListStyle = []|[{
   singleLine?: _StyleExpListStyle_SingleLineConfig
   multiLine?: _StyleExpListStyle_MultiLineConfig
   overrides?: {
+    "()"?: _StyleExpListStyle_BaseConfig
     "[]"?: _StyleExpListStyle_BaseConfig
     "{}"?: _StyleExpListStyle_BaseConfig
     "<>"?: _StyleExpListStyle_BaseConfig
-    "()"?: _StyleExpListStyle_BaseConfig
     ArrayExpression?: _StyleExpListStyle_BaseConfig
     ArrayPattern?: _StyleExpListStyle_BaseConfig
     ArrowFunctionExpression?: _StyleExpListStyle_BaseConfig
@@ -3499,21 +3528,22 @@ type StyleExpListStyle = []|[{
     ExportNamedDeclaration?: _StyleExpListStyle_BaseConfig
     FunctionDeclaration?: _StyleExpListStyle_BaseConfig
     FunctionExpression?: _StyleExpListStyle_BaseConfig
-    ImportDeclaration?: _StyleExpListStyle_BaseConfig
+    IfStatement?: _StyleExpListStyle_BaseConfig
     ImportAttributes?: _StyleExpListStyle_BaseConfig
+    ImportDeclaration?: _StyleExpListStyle_BaseConfig
+    JSONArrayExpression?: _StyleExpListStyle_BaseConfig
+    JSONObjectExpression?: _StyleExpListStyle_BaseConfig
     NewExpression?: _StyleExpListStyle_BaseConfig
     ObjectExpression?: _StyleExpListStyle_BaseConfig
     ObjectPattern?: _StyleExpListStyle_BaseConfig
     TSDeclareFunction?: _StyleExpListStyle_BaseConfig
+    TSEnumBody?: _StyleExpListStyle_BaseConfig
     TSFunctionType?: _StyleExpListStyle_BaseConfig
     TSInterfaceBody?: _StyleExpListStyle_BaseConfig
-    TSEnumBody?: _StyleExpListStyle_BaseConfig
     TSTupleType?: _StyleExpListStyle_BaseConfig
     TSTypeLiteral?: _StyleExpListStyle_BaseConfig
     TSTypeParameterDeclaration?: _StyleExpListStyle_BaseConfig
     TSTypeParameterInstantiation?: _StyleExpListStyle_BaseConfig
-    JSONArrayExpression?: _StyleExpListStyle_BaseConfig
-    JSONObjectExpression?: _StyleExpListStyle_BaseConfig
   }
 }]
 interface _StyleExpListStyle_SingleLineConfig {
@@ -5575,7 +5605,7 @@ interface RuleOptions$2 {
    * Disallow default values that will never be used
    * @see https://typescript-eslint.io/rules/no-useless-default-assignment
    */
-  'ts/no-useless-default-assignment'?: Linter.RuleEntry<[]>
+  'ts/no-useless-default-assignment'?: Linter.RuleEntry<TsNoUselessDefaultAssignment>
   /**
    * Disallow empty exports that don't change anything in a module file
    * @see https://typescript-eslint.io/rules/no-useless-empty-export
@@ -6682,6 +6712,11 @@ type TsNoUseBeforeDefine = []|[("nofunc" | {
   
   variables?: boolean
 })]
+// ----- ts/no-useless-default-assignment -----
+type TsNoUselessDefaultAssignment = []|[{
+  
+  allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean
+}]
 // ----- ts/no-var-requires -----
 type TsNoVarRequires = []|[{
   

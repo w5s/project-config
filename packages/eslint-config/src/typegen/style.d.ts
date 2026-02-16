@@ -80,6 +80,11 @@ export interface RuleOptions {
    */
   'style/eol-last'?: Linter.RuleEntry<StyleEolLast>
   /**
+   * Enforce consistent line break styles for JSX props
+   * @see https://eslint.style/rules/jsx-props-style
+   */
+  'style/exp-jsx-props-style'?: Linter.RuleEntry<StyleExpJsxPropsStyle>
+  /**
    * Enforce consistent spacing and line break styles inside brackets.
    * @see https://eslint.style/rules/list-style
    */
@@ -676,15 +681,25 @@ type StyleCurlyNewline = []|[(("always" | "never") | {
 type StyleDotLocation = []|[("object" | "property")]
 // ----- style/eol-last -----
 type StyleEolLast = []|[("always" | "never" | "unix" | "windows")]
+// ----- style/exp-jsx-props-style -----
+type StyleExpJsxPropsStyle = []|[{
+  singleLine?: {
+    maxItems?: number
+  }
+  multiLine?: {
+    minItems?: number
+    maxItemsPerLine?: number
+  }
+}]
 // ----- style/exp-list-style -----
 type StyleExpListStyle = []|[{
   singleLine?: _StyleExpListStyle_SingleLineConfig
   multiLine?: _StyleExpListStyle_MultiLineConfig
   overrides?: {
+    "()"?: _StyleExpListStyle_BaseConfig
     "[]"?: _StyleExpListStyle_BaseConfig
     "{}"?: _StyleExpListStyle_BaseConfig
     "<>"?: _StyleExpListStyle_BaseConfig
-    "()"?: _StyleExpListStyle_BaseConfig
     ArrayExpression?: _StyleExpListStyle_BaseConfig
     ArrayPattern?: _StyleExpListStyle_BaseConfig
     ArrowFunctionExpression?: _StyleExpListStyle_BaseConfig
@@ -692,21 +707,22 @@ type StyleExpListStyle = []|[{
     ExportNamedDeclaration?: _StyleExpListStyle_BaseConfig
     FunctionDeclaration?: _StyleExpListStyle_BaseConfig
     FunctionExpression?: _StyleExpListStyle_BaseConfig
-    ImportDeclaration?: _StyleExpListStyle_BaseConfig
+    IfStatement?: _StyleExpListStyle_BaseConfig
     ImportAttributes?: _StyleExpListStyle_BaseConfig
+    ImportDeclaration?: _StyleExpListStyle_BaseConfig
+    JSONArrayExpression?: _StyleExpListStyle_BaseConfig
+    JSONObjectExpression?: _StyleExpListStyle_BaseConfig
     NewExpression?: _StyleExpListStyle_BaseConfig
     ObjectExpression?: _StyleExpListStyle_BaseConfig
     ObjectPattern?: _StyleExpListStyle_BaseConfig
     TSDeclareFunction?: _StyleExpListStyle_BaseConfig
+    TSEnumBody?: _StyleExpListStyle_BaseConfig
     TSFunctionType?: _StyleExpListStyle_BaseConfig
     TSInterfaceBody?: _StyleExpListStyle_BaseConfig
-    TSEnumBody?: _StyleExpListStyle_BaseConfig
     TSTupleType?: _StyleExpListStyle_BaseConfig
     TSTypeLiteral?: _StyleExpListStyle_BaseConfig
     TSTypeParameterDeclaration?: _StyleExpListStyle_BaseConfig
     TSTypeParameterInstantiation?: _StyleExpListStyle_BaseConfig
-    JSONArrayExpression?: _StyleExpListStyle_BaseConfig
-    JSONObjectExpression?: _StyleExpListStyle_BaseConfig
   }
 }]
 interface _StyleExpListStyle_SingleLineConfig {
