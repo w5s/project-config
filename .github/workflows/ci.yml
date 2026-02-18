@@ -18,5 +18,4 @@ jobs:
           node-version-file: .tool-versions
           cache: yarn
       - run: make build
-      # TODO: migrate this code to make
-      - run: yarn validate
+      - run: make validate
