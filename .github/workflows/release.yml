@@ -1,0 +1,67 @@
+# Manual release: validate, then version + publish to GitHub Packages (npm).
+# Trigger via Actions → Release → "Run workflow". Choose "alpha" (prerelease) or "stable" (graduate).
+# Requires GITHUB_TOKEN (default) with contents + packages write; optional TURBO_TOKEN/TURBO_TEAM for remote cache.
+
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: "Release type"
+        required: true
+        default: "alpha"
+        type: choice
+        options:
+          - alpha
+          - beta
+          - rc
+          - stable
+
+permissions:
+  contents: write # push version commit and tags
+  packages: write # publish to GitHub Packages
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: Validate and publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    if: github.event.head_commit.author.name != 'machine-user' # prevent loop
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0 # full history for Lerna conventional-commits versioning
+          token: ${{ secrets.GITHUB_PUBLISH_PAT }}
+
+      - name: ⚙️ Setup Turbo cache
+        uses: rharkor/caching-for-turbo@a1c4079258ae08389be75b57d4d7a70f23c1c66d # v1.8
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        with:
+          node-version-file: .tool-versions
+          cache: "yarn"
+
+      - name: 🔍 Validate
+        run: make validate
+
+      - name: 🔧 Configure Git (for Lerna version commit)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+
+      - name: 🔧 Configure npm for GitHub Packages
+        run: npm config set "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" --location=user
+
+      - name: 🚀 Publish
+        run: |
+          yarn release "${{ github.event.inputs.release_type || 'alpha' }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_PUBLISH_PAT }}
