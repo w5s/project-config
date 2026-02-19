@@ -62,7 +62,7 @@
     "@w5s/conventional-changelog": "^3.0.5"
   },
   "devDependencies": {
-    "@commitlint/lint": "20.4.1",
+    "@commitlint/lint": "20.4.2",
     "@w5s/tsup-config": "workspace:*",
     "vite": "7.3.1",
     "vitest": "4.0.18"
