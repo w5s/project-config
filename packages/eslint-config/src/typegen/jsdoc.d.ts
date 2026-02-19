@@ -1082,6 +1082,8 @@ type JsdocTagLines = []|[("always" | "any" | "never")]|[("always" | "any" | "nev
   
   startLines?: (number | null)
   
+  startLinesWithNoTags?: number
+  
   tags?: {
     [k: string]: {
       count?: number
