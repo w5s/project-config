@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
     inputs:
       release_type:
-        description: "Release type"
+        description: 'Release type'
         required: true
-        default: "alpha"
+        default: 'alpha'
         type: choice
         options:
           - alpha
@@ -46,7 +46,7 @@ jobs:
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
           node-version-file: .tool-versions
-          cache: "yarn"
+          cache: 'yarn'
 
       - name: 🔍 Validate
         run: make validate
