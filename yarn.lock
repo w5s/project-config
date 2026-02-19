@@ -2659,7 +2659,7 @@ __metadata:
     eslint-plugin-n: "npm:^17.0.0"
     eslint-plugin-unicorn: "npm:^62.0.0"
     eslint-plugin-yml: "npm:^2.0.0"
-    eslint-typegen: "npm:2.3.0"
+    eslint-typegen: "npm:2.3.1"
     find-up: "npm:^8.0.0"
     globals: "npm:^17.0.0"
     jsonc-eslint-parser: "npm:^2.0.0"
@@ -5119,15 +5119,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-typegen@npm:2.3.0":
-  version: 2.3.0
-  resolution: "eslint-typegen@npm:2.3.0"
+"eslint-typegen@npm:2.3.1":
+  version: 2.3.1
+  resolution: "eslint-typegen@npm:2.3.1"
   dependencies:
     json-schema-to-typescript-lite: "npm:^15.0.0"
     ohash: "npm:^2.0.11"
   peerDependencies:
-    eslint: ^9.0.0
-  checksum: 10c0/78625ad04e866452555592a8912ce185a5c489da5be718dd17b056880d22d5110eed3afa720c3b9d8cc4ce46af70c1a6cc7336868e3de79804a4d7f22f997f2f
+    eslint: ^9.0.0 || ^10.0.0
+  checksum: 10c0/54414419c30a6c86f26ff06f04036278ed7c50f188b1d29289ab8165cd32bcdf1ce15bd73dc1152f9cb20e6134baed46f5f6d87a2cd4e06d85696d66a4fb3d83
   languageName: node
   linkType: hard
 
