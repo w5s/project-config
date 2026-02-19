@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { dep } from './dep.js';
 
 export function test(): 'zero' | 'one' | 'other' {

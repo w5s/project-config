@@ -1,7 +1,7 @@
 /**
  * This is JSDoc comment.
  *
- * @param {string} param - The parameter to be documented.
+ * @param {string} param The parameter to be documented.
  */
 export function dep(param) {
   return param;
