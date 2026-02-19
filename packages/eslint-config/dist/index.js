@@ -1239,9 +1239,7 @@ var StylisticConfig = {
 
 // src/config/jsdoc.ts
 async function jsdoc(options = {}) {
-  const [jsdocPlugin] = await Promise.all([
-    interopDefault(import('eslint-plugin-jsdoc'))
-  ]);
+  const [jsdocPlugin] = await Promise.all([interopDefault(import('eslint-plugin-jsdoc'))]);
   const { rules = {}, stylistic: stylistic2 = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
   return [
@@ -1254,21 +1252,22 @@ async function jsdoc(options = {}) {
     {
       name: "w5s/jsdoc/rules",
       rules: {
-        ...jsdocPlugin.configs["flat/recommended"].rules,
+        ...jsdocPlugin.configs["flat/recommended-typescript-flavor"].rules,
         "jsdoc/no-undefined-types": "off",
         // https://github.com/gajus/eslint-plugin-jsdoc/issues/839
         "jsdoc/require-hyphen-before-param-description": ["warn", "always"],
         "jsdoc/require-jsdoc": "off",
         "jsdoc/require-param-description": "off",
+        "jsdoc/require-param-type": "off",
         "jsdoc/require-returns": "off",
-        "jsdoc/tag-lines": ["warn", "any", { startLines: 1 }],
         "jsdoc/valid-types": "off",
         // FIXME: reports lots of false positive
         // 'strict': ['error', 'safe'],
         ...stylisticEnabled ? {
-          // ...(jsdocPlugin.configs['flat/stylistic'].rules),
+          ...jsdocPlugin.configs["flat/stylistic-typescript"].rules,
           "jsdoc/check-alignment": "warn",
-          "jsdoc/multiline-blocks": "warn"
+          "jsdoc/multiline-blocks": "warn",
+          "jsdoc/tag-lines": ["warn", "any", { startLines: 1 }]
         } : {},
         ...rules
       },
