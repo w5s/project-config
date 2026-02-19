@@ -1,5 +1,6 @@
 const { json } = require('mrm-core');
 const npm = require('./npm.js');
+
 /**
  * @typedef {{
  *   version: '0.2',
@@ -12,6 +13,7 @@ const npm = require('./npm.js');
  *   import?: string[]
  * }} CSpellConfig
  */
+
 /**
  * @param {{
  *   state: 'present'|'absent'

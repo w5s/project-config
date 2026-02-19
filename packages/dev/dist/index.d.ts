@@ -58,9 +58,8 @@ declare namespace ESLintConfig {
      * `{ 'old-prefix/rule-name': 'error' }`, this function will return
      * `{ 'new-prefix/rule-name': 'error' }`.
      *
-     * @param rules - The object containing the rules to rename.
-     * @param map - The object containing the rename map.
-     * @returns The object with the renamed rules.
+     * @param rules The object containing the rules to rename.
+     * @param map The object containing the rename map.
      */
     function renameRules(rules: Record<string, any>, map: Record<string, string>): Record<string, any>;
 }
@@ -122,7 +121,6 @@ interface FileOptions {
     /**
      * File content mapping function
      *
-     * @param content
      */
     readonly update?: ((content: string) => string | undefined) | undefined;
     /**
@@ -179,7 +177,7 @@ declare function fileSync(options: FileOptions): void;
  * ```
  *
  * @template T - The type of the module or promise-like object.
- * @param m - The module or promise-like object to resolve.
+ * @param m The module or promise-like object to resolve.
  * @returns A promise resolving to the default export if present, otherwise the module itself.
  */
 declare function interopDefault<T>(m: PromiseLike<T>): Promise<T extends {

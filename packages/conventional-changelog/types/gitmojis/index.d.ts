@@ -17,6 +17,7 @@ declare module 'gitmojis' {
     readonly description: string;
     readonly name: string;
     readonly semver: null | 'patch' | 'minor' | 'major';
+
     /**
      * Gitmoji string code formatted as `:my_emoji:`
      *

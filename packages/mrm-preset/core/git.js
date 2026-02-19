@@ -1,6 +1,7 @@
 const { file, ini } = require('mrm-core');
 const { blockSync } = require('@w5s/dev');
 const templateMap = require('./git.ignore.js');
+
 /**
  *
  */

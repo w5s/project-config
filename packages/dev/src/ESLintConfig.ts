@@ -62,9 +62,8 @@ export namespace ESLintConfig {
    * `{ 'old-prefix/rule-name': 'error' }`, this function will return
    * `{ 'new-prefix/rule-name': 'error' }`.
    *
-   * @param rules - The object containing the rules to rename.
-   * @param map - The object containing the rename map.
-   * @returns The object with the renamed rules.
+   * @param rules The object containing the rules to rename.
+   * @param map The object containing the rename map.
    */
   export function renameRules(rules: Record<string, any>, map: Record<string, string>): Record<string, any> {
     return Object.fromEntries(

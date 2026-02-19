@@ -7,16 +7,19 @@ export interface JSONOption<V = JSONValue> {
    * File path
    */
   readonly path: string;
+
   /**
    * File target state
    */
   readonly state: 'present' | 'absent';
+
   /**
    * File content mapping function
    *
    * @param content
    */
   readonly update?: ((content: V | undefined) => V | undefined) | undefined;
+
   /**
    * File encoding
    */

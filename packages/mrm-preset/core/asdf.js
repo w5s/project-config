@@ -3,6 +3,7 @@ const { file } = require('mrm-core');
 /**
  * @typedef {{ [tool: string]: string }} ASDFConfig
  */
+
 /**
  * @param {{
  *   state: 'present'|'absent',

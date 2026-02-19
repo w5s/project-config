@@ -25,7 +25,7 @@ export const createWriterOpts = async (): Promise<WriterOptions> => {
     }),
     groupBy: 'type',
     commitGroupsSort: 'title',
-    // @ts-ignore
+    // @ts-ignore FIXME: unknown error
     commitsSort: ['scope', 'subject'],
     noteGroupsSort: 'title',
     mainTemplate,

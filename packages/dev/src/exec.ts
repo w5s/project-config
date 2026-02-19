@@ -5,6 +5,7 @@ export interface ExecOptions {
    * Current working directory
    */
   cwd?: string;
+
   /**
    * Stdio options
    */
@@ -15,8 +16,8 @@ export interface ExecOptions {
  * Runs a command in a shell and returns a promise that resolves with an object
  * containing the stdout and stderr strings.
  *
- * @param command - The command to run
- * @param args - The arguments to pass to the command
+ * @param command The command to run
+ * @param args The arguments to pass to the command
  * @param options
  * @returns A promise that resolves with an object like `{ stdout: string, stderr: string }`
  */
@@ -35,8 +36,8 @@ export function execSync(
  * Runs a command in a shell and returns a promise that resolves with an object
  * containing the stdout and stderr strings.
  *
- * @param command - The command to run
- * @param args - The arguments to pass to the command
+ * @param command The command to run
+ * @param args The arguments to pass to the command
  * @param options
  * @returns A promise that resolves with an object containing the stdout and stderr strings
  */

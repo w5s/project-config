@@ -1,6 +1,6 @@
 import fs from 'node:fs/promises';
 import stylisticPlugin from '@stylistic/eslint-plugin';
-// @ts-ignore
+// @ts-ignore no definition for import
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';

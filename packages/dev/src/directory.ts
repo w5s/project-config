@@ -15,6 +15,7 @@ export interface DirectoryOptions {
    * Directory path
    */
   readonly path: string;
+
   /**
    * Directory target state
    */

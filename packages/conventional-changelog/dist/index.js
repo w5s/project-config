@@ -308,7 +308,7 @@ var createWriterOpts = async () => {
     }),
     groupBy: "type",
     commitGroupsSort: "title",
-    // @ts-ignore
+    // @ts-ignore FIXME: unknown error
     commitsSort: ["scope", "subject"],
     noteGroupsSort: "title",
     mainTemplate,

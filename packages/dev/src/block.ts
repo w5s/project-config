@@ -7,18 +7,22 @@ export interface BlockOptions {
    * @default '# ${mark} MANAGED BLOCK'
    */
   marker?: (mark: 'Begin' | 'End') => string;
+
   /**
    * File path
    */
   path: string;
+
   /**
    * Block content to insert
    */
   block: string;
+
   /**
    * Insert position
    */
   insertPosition?: ['before', 'BeginningOfFile' | RegExp] | ['after', 'EndOfFile' | RegExp];
+
   /**
    * Block target state
    */

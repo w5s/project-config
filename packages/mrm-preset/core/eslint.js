@@ -1,8 +1,10 @@
 const { packageJson } = require('mrm-core');
 const jsonFile = require('./jsonFile.js');
+
 /**
  * @typedef {import('eslint').Linter.Config} ESLintConfig
  */
+
 /**
  * @param {{
  *   state: 'present'|'absent',

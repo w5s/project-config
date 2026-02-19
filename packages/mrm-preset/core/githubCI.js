@@ -16,6 +16,7 @@ exports.isSupported = isSupported;
  * }} GithubWorkflowConcurrency
  */
 // TODO: add strict typing
+
 /**
  * @typedef {{
  *  name?: string,

@@ -24,16 +24,18 @@ export interface FileOptions {
    * File path
    */
   readonly path: string;
+
   /**
    * File target state
    */
   readonly state: 'present' | 'absent';
+
   /**
    * File content mapping function
    *
-   * @param content
    */
   readonly update?: ((content: string) => string | undefined) | undefined;
+
   /**
    * File encoding
    */
