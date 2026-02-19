@@ -6,7 +6,6 @@ import process from 'process';
 import { findUp } from 'find-up';
 import parseGitignore from 'parse-gitignore';
 import prettierConfig from '@w5s/prettier-config';
-import importPlugin from 'eslint-plugin-import';
 
 var __create = Object.create;
 var __defProp = Object.defineProperty;
@@ -1517,18 +1516,25 @@ function sortPackageJson() {
     }
   };
 }
-var importConfig = importPlugin.flatConfigs["recommended"];
 async function imports(options = {}) {
   const { rules = {}, stylistic: stylistic2 = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic2);
+  const [importPlugin] = await Promise.all([interopDefault(import('eslint-plugin-import'))]);
   return [
     {
       name: "w5s/import/rules",
-      plugins: importConfig.plugins ?? {},
+      plugins: {
+        import: importPlugin
+      },
       rules: {
-        ...importConfig?.rules,
+        // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
+        "import/first": "error",
+        "import/no-duplicates": "error",
+        "import/no-mutable-exports": "error",
+        "import/no-named-default": "error",
         ...stylisticEnabled ? {
           // Stylistic rules
+          "import/newline-after-import": ["error", { count: 1 }]
         } : {},
         ...rules
       }
