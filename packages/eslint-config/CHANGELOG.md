@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.3.2](github.com/w5s/project-config/compare/@w5s/eslint-config@3.3.1...@w5s/eslint-config@3.3.2) (2026-02-19)
+
+### 🐛 Bug Fixes
+
+- Adjust jsdoc rules ([b537839](github.com/w5s/project-config/commits/b537839)) 
+- Fix import rules ([2856742](github.com/w5s/project-config/commits/2856742))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 ## [3.3.1](github.com/w5s/project-config/compare/@w5s/eslint-config@3.3.0...@w5s/eslint-config@3.3.1) (2026-02-16)
 
 ### 🐛 Bug Fixes
