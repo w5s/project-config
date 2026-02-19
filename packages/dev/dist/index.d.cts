@@ -178,7 +178,6 @@ declare function fileSync(options: FileOptions): void;
  *
  * @template T - The type of the module or promise-like object.
  * @param m The module or promise-like object to resolve.
- * @returns A promise resolving to the default export if present, otherwise the module itself.
  */
 declare function interopDefault<T>(m: PromiseLike<T>): Promise<T extends {
     default: infer U;
@@ -223,8 +222,6 @@ interface JSONOption<V = JSONValue> {
     readonly state: 'present' | 'absent';
     /**
      * File content mapping function
-     *
-     * @param content
      */
     readonly update?: ((content: V | undefined) => V | undefined) | undefined;
     /**
@@ -360,7 +357,6 @@ interface YarnConfigOptions {
     /**
      * File content mapping function
      *
-     * @param content
      */
     readonly update?: ((content: string) => string | undefined) | undefined;
 }
@@ -398,7 +394,6 @@ interface YarnVersionOptions {
     /**
      * Version mapping function
      *
-     * @param content
      */
     readonly update?: (() => YarnVersionKind | undefined) | undefined;
 }

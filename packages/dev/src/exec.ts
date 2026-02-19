@@ -39,7 +39,6 @@ export function execSync(
  * @param command The command to run
  * @param args The arguments to pass to the command
  * @param options
- * @returns A promise that resolves with an object containing the stdout and stderr strings
  */
 export async function exec(
   command: string,

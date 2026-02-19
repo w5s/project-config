@@ -14,7 +14,6 @@ export interface YarnConfigOptions {
   /**
    * File content mapping function
    *
-   * @param content
    */
   readonly update?: ((content: string) => string | undefined) | undefined;
 }

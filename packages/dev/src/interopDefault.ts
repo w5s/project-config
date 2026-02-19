@@ -19,7 +19,6 @@ const getDefaultOrElse = (_: any) => _?.default ?? _;
  *
  * @template T - The type of the module or promise-like object.
  * @param m The module or promise-like object to resolve.
- * @returns A promise resolving to the default export if present, otherwise the module itself.
  */
 export function interopDefault<T>(m: PromiseLike<T>): Promise<T extends { default: infer U } ? U : T>;
 export function interopDefault<T>(m: T): T extends { default: infer U } ? U : T;

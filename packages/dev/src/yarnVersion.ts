@@ -11,7 +11,6 @@ export interface YarnVersionOptions {
   /**
    * Version mapping function
    *
-   * @param content
    */
   readonly update?: (() => YarnVersionKind | undefined) | undefined;
 }
