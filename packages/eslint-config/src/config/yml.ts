@@ -1,4 +1,3 @@
-/* eslint-disable ts/no-non-null-assertion */
 import { interopDefault, Project } from '@w5s/dev';
 import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js';
 import type { RuleOptions } from '../typegen/yml.js';
@@ -6,10 +5,7 @@ import type { RuleOptions } from '../typegen/yml.js';
 const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['yaml']))}`];
 
 export async function yml(options: yml.Options = {}) {
-  const [ymlPlugin, ymlParser] = await Promise.all([
-    interopDefault(import('eslint-plugin-yml')),
-    interopDefault(import('yaml-eslint-parser')),
-  ] as const);
+  const [ymlPlugin] = await Promise.all([interopDefault(import('eslint-plugin-yml'))] as const);
   const { files = defaultFiles, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic);
 
@@ -22,26 +18,16 @@ export async function yml(options: yml.Options = {}) {
     },
     {
       files,
-      languageOptions: {
-        parser: ymlParser,
-      },
+      language: 'yml/yaml',
       name: 'w5s/yml/rules',
       rules: {
-        ...(ymlPlugin.configs['flat/recommended'][0]!.rules),
-        ...(ymlPlugin.configs['flat/recommended'][1]!.rules),
-        ...(ymlPlugin.configs['flat/recommended'][2]!.rules),
+        ...ymlPlugin.configs['recommended'].reduce(
+          (acc, config) => ({ ...acc, ...config.rules }),
+          // eslint-disable-next-line ts/consistent-type-assertions
+          {} as RuleOptions,
+        ),
         ...(stylisticEnabled
           ? {
-              // ...(ymlPlugin.configs['flat/standard'][3]!.rules),
-              // 'yml/array-bracket-spacing': ['error', 'never'],
-              // 'yml/comma-dangle': ['error', 'never'],
-              // 'yml/comma-style': ['error', 'last'],
-
-              // 'yml/object-curly-newline': ['error', { consistent: true, multiline: true }],
-              // 'yml/object-curly-spacing': ['error', 'always'],
-              // 'yml/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
-              // 'yml/quote-props': 'error',
-
               'style/spaced-comment': 'off', // Fix
 
               'yml/block-mapping-question-indicator-newline': 'error',
@@ -53,7 +39,10 @@ export async function yml(options: yml.Options = {}) {
               'yml/indent': ['error', indent === 'tab' ? 2 : indent],
               'yml/key-spacing': ['error', { afterColon: true, beforeColon: false }],
               'yml/no-tab-indent': 'error',
-              'yml/quotes': ['error', { avoidEscape: true, prefer: quotes === 'backtick' ? 'single' as const : quotes }],
+              'yml/quotes': [
+                'error',
+                { avoidEscape: true, prefer: quotes === 'backtick' ? ('single' as const) : quotes },
+              ],
               'yml/spaced-comment': 'error',
             }
           : {}),

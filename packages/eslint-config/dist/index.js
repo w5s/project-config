@@ -1895,10 +1895,7 @@ async function unicorn(options = {}) {
 }
 var defaultFiles5 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`];
 async function yml(options = {}) {
-  const [ymlPlugin, ymlParser] = await Promise.all([
-    interopDefault(import('eslint-plugin-yml')),
-    interopDefault(import('yaml-eslint-parser'))
-  ]);
+  const [ymlPlugin] = await Promise.all([interopDefault(import('eslint-plugin-yml'))]);
   const { files = defaultFiles5, rules = {}, stylistic: stylistic2 = true } = options;
   const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic2);
   return [
@@ -1910,23 +1907,15 @@ async function yml(options = {}) {
     },
     {
       files,
-      languageOptions: {
-        parser: ymlParser
-      },
+      language: "yml/yaml",
       name: "w5s/yml/rules",
       rules: {
-        ...ymlPlugin.configs["flat/recommended"][0].rules,
-        ...ymlPlugin.configs["flat/recommended"][1].rules,
-        ...ymlPlugin.configs["flat/recommended"][2].rules,
+        ...ymlPlugin.configs["recommended"].reduce(
+          (acc, config) => ({ ...acc, ...config.rules }),
+          // eslint-disable-next-line ts/consistent-type-assertions
+          {}
+        ),
         ...stylisticEnabled ? {
-          // ...(ymlPlugin.configs['flat/standard'][3]!.rules),
-          // 'yml/array-bracket-spacing': ['error', 'never'],
-          // 'yml/comma-dangle': ['error', 'never'],
-          // 'yml/comma-style': ['error', 'last'],
-          // 'yml/object-curly-newline': ['error', { consistent: true, multiline: true }],
-          // 'yml/object-curly-spacing': ['error', 'always'],
-          // 'yml/object-property-newline': ['error', { allowMultiplePropertiesPerLine: true }],
-          // 'yml/quote-props': 'error',
           "style/spaced-comment": "off",
           // Fix
           "yml/block-mapping-question-indicator-newline": "error",
@@ -1938,7 +1927,10 @@ async function yml(options = {}) {
           "yml/indent": ["error", indent === "tab" ? 2 : indent],
           "yml/key-spacing": ["error", { afterColon: true, beforeColon: false }],
           "yml/no-tab-indent": "error",
-          "yml/quotes": ["error", { avoidEscape: true, prefer: quotes === "backtick" ? "single" : quotes }],
+          "yml/quotes": [
+            "error",
+            { avoidEscape: true, prefer: quotes === "backtick" ? "single" : quotes }
+          ],
           "yml/spaced-comment": "error"
         } : {},
         ...rules
