@@ -21,6 +21,7 @@ on:
 permissions:
   contents: write # push version commit and tags
   packages: write # publish to GitHub Packages
+  id-token: write
 
 concurrency:
   group: release-${{ github.ref }}
@@ -37,7 +38,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0 # full history for Lerna conventional-commits versioning
-          token: ${{ secrets.GITHUB_PUBLISH_PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⚙️ Setup Turbo cache
         uses: rharkor/caching-for-turbo@a1c4079258ae08389be75b57d4d7a70f23c1c66d # v1.8
@@ -62,6 +63,8 @@ jobs:
 
       - name: 🚀 Publish
         run: |
-          yarn release "${{ github.event.inputs.release_type || 'alpha' }}"
+          yarn release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_PUBLISH_PAT }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN
+           }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
