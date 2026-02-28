@@ -2606,7 +2606,7 @@ __metadata:
     eslint-plugin-jsonc: "npm:~3.0.0"
     eslint-plugin-n: "npm:~17.24.0"
     eslint-plugin-unicorn: "npm:~63.0.0"
-    eslint-plugin-yml: "npm:~3.2.0"
+    eslint-plugin-yml: "npm:~3.3.0"
     eslint-typegen: "npm:2.3.1"
     find-up: "npm:^8.0.0"
     globals: "npm:^17.0.0"
@@ -4993,9 +4993,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-yml@npm:~3.2.0":
-  version: 3.2.2
-  resolution: "eslint-plugin-yml@npm:3.2.2"
+"eslint-plugin-yml@npm:~3.3.0":
+  version: 3.3.0
+  resolution: "eslint-plugin-yml@npm:3.3.0"
   dependencies:
     "@eslint/core": "npm:^1.0.1"
     "@eslint/plugin-kit": "npm:^0.6.0"
@@ -5007,7 +5007,7 @@ __metadata:
     yaml-eslint-parser: "npm:^2.0.0"
   peerDependencies:
     eslint: ">=9.38.0"
-  checksum: 10c0/69747248203799cd95031bca121bc1317af959f1e5eae610c8ee2d414562028011c33f5768cf2f62f9613f016b8b75321ad8994e845a325250c187424db3d3e3
+  checksum: 10c0/4e579a88ed61b8d682321d1acbcc9bfd0a1ba604942e0477972b3498a69554b78d2b2bf9a7af0ed82ca278080ebe971f31f4779348b8f38eddcd8e0fd97dbaf9
   languageName: node
   linkType: hard
 
