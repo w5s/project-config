@@ -7121,9 +7121,9 @@ __metadata:
   linkType: hard
 
 "json-with-bigint@npm:^3.5.3":
-  version: 3.5.6
-  resolution: "json-with-bigint@npm:3.5.6"
-  checksum: 10c0/089427eb20f61e0a2a8dcba2f22f00d812fd6f75c272f5b12ae1a2d3a532f5139753c37b2c9d2dc67d2dcc2ed05ab8e687ecadf58ffa2463e4b555e7a1aa2229
+  version: 3.5.7
+  resolution: "json-with-bigint@npm:3.5.7"
+  checksum: 10c0/69f27b712ac113aec2cac0933d81f37a3d6f5f0947543805cf5c6699c19ed14a79515d9aa2f78fde54ffdd7d9105790443408322f23add2a69096e741e176876
   languageName: node
   linkType: hard
 
