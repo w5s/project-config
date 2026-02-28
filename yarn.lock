@@ -1727,13 +1727,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@ota-meshi/ast-token-store@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@ota-meshi/ast-token-store@npm:0.3.0"
-  checksum: 10c0/cb36d5b3e1379901e197d03869772f96d6505be8c06701dd56a02123a9a5484cfe8d759610622058675434ee2dcdba37b939cc249abe9babefcd400a63a77e9a
-  languageName: node
-  linkType: hard
-
 "@pkgr/core@npm:^0.2.9":
   version: 0.2.9
   resolution: "@pkgr/core@npm:0.2.9"
