@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@commitlint/types": "^20.0.0",
-    "@w5s/conventional-changelog": "^3.0.6"
+    "@w5s/conventional-changelog": "workspace:^"
   },
   "devDependencies": {
     "@commitlint/lint": "20.4.2",
