@@ -39,16 +39,8 @@ jobs:
         with:
           fetch-depth: 0 # full history for Lerna conventional-commits versioning
           token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: ⚙️ Setup Turbo cache
-        uses: rharkor/caching-for-turbo@a1c4079258ae08389be75b57d4d7a70f23c1c66d # v1.8
-
-      - name: ⚙️ Setup Node.js
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
-        with:
-          node-version-file: .tool-versions
-          cache: 'pnpm'
-
+      - name: ⚙️ Setup
+        uses: w5s/actions/setup@main
       - name: 🔍 Validate
         run: make validate
 
