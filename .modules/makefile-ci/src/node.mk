@@ -109,7 +109,7 @@ else ifeq ($(NODEJS_PACKAGE_MANAGER),pnpm)
 	NODEJS_STATEFILE := node_modules/.modules.yaml
 # PNPM frozen mode
 	ifneq ($(call filter-false,$(NODEJS_FROZEN)),)
-		NODEJS_INSTALL := pnpm install --frozen-file
+		NODEJS_INSTALL := pnpm install --frozen-lockfile
 	else
 		NODEJS_INSTALL := pnpm install --no-frozen-lockfile
 	endif
