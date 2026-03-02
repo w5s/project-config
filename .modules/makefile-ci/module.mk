@@ -31,6 +31,10 @@ ifneq ($(wildcard Gemfile),)
 ## Ruby feature enabled
 RUBY_ENABLED ?= true
 endif
+ifneq ($(wildcard .shellcheckrc shellcheckrc),)
+## Enable shellcheck
+SHELL_ENABLED ?= true
+endif
 
 ## Enable Scalingo deployment
 SCALINGO_ENABLED ?= false
@@ -76,6 +80,10 @@ endif
 
 ifneq ($(call filter-false,$(COCOAPODS_ENABLED)),)
 include $(MAKEFILE_CI_SRC)/cocoapods.mk
+endif
+
+ifneq ($(call filter-false,$(SHELL_ENABLED)),)
+include $(MAKEFILE_CI_SRC)/shell.mk
 endif
 
 ifneq ($(call filter-false,$(SCALINGO_ENABLED)),)
