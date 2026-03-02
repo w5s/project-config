@@ -38,8 +38,6 @@
     "lint:src": "eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
-    "prepare": "pnpm run \"/prepare:.*/\"",
-    "prepare:empty": ":",
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/test:.*/\"",
     "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck"

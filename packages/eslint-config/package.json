@@ -49,8 +49,6 @@
     "lint:src": "eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
-    "prepare": "pnpm run \"/prepare:.*/\"",
-    "prepare:empty": ":",
     "prepublishOnly": "npm run clean;npm run build",
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/test:.*/\"",

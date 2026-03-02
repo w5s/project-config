@@ -32,8 +32,6 @@
     "lint:src": "eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
-    "prepare": "pnpm run \"/prepare:.*/\"",
-    "prepare:empty": ":",
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/test:.*/\"",
     "test:script": "mkdir _tester; cd _tester; mrm bootstrap --dir ..; mrm configure --dir .."
