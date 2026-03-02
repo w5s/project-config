@@ -6,7 +6,7 @@ set -e;
 
 eslint ()
 {
-  yarn eslint $@;
+  pnpm dlx eslint "$@";
 }
 
 test_project ()

@@ -1,4 +1,4 @@
-import type { ParserOptions as ParserOptionsDefault } from 'conventional-commits-parser';
+import type { Options as ParserOptionsDefault } from 'conventional-commits-parser';
 
 export interface ParserOptions extends ParserOptionsDefault {}
 

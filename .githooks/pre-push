@@ -2,5 +2,5 @@
 set -euo pipefail
 
 # BEGIN MANAGED BLOCK
-npm run validate
+pnpm run validate
 # END MANAGED BLOCK

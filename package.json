@@ -13,9 +13,6 @@
   "workspaces": {
     "packages": [
       "packages/*"
-    ],
-    "nohoist": [
-      "/eslint"
     ]
   },
   "scripts": {
@@ -32,11 +29,11 @@
     "lint:root": "eslint . --ignore-pattern='packages/*/**'",
     "mrm": "npm exec --package=mrm -- mrm --dir ./packages/mrm-preset",
     "postbuild": "npm run docs",
-    "prepare": "npx run-p \"prepare:*\"",
+    "prepare": "pnpm run \"/prepare:.*/\"",
     "prepare:githooks": "if [ -z \"${CI:-}\" ]; then git config core.hooksPath .githooks; fi",
     "prepare:packages": "turbo run prepare",
     "release": "[ -n \"${CI:-}\" ] && npx lerna publish --yes || npx lerna publish",
-    "rescue": "git clean -fdx;yarn install",
+    "rescue": "git clean -fdx;pnpm install",
     "spellcheck": "turbo run spellcheck",
     "spellcheck:root": "cspell --no-progress '**' --exclude='packages/*/**'",
     "test": "turbo run test",
@@ -84,17 +81,16 @@
     "markdown-magic": "4.8.0",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "1.1.2",
-    "npm-run-all2": "8.0.4",
     "turbo": "2.8.12",
     "typescript": "5.9.3",
     "vite": "7.3.1",
     "vitest": "4.0.18"
   },
-  "packageManager": "yarn@4.12.0",
+  "packageManager": "pnpm@10.30.3",
   "engines": {
     "node": ">=20.0.0",
     "npm": ">=6.0.0",
-    "yarn": ">=1.0.0"
+    "pnpm": ">=10.0.0"
   },
   "sideEffect": false
 }

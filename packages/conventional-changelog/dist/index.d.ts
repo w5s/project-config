@@ -1,4 +1,4 @@
-import { Commit as Commit$2, ParserOptions as ParserOptions$1 } from 'conventional-commits-parser';
+import { Commit as Commit$2, Options as Options$1 } from 'conventional-commits-parser';
 import { Options } from 'conventional-changelog-writer';
 
 type Commit$1 = Commit$2;
@@ -38,7 +38,7 @@ interface CommitConventionalTypeData {
 interface WriterOptions extends Options<Commit> {
 }
 
-interface ParserOptions extends ParserOptions$1 {
+interface ParserOptions extends Options$1 {
 }
 
 type Emoji = Emoji.Unicode | Emoji.Text;
