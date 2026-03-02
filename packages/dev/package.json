@@ -53,7 +53,7 @@
     "lint:src": "eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
-    "prepublishOnly": "npm run clean;npm run build",
+    "prepublishOnly": "pnpm run clean;pnpm run build",
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/test:.*/\"",
     "test:src": "vitest run"

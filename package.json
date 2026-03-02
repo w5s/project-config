@@ -27,8 +27,8 @@
     "format:root": "eslint . --ignore-pattern='packages/*/**' --fix",
     "lint": "turbo run lint",
     "lint:root": "eslint . --ignore-pattern='packages/*/**'",
-    "mrm": "npm exec --package=mrm -- mrm --dir ./packages/mrm-preset",
-    "postbuild": "npm run docs",
+    "mrm": "pnpm exec --package=mrm -- mrm --dir ./packages/mrm-preset",
+    "postbuild": "pnpm run docs",
     "prepare": "pnpm run \"/prepare:.*/\"",
     "prepare:githooks": "if [ -z \"${CI:-}\" ]; then git config core.hooksPath .githooks; fi",
     "prepare:packages": "turbo run prepare",
@@ -65,6 +65,7 @@
     ]
   },
   "devDependencies": {
+    "@lerna-lite/cli": "4.11.3",
     "@lerna-lite/publish": "4.11.3",
     "@types/node": "20.19.35",
     "@w5s/commitlint-config": "workspace:*",

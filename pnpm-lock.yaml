@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@lerna-lite/cli':
+        specifier: 4.11.3
+        version: 4.11.3(@lerna-lite/publish@4.11.3(@types/node@20.19.35)(conventional-commits-filter@5.0.0))(@lerna-lite/version@4.11.3(@lerna-lite/publish@4.11.3(@types/node@20.19.35)(conventional-commits-filter@5.0.0))(@types/node@20.19.35)(conventional-commits-filter@5.0.0))(@types/node@20.19.35)
       '@lerna-lite/publish':
         specifier: 4.11.3
         version: 4.11.3(@types/node@20.19.35)(conventional-commits-filter@5.0.0)
