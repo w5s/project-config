@@ -93,19 +93,22 @@ const defaultManager = 'npm';
 
 /**
  * @param {import('mrm-core').PackageJson} packageFile
- * @returns {'yarn'|'npm'} - The manager used by the package
+ * @returns {'yarn'|'npm'|'pnpm'} - The manager used by the package
  */
 function manager(packageFile) {
-  if (packageFile.get('packagerManager')) {
-    const [head, tail] = packageFile.get('packagerManager').split('@', 2);
+  if (packageFile.get('packageManager')) {
+    const [head, tail] = packageFile.get('packageManager').split('@', 2);
 
     return head ?? tail;
   }
   if (file('yarn.lock').exists()) {
     return 'yarn';
   }
-  if (file('package-json.lock').exists()) {
+  if (file('package-lock.json').exists()) {
     return 'npm';
+  }
+  if (file('pnpm-lock.yaml').exists()) {
+    return 'pnpm';
   }
 
   return defaultManager;

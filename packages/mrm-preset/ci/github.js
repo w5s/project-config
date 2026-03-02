@@ -11,7 +11,9 @@ function task() {
       ? `${packageManager} ci`
       : packageManager === 'yarn'
         ? `${packageManager} install --immutable`
-        : `${packageManager} install`;
+        : packageManager === 'pnpm'
+          ? `${packageManager} install --frozen-lockfile`
+          : `${packageManager} install`;
   githubCI.workflow({
     name: 'ci.yml',
     state,

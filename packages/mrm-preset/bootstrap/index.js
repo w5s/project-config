@@ -10,7 +10,7 @@ const { gitIgnore } = require('../core/git.js');
  *   mrmPreset: string,
  *   mrmTask: string,
  *   packageArchetype: 'application'|'library'|'workspace',
- *   packageManager: 'npm'|'yarn@classic'|'yarn@berry'
+ *   packageManager: 'npm'|'pnpm'|'yarn@classic'|'yarn@berry'
  * }} config
  * @returns {Promise<void>}
  */
@@ -65,8 +65,8 @@ task.parameters = {
     type: 'input',
   },
   packageManager: {
-    default: 'yarn@berry',
-    choices: ['yarn@berry', 'yarn@classic', 'npm'],
+    default: 'pnpm',
+    choices: ['pnpm', 'yarn@berry', 'yarn@classic', 'npm'],
     message: 'Which default package manager ?',
     name: 'packageManager',
     type: 'input',

@@ -31,12 +31,6 @@ const { turbo } = require('../core/turbo.js');
  */
 const turboRun = (script) => `turbo run ${script}`;
 
-/**
- *
- * @param {string} script
- * @param {boolean} allowEmpty
- */
-const npmRunAll = (script, allowEmpty) => `npx run-p "${script}:*"${allowEmpty ? '' : ''}`;
 function task() {
   const rootPackageFile = packageJson();
   const rootUseWorkspace = pkg.hasWorkspaces(rootPackageFile);
@@ -44,12 +38,21 @@ function task() {
     // @ts-ignore
     node: '>=12.x',
     yarn: '>=1.x',
+    pnpm: '>=10.x',
     npm: '>=6.x',
     ...mrmPackageJson.engines,
   };
   const gitSupported = git.hasGit();
   const packageManager = pkg.manager(rootPackageFile);
   const gitRepository = git.remoteSync();
+
+  /**
+   *
+   * @param {string} script
+   * @param {boolean} allowEmpty
+   */
+  const npmRunAll = (script, allowEmpty) =>
+    (packageManager === 'pnpm' ? `pnpm run "/${script}:.*/"` : `npx run-p "${script}:*"${allowEmpty ? '' : ''}`);
 
   // Detect git repository
   if (rootUseWorkspace) {

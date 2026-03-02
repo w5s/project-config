@@ -29,6 +29,7 @@ const { yaml, json } = require('mrm-core');
  * @typedef {{
  *   dev?: boolean,
  *   yarn?: boolean,
+ *   pnpm?: boolean,
  *   versions?: Record<string, string>,
  * }} Options
  */
@@ -51,7 +52,8 @@ const { yaml, json } = require('mrm-core');
  */
 function install(deps, options = {}, exec) {
   const dev = options.dev !== false;
-  const run = options.yarn || isUsingYarn() ? runYarn : runNpm;
+  const manager = options.yarn ? 'yarn' : options.pnpm ? 'pnpm' : detectPackageManager();
+  const run = manager === 'yarn' ? runYarn : manager === 'pnpm' ? runPnpm : runNpm;
 
   // options.versions is a min versions mapping,
   // the list of packages to install will be taken from deps
@@ -92,7 +94,8 @@ function install(deps, options = {}, exec) {
 function uninstall(deps, options = {}, exec) {
   deps = _.castArray(deps);
   const dev = options.dev !== false;
-  const run = options.yarn || isUsingYarn() ? runYarn : runNpm;
+  const manager = options.yarn ? 'yarn' : options.pnpm ? 'pnpm' : detectPackageManager();
+  const run = manager === 'yarn' ? runYarn : manager === 'pnpm' ? runPnpm : runNpm;
 
   const installed = getOwnDependencies({ dev });
 
@@ -138,6 +141,24 @@ function runYarn(deps, options = {}, exec) {
   const args = (options.remove ? remove : add).concat(isUsingWorkspaces() && !isYarnBerry() ? ['-W'] : []).concat(deps);
 
   return execCommand(exec, 'yarn', args, {
+    cwd: options.cwd,
+    stdio: options.stdio === undefined ? 'inherit' : options.stdio,
+  });
+}
+
+/**
+ * Install given PNPM packages
+ *
+ * @param {string[]} deps
+ * @param {RunOptions} [options]
+ * @param {Function} [exec]
+ */
+function runPnpm(deps, options = {}, exec) {
+  const add = options.dev ? ['add', '--save-dev'] : ['add'];
+  const remove = ['remove'];
+  const args = [...(options.remove ? remove : add), ...(isUsingWorkspaces() ? ['--workspace-root'] : []), ...deps];
+
+  return execCommand(exec, 'pnpm', args, {
     cwd: options.cwd,
     stdio: options.stdio === undefined ? 'inherit' : options.stdio,
   });
@@ -245,6 +266,20 @@ function isUsingYarn() {
   return fs.existsSync('yarn.lock');
 }
 
+function isUsingPnpm() {
+  return fs.existsSync('pnpm-lock.yaml');
+}
+
+function detectPackageManager() {
+  if (isUsingYarn()) {
+    return 'yarn';
+  }
+  if (isUsingPnpm()) {
+    return 'pnpm';
+  }
+  return 'npm';
+}
+
 function isUsingWorkspaces() {
   return Boolean(packageJson().get('workspaces'));
 }
@@ -255,11 +290,12 @@ function isYarnBerry() {
 }
 
 /**
- * @param {'npm'|`yarn@${'classic'|'berry'}`} defaultPackageManager
+ * @param {'npm'|'pnpm'|`yarn@${'classic'|'berry'}`} defaultPackageManager
  */
 async function bootstrap(defaultPackageManager) {
   const packageFile = json(`./package.json`);
   const isYarn = isUsingYarn() || defaultPackageManager.startsWith('yarn@');
+  const isPnpm = isUsingPnpm() || defaultPackageManager === 'pnpm';
 
   if (!packageFile.get('packageManager') && isYarn) {
     // Downgrade
@@ -279,13 +315,19 @@ async function bootstrap(defaultPackageManager) {
         update: () => 'node-modules',
       });
     }
+  } else if (!packageFile.get('packageManager') && isPnpm) {
+    packageFile.set('packageManager', 'pnpm@latest');
+    packageFile.save();
   }
 
   // lock files
   if (isYarn && !fs.existsSync('yarn.lock')) {
     execCommand(undefined, 'yarn', ['install']);
   }
-  if (!isYarn && !fs.existsSync('package-lock.json')) {
+  if (isPnpm && !fs.existsSync('pnpm-lock.yaml')) {
+    execCommand(undefined, 'pnpm', ['install']);
+  }
+  if (!isYarn && !isPnpm && !fs.existsSync('package-lock.json')) {
     execCommand(undefined, 'npm', ['install']);
   }
 }
@@ -296,6 +338,7 @@ async function bootstrap(defaultPackageManager) {
  *   state: 'present'|'absent',
  *   dev?: boolean,
  *   yarn?: boolean,
+ *   pnpm?: boolean,
  * }} options
  */
 function dependency({ name, state, ...options }) {
