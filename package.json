@@ -32,7 +32,7 @@
     "prepare": "pnpm run \"/prepare:.*/\"",
     "prepare:githooks": "if [ -z \"${CI:-}\" ]; then git config core.hooksPath .githooks; fi",
     "prepare:packages": "turbo run prepare",
-    "release": "[ -n \"${CI:-}\" ] && npx lerna publish --yes || npx lerna publish",
+    "release": "[ -n \"${CI:-}\" ] && pnpm exec lerna publish --yes || pnpm exec lerna publish",
     "rescue": "git clean -fdx;pnpm install",
     "spellcheck": "turbo run spellcheck",
     "spellcheck:root": "cspell --no-progress '**' --exclude='packages/*/**'",
