@@ -96,8 +96,8 @@ importers:
         specifier: ^20.0.0
         version: 20.4.0
       '@w5s/conventional-changelog':
-        specifier: ^3.0.6
-        version: 3.0.6
+        specifier: workspace:^
+        version: link:../conventional-changelog
     devDependencies:
       '@commitlint/lint':
         specifier: 20.4.2
@@ -211,11 +211,11 @@ importers:
         specifier: ^1.0.0
         version: 1.6.9(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)(vitest@4.0.18(@types/node@20.19.35)(jiti@2.6.1)(yaml@2.8.2))
       '@w5s/dev':
-        specifier: ^3.1.4
-        version: 3.1.4
+        specifier: workspace:^
+        version: link:../dev
       '@w5s/prettier-config':
-        specifier: ^3.0.5
-        version: 3.0.5(prettier@3.8.1)
+        specifier: workspace:^
+        version: link:../prettier-config
       eslint-plugin-import:
         specifier: ~2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3))(eslint@9.39.3(jiti@2.6.1))
@@ -290,8 +290,8 @@ importers:
   packages/mrm-preset:
     dependencies:
       '@w5s/dev':
-        specifier: ^3.1.4
-        version: 3.1.4
+        specifier: workspace:^
+        version: link:../dev
       debug:
         specifier: ^4.3.3
         version: 4.4.3
@@ -1537,23 +1537,6 @@ packages:
 
   '@vitest/utils@4.0.18':
     resolution: {integrity: sha512-msMRKLMVLWygpK3u2Hybgi4MNjcYJvwTb0Ru09+fOyCXIgT5raYP041DRRdiJiI3k/2U6SEbAETB3YtBrUkCFA==}
-
-  '@w5s/conventional-changelog@3.0.6':
-    resolution: {integrity: sha512-sfVtdIyIQOK1G7tFh7gXuNTuPJF+CIwJs2TVPvmR8o6wnWY78JoZKgHqSLgtbsSS2znYzivHQKhn+faQ288lCw==}
-    engines: {node: '>=20.0.0'}
-
-  '@w5s/dev@3.1.4':
-    resolution: {integrity: sha512-9tzWJPTyLInjqTEECOuTDs9qFzVHfwaFFipsVKjjs6GwehcJi4TQ/ee5Q2pXG9uY1Rv5YRhALGrW8xUPQxiBFA==}
-    engines: {node: '>=20.0.0'}
-
-  '@w5s/prettier-config@3.0.5':
-    resolution: {integrity: sha512-V/xpPdjvXquJ8BdUswktQ9zIOhklVd6fpaVByvtzVEkBgHU0Ck7/gaZ0435OVhFtv2PIS8uEfjvx7WXq9bCgFg==}
-    engines: {node: '>=20.0.0'}
-    peerDependencies:
-      prettier: 2.x || 3.x
-    peerDependenciesMeta:
-      prettier:
-        optional: true
 
   abbrev@4.0.0:
     resolution: {integrity: sha512-a1wflyaL0tHtJSmLSOVybYhy22vRih4eduhhrkcjgrWGnRfrZtovJ2FRjxuTtkkj47O/baf0R86QU5OuYpz8fA==}
@@ -6594,20 +6577,6 @@ snapshots:
     dependencies:
       '@vitest/pretty-format': 4.0.18
       tinyrainbow: 3.0.3
-
-  '@w5s/conventional-changelog@3.0.6':
-    dependencies:
-      '@commitlint/types': 20.4.0
-      emoji-regex: 10.6.0
-      gitmojis: 3.15.0
-
-  '@w5s/dev@3.1.4':
-    dependencies:
-      '@types/eslint': 9.6.1
-
-  '@w5s/prettier-config@3.0.5(prettier@3.8.1)':
-    optionalDependencies:
-      prettier: 3.8.1
 
   abbrev@4.0.0: {}
 

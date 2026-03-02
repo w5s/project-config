@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](github.com/w5s/project-config/compare/@w5s/eslint-config@3.3.4...@w5s/eslint-config@3.4.0) (2026-03-02)
+
+### ✨ Features
+
+- Improve support for yml v3 ([f36e08c](github.com/w5s/project-config/commits/f36e08c)) 
+
+### 🐛 Bug Fixes
+
+- Update type definitions ([ff0fa4e](github.com/w5s/project-config/commits/ff0fa4e))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 ## [3.3.4](github.com/w5s/project-config/compare/@w5s/eslint-config@3.3.3...@w5s/eslint-config@3.3.4) (2026-02-19)
 
 **Note:** Version bump only for package @w5s/eslint-config
