@@ -49,20 +49,20 @@
     "clean": true
   },
   "scripts": {
-    "build": "pnpm run \"/build:.*/\"",
+    "build": "pnpm run \"/^build:.*/\"",
     "build:tsc": "tsc -b tsconfig.build.json",
-    "clean": "pnpm run \"/clean:.*/\"",
+    "clean": "pnpm run \"/^clean:.*/\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
-    "format": "pnpm run \"/format:.*/\"",
+    "format": "pnpm run \"/^format:.*/\"",
     "format:src": "eslint . --fix",
-    "lint": "pnpm run \"/lint:.*/\"",
+    "lint": "pnpm run \"/^lint:.*/\"",
     "lint:src": "eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
     "prepublishOnly": "pnpm run clean;pnpm run build",
     "spellcheck": "cspell --no-progress '**'",
-    "test": "pnpm run \"/test:.*/\"",
+    "test": "pnpm run \"/^test:.*/\"",
     "test:src": "vitest run"
   },
   "devDependencies": {
