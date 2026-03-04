@@ -3,7 +3,6 @@
 exports[`index > should match snapshot 1`] = `
 {
   "defaultConfig": {
-    "clean": true,
     "dts": true,
     "entry": [
       "src/index.ts",
@@ -14,9 +13,8 @@ exports[`index > should match snapshot 1`] = `
     "format": [
       "esm",
     ],
+    "outExtensions": [Function],
     "sourcemap": true,
-    "splitting": false,
-    "treeshake": "recommended",
     "tsconfig": "tsconfig.build.json",
   },
   "defineConfig": [Function],

@@ -3,8 +3,13 @@ export const defaultConfig = {
     sourcemap: true,
     format: ['esm'],
     dts: true,
-    clean: true,
-    treeshake: 'recommended',
-    splitting: false,
+    // clean: true,
+    // treeshake: 'recommended',
+    // splitting: false,
     tsconfig: 'tsconfig.build.json',
+    outExtensions({ format }) {
+        return {
+            js: format === 'es' ? '.js' : '.cjs',
+        };
+    },
 };

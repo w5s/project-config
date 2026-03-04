@@ -27,19 +27,19 @@
     "!*.d.ts.map"
   ],
   "scripts": {
-    "build": "pnpm run \"/build:.*/\"",
+    "build": "pnpm run \"/^build:.*/\"",
     "build:empty": ":",
-    "clean": "pnpm run \"/clean:.*/\"",
+    "clean": "pnpm run \"/^clean:.*/\"",
     "clean:empty": ":",
     "docs": "node ../../markdown.mjs",
-    "format": "pnpm run \"/format:.*/\"",
+    "format": "pnpm run \"/^format:.*/\"",
     "format:src": "eslint . --fix",
-    "lint": "pnpm run \"/lint:.*/\"",
+    "lint": "pnpm run \"/^lint:.*/\"",
     "lint:src": "eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
     "spellcheck": "cspell --no-progress '**'",
-    "test": "pnpm run \"/test:.*/\"",
+    "test": "pnpm run \"/^test:.*/\"",
     "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck"
   },
   "devDependencies": {

@@ -146,9 +146,10 @@ dist
 !packages/dev/dist/
 !packages/commitlint-config/dist/
 !packages/conventional-changelog/dist/
+!packages/cspell-config/dist/
 !packages/eslint-config/dist/
 !packages/prettier-config/dist/
-!packages/tsup-config/dist/
+!packages/tsdown-config/dist/
 packages/*/dist/**/*.spec.*
 
 # mrm tester

@@ -2,6 +2,5 @@ import { Config } from "prettier";
 
 //#region src/index.d.ts
 declare const prettierConfig: Config;
-//#endregion
-export { prettierConfig as default };
-//# sourceMappingURL=index.d.ts.map
+export = prettierConfig;
+//# sourceMappingURL=index.d.cts.map

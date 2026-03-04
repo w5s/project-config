@@ -1,3 +1,4 @@
+
 //#region src/index.ts
 const prettierConfig = {
 	singleQuote: true,
@@ -9,5 +10,5 @@ const prettierConfig = {
 };
 
 //#endregion
-export { prettierConfig as default };
-//# sourceMappingURL=index.js.map
+module.exports = prettierConfig;
+//# sourceMappingURL=index.cjs.map

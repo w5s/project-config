@@ -52,7 +52,7 @@ function task() {
    * @param {boolean} allowEmpty
    */
   const npmRunAll = (script, allowEmpty) =>
-    (packageManager === 'pnpm' ? `pnpm run "/${script}:.*/"` : `npx run-p "${script}:*"${allowEmpty ? '' : ''}`);
+    (packageManager === 'pnpm' ? `pnpm run "/^${script}:.*/"` : `npx run-p "${script}:*"${allowEmpty ? '' : ''}`);
 
   // Detect git repository
   if (rootUseWorkspace) {
