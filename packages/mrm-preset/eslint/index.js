@@ -16,9 +16,6 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
     const packageFileDefault = packageJson();
     const hasWorkspaces = pkg.hasWorkspaces(packageFileDefault);
     const hasTypescript = pkg.hasDependency(packageFileDefault, 'typescript', 'dev');
-    const hasJSX = true;
-    const hasJSON = true;
-    const hasYAML = true;
 
     // Dependencies
     npm.dependency({
@@ -46,22 +43,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       }),
     });
 
-    /** @type {Record<string, boolean>} */
-    const extsMap = {
-      mjs: true,
-      cjs: true,
-      js: true,
-      jsx: hasJSX,
-      ts: hasTypescript,
-      tsx: hasTypescript && hasJSX,
-      json: hasJSON,
-      jsonc: hasJSON,
-      json5: hasJSON,
-      yml: hasYAML,
-      yaml: hasYAML,
-    };
-    const extList = Object.keys(extsMap).filter((ext) => extsMap[ext]);
-    const extOption = '';// ` --ext=${extList.join(',')}`;
+    const extOption = ''; // ` --ext=${extList.join(',')}`;
 
     pkg.withPackageJson((packageFile) => {
       const ignorePatterns = pkg
@@ -128,21 +110,7 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
         'editor.codeActionsOnSave': settings['editor.codeActionsOnSave'] || {
           'source.fixAll': true,
         },
-        'eslint.validate': [...new Set(
-          extList.map(
-            (ext) =>
-              ({
-                cjs: 'javascript',
-                mjs: 'javascript',
-                jsx: 'javascriptreact',
-                js: 'javascript',
-                tsx: 'typescriptreact',
-                ts: 'typescript',
-                yaml: 'yaml',
-                yml: 'yaml',
-              })[ext] || ext,
-          ),
-        )],
+        'eslint.validate': undefined, // remove
       }),
     });
   }
