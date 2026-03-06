@@ -1,8 +1,9 @@
-import { interopDefault, Project } from '@w5s/dev';
+import { interopDefault } from '@w5s/dev';
 import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js';
 import type { RuleOptions } from '../typegen/yml.js';
+import { ymlSourceGlob } from '../glob.js';
 
-const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['yaml']))}`];
+const defaultFiles = [ymlSourceGlob];
 
 export async function yml(options: yml.Options = {}) {
   const [ymlPlugin] = await Promise.all([interopDefault(import('eslint-plugin-yml'))] as const);

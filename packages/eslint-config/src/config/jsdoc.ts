@@ -1,10 +1,13 @@
 import { interopDefault } from '@w5s/dev';
 import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/jsdoc.js';
+import { sourceGlob } from '../glob.js';
+
+const defaultFiles = [sourceGlob];
 
 export async function jsdoc(options: jsdoc.Options = {}): Promise<readonly Config[]> {
   const [jsdocPlugin] = await Promise.all([interopDefault(import('eslint-plugin-jsdoc'))] as const);
-  const { rules = {}, stylistic = true } = options;
+  const { files = defaultFiles, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
@@ -16,6 +19,7 @@ export async function jsdoc(options: jsdoc.Options = {}): Promise<readonly Confi
     },
     {
       name: 'w5s/jsdoc/rules',
+      files,
       rules: {
         ...jsdocPlugin.configs['flat/recommended-typescript-flavor'].rules,
         'jsdoc/no-undefined-types': 'off', // https://github.com/gajus/eslint-plugin-jsdoc/issues/839

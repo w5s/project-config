@@ -1,10 +1,11 @@
 /* eslint-disable ts/no-non-null-assertion */
-import { ESLintConfig, interopDefault, Project } from '@w5s/dev';
+import { ESLintConfig, interopDefault } from '@w5s/dev';
 import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/ts.js';
 import { tsRules } from '../rules/tsRules.js';
+import { tsSourceGlob } from '../glob.js';
 
-const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['typescript', 'typescriptreact']))}`];
+const defaultFiles = [tsSourceGlob];
 
 export async function ts(options: ts.Options = {}) {
   const [tsPlugin, tsParser] = await Promise.all([

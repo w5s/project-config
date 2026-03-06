@@ -1,9 +1,10 @@
 /* cSpell:disable */
-import { interopDefault, Project } from '@w5s/dev';
+import { interopDefault } from '@w5s/dev';
 import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/jsonc.js';
+import { jsonSourceGlob } from '../glob.js';
 
-const defaultFiles = [`**/${Project.extensionsToGlob(['.json', '.json5', '.jsonc'])}`];
+const defaultFiles = [jsonSourceGlob];
 
 export async function jsonc(options: jsonc.Options = {}): Promise<readonly Config[]> {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
@@ -27,7 +28,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<readonly Confi
       },
       name: 'w5s/jsonc/rules',
       rules: {
-        ...(jsoncPlugin.configs['flat/recommended-with-json'][0]?.rules),
+        ...jsoncPlugin.configs['flat/recommended-with-json'][0]?.rules,
         ...(stylisticEnabled
           ? {
               'jsonc/array-bracket-spacing': ['error', 'never'],
@@ -225,7 +226,6 @@ function sortPackageJson() {
           pathPattern: '^exports.*$',
         },
       ],
-
     },
   };
 }

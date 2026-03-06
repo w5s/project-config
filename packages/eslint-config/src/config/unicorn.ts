@@ -1,12 +1,13 @@
 import { interopDefault } from '@w5s/dev';
 import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js';
 import type { RuleOptions } from '../typegen/unicorn.js';
+import { sourceGlob } from '../glob.js';
+
+const defaultFiles = [sourceGlob];
 
 export async function unicorn(options: unicorn.Options = {}) {
-  const [unicornPlugin] = await Promise.all([
-    interopDefault(import('eslint-plugin-unicorn')),
-  ] as const);
-  const { rules = {}, stylistic = true } = options;
+  const [unicornPlugin] = await Promise.all([interopDefault(import('eslint-plugin-unicorn'))] as const);
+  const { files = defaultFiles, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
@@ -18,8 +19,9 @@ export async function unicorn(options: unicorn.Options = {}) {
     },
     {
       name: 'w5s/unicorn/rules',
+      files,
       rules: {
-        ...(unicornPlugin.configs.recommended?.rules),
+        ...unicornPlugin.configs.recommended?.rules,
         // Disabled for safety
         'unicorn/consistent-destructuring': 'off',
         'unicorn/consistent-function-scoping': 'off', // Too many false positive
@@ -44,9 +46,7 @@ export async function unicorn(options: unicorn.Options = {}) {
         'unicorn/prefer-set-has': 'off',
         'unicorn/prevent-abbreviations': 'off', // This rule is so dangerous : it potentially break code while fixing in many cases !!
         'unicorn/throw-new-error': 'off', // Creating errors with call signature is OK
-        ...(stylisticEnabled
-          ? {}
-          : {}),
+        ...(stylisticEnabled ? {} : {}),
         ...rules,
       },
     },

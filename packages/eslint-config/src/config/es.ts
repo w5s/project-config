@@ -4,8 +4,9 @@ import { Project } from '@w5s/dev';
 import { type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/jsonc.js';
 import { esRules } from '../rules/esRules.js';
+import { esSourceGlob } from '../glob.js';
 
-const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['javascript', 'javascriptreact']))}`];
+const defaultFiles = [esSourceGlob];
 
 export async function es(options: es.Options) {
   const { rules = {} } = options;
