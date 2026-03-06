@@ -1,9 +1,10 @@
-import { jsdoc, jsonc, ignores, imports, node, ts, yml, unicorn, stylistic, es } from './config.js';
+import { jsdoc, jsonc, ignores, imports, markdown, node, ts, yml, unicorn, stylistic, es } from './config.js';
 import type { Config } from './type.js';
 
 export interface DefineConfigOptions extends ignores.Options {
   es?: boolean | es.Options;
   import?: boolean | imports.Options;
+  markdown?: boolean | markdown.Options;
   jsdoc?: boolean | jsdoc.Options;
   jsonc?: boolean | jsonc.Options;
   node?: boolean | node.Options;
@@ -27,6 +28,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
   const importOptions = toOption(options.import);
   const jsdocOptions = toOption(options.jsdoc);
   const jsoncOptions = toOption(options.jsonc);
+  const markdownOptions = toOption(options.markdown);
   const nodeOptions = toOption(options.node);
   const tsOptions = toOption(options.ts);
   const unicornOptions = toOption(options.unicorn);
@@ -50,6 +52,9 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
   }
   if (importOptions.enabled) {
     append(imports(importOptions));
+  }
+  if (markdownOptions.enabled) {
+    append(markdown(markdownOptions));
   }
   if (nodeOptions.enabled) {
     append(node(nodeOptions));

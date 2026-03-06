@@ -5,6 +5,7 @@ import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
 import nodePlugin from 'eslint-plugin-n';
+import markdownPlugin from '@eslint/markdown';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import vitestPlugin from '@vitest/eslint-plugin';
 import unicornPlugin from 'eslint-plugin-unicorn';
@@ -20,6 +21,7 @@ await Promise.all(
       ['import', importPlugin],
       ['jsdoc', jsdocPlugin],
       ['jsonc', jsoncPlugin],
+      ['markdown', markdownPlugin],
       ['node', nodePlugin],
       ['style', stylisticPlugin],
       ['ts', tsPlugin],

@@ -7,6 +7,7 @@ import process from "node:process";
 import { findUp } from "find-up";
 import parseGitignore from "parse-gitignore";
 import prettierConfig from "@w5s/prettier-config";
+import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
 //#region src/rules/esRules/bestPractices.ts
 const bestPractices = () => ({
 	"accessor-pairs": "off",
@@ -422,7 +423,7 @@ const tsSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["ty
 const ymlSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`;
 //#endregion
 //#region src/config/es.ts
-const defaultFiles$6 = [esSourceGlob];
+const defaultFiles$7 = [esSourceGlob];
 async function es(options) {
 	const { rules = {} } = options;
 	return [{
@@ -450,7 +451,7 @@ async function es(options) {
 		linterOptions: { reportUnusedDisableDirectives: true }
 	}, {
 		name: "w5s/es/rules",
-		files: defaultFiles$6,
+		files: defaultFiles$7,
 		rules: {
 			...eslintConfig.configs.recommended.rules,
 			...esRules(),
@@ -543,10 +544,10 @@ const StylisticConfig = {
 };
 //#endregion
 //#region src/config/jsdoc.ts
-const defaultFiles$5 = [sourceGlob$1];
+const defaultFiles$6 = [sourceGlob$1];
 async function jsdoc(options = {}) {
 	const [jsdocPlugin] = await Promise.all([interopDefault(import("eslint-plugin-jsdoc"))]);
-	const { files = defaultFiles$5, rules = {}, stylistic = true } = options;
+	const { files = defaultFiles$6, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
 		name: "w5s/jsdoc/setup",
@@ -580,10 +581,10 @@ async function jsdoc(options = {}) {
 }
 //#endregion
 //#region src/config/jsonc.ts
-const defaultFiles$4 = [jsonSourceGlob];
+const defaultFiles$5 = [jsonSourceGlob];
 async function jsonc(options = {}) {
 	const [jsoncPlugin, jsoncParser] = await Promise.all([interopDefault(import("eslint-plugin-jsonc")), interopDefault(import("jsonc-eslint-parser"))]);
-	const { files = defaultFiles$4, rules = {}, stylistic = true } = options;
+	const { files = defaultFiles$5, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic);
 	return [
 		{
@@ -832,6 +833,28 @@ async function imports(options = {}) {
 			"import/no-mutable-exports": "error",
 			"import/no-named-default": "error",
 			...stylisticEnabled ? { "import/newline-after-import": ["error", { count: 1 }] } : {},
+			...rules
+		}
+	}];
+}
+//#endregion
+//#region src/config/markdown.ts
+const defaultFiles$4 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
+async function markdown(options = {}) {
+	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
+	const { language = "markdown/gfm", files = defaultFiles$4, rules = {}, stylistic = true } = options;
+	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+	return [{
+		name: "w5s/markdown/setup",
+		plugins: { markdown: markdownPlugin }
+	}, {
+		files,
+		language,
+		name: "w5s/markdown/rules",
+		processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
+		rules: {
+			...markdownPlugin.configs.recommended.at(0)?.rules,
+			...stylisticEnabled ? {} : {},
 			...rules
 		}
 	}];
@@ -1147,6 +1170,7 @@ async function defineConfig(options = {}) {
 	const importOptions = toOption(options.import);
 	const jsdocOptions = toOption(options.jsdoc);
 	const jsoncOptions = toOption(options.jsonc);
+	const markdownOptions = toOption(options.markdown);
 	const nodeOptions = toOption(options.node);
 	const tsOptions = toOption(options.ts);
 	const unicornOptions = toOption(options.unicorn);
@@ -1161,6 +1185,7 @@ async function defineConfig(options = {}) {
 	if (jsdocOptions.enabled) append(jsdoc(jsdocOptions));
 	if (stylisticOptions.enabled) append(stylistic(stylisticOptions));
 	if (importOptions.enabled) append(imports(importOptions));
+	if (markdownOptions.enabled) append(markdown(markdownOptions));
 	if (nodeOptions.enabled) append(node(nodeOptions));
 	if (tsOptions.enabled) append(ts(tsOptions));
 	if (ymlOptions.enabled) append(yml(ymlOptions));
@@ -1175,6 +1200,6 @@ const meta = Object.freeze({
 	buildNumber: 1
 });
 //#endregion
-export { StylisticConfig, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, meta, node, stylistic, test, ts, unicorn, yml };
+export { StylisticConfig, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, markdown, meta, node, stylistic, test, ts, unicorn, yml };
 
 //# sourceMappingURL=index.js.map

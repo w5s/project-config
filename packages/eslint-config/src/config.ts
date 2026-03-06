@@ -3,6 +3,7 @@ export * from './config/ignores.js';
 export * from './config/jsdoc.js';
 export * from './config/jsonc.js';
 export * from './config/imports.js';
+export * from './config/markdown.js';
 export * from './config/node.js';
 export * from './config/stylistic.js';
 export * from './config/test.js';

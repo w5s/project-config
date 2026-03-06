@@ -1,11 +1,8 @@
 import { defineConfig } from '@w5s/eslint-config';
 
-// console.log((await defineConfig({
-//   ignores: [
-//   ]
-// })))
 export default [
   ...(await defineConfig({
+    markdown: false,
     ignores: [
       '**/dist',
     ],

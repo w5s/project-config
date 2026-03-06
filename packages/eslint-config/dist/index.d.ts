@@ -53,10 +53,10 @@ interface PluginOptionsBase<Rules> {
 //#region src/typegen/jsonc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$8 {}
+    interface RulesRecord extends RuleOptions$9 {}
   }
 }
-interface RuleOptions$8 {
+interface RuleOptions$9 {
   /**
    * enforce line breaks after opening and before closing array brackets
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-newline.html
@@ -532,7 +532,7 @@ type JsoncSpaceUnaryOps = [] | [{
 //#region src/config/es.d.ts
 declare function es(options: es.Options): Promise<[Config, Config]>;
 declare namespace es {
-  type Rules = RuleOptions$8;
+  type Rules = RuleOptions$9;
   interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
@@ -550,10 +550,10 @@ declare namespace ignores {
 //#region src/typegen/jsdoc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$7 {}
+    interface RulesRecord extends RuleOptions$8 {}
   }
 }
-interface RuleOptions$7 {
+interface RuleOptions$8 {
   /**
    * Checks that `@access` tags have a valid value.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-access.md#repos-sticky-header
@@ -1430,24 +1430,24 @@ type JsdocValidTypes = [] | [{
 //#region src/config/jsdoc.d.ts
 declare function jsdoc(options?: jsdoc.Options): Promise<readonly Config[]>;
 declare namespace jsdoc {
-  type Rules = RuleOptions$7;
+  type Rules = RuleOptions$8;
   interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
 //#region src/config/jsonc.d.ts
 declare function jsonc(options?: jsonc.Options): Promise<readonly Config[]>;
 declare namespace jsonc {
-  type Rules = RuleOptions$8;
+  type Rules = RuleOptions$9;
   interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
 //#region src/typegen/import.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$6 {}
+    interface RulesRecord extends RuleOptions$7 {}
   }
 }
-interface RuleOptions$6 {
+interface RuleOptions$7 {
   /**
    * Enforce or ban the use of inline type-only markers for named imports.
    * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/consistent-type-specifier-style.md
@@ -1893,8 +1893,176 @@ type ImportPreferDefaultExport = [] | [{
 //#region src/config/imports.d.ts
 declare function imports(options?: imports.Options): Promise<[Config]>;
 declare namespace imports {
-  type Rules = RuleOptions$6;
+  type Rules = RuleOptions$7;
   interface Options extends PluginOptionsBase<Rules> {}
+}
+//#endregion
+//#region src/typegen/markdown.d.ts
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$6 {}
+  }
+}
+interface RuleOptions$6 {
+  /**
+   * Require languages for fenced code blocks
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/fenced-code-language.md
+   */
+  'markdown/fenced-code-language'?: Linter.RuleEntry<MarkdownFencedCodeLanguage>;
+  /**
+   * Enforce heading levels increment by one
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/heading-increment.md
+   */
+  'markdown/heading-increment'?: Linter.RuleEntry<MarkdownHeadingIncrement>;
+  /**
+   * Disallow bare URLs
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-bare-urls.md
+   */
+  'markdown/no-bare-urls'?: Linter.RuleEntry<[]>;
+  /**
+   * Disallow duplicate definitions
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-duplicate-definitions.md
+   */
+  'markdown/no-duplicate-definitions'?: Linter.RuleEntry<MarkdownNoDuplicateDefinitions>;
+  /**
+   * Disallow duplicate headings in the same document
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-duplicate-headings.md
+   */
+  'markdown/no-duplicate-headings'?: Linter.RuleEntry<MarkdownNoDuplicateHeadings>;
+  /**
+   * Disallow empty definitions
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-empty-definitions.md
+   */
+  'markdown/no-empty-definitions'?: Linter.RuleEntry<MarkdownNoEmptyDefinitions>;
+  /**
+   * Disallow empty images
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-empty-images.md
+   */
+  'markdown/no-empty-images'?: Linter.RuleEntry<[]>;
+  /**
+   * Disallow empty links
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-empty-links.md
+   */
+  'markdown/no-empty-links'?: Linter.RuleEntry<[]>;
+  /**
+   * Disallow HTML tags
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-html.md
+   */
+  'markdown/no-html'?: Linter.RuleEntry<MarkdownNoHtml>;
+  /**
+   * Disallow invalid label references
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-invalid-label-refs.md
+   */
+  'markdown/no-invalid-label-refs'?: Linter.RuleEntry<[]>;
+  /**
+   * Disallow headings without a space after the hash characters
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-missing-atx-heading-space.md
+   */
+  'markdown/no-missing-atx-heading-space'?: Linter.RuleEntry<MarkdownNoMissingAtxHeadingSpace>;
+  /**
+   * Disallow missing label references
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-missing-label-refs.md
+   */
+  'markdown/no-missing-label-refs'?: Linter.RuleEntry<MarkdownNoMissingLabelRefs>;
+  /**
+   * Disallow link fragments that do not reference valid headings
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-missing-link-fragments.md
+   */
+  'markdown/no-missing-link-fragments'?: Linter.RuleEntry<MarkdownNoMissingLinkFragments>;
+  /**
+   * Disallow multiple H1 headings in the same document
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-multiple-h1.md
+   */
+  'markdown/no-multiple-h1'?: Linter.RuleEntry<MarkdownNoMultipleH1>;
+  /**
+   * Disallow URLs that match defined reference identifiers
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-reference-like-urls.md
+   */
+  'markdown/no-reference-like-urls'?: Linter.RuleEntry<[]>;
+  /**
+   * Disallow reversed link and image syntax
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-reversed-media-syntax.md
+   */
+  'markdown/no-reversed-media-syntax'?: Linter.RuleEntry<[]>;
+  /**
+   * Disallow spaces around emphasis markers
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-space-in-emphasis.md
+   */
+  'markdown/no-space-in-emphasis'?: Linter.RuleEntry<MarkdownNoSpaceInEmphasis>;
+  /**
+   * Disallow unused definitions
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/no-unused-definitions.md
+   */
+  'markdown/no-unused-definitions'?: Linter.RuleEntry<MarkdownNoUnusedDefinitions>;
+  /**
+   * Require alternative text for images
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/require-alt-text.md
+   */
+  'markdown/require-alt-text'?: Linter.RuleEntry<[]>;
+  /**
+   * Disallow data rows in a GitHub Flavored Markdown table from having more cells than the header row
+   * @see https://github.com/eslint/markdown/blob/main/docs/rules/table-column-count.md
+   */
+  'markdown/table-column-count'?: Linter.RuleEntry<MarkdownTableColumnCount>;
+}
+/* ======= Declarations ======= */
+// ----- markdown/fenced-code-language -----
+type MarkdownFencedCodeLanguage = [] | [{
+  required?: string[];
+}]; // ----- markdown/heading-increment -----
+type MarkdownHeadingIncrement = [] | [{
+  frontmatterTitle?: string;
+}]; // ----- markdown/no-duplicate-definitions -----
+type MarkdownNoDuplicateDefinitions = [] | [{
+  allowDefinitions?: string[];
+  allowFootnoteDefinitions?: string[];
+}]; // ----- markdown/no-duplicate-headings -----
+type MarkdownNoDuplicateHeadings = [] | [{
+  checkSiblingsOnly?: boolean;
+}]; // ----- markdown/no-empty-definitions -----
+type MarkdownNoEmptyDefinitions = [] | [{
+  allowDefinitions?: string[];
+  allowFootnoteDefinitions?: string[];
+  checkFootnoteDefinitions?: boolean;
+}]; // ----- markdown/no-html -----
+type MarkdownNoHtml = [] | [{
+  allowed?: string[];
+  allowedIgnoreCase?: boolean;
+}]; // ----- markdown/no-missing-atx-heading-space -----
+type MarkdownNoMissingAtxHeadingSpace = [] | [{
+  checkClosedHeadings?: boolean;
+}]; // ----- markdown/no-missing-label-refs -----
+type MarkdownNoMissingLabelRefs = [] | [{
+  allowLabels?: string[];
+}]; // ----- markdown/no-missing-link-fragments -----
+type MarkdownNoMissingLinkFragments = [] | [{
+  ignoreCase?: boolean;
+  allowPattern?: string;
+}]; // ----- markdown/no-multiple-h1 -----
+type MarkdownNoMultipleH1 = [] | [{
+  frontmatterTitle?: string;
+}]; // ----- markdown/no-space-in-emphasis -----
+type MarkdownNoSpaceInEmphasis = [] | [{
+  checkStrikethrough?: boolean;
+}]; // ----- markdown/no-unused-definitions -----
+type MarkdownNoUnusedDefinitions = [] | [{
+  allowDefinitions?: string[];
+  allowFootnoteDefinitions?: string[];
+}]; // ----- markdown/table-column-count -----
+type MarkdownTableColumnCount = [] | [{
+  checkMissingCells?: boolean;
+}];
+//#endregion
+//#region src/config/markdown.d.ts
+declare function markdown(options?: markdown.Options): Promise<[Config, Config]>;
+declare namespace markdown {
+  type Rules = RuleOptions$6;
+  interface Options extends PluginOptionsBase<Rules> {
+    /**
+     * Default to 'markdown/gfm' (Github Flavored Markdown)
+     */
+    language?: 'markdown/gfm' | 'markdown/commonmark';
+  }
 }
 //#endregion
 //#region src/typegen/node.d.ts
@@ -7428,6 +7596,7 @@ declare namespace yml {
 interface DefineConfigOptions extends ignores.Options {
   es?: boolean | es.Options;
   import?: boolean | imports.Options;
+  markdown?: boolean | markdown.Options;
   jsdoc?: boolean | jsdoc.Options;
   jsonc?: boolean | jsonc.Options;
   node?: boolean | node.Options;
@@ -7445,5 +7614,5 @@ declare const meta: Readonly<{
   buildNumber: number;
 }>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, meta, node, stylistic, test, ts, unicorn, yml };
+export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, markdown, meta, node, stylistic, test, ts, unicorn, yml };
 //# sourceMappingURL=index.d.ts.map
