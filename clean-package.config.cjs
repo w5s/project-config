@@ -1,12 +1,14 @@
-import { readFileSync } from 'node:fs';
-import { cwd } from 'node:process';
+// WARNING: this does not work with ESM, CJS is required
+const { readFileSync } = require('node:fs');
+const { cwd } = require('node:process');
 
 const { scripts = {} } = JSON.parse(readFileSync(`${cwd()}/package.json`, 'utf8'));
 
-export default {
+module.exports = {
   extends: ['clean-package/common'],
   indent: 2,
-  remove: [
+  remove: (keys) => [
+    ...keys,
     'commitlint',
     'devDependencies',
     'packageManager',

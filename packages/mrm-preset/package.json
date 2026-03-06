@@ -49,7 +49,7 @@
     "mrm": "4.1.22",
     "mrm-preset-default": "4.1.11"
   },
-  "clean-package": "../../clean-package.config.mjs",
+  "clean-package": "../../clean-package.config.cjs",
   "engines": {
     "node": ">=20.0.0"
   },

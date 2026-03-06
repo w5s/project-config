@@ -67,7 +67,7 @@
     "vite": "7.3.1",
     "vitest": "4.0.18"
   },
-  "clean-package": "../../clean-package.config.mjs",
+  "clean-package": "../../clean-package.config.cjs",
   "engines": {
     "node": ">=20.0.0"
   },
