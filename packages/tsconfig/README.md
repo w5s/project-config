@@ -23,7 +23,7 @@ In the `tsconfig.json` for your project
 
 ```json
 {
-    "extends": "@w5s/tsconfig"
+  "extends": "@w5s/tsconfig"
 }
 ```
 

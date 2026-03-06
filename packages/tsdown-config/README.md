@@ -41,7 +41,7 @@ Or in the `.prettierrc.js`, to be able to override rules
 
 ```js
 module.exports = {
-  ...require("@w5s/tsdown-config"),
+  ...require('@w5s/tsdown-config'),
   // Override rules
 };
 ```

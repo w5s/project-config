@@ -2,9 +2,11 @@ import { defineConfig } from '@w5s/eslint-config';
 
 export default [
   ...(await defineConfig({
-    markdown: false,
     ignores: [
       '**/dist',
+      '**/CHANGELOG.md',
+      '**/CODE_OF_CONDUCT.md',
+      '**/_tester/**',
     ],
   })),
   {

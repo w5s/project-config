@@ -38,7 +38,7 @@ Extra rules
   "commitlint": {
     "rules": {
       // Rule to validate gitmoji unicode (🐛) or emoji (:bug:)
-      "type-gitmoji-style": ["error", "always", "unicode" /* | 'emoji' */],
+      "type-gitmoji-style": ["error", "always", "unicode"],
       // Rule to validate a gitmoji in the list
       "type-valid-gitmoji": ["error", "always"]
     }

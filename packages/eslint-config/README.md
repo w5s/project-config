@@ -23,7 +23,7 @@ npm install --save-dev @w5s/eslint-config
 
 For most kind of project, just edit `eslintrc.json` and add default configuration
 
-```js
+```json
 {
   "extends": [
     "@w5s/eslint-config"
@@ -42,7 +42,7 @@ For most kind of project, just edit `eslintrc.json` and add default configuratio
 
 For most kind of project, just edit `eslintrc.json` and cherry pick only configurations
 
-```js
+```jsonc
 {
   "root": true,
   "extends": [
@@ -50,10 +50,10 @@ For most kind of project, just edit `eslintrc.json` and cherry pick only configu
     "@w5s/eslint-config/jest",
     "@w5s/eslint-config/json",
     "@w5s/eslint-config/ts",
-    "@w5s/eslint-config/yml",
+    "@w5s/eslint-config/yml"
     // include more configurations here
   ]
-  //...
+  // ...
 }
 ```
 
