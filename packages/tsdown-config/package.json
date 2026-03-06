@@ -1,7 +1,6 @@
 {
   "name": "@w5s/tsdown-config",
   "version": "1.0.0",
-  "private": true,
   "description": "tsdown shared configuration",
   "keywords": [
     "typescript",
