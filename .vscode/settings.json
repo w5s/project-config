@@ -2,16 +2,6 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit"
   },
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact",
-    "json",
-    "jsonc",
-    "json5",
-    "yaml"
-  ],
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
