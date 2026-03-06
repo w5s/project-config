@@ -67,7 +67,7 @@
   "devDependencies": {
     "@lerna-lite/cli": "4.11.3",
     "@lerna-lite/publish": "4.11.3",
-    "@types/node": "20.19.35",
+    "@types/node": "20.19.37",
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/conventional-changelog": "workspace:*",
     "@w5s/cspell-config": "workspace:*",
