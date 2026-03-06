@@ -5,8 +5,8 @@ const meta = Object.freeze({
 	buildNumber: 1
 });
 //#endregion
-//#region src/index.ts
-const prettierConfig = {
+//#region src/config.ts
+const config = {
 	singleQuote: true,
 	trailingComma: "all",
 	overrides: [{
@@ -15,6 +15,6 @@ const prettierConfig = {
 	}]
 };
 //#endregion
-export { prettierConfig as default, meta };
+export { config as default, meta };
 
 //# sourceMappingURL=index.js.map

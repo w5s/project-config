@@ -7,7 +7,7 @@ declare const meta: Readonly<{
   buildNumber: number;
 }>;
 //#endregion
-//#region src/index.d.ts
+//#region src/config.d.ts
 declare const config: {
   parserPreset: {
     parserOpts: any;

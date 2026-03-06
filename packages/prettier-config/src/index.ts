@@ -1,18 +1,2 @@
-import type { Config } from 'prettier';
-
-const prettierConfig: Config = {
-  singleQuote: true,
-  trailingComma: 'all',
-  overrides: [
-    {
-      files: ['*.css', '*.scss'],
-      options: {
-        trailingComma: 'none',
-      },
-    },
-  ],
-};
-
 export * from './meta.js';
-
-export default prettierConfig;
+export { config as default } from './config.js';

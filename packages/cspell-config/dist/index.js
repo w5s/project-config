@@ -6,7 +6,7 @@ const meta = Object.freeze({
 	buildNumber: 1
 });
 //#endregion
-//#region src/index.ts
+//#region src/config.ts
 const toArray = (value) => Array.isArray(value) ? value : value == null ? [] : [value];
 const defaultSettings = cSpellSettings;
 const excludeImport = /* @__PURE__ */ new Set([]);
@@ -42,7 +42,7 @@ const dictionaryDefinitions = [
 		description: "NPM packages"
 	}
 ];
-const settings = {
+const config = {
 	...defaultSettings,
 	name: "W5S default settings .js",
 	id: "w5s-default-js",
@@ -96,6 +96,6 @@ const settings = {
 	]
 };
 //#endregion
-export { settings as default, meta };
+export { config as default, meta };
 
 //# sourceMappingURL=index.js.map

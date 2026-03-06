@@ -9,8 +9,8 @@ const meta = Object.freeze({
 	buildNumber: 1
 });
 //#endregion
-//#region src/index.ts
-const prettierConfig = {
+//#region src/config.ts
+const config = {
 	singleQuote: true,
 	trailingComma: "all",
 	overrides: [{
@@ -19,7 +19,7 @@ const prettierConfig = {
 	}]
 };
 //#endregion
-exports.default = prettierConfig;
+exports.default = config;
 exports.meta = meta;
 
 //# sourceMappingURL=index.cjs.map

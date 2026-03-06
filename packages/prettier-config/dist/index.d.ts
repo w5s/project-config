@@ -7,8 +7,8 @@ declare const meta: Readonly<{
   buildNumber: number;
 }>;
 //#endregion
-//#region src/index.d.ts
-declare const prettierConfig: Config;
+//#region src/config.d.ts
+declare const config: Config;
 //#endregion
-export { prettierConfig as default, meta };
+export { config as default, meta };
 //# sourceMappingURL=index.d.ts.map

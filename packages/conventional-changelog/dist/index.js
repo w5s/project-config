@@ -3,6 +3,73 @@ import { gitmojis } from "gitmojis";
 import { readFileSync } from "node:fs";
 import nodePath from "node:path";
 import { fileURLToPath } from "node:url";
+//#region src/meta.ts
+const meta = Object.freeze({
+	name: "@w5s/conventional-changelog",
+	version: "3.0.7",
+	buildNumber: 1
+});
+//#endregion
+//#region src/gitmoji.ts
+let Emoji;
+(function(_Emoji) {
+	const reEmojiUnicode = _Emoji.reEmojiUnicode = emojiRegexp();
+	const reEmojiText = _Emoji.reEmojiText = /:\w*:/;
+	const reMatchOnly = (input) => new RegExp(`^${input.source}$`, "");
+	const _reEmojiUnicode = reMatchOnly(reEmojiUnicode);
+	const _reEmojiText = reMatchOnly(reEmojiText);
+	function isUnicode(anyValue) {
+		return _reEmojiUnicode.test(anyValue);
+	}
+	_Emoji.isUnicode = isUnicode;
+	function isText(anyValue) {
+		return _reEmojiText.test(anyValue);
+	}
+	_Emoji.isText = isText;
+	function hasInstance(anyValue) {
+		return isText(anyValue) || isUnicode(anyValue);
+	}
+	_Emoji.hasInstance = hasInstance;
+})(Emoji || (Emoji = {}));
+let GitmojiCode;
+(function(_GitmojiCode) {
+	const allGitmojiCodes = new Set(gitmojis.map((gitmoji) => gitmoji.code).concat(gitmojis.map((gitmoji) => gitmoji.emoji)));
+	const index = { emoji: createIndex(gitmojis, "emoji") };
+	function createIndex(list, key) {
+		return new Map(list.map((gitmoji) => [gitmoji[key], gitmoji]));
+	}
+	function isValid(anyValue) {
+		return allGitmojiCodes.has(anyValue);
+	}
+	_GitmojiCode.isValid = isValid;
+	const defaultType = "chore";
+	const conversionMap = (() => {
+		const entries = Array.from(Object.entries({
+			feat: [
+				"✨",
+				"♿️",
+				"🚸"
+			],
+			fix: ["🐛"],
+			docs: ["📝"],
+			style: ["🎨", "🚨"],
+			refactor: ["♻️", "🏗️"],
+			test: ["✅", "🧪"],
+			perf: ["⚡️"],
+			revert: ["⏪️"],
+			ci: ["👷", "💚"],
+			wip: ["🚧"],
+			build: [],
+			chore: ["🔧"]
+		}));
+		return new Map(entries.reduce((acc, [commitType, gitmojiUnicodeArray]) => acc.concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [gitmojiUnicode, commitType])).concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [index.emoji.get(gitmojiUnicode)?.code, commitType])), []));
+	})();
+	function toConventionalCommitType(gitmoji) {
+		return conversionMap.get(gitmoji) ?? defaultType;
+	}
+	_GitmojiCode.toConventionalCommitType = toConventionalCommitType;
+})(GitmojiCode || (GitmojiCode = {}));
+//#endregion
 //#region src/git-raw-commit-opts.ts
 const gitRawCommitOpts = { format: "%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n-authorName-%n%an%n-authorEmail-%n%ae" };
 //#endregion
@@ -124,66 +191,6 @@ const CommitConventionalType = (() => {
 	};
 })();
 //#endregion
-//#region src/gitmoji.ts
-let Emoji;
-(function(_Emoji) {
-	const reEmojiUnicode = _Emoji.reEmojiUnicode = emojiRegexp();
-	const reEmojiText = _Emoji.reEmojiText = /:\w*:/;
-	const reMatchOnly = (input) => new RegExp(`^${input.source}$`, "");
-	const _reEmojiUnicode = reMatchOnly(reEmojiUnicode);
-	const _reEmojiText = reMatchOnly(reEmojiText);
-	function isUnicode(anyValue) {
-		return _reEmojiUnicode.test(anyValue);
-	}
-	_Emoji.isUnicode = isUnicode;
-	function isText(anyValue) {
-		return _reEmojiText.test(anyValue);
-	}
-	_Emoji.isText = isText;
-	function hasInstance(anyValue) {
-		return isText(anyValue) || isUnicode(anyValue);
-	}
-	_Emoji.hasInstance = hasInstance;
-})(Emoji || (Emoji = {}));
-let GitmojiCode;
-(function(_GitmojiCode) {
-	const allGitmojiCodes = new Set(gitmojis.map((gitmoji) => gitmoji.code).concat(gitmojis.map((gitmoji) => gitmoji.emoji)));
-	const index = { emoji: createIndex(gitmojis, "emoji") };
-	function createIndex(list, key) {
-		return new Map(list.map((gitmoji) => [gitmoji[key], gitmoji]));
-	}
-	function isValid(anyValue) {
-		return allGitmojiCodes.has(anyValue);
-	}
-	_GitmojiCode.isValid = isValid;
-	const defaultType = "chore";
-	const conversionMap = (() => {
-		const entries = Array.from(Object.entries({
-			feat: [
-				"✨",
-				"♿️",
-				"🚸"
-			],
-			fix: ["🐛"],
-			docs: ["📝"],
-			style: ["🎨", "🚨"],
-			refactor: ["♻️", "🏗️"],
-			test: ["✅", "🧪"],
-			perf: ["⚡️"],
-			revert: ["⏪️"],
-			ci: ["👷", "💚"],
-			wip: ["🚧"],
-			build: [],
-			chore: ["🔧"]
-		}));
-		return new Map(entries.reduce((acc, [commitType, gitmojiUnicodeArray]) => acc.concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [gitmojiUnicode, commitType])).concat(gitmojiUnicodeArray.map((gitmojiUnicode) => [index.emoji.get(gitmojiUnicode)?.code, commitType])), []));
-	})();
-	function toConventionalCommitType(gitmoji) {
-		return conversionMap.get(gitmoji) ?? defaultType;
-	}
-	_GitmojiCode.toConventionalCommitType = toConventionalCommitType;
-})(GitmojiCode || (GitmojiCode = {}));
-//#endregion
 //#region src/whatBump.ts
 function toConventionalCommitType(text) {
 	return GitmojiCode.isValid(text) ? GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
@@ -298,14 +305,7 @@ const createWriterOpts = async () => {
 	};
 };
 //#endregion
-//#region src/meta.ts
-const meta = Object.freeze({
-	name: "@w5s/conventional-changelog",
-	version: "3.0.7",
-	buildNumber: 1
-});
-//#endregion
-//#region src/index.ts
+//#region src/createPreset.ts
 async function createPreset() {
 	return {
 		gitRawCommitOpts,

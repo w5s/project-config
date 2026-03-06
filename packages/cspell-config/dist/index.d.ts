@@ -1,3 +1,10 @@
+//#region src/meta.d.ts
+declare const meta: Readonly<{
+  name: string;
+  version: string;
+  buildNumber: number;
+}>;
+//#endregion
 //#region ../../node_modules/.pnpm/@cspell+cspell-types@9.7.0/node_modules/@cspell/cspell-types/dist/TextMap-Cs2Bypvi.d.mts
 //#region src/Parser/types.d.ts
 /**
@@ -1795,15 +1802,8 @@ interface CompatibleEngineVersions {
 } //#endregion
 //#region src/configFields.d.ts
 //#endregion
-//#region src/meta.d.ts
-declare const meta: Readonly<{
-  name: string;
-  version: string;
-  buildNumber: number;
-}>;
+//#region src/config.d.ts
+declare const config: AdvancedCSpellSettings;
 //#endregion
-//#region src/index.d.ts
-declare const settings: AdvancedCSpellSettings;
-//#endregion
-export { settings as default, meta };
+export { config as default, meta };
 //# sourceMappingURL=index.d.ts.map

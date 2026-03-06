@@ -1,5 +1,9 @@
-//#region src/parser.d.ts
-interface ParserOptions extends ParserOptionsDefault {}
+//#region src/meta.d.ts
+declare const meta: Readonly<{
+  name: string;
+  version: string;
+  buildNumber: number;
+}>;
 //#endregion
 //#region src/data.d.ts
 type Commit$1 = CommitDefault & {
@@ -34,12 +38,6 @@ interface CommitConventionalTypeData {
   'changelog': boolean;
 }
 //#endregion
-//#region src/writer.d.ts
-interface WriterOptions extends Options<Commit$1> {}
-//#endregion
-//#region src/whatBump.d.ts
-type Commit = CommitBase;
-//#endregion
 //#region src/gitmoji.d.ts
 type Emoji = Emoji.Unicode | Emoji.Text;
 declare namespace Emoji {
@@ -69,14 +67,16 @@ declare namespace GitmojiCode {
   function toConventionalCommitType(gitmoji: GitmojiCode): CommitConventionalType;
 }
 //#endregion
-//#region src/meta.d.ts
-declare const meta: Readonly<{
-  name: string;
-  version: string;
-  buildNumber: number;
-}>;
+//#region src/parser.d.ts
+interface ParserOptions extends ParserOptionsDefault {}
 //#endregion
-//#region src/index.d.ts
+//#region src/writer.d.ts
+interface WriterOptions extends Options<Commit$1> {}
+//#endregion
+//#region src/whatBump.d.ts
+type Commit = CommitBase;
+//#endregion
+//#region src/createPreset.d.ts
 declare function createPreset(): Promise<{
   gitRawCommitOpts: {
     format: string;
