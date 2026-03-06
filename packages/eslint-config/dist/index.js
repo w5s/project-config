@@ -1157,6 +1157,13 @@ async function defineConfig(options = {}) {
 	return (await Promise.all(returnValue)).reduce((acc, curr) => [...acc, ...curr], []);
 }
 //#endregion
-export { StylisticConfig, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, node, stylistic, test, ts, unicorn, yml };
+//#region src/meta.ts
+const meta = Object.freeze({
+	name: "@w5s/eslint-config",
+	version: "3.4.0",
+	buildNumber: 1
+});
+//#endregion
+export { StylisticConfig, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, meta, node, stylistic, test, ts, unicorn, yml };
 
 //# sourceMappingURL=index.js.map

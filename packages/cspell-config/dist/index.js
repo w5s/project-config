@@ -1,4 +1,11 @@
 import cSpellSettings from "@cspell/cspell-bundled-dicts/cspell-default.config.js";
+//#region src/meta.ts
+const meta = Object.freeze({
+	name: "@w5s/cspell-config",
+	version: "3.0.6",
+	buildNumber: 1
+});
+//#endregion
 //#region src/index.ts
 const toArray = (value) => Array.isArray(value) ? value : value == null ? [] : [value];
 const defaultSettings = cSpellSettings;
@@ -89,6 +96,6 @@ const settings = {
 	]
 };
 //#endregion
-export { settings as default };
+export { settings as default, meta };
 
 //# sourceMappingURL=index.js.map

@@ -13,3 +13,5 @@ export default async function createPreset() {
     whatBump,
   };
 }
+
+export * from './meta.js';

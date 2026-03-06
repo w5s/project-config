@@ -249,6 +249,13 @@ declare function json<Value>(options: JSONOption<Value>): Promise<void>;
  */
 declare function jsonSync<Value>(options: JSONOption<Value>): void;
 //#endregion
+//#region src/meta.d.ts
+declare const meta: Readonly<{
+  name: string;
+  version: string;
+  buildNumber: number;
+}>;
+//#endregion
 //#region src/Project.d.ts
 declare namespace Project {
   /**
@@ -429,5 +436,5 @@ declare function yarnVersionSync(options: YarnVersionOptions): void;
  */
 declare function yarnVersion(options: YarnVersionOptions): Promise<void>;
 //#endregion
-export { BlockOptions, DirectoryOptions, ESLintConfig, FileOptions, JSONOption, JSONValue, LanguageId, LanguageIdMap, Project, ProjectScript, YarnConfigOptions, YarnVersionKind, YarnVersionOptions, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
+export { BlockOptions, DirectoryOptions, ESLintConfig, FileOptions, JSONOption, JSONValue, LanguageId, LanguageIdMap, Project, ProjectScript, YarnConfigOptions, YarnVersionKind, YarnVersionOptions, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, meta, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
 //# sourceMappingURL=index.d.ts.map

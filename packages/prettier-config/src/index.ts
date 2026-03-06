@@ -13,4 +13,6 @@ const prettierConfig: Config = {
   ],
 };
 
+export * from './meta.js';
+
 export default prettierConfig;

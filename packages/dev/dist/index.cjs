@@ -302,6 +302,13 @@ function jsonSync(options) {
 	return fileSync(toFileOption(options));
 }
 //#endregion
+//#region src/meta.ts
+const meta = Object.freeze({
+	name: "@w5s/dev",
+	version: "3.1.5",
+	buildNumber: 1
+});
+//#endregion
 //#region src/Project.ts
 function escapeRegExp(value) {
 	return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
@@ -587,6 +594,7 @@ exports.fileSync = fileSync;
 exports.interopDefault = interopDefault;
 exports.json = json;
 exports.jsonSync = jsonSync;
+exports.meta = meta;
 exports.yarnConfig = yarnConfig;
 exports.yarnConfigSync = yarnConfigSync;
 exports.yarnVersion = yarnVersion;

@@ -1,9 +1,16 @@
 import { describe, it, expect } from 'vitest';
-import config from './index.js';
+import * as Module from './index.js';
 
 describe('index', () => {
+  it('has meta', () => {
+    expect(Module.meta).toEqual({
+      name: expect.any(String),
+      version: expect.any(String),
+      buildNumber: expect.any(Number),
+    });
+  });
   it('should match snapshot', () => {
-    const { import: importProperty, ...otherProperties } = config;
+    const { import: importProperty, ...otherProperties } = Module.default;
     expect(otherProperties).toMatchSnapshot();
     expect(importProperty).toEqual(
       expect.arrayContaining([

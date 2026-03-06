@@ -19,6 +19,7 @@ describe('index', () => {
         'interopDefault',
         'json',
         'jsonSync',
+        'meta',
         'yarnConfig',
         'yarnConfigSync',
         'yarnVersion',

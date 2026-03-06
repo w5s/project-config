@@ -7438,5 +7438,12 @@ interface DefineConfigOptions extends ignores.Options {
 }
 declare function defineConfig(options?: DefineConfigOptions): Promise<Config[]>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, node, stylistic, test, ts, unicorn, yml };
+//#region src/meta.d.ts
+declare const meta: Readonly<{
+  name: string;
+  version: string;
+  buildNumber: number;
+}>;
+//#endregion
+export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, meta, node, stylistic, test, ts, unicorn, yml };
 //# sourceMappingURL=index.d.ts.map

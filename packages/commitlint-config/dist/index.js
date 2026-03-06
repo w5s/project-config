@@ -19,6 +19,13 @@ const gitmojiPlugin = { rules: {
 	"type-valid-gitmoji": typeValidGitmoji
 } };
 //#endregion
+//#region src/meta.ts
+const meta = Object.freeze({
+	name: "@w5s/commitlint-config",
+	version: "3.0.7",
+	buildNumber: 1
+});
+//#endregion
 //#region src/index.ts
 const { Error, Warning, Disabled } = RuleConfigSeverity;
 const config = {
@@ -75,6 +82,6 @@ const config = {
 	plugins: [gitmojiPlugin]
 };
 //#endregion
-export { config as default };
+export { config as default, meta };
 
 //# sourceMappingURL=index.js.map

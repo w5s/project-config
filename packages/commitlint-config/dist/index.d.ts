@@ -1,5 +1,12 @@
 import * as _commitlint_types0 from "@commitlint/types";
 
+//#region src/meta.d.ts
+declare const meta: Readonly<{
+  name: string;
+  version: string;
+  buildNumber: number;
+}>;
+//#endregion
 //#region src/index.d.ts
 declare const config: {
   parserPreset: {
@@ -9,5 +16,5 @@ declare const config: {
   plugins: _commitlint_types0.Plugin[];
 };
 //#endregion
-export { config as default };
+export { config as default, meta };
 //# sourceMappingURL=index.d.ts.map

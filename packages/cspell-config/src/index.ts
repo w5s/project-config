@@ -100,4 +100,6 @@ const settings: AdvancedCSpellSettings = {
   ],
 };
 
+export * from './meta.js';
+
 export default settings;

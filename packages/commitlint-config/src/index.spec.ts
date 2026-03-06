@@ -1,12 +1,20 @@
 import commitlint from '@commitlint/lint';
 import { describe, it, expect } from 'vitest';
-import config from './index.js';
+import * as Module from './index.js';
 import { gitmojiPlugin } from './plugin.js';
 
+const config = Module.default;
 const lint = async (input: string) =>
   commitlint(input, config.rules, { ...config.parserPreset, plugins: { gitmoji: gitmojiPlugin } });
 
 describe('Commitlint Config', () => {
+  it('has meta', () => {
+    expect(Module.meta).toEqual({
+      name: expect.any(String),
+      version: expect.any(String),
+      buildNumber: expect.any(Number),
+    });
+  });
   const generateValidSubject = (length: number) =>
     Array.from({ length })
       .map((_, index) => (index === 0 ? 'A' : 'a'))

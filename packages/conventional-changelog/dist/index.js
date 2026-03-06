@@ -298,6 +298,13 @@ const createWriterOpts = async () => {
 	};
 };
 //#endregion
+//#region src/meta.ts
+const meta = Object.freeze({
+	name: "@w5s/conventional-changelog",
+	version: "3.0.7",
+	buildNumber: 1
+});
+//#endregion
 //#region src/index.ts
 async function createPreset() {
 	return {
@@ -308,6 +315,6 @@ async function createPreset() {
 	};
 }
 //#endregion
-export { Emoji, GitmojiCode, createPreset as default };
+export { Emoji, GitmojiCode, createPreset as default, meta };
 
 //# sourceMappingURL=index.js.map

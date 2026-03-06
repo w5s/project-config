@@ -301,6 +301,13 @@ function jsonSync(options) {
 	return fileSync(toFileOption(options));
 }
 //#endregion
+//#region src/meta.ts
+const meta = Object.freeze({
+	name: "@w5s/dev",
+	version: "3.1.5",
+	buildNumber: 1
+});
+//#endregion
 //#region src/Project.ts
 function escapeRegExp(value) {
 	return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
@@ -564,6 +571,6 @@ async function yarnVersion(options) {
 	else throw new Error("Not implemented");
 }
 //#endregion
-export { ESLintConfig, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
+export { ESLintConfig, Project, ProjectScript, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, meta, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
 
 //# sourceMappingURL=index.js.map

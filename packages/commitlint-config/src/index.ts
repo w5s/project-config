@@ -33,4 +33,6 @@ const config = {
   plugins: [gitmojiPlugin],
 };
 
+export * from './meta.js';
+
 export default config;
