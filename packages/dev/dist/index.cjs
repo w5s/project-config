@@ -1,8 +1,7 @@
-Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 let node_fs = require("node:fs");
 let node_fs_promises = require("node:fs/promises");
 let node_child_process = require("node:child_process");
-
 //#region src/directory.ts
 async function exists$1(path) {
 	try {
@@ -52,7 +51,6 @@ function directorySync(options) {
 		if (!isPresent) (0, node_fs.mkdirSync)(path, { recursive: true });
 	} else if (isPresent) (0, node_fs.rmSync)(path, { recursive: true });
 }
-
 //#endregion
 //#region src/ESLintConfig.ts
 function toArray(value) {
@@ -117,7 +115,6 @@ let ESLintConfig;
 	}
 	_ESLintConfig.renameRules = renameRules;
 })(ESLintConfig || (ESLintConfig = {}));
-
 //#endregion
 //#region src/file.ts
 async function exists(path) {
@@ -180,7 +177,6 @@ function fileSync(options) {
 		if (newContent != null) (0, node_fs.writeFileSync)(path, newContent, encoding);
 	} else (0, node_fs.rmSync)(path, { force: true });
 }
-
 //#endregion
 //#region src/block.ts
 const EOF = "EndOfFile";
@@ -272,14 +268,12 @@ function block(options) {
 function blockSync(options) {
 	return fileSync(toFileOptions(options));
 }
-
 //#endregion
 //#region src/interopDefault.ts
 const getDefaultOrElse = (_) => _?.default ?? _;
 function interopDefault(m) {
 	return m != null && typeof m.then === "function" ? Promise.resolve(m).then(getDefaultOrElse) : getDefaultOrElse(m);
 }
-
 //#endregion
 //#region src/json.ts
 function toFileOption({ update, ...otherOptions }) {
@@ -307,7 +301,6 @@ async function json(options) {
 function jsonSync(options) {
 	return fileSync(toFileOption(options));
 }
-
 //#endregion
 //#region src/Project.ts
 function escapeRegExp(value) {
@@ -405,7 +398,6 @@ let Project;
 	}
 	_Project.extensionsToGlob = extensionsToGlob;
 })(Project || (Project = {}));
-
 //#endregion
 //#region src/ProjectScript.ts
 /**
@@ -428,7 +420,6 @@ const ProjectScript = {
 	Test: "test",
 	Validate: "validate"
 };
-
 //#endregion
 //#region src/exec.ts
 /**
@@ -477,7 +468,6 @@ async function exec(command, args, options) {
 		child.on("error", reject);
 	});
 }
-
 //#endregion
 //#region src/yarnConfig.ts
 /**
@@ -534,7 +524,6 @@ async function yarnConfig(options) {
 		]);
 	} else await exec("yarn", ["config", "unset"]);
 }
-
 //#endregion
 //#region src/yarnVersion.ts
 /**
@@ -575,19 +564,18 @@ async function yarnVersion(options) {
 	]);
 	else throw new Error("Not implemented");
 }
-
 //#endregion
-Object.defineProperty(exports, 'ESLintConfig', {
-  enumerable: true,
-  get: function () {
-    return ESLintConfig;
-  }
+Object.defineProperty(exports, "ESLintConfig", {
+	enumerable: true,
+	get: function() {
+		return ESLintConfig;
+	}
 });
-Object.defineProperty(exports, 'Project', {
-  enumerable: true,
-  get: function () {
-    return Project;
-  }
+Object.defineProperty(exports, "Project", {
+	enumerable: true,
+	get: function() {
+		return Project;
+	}
 });
 exports.ProjectScript = ProjectScript;
 exports.block = block;
@@ -603,4 +591,5 @@ exports.yarnConfig = yarnConfig;
 exports.yarnConfigSync = yarnConfigSync;
 exports.yarnVersion = yarnVersion;
 exports.yarnVersionSync = yarnVersionSync;
+
 //# sourceMappingURL=index.cjs.map

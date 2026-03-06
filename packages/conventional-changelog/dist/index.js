@@ -3,14 +3,12 @@ import { gitmojis } from "gitmojis";
 import { readFileSync } from "node:fs";
 import nodePath from "node:path";
 import { fileURLToPath } from "node:url";
-
 //#region src/git-raw-commit-opts.ts
 const gitRawCommitOpts = { format: "%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n-authorName-%n%an%n-authorEmail-%n%ae" };
-
 //#endregion
 //#region src/parser.ts
 const createParserOpts = () => ({
-	headerPattern: new RegExp("^(?<type>\\S*)? (?:\\((?<scope>.*)\\):? )?(?<subject>.*)$", "u"),
+	headerPattern: /* @__PURE__ */ new RegExp("^(?<type>\\S*)? (?:\\((?<scope>.*)\\):? )?(?<subject>.*)$", "u"),
 	headerCorrespondence: [
 		"type",
 		"scope",
@@ -20,7 +18,6 @@ const createParserOpts = () => ({
 	noteKeywords: ["BREAKING CHANGE", "BREAKING CHANGES"],
 	revertCorrespondence: [`header`, `hash`]
 });
-
 //#endregion
 //#region src/data.ts
 const CommitConventionalType = (() => {
@@ -126,7 +123,6 @@ const CommitConventionalType = (() => {
 		findWhere
 	};
 })();
-
 //#endregion
 //#region src/gitmoji.ts
 let Emoji;
@@ -187,7 +183,6 @@ let GitmojiCode;
 	}
 	_GitmojiCode.toConventionalCommitType = toConventionalCommitType;
 })(GitmojiCode || (GitmojiCode = {}));
-
 //#endregion
 //#region src/whatBump.ts
 function toConventionalCommitType(text) {
@@ -212,7 +207,6 @@ const whatBump = (commits) => {
 		reason: breakings === 1 ? `There is ${breakings} BREAKING CHANGE and ${features} features` : `There are ${breakings} BREAKING CHANGES and ${features} features`
 	};
 };
-
 //#endregion
 //#region src/transform.ts
 function displayScope(scope, scopeDisplayNameMap) {
@@ -280,7 +274,6 @@ function createTransform(config) {
 	};
 	return transform;
 }
-
 //#endregion
 //#region src/writer.ts
 const _dirname = typeof __dirname === "undefined" ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
@@ -304,7 +297,6 @@ const createWriterOpts = async () => {
 		footerPartial
 	};
 };
-
 //#endregion
 //#region src/index.ts
 async function createPreset() {
@@ -315,7 +307,7 @@ async function createPreset() {
 		whatBump
 	};
 }
-
 //#endregion
 export { Emoji, GitmojiCode, createPreset as default };
+
 //# sourceMappingURL=index.js.map

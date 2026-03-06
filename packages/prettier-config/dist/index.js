@@ -7,7 +7,7 @@ const prettierConfig = {
 		options: { trailingComma: "none" }
 	}]
 };
-
 //#endregion
 export { prettierConfig as default };
+
 //# sourceMappingURL=index.js.map

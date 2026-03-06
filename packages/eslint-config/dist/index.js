@@ -7,7 +7,6 @@ import process from "node:process";
 import { findUp } from "find-up";
 import parseGitignore from "parse-gitignore";
 import prettierConfig from "@w5s/prettier-config";
-
 //#region src/rules/esRules/bestPractices.ts
 const bestPractices = () => ({
 	"accessor-pairs": "off",
@@ -196,7 +195,6 @@ const bestPractices = () => ({
 	],
 	"yoda": "error"
 });
-
 //#endregion
 //#region src/rules/esRules/errors.ts
 const errors = () => ({
@@ -260,7 +258,6 @@ const errors = () => ({
 	"valid-jsdoc": "off",
 	"valid-typeof": ["error", { requireStringLiterals: true }]
 });
-
 //#endregion
 //#region src/rules/esRules/es6.ts
 const es6 = () => ({
@@ -351,7 +348,6 @@ const es6 = () => ({
 	"template-curly-spacing": "error",
 	"yield-star-spacing": ["error", "after"]
 });
-
 //#endregion
 //#region src/rules/esRules/overrides.ts
 const overrides = () => ({
@@ -366,11 +362,9 @@ const overrides = () => ({
 	"no-void": ["error", { allowAsStatement: true }],
 	"unicode-bom": ["error", "never"]
 });
-
 //#endregion
 //#region src/rules/esRules/strict.ts
 const strict = () => ({ strict: ["error", "never"] });
-
 //#endregion
 //#region src/rules/esRules/variables.ts
 const variables = () => ({
@@ -405,7 +399,6 @@ const variables = () => ({
 		variables: true
 	}]
 });
-
 //#endregion
 //#region src/rules/esRules.ts
 const esRules = () => ({
@@ -416,7 +409,6 @@ const esRules = () => ({
 	...variables(),
 	...overrides()
 });
-
 //#endregion
 //#region src/config/es.ts
 const defaultFiles$4 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`];
@@ -455,7 +447,6 @@ async function es(options) {
 		}
 	}];
 }
-
 //#endregion
 //#region src/config/ignores.ts
 const getGitignore = async (cwd, prefix = "") => {
@@ -515,7 +506,6 @@ async function ignores(options = {}) {
 		name: "w5s/ignore"
 	}];
 }
-
 //#endregion
 //#region src/type/StylisticConfig.ts
 const defaultConfig = {
@@ -540,7 +530,6 @@ const StylisticConfig = {
 		};
 	}
 };
-
 //#endregion
 //#region src/config/jsdoc.ts
 async function jsdoc(options = {}) {
@@ -576,7 +565,6 @@ async function jsdoc(options = {}) {
 		settings: { jsdoc: { mode: "typescript" } }
 	}];
 }
-
 //#endregion
 //#region src/config/jsonc.ts
 const defaultFiles$3 = [`**/${Project.extensionsToGlob([
@@ -820,7 +808,6 @@ function sortPackageJson() {
 		] }
 	};
 }
-
 //#endregion
 //#region src/config/imports.ts
 async function imports(options = {}) {
@@ -840,7 +827,6 @@ async function imports(options = {}) {
 		}
 	}];
 }
-
 //#endregion
 //#region src/config/node.ts
 async function node(options = {}) {
@@ -866,7 +852,6 @@ async function node(options = {}) {
 		}
 	}];
 }
-
 //#endregion
 //#region src/config/stylistic.ts
 async function stylistic(options = {}) {
@@ -913,7 +898,6 @@ async function stylistic(options = {}) {
 		}
 	}];
 }
-
 //#endregion
 //#region src/config/test.ts
 const sourceGlob = Project.extensionsToGlob(Project.sourceExtensions());
@@ -939,7 +923,6 @@ async function test(options = {}) {
 		}
 	}];
 }
-
 //#endregion
 //#region src/rules/tsRules.ts
 const tsRules = () => {
@@ -1005,7 +988,6 @@ const tsRules = () => {
 		"@typescript-eslint/triple-slash-reference": "error"
 	}, { "@typescript-eslint": "ts" });
 };
-
 //#endregion
 //#region src/config/ts.ts
 const defaultFiles$1 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`];
@@ -1043,7 +1025,6 @@ async function ts(options = {}) {
 		}] : []
 	];
 }
-
 //#endregion
 //#region src/config/unicorn.ts
 async function unicorn(options = {}) {
@@ -1093,7 +1074,6 @@ async function unicorn(options = {}) {
 		}
 	];
 }
-
 //#endregion
 //#region src/config/yml.ts
 const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`];
@@ -1137,7 +1117,6 @@ async function yml(options = {}) {
 		}
 	}];
 }
-
 //#endregion
 //#region src/defineConfig.ts
 async function defineConfig(options = {}) {
@@ -1177,7 +1156,7 @@ async function defineConfig(options = {}) {
 	if (unicornOptions.enabled) append(unicorn(unicornOptions));
 	return (await Promise.all(returnValue)).reduce((acc, curr) => [...acc, ...curr], []);
 }
-
 //#endregion
 export { StylisticConfig, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, node, stylistic, test, ts, unicorn, yml };
+
 //# sourceMappingURL=index.js.map

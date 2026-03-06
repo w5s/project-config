@@ -1,4 +1,3 @@
-
 //#region src/index.ts
 const prettierConfig = {
 	singleQuote: true,
@@ -8,7 +7,7 @@ const prettierConfig = {
 		options: { trailingComma: "none" }
 	}]
 };
-
 //#endregion
 module.exports = prettierConfig;
+
 //# sourceMappingURL=index.cjs.map
