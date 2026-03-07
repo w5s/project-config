@@ -696,33 +696,33 @@ type StyleExpListStyle = []|[{
   singleLine?: _StyleExpListStyle_SingleLineConfig
   multiLine?: _StyleExpListStyle_MultiLineConfig
   overrides?: {
-    "()"?: _StyleExpListStyle_BaseConfig
-    "[]"?: _StyleExpListStyle_BaseConfig
-    "{}"?: _StyleExpListStyle_BaseConfig
-    "<>"?: _StyleExpListStyle_BaseConfig
-    ArrayExpression?: _StyleExpListStyle_BaseConfig
-    ArrayPattern?: _StyleExpListStyle_BaseConfig
-    ArrowFunctionExpression?: _StyleExpListStyle_BaseConfig
-    CallExpression?: _StyleExpListStyle_BaseConfig
-    ExportNamedDeclaration?: _StyleExpListStyle_BaseConfig
-    FunctionDeclaration?: _StyleExpListStyle_BaseConfig
-    FunctionExpression?: _StyleExpListStyle_BaseConfig
-    IfStatement?: _StyleExpListStyle_BaseConfig
-    ImportAttributes?: _StyleExpListStyle_BaseConfig
-    ImportDeclaration?: _StyleExpListStyle_BaseConfig
-    JSONArrayExpression?: _StyleExpListStyle_BaseConfig
-    JSONObjectExpression?: _StyleExpListStyle_BaseConfig
-    NewExpression?: _StyleExpListStyle_BaseConfig
-    ObjectExpression?: _StyleExpListStyle_BaseConfig
-    ObjectPattern?: _StyleExpListStyle_BaseConfig
-    TSDeclareFunction?: _StyleExpListStyle_BaseConfig
-    TSEnumBody?: _StyleExpListStyle_BaseConfig
-    TSFunctionType?: _StyleExpListStyle_BaseConfig
-    TSInterfaceBody?: _StyleExpListStyle_BaseConfig
-    TSTupleType?: _StyleExpListStyle_BaseConfig
-    TSTypeLiteral?: _StyleExpListStyle_BaseConfig
-    TSTypeParameterDeclaration?: _StyleExpListStyle_BaseConfig
-    TSTypeParameterInstantiation?: _StyleExpListStyle_BaseConfig
+    "()"?: (_StyleExpListStyle_BaseConfig | "off")
+    "[]"?: (_StyleExpListStyle_BaseConfig | "off")
+    "{}"?: (_StyleExpListStyle_BaseConfig | "off")
+    "<>"?: (_StyleExpListStyle_BaseConfig | "off")
+    ArrayExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ArrayPattern?: (_StyleExpListStyle_BaseConfig | "off")
+    ArrowFunctionExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    CallExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ExportNamedDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    FunctionDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    FunctionExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    IfStatement?: (_StyleExpListStyle_BaseConfig | "off")
+    ImportAttributes?: (_StyleExpListStyle_BaseConfig | "off")
+    ImportDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    JSONArrayExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    JSONObjectExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    NewExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ObjectExpression?: (_StyleExpListStyle_BaseConfig | "off")
+    ObjectPattern?: (_StyleExpListStyle_BaseConfig | "off")
+    TSDeclareFunction?: (_StyleExpListStyle_BaseConfig | "off")
+    TSEnumBody?: (_StyleExpListStyle_BaseConfig | "off")
+    TSFunctionType?: (_StyleExpListStyle_BaseConfig | "off")
+    TSInterfaceBody?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTupleType?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTypeLiteral?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTypeParameterDeclaration?: (_StyleExpListStyle_BaseConfig | "off")
+    TSTypeParameterInstantiation?: (_StyleExpListStyle_BaseConfig | "off")
   }
 }]
 interface _StyleExpListStyle_SingleLineConfig {
@@ -1650,6 +1650,7 @@ type StylePaddingLineBetweenStatements = {
 }[]
 interface _StylePaddingLineBetweenStatements_SelectorOption {
   selector: string
+  lineMode?: ("any" | "singleline" | "multiline")
 }
 // ----- style/quote-props -----
 type StyleQuoteProps = ([]|[("always" | "as-needed" | "consistent" | "consistent-as-needed")] | []|[("always" | "as-needed" | "consistent" | "consistent-as-needed")]|[("always" | "as-needed" | "consistent" | "consistent-as-needed"), {
