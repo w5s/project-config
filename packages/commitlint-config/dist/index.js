@@ -3,7 +3,7 @@ import conventionalChangelogPreset, { Emoji, GitmojiCode } from "@w5s/convention
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/commitlint-config",
-	version: "3.1.0",
+	version: "3.1.1",
 	buildNumber: 1
 });
 //#endregion
