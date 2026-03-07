@@ -26,6 +26,7 @@
   "typings": "./dist/index.d.mts",
   "files": [
     "cspell-ext.json",
+    "dict/",
     "dist/",
     "src/",
     "index.js",
