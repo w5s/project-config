@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](github.com/w5s/project-config/compare/@w5s/mrm-preset@3.2.6...@w5s/mrm-preset@3.3.0) (2026-03-07)
+
+### ✨ Features
+
+- Improve support for eslint latest versions ([dea0bff](github.com/w5s/project-config/commits/dea0bff))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [3.2.6](github.com/w5s/project-config/compare/@w5s/mrm-preset@3.2.5...@w5s/mrm-preset@3.2.6) (2026-03-02)
 
 **Note:** Version bump only for package @w5s/mrm-preset
