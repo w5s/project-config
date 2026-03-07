@@ -2,7 +2,7 @@ import cSpellSettings from "@cspell/cspell-bundled-dicts/cspell-default.config.j
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/cspell-config",
-	version: "3.1.1",
+	version: "3.1.2",
 	buildNumber: 1
 });
 //#endregion
