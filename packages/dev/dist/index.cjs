@@ -305,7 +305,7 @@ function jsonSync(options) {
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/dev",
-	version: "3.1.5",
+	version: "3.2.0",
 	buildNumber: 1
 });
 //#endregion
