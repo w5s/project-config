@@ -60,7 +60,7 @@
     "@types/conventional-changelog-writer": "4.0.11",
     "@types/conventional-commits-parser": "5.0.2",
     "@w5s/tsdown-config": "workspace:*",
-    "tsdown": "0.21.0",
+    "tsdown": "0.21.1",
     "vite": "7.3.1",
     "vitest": "4.0.18"
   },
