@@ -35,12 +35,13 @@ In the `.prettierrc.json` for your project
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
-Or in the `.prettierrc.js`, to be able to override rules
+Or in the `tsdown.config.ts`, to be able to override rules
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```js\nimport { defineConfig } from '${name}';\nexport default defineConfig({\n  // Override rules\n});\n```) -->
 
 ```js
 import { defineConfig } from '@w5s/tsdown-config';
+
 export default defineConfig({
   // Override rules
 });
@@ -50,9 +51,9 @@ export default defineConfig({
 
 ## Requirements
 
-<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=Prettier: ${peerDependencies.prettier}&unknownTxt= ) -->
+<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=TsDown: ${peerDependencies.tsdown}&unknownTxt= ) -->
 
-Prettier: 2.x
+TsDown: 0.x
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
