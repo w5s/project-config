@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.2.3](github.com/w5s/project-config/compare/@w5s/dev@3.2.0...@w5s/dev@3.2.3) (2026-03-09)
+
+**Note:** Version bump only for package @w5s/dev
+
 ## [3.2.2](github.com/w5s/project-config/compare/@w5s/dev@3.2.0...@w5s/dev@3.2.2) (2026-03-07)
 
 **Note:** Version bump only for package @w5s/dev
