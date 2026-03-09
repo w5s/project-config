@@ -12,4 +12,5 @@
 * [@w5s/mrm-preset](packages/mrm-preset) - Mrm configuration presets
 * [@w5s/prettier-config](packages/prettier-config) - Prettier shared configuration
 * [@w5s/tsconfig](packages/tsconfig) - Typescript compiler configuration presets
+* [@w5s/tsdown-config](packages/tsdown-config) - Shared tsdown configuration
 <!-- AUTO-GENERATED-CONTENT:END -->
