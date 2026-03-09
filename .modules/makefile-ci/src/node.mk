@@ -9,7 +9,7 @@ NODEJS_CACHE_PATH ?= $(PROJECT_CACHE_PATH)/node
 ## NodeJS version manager used to install node (asdf, nvm, ...)
 NODEJS_VERSION_MANAGER ?= $(.NODEJS_VERSION_MANAGER)
 
-## NodeJS package manager (npm,pnpm,yarn,yarn-berry)
+## NodeJS package manager (npm,pnpm,yarn,yarn-berry,bun)
 NODEJS_PACKAGE_MANAGER ?=
 # Detect nodejs package manager
 ifeq ($(NODEJS_PACKAGE_MANAGER),)
@@ -24,6 +24,9 @@ ifeq ($(NODEJS_PACKAGE_MANAGER),)
 	else ifneq ($(wildcard pnpm-lock.yaml),)
 		NODEJS_PACKAGE_MANAGER := pnpm
 		NODEJS_PACKAGE_MANAGER_COMMAND := pnpm
+	else ifneq ($(wildcard bun.lock bun.lockb),)
+		NODEJS_PACKAGE_MANAGER := bun
+		NODEJS_PACKAGE_MANAGER_COMMAND := bun
 	else
 		NODEJS_PACKAGE_MANAGER := npm
 		NODEJS_PACKAGE_MANAGER_COMMAND := npm
@@ -77,11 +80,6 @@ ifeq ($(NODEJS_PACKAGE_MANAGER),yarn-berry)
 	else
 		NODEJS_INSTALL := yarn install
 	endif
-# Yarn berry cache
-	ifneq ($(call filter-false,$(CI)),)
-		export YARN_CACHE_FOLDER ?= $(PROJECT_CACHE_PATH)/yarn
-		export YARN_ENABLE_GLOBAL_CACHE ?= false
-	endif
 else ifeq ($(NODEJS_PACKAGE_MANAGER),yarn)
 # Yarn
 	NODEJS_RUN := yarn run
@@ -94,11 +92,6 @@ else ifeq ($(NODEJS_PACKAGE_MANAGER),yarn)
 		NODEJS_INSTALL := yarn install --frozen-file
 	else
 		NODEJS_INSTALL := yarn install
-	endif
-# Yarn cache
-	ifneq ($(call filter-false,$(CI)),)
-		export YARN_CACHE_FOLDER ?= $(PROJECT_CACHE_PATH)/yarn
-		export YARN_ENABLE_GLOBAL_CACHE ?= false
 	endif
 else ifeq ($(NODEJS_PACKAGE_MANAGER),pnpm)
 # PNPM
@@ -113,11 +106,20 @@ else ifeq ($(NODEJS_PACKAGE_MANAGER),pnpm)
 	else
 		NODEJS_INSTALL := pnpm install --no-frozen-lockfile
 	endif
-# PNPM cache
-	ifneq ($(call filter-false,$(CI)),)
-		PNPM_CONFIG_CACHE ?= $(PROJECT_CACHE_PATH)/pnpm
-	endif
 export PNPM_CONFIG_CACHE
+else ifeq ($(NODEJS_PACKAGE_MANAGER),bun)
+# Bun
+	NODEJS_RUN := bun run
+# Lockfile
+	NODEJS_LOCKFILE := bun.lock bun.lockb
+# State file
+	NODEJS_STATEFILE := node_modules/.bun.lock
+# Bun frozen mode
+	ifneq ($(call filter-false,$(NODEJS_FROZEN)),)
+		NODEJS_INSTALL := bun install --frozen-lockfile
+	else
+		NODEJS_INSTALL := bun install
+	endif
 else
 # NPM should be used
 	NODEJS_RUN := npm run
@@ -131,20 +133,8 @@ else
 	else
 		NODEJS_INSTALL := npm install
 	endif
-# NPM cache
-	ifneq ($(call filter-false,$(CI)),)
-		NPM_CONFIG_CACHE ?= $(PROJECT_CACHE_PATH)/npm
-	endif
 export NPM_CONFIG_CACHE
 endif
-
-# Configure cypress cache folder (only for CI mode)
-ifeq ($(CYPRESS_CACHE_FOLDER),)
-	ifneq ($(call filter-false,$(CI)),)
-		CYPRESS_CACHE_FOLDER := $(PROJECT_CACHE_PATH)/cypress
-	endif
-endif
-export CYPRESS_CACHE_FOLDER
 
 # Create make cache directory
 $(NODEJS_CACHE_PATH):
@@ -170,7 +160,7 @@ node-dependencies: node-setup $(NODEJS_STATEFILE)
 #
 # Setup node
 #
-# This will install node and npm
+# This will install node and the configured package manager
 #
 .PHONY: node-setup
 node-setup: $(NODEJS_CACHE_PATH)/node-version
@@ -191,7 +181,7 @@ endif
 endif
 
 # Try installing package manager
-ifneq ($(NODEJS_PACKAGE_MANAGER),npm)
+ifneq ($(filter $(NODEJS_PACKAGE_MANAGER),npm),)
 # Only for asdf we have to reshim after corepack
 	$(Q)if ! $(NODEJS_PACKAGE_MANAGER_COMMAND) -v &>/dev/null; then \
 	  $(call log,info,"[NodeJS] Install $(NODEJS_PACKAGE_MANAGER)...",1); \
