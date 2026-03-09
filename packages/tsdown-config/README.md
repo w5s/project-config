@@ -37,13 +37,13 @@ In the `.prettierrc.json` for your project
 
 Or in the `.prettierrc.js`, to be able to override rules
 
-<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```js\nmodule.exports = {\n  ...require('${name}'),\n  // Override rules\n};\n```) -->
+<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```js\nimport { defineConfig } from '${name}';\nexport default defineConfig({\n  // Override rules\n});\n```) -->
 
 ```js
-module.exports = {
-  ...require('@w5s/tsdown-config'),
+import { defineConfig } from '@w5s/tsdown-config';
+export default defineConfig({
   // Override rules
-};
+});
 ```
 
 <!-- AUTO-GENERATED-CONTENT:END -->
