@@ -60,7 +60,7 @@
     "@w5s/conventional-changelog": "workspace:^"
   },
   "devDependencies": {
-    "@commitlint/lint": "20.4.4",
+    "@commitlint/lint": "20.5.0",
     "@w5s/tsdown-config": "workspace:*",
     "tsdown": "0.21.3",
     "vite": "8.0.0",
