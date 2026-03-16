@@ -81,7 +81,7 @@
     "@types/eslint": "9.6.1",
     "@types/parse-gitignore": "1.0.2",
     "@types/react": "19.2.14",
-    "@typescript-eslint/parser": "8.57.0",
+    "@typescript-eslint/parser": "8.57.1",
     "@w5s/tsdown-config": "workspace:*",
     "eslint": "10.0.3",
     "eslint-find-rules": "5.0.0",
