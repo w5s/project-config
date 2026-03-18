@@ -1,11 +1,12 @@
-_Generated Automatically at Sat, 07 Mar 2026 16:54:43 GMT_
+_Generated Automatically at Wed, 18 Mar 2026 17:29:39 GMT_
 
 ### Desktop
 
 - Chrome (145, 144, 143, 142, 139, 138, 133, 131, 124, 120, 117, 116, 112, 111, 110, 109, 108, 107, 106, 105, 104, 103)
 - Edge (145, 144)
 - Firefox (147)
-- Safari (26.3, 26.2)
+- Opera (127, 126)
+- Safari (26.3, 26.2, 18.5-18.7)
 - Samsung (29)
 
 ### Mobile
