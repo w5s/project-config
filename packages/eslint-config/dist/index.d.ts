@@ -6180,6 +6180,18 @@ type TsPreferOptionalChain = [] | [{
   requireNullish?: boolean;
 }]; // ----- ts/prefer-promise-reject-errors -----
 type TsPreferPromiseRejectErrors = [] | [{
+  allow?: (string | {
+    from: "file";
+    name: (string | [string, ...(string)[]]);
+    path?: string;
+  } | {
+    from: "lib";
+    name: (string | [string, ...(string)[]]);
+  } | {
+    from: "package";
+    name: (string | [string, ...(string)[]]);
+    package: string;
+  })[];
   allowEmptyReject?: boolean;
   allowThrowingAny?: boolean;
   allowThrowingUnknown?: boolean;

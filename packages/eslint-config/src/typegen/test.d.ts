@@ -420,36 +420,49 @@ export interface RuleOptions {
 /* ======= Declarations ======= */
 // ----- test/consistent-each-for -----
 type TestConsistentEachFor = []|[{
+  
   test?: ("each" | "for")
+  
   it?: ("each" | "for")
+  
   describe?: ("each" | "for")
+  
   suite?: ("each" | "for")
 }]
 // ----- test/consistent-test-filename -----
 type TestConsistentTestFilename = []|[{
+  
   pattern?: string
+  
   allTestPattern?: string
 }]
 // ----- test/consistent-test-it -----
 type TestConsistentTestIt = []|[{
+  
   fn?: ("test" | "it")
+  
   withinDescribe?: ("test" | "it")
 }]
 // ----- test/consistent-vitest-vi -----
 type TestConsistentVitestVi = []|[{
+  
   fn?: ("vi" | "vitest")
 }]
 // ----- test/expect-expect -----
 type TestExpectExpect = []|[{
+  
   assertFunctionNames?: string[]
+  
   additionalTestBlockFunctions?: string[]
 }]
 // ----- test/max-expects -----
 type TestMaxExpects = []|[{
+  
   max?: number
 }]
 // ----- test/max-nested-describe -----
 type TestMaxNestedDescribe = []|[{
+  
   max?: number
 }]
 // ----- test/no-conditional-expect -----
@@ -459,6 +472,7 @@ type TestNoConditionalExpect = []|[{
 }]
 // ----- test/no-focused-tests -----
 type TestNoFocusedTests = []|[{
+  
   fixable?: boolean
 }]
 // ----- test/no-hooks -----
@@ -468,8 +482,11 @@ type TestNoHooks = []|[{
 }]
 // ----- test/no-large-snapshots -----
 type TestNoLargeSnapshots = []|[{
+  
   maxSize?: number
+  
   inlineMaxSize?: number
+  
   allowedSnapshots?: {
     [k: string]: unknown[] | undefined
   }
@@ -484,50 +501,69 @@ type TestNoRestrictedViMethods = []|[{
 }]
 // ----- test/no-standalone-expect -----
 type TestNoStandaloneExpect = []|[{
+  
   additionalTestBlockFunctions?: string[]
 }]
 // ----- test/prefer-expect-assertions -----
 type TestPreferExpectAssertions = []|[{
+  
   onlyFunctionsWithAsyncKeyword?: boolean
+  
   onlyFunctionsWithExpectInLoop?: boolean
+  
   onlyFunctionsWithExpectInCallback?: boolean
 }]
 // ----- test/prefer-import-in-mock -----
 type TestPreferImportInMock = []|[{
+  
   fixable?: boolean
 }]
 // ----- test/prefer-lowercase-title -----
 type TestPreferLowercaseTitle = []|[{
+  
   ignore?: ("describe" | "test" | "it")[]
+  
   allowedPrefixes?: string[]
+  
   ignoreTopLevelDescribe?: boolean
+  
   lowercaseFirstCharacterOnly?: boolean
 }]
 // ----- test/prefer-snapshot-hint -----
 type TestPreferSnapshotHint = []|[("always" | "multi")]
 // ----- test/require-hook -----
 type TestRequireHook = []|[{
+  
   allowedFunctionCalls?: string[]
 }]
 // ----- test/require-mock-type-parameters -----
 type TestRequireMockTypeParameters = []|[{
+  
   checkImportFunctions?: boolean
 }]
 // ----- test/require-top-level-describe -----
 type TestRequireTopLevelDescribe = []|[{
+  
   maxNumberOfTopLevelDescribes?: number
 }]
 // ----- test/valid-expect -----
 type TestValidExpect = []|[{
+  
   alwaysAwait?: boolean
+  
   asyncMatchers?: string[]
+  
   minArgs?: number
+  
   maxArgs?: number
 }]
 // ----- test/valid-title -----
 type TestValidTitle = []|[{
+  
   ignoreTypeOfDescribeName?: boolean
+  
   allowArguments?: boolean
+  
   disallowedWords?: string[]
   [k: string]: (string | [string]|[string, string] | {
     [k: string]: (string | [string]|[string, string]) | undefined
