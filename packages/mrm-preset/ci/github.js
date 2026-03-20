@@ -1,24 +1,14 @@
-const { packageJson } = require('mrm-core');
 const githubCI = require('../core/githubCI.js');
-const pkg = require('../core/pkg.js');
 
 function task() {
   const state = 'present';
-  const packageManager = pkg.manager(packageJson());
   const baseBranch = 'main';
-  const packageInstall =
-    packageManager === 'npm'
-      ? `${packageManager} ci`
-      : packageManager === 'yarn'
-        ? `${packageManager} install --immutable`
-        : packageManager === 'pnpm'
-          ? `${packageManager} install --frozen-lockfile`
-          : `${packageManager} install`;
+
   githubCI.workflow({
     name: 'ci.yml',
     state,
     update: (config) => ({
-      name: 'Continuous Integration',
+      name: 'CI',
       ...config,
       on: {
         merge_group: {},
@@ -31,21 +21,28 @@ function task() {
       },
       jobs: {
         ...config.jobs,
-        build: {
+        'code-validate': {
+          'name': 'Validate (code)',
           'runs-on': 'ubuntu-latest',
           'steps': [
-            { uses: 'actions/checkout@v4' },
-            { uses: 'rharkor/caching-for-turbo@v1.3' },
+            { name: '⬇️ Checkout',
+              uses: 'actions/checkout@v6' },
             {
-              uses: 'actions/setup-node@v3',
+              name: '⚙️ Setup',
+              uses: 'w5s/actions/setup@main',
+            },
+            { name: '🏗️ Build',
+              uses: 'w5s/actions/task@main',
               with: {
-                'node-version-file': '.tool-versions',
-                'cache': packageManager,
+                task: 'build',
               },
             },
-            { run: packageInstall },
-            { run: `${packageManager} run build` },
-            { run: `${packageManager} validate` },
+            { name: '🔍 Validate',
+              uses: 'w5s/actions/task@main',
+              with: {
+                task: 'validate',
+              },
+            },
           ],
         },
       },
