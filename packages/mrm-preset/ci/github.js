@@ -31,7 +31,7 @@ function task() {
               name: '⚙️ Setup',
               uses: 'w5s/actions/setup@main',
             },
-            { name: '🏗️ Build',
+            { name: '🔨 Build',
               uses: 'w5s/actions/task@main',
               with: {
                 task: 'build',
