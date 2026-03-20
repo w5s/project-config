@@ -13,6 +13,7 @@ on:
         default: 'alpha'
         type: choice
         options:
+          - next
           - alpha
           - beta
           - rc
@@ -41,14 +42,20 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: ⚙️ Setup
         uses: w5s/actions/setup@main
+      - name: 🔨 Build
+        uses: w5s/actions/task@main
+        with:
+          task: build
       - name: 🔍 Validate
         uses: w5s/actions/task@main
         with:
           task: validate
 
       - name: 🚀 Publish
-        run: |
-          pnpm release
+        uses: w5s/actions/task@main
+        with:
+          task: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          CI_RELEASE_TYPE: ${{ github.event.inputs.release_type || 'next' }}
