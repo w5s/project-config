@@ -62,7 +62,7 @@
     "@cspell/cspell-types": "9.7.0",
     "@w5s/tsdown-config": "workspace:*",
     "tsdown": "0.21.4",
-    "vite": "8.0.1",
+    "vite": "8.0.2",
     "vitest": "4.1.0"
   },
   "peerDependencies": {
