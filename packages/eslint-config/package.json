@@ -89,7 +89,7 @@
     "react": "19.2.4",
     "tsdown": "0.21.4",
     "vite": "8.0.2",
-    "vitest": "4.1.0"
+    "vitest": "4.1.1"
   },
   "peerDependencies": {
     "eslint": "9.x || 10.x",
