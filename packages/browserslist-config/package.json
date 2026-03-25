@@ -17,9 +17,28 @@
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
-  "type": "commonjs",
+  "type": "module",
   "exports": {
-    ".": "./index.js",
+    ".": {
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      },
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./*": {
+      "require": {
+        "types": "./dist/*.d.cts",
+        "default": "./dist/*.cjs"
+      },
+      "import": {
+        "types": "./dist/*.d.ts",
+        "default": "./dist/*.js"
+      }
+    },
     "./dist/*": "./dist/*"
   },
   "typings": "./index.d.ts",
@@ -34,7 +53,7 @@
   ],
   "scripts": {
     "build": "pnpm run \"/^build:.*/\"",
-    "build:tsc": "tsc -b tsconfig.build.json",
+    "build:tsc": "tsdown",
     "clean": "pnpm run \"/^clean:.*/\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node scripts/build-docs.mjs && node ../../markdown.mjs && (git commit 'README.md' 'BROWSER_LIST.md' -m '📝 Update browserslist support') || true",
@@ -50,8 +69,10 @@
     "test:src": "vitest run"
   },
   "devDependencies": {
+    "@w5s/tsdown-config": "workspace:*",
     "browserslist": "4.28.1",
     "lodash-es": "4.17.23",
+    "tsdown": "0.21.4",
     "vite": "8.0.2",
     "vitest": "4.1.1"
   },

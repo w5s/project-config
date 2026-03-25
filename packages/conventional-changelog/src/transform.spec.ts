@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { FinalOptions } from 'conventional-changelog-writer';
+import type { FinalOptions } from 'conventional-changelog-writer';
 import type { Commit } from './data.js';
 import { createTransform } from './transform.js';
 
