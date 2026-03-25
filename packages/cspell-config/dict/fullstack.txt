@@ -3,6 +3,7 @@ automerge
 bigdecimal
 camelcase
 CODEOWNERS
+configurator
 datasource
 datasources
 editorconfig
