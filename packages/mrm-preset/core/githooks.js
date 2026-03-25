@@ -1,5 +1,5 @@
 const path = require('node:path');
-const { blockSync, directorySync, fileSync } = require('@w5s/dev');
+const { blockSync, directorySync, fileSync } = require('@w5s/configurator');
 
 const hookDirectory = '.githooks';
 

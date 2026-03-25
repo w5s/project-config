@@ -121,6 +121,21 @@ importers:
         specifier: 4.1.1
         version: 4.1.1(@types/node@20.19.37)(vite@8.0.2(@types/node@20.19.37)(jiti@2.6.1)(yaml@2.8.3))
 
+  packages/configurator:
+    devDependencies:
+      '@w5s/tsdown-config':
+        specifier: workspace:*
+        version: link:../tsdown-config
+      tsdown:
+        specifier: 0.21.5
+        version: 0.21.5(synckit@0.11.12)(typescript@5.9.3)
+      vite:
+        specifier: 8.0.2
+        version: 8.0.2(@types/node@20.19.37)(jiti@2.6.1)(yaml@2.8.3)
+      vitest:
+        specifier: 4.1.1
+        version: 4.1.1(@types/node@20.19.37)(vite@8.0.2(@types/node@20.19.37)(jiti@2.6.1)(yaml@2.8.3))
+
   packages/conventional-changelog:
     dependencies:
       '@commitlint/types':
@@ -301,6 +316,9 @@ importers:
 
   packages/mrm-preset:
     dependencies:
+      '@w5s/configurator':
+        specifier: workspace:^
+        version: link:../configurator
       '@w5s/dev':
         specifier: workspace:^
         version: link:../dev

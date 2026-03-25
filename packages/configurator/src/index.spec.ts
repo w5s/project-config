@@ -7,11 +7,19 @@ describe('index', () => {
     expect(Object.keys(Module).sort()).toEqual(
       [
         // Public API
-        'Project',
-        'ProjectScript',
-        'ESLintConfig',
-        'interopDefault',
+        'directory',
+        'directorySync',
+        'block',
+        'blockSync',
+        'file',
+        'fileSync',
+        'json',
+        'jsonSync',
         'meta',
+        'yarnConfig',
+        'yarnConfigSync',
+        'yarnVersion',
+        'yarnVersionSync',
       ].sort(),
     );
   });

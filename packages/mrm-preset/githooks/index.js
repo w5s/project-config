@@ -1,6 +1,6 @@
 const path = require('node:path');
 const { packageJson, template } = require('mrm-core');
-const { fileSync } = require('@w5s/dev');
+const { fileSync } = require('@w5s/configurator');
 const project = require('../core/project.js');
 const pkg = require('../core/pkg.js');
 const { hasGit } = require('../core/git.js');

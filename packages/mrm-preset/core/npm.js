@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable consistent-return */
 /* eslint-disable default-param-last */
-const { yarnVersion, yarnConfig } = require('@w5s/dev');
+const { yarnVersion, yarnConfig } = require('@w5s/configurator');
 
 /* cSpell: disable */
 // @ts-check
