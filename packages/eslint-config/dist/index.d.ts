@@ -1,5 +1,5 @@
-import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 import { Linter } from "eslint";
+import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 
 //#region src/type/Config.d.ts
 interface Config extends Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> {
