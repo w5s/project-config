@@ -1,13 +1,37 @@
 import globals from "globals";
 import eslintConfig from "@eslint/js";
 import { ESLintConfig, Project, interopDefault } from "@w5s/dev";
+import prettierConfig from "@w5s/prettier-config";
 import fs from "node:fs";
 import nodePath from "node:path";
 import process from "node:process";
 import { findUp } from "find-up";
 import parseGitignore from "parse-gitignore";
-import prettierConfig from "@w5s/prettier-config";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
+//#region src/type/StylisticConfig.ts
+const defaultConfig = {
+	enabled: true,
+	indent: prettierConfig.tabWidth ?? 2,
+	quotes: prettierConfig.singleQuote ? "single" : "double",
+	jsx: true,
+	semi: prettierConfig.semi ?? true
+};
+/**
+* @namespace
+*/
+const StylisticConfig = {
+	default: defaultConfig,
+	from(input) {
+		return typeof input === "boolean" ? {
+			...defaultConfig,
+			enabled: input
+		} : {
+			...defaultConfig,
+			...input
+		};
+	}
+};
+//#endregion
 //#region src/rules/esRules/bestPractices.ts
 const bestPractices = () => ({
 	"accessor-pairs": "off",
@@ -518,30 +542,6 @@ async function ignores(options = {}) {
 		name: "w5s/ignore"
 	}];
 }
-//#endregion
-//#region src/type/StylisticConfig.ts
-const defaultConfig = {
-	enabled: true,
-	indent: prettierConfig.tabWidth ?? 2,
-	quotes: prettierConfig.singleQuote ? "single" : "double",
-	jsx: true,
-	semi: prettierConfig.semi ?? true
-};
-/**
-* @namespace
-*/
-const StylisticConfig = {
-	default: defaultConfig,
-	from(input) {
-		return typeof input === "boolean" ? {
-			...defaultConfig,
-			enabled: input
-		} : {
-			...defaultConfig,
-			...input
-		};
-	}
-};
 //#endregion
 //#region src/config/jsdoc.ts
 const defaultFiles$6 = [sourceGlob$1];

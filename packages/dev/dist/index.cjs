@@ -133,6 +133,12 @@ function existsSync(path) {
 		return false;
 	}
 }
+function toModeFlag(permissionSet, read, write, execute) {
+	return (permissionSet?.read === true ? read : 0) | (permissionSet?.write === true ? write : 0) | (permissionSet?.execute === true ? execute : 0);
+}
+function toMode(mode) {
+	return mode == null ? mode : toModeFlag(mode.owner, 256, 128, 64) | toModeFlag(mode.group, 32, 16, 8) | toModeFlag(mode.other, 4, 2, 1);
+}
 /**
 * Ensure file is present/absent with content initialized or modified with `update
 *
@@ -148,11 +154,17 @@ function existsSync(path) {
 * @param options
 */
 async function file(options) {
-	const { path, state, update, encoding = "utf8" } = options;
+	const { path, state, update, encoding = "utf8", mode } = options;
 	if (state === "present") {
-		const previousContent = await exists(path) ? await (0, node_fs_promises.readFile)(path, encoding) : "";
-		const newContent = update == null ? "" : update(previousContent);
-		if (newContent != null) await (0, node_fs_promises.writeFile)(path, newContent, encoding);
+		const isPresent = await exists(path);
+		const previousContent = isPresent ? await (0, node_fs_promises.readFile)(path, encoding) : "";
+		const newContent = update == null ? isPresent ? void 0 : "" : update(previousContent);
+		const newMode = toMode(mode);
+		if (newContent != null) await (0, node_fs_promises.writeFile)(path, newContent, {
+			encoding,
+			mode: newMode
+		});
+		if (newMode != null && (isPresent || newContent != null)) await (0, node_fs_promises.chmod)(path, newMode);
 	} else await (0, node_fs_promises.rm)(path, { force: true });
 }
 /**
@@ -170,11 +182,17 @@ async function file(options) {
 * @param options
 */
 function fileSync(options) {
-	const { path, state, update, encoding = "utf8" } = options;
+	const { path, state, update, encoding = "utf8", mode } = options;
 	if (state === "present") {
-		const previousContent = existsSync(path) ? (0, node_fs.readFileSync)(path, encoding) : "";
-		const newContent = update == null ? "" : update(previousContent);
-		if (newContent != null) (0, node_fs.writeFileSync)(path, newContent, encoding);
+		const isPresent = existsSync(path);
+		const previousContent = isPresent ? (0, node_fs.readFileSync)(path, encoding) : "";
+		const newContent = update == null ? isPresent ? void 0 : "" : update(previousContent);
+		const newMode = toMode(mode);
+		if (newContent != null) (0, node_fs.writeFileSync)(path, newContent, {
+			encoding,
+			mode: newMode
+		});
+		if (newMode != null && (isPresent || newContent != null)) (0, node_fs.chmodSync)(path, newMode);
 	} else (0, node_fs.rmSync)(path, { force: true });
 }
 //#endregion

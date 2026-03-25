@@ -5,7 +5,6 @@
     "declarationMap": false,
     "erasableSyntaxOnly": false,
     "esModuleInterop": true,
-    "sourceMap": false,
-    "verbatimModuleSyntax": false
+    "sourceMap": false
   }
 }

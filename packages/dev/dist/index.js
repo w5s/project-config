@@ -1,5 +1,5 @@
-import { accessSync, constants, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
-import { access, constants as constants$1, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { accessSync, chmodSync, constants, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { access, chmod, constants as constants$1, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { spawn, spawnSync } from "node:child_process";
 //#region src/directory.ts
 async function exists$1(path) {
@@ -132,6 +132,12 @@ function existsSync$1(path) {
 		return false;
 	}
 }
+function toModeFlag(permissionSet, read, write, execute) {
+	return (permissionSet?.read === true ? read : 0) | (permissionSet?.write === true ? write : 0) | (permissionSet?.execute === true ? execute : 0);
+}
+function toMode(mode) {
+	return mode == null ? mode : toModeFlag(mode.owner, 256, 128, 64) | toModeFlag(mode.group, 32, 16, 8) | toModeFlag(mode.other, 4, 2, 1);
+}
 /**
 * Ensure file is present/absent with content initialized or modified with `update
 *
@@ -147,11 +153,17 @@ function existsSync$1(path) {
 * @param options
 */
 async function file(options) {
-	const { path, state, update, encoding = "utf8" } = options;
+	const { path, state, update, encoding = "utf8", mode } = options;
 	if (state === "present") {
-		const previousContent = await exists(path) ? await readFile(path, encoding) : "";
-		const newContent = update == null ? "" : update(previousContent);
-		if (newContent != null) await writeFile(path, newContent, encoding);
+		const isPresent = await exists(path);
+		const previousContent = isPresent ? await readFile(path, encoding) : "";
+		const newContent = update == null ? isPresent ? void 0 : "" : update(previousContent);
+		const newMode = toMode(mode);
+		if (newContent != null) await writeFile(path, newContent, {
+			encoding,
+			mode: newMode
+		});
+		if (newMode != null && (isPresent || newContent != null)) await chmod(path, newMode);
 	} else await rm(path, { force: true });
 }
 /**
@@ -169,11 +181,17 @@ async function file(options) {
 * @param options
 */
 function fileSync(options) {
-	const { path, state, update, encoding = "utf8" } = options;
+	const { path, state, update, encoding = "utf8", mode } = options;
 	if (state === "present") {
-		const previousContent = existsSync$1(path) ? readFileSync(path, encoding) : "";
-		const newContent = update == null ? "" : update(previousContent);
-		if (newContent != null) writeFileSync(path, newContent, encoding);
+		const isPresent = existsSync$1(path);
+		const previousContent = isPresent ? readFileSync(path, encoding) : "";
+		const newContent = update == null ? isPresent ? void 0 : "" : update(previousContent);
+		const newMode = toMode(mode);
+		if (newContent != null) writeFileSync(path, newContent, {
+			encoding,
+			mode: newMode
+		});
+		if (newMode != null && (isPresent || newContent != null)) chmodSync(path, newMode);
 	} else rmSync(path, { force: true });
 }
 //#endregion

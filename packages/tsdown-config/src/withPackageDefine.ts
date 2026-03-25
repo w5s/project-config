@@ -1,4 +1,4 @@
-import * as TsDown from 'tsdown';
+import type * as TsDown from 'tsdown';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 

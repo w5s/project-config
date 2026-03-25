@@ -1,6 +1,6 @@
 import { interopDefault } from '@w5s/dev';
-import { PluginOptionsBase, StylisticConfig, type Config } from '../type.js';
-import { type RuleOptions } from '../typegen/import.js';
+import { type PluginOptionsBase, StylisticConfig, type Config } from '../type.js';
+import type { RuleOptions } from '../typegen/import.js';
 
 export async function imports(options: imports.Options = {}) {
   const { rules = {}, stylistic = true } = options;

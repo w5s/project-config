@@ -113,6 +113,34 @@ declare function block(options: BlockOptions): Promise<void>;
 declare function blockSync(options: BlockOptions): void;
 //#endregion
 //#region src/file.d.ts
+interface FilePermissionSet {
+  /**
+   * Read permission
+   */
+  readonly read?: boolean;
+  /**
+   * Write permission
+   */
+  readonly write?: boolean;
+  /**
+   * Execute permission
+   */
+  readonly execute?: boolean;
+}
+interface FileMode {
+  /**
+   * Owner permissions
+   */
+  readonly owner?: FilePermissionSet;
+  /**
+   * Group permissions
+   */
+  readonly group?: FilePermissionSet;
+  /**
+   * Other permissions
+   */
+  readonly other?: FilePermissionSet;
+}
 interface FileOptions {
   /**
    * File path
@@ -131,6 +159,10 @@ interface FileOptions {
    * File encoding
    */
   readonly encoding?: BufferEncoding;
+  /**
+   * File permissions
+   */
+  readonly mode?: FileMode;
 }
 /**
  * Ensure file is present/absent with content initialized or modified with `update
@@ -436,5 +468,5 @@ declare function yarnVersionSync(options: YarnVersionOptions): void;
  */
 declare function yarnVersion(options: YarnVersionOptions): Promise<void>;
 //#endregion
-export { BlockOptions, DirectoryOptions, ESLintConfig, FileOptions, JSONOption, JSONValue, LanguageId, LanguageIdMap, Project, ProjectScript, YarnConfigOptions, YarnVersionKind, YarnVersionOptions, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, meta, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
+export { BlockOptions, DirectoryOptions, ESLintConfig, FileMode, FileOptions, FilePermissionSet, JSONOption, JSONValue, LanguageId, LanguageIdMap, Project, ProjectScript, YarnConfigOptions, YarnVersionKind, YarnVersionOptions, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, meta, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
 //# sourceMappingURL=index.d.cts.map
