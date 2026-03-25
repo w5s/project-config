@@ -2,7 +2,7 @@ import { chmod, readFile, rm, writeFile } from 'node:fs/promises';
 import { chmodSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { __exists } from './__exists.js';
 import { __existsSync } from './__existsSync.js';
-import { FileMode } from './FileMode.js';
+import type { FileMode } from './FileMode.js';
 import { __toMode } from './__toMode.js';
 
 export interface FileOptions {
@@ -42,6 +42,11 @@ export interface FileOptions {
  *   path: 'foo/bar',
  *   state: 'present',
  *   update: (content) => content + '_test', // This will append '_test' after current content
+ *   mode: {
+ *     owner: { read: true, write: true, execute: true },
+ *     group: { read: true, write: true, execute: true },
+ *     other: { read: true, write: true, execute: true },
+ *   },
  * })
  * ```
  *
@@ -74,6 +79,11 @@ export async function file(options: FileOptions): Promise<void> {
  *   path: 'foo/bar',
  *   state: 'present',
  *   update: (content) => content + '_test', // This will append '_test' after current content
+ *   mode: {
+ *     owner: { read: true, write: true, execute: true },
+ *     group: { read: true, write: true, execute: true },
+ *     other: { read: true, write: true, execute: true },
+ *   },
  * })
  * ```
  *
