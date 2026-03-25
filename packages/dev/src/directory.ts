@@ -1,14 +1,6 @@
 import { existsSync, mkdirSync, rmSync } from 'node:fs';
-import { access, constants, mkdir, rm } from 'node:fs/promises';
-
-async function exists(path: string) {
-  try {
-    await access(path, constants.F_OK);
-    return true;
-  } catch {
-    return false;
-  }
-}
+import { mkdir, rm } from 'node:fs/promises';
+import { __exists } from './__exists.js';
 
 export interface DirectoryOptions {
   /**
@@ -37,7 +29,7 @@ export interface DirectoryOptions {
  */
 export async function directory(options: DirectoryOptions): Promise<void> {
   const { path, state } = options;
-  const isPresent = await exists(path);
+  const isPresent = await __exists(path);
   if (state === 'present') {
     if (!isPresent) {
       await mkdir(path, { recursive: true });
@@ -52,7 +44,7 @@ export async function directory(options: DirectoryOptions): Promise<void> {
  *
  * @example
  * ```ts
- * await directorySync({
+ * directorySync({
  *   path: 'foo/bar',
  *   state: 'present',
  * })

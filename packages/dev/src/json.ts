@@ -2,26 +2,11 @@ import { type FileOptions, file, fileSync } from './file.js';
 
 export type JSONValue = null | number | string | boolean | JSONValue[] | { [key: string]: JSONValue };
 
-export interface JSONOption<V = JSONValue> {
-  /**
-   * File path
-   */
-  readonly path: string;
-
-  /**
-   * File target state
-   */
-  readonly state: 'present' | 'absent';
-
+export interface JSONOption<V = JSONValue> extends Omit<FileOptions, 'update'> {
   /**
    * File content mapping function
    */
   readonly update?: ((content: V | undefined) => V | undefined) | undefined;
-
-  /**
-   * File encoding
-   */
-  readonly encoding?: BufferEncoding;
 }
 
 function toFileOption<Value>({ update, ...otherOptions }: JSONOption<Value>): FileOptions {

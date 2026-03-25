@@ -30,7 +30,7 @@ declare function directory(options: DirectoryOptions): Promise<void>;
  *
  * @example
  * ```ts
- * await directorySync({
+ * directorySync({
  *   path: 'foo/bar',
  *   state: 'present',
  * })
@@ -112,7 +112,7 @@ declare function block(options: BlockOptions): Promise<void>;
  */
 declare function blockSync(options: BlockOptions): void;
 //#endregion
-//#region src/file.d.ts
+//#region src/FileMode.d.ts
 interface FilePermissionSet {
   /**
    * Read permission
@@ -141,6 +141,8 @@ interface FileMode {
    */
   readonly other?: FilePermissionSet;
 }
+//#endregion
+//#region src/file.d.ts
 interface FileOptions {
   /**
    * File path
@@ -250,23 +252,11 @@ type LanguageId = keyof LanguageIdMap;
 type JSONValue = null | number | string | boolean | JSONValue[] | {
   [key: string]: JSONValue;
 };
-interface JSONOption<V = JSONValue> {
-  /**
-   * File path
-   */
-  readonly path: string;
-  /**
-   * File target state
-   */
-  readonly state: 'present' | 'absent';
+interface JSONOption<V = JSONValue> extends Omit<FileOptions, 'update'> {
   /**
    * File content mapping function
    */
   readonly update?: ((content: V | undefined) => V | undefined) | undefined;
-  /**
-   * File encoding
-   */
-  readonly encoding?: BufferEncoding;
 }
 /**
  * Ensure file is present/absent asynchronously with content value initialized or modified with `update`
@@ -468,5 +458,5 @@ declare function yarnVersionSync(options: YarnVersionOptions): void;
  */
 declare function yarnVersion(options: YarnVersionOptions): Promise<void>;
 //#endregion
-export { BlockOptions, DirectoryOptions, ESLintConfig, FileMode, FileOptions, FilePermissionSet, JSONOption, JSONValue, LanguageId, LanguageIdMap, Project, ProjectScript, YarnConfigOptions, YarnVersionKind, YarnVersionOptions, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, meta, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
+export { BlockOptions, DirectoryOptions, ESLintConfig, FileOptions, JSONOption, JSONValue, LanguageId, LanguageIdMap, Project, ProjectScript, YarnConfigOptions, YarnVersionKind, YarnVersionOptions, block, blockSync, directory, directorySync, file, fileSync, interopDefault, json, jsonSync, meta, yarnConfig, yarnConfigSync, yarnVersion, yarnVersionSync };
 //# sourceMappingURL=index.d.cts.map

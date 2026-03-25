@@ -2,15 +2,17 @@ Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 let node_fs = require("node:fs");
 let node_fs_promises = require("node:fs/promises");
 let node_child_process = require("node:child_process");
-//#region src/directory.ts
-async function exists$1(path) {
+//#region src/__exists.ts
+async function __exists(path) {
 	try {
-		await (0, node_fs_promises.access)(path, node_fs_promises.constants.F_OK);
+		await (0, node_fs_promises.access)(path, node_fs.constants.F_OK);
 		return true;
 	} catch {
 		return false;
 	}
 }
+//#endregion
+//#region src/directory.ts
 /**
 * Ensure directory is present/absent
 *
@@ -26,7 +28,7 @@ async function exists$1(path) {
 */
 async function directory(options) {
 	const { path, state } = options;
-	const isPresent = await exists$1(path);
+	const isPresent = await __exists(path);
 	if (state === "present") {
 		if (!isPresent) await (0, node_fs_promises.mkdir)(path, { recursive: true });
 	} else if (isPresent) await (0, node_fs_promises.rm)(path, { recursive: true });
@@ -36,7 +38,7 @@ async function directory(options) {
 *
 * @example
 * ```ts
-* await directorySync({
+* directorySync({
 *   path: 'foo/bar',
 *   state: 'present',
 * })
@@ -116,16 +118,8 @@ let ESLintConfig;
 	_ESLintConfig.renameRules = renameRules;
 })(ESLintConfig || (ESLintConfig = {}));
 //#endregion
-//#region src/file.ts
-async function exists(path) {
-	try {
-		await (0, node_fs_promises.access)(path, node_fs.constants.F_OK);
-		return true;
-	} catch {
-		return false;
-	}
-}
-function existsSync(path) {
+//#region src/__existsSync.ts
+function __existsSync(path) {
 	try {
 		(0, node_fs.accessSync)(path, node_fs.constants.F_OK);
 		return true;
@@ -133,12 +127,16 @@ function existsSync(path) {
 		return false;
 	}
 }
+//#endregion
+//#region src/__toMode.ts
 function toModeFlag(permissionSet, read, write, execute) {
 	return (permissionSet?.read === true ? read : 0) | (permissionSet?.write === true ? write : 0) | (permissionSet?.execute === true ? execute : 0);
 }
-function toMode(mode) {
+function __toMode(mode) {
 	return mode == null ? mode : toModeFlag(mode.owner, 256, 128, 64) | toModeFlag(mode.group, 32, 16, 8) | toModeFlag(mode.other, 4, 2, 1);
 }
+//#endregion
+//#region src/file.ts
 /**
 * Ensure file is present/absent with content initialized or modified with `update
 *
@@ -156,10 +154,10 @@ function toMode(mode) {
 async function file(options) {
 	const { path, state, update, encoding = "utf8", mode } = options;
 	if (state === "present") {
-		const isPresent = await exists(path);
+		const isPresent = await __exists(path);
 		const previousContent = isPresent ? await (0, node_fs_promises.readFile)(path, encoding) : "";
 		const newContent = update == null ? isPresent ? void 0 : "" : update(previousContent);
-		const newMode = toMode(mode);
+		const newMode = __toMode(mode);
 		if (newContent != null) await (0, node_fs_promises.writeFile)(path, newContent, {
 			encoding,
 			mode: newMode
@@ -184,10 +182,10 @@ async function file(options) {
 function fileSync(options) {
 	const { path, state, update, encoding = "utf8", mode } = options;
 	if (state === "present") {
-		const isPresent = existsSync(path);
+		const isPresent = __existsSync(path);
 		const previousContent = isPresent ? (0, node_fs.readFileSync)(path, encoding) : "";
 		const newContent = update == null ? isPresent ? void 0 : "" : update(previousContent);
-		const newMode = toMode(mode);
+		const newMode = __toMode(mode);
 		if (newContent != null) (0, node_fs.writeFileSync)(path, newContent, {
 			encoding,
 			mode: newMode
