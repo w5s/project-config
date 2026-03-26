@@ -1,5 +1,6 @@
 import { chmod, readFile, rm, writeFile } from 'node:fs/promises';
 import { chmodSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { useRuntimeContext } from './context.js';
 import { __exists } from './__exists.js';
 import { __existsSync } from './__existsSync.js';
 import type { FileMode } from './FileMode.js';
@@ -54,19 +55,22 @@ export interface FileOptions {
  */
 export async function file(options: FileOptions): Promise<void> {
   const { path, state, update, encoding = 'utf8', mode } = options;
+  const { isDryRun } = useRuntimeContext();
   if (state === 'present') {
     const isPresent = await __exists(path);
     const previousContent = isPresent ? await readFile(path, encoding) : '';
     const newContent = update == null ? (isPresent ? undefined : '') : update(previousContent);
     const newMode = __toMode(mode);
-    if (newContent != null) {
+    if (!isDryRun && newContent != null) {
       await writeFile(path, newContent, { encoding, mode: newMode });
     }
-    if (newMode != null && (isPresent || newContent != null)) {
+    if (!isDryRun && newMode != null && (isPresent || newContent != null)) {
       await chmod(path, newMode);
     }
   } else {
-    await rm(path, { force: true });
+    if (!isDryRun) {
+      await rm(path, { force: true });
+    }
   }
 }
 
@@ -91,18 +95,21 @@ export async function file(options: FileOptions): Promise<void> {
  */
 export function fileSync(options: FileOptions): void {
   const { path, state, update, encoding = 'utf8', mode } = options;
+  const { isDryRun } = useRuntimeContext();
   if (state === 'present') {
     const isPresent = __existsSync(path);
     const previousContent = isPresent ? readFileSync(path, encoding) : '';
     const newContent = update == null ? (isPresent ? undefined : '') : update(previousContent);
     const newMode = __toMode(mode);
-    if (newContent != null) {
+    if (!isDryRun && newContent != null) {
       writeFileSync(path, newContent, { encoding, mode: newMode });
     }
-    if (newMode != null && (isPresent || newContent != null)) {
+    if (!isDryRun && newMode != null && (isPresent || newContent != null)) {
       chmodSync(path, newMode);
     }
   } else {
-    rmSync(path, { force: true });
+    if (!isDryRun) {
+      rmSync(path, { force: true });
+    }
   }
 }

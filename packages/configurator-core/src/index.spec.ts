@@ -7,6 +7,7 @@ describe('index', () => {
     expect(Object.keys(Module).sort()).toEqual(
       [
         // Public API
+        'definePreset',
         'directory',
         'directorySync',
         'block',
@@ -16,6 +17,7 @@ describe('index', () => {
         'json',
         'jsonSync',
         'meta',
+        'useRuntimeContext',
         'yarnConfig',
         'yarnConfigSync',
         'yarnVersion',

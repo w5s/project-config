@@ -1,35 +1,40 @@
 {
-  "name": "@w5s/configurator-core",
+  "name": "@w5s/configurator",
   "version": "1.0.0-alpha.0",
-  "description": "Core library for @w5s/configurator-core",
+  "description": "CLI tool to run configurator presets",
   "keywords": [
+    "cli",
     "config",
     "configurator",
-    "file",
-    "json"
+    "preset"
   ],
-  "homepage": "https://github.com/w5s/project-config/blob/main/packages/configurator-core#readme",
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/configurator#readme",
   "bugs": {
     "url": "https://github.com/w5s/project-config/issues"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:w5s/project-config.git",
-    "directory": "packages/configurator-core"
+    "directory": "packages/configurator"
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
   "type": "module",
+  "bin": {
+    "configurator": "dist/cli.js"
+  },
   "exports": {
     ".": {
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      },
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./config": {
+      "types": "./dist/config.d.ts",
+      "default": "./dist/config.js"
+    },
+    "./runtime": {
+      "types": "./dist/runtime.d.ts",
+      "default": "./dist/runtime.js"
     },
     "./dist/*": "./dist/*"
   },
@@ -61,13 +66,16 @@
     "test:src": "vitest run"
   },
   "dependencies": {
-    "@w5s/configurator": "workspace:*"
+    "@t3-oss/env-core": "^0.11.1",
+    "c12": "^3.2.0",
+    "clipanion": "^4.0.0-rc.4",
+    "zod": "^3.24.4"
   },
   "devDependencies": {
     "@w5s/tsdown-config": "workspace:*",
-    "tsdown": "0.21.7",
-    "vite": "8.0.8",
-    "vitest": "4.1.4"
+    "tsdown": "0.21.5",
+    "vite": "8.0.2",
+    "vitest": "4.1.1"
   },
   "clean-package": "../../clean-package.config.cjs",
   "engines": {
