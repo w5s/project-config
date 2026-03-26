@@ -1,5 +1,5 @@
 const { readFileSync } = require('node:fs');
-const { blockSync } = require('@w5s/configurator');
+const { blockSync } = require('@w5s/configurator-core');
 const { vscodeRecommendedExtension } = require('../core/vscode.js');
 
 function task() {

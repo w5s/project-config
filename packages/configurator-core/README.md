@@ -1,5 +1,5 @@
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=# W5S Configurator _(${name})_) -->
-# W5S Configurator _(@w5s/configurator)_
+# W5S Configurator _(@w5s/configurator-core)_
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 [![NPM Version][package-version-svg]][package-url]
@@ -13,7 +13,7 @@
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```console\nnpm install --save-dev ${name}\n```) -->
 ```console
-npm install --save-dev @w5s/configurator
+npm install --save-dev @w5s/configurator-core
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -21,7 +21,7 @@ npm install --save-dev @w5s/configurator
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```json\n"${name}"\n```) -->
 ```json
-"@w5s/configurator"
+"@w5s/configurator-core"
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
@@ -33,10 +33,10 @@ npm install --save-dev @w5s/configurator
 <!-- VARIABLES -->
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[package-version-svg]: https://img.shields.io/npm/v/${name}.svg?style=flat-square) -->
-[package-version-svg]: https://img.shields.io/npm/v/@w5s/configurator.svg?style=flat-square
+[package-version-svg]: https://img.shields.io/npm/v/@w5s/configurator-core.svg?style=flat-square
 <!-- AUTO-GENERATED-CONTENT:END -->
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[package-url]: https://www.npmjs.com/package/${name}) -->
-[package-url]: https://www.npmjs.com/package/@w5s/configurator
+[package-url]: https://www.npmjs.com/package/@w5s/configurator-core
 <!-- AUTO-GENERATED-CONTENT:END -->
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[license-image]: https://img.shields.io/badge/license-${license}-green.svg?style=flat-square) -->
 [license-image]: https://img.shields.io/badge/license-MIT-green.svg?style=flat-square

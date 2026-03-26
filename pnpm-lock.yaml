@@ -121,7 +121,7 @@ importers:
         specifier: 4.1.1
         version: 4.1.1(@types/node@20.19.37)(vite@8.0.3(@types/node@20.19.37)(jiti@2.6.1)(yaml@2.8.3))
 
-  packages/configurator:
+  packages/configurator-core:
     devDependencies:
       '@w5s/tsdown-config':
         specifier: workspace:*
@@ -316,9 +316,9 @@ importers:
 
   packages/mrm-preset:
     dependencies:
-      '@w5s/configurator':
+      '@w5s/configurator-core':
         specifier: workspace:^
-        version: link:../configurator
+        version: link:../configurator-core
       '@w5s/dev':
         specifier: workspace:^
         version: link:../dev
@@ -11093,7 +11093,7 @@ snapshots:
       magic-string: 0.30.21
       obug: 2.1.1
       pathe: 2.0.3
-      picomatch: 4.0.3
+      picomatch: 4.0.4
       std-env: 4.0.0
       tinybench: 2.9.0
       tinyexec: 1.0.4

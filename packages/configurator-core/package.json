@@ -1,19 +1,21 @@
 {
-  "name": "@w5s/configurator",
+  "name": "@w5s/configurator-core",
   "version": "1.0.0-alpha.0",
-  "description": "Project standard configurator",
+  "description": "Core library for @w5s/configurator-core",
   "keywords": [
     "config",
-    "configurator"
+    "configurator",
+    "file",
+    "json"
   ],
-  "homepage": "https://github.com/w5s/project-config/blob/main/packages/configurator#readme",
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/configurator-core#readme",
   "bugs": {
     "url": "https://github.com/w5s/project-config/issues"
   },
   "repository": {
     "type": "git",
     "url": "git@github.com:w5s/project-config.git",
-    "directory": "packages/configurator"
+    "directory": "packages/configurator-core"
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
