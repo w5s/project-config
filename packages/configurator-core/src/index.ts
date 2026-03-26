@@ -5,3 +5,4 @@ export * from './json.js';
 export * from './meta.js';
 export * from './yarnConfig.js';
 export * from './yarnVersion.js';
+export * from './context.js';

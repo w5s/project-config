@@ -1,5 +1,6 @@
 import { chmodSync, mkdirSync, rmSync } from 'node:fs';
 import { chmod, mkdir, rm } from 'node:fs/promises';
+import { useRuntimeContext } from './context.js';
 import { __exists } from './__exists.js';
 import type { FileMode } from './FileMode.js';
 import { __toMode } from './__toMode.js';
@@ -43,15 +44,16 @@ export interface DirectoryOptions {
 export async function directory(options: DirectoryOptions): Promise<void> {
   const { path, state, mode } = options;
   const isPresent = await __exists(path);
+  const { isDryRun } = useRuntimeContext();
   if (state === 'present') {
     const newMode = __toMode(mode);
-    if (!isPresent) {
+    if (!isDryRun && !isPresent) {
       await mkdir(path, { recursive: true, mode: newMode });
     }
-    if (newMode != null && isPresent) {
+    if (!isDryRun && newMode != null && isPresent) {
       await chmod(path, newMode);
     }
-  } else if (isPresent) {
+  } else if (!isDryRun && isPresent) {
     await rm(path, { recursive: true });
   }
 }
@@ -77,15 +79,16 @@ export async function directory(options: DirectoryOptions): Promise<void> {
 export function directorySync(options: DirectoryOptions): void {
   const { path, state, mode } = options;
   const isPresent = __existsSync(path);
+  const { isDryRun } = useRuntimeContext();
   if (state === 'present') {
     const newMode = __toMode(mode);
-    if (!isPresent) {
+    if (!isDryRun && !isPresent) {
       mkdirSync(path, { recursive: true, mode: newMode });
     }
-    if (newMode != null && isPresent) {
+    if (!isDryRun && newMode != null && isPresent) {
       chmodSync(path, newMode);
     }
-  } else if (isPresent) {
+  } else if (!isDryRun && isPresent) {
     rmSync(path, { recursive: true });
   }
 }
