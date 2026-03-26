@@ -67,7 +67,7 @@
   "devDependencies": {
     "tsdown": "0.21.5",
     "vite": "8.0.3",
-    "vitest": "4.1.1"
+    "vitest": "4.1.2"
   },
   "peerDependencies": {
     "tsdown": "0.x"
