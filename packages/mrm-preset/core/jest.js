@@ -32,6 +32,7 @@ function jest({ state }) {
             coveragePathIgnorePatterns: ignorePatterns,
             testPathIgnorePatterns: ignorePatterns,
           }),
+      // @ts-ignore
       default: {},
     });
     pkg.script(packageFile, {
