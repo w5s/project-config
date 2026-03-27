@@ -1,26 +1,17 @@
-import { beforeAll, describe, expect, it } from 'vitest';
-import { mkdir, rm } from 'node:fs/promises';
+import { describe, expect, it } from 'vitest';
 import nodePath from 'node:path';
 import { existsSync } from 'node:fs';
 import { directory, directorySync } from './directory.js';
+import { getTestPath } from './testing/index.js';
 
 describe.each([
   ['directory', directory],
   ['directorySync', directorySync],
 ] as const)('%s', (_, subject) => {
-  const TEST_PATH = '.cache/test-directory';
-
-  beforeAll(async () => {
-    try {
-      await rm(TEST_PATH, { recursive: true });
-    } catch {
-      /* empty */
-    }
-    await mkdir(TEST_PATH, { recursive: true });
-  });
+  const testPath = getTestPath('directory-');
 
   it('should create directory if present', async () => {
-    const path = nodePath.join(TEST_PATH, 'create');
+    const path = nodePath.join(testPath, 'create');
     await subject({
       path,
       state: 'present',
@@ -29,7 +20,7 @@ describe.each([
   });
 
   it('should not throw error if absent', async () => {
-    const path = nodePath.join(TEST_PATH, 'delete-absent');
+    const path = nodePath.join(testPath, 'delete-absent');
     expect(async () => {
       await subject({
         path,

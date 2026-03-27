@@ -1,22 +1,14 @@
-import { beforeAll, describe, it, expect } from 'vitest';
-import { mkdir, readFile, rm } from 'node:fs/promises';
+import { describe, it, expect } from 'vitest';
+import { readFile } from 'node:fs/promises';
 import nodePath from 'node:path';
 import { json } from './json.js';
+import { getTestPath } from './testing/index.js';
 
-describe('json', () => {
-  const TEST_PATH = '.cache/test-json';
-
-  beforeAll(async () => {
-    try {
-      await rm(TEST_PATH, { recursive: true });
-    } catch {
-      /* empty */
-    }
-    await mkdir(TEST_PATH, { recursive: true });
-  });
+describe(json, () => {
+  const testPath = getTestPath('json-');
 
   it('should create file if present', async () => {
-    const path = nodePath.join(TEST_PATH, 'create');
+    const path = nodePath.join(testPath, 'create');
     await json({
       path,
       state: 'present',
@@ -25,7 +17,7 @@ describe('json', () => {
     await expect(readFile(path, 'utf8')).resolves.toEqual('["foo"]');
   });
   it('should map content', async () => {
-    const path = nodePath.join(TEST_PATH, 'create-already-exist');
+    const path = nodePath.join(testPath, 'create-already-exist');
     await json({
       path,
       state: 'present',

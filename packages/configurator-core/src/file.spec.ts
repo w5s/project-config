@@ -1,7 +1,8 @@
-import { beforeAll, describe, expect, it } from 'vitest';
-import { chmod, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
+import { describe, expect, it } from 'vitest';
+import { chmod, readFile, stat, writeFile } from 'node:fs/promises';
 import nodePath from 'node:path';
 import { file, fileSync } from './file.js';
+import { getTestPath } from './testing/index.js';
 
 async function readMode(path: string) {
   const fileStat = await stat(path);
@@ -9,20 +10,11 @@ async function readMode(path: string) {
   return fileStat.mode & 0o777;
 }
 
-describe('file', () => {
-  const TEST_PATH = '.cache/test-file';
-
-  beforeAll(async () => {
-    try {
-      await rm(TEST_PATH, { recursive: true });
-    } catch {
-      /* empty */
-    }
-    await mkdir(TEST_PATH, { recursive: true });
-  });
+describe(file, () => {
+  const testPath = getTestPath('file-');
 
   it('should create file if present', async () => {
-    const path = nodePath.join(TEST_PATH, 'create');
+    const path = nodePath.join(testPath, 'create');
     await file({
       path,
       state: 'present',
@@ -32,7 +24,7 @@ describe('file', () => {
   });
 
   it('should create file with mode if present', async () => {
-    const path = nodePath.join(TEST_PATH, 'create-with-mode');
+    const path = nodePath.join(testPath, 'create-with-mode');
     await file({
       path,
       state: 'present',
@@ -49,7 +41,7 @@ describe('file', () => {
   });
 
   it('should update mode without changing content', async () => {
-    const path = nodePath.join(TEST_PATH, 'update-mode-only');
+    const path = nodePath.join(testPath, 'update-mode-only');
     await writeFile(path, 'foo');
     await chmod(path, 0o600);
 
@@ -68,7 +60,7 @@ describe('file', () => {
   });
 
   it('should apply mode when update is omitted and file already exists', async () => {
-    const path = nodePath.join(TEST_PATH, 'mode-existing-file');
+    const path = nodePath.join(testPath, 'mode-existing-file');
     await writeFile(path, 'foo');
     await chmod(path, 0o644);
 
@@ -87,7 +79,7 @@ describe('file', () => {
   });
 
   it('should leave mode unchanged when mode is omitted', async () => {
-    const path = nodePath.join(TEST_PATH, 'mode-unchanged');
+    const path = nodePath.join(testPath, 'mode-unchanged');
     await writeFile(path, 'foo');
     await chmod(path, 0o640);
 
@@ -102,7 +94,7 @@ describe('file', () => {
   });
 
   it('should not throw error if absent', async () => {
-    const path = nodePath.join(TEST_PATH, 'delete-absent');
+    const path = nodePath.join(testPath, 'delete-absent');
     expect(async () => {
       await file({
         path,
@@ -112,7 +104,7 @@ describe('file', () => {
   });
 
   it('should ignore mode when file is absent', async () => {
-    const path = nodePath.join(TEST_PATH, 'delete-with-mode');
+    const path = nodePath.join(testPath, 'delete-with-mode');
     await writeFile(path, 'foo');
 
     await file({
@@ -127,7 +119,7 @@ describe('file', () => {
   });
 
   it('should support mode in fileSync', async () => {
-    const path = nodePath.join(TEST_PATH, 'sync-mode');
+    const path = nodePath.join(testPath, 'sync-mode');
     fileSync({
       path,
       state: 'present',

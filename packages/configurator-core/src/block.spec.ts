@@ -1,21 +1,12 @@
-import { beforeEach, describe, expect, it } from 'vitest';
-import { mkdir, rm, readFile } from 'node:fs/promises';
+import { describe, expect, it } from 'vitest';
+import { readFile } from 'node:fs/promises';
 import nodePath from 'node:path';
 import { block } from './block.js';
 import { file } from './file.js';
+import { getTestPath } from './testing/index.js';
 
-describe('block', () => {
-  let testPath = '';
-
-  beforeEach(async () => {
-    testPath = `.cache/test-block-${Math.random().toString(36)}`;
-    try {
-      await rm(testPath, { recursive: true });
-    } catch {
-      /* empty */
-    }
-    await mkdir(testPath, { recursive: true });
-  });
+describe(block, () => {
+  const testPath = getTestPath('block-');
 
   describe('option state', () => {
     it('does not change the content when "absent" and not present', async () => {
