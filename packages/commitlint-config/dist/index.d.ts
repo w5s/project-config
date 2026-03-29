@@ -1,4 +1,4 @@
-import * as _commitlint_types0 from "@commitlint/types";
+import * as _$_commitlint_types0 from "@commitlint/types";
 
 //#region src/meta.d.ts
 declare const meta: Readonly<{
@@ -12,8 +12,8 @@ declare const config: {
   parserPreset: {
     parserOpts: any;
   };
-  rules: Partial<_commitlint_types0.RulesConfig<_commitlint_types0.RuleConfigQuality.Qualified>>;
-  plugins: _commitlint_types0.Plugin[];
+  rules: Partial<_$_commitlint_types0.RulesConfig<_$_commitlint_types0.RuleConfigQuality.Qualified>>;
+  plugins: _$_commitlint_types0.Plugin[];
 };
 //#endregion
 export { config as default, meta };
