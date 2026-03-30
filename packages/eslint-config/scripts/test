@@ -6,17 +6,17 @@ set -e;
 
 eslint ()
 {
-  pnpm dlx eslint "$@";
+  pnpm exec eslint "$@";
 }
 
 test_project ()
 {
   PROJECT_NAME=$1
-  echo "Test $1"
-  cd "_tests/$1";
+  echo "Test $PROJECT_NAME"
+  cd "_tests/$PROJECT_NAME";
 
   shift;
-  eslint . $@;
+  eslint . "$@";
   cd "$ROOT";
 }
 
