@@ -34,7 +34,7 @@
     "prepack": "clean-package",
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
-    "test:script": "mkdir _tester; cd _tester; mrm bootstrap --dir ..; mrm configure --dir .."
+    "test:script": "mkdir -p _tester; cd _tester; mrm bootstrap --dir ..; mrm configure --dir .."
   },
   "dependencies": {
     "@w5s/configurator-core": "workspace:^",
