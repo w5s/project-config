@@ -41,18 +41,18 @@ jobs:
           fetch-depth: 0 # full history for Lerna conventional-commits versioning
           token: ${{ secrets.GITHUB_TOKEN }}
       - name: ⚙️ Setup
-        uses: w5s/actions/setup@40695c64cf633fd1bfe3cf121e0a2e2d05ac3d43 # main
+        uses: w5s/actions/setup@eead706c25078e6d499579611064d636c09dd927 # main
       - name: 🔨 Build
-        uses: w5s/actions/task@40695c64cf633fd1bfe3cf121e0a2e2d05ac3d43 # main
+        uses: w5s/actions/task@eead706c25078e6d499579611064d636c09dd927 # main
         with:
           task: build
       - name: 🔍 Validate
-        uses: w5s/actions/task@40695c64cf633fd1bfe3cf121e0a2e2d05ac3d43 # main
+        uses: w5s/actions/task@eead706c25078e6d499579611064d636c09dd927 # main
         with:
           task: validate
 
       - name: 🚀 Publish
-        uses: w5s/actions/task@40695c64cf633fd1bfe3cf121e0a2e2d05ac3d43 # main
+        uses: w5s/actions/task@eead706c25078e6d499579611064d636c09dd927 # main
         with:
           task: release
         env:
