@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { chmod, readFile, stat, writeFile } from 'node:fs/promises';
 import nodePath from 'node:path';
+import { RuntimeContext } from '@w5s/configurator/runtime';
 import { file, fileSync } from './file.js';
 import { getTestPath } from './testing/index.js';
 
@@ -132,5 +133,68 @@ describe(file, () => {
 
     await expect(readFile(path, 'utf8')).resolves.toEqual('foo');
     await expect(readMode(path)).resolves.toEqual(0o640);
+  });
+
+  it('should skip async mutations in dryRun mode', async () => {
+    const path = nodePath.join(testPath, 'dry-run-async');
+
+    await RuntimeContext.run(
+      {
+        ...RuntimeContext.default,
+        isDebug: false,
+        isDryRun: true,
+      },
+      async () => {
+        await file({
+          path,
+          state: 'present',
+          update: () => 'foo',
+        });
+      },
+    );
+
+    await expect(stat(path)).rejects.toThrow();
+  });
+
+  it('should skip async deletes in dryRun mode', async () => {
+    const path = nodePath.join(testPath, 'dry-run-delete');
+    await writeFile(path, 'foo');
+
+    await RuntimeContext.run(
+      {
+        ...RuntimeContext.default,
+        isDebug: false,
+        isDryRun: true,
+      },
+      async () => {
+        await file({
+          path,
+          state: 'absent',
+        });
+      },
+    );
+
+    await expect(readFile(path, 'utf8')).resolves.toEqual('foo');
+  });
+
+  it('should skip sync mutations in dryRun mode', async () => {
+    const path = nodePath.join(testPath, 'dry-run-sync');
+
+    await RuntimeContext.run(
+      {
+        ...RuntimeContext.default,
+        isDebug: false,
+        isDryRun: true,
+      },
+      async () => {
+        fileSync({
+          path,
+          state: 'present',
+          update: () => 'foo',
+        });
+      },
+    );
+
+    await expect(stat(path)).rejects.toThrow();
   });
 });
