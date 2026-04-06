@@ -66,11 +66,11 @@ importers:
         specifier: 6.0.2
         version: 6.0.2
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
   packages/browserslist-config:
     devDependencies:
@@ -87,11 +87,11 @@ importers:
         specifier: 0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(synckit@0.11.12)(typescript@6.0.2)
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
   packages/commitlint-config:
     dependencies:
@@ -115,11 +115,11 @@ importers:
         specifier: 0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(synckit@0.11.12)(typescript@6.0.2)
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
   packages/configurator-core:
     devDependencies:
@@ -130,11 +130,11 @@ importers:
         specifier: 0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(synckit@0.11.12)(typescript@6.0.2)
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
   packages/conventional-changelog:
     dependencies:
@@ -161,11 +161,11 @@ importers:
         specifier: 0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(synckit@0.11.12)(typescript@6.0.2)
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
   packages/cspell-config:
     dependencies:
@@ -189,11 +189,11 @@ importers:
         specifier: 0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(synckit@0.11.12)(typescript@6.0.2)
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
   packages/dev:
     dependencies:
@@ -208,11 +208,11 @@ importers:
         specifier: 0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(synckit@0.11.12)(typescript@6.0.2)
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
   packages/eslint-config:
     dependencies:
@@ -233,7 +233,7 @@ importers:
         version: 8.58.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)
       '@vitest/eslint-plugin':
         specifier: ^1.0.0
-        version: 1.6.14(@typescript-eslint/eslint-plugin@8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)(vitest@4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)))
+        version: 1.6.14(@typescript-eslint/eslint-plugin@8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)(vitest@4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)))
       '@w5s/dev':
         specifier: workspace:^
         version: link:../dev
@@ -308,11 +308,11 @@ importers:
         specifier: 0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(synckit@0.11.12)(typescript@6.0.2)
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
   packages/mrm-preset:
     dependencies:
@@ -360,11 +360,11 @@ importers:
         specifier: 0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(synckit@0.11.12)(typescript@6.0.2)
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
   packages/tsconfig:
     devDependencies:
@@ -378,11 +378,11 @@ importers:
         specifier: 0.21.7
         version: 0.21.7(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(synckit@0.11.12)(typescript@6.0.2)
       vite:
-        specifier: 8.0.3
-        version: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+        specifier: 8.0.5
+        version: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       vitest:
         specifier: 4.1.2
-        version: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+        version: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
 
 packages:
 
@@ -5024,14 +5024,14 @@ packages:
     resolution: {integrity: sha512-hVDIBwsRruT73PbK7uP5ebUt+ezEtCmzZz3F59BSr2F6OVFnJ/6h8liuvdLrQ88Xmnk6/+xGGuq+pG9WwTuy3A==}
     engines: {node: ^20.17.0 || >=22.9.0}
 
-  vite@8.0.3:
-    resolution: {integrity: sha512-B9ifbFudT1TFhfltfaIPgjo9Z3mDynBTJSUYxTjOQruf/zHH+ezCQKcoqO+h7a9Pw9Nm/OtlXAiGT1axBgwqrQ==}
+  vite@8.0.5:
+    resolution: {integrity: sha512-nmu43Qvq9UopTRfMx2jOYW5l16pb3iDC1JH6yMuPkpVbzK0k+L7dfsEDH4jRgYFmsg0sTAqkojoZgzLMlwHsCQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
       '@types/node': ^20.19.0 || >=22.12.0
       '@vitejs/devtools': ^0.1.0
-      esbuild: ^0.27.0
+      esbuild: ^0.27.0 || ^0.28.0
       jiti: '>=1.21.0'
       less: ^4.0.0
       sass: ^1.70.0
@@ -6515,7 +6515,7 @@ snapshots:
       '@typescript-eslint/types': 8.58.0
       eslint-visitor-keys: 5.0.1
 
-  '@vitest/eslint-plugin@1.6.14(@typescript-eslint/eslint-plugin@8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)(vitest@4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)))':
+  '@vitest/eslint-plugin@1.6.14(@typescript-eslint/eslint-plugin@8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)(vitest@4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)))':
     dependencies:
       '@typescript-eslint/scope-manager': 8.58.0
       '@typescript-eslint/utils': 8.58.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)
@@ -6523,7 +6523,7 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.58.0(@typescript-eslint/parser@8.58.0(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2))(eslint@10.2.0(jiti@2.6.1))(typescript@6.0.2)
       typescript: 6.0.2
-      vitest: 4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+      vitest: 4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
     transitivePeerDependencies:
       - supports-color
 
@@ -6536,13 +6536,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.2(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))':
+  '@vitest/mocker@4.1.2(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))':
     dependencies:
       '@vitest/spy': 4.1.2
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+      vite: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
 
   '@vitest/pretty-format@4.1.2':
     dependencies:
@@ -10670,7 +10670,7 @@ snapshots:
 
   validate-npm-package-name@7.0.2: {}
 
-  vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3):
+  vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
@@ -10686,10 +10686,10 @@ snapshots:
       - '@emnapi/core'
       - '@emnapi/runtime'
 
-  vitest@4.1.2(@types/node@20.19.39)(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)):
+  vitest@4.1.2(@types/node@20.19.39)(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)):
     dependencies:
       '@vitest/expect': 4.1.2
-      '@vitest/mocker': 4.1.2(vite@8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
+      '@vitest/mocker': 4.1.2(vite@8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3))
       '@vitest/pretty-format': 4.1.2
       '@vitest/runner': 4.1.2
       '@vitest/snapshot': 4.1.2
@@ -10706,7 +10706,7 @@ snapshots:
       tinyexec: 1.0.4
       tinyglobby: 0.2.15
       tinyrainbow: 3.1.0
-      vite: 8.0.3(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
+      vite: 8.0.5(@emnapi/core@1.9.2)(@emnapi/runtime@1.9.2)(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 20.19.39
