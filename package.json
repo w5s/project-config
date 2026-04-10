@@ -69,6 +69,8 @@
     "@lerna-lite/publish": "5.0.0",
     "@types/node": "20.19.39",
     "@w5s/commitlint-config": "workspace:*",
+    "@w5s/configurator": "workspace:*",
+    "@w5s/configurator-core": "workspace:*",
     "@w5s/conventional-changelog": "workspace:*",
     "@w5s/cspell-config": "workspace:*",
     "@w5s/eslint-config": "workspace:*",
