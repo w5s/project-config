@@ -6,7 +6,7 @@ export default [
       '**/dist',
       '**/CHANGELOG.md',
       '**/CODE_OF_CONDUCT.md',
-      '**/_tester/**',
+      '**/.temp/**',
     ],
   })),
   {

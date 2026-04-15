@@ -8,5 +8,5 @@
     "resolveJsonModule": true,
     "types": ["node"]
   },
-  "exclude": ["**/templates/**", "_tester"]
+  "exclude": ["**/templates/**", ".temp"]
 }

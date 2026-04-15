@@ -151,6 +151,3 @@ dist
 !packages/prettier-config/dist/
 !packages/tsdown-config/dist/
 packages/*/dist/**/*.spec.*
-
-# mrm tester
-_tester

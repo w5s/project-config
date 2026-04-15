@@ -12,7 +12,7 @@
   "ignorePaths": [
     "packages/cspell-config/dict/**",
     "packages/eslint-config/src/typegen/**",
-    "packages/mrm-preset/_tester/**",
+    "packages/mrm-preset/.temp/**",
     "packages/mrm-preset/ci/_autodevops/**"
   ],
   "words": [
