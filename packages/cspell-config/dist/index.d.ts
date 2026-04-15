@@ -5,7 +5,7 @@ declare const meta: Readonly<{
   buildNumber: number;
 }>;
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@9.7.0/node_modules/@cspell/cspell-types/dist/TextMap-Cs2Bypvi.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.0.0/node_modules/@cspell/cspell-types/dist/index-B8xFbW_T.d.mts
 //#region src/Parser/types.d.ts
 /**
 * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -165,7 +165,7 @@ type ScopeString = string;
 type Scope = ScopeChain | ScopeString; //#endregion
 //#region src/Parser/TextMap.d.ts
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@9.7.0/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.0.0/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
 * Binary data for CSpellVFS file.
