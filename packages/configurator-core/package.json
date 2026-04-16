@@ -63,7 +63,7 @@
   "dependencies": {},
   "devDependencies": {
     "@w5s/tsdown-config": "workspace:*",
-    "tsdown": "0.21.8",
+    "tsdown": "0.21.9",
     "vite": "8.0.8",
     "vitest": "4.1.4"
   },
