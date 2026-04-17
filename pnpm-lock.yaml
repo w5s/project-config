@@ -63,8 +63,8 @@ importers:
         specifier: 2.9.6
         version: 2.9.6
       typescript:
-        specifier: 6.0.2
-        version: 6.0.2
+        specifier: 6.0.3
+        version: 6.0.3
       vite:
         specifier: 8.0.8
         version: 8.0.8(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
@@ -85,7 +85,7 @@ importers:
         version: 4.18.1
       tsdown:
         specifier: 0.21.9
-        version: 0.21.9(synckit@0.11.12)(typescript@6.0.2)
+        version: 0.21.9(synckit@0.11.12)(typescript@6.0.3)
       vite:
         specifier: 8.0.8
         version: 8.0.8(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
@@ -97,7 +97,7 @@ importers:
     dependencies:
       '@commitlint/cli':
         specifier: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0
-        version: 20.5.0(@types/node@20.19.39)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)(typescript@6.0.2)
+        version: 20.5.0(@types/node@20.19.39)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)(typescript@6.0.3)
       '@commitlint/types':
         specifier: ^20.0.0
         version: 20.5.0
@@ -113,7 +113,7 @@ importers:
         version: link:../tsdown-config
       tsdown:
         specifier: 0.21.9
-        version: 0.21.9(synckit@0.11.12)(typescript@6.0.2)
+        version: 0.21.9(synckit@0.11.12)(typescript@6.0.3)
       vite:
         specifier: 8.0.8
         version: 8.0.8(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
@@ -128,7 +128,7 @@ importers:
         version: link:../tsdown-config
       tsdown:
         specifier: 0.21.9
-        version: 0.21.9(synckit@0.11.12)(typescript@6.0.2)
+        version: 0.21.9(synckit@0.11.12)(typescript@6.0.3)
       vite:
         specifier: 8.0.8
         version: 8.0.8(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
@@ -159,7 +159,7 @@ importers:
         version: link:../tsdown-config
       tsdown:
         specifier: 0.21.9
-        version: 0.21.9(synckit@0.11.12)(typescript@6.0.2)
+        version: 0.21.9(synckit@0.11.12)(typescript@6.0.3)
       vite:
         specifier: 8.0.8
         version: 8.0.8(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
@@ -178,7 +178,7 @@ importers:
     devDependencies:
       '@cspell/cspell-tools':
         specifier: 10.0.0
-        version: 10.0.0(@cspell/cspell-types@10.0.0)(typescript@6.0.2)
+        version: 10.0.0(@cspell/cspell-types@10.0.0)(typescript@6.0.3)
       '@cspell/cspell-types':
         specifier: 10.0.0
         version: 10.0.0
@@ -187,7 +187,7 @@ importers:
         version: link:../tsdown-config
       tsdown:
         specifier: 0.21.9
-        version: 0.21.9(synckit@0.11.12)(typescript@6.0.2)
+        version: 0.21.9(synckit@0.11.12)(typescript@6.0.3)
       vite:
         specifier: 8.0.8
         version: 8.0.8(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
@@ -206,7 +206,7 @@ importers:
         version: link:../tsdown-config
       tsdown:
         specifier: 0.21.9
-        version: 0.21.9(synckit@0.11.12)(typescript@6.0.2)
+        version: 0.21.9(synckit@0.11.12)(typescript@6.0.3)
       vite:
         specifier: 8.0.8
         version: 8.0.8(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
@@ -358,7 +358,7 @@ importers:
         version: 3.8.3
       tsdown:
         specifier: 0.21.9
-        version: 0.21.9(synckit@0.11.12)(typescript@6.0.2)
+        version: 0.21.9(synckit@0.11.12)(typescript@6.0.3)
       vite:
         specifier: 8.0.8
         version: 8.0.8(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
@@ -369,14 +369,14 @@ importers:
   packages/tsconfig:
     devDependencies:
       typescript:
-        specifier: 6.0.2
-        version: 6.0.2
+        specifier: 6.0.3
+        version: 6.0.3
 
   packages/tsdown-config:
     devDependencies:
       tsdown:
         specifier: 0.21.9
-        version: 0.21.9(synckit@0.11.12)(typescript@6.0.2)
+        version: 0.21.9(synckit@0.11.12)(typescript@6.0.3)
       vite:
         specifier: 8.0.8
         version: 8.0.8(@types/node@20.19.39)(jiti@2.6.1)(yaml@2.8.3)
@@ -5007,6 +5007,11 @@ packages:
     engines: {node: '>=14.17'}
     hasBin: true
 
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   uglify-js@3.19.3:
     resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
     engines: {node: '>=0.8.0'}
@@ -5452,11 +5457,11 @@ snapshots:
       '@babel/helper-string-parser': 8.0.0-rc.3
       '@babel/helper-validator-identifier': 8.0.0-rc.3
 
-  '@commitlint/cli@20.5.0(@types/node@20.19.39)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)(typescript@6.0.2)':
+  '@commitlint/cli@20.5.0(@types/node@20.19.39)(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)(typescript@6.0.3)':
     dependencies:
       '@commitlint/format': 20.5.0
       '@commitlint/lint': 20.5.0
-      '@commitlint/load': 20.5.0(@types/node@20.19.39)(typescript@6.0.2)
+      '@commitlint/load': 20.5.0(@types/node@20.19.39)(typescript@6.0.3)
       '@commitlint/read': 20.5.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)
       '@commitlint/types': 20.5.0
       tinyexec: 1.1.1
@@ -5500,14 +5505,14 @@ snapshots:
       '@commitlint/rules': 20.5.0
       '@commitlint/types': 20.5.0
 
-  '@commitlint/load@20.5.0(@types/node@20.19.39)(typescript@6.0.2)':
+  '@commitlint/load@20.5.0(@types/node@20.19.39)(typescript@6.0.3)':
     dependencies:
       '@commitlint/config-validator': 20.5.0
       '@commitlint/execute-rule': 20.0.0
       '@commitlint/resolve-extends': 20.5.0
       '@commitlint/types': 20.5.0
-      cosmiconfig: 9.0.1(typescript@6.0.2)
-      cosmiconfig-typescript-loader: 6.3.0(@types/node@20.19.39)(cosmiconfig@9.0.1(typescript@6.0.2))(typescript@6.0.2)
+      cosmiconfig: 9.0.1(typescript@6.0.3)
+      cosmiconfig-typescript-loader: 6.3.0(@types/node@20.19.39)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3)
       is-plain-obj: 4.1.0
       lodash.mergewith: 4.6.2
       picocolors: 1.1.1
@@ -5646,11 +5651,11 @@ snapshots:
 
   '@cspell/cspell-service-bus@10.0.0': {}
 
-  '@cspell/cspell-tools@10.0.0(@cspell/cspell-types@10.0.0)(typescript@6.0.2)':
+  '@cspell/cspell-tools@10.0.0(@cspell/cspell-types@10.0.0)(typescript@6.0.3)':
     dependencies:
       '@cspell/cspell-pipe': 10.0.0
       commander: 14.0.3
-      cosmiconfig: 9.0.1(typescript@6.0.2)
+      cosmiconfig: 9.0.1(typescript@6.0.3)
       cspell-trie-lib: 10.0.0(@cspell/cspell-types@10.0.0)
       glob: 13.0.6
       hunspell-reader: 10.0.0
@@ -7276,21 +7281,21 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig-typescript-loader@6.3.0(@types/node@20.19.39)(cosmiconfig@9.0.1(typescript@6.0.2))(typescript@6.0.2):
+  cosmiconfig-typescript-loader@6.3.0(@types/node@20.19.39)(cosmiconfig@9.0.1(typescript@6.0.3))(typescript@6.0.3):
     dependencies:
       '@types/node': 20.19.39
-      cosmiconfig: 9.0.1(typescript@6.0.2)
+      cosmiconfig: 9.0.1(typescript@6.0.3)
       jiti: 2.6.1
-      typescript: 6.0.2
+      typescript: 6.0.3
 
-  cosmiconfig@9.0.1(typescript@6.0.2):
+  cosmiconfig@9.0.1(typescript@6.0.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
       js-yaml: 4.1.1
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 6.0.2
+      typescript: 6.0.3
 
   create-error-class@3.0.2:
     dependencies:
@@ -10174,6 +10179,24 @@ snapshots:
     transitivePeerDependencies:
       - oxc-resolver
 
+  rolldown-plugin-dts@0.23.2(rolldown@1.0.0-rc.16)(typescript@6.0.3):
+    dependencies:
+      '@babel/generator': 8.0.0-rc.3
+      '@babel/helper-validator-identifier': 8.0.0-rc.3
+      '@babel/parser': 8.0.0-rc.3
+      '@babel/types': 8.0.0-rc.3
+      ast-kit: 3.0.0-beta.1
+      birpc: 4.0.0
+      dts-resolver: 2.1.3
+      get-tsconfig: 4.13.7
+      obug: 2.1.1
+      picomatch: 4.0.4
+      rolldown: 1.0.0-rc.16
+    optionalDependencies:
+      typescript: 6.0.3
+    transitivePeerDependencies:
+      - oxc-resolver
+
   rolldown@1.0.0-rc.15:
     dependencies:
       '@oxc-project/types': 0.124.0
@@ -10635,6 +10658,33 @@ snapshots:
       - synckit
       - vue-tsc
 
+  tsdown@0.21.9(synckit@0.11.12)(typescript@6.0.3):
+    dependencies:
+      ansis: 4.2.0
+      cac: 7.0.0
+      defu: 6.1.7
+      empathic: 2.0.0
+      hookable: 6.1.1
+      import-without-cache: 0.3.3
+      obug: 2.1.1
+      picomatch: 4.0.4
+      rolldown: 1.0.0-rc.16
+      rolldown-plugin-dts: 0.23.2(rolldown@1.0.0-rc.16)(typescript@6.0.3)
+      semver: 7.7.4
+      tinyexec: 1.1.1
+      tinyglobby: 0.2.16
+      tree-kill: 1.2.2
+      unconfig-core: 7.5.0
+      unrun: 0.2.36(synckit@0.11.12)
+    optionalDependencies:
+      typescript: 6.0.3
+    transitivePeerDependencies:
+      - '@ts-macro/tsc'
+      - '@typescript/native-preview'
+      - oxc-resolver
+      - synckit
+      - vue-tsc
+
   tslib@1.14.1: {}
 
   tslib@2.8.1: {}
@@ -10706,6 +10756,8 @@ snapshots:
       is-typedarray: 1.0.0
 
   typescript@6.0.2: {}
+
+  typescript@6.0.3: {}
 
   uglify-js@3.19.3:
     optional: true
