@@ -6,12 +6,40 @@ declare const meta: Readonly<{
 }>;
 //#endregion
 //#region src/data.d.ts
-type Commit$1 = CommitDefault & {
+interface Commit {
+  merge: Commit.Field;
+  header: Commit.Field;
+  body: Commit.Field;
+  footer: Commit.Field;
+  notes: Commit.Note[];
+  references: Commit.Reference[];
+  mentions: string[];
+  revert: Commit.Revert | null;
   type: string | null;
   subject: string | null;
   scope: string | null;
   hash: string | null;
-};
+}
+declare namespace Commit {
+  type Field = string | null;
+  interface Note {
+    title: string;
+    text: string;
+  }
+  interface Reference {
+    issue: string;
+    action: Field;
+    owner: Field;
+    repository: Field;
+    prefix: string;
+    raw: string;
+  }
+  interface Revert {
+    hash?: Field | undefined;
+    header?: Field | undefined;
+    [field: string]: Field | undefined;
+  }
+}
 type CommitConventionalType = 'build' | 'ci' | 'docs' | 'feat' | 'fix' | 'perf' | 'refactor' | 'revert' | 'style' | 'test' | 'wip' | 'chore';
 declare const CommitConventionalType: {
   hasInstance: (anyValue: unknown) => anyValue is CommitConventionalType;
@@ -68,13 +96,37 @@ declare namespace GitmojiCode {
 }
 //#endregion
 //#region src/parser.d.ts
-interface ParserOptions extends ParserOptionsDefault {}
+interface ParserOptions {
+  headerPattern?: RegExp | string | null;
+  headerCorrespondence?: string[] | string | null;
+  revertPattern?: RegExp | string | null;
+  revertCorrespondence?: string[] | string | null;
+  noteKeywords?: string[] | string | null;
+}
+//#endregion
+//#region src/transform.d.ts
+interface WriterContext {
+  repository?: string | undefined;
+  host?: string | undefined;
+  owner?: string | undefined;
+  repoUrl?: string | undefined;
+}
+interface CommitTransformFunction<TCommit extends Commit = Commit> {
+  (commit: Commit, context: WriterContext, ...args: unknown[]): TCommit | false;
+}
 //#endregion
 //#region src/writer.d.ts
-interface WriterOptions extends Options<Commit$1> {}
-//#endregion
-//#region src/whatBump.d.ts
-type Commit = CommitBase;
+interface WriterOptions {
+  transform?: CommitTransformFunction<Commit> | undefined;
+  groupBy?: string | false | undefined;
+  commitGroupsSort?: string | readonly string[] | false | undefined;
+  commitsSort?: string | readonly string[] | false | undefined;
+  noteGroupsSort?: string | readonly string[] | false | undefined;
+  mainTemplate?: string | undefined;
+  headerPartial?: string | undefined;
+  commitPartial?: string | undefined;
+  footerPartial?: string | undefined;
+}
 //#endregion
 //#region src/createPreset.d.ts
 declare function createPreset(): Promise<{

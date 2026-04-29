@@ -1,11 +1,41 @@
-import type { Commit as CommitDefault } from 'conventional-commits-parser';
-
-export type Commit = CommitDefault & {
+export interface Commit {
+  merge: Commit.Field;
+  header: Commit.Field;
+  body: Commit.Field;
+  footer: Commit.Field;
+  notes: Commit.Note[];
+  references: Commit.Reference[];
+  mentions: string[];
+  revert: Commit.Revert | null;
   type: string | null;
   subject: string | null;
   scope: string | null;
   hash: string | null;
-};
+}
+
+export namespace Commit {
+  export type Field = string | null;
+
+  export interface Note {
+    title: string;
+    text: string;
+  }
+
+  export interface Reference {
+    issue: string;
+    action: Field;
+    owner: Field;
+    repository: Field;
+    prefix: string;
+    raw: string;
+  }
+
+  export interface Revert {
+    hash?: Field | undefined;
+    header?: Field | undefined;
+    [field: string]: Field | undefined;
+  }
+}
 
 export type CommitConventionalType =
   | 'build'
