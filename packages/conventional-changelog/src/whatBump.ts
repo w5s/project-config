@@ -1,5 +1,4 @@
-import type { Commit as CommitBase } from 'conventional-commits-parser';
-import { CommitConventionalType } from './data.js';
+import { CommitConventionalType, type Commit } from './data.js';
 import { GitmojiCode } from './gitmoji.js';
 
 function toConventionalCommitType(text: string) {
@@ -9,8 +8,6 @@ function toConventionalCommitType(text: string) {
       ? text
       : undefined;
 }
-
-export type Commit = CommitBase;
 
 export const whatBump = (commits: ReadonlyArray<Commit>) => {
   let level = 2;

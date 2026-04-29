@@ -1,6 +1,10 @@
-import type { Options as ParserOptionsDefault } from 'conventional-commits-parser';
-
-export interface ParserOptions extends ParserOptionsDefault {}
+export interface ParserOptions {
+  headerPattern?: RegExp | string | null;
+  headerCorrespondence?: string[] | string | null;
+  revertPattern?: RegExp | string | null;
+  revertCorrespondence?: string[] | string | null;
+  noteKeywords?: string[] | string | null;
+}
 
 export const createParserOpts = (): ParserOptions => ({
   headerPattern: new RegExp(

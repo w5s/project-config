@@ -1,11 +1,20 @@
 import { readFileSync } from 'node:fs';
 import nodePath from 'node:path';
-import type { Options } from 'conventional-changelog-writer';
 import { fileURLToPath } from 'node:url';
-import { createTransform } from './transform.js';
-import { Commit, CommitConventionalType } from './data.js';
+import { createTransform, type CommitTransformFunction } from './transform.js';
+import { CommitConventionalType, type Commit } from './data.js';
 
-export interface WriterOptions extends Options<Commit> {}
+export interface WriterOptions {
+  transform?: CommitTransformFunction<Commit> | undefined;
+  groupBy?: string | false | undefined;
+  commitGroupsSort?: string | readonly string[] | false | undefined;
+  commitsSort?: string | readonly string[] | false | undefined;
+  noteGroupsSort?: string | readonly string[] | false | undefined;
+  mainTemplate?: string | undefined;
+  headerPartial?: string | undefined;
+  commitPartial?: string | undefined;
+  footerPartial?: string | undefined;
+}
 
 const _dirname = typeof __dirname === 'undefined' ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
 const basePath = nodePath.resolve(nodePath.dirname(_dirname), './template');

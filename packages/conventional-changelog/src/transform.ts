@@ -1,5 +1,4 @@
-import type { CommitTransformFunction, Context } from 'conventional-changelog-writer';
-import { CommitConventionalType, Commit } from './data.js';
+import { CommitConventionalType, type Commit } from './data.js';
 import { GitmojiCode } from './gitmoji.js';
 
 export type Language = 'en-US';
@@ -11,6 +10,17 @@ export interface TransformConfig {
   showAuthor?: boolean;
   withEmoji?: boolean;
   language?: Language;
+}
+
+export interface WriterContext {
+  repository?: string | undefined;
+  host?: string | undefined;
+  owner?: string | undefined;
+  repoUrl?: string | undefined;
+}
+
+export interface CommitTransformFunction<TCommit extends Commit = Commit> {
+  (commit: Commit, context: WriterContext, ...args: unknown[]): TCommit | false;
 }
 
 export function displayScope(scope: string | null | undefined, scopeDisplayNameMap: Record<string, string>) {
@@ -44,7 +54,7 @@ export function createTransform(config: TransformConfig): CommitTransformFunctio
   const ignoreScope = (scope: string | undefined | null) =>
     config.displayScopes == null ? false : scope != null && !config.displayScopes.includes(scope);
 
-  const transform = (commit: Commit, { repository, host, owner, repoUrl }: Context): Commit | false => {
+  const transform = (commit: Commit, { repository, host, owner, repoUrl }: WriterContext): Commit | false => {
     const discard = commit.notes.length === 0;
     const issues = new Set<string>();
     const notes = commit.notes.map((note) => ({

@@ -20,7 +20,15 @@ const defaultConfig = {
 * @namespace
 */
 const StylisticConfig = {
+	/**
+	* Default config
+	*/
 	default: defaultConfig,
+	/**
+	* Return a new StylisticConfig from input
+	*
+	* @param input
+	*/
 	from(input) {
 		return typeof input === "boolean" ? {
 			...defaultConfig,
