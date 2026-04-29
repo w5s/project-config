@@ -1,4 +1,5 @@
 import type { InputConfig } from 'c12';
+import type { Preset } from '../runtime/Preset.ts';
 
 export interface UserConfig extends InputConfig<{
   /**
@@ -8,7 +9,7 @@ export interface UserConfig extends InputConfig<{
    * preset: './configurator.preset.ts'
    * preset: '@my-org/my-preset'
    */
-  readonly preset?: string | undefined;
+  readonly preset: Preset | undefined;
 
   /**
    * Whether to enable debug mode. In debug mode, the configurator will print more detailed logs to the console.

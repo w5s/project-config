@@ -26,7 +26,6 @@ const booleanFromEnv = z.preprocess((value) => {
 export function parseEnv(env: NodeJS.ProcessEnv): UserConfig {
   const validated = createEnv({
     server: {
-      CONFIGURATOR_PRESET: z.string().optional(),
       CONFIGURATOR_DEBUG: booleanFromEnv,
       CONFIGURATOR_DRY_RUN: booleanFromEnv,
     },
@@ -39,7 +38,7 @@ export function parseEnv(env: NodeJS.ProcessEnv): UserConfig {
   });
 
   return {
-    preset: validated.CONFIGURATOR_PRESET,
+    preset: undefined,
     debug: validated.CONFIGURATOR_DEBUG,
     dryRun: validated.CONFIGURATOR_DRY_RUN,
   };

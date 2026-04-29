@@ -2,20 +2,6 @@ import { describe, expect, it } from 'vitest';
 import { EnvLoader } from './EnvLoader.js';
 
 describe('EnvLoader', () => {
-  it('parses preset string and ignores empty string', () => {
-    const loaded = EnvLoader.load({
-      CONFIGURATOR_PRESET: '',
-    });
-
-    expect(loaded.preset).toBeUndefined();
-
-    const loadedWithPreset = EnvLoader.load({
-      CONFIGURATOR_PRESET: './configurator.preset.ts',
-    });
-
-    expect(loadedWithPreset.preset).toBe('./configurator.preset.ts');
-  });
-
   it('parses debug values', () => {
     const truthyValues = ['true', '1', 'yes', 'TRUE', 'Yes'];
     for (const value of truthyValues) {
