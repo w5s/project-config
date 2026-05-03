@@ -17,7 +17,11 @@ export class RunCommand extends BaseCommand {
       const cwd = process.cwd();
       const loaded = await ConfigLoader.load({ cwd });
       const env = EnvLoader.load(process.env);
-      const resolved = resolveConfig({ preset: this.preset, debug: this.debug, dryRun: this.dryRun }, env, loaded);
+      const resolved = resolveConfig({
+        preset: undefined, // this.preset,
+        debug: this.debug,
+        dryRun: this.dryRun,
+      }, env, loaded);
 
       await runPreset(resolved);
       return 0;
