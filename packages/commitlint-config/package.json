@@ -63,7 +63,7 @@
     "@commitlint/lint": "21.0.0",
     "@w5s/tsdown-config": "workspace:*",
     "tsdown": "0.22.0",
-    "vite": "8.0.10",
+    "vite": "8.0.12",
     "vitest": "4.1.5"
   },
   "peerDependencies": {
