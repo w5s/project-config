@@ -4469,7 +4469,7 @@ interface RuleOptions$3 {
    */
   'test/prefer-expect-resolves'?: Linter.RuleEntry<[]>;
   /**
-   * enforce using `expectTypeOf` instead of `expect(typeof ...)`
+   * enforce using `expect(...).toBeTypeOf(...)` instead of `expect(typeof ...).toBe(...)`
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/prefer-expect-type-of.md
    */
   'test/prefer-expect-type-of'?: Linter.RuleEntry<[]>;
