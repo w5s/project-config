@@ -6,3 +6,5 @@
 # 4. .modules/*/module.mk
 include .modules/core.mk
 
+release: build
+	$(Q)pnpm release
