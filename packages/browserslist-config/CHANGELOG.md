@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.8](github.com/w5s/project-config/compare/@w5s/browserslist-config@3.1.7...@w5s/browserslist-config@3.1.8) (2026-05-11)
+
+**Note:** Version bump only for package @w5s/browserslist-config
+
 ## [3.1.7](github.com/w5s/project-config/compare/@w5s/browserslist-config@3.1.4...@w5s/browserslist-config@3.1.7) (2026-03-09)
 
 **Note:** Version bump only for package @w5s/browserslist-config

@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](github.com/w5s/project-config/compare/@w5s/mrm-preset@3.3.3...@w5s/mrm-preset@3.4.0) (2026-05-11)
+
+### ✨ Features
+
+- Add @w5s/configurator ([753488a](github.com/w5s/project-config/commits/753488a)) 
+- Add configurator-core ([10c857c](github.com/w5s/project-config/commits/10c857c)) 
+- Add new generic github actions ([aeaf0de](github.com/w5s/project-config/commits/aeaf0de))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [3.3.3](github.com/w5s/project-config/compare/@w5s/mrm-preset@3.3.0...@w5s/mrm-preset@3.3.3) (2026-03-09)
 
 **Note:** Version bump only for package @w5s/mrm-preset

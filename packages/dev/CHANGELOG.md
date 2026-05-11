@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](github.com/w5s/project-config/compare/@w5s/dev@3.2.3...@w5s/dev@3.3.0) (2026-05-11)
+
+### ✨ Features
+
+- Add @w5s/configurator ([753488a](github.com/w5s/project-config/commits/753488a)) 
+- Add file mode ([f6d2557](github.com/w5s/project-config/commits/f6d2557)) 
+- Add mode for file() ([cf4edc9](github.com/w5s/project-config/commits/cf4edc9))
+
+**Note:** Version bump only for package @w5s/dev
+
 ## [3.2.3](github.com/w5s/project-config/compare/@w5s/dev@3.2.0...@w5s/dev@3.2.3) (2026-03-09)
 
 **Note:** Version bump only for package @w5s/dev
