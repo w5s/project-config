@@ -13,6 +13,8 @@ describe('index', () => {
         'blockSync',
         'file',
         'fileSync',
+        'ignoreFile',
+        'ignoreFileSync',
         'json',
         'jsonSync',
         'meta',
