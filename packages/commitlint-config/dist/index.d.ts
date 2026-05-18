@@ -1,5 +1,3 @@
-import * as _$_commitlint_types0 from "@commitlint/types";
-
 //#region src/meta.d.ts
 declare const meta: Readonly<{
   name: string;
@@ -12,8 +10,8 @@ declare const config: {
   parserPreset: {
     parserOpts: any;
   };
-  rules: Partial<_$_commitlint_types0.RulesConfig<_$_commitlint_types0.RuleConfigQuality.Qualified>>;
-  plugins: _$_commitlint_types0.Plugin[];
+  rules: Partial<import("@commitlint/types").RulesConfig<import("@commitlint/types").RuleConfigQuality.Qualified>>;
+  plugins: import("@commitlint/types").Plugin[];
 };
 //#endregion
 export { config as default, meta };
