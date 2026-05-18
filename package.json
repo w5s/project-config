@@ -84,7 +84,7 @@
     "markdown-magic-subpackage-list": "1.1.2",
     "turbo": "2.9.14",
     "typescript": "6.0.3",
-    "vite": "8.0.12",
+    "vite": "8.0.13",
     "vitest": "4.1.6"
   },
   "packageManager": "pnpm@11.1.0",
@@ -95,7 +95,7 @@
   },
   "pnpm": {
     "overrides": {
-      "vite": "8.0.12",
+      "vite": "8.0.13",
       "vitest": "4.1.6"
     }
   },
