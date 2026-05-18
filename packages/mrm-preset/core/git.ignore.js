@@ -14,6 +14,8 @@ module.exports = {
   lerna-debug.log*
   .pnpm-debug.log*
 
+  .pnpm-store/
+
   # Diagnostic reports (https://nodejs.org/api/report.html)
   report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
