@@ -27,7 +27,7 @@
     "format:root": "eslint . --ignore-pattern='packages/*/**' --fix",
     "lint": "turbo run lint",
     "lint:root": "eslint . --ignore-pattern='packages/*/**'",
-    "mrm": "pnpm exec --package=mrm -- mrm --dir ./packages/mrm-preset",
+    "mrm": "pnpm dlx --package=mrm -- mrm --dir ./packages/mrm-preset",
     "postbuild": "pnpm run docs",
     "prepare": "pnpm run \"/^prepare:.*/\"",
     "prepare:githooks": "if [ -z \"${CI:-}\" ]; then git config core.hooksPath .githooks; fi",
