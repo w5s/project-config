@@ -60,7 +60,7 @@
     "test:src": "vitest run"
   },
   "dependencies": {
-    "@commitlint/types": "^20.0.0",
+    "@commitlint/types": "^21.0.0",
     "@w5s/conventional-changelog": "workspace:^"
   },
   "devDependencies": {
