@@ -22,7 +22,7 @@ export async function node(options: node.Options = {}) {
         'node/no-exports-assign': 'error',
         'node/no-new-require': 'error',
         'node/no-path-concat': 'error',
-        'node/no-sync': 'error',
+        // 'node/no-sync': 'error', FIXME: this rule uses typing without a way to disable it, so it causes errors in JS files
         'node/prefer-global/buffer': ['error', 'never'],
         'node/prefer-global/console': ['error', 'always'],
         // 'node/prefer-global/process': ['error', 'never'],
