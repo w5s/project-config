@@ -1,9 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { Commit, CommitConventionalType } from './data.js';
+import { CommitConventionalType, type Commit } from './data.js';
 import { whatBump } from './whatBump.js';
 
 const generateCommit = (commit: Partial<Commit>): Commit => ({
   header: '',
+  type: null,
+  subject: null,
+  scope: null,
+  hash: null,
   notes: [],
   references: [],
   mentions: [],

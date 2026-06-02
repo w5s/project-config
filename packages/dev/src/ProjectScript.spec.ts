@@ -19,6 +19,7 @@ describe('ProjectScript', () => {
         "Rescue": "rescue",
         "Spellcheck": "spellcheck",
         "Test": "test",
+        "Typecheck": "typecheck",
         "Validate": "validate",
       }
     `);

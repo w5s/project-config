@@ -69,18 +69,26 @@ interface CommitConventionalTypeData {
 //#region src/gitmoji.d.ts
 type Emoji = Emoji.Unicode | Emoji.Text;
 declare namespace Emoji {
-  const reEmojiUnicode: RegExp;
-  const reEmojiText: RegExp;
   type Unicode = string & {
     '@@EmojiStyle': 'unicode';
   };
   type Text = string & {
     '@@EmojiStyle': 'text';
   };
-  function isUnicode(anyValue: string): anyValue is Unicode;
-  function isText(anyValue: string): anyValue is Text;
-  function hasInstance(anyValue: string): anyValue is Emoji;
 }
+declare function isUnicode(anyValue: string): anyValue is Emoji.Unicode;
+declare function isText(anyValue: string): anyValue is Emoji.Text;
+declare function hasInstance(anyValue: string): anyValue is Emoji;
+/**
+ * @namespace
+ */
+declare const Emoji: Readonly<{
+  hasInstance: typeof hasInstance;
+  isText: typeof isText;
+  isUnicode: typeof isUnicode;
+  reEmojiText: RegExp;
+  reEmojiUnicode: RegExp;
+}>;
 type GitmojiCode = Emoji & {
   '@@Gitmoji': true;
 };
@@ -91,9 +99,16 @@ declare namespace GitmojiCode {
   type Emoji = Emoji.Text & {
     '@@Gitmoji': true;
   };
-  function isValid(anyValue: string): anyValue is GitmojiCode;
-  function toConventionalCommitType(gitmoji: GitmojiCode): CommitConventionalType;
 }
+declare function isValid(anyValue: string): anyValue is GitmojiCode;
+declare function toConventionalCommitType(gitmoji: GitmojiCode): CommitConventionalType;
+/**
+ * @namespace
+ */
+declare const GitmojiCode: Readonly<{
+  isValid: typeof isValid;
+  toConventionalCommitType: typeof toConventionalCommitType;
+}>;
 //#endregion
 //#region src/parser.d.ts
 interface ParserOptions {

@@ -3,5 +3,8 @@
   "extends": "../../tsconfig.settings.json",
   "compilerOptions": {
     "jsx": "react"
-  }
+  },
+  "exclude": [
+    "./_tests"
+  ]
 }

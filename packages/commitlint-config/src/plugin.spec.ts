@@ -1,8 +1,10 @@
-import type { Commit } from 'conventional-commits-parser';
+/* eslint-disable ts/consistent-type-assertions */
 import { describe, expect, it } from 'vitest';
 import { typeGitmojiStyle, typeValidGitmoji } from './plugin.js';
 
-const generateCommit = (properties: Partial<Commit>): Commit => ({
+type ParsedCommit = Parameters<typeof typeGitmojiStyle>[0];
+
+const generateCommit = (properties: Partial<ParsedCommit>): ParsedCommit => ({
   raw: '',
   header: '',
   type: null,
@@ -16,7 +18,7 @@ const generateCommit = (properties: Partial<Commit>): Commit => ({
   revert: null,
   merge: null,
   ...(properties as any),
-});
+} as ParsedCommit);
 const anyEmoji = ':bug:';
 const anyGitmojiUnicode = '🐛';
 

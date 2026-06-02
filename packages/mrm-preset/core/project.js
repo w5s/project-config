@@ -16,6 +16,8 @@ const format = 'format';
 const lint = 'lint';
 /** @type {'test'} */
 const test = 'test';
+/** @type {'typecheck'} */
+const typecheck = 'typecheck';
 /** @type {'coverage'} */
 const coverage = 'coverage';
 /** @type {'clean'} */
@@ -59,6 +61,7 @@ module.exports = {
   release,
   rescue,
   test,
+  typecheck,
   validate,
   spellcheck,
 };

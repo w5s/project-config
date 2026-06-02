@@ -1,30 +1,36 @@
 import { ESLint } from "eslint";
 
 //#region src/ESLintConfig.d.ts
-declare namespace ESLintConfig {
-  /**
-   *
-   * @param configs
-   */
-  function concat(...configs: ESLint.ConfigData[]): ESLint.ConfigData;
-  /**
-   * Always return 'off'. `_status` is the previous rule value.
-   *
-   * @param _status
-   */
-  function fixme(_status: string | number | [string | number, ...any[]] | undefined): "off";
-  /**
-   * Renames rules in the given object according to the given map.
-   *
-   * Given a map `{ 'old-prefix': 'new-prefix' }`, and a rule object
-   * `{ 'old-prefix/rule-name': 'error' }`, this function will return
-   * `{ 'new-prefix/rule-name': 'error' }`.
-   *
-   * @param rules The object containing the rules to rename.
-   * @param map The object containing the rename map.
-   */
-  function renameRules(rules: Record<string, any>, map: Record<string, string>): Record<string, any>;
-}
+/**
+ *
+ * @param configs
+ */
+declare function concat(...configs: ESLint.ConfigData[]): ESLint.ConfigData;
+/**
+ * Always return 'off'. `_status` is the previous rule value.
+ *
+ * @param _status
+ */
+declare function fixme(_status: string | number | [string | number, ...any[]] | undefined): "off";
+/**
+ * Renames rules in the given object according to the given map.
+ *
+ * Given a map `{ 'old-prefix': 'new-prefix' }`, and a rule object
+ * `{ 'old-prefix/rule-name': 'error' }`, this function will return
+ * `{ 'new-prefix/rule-name': 'error' }`.
+ *
+ * @param rules The object containing the rules to rename.
+ * @param map The object containing the rename map.
+ */
+declare function renameRules(rules: Record<string, any>, map: Record<string, string>): Record<string, any>;
+/**
+ * @namespace
+ */
+declare const ESLintConfig: Readonly<{
+  concat: typeof concat;
+  fixme: typeof fixme;
+  renameRules: typeof renameRules;
+}>;
 //#endregion
 //#region src/interopDefault.d.ts
 /**
@@ -85,84 +91,91 @@ declare const meta: Readonly<{
 }>;
 //#endregion
 //#region src/Project.d.ts
-declare namespace Project {
-  /**
-   * A type of a file extension
-   */
-  type Extension = `.${string}`;
-  /**
-   * Object hash of all well-known file extension category to file extensions mapping
-   */
-  type ExtensionRegistry = { [K in LanguageId]: readonly Extension[] };
-  /**
-   * Supported ECMA version
-   *
-   * @example
-   * ```ts
-   * Project.ecmaVersion() // 2022
-   * ```
-   */
-  function ecmaVersion(): 2022;
-  /**
-   * Return a list of extensions
-   *
-   * @example
-   * ```ts
-   * Project.queryExtensions(['javascript']); // ['.js', '.cjs', ...]
-   * Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
-   * ```
-   *
-   * @param languages
-   */
-  function queryExtensions(languages: LanguageId[]): readonly Extension[];
-  /**
-   * Supported file extensions
-   *
-   * @example
-   * ```ts
-   * Project.sourceExtensions() // ['.ts', '.js', ...]
-   * ```
-   */
-  function sourceExtensions(): readonly `.${string}`[];
-  /**
-   * Resource file extensions
-   *
-   * @example
-   * ```ts
-   * Project.resourceExtensions() // ['.css', '.sass', ...]
-   * ```
-   */
-  function resourceExtensions(): readonly `.${string}`[];
-  /**
-   * Files and folders to always ignore
-   *
-   * @example
-   * ```ts
-   * IGNORED // ['node_modules/', 'build/', ...]
-   * ```
-   */
-  function ignored(): readonly string[];
-  /**
-   * Return a RegExp that will match any list of extensions
-   *
-   * @param extensions
-   * @example
-   * ```ts
-   * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
-   * ```
-   */
-  function extensionsToMatcher(extensions: readonly Extension[]): RegExp;
-  /**
-   * Return a glob matcher that will match any list of extensions
-   *
-   * @param extensions
-   * @example
-   * ```ts
-   * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
-   * ```
-   */
-  function extensionsToGlob(extensions: readonly Extension[]): string;
-}
+/**
+ * A type of a file extension
+ */
+type Extension = `.${string}`;
+/**
+ * Object hash of all well-known file extension category to file extensions mapping
+ */
+type ExtensionRegistry = { [K in LanguageId]: readonly Extension[] };
+/**
+ * Supported ECMA version
+ *
+ * @example
+ * ```ts
+ * Project.ecmaVersion() // 2022
+ * ```
+ */
+declare function ecmaVersion(): 2022;
+/**
+ * Return a list of extensions
+ *
+ * @example
+ * ```ts
+ * Project.queryExtensions(['javascript']); // ['.js', '.cjs', ...]
+ * Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
+ * ```
+ *
+ * @param languages
+ */
+declare function queryExtensions(languages: LanguageId[]): readonly Extension[];
+/**
+ * Supported file extensions
+ *
+ * @example
+ * ```ts
+ * Project.sourceExtensions() // ['.ts', '.js', ...]
+ * ```
+ */
+declare function sourceExtensions(): readonly `.${string}`[];
+/**
+ * Resource file extensions
+ *
+ * @example
+ * ```ts
+ * Project.resourceExtensions() // ['.css', '.sass', ...]
+ * ```
+ */
+declare function resourceExtensions(): readonly `.${string}`[];
+/**
+ * Files and folders to always ignore
+ *
+ * @example
+ * ```ts
+ * IGNORED // ['node_modules/', 'build/', ...]
+ * ```
+ */
+declare function ignored(): readonly string[];
+/**
+ * Return a RegExp that will match any list of extensions
+ *
+ * @param extensions
+ * @example
+ * ```ts
+ * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
+ * ```
+ */
+declare function extensionsToMatcher(extensions: readonly Extension[]): RegExp;
+/**
+ * Return a glob matcher that will match any list of extensions
+ *
+ * @param extensions
+ * @example
+ * ```ts
+ * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
+ * ```
+ */
+declare function extensionsToGlob(extensions: readonly Extension[]): string;
+declare const Project: Readonly<{
+  ecmaVersion: typeof ecmaVersion;
+  extensionsToGlob: typeof extensionsToGlob;
+  extensionsToMatcher: typeof extensionsToMatcher;
+  ignored: typeof ignored;
+  queryExtensions: typeof queryExtensions;
+  resourceExtensions: typeof resourceExtensions;
+  sourceExtensions: typeof sourceExtensions;
+}>;
 //#endregion
 //#region src/ProjectScript.d.ts
 /**
@@ -183,9 +196,10 @@ declare const ProjectScript: {
   readonly Rescue: "rescue";
   readonly Spellcheck: "spellcheck";
   readonly Test: "test";
+  readonly Typecheck: "typecheck";
   readonly Validate: "validate";
 };
 type ProjectScript = (typeof ProjectScript)[keyof typeof ProjectScript];
 //#endregion
-export { ESLintConfig, LanguageId, LanguageIdMap, Project, ProjectScript, interopDefault, meta };
+export { ESLintConfig, Extension, ExtensionRegistry, LanguageId, LanguageIdMap, Project, ProjectScript, interopDefault, meta };
 //# sourceMappingURL=index.d.ts.map

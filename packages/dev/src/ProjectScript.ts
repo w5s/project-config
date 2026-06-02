@@ -16,6 +16,7 @@ export const ProjectScript = {
   Rescue: 'rescue',
   Spellcheck: 'spellcheck',
   Test: 'test',
+  Typecheck: 'typecheck',
   Validate: 'validate',
 } as const;
 export type ProjectScript = (typeof ProjectScript)[keyof typeof ProjectScript];

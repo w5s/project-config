@@ -60,6 +60,11 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
           state: hasTypecript ? 'present' : 'absent',
           update: () => 'rm -rf dist',
         });
+        pkg.script(projectPackageFile, {
+          name: `${project.typecheck}:src`,
+          state: hasTypecript ? 'present' : 'absent',
+          update: () => 'tsc --noEmit',
+        });
         if (hasTypecript && projectPackageFile.get('name') !== '@w5s/tsconfig') {
           projectTsConfig
             .merge({
@@ -101,6 +106,11 @@ function createLang({ language: languageDefault = 'typescript', tsConfig: tsConf
           include: ['src'],
         })
         .save();
+      pkg.script(packageFile, {
+        name: `${project.typecheck}:src`,
+        state: 'present',
+        update: () => 'tsc --noEmit',
+      });
 
       // Create default index
       const templateDir = path.join(__dirname, 'templates');

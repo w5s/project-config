@@ -53,7 +53,9 @@
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
     "test:script": "scripts/test",
-    "test_:rule-coverage": "eslint-find-rules --unused"
+    "test_:rule-coverage": "eslint-find-rules --unused",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "tsc --noEmit"
   },
   "dependencies": {
     "@eslint/js": "^10.0.0",

@@ -7,60 +7,81 @@ function toArray(value) {
 function concatArray(left, right) {
 	return [...toArray(left), ...toArray(right)];
 }
-let ESLintConfig;
-(function(_ESLintConfig) {
-	function concat(...configs) {
-		return configs.reduce((returnValue, config) => ({
-			...returnValue,
-			...config,
-			env: {
-				...returnValue.env,
-				...config.env
-			},
-			extends: concatArray(returnValue.extends, config.extends),
-			globals: {
-				...returnValue.globals,
-				...config.globals
-			},
-			overrides: concatArray(returnValue.overrides, config.overrides),
-			parserOptions: {
-				...returnValue.parserOptions,
-				...config.parserOptions
-			},
-			plugins: concatArray(returnValue.plugins, config.plugins),
-			rules: {
-				...returnValue.rules,
-				...config.rules
-			},
-			settings: {
-				...returnValue.settings,
-				...config.settings
-			}
-		}), {
-			env: {},
-			extends: [],
-			globals: {},
-			overrides: [],
-			parserOptions: {},
-			plugins: [],
-			rules: {},
-			settings: {}
-		});
-	}
-	_ESLintConfig.concat = concat;
-	function fixme(_status) {
-		return "off";
-	}
-	_ESLintConfig.fixme = fixme;
-	function renameRules(rules, map) {
-		return Object.fromEntries(Object.entries(rules).map(([key, value]) => {
-			for (const [from, to] of Object.entries(map)) if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
-			else if (from === "" && !key.includes("/") && to !== "") return [to + key, value];
-			return [key, value];
-		}));
-	}
-	_ESLintConfig.renameRules = renameRules;
-})(ESLintConfig || (ESLintConfig = {}));
+/**
+*
+* @param configs
+*/
+function concat(...configs) {
+	return configs.reduce((returnValue, config) => ({
+		...returnValue,
+		...config,
+		env: {
+			...returnValue.env,
+			...config.env
+		},
+		extends: concatArray(returnValue.extends, config.extends),
+		globals: {
+			...returnValue.globals,
+			...config.globals
+		},
+		overrides: concatArray(returnValue.overrides, config.overrides),
+		parserOptions: {
+			...returnValue.parserOptions,
+			...config.parserOptions
+		},
+		plugins: concatArray(returnValue.plugins, config.plugins),
+		rules: {
+			...returnValue.rules,
+			...config.rules
+		},
+		settings: {
+			...returnValue.settings,
+			...config.settings
+		}
+	}), {
+		env: {},
+		extends: [],
+		globals: {},
+		overrides: [],
+		parserOptions: {},
+		plugins: [],
+		rules: {},
+		settings: {}
+	});
+}
+/**
+* Always return 'off'. `_status` is the previous rule value.
+*
+* @param _status
+*/
+function fixme(_status) {
+	return "off";
+}
+/**
+* Renames rules in the given object according to the given map.
+*
+* Given a map `{ 'old-prefix': 'new-prefix' }`, and a rule object
+* `{ 'old-prefix/rule-name': 'error' }`, this function will return
+* `{ 'new-prefix/rule-name': 'error' }`.
+*
+* @param rules The object containing the rules to rename.
+* @param map The object containing the rename map.
+*/
+function renameRules(rules, map) {
+	return Object.fromEntries(Object.entries(rules).map(([key, value]) => {
+		for (const [from, to] of Object.entries(map)) if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
+		else if (from === "" && !key.includes("/") && to !== "") return [to + key, value];
+		return [key, value];
+	}));
+}
+/**
+* @namespace
+*/
+const ESLintConfig = Object.freeze({
+	concat,
+	fixme,
+	renameRules
+});
 //#endregion
 //#region src/interopDefault.ts
 const getDefaultOrElse = (_) => _?.default ?? _;
@@ -79,98 +100,158 @@ const meta = Object.freeze({
 function escapeRegExp(value) {
 	return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
 }
-let Project;
-(function(_Project) {
-	function ecmaVersion() {
-		return 2022;
-	}
-	_Project.ecmaVersion = ecmaVersion;
-	const registry = {
-		css: [".css"],
-		graphql: [".gql", ".graphql"],
-		javascript: [
-			".js",
-			".cjs",
-			".mjs"
-		],
-		javascriptreact: [".jsx"],
-		jpeg: [".jpg", ".jpeg"],
-		json: [".json"],
-		jsonc: [".jsonc"],
-		less: [".less"],
-		markdown: [
-			".markdown",
-			".mdown",
-			".mkd",
-			".md"
-		],
-		sass: [".sass"],
-		scss: [".scss"],
-		typescript: [
-			".ts",
-			".cts",
-			".mts"
-		],
-		typescriptreact: [".tsx"],
-		vue: [".vue"],
-		yaml: [".yaml", ".yml"]
-	};
-	function queryExtensions(languages) {
-		return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort();
-	}
-	_Project.queryExtensions = queryExtensions;
-	function sourceExtensions() {
-		return queryExtensions([
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact"
-		]);
-	}
-	_Project.sourceExtensions = sourceExtensions;
-	const RESOURCE_EXTENSIONS = Object.freeze([
-		".gif",
-		".png",
-		".svg",
-		...queryExtensions([
-			"css",
-			"graphql",
-			"jpeg",
-			"less",
-			"sass",
-			"sass",
-			"yaml"
-		])
+/**
+* Supported ECMA version
+*
+* @example
+* ```ts
+* Project.ecmaVersion() // 2022
+* ```
+*/
+function ecmaVersion() {
+	return 2022;
+}
+const registry = {
+	css: [".css"],
+	graphql: [".gql", ".graphql"],
+	javascript: [
+		".js",
+		".cjs",
+		".mjs"
+	],
+	javascriptreact: [".jsx"],
+	jpeg: [".jpg", ".jpeg"],
+	json: [".json"],
+	jsonc: [".jsonc"],
+	less: [".less"],
+	markdown: [
+		".markdown",
+		".mdown",
+		".mkd",
+		".md"
+	],
+	sass: [".sass"],
+	scss: [".scss"],
+	typescript: [
+		".ts",
+		".cts",
+		".mts"
+	],
+	typescriptreact: [".tsx"],
+	vue: [".vue"],
+	yaml: [".yaml", ".yml"]
+};
+/**
+* Return a list of extensions
+*
+* @example
+* ```ts
+* Project.queryExtensions(['javascript']); // ['.js', '.cjs', ...]
+* Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
+* ```
+*
+* @param languages
+*/
+function queryExtensions(languages) {
+	return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort();
+}
+/**
+* Supported file extensions
+*
+* @example
+* ```ts
+* Project.sourceExtensions() // ['.ts', '.js', ...]
+* ```
+*/
+function sourceExtensions() {
+	return queryExtensions([
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact"
 	]);
-	function resourceExtensions() {
-		return RESOURCE_EXTENSIONS;
-	}
-	_Project.resourceExtensions = resourceExtensions;
-	const IGNORED = Object.freeze([
-		"node_modules/",
-		"build/",
-		"cjs/",
-		"coverage/",
-		"dist/",
-		"dts/",
-		"esm/",
-		"lib/",
-		"mjs/",
-		"umd/"
-	]);
-	function ignored() {
-		return IGNORED;
-	}
-	_Project.ignored = ignored;
-	function extensionsToMatcher(extensions) {
-		return new RegExp(`(${extensions.map(escapeRegExp).join("|")})$`);
-	}
-	_Project.extensionsToMatcher = extensionsToMatcher;
-	function extensionsToGlob(extensions) {
-		return `*.+(${extensions.map((_) => _.replace(/^\./, "")).join("|")})`;
-	}
-	_Project.extensionsToGlob = extensionsToGlob;
-})(Project || (Project = {}));
+}
+const RESOURCE_EXTENSIONS = Object.freeze([
+	".gif",
+	".png",
+	".svg",
+	...queryExtensions([
+		"css",
+		"graphql",
+		"jpeg",
+		"less",
+		"sass",
+		"sass",
+		"yaml"
+	])
+]);
+/**
+* Resource file extensions
+*
+* @example
+* ```ts
+* Project.resourceExtensions() // ['.css', '.sass', ...]
+* ```
+*/
+function resourceExtensions() {
+	return RESOURCE_EXTENSIONS;
+}
+const IGNORED = Object.freeze([
+	"node_modules/",
+	"build/",
+	"cjs/",
+	"coverage/",
+	"dist/",
+	"dts/",
+	"esm/",
+	"lib/",
+	"mjs/",
+	"umd/"
+]);
+/**
+* Files and folders to always ignore
+*
+* @example
+* ```ts
+* IGNORED // ['node_modules/', 'build/', ...]
+* ```
+*/
+function ignored() {
+	return IGNORED;
+}
+/**
+* Return a RegExp that will match any list of extensions
+*
+* @param extensions
+* @example
+* ```ts
+* Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
+* ```
+*/
+function extensionsToMatcher(extensions) {
+	return new RegExp(`(${extensions.map(escapeRegExp).join("|")})$`);
+}
+/**
+* Return a glob matcher that will match any list of extensions
+*
+* @param extensions
+* @example
+* ```ts
+* Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
+* ```
+*/
+function extensionsToGlob(extensions) {
+	return `*.+(${extensions.map((_) => _.replace(/^\./, "")).join("|")})`;
+}
+const Project = Object.freeze({
+	ecmaVersion,
+	extensionsToGlob,
+	extensionsToMatcher,
+	ignored,
+	queryExtensions,
+	resourceExtensions,
+	sourceExtensions
+});
 //#endregion
 //#region src/ProjectScript.ts
 /**
@@ -191,6 +272,7 @@ const ProjectScript = {
 	Rescue: "rescue",
 	Spellcheck: "spellcheck",
 	Test: "test",
+	Typecheck: "typecheck",
 	Validate: "validate"
 };
 //#endregion

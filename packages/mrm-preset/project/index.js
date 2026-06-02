@@ -121,6 +121,12 @@ function task() {
       state: 'present',
       default: pkg.emptyScript,
     });
+    pkg.script(currentPackageFile, {
+      name: project.typecheck,
+      update: useWorkspace ? turboRun(project.typecheck) : npmRunAll(project.typecheck, true),
+      state: 'present',
+      default: pkg.emptyScript,
+    });
 
     // prepare
     pkg.script(currentPackageFile, {
@@ -199,7 +205,7 @@ function task() {
 
     pkg.script(packageFile, {
       name: project.validate,
-      update: `${turboRun([project.build, project.lint, project.test, project.spellcheck].join(' '))}`,
+      update: `${turboRun([project.build, project.lint, project.test, project.typecheck, project.spellcheck].join(' '))}`,
       state: 'present',
     });
 
@@ -291,6 +297,9 @@ function task() {
         },
         [`//#${project.test}:root`]: {
           inputs: rootInputs,
+        },
+        [project.typecheck]: {
+          dependsOn: [project.build, `^${project.build}`],
         },
         [project.lint]: {
           dependsOn: [`^${project.build}`, `//#${project.lint}:root`],

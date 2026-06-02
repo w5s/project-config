@@ -56,7 +56,9 @@
     "prepublishOnly": "pnpm run clean;pnpm run build",
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
-    "test:src": "vitest run"
+    "test:src": "vitest run",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "tsc --noEmit"
   },
   "dependencies": {
     "@types/eslint": "^9.0.0"

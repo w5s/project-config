@@ -22,6 +22,9 @@
     "//#test:root": {
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },
+    "typecheck": {
+      "dependsOn": ["build", "^build"]
+    },
     "lint": {
       "dependsOn": ["//#lint:root"]
     },

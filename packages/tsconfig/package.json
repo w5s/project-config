@@ -40,7 +40,9 @@
     "prepack": "clean-package",
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
-    "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck"
+    "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "tsc --noEmit"
   },
   "devDependencies": {
     "typescript": "6.0.3"

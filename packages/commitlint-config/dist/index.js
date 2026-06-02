@@ -10,12 +10,14 @@ const meta = Object.freeze({
 //#region src/plugin.ts
 const $if = (when = "always") => (cond) => when === "always" ? cond : !cond;
 const typeGitmojiStyle = (parsed, when = "always", value = "unicode") => {
-	const isUnicode = parsed.type != null && Emoji.isUnicode(parsed.type);
-	const isEmoji = parsed.type != null && Emoji.isText(parsed.type);
+	const type = parsed["type"];
+	const isUnicode = type != null && Emoji.isUnicode(type);
+	const isEmoji = type != null && Emoji.isText(type);
 	return value === "unicode" ? $if(when)(isUnicode) ? [true] : [false, `Type should ${when} be an unicode character`] : $if(when)(isEmoji) ? [true] : [false, `Type should ${when} be an valid :emoji:`];
 };
 const typeValidGitmoji = (parsed, when = "always") => {
-	const isValidGitmoji = parsed.type != null && GitmojiCode.isValid(parsed.type);
+	const type = parsed["type"];
+	const isValidGitmoji = type != null && GitmojiCode.isValid(type);
 	return $if(when)(isValidGitmoji) ? [true] : [false, `Type should ${when} be an valid gitmoji (see https://gitmoji.dev)`];
 };
 /**

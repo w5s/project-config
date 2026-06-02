@@ -1,10 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import type { FinalOptions } from 'conventional-changelog-writer';
 import type { Commit } from './data.js';
-import { createTransform } from './transform.js';
+import { createTransform, type WriterContext } from './transform.js';
 
 const generateCommit = (commit: Partial<Commit>): Commit => ({
   header: '',
+  type: null,
+  subject: null,
+  scope: null,
+  hash: null,
   notes: [],
   references: [],
   mentions: [],
@@ -12,14 +15,11 @@ const generateCommit = (commit: Partial<Commit>): Commit => ({
   footer: null,
   merge: null,
   revert: null,
-  scope: null,
-  hash: null,
   ...commit,
 });
-const defaultContext = { commit: '', date: '', issue: '' };
+const defaultContext: WriterContext = {};
 
-// eslint-disable-next-line ts/consistent-type-assertions
-const defaultOptions = {} as FinalOptions<Commit>;
+const defaultOptions = {};
 
 describe('createTransform', () => {
   it('return commit if has feat', () => {
@@ -37,7 +37,7 @@ describe('createTransform', () => {
       revert: null,
       hash: null,
       scope: null,
-      subject: undefined,
+      subject: null,
       type: '✨ Features',
       header: 'amazing new module',
       mentions: [],
@@ -60,7 +60,7 @@ describe('createTransform', () => {
       merge: null,
       revert: null,
       scope: null,
-      subject: undefined,
+      subject: null,
       hash: '1234567',
       header: '',
       mentions: [],
@@ -90,7 +90,7 @@ describe('createTransform', () => {
         revert: null,
         hash: null,
         scope: null,
-        subject: undefined,
+        subject: null,
         header: '',
         mentions: [],
         notes: [],
@@ -110,7 +110,7 @@ describe('createTransform', () => {
           revert: null,
           hash: null,
           scope: null,
-          subject: undefined,
+          subject: null,
           header: '',
           mentions: [],
           notes: [],
@@ -129,7 +129,7 @@ describe('createTransform', () => {
           revert: null,
           hash: null,
           scope: null,
-          subject: undefined,
+          subject: null,
           header: '',
           mentions: [],
           notes: [],
@@ -148,7 +148,7 @@ describe('createTransform', () => {
           revert: null,
           hash: null,
           scope: null,
-          subject: undefined,
+          subject: null,
           header: '',
           mentions: [],
           notes: [],
@@ -179,7 +179,7 @@ describe('createTransform', () => {
         merge: null,
         revert: null,
         hash: null,
-        subject: undefined,
+        subject: null,
         header: '',
         mentions: [],
         notes: [],
