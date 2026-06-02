@@ -1,8 +1,9 @@
 import * as TsDown from 'tsdown';
+import type { UserConfig, UserConfigFn } from './types.js';
 import { defaultConfig } from './defaultConfig.js';
 import { withPackageDefine } from './withPackageDefine.js';
 
-function mergeConfig(base: TsDown.UserConfig, extension: TsDown.UserConfig): TsDown.UserConfig {
+function mergeConfig(base: UserConfig, extension: UserConfig): UserConfig {
   return TsDown.mergeConfig(base, extension);
 }
 
@@ -20,15 +21,17 @@ function mergeConfig(base: TsDown.UserConfig, extension: TsDown.UserConfig): TsD
  * ```
  * @param baseConfig The base configuration to merge with the package default.
  */
-export function defineConfigWith(baseConfig: TsDown.UserConfig): ((
-  optionsOrFn: TsDown.UserConfig | TsDown.UserConfigFn,
-) => TsDown.UserConfig | TsDown.UserConfigFn) {
+export function defineConfigWith(baseConfig: UserConfig): {
+  (optionsOrFn: UserConfig): UserConfig;
+  (optionsOrFn: UserConfigFn): UserConfigFn;
+} {
   const resolvedBaseConfig = mergeConfig(defaultConfig, baseConfig);
+  // @ts-ignore tsdown's overloads do not narrow cleanly after wrapping function configs.
   return (optionsOrFn) =>
     TsDown.defineConfig(
       typeof optionsOrFn === 'function'
         ? (config, context) =>
-            withPackageDefine(optionsOrFn(resolvedBaseConfig, context) as TsDown.UserConfig)
+            withPackageDefine(optionsOrFn(resolvedBaseConfig, context) as UserConfig)
         : withPackageDefine(mergeConfig(resolvedBaseConfig, optionsOrFn)),
-    ) as TsDown.UserConfig | TsDown.UserConfigFn;
+    ) as UserConfig | UserConfigFn;
 }

@@ -1,8 +1,7 @@
-import * as TsDown from "tsdown";
-import { UserConfig } from "tsdown";
+import { DtsOptions, Format, InlineConfig, OutExtensionContext, OutExtensionFactory, OutExtensionObject, Sourcemap, TsdownPlugin, TsdownPluginOption, UserConfig, UserConfig as UserConfig$1, UserConfigExport, UserConfigFn } from "tsdown";
 
 //#region src/defaultConfig.d.ts
-declare const defaultConfig: UserConfig;
+declare const defaultConfig: UserConfig$1;
 //#endregion
 //#region src/defineConfig.d.ts
 /**
@@ -11,7 +10,8 @@ declare const defaultConfig: UserConfig;
  *
  * @param optionsOrFn
  */
-declare function defineConfig(optionsOrFn: TsDown.UserConfig | TsDown.UserConfigFn): TsDown.UserConfig | TsDown.UserConfigFn;
+declare function defineConfig(optionsOrFn: UserConfig): UserConfig;
+declare function defineConfig(optionsOrFn: UserConfigFn): UserConfigFn;
 //#endregion
 //#region src/defineConfigWith.d.ts
 /**
@@ -28,7 +28,10 @@ declare function defineConfig(optionsOrFn: TsDown.UserConfig | TsDown.UserConfig
  * ```
  * @param baseConfig The base configuration to merge with the package default.
  */
-declare function defineConfigWith(baseConfig: TsDown.UserConfig): ((optionsOrFn: TsDown.UserConfig | TsDown.UserConfigFn) => TsDown.UserConfig | TsDown.UserConfigFn);
+declare function defineConfigWith(baseConfig: UserConfig): {
+  (optionsOrFn: UserConfig): UserConfig;
+  (optionsOrFn: UserConfigFn): UserConfigFn;
+};
 //#endregion
-export { defaultConfig, defineConfig, defineConfigWith };
+export { type DtsOptions, type Format, type InlineConfig, type OutExtensionContext, type OutExtensionFactory, type OutExtensionObject, type Sourcemap, type TsdownPlugin, type TsdownPluginOption, type UserConfig, type UserConfigExport, type UserConfigFn, defaultConfig, defineConfig, defineConfigWith };
 //# sourceMappingURL=index.d.ts.map

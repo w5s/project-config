@@ -52,12 +52,6 @@ function withPackageDefine(config) {
 }
 //#endregion
 //#region src/defineConfig.ts
-/**
-* Define a tsdown configuration with the package default (entry, format, dts, package defines, etc.).
-* Accepts either a config object or a function `(config, context) => config`.
-*
-* @param optionsOrFn
-*/
 function defineConfig(optionsOrFn) {
 	return TsDown.defineConfig(typeof optionsOrFn === "function" ? (config, context) => optionsOrFn(withPackageDefine(TsDown.mergeConfig(defaultConfig, config)), context) : withPackageDefine(TsDown.mergeConfig(defaultConfig, optionsOrFn)));
 }
