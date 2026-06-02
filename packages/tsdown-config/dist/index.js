@@ -1,3 +1,90 @@
-export * from './defaultConfig.js';
-export * from './defineConfig.js';
-export * from './defineConfigWith.js';
+import * as TsDown from "tsdown";
+import { readFileSync } from "node:fs";
+import path from "node:path";
+//#region src/defaultConfig.ts
+const defaultConfig = {
+	entry: [
+		"src/index.ts",
+		"!src/**/*.test.*",
+		"!src/**/*.spec.*",
+		"!**/__mocks__/**"
+	],
+	sourcemap: true,
+	format: ["esm"],
+	dts: true,
+	tsconfig: "tsconfig.build.json",
+	outExtensions({ format }) {
+		return { js: format === "es" ? ".js" : ".cjs" };
+	}
+};
+//#endregion
+//#region src/withPackageDefine.ts
+function toInt(value) {
+	if (value == null) return void 0;
+	const parsed = Number.parseInt(value);
+	return Number.isNaN(parsed) ? void 0 : parsed;
+}
+function withPackageDefine(config) {
+	let packageJSON = void 0;
+	const cwd = config.cwd ?? process.cwd();
+	function getPackageJSON() {
+		if (packageJSON) return packageJSON;
+		try {
+			packageJSON = JSON.parse(readFileSync(path.join(cwd, "package.json"), "utf8"));
+			return packageJSON;
+		} catch {
+			return {};
+		}
+	}
+	function jsonSafeStringify(value) {
+		return JSON.stringify(value);
+	}
+	return {
+		...config,
+		cwd,
+		define: {
+			__PACKAGE_NAME__: jsonSafeStringify(process.env["npm_package_name"] ?? getPackageJSON().name ?? ""),
+			__PACKAGE_VERSION__: jsonSafeStringify(process.env["npm_package_version"] ?? getPackageJSON().version ?? ""),
+			__PACKAGE_BUILD_NUMBER__: jsonSafeStringify(toInt(process.env["npm_package_build_number"]) ?? toInt(process.env["BUILD_NUMBER"]) ?? toInt(process.env["CI_BUILD_NUMBER"]) ?? Date.now()),
+			...config.define
+		}
+	};
+}
+//#endregion
+//#region src/defineConfig.ts
+/**
+* Define a tsdown configuration with the package default (entry, format, dts, package defines, etc.).
+* Accepts either a config object or a function `(config, context) => config`.
+*
+* @param optionsOrFn
+*/
+function defineConfig(optionsOrFn) {
+	return TsDown.defineConfig(typeof optionsOrFn === "function" ? (config, context) => optionsOrFn(withPackageDefine(TsDown.mergeConfig(defaultConfig, config)), context) : withPackageDefine(TsDown.mergeConfig(defaultConfig, optionsOrFn)));
+}
+//#endregion
+//#region src/defineConfigWith.ts
+function mergeConfig(base, extension) {
+	return TsDown.mergeConfig(base, extension);
+}
+/**
+* Returns a `defineConfig`-like function that uses a custom base config instead of the package default.
+* Use this when you have a shared base (e.g. a library preset) and want to reuse it across multiple packages.
+*
+* @example
+* ```ts
+* // Helper for shared library preset
+* export const defineConfig = defineConfigWith({ format: ['esm', 'cjs'] });
+*
+* // in tsdown.config.ts
+* export default defineConfig({ entry: ['src/index.ts'] });
+* ```
+* @param baseConfig The base configuration to merge with the package default.
+*/
+function defineConfigWith(baseConfig) {
+	const resolvedBaseConfig = mergeConfig(defaultConfig, baseConfig);
+	return (optionsOrFn) => TsDown.defineConfig(typeof optionsOrFn === "function" ? (config, context) => withPackageDefine(optionsOrFn(resolvedBaseConfig, context)) : withPackageDefine(mergeConfig(resolvedBaseConfig, optionsOrFn)));
+}
+//#endregion
+export { defaultConfig, defineConfig, defineConfigWith };
+
+//# sourceMappingURL=index.js.map

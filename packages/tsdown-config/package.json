@@ -36,20 +36,9 @@
     "!**/*.spec.*",
     "!**/__tests__/**"
   ],
-  "tsdown": {
-    "entry": [
-      "src/index.ts"
-    ],
-    "sourcemap": true,
-    "format": [
-      "esm"
-    ],
-    "dts": true,
-    "clean": true
-  },
   "scripts": {
     "build": "pnpm run \"/^build:.*/\"",
-    "build:tsc": "tsc -b tsconfig.build.json",
+    "build:tsc": "tsdown",
     "clean": "pnpm run \"/^clean:.*/\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
