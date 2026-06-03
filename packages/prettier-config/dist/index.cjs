@@ -5,7 +5,7 @@ Object.defineProperties(exports, {
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/prettier-config",
-	version: "3.1.5",
+	version: "3.1.6",
 	buildNumber: 1
 });
 //#endregion
