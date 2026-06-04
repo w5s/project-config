@@ -51,14 +51,14 @@ importers:
         specifier: 2.3.5
         version: 2.3.5
       markdown-magic:
-        specifier: 4.8.0
-        version: 4.8.0
+        specifier: 4.9.0
+        version: 4.9.0
       markdown-magic-package-json:
         specifier: 2.0.2
         version: 2.0.2
       markdown-magic-subpackage-list:
         specifier: 1.1.2
-        version: 1.1.2(markdown-magic@4.8.0)
+        version: 1.1.2(markdown-magic@4.9.0)
       turbo:
         specifier: 2.9.16
         version: 2.9.16
@@ -788,6 +788,11 @@ packages:
   '@cspell/url@10.0.1':
     resolution: {integrity: sha512-abYYgI29wJhWIfWTYrYuzRYDcHQUQ1N5ylnhxYn1NJnIQMqUWGLbDmt12JABtZ+R6h6UNatQrS7rhP86etvJyQ==}
     engines: {node: '>=22.18.0'}
+
+  '@davidwells/dx-args@0.2.0':
+    resolution: {integrity: sha512-b+vtSSxc4GHhjPInZBQFhajFQGS8YDfk1i0EHvaUe5UJVowEf9VL65jBRXZkaMDuVKrFrsgp0N5Nm4K609WYgQ==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
 
   '@davidwells/md-utils@0.0.53':
     resolution: {integrity: sha512-qAF7lvZ8ZduJQ/9SPfhlYU03/bPdG3g9IQVmfGzPvi0XM5EJPj/8cUMf5bcoIREF1P2nz82LYeFGHTXQ0slJbg==}
@@ -2007,16 +2012,16 @@ packages:
     resolution: {integrity: sha512-OkTL9umf+He2DZkUq8f8J9of7yL6RJKI24dVITBmNfZBmri9zYZQrKkuXiKhyfPSu8tUhnVBB1iKXevvnlR4Ww==}
     engines: {node: '>= 12'}
 
-  comment-block-parser@1.5.4:
-    resolution: {integrity: sha512-GNE9VPctaq5HDkD7lKiLvkUq+mn2NMpOS9/IxA7oDVOPaIAqN6363giJD5D12Wnp1eCZyw7amTTR2pv7iZRbWw==}
+  comment-block-parser@1.6.0:
+    resolution: {integrity: sha512-aHMkm0J3DYfvoNmRE8oeG7QtmdX8yzJ1kNRy4TVjzDHMicF48ocXtcNBkqkjmk0ka46FZq/THEnmm6rT3Wk+1Q==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
-  comment-block-replacer@0.1.18:
-    resolution: {integrity: sha512-BEs/FwF7yOeBUpi1ailt18PG/8PnrZYf+iFIQac2jyOJS0/y5owNdeS/5ld5qbx3PCERP0d68B4U/Yc7M3GpWg==}
+  comment-block-replacer@0.1.19:
+    resolution: {integrity: sha512-5UjtvXqDZUSve4SI+NrrieX9QpF7rYAggdLSSFXfI3S7W7UgDrUYUJiOcXYGrAHvp2KIjPakjVM9mH3fjorSmA==}
 
-  comment-block-transformer@0.7.0:
-    resolution: {integrity: sha512-l9siH057cNJgvzQq8JC/D8y5thKx0K0M0syfXDUr/y0Ded8SzjA1ccVmS//w3A+9cu5A9+802QsjY4P3LdSwnA==}
+  comment-block-transformer@0.8.0:
+    resolution: {integrity: sha512-SJM5YLaFYp4vFh7PcacPvk/j7kyIQgJ3tdhMXuN5RodX/wKqjFmqI7fcdLQtCSVIc95gcD53bUkvx50TEU+z1w==}
 
   comment-json@2.4.2:
     resolution: {integrity: sha512-T+iXox779qsqneMYx/x5BZyz4xjCeQRmuNVzz8tko7qZUs3MlzpA3RAs+O1XsgcKToNBMIvfVzafGOeiU7RggA==}
@@ -3675,8 +3680,8 @@ packages:
     peerDependencies:
       markdown-magic: '>=0.1 <=2.x'
 
-  markdown-magic@4.8.0:
-    resolution: {integrity: sha512-NfsKEgfLhVpk0wvSbq8hKMY+tVtw7ErR7GYvmBeiX6Sui2FpsjOoN3Ec39UzL0fIz+w9As/MZOUgvFhsIumclg==}
+  markdown-magic@4.9.0:
+    resolution: {integrity: sha512-28CXy0TmjzEEIFVv23OjtUaRDh5vDXFVLl38hYGGbtwQI0l47nRQDEoerBjx/q+6UE3CQCzyYh9wHIec2kHteA==}
     hasBin: true
 
   markdown-table@3.0.4:
@@ -5852,6 +5857,13 @@ snapshots:
 
   '@cspell/url@10.0.1': {}
 
+  '@davidwells/dx-args@0.2.0':
+    dependencies:
+      is-glob: 4.0.3
+      is-valid-path: 0.1.1
+      mri: 1.2.0
+      oparser: 3.1.0
+
   '@davidwells/md-utils@0.0.53':
     dependencies:
       gray-matter: 4.0.3
@@ -7157,7 +7169,7 @@ snapshots:
 
   commander@8.3.0: {}
 
-  comment-block-parser@1.5.4:
+  comment-block-parser@1.6.0:
     dependencies:
       dedent: 1.7.2
       mri: 1.2.0
@@ -7165,16 +7177,16 @@ snapshots:
     transitivePeerDependencies:
       - babel-plugin-macros
 
-  comment-block-replacer@0.1.18:
+  comment-block-replacer@0.1.19:
     dependencies:
-      comment-block-transformer: 0.7.0
+      comment-block-transformer: 0.8.0
       is-valid-path: 0.1.1
     transitivePeerDependencies:
       - babel-plugin-macros
 
-  comment-block-transformer@0.7.0:
+  comment-block-transformer@0.8.0:
     dependencies:
-      comment-block-parser: 1.5.4
+      comment-block-parser: 1.6.0
     transitivePeerDependencies:
       - babel-plugin-macros
 
@@ -9014,17 +9026,18 @@ snapshots:
     dependencies:
       findup: 0.1.5
 
-  markdown-magic-subpackage-list@1.1.2(markdown-magic@4.8.0):
+  markdown-magic-subpackage-list@1.1.2(markdown-magic@4.9.0):
     dependencies:
-      markdown-magic: 4.8.0
+      markdown-magic: 4.9.0
 
-  markdown-magic@4.8.0:
+  markdown-magic@4.9.0:
     dependencies:
+      '@davidwells/dx-args': 0.2.0
       '@davidwells/md-utils': 0.0.53
       color-convert: 2.0.1
-      comment-block-parser: 1.5.4
-      comment-block-replacer: 0.1.18
-      comment-block-transformer: 0.7.0
+      comment-block-parser: 1.6.0
+      comment-block-replacer: 0.1.19
+      comment-block-transformer: 0.8.0
       globrex: 0.1.2
       gray-matter: 4.0.3
       is-glob: 4.0.3
@@ -9034,7 +9047,6 @@ snapshots:
       module-alias: 2.3.4
       mri: 1.2.0
       node-fetch: 2.7.0
-      oparser: 3.1.0
       punycode: 2.3.1
       smart-glob: 1.0.2
       string-width: 4.2.3
