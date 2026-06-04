@@ -259,8 +259,8 @@ importers:
         specifier: ~64.0.0
         version: 64.0.0(eslint@10.4.1(jiti@2.6.1))
       eslint-plugin-yml:
-        specifier: ~3.3.0
-        version: 3.3.2(eslint@10.4.1(jiti@2.6.1))
+        specifier: ~3.4.0
+        version: 3.4.0(eslint@10.4.1(jiti@2.6.1))
       find-up:
         specifier: ^8.0.0
         version: 8.0.0
@@ -2587,8 +2587,8 @@ packages:
     peerDependencies:
       eslint: '>=9.38.0'
 
-  eslint-plugin-yml@3.3.2:
-    resolution: {integrity: sha512-XjmOB/fLBwYHqevnpclPL938V+9ExX7xw1hPaM3IPePGyMFRV1giS16RjSTNhIyCv/Oh0G0PEdmmZPATJ02YCw==}
+  eslint-plugin-yml@3.4.0:
+    resolution: {integrity: sha512-j6U3ESrAkidkvNb3HFN2UMxke46GNp6bsJokabXCICcgomSy3YU4oED9cjzkZ58nYxWD5qnWV1b/2YlqyWMOxA==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24.0.0}
     peerDependencies:
       eslint: '>=9.38.0'
@@ -7934,7 +7934,7 @@ snapshots:
       semver: 7.8.1
       strip-indent: 4.1.1
 
-  eslint-plugin-yml@3.3.2(eslint@10.4.1(jiti@2.6.1)):
+  eslint-plugin-yml@3.4.0(eslint@10.4.1(jiti@2.6.1)):
     dependencies:
       '@eslint/core': 1.2.1
       '@eslint/plugin-kit': 0.7.2
