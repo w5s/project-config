@@ -65,7 +65,7 @@
     "@w5s/tsdown-config": "workspace:*",
     "tsdown": "0.22.1",
     "vite": "8.0.16",
-    "vitest": "4.1.6"
+    "vitest": "4.1.8"
   },
   "peerDependencies": {
     "cspell": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0"

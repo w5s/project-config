@@ -67,7 +67,7 @@
     "@w5s/tsdown-config": "workspace:*",
     "tsdown": "0.22.1",
     "vite": "8.0.16",
-    "vitest": "4.1.6"
+    "vitest": "4.1.8"
   },
   "clean-package": "../../clean-package.config.cjs",
   "engines": {

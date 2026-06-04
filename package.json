@@ -86,7 +86,7 @@
     "turbo": "2.9.16",
     "typescript": "6.0.3",
     "vite": "8.0.16",
-    "vitest": "4.1.6"
+    "vitest": "4.1.8"
   },
   "packageManager": "pnpm@11.5.1",
   "engines": {
@@ -96,7 +96,7 @@
   },
   "overrides": {
     "vite": "8.0.16",
-    "vitest": "4.1.6"
+    "vitest": "4.1.8"
   },
   "sideEffect": false
 }
