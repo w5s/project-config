@@ -94,11 +94,9 @@
     "npm": ">=6.0.0",
     "pnpm": ">=10.0.0"
   },
-  "pnpm": {
-    "overrides": {
-      "vite": "8.0.13",
-      "vitest": "4.1.6"
-    }
+  "overrides": {
+    "vite": "8.0.13",
+    "vitest": "4.1.6"
   },
   "sideEffect": false
 }
