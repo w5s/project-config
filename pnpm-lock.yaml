@@ -106,8 +106,8 @@ importers:
         version: link:../conventional-changelog
     devDependencies:
       '@commitlint/lint':
-        specifier: 21.0.1
-        version: 21.0.1
+        specifier: 21.0.2
+        version: 21.0.2
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
@@ -444,10 +444,6 @@ packages:
 
   '@commitlint/is-ignored@21.0.2':
     resolution: {integrity: sha512-H5z4t8PC9tUsmZ/o+EptM3Nq8sTFtskAShdcqxCoyzklW5eaVT5xbrDAET2uypzir9Vsj4ZZmBtyKjYe2XqgeQ==}
-    engines: {node: '>=22.12.0'}
-
-  '@commitlint/lint@21.0.1':
-    resolution: {integrity: sha512-gF+iYtUw1gBG3HUH9z3VxwUjGg2R2G5j+nmvPs8aIeYkiB7TtneBu3wO85I0bUl93bYNsvsCNI9Nte2fmDUMww==}
     engines: {node: '>=22.12.0'}
 
   '@commitlint/lint@21.0.2':
@@ -5357,13 +5353,6 @@ snapshots:
     dependencies:
       '@commitlint/types': 21.0.1
       semver: 7.8.1
-
-  '@commitlint/lint@21.0.1':
-    dependencies:
-      '@commitlint/is-ignored': 21.0.2
-      '@commitlint/parse': 21.0.2
-      '@commitlint/rules': 21.0.2
-      '@commitlint/types': 21.0.1
 
   '@commitlint/lint@21.0.2':
     dependencies:
