@@ -6,7 +6,7 @@ import { findUp } from "find-up";
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/eslint-config-ignore",
-	version: "1.0.0",
+	version: "1.1.0",
 	buildNumber: 1
 });
 //#endregion
