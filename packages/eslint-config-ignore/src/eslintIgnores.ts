@@ -1,20 +1,10 @@
 import fs from 'node:fs';
 import nodePath from 'node:path';
 import process from 'node:process';
-import { findUp } from 'find-up';
 import { defaultIgnores } from './defaultIgnores.js';
-import { includeIgnoreFileContent } from './internal/includeIgnoreFileContent.js';
-
-const getGitignore = async (cwd: string, prefix = ''): Promise<Array<string>> => {
-  const gitIgnoreFile = await findUp(nodePath.join(prefix, '.gitignore'), { cwd });
-  if (gitIgnoreFile != null) {
-    const { patterns } = includeIgnoreFileContent(await fs.promises.readFile(gitIgnoreFile)) as { patterns: string[] };
-    const returnValue = patterns.map((pattern) => nodePath.join(prefix, pattern));
-    return returnValue;
-  }
-
-  return [];
-};
+import { ignoreFileParse } from './internal/ignoreFileParse.js';
+import { ignoreFileFind } from './internal/ignoreFileFind.js';
+import { ignoreRuleResolve } from './internal/ignoreRuleResolve.js';
 
 /**
  * Create a new eslint configuration object
@@ -36,16 +26,19 @@ const getGitignore = async (cwd: string, prefix = ''): Promise<Array<string>> =>
 export async function eslintIgnores(options: ESLintIgnoreOptions = {}): Promise<ESLintIgnoreConfig> {
   const cwd = options.cwd ?? process.cwd();
   const recommended = options.recommended ?? true;
-  const [ignoreRoot, ignoreAndroid, ignoreIOS] = await Promise.all([
-    getGitignore(cwd),
-    getGitignore(cwd, 'android'),
-    getGitignore(cwd, 'ios'),
-  ]);
+  const ignoreFilePaths = await ignoreFileFind(cwd);
+  const ignoreGlobs = (await Promise.all(ignoreFilePaths.map(async (ignoreFilePathRelative) => {
+    const ignoreFilePath = nodePath.join(cwd, ignoreFilePathRelative);
+    const ignoreFileContent = String(await fs.promises.readFile(ignoreFilePath));
+    const patterns = ignoreFileParse(ignoreFileContent);
+    const ignoreDirectoryRelative = nodePath.dirname(ignoreFilePathRelative);
+
+    return patterns.map((pattern) => ignoreRuleResolve(ignoreDirectoryRelative, pattern));
+  })));
+
   const mergedIgnores = [
     ...(recommended ? defaultIgnores : []),
-    ...ignoreRoot,
-    ...ignoreAndroid,
-    ...ignoreIOS,
+    ...ignoreGlobs.flat(),
   ];
 
   const ignores = typeof options.ignores === 'function'

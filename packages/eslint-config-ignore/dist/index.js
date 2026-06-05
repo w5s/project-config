@@ -1,8 +1,8 @@
 import fs from "node:fs";
 import nodePath from "node:path";
 import process from "node:process";
-import { findUp } from "find-up";
 import parseGitignore from "parse-gitignore";
+import { findUp } from "find-up";
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/eslint-config-ignore",
@@ -45,18 +45,49 @@ const defaultIgnores = [
 	"**/.*/skills"
 ];
 //#endregion
-//#region src/internal/includeIgnoreFileContent.ts
-const includeIgnoreFileContent = parseGitignore.parse;
+//#region src/internal/ignoreFileParse.ts
+function ignoreFileParse(input) {
+	return parseGitignore.parse(input).patterns;
+}
+//#endregion
+//#region src/internal/ignoreFileFind.ts
+async function ignoreFileFind(cwd) {
+	return (await Promise.all([
+		findUp(nodePath.join("", ".gitignore"), { cwd }),
+		findUp(nodePath.join("android", ".gitignore"), { cwd }),
+		findUp(nodePath.join("ios", ".gitignore"), { cwd })
+	])).filter((filePath) => filePath !== void 0).map((filePath) => nodePath.relative(cwd, filePath));
+}
+//#endregion
+//#region src/internal/ignoreRuleResolve.ts
+/**
+* Resolve a raw ignore rule from a `.gitignore` file into a path
+* relative to the configured working directory.
+*
+* @example
+* ```ts
+* import { ignoreRuleResolve } from './internal/ignoreRuleResolve.js';
+*
+* ignoreRuleResolve('.', 'dist'); // 'dist'
+* ignoreRuleResolve('.', '/dist'); // 'dist'
+* ignoreRuleResolve('android', 'android-build'); // 'android/android-build'
+* ignoreRuleResolve('android', '!android-build'); // '!android/android-build'
+* ```
+*
+* @internal
+* @param prefix A path prefix that points to the directory containing the `.gitignore` file.
+* @param rule The raw ignore rule parsed from `.gitignore`.
+* @returns A normalized ignore pattern relative to the root `cwd`.
+*/
+function ignoreRuleResolve(prefix, rule) {
+	const negated = rule.startsWith("!");
+	const normalizedPattern = negated ? rule.slice(1) : rule;
+	const trimmedPattern = normalizedPattern.startsWith("/") ? normalizedPattern.slice(1) : normalizedPattern;
+	const relativeIgnorePath = nodePath.join(prefix, trimmedPattern);
+	return negated ? `!${relativeIgnorePath}` : relativeIgnorePath;
+}
 //#endregion
 //#region src/eslintIgnores.ts
-const getGitignore = async (cwd, prefix = "") => {
-	const gitIgnoreFile = await findUp(nodePath.join(prefix, ".gitignore"), { cwd });
-	if (gitIgnoreFile != null) {
-		const { patterns } = includeIgnoreFileContent(await fs.promises.readFile(gitIgnoreFile));
-		return patterns.map((pattern) => nodePath.join(prefix, pattern));
-	}
-	return [];
-};
 /**
 * Create a new eslint configuration object
 *
@@ -77,17 +108,14 @@ const getGitignore = async (cwd, prefix = "") => {
 async function eslintIgnores(options = {}) {
 	const cwd = options.cwd ?? process.cwd();
 	const recommended = options.recommended ?? true;
-	const [ignoreRoot, ignoreAndroid, ignoreIOS] = await Promise.all([
-		getGitignore(cwd),
-		getGitignore(cwd, "android"),
-		getGitignore(cwd, "ios")
-	]);
-	const mergedIgnores = [
-		...recommended ? defaultIgnores : [],
-		...ignoreRoot,
-		...ignoreAndroid,
-		...ignoreIOS
-	];
+	const ignoreFilePaths = await ignoreFileFind(cwd);
+	const ignoreGlobs = await Promise.all(ignoreFilePaths.map(async (ignoreFilePathRelative) => {
+		const ignoreFilePath = nodePath.join(cwd, ignoreFilePathRelative);
+		const patterns = ignoreFileParse(String(await fs.promises.readFile(ignoreFilePath)));
+		const ignoreDirectoryRelative = nodePath.dirname(ignoreFilePathRelative);
+		return patterns.map((pattern) => ignoreRuleResolve(ignoreDirectoryRelative, pattern));
+	}));
+	const mergedIgnores = [...recommended ? defaultIgnores : [], ...ignoreGlobs.flat()];
 	const ignores = typeof options.ignores === "function" ? options.ignores(mergedIgnores) : options.ignores ? [...mergedIgnores, ...options.ignores] : mergedIgnores;
 	return {
 		name: options.name ?? "w5s/eslint-ignore",

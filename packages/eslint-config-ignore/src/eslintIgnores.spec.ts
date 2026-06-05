@@ -98,6 +98,22 @@ describe('eslintIgnores', () => {
     expect(result.name).toBe('w5s/eslint-ignore');
   });
 
+  it('resolves root .gitignore patterns with a leading slash', async () => {
+    await writeGitignore('', '/root-ignore\n');
+
+    const result = await eslintIgnores({ recommended: false });
+
+    expect(result.ignores).toContain('root-ignore');
+  });
+
+  it('resolves nested .gitignore patterns relative to the ignore file directory', async () => {
+    await writeGitignore('android', '/android-build\n');
+
+    const result = await eslintIgnores({ recommended: false });
+
+    expect(result.ignores).toContain(nodePath.join('android', 'android-build'));
+  });
+
   it('recommended base still supports appending ignores with an array', async () => {
     const result = await eslintIgnores({ recommended: true, ignores: ['only-me/**'] });
 
