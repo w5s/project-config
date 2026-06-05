@@ -1,48 +1,91 @@
-import type { ESLint } from 'eslint';
-
-function toArray<T>(value: T[] | T | undefined): T[] {
-  if (value == null) {
-    return [];
-  }
-  if (Array.isArray(value)) {
-    return value;
-  }
-  return [value];
-}
-
-function concatArray<T>(left: T[] | T | undefined, right: T[] | T | undefined): T[] {
-  return [...toArray(left), ...toArray(right)];
-}
+import type { Linter } from 'eslint';
 
 /**
+ * Return a new merged flat configuration
  *
  * @param configs
  */
-function concat(...configs: ESLint.ConfigData[]): ESLint.ConfigData {
-  return configs.reduce(
-    (returnValue, config) => ({
-      ...returnValue,
-      ...config,
-      env: { ...returnValue.env, ...config.env },
-      extends: concatArray(returnValue.extends, config.extends),
-      globals: { ...returnValue.globals, ...config.globals },
-      overrides: concatArray(returnValue.overrides, config.overrides),
-      parserOptions: { ...returnValue.parserOptions, ...config.parserOptions },
-      plugins: concatArray(returnValue.plugins, config.plugins),
-      rules: { ...returnValue.rules, ...config.rules },
-      settings: { ...returnValue.settings, ...config.settings },
-    }),
-    {
-      env: {},
-      extends: [],
-      globals: {},
-      overrides: [],
-      parserOptions: {},
-      plugins: [],
-      rules: {},
-      settings: {},
-    },
-  );
+function merge<T extends Linter.Config = Linter.Config>(...configs: Array<T>): T {
+  const keys = new Set(configs.flatMap((i) => Object.keys(i)));
+  const merged = configs.reduce((acc, cur) => {
+    return {
+      ...acc,
+      ...cur,
+      files: [
+        ...(acc.files ?? []),
+        ...(cur.files ?? []),
+      ],
+      ignores: [
+        ...(acc.ignores ?? []),
+        ...(cur.ignores ?? []),
+      ],
+      plugins: {
+        ...acc.plugins,
+        ...cur.plugins,
+      },
+      rules: {
+        ...acc.rules,
+        ...cur.rules,
+      },
+      languageOptions: {
+        ...acc.languageOptions,
+        ...cur.languageOptions,
+      },
+      linterOptions: {
+        ...acc.linterOptions,
+        ...cur.linterOptions,
+      },
+    };
+  // eslint-disable-next-line ts/consistent-type-assertions
+  }, {} as T);
+
+  // Remove unused keys
+  for (const key of Object.keys(merged)) {
+    if (!keys.has(key))
+      // eslint-disable-next-line ts/no-dynamic-delete
+      delete (merged as any)[key];
+  }
+
+  return merged as T;
+}
+
+/**
+ * Concat multiple flat configs into a single flat config array.
+ *
+ * It also resolves promises and flattens the result.
+ *
+ * @example
+ *
+ * ```ts
+ * import eslint from '@eslint/js'
+ *
+ * export default ESLintConfig.concat(
+ *   {
+ *     plugins: {},
+ *     rules: {},
+ *   },
+ *   // It can also takes a array of configs:
+ *   [
+ *     {
+ *       plugins: {},
+ *       rules: {},
+ *     }
+ *    // ...
+ *   ],
+ *   // Or promises:
+ *   Promise.resolve({
+ *     files: ['*.ts'],
+ *     rules: {},
+ *   })
+ * );
+ * ```
+ * @param configs
+ */
+async function concat<T extends Linter.Config = Linter.Config>(
+  ...configs: Array<T | ReadonlyArray<T> | Promise<T> | Promise<ReadonlyArray<T>>>
+): Promise<Array<T>> {
+  const resolved = await Promise.all(configs);
+  return resolved.flat() as Array<T>;
 }
 
 /**
@@ -80,6 +123,7 @@ function renameRules(rules: Record<string, any>, map: Record<string, string>): R
  * @namespace
  */
 export const ESLintConfig = Object.freeze({
+  merge,
   concat,
   fixme,
   renameRules,

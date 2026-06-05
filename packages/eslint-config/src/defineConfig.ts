@@ -1,3 +1,4 @@
+import { ESLintConfig } from '@w5s/dev';
 import { jsdoc, jsonc, ignores, imports, markdown, node, ts, yml, unicorn, stylistic, es } from './config.js';
 import type { Config } from './type.js';
 
@@ -68,6 +69,5 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
   if (unicornOptions.enabled) {
     append(unicorn(unicornOptions));
   }
-  const nested = await Promise.all(returnValue);
-  return nested.reduce((acc, curr) => [...acc, ...curr], [] as Array<Config>);
+  return ESLintConfig.concat(...returnValue);
 }

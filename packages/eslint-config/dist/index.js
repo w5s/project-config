@@ -1,6 +1,6 @@
+import { ESLintConfig, Project, interopDefault } from "@w5s/dev";
 import globals from "globals";
 import eslintConfig from "@eslint/js";
-import { ESLintConfig, Project, interopDefault } from "@w5s/dev";
 import prettierConfig from "@w5s/prettier-config";
 import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
@@ -1139,7 +1139,7 @@ async function defineConfig(options = {}) {
 	if (tsOptions.enabled) append(ts(tsOptions));
 	if (ymlOptions.enabled) append(yml(ymlOptions));
 	if (unicornOptions.enabled) append(unicorn(unicornOptions));
-	return (await Promise.all(returnValue)).reduce((acc, curr) => [...acc, ...curr], []);
+	return ESLintConfig.concat(...returnValue);
 }
 //#endregion
 //#region src/meta.ts

@@ -7653,7 +7653,7 @@ interface DefineConfigOptions extends ignores.Options {
   unicorn?: boolean | unicorn.Options;
   yml?: boolean | yml.Options;
 }
-declare function defineConfig(options?: DefineConfigOptions): Promise<Config[]>;
+declare function defineConfig(options?: DefineConfigOptions): Promise<import("eslint").Linter.Config<import("eslint").Linter.RulesRecord>[]>;
 //#endregion
 //#region src/meta.d.ts
 declare const meta: Readonly<{

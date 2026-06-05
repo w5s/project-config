@@ -1,11 +1,13 @@
+/* eslint-disable ts/consistent-type-assertions */
 import { describe, expect, it } from 'vitest';
+import type { ESLint, Linter } from 'eslint';
 import { ESLintConfig } from './ESLintConfig.js';
 
 describe('ESLintConfig', () => {
-  describe('.concat()', () => {
+  describe(ESLintConfig.merge, () => {
     it('should return a new configuration', () => {
       expect(
-        ESLintConfig.concat(
+        ESLintConfig.merge(
           {
             env: {
               a: true,
@@ -14,8 +16,12 @@ describe('ESLintConfig', () => {
               ga: true,
             },
             extends: ['a'],
+            files: ['a'],
+            ignores: ['x'],
             overrides: [{ files: 'a' }],
-            plugins: ['plugin-a'],
+            plugins: {
+              'plugin-a': {} as ESLint.Plugin,
+            },
             rules: {
               'rule-a': 'error',
             },
@@ -24,6 +30,11 @@ describe('ESLintConfig', () => {
             },
             settings: {
               sa: true,
+            },
+            languageOptions: {
+              parserOptions: {
+                ecmaVersion: 2020,
+              },
             },
           },
           {
@@ -34,16 +45,23 @@ describe('ESLintConfig', () => {
               gb: true,
             },
             extends: ['b'],
+            files: ['b'],
+            ignores: ['y'],
             overrides: [{ files: 'b' }],
-            plugins: ['plugin-b'],
+            plugins: {
+              'plugin-b': {} as ESLint.Plugin,
+            },
             rules: {
-              'rule-b': 'error',
+              'rule-b': 'warn',
             },
             parserOptions: {
               b: true,
             },
             settings: {
               sb: true,
+            },
+            languageOptions: {
+              sourceType: 'module',
             },
           },
           {
@@ -54,10 +72,14 @@ describe('ESLintConfig', () => {
               gc: true,
             },
             extends: ['c'],
+            files: ['c'],
+            ignores: ['z'],
             overrides: [{ files: 'c' }],
-            plugins: ['plugin-c'],
+            plugins: {
+              'plugin-c': {} as ESLint.Plugin,
+            },
             rules: {
-              'rule-c': 'error',
+              'rule-c': 'off',
             },
             parserOptions: {
               c: true,
@@ -65,38 +87,108 @@ describe('ESLintConfig', () => {
             settings: {
               sc: true,
             },
+            languageOptions: {
+              ecmaVersion: 2022,
+            },
           },
         ),
       ).toEqual({
         env: {
-          a: true,
-          b: true,
           c: true,
         },
-        extends: ['a', 'b', 'c'],
         globals: {
-          ga: true,
-          gb: true,
           gc: true,
         },
-        overrides: [{ files: 'a' }, { files: 'b' }, { files: 'c' }],
+        extends: ['c'],
+        files: ['a', 'b', 'c'],
+        ignores: ['x', 'y', 'z'],
+        overrides: [{ files: 'c' }],
         parserOptions: {
-          a: true,
-          b: true,
           c: true,
         },
-        plugins: ['plugin-a', 'plugin-b', 'plugin-c'],
+        plugins: {
+          'plugin-a': {},
+          'plugin-b': {},
+          'plugin-c': {},
+        },
         rules: {
           'rule-a': 'error',
-          'rule-b': 'error',
-          'rule-c': 'error',
+          'rule-b': 'warn',
+          'rule-c': 'off',
         },
         settings: {
-          sa: true,
-          sb: true,
           sc: true,
         },
+        languageOptions: {
+          parserOptions: {
+            ecmaVersion: 2020,
+          },
+          sourceType: 'module',
+          ecmaVersion: 2022,
+        },
       });
+    });
+  });
+
+  describe(ESLintConfig.concat, () => {
+    it('should concat flat configs and resolve promises', async () => {
+      await expect(
+        ESLintConfig.concat(
+          {
+            files: ['a'],
+            rules: {
+              'rule-a': 'error',
+            },
+          },
+          [
+            {
+              files: ['b'],
+              rules: {
+                'rule-b': 'warn',
+              },
+            },
+          ],
+          Promise.resolve<Linter.Config>({
+            files: ['c'],
+            rules: {
+              'rule-c': 'off',
+            },
+          }),
+          Promise.resolve<Array<Linter.Config>>([
+            {
+              files: ['d'],
+              rules: {
+                'rule-d': 'error',
+              },
+            },
+          ]),
+        ),
+      ).resolves.toEqual([
+        {
+          files: ['a'],
+          rules: {
+            'rule-a': 'error',
+          },
+        },
+        {
+          files: ['b'],
+          rules: {
+            'rule-b': 'warn',
+          },
+        },
+        {
+          files: ['c'],
+          rules: {
+            'rule-c': 'off',
+          },
+        },
+        {
+          files: ['d'],
+          rules: {
+            'rule-d': 'error',
+          },
+        },
+      ]);
     });
   });
 

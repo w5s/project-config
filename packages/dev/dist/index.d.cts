@@ -1,11 +1,45 @@
-import { ESLint } from "eslint";
+import { Linter } from "eslint";
 
 //#region src/ESLintConfig.d.ts
 /**
+ * Return a new merged flat configuration
  *
  * @param configs
  */
-declare function concat(...configs: ESLint.ConfigData[]): ESLint.ConfigData;
+declare function merge<T extends Linter.Config = Linter.Config>(...configs: Array<T>): T;
+/**
+ * Concat multiple flat configs into a single flat config array.
+ *
+ * It also resolves promises and flattens the result.
+ *
+ * @example
+ *
+ * ```ts
+ * import eslint from '@eslint/js'
+ *
+ * export default ESLintConfig.concat(
+ *   {
+ *     plugins: {},
+ *     rules: {},
+ *   },
+ *   // It can also takes a array of configs:
+ *   [
+ *     {
+ *       plugins: {},
+ *       rules: {},
+ *     }
+ *    // ...
+ *   ],
+ *   // Or promises:
+ *   Promise.resolve({
+ *     files: ['*.ts'],
+ *     rules: {},
+ *   })
+ * );
+ * ```
+ * @param configs
+ */
+declare function concat<T extends Linter.Config = Linter.Config>(...configs: Array<T | ReadonlyArray<T> | Promise<T> | Promise<ReadonlyArray<T>>>): Promise<Array<T>>;
 /**
  * Always return 'off'. `_status` is the previous rule value.
  *
@@ -27,6 +61,7 @@ declare function renameRules(rules: Record<string, any>, map: Record<string, str
  * @namespace
  */
 declare const ESLintConfig: Readonly<{
+  merge: typeof merge;
   concat: typeof concat;
   fixme: typeof fixme;
   renameRules: typeof renameRules;
