@@ -237,6 +237,9 @@ importers:
       '@w5s/dev':
         specifier: workspace:^
         version: link:../dev
+      '@w5s/eslint-config-ignore':
+        specifier: workspace:^
+        version: link:../eslint-config-ignore
       '@w5s/prettier-config':
         specifier: workspace:^
         version: link:../prettier-config
@@ -304,6 +307,40 @@ importers:
       react:
         specifier: 19.2.7
         version: 19.2.7
+      tsdown:
+        specifier: 0.22.1
+        version: 0.22.1(typescript@6.0.3)
+      vite:
+        specifier: 8.0.16
+        version: 8.0.16(@types/node@20.19.41)(jiti@2.6.1)(yaml@2.9.0)
+      vitest:
+        specifier: 4.1.8
+        version: 4.1.8(@types/node@20.19.41)(vite@8.0.16(@types/node@20.19.41)(jiti@2.6.1)(yaml@2.9.0))
+
+  packages/eslint-config-ignore:
+    dependencies:
+      find-up:
+        specifier: ^8.0.0
+        version: 8.0.0
+      parse-gitignore:
+        specifier: ^2.0.0
+        version: 2.0.0
+      typescript:
+        specifier: 4.x || 5.x || 6.x
+        version: 6.0.3
+    devDependencies:
+      '@types/node':
+        specifier: 20.19.41
+        version: 20.19.41
+      '@types/parse-gitignore':
+        specifier: 1.0.2
+        version: 1.0.2
+      '@w5s/tsdown-config':
+        specifier: workspace:*
+        version: link:../tsdown-config
+      eslint:
+        specifier: 10.4.1
+        version: 10.4.1(jiti@2.6.1)
       tsdown:
         specifier: 0.22.1
         version: 0.22.1(typescript@6.0.3)

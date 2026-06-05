@@ -1,20 +1,20 @@
 {
-  "name": "@w5s/eslint-config",
-  "version": "3.5.6",
-  "description": "ESLint configuration presets",
+  "name": "@w5s/eslint-config-ignore",
+  "version": "1.0.0",
+  "description": "Shared ESLint ignore configuration generator",
   "keywords": [
     "eslint",
     "config",
-    "lint"
+    "ignore"
   ],
-  "homepage": "https://github.com/w5s/project-config/blob/main/packages/eslint-config#readme",
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/eslint-config-ignore#readme",
   "bugs": {
-    "url": "https://github.com/w5s/project-config.git/issues"
+    "url": "https://github.com/w5s/project-config/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh@github.com:w5s/project-config.git",
-    "directory": "packages/eslint-config"
+    "directory": "packages/eslint-config-ignore"
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
@@ -39,7 +39,7 @@
   ],
   "scripts": {
     "build": "pnpm run \"/^build:.*/\"",
-    "build:tsc": "node --experimental-strip-types scripts/typegen.ts && tsdown",
+    "build:tsc": "tsdown",
     "clean": "pnpm run \"/^clean:.*/\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
@@ -52,44 +52,19 @@
     "prepublishOnly": "pnpm run clean;pnpm run build",
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
-    "test:script": "scripts/test",
-    "test_:rule-coverage": "eslint-find-rules --unused",
+    "test:src": "vitest run",
     "typecheck": "pnpm run \"/^typecheck:.*/\"",
     "typecheck:src": "tsc --noEmit"
   },
   "dependencies": {
-    "@eslint/js": "^10.0.0",
-    "@eslint/markdown": "^8.0.0",
-    "@stylistic/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
-    "@vitest/eslint-plugin": "^1.0.0",
-    "@w5s/dev": "workspace:^",
-    "@w5s/eslint-config-ignore": "workspace:^",
-    "@w5s/prettier-config": "workspace:^",
-    "eslint-merge-processors": "^2.0.0",
-    "eslint-plugin-import": "~2.32.0",
-    "eslint-plugin-jsdoc": "~63.0.0",
-    "eslint-plugin-jsonc": "~3.2.0",
-    "eslint-plugin-n": "~18.0.0",
-    "eslint-plugin-unicorn": "~64.0.0",
-    "eslint-plugin-yml": "~3.4.0",
     "find-up": "^8.0.0",
-    "globals": "^17.0.0",
-    "jsonc-eslint-parser": "^3.0.0",
-    "parse-gitignore": "^2.0.0",
-    "yaml-eslint-parser": "^2.0.0"
+    "parse-gitignore": "^2.0.0"
   },
   "devDependencies": {
-    "@types/eslint": "9.6.1",
+    "@types/node": "20.19.41",
     "@types/parse-gitignore": "1.0.2",
-    "@types/react": "19.2.16",
-    "@typescript-eslint/parser": "8.60.1",
     "@w5s/tsdown-config": "workspace:*",
     "eslint": "10.4.1",
-    "eslint-find-rules": "5.0.0",
-    "eslint-typegen": "2.3.1",
-    "react": "19.2.7",
     "tsdown": "0.22.1",
     "vite": "8.0.16",
     "vitest": "4.1.8"

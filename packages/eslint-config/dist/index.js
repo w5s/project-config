@@ -2,11 +2,7 @@ import globals from "globals";
 import eslintConfig from "@eslint/js";
 import { ESLintConfig, Project, interopDefault } from "@w5s/dev";
 import prettierConfig from "@w5s/prettier-config";
-import fs from "node:fs";
-import nodePath from "node:path";
-import process from "node:process";
-import { findUp } from "find-up";
-import parseGitignore from "parse-gitignore";
+import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
 //#region src/type/StylisticConfig.ts
 const defaultConfig = {
@@ -493,61 +489,8 @@ async function es(options) {
 }
 //#endregion
 //#region src/config/ignores.ts
-const getGitignore = async (cwd, prefix = "") => {
-	const gitIgnoreFile = await findUp(nodePath.join(prefix, ".gitignore"), { cwd });
-	if (gitIgnoreFile != null) {
-		const { patterns } = parseGitignore.parse(await fs.promises.readFile(gitIgnoreFile));
-		return patterns.map((pattern) => nodePath.join(prefix, pattern));
-	}
-	return [];
-};
 async function ignores(options = {}) {
-	const cwd = process.cwd();
-	const [ignoreRoot, ignoreAndroid, ignoreIOS] = await Promise.all([
-		getGitignore(cwd),
-		getGitignore(cwd, "android"),
-		getGitignore(cwd, "ios")
-	]);
-	return [{
-		ignores: [
-			"**/package-lock.json",
-			"**/yarn.lock",
-			"**/pnpm-lock.yaml",
-			"**/bun.lockb",
-			"**/output",
-			"**/.output",
-			"**/coverage",
-			"**/temp",
-			"**/.temp",
-			"**/tmp",
-			"**/.tmp",
-			"**/.cache",
-			"**/*.min.*",
-			"**/*.timestamp-*.mjs",
-			".go/",
-			".pnpm-store/",
-			"**/.vitepress/cache",
-			"**/.vite-inspect",
-			"**/.history",
-			"**/.nuxt",
-			"**/.next",
-			"**/.svelte-kit",
-			"**/.vercel",
-			"**/.idea",
-			"**/.yarn",
-			"**/__snapshots__",
-			".modules/",
-			"**/.context",
-			"**/.claude",
-			"**/.agents",
-			"**/.*/skills",
-			...ignoreRoot,
-			...ignoreAndroid,
-			...ignoreIOS,
-			...options.ignores ?? []
-		],
-		name: "w5s/ignore"
-	}];
+	return [await eslintIgnores(options)];
 }
 //#endregion
 //#region src/config/jsdoc.ts

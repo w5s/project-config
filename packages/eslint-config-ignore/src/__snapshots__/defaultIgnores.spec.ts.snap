@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`defaultIgnores > has defined values 1`] = `
+[
+  "**/package-lock.json",
+  "**/yarn.lock",
+  "**/pnpm-lock.yaml",
+  "**/bun.lockb",
+  "**/output",
+  "**/.output",
+  "**/coverage",
+  "**/temp",
+  "**/.temp",
+  "**/tmp",
+  "**/.tmp",
+  "**/.cache",
+  "**/*.min.*",
+  "**/*.timestamp-*.mjs",
+  ".go/",
+  ".pnpm-store/",
+  "**/.vitepress/cache",
+  "**/.vite-inspect",
+  "**/.history",
+  "**/.nuxt",
+  "**/.next",
+  "**/.svelte-kit",
+  "**/.vercel",
+  "**/.idea",
+  "**/.yarn",
+  "**/__snapshots__/**",
+  ".modules/",
+  "**/.context",
+  "**/.claude",
+  "**/.agents",
+  "**/.*/skills",
+]
+`;

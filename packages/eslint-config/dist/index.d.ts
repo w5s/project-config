@@ -1,3 +1,4 @@
+import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
 import { Linter } from "eslint";
 import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 
@@ -537,14 +538,9 @@ declare namespace es {
 }
 //#endregion
 //#region src/config/ignores.d.ts
-declare function ignores(options?: ignores.Options): Promise<[{
-  readonly ignores: Array<string>;
-  readonly name: "w5s/ignore";
-}]>;
+declare function ignores(options?: ignores.Options): Promise<import("@w5s/eslint-config-ignore").ESLintIgnoreConfig[]>;
 declare namespace ignores {
-  interface Options {
-    ignores?: string[];
-  }
+  type Options = ESLintIgnoreOptions;
 }
 //#endregion
 //#region src/typegen/jsdoc.d.ts
