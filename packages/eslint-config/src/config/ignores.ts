@@ -26,47 +26,48 @@ export async function ignores(options: ignores.Options = {}) {
   return [
     {
       ignores: [
-        '**/node_modules',
-        '**/dist',
+        // Lock files
         '**/package-lock.json',
         '**/yarn.lock',
         '**/pnpm-lock.yaml',
         '**/bun.lockb',
 
-        '**/.docusaurus',
+        // Commonly ignored
         '**/output',
+        '**/.output',
         '**/coverage',
         '**/temp',
         '**/.temp',
         '**/tmp',
         '**/.tmp',
-        '**/.history',
+        '**/.cache',
+
+        // Well known extensions to ignore
+        '**/*.min.*',
+        '**/*.timestamp-*.mjs', // esbuild/vite temporary files
+
+        // Framework specific temporary folder
+        '.go/',
+        '.pnpm-store/',
         '**/.vitepress/cache',
+        '**/.vite-inspect',
+        '**/.history',
         '**/.nuxt',
         '**/.next',
         '**/.svelte-kit',
         '**/.vercel',
-        '**/.changeset',
         '**/.idea',
-        '**/.cache',
-        '**/.output',
-        '**/.vite-inspect',
         '**/.yarn',
-        '**/vendor',
-        '**/vendors',
-        '**/*.min.*',
+        '**/__snapshots__',
 
-        '**/*.timestamp-*.mjs', // esbuild/vite temporary files
-
+        // git submodules (makefile-core / makefile-ci)
         '.modules/',
-        '.go/',
-        '.pnpm-store/',
-        // '!.*',
-        // '.venv/',
-        // 'deprecated/',
-        // 'test-output/',
-        // 'venv/',
-        // '_generated_/',
+
+        // AI related
+        '**/.context',
+        '**/.claude',
+        '**/.agents',
+        '**/.*/skills',
 
         ...ignoreRoot,
         ...ignoreAndroid,
