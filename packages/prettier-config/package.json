@@ -61,7 +61,7 @@
     "prettier": "3.8.3",
     "tsdown": "0.22.1",
     "vite": "8.0.16",
-    "vitest": "4.1.6"
+    "vitest": "4.1.8"
   },
   "peerDependencies": {
     "prettier": "2.x || 3.x"
