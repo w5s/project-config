@@ -17,53 +17,50 @@ npm install --save-dev @w5s/eslint-config
 ```
 <!-- AUTO-GENERATED-CONTENT:END -->
 
+> Requires ESLint `9.x` or `10.x`. Optional TypeScript support for `4.x`, `5.x`, and `6.x`.
+
 ## Usage
 
-### Default JS/TS project
+### Minimal flat config
 
-For most kind of project, just edit `eslintrc.json` and add default configuration
+Create `eslint.config.ts` in your project root:
 
-```json
-{
-  "extends": [
-    "@w5s/eslint-config"
-  ]
-}
+```ts
+import defineConfig from '@w5s/eslint-config';
+
+export default defineConfig();
 ```
 
-**Features :**
+### Customize enabled integrations
 
-- `ES` and `TS` validation
-- `Prettier` formatting
-- `JSX` and `React` syntax validation
-- `Jest` tests
+```ts
+import defineConfig from '@w5s/eslint-config';
 
-### Custom project
-
-For most kind of project, just edit `eslintrc.json` and cherry pick only configurations
-
-```jsonc
-{
-  "root": true,
-  "extends": [
-    "@w5s/eslint-config/es",
-    "@w5s/eslint-config/jest",
-    "@w5s/eslint-config/json",
-    "@w5s/eslint-config/ts",
-    "@w5s/eslint-config/yml"
-    // include more configurations here
-  ]
-  // ...
-}
+export default defineConfig({
+  stylistic: { indent: 2 },
+  yml: true,
+});
 ```
 
-**Available configurations :**
+### Features
 
-- `@w5s/eslint-config/es`: for ECMA Script (ES) files
-- `@w5s/eslint-config/jest`: for jest environment tests
-- `@w5s/eslint-config/json`: for json and jsonc files
-- `@w5s/eslint-config/ts`: for typescript files
-- `@w5s/eslint-config/yml`: for yaml files
+- Supported languages : `JS`, `TS`, `JSX`, `JSON`, `YAML`, `MARKDOWN`
+- Standalone formatting : no prettier cli/configuration required (uses stylistic plugin)
+- Enforce best practices : Airbnb base as default
+- Opinionated but customizable
+- Supports frameworks :
+  - UI : `React`
+  - Testing : `Jest`, `Vitest`
+
+### Advanced usage
+
+If you want fine-grained control, the package also exports individual configs:
+
+- `@w5s/eslint-config/es`
+- `@w5s/eslint-config/jsonc`
+- `@w5s/eslint-config/ts`
+- `@w5s/eslint-config/yml`
+- `@w5s/eslint-config/test`
 
 ## License
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[${license}][license-url] © ${author}) -->
