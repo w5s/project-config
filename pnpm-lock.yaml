@@ -3957,8 +3957,8 @@ packages:
       encoding:
         optional: true
 
-  node-gyp@12.3.0:
-    resolution: {integrity: sha512-QNcUWM+HgJplcPzBvFBZ9VXacyGZ4+VTOb80PwWR+TlVzoHbRKULNEzpRsnaoxG3Wzr7Qh7BYxGDU3CbKib2Yg==}
+  node-gyp@12.4.0:
+    resolution: {integrity: sha512-OMcPNvqTCFUnNaBlmdgq+lfNqY7gTiSmNRDjY3uAXRyudeKZEZxu3CLtjMQrx4zZxCX2b/mpNqTtwuCJgXhHkw==}
     engines: {node: ^20.17.0 || >=22.9.0}
     hasBin: true
 
@@ -6091,7 +6091,7 @@ snapshots:
       '@npmcli/node-gyp': 5.0.0
       '@npmcli/package-json': 7.0.5
       '@npmcli/promise-spawn': 9.0.1
-      node-gyp: 12.3.0
+      node-gyp: 12.4.0
       proc-log: 6.1.0
 
   '@octokit/auth-token@6.0.0': {}
@@ -9401,7 +9401,7 @@ snapshots:
     dependencies:
       whatwg-url: 5.0.0
 
-  node-gyp@12.3.0:
+  node-gyp@12.4.0:
     dependencies:
       env-paths: 2.2.1
       exponential-backoff: 3.1.3
