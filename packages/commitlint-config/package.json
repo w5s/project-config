@@ -68,7 +68,7 @@
   "devDependencies": {
     "@commitlint/lint": "21.0.2",
     "@w5s/tsdown-config": "workspace:*",
-    "tsdown": "0.22.1",
+    "tsdown": "0.22.2",
     "vite": "8.0.16",
     "vitest": "4.1.8"
   },
