@@ -10,13 +10,13 @@ importers:
     devDependencies:
       '@lerna-lite/cli':
         specifier: 5.3.0
-        version: 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)
+        version: 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)
       '@lerna-lite/publish':
         specifier: 5.3.0
-        version: 5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0)
+        version: 5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0)
       '@types/node':
-        specifier: 20.19.41
-        version: 20.19.41
+        specifier: 20.19.42
+        version: 20.19.42
       '@w5s/commitlint-config':
         specifier: workspace:*
         version: link:packages/commitlint-config
@@ -67,10 +67,10 @@ importers:
         version: 6.0.3
       vite:
         specifier: 8.0.16
-        version: 8.0.16(@types/node@20.19.41)(jiti@2.6.1)(yaml@2.9.0)
+        version: 8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 4.1.8
-        version: 4.1.8(@types/node@20.19.41)(vite@8.0.16(@types/node@20.19.41)(jiti@2.6.1)(yaml@2.9.0))
+        version: 4.1.8(@types/node@20.19.42)(vite@8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/browserslist-config:
     devDependencies:
@@ -330,8 +330,8 @@ importers:
         version: 6.0.3
     devDependencies:
       '@types/node':
-        specifier: 20.19.41
-        version: 20.19.41
+        specifier: 20.19.42
+        version: 20.19.42
       '@types/parse-gitignore':
         specifier: 1.0.2
         version: 1.0.2
@@ -346,10 +346,10 @@ importers:
         version: 0.22.2(typescript@6.0.3)
       vite:
         specifier: 8.0.16
-        version: 8.0.16(@types/node@20.19.41)(jiti@2.6.1)(yaml@2.9.0)
+        version: 8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 4.1.8
-        version: 4.1.8(@types/node@20.19.41)(vite@8.0.16(@types/node@20.19.41)(jiti@2.6.1)(yaml@2.9.0))
+        version: 4.1.8(@types/node@20.19.42)(vite@8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/mrm-preset:
     dependencies:
@@ -1478,6 +1478,9 @@ packages:
 
   '@types/node@20.19.41':
     resolution: {integrity: sha512-ECymXOukMnOoVkC2bb1Vc/w/836DXncOg5m8Xj1RH7xSHZJWNYY6Zh7EH477vcnD5egKNNfy2RpNOmuChhFPgQ==}
+
+  '@types/node@20.19.42':
+    resolution: {integrity: sha512-5L7SUaFC1RyDraj2yRhyBzHTobyXHmohD100CChNtyPyleoq37Mqab5Gn8XEKI04dfN/oqPdpHk38MgcQWHbZg==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -5808,46 +5811,46 @@ snapshots:
 
   '@inquirer/ansi@2.0.7': {}
 
-  '@inquirer/core@11.2.1(@types/node@20.19.41)':
+  '@inquirer/core@11.2.1(@types/node@20.19.42)':
     dependencies:
       '@inquirer/ansi': 2.0.7
       '@inquirer/figures': 2.0.7
-      '@inquirer/type': 4.0.7(@types/node@20.19.41)
+      '@inquirer/type': 4.0.7(@types/node@20.19.42)
       cli-width: 4.1.0
       fast-wrap-ansi: 0.2.2
       mute-stream: 3.0.0
       signal-exit: 4.1.0
     optionalDependencies:
-      '@types/node': 20.19.41
+      '@types/node': 20.19.42
 
-  '@inquirer/expand@5.1.1(@types/node@20.19.41)':
+  '@inquirer/expand@5.1.1(@types/node@20.19.42)':
     dependencies:
-      '@inquirer/core': 11.2.1(@types/node@20.19.41)
-      '@inquirer/type': 4.0.7(@types/node@20.19.41)
+      '@inquirer/core': 11.2.1(@types/node@20.19.42)
+      '@inquirer/type': 4.0.7(@types/node@20.19.42)
     optionalDependencies:
-      '@types/node': 20.19.41
+      '@types/node': 20.19.42
 
   '@inquirer/figures@2.0.7': {}
 
-  '@inquirer/input@5.1.2(@types/node@20.19.41)':
+  '@inquirer/input@5.1.2(@types/node@20.19.42)':
     dependencies:
-      '@inquirer/core': 11.2.1(@types/node@20.19.41)
-      '@inquirer/type': 4.0.7(@types/node@20.19.41)
+      '@inquirer/core': 11.2.1(@types/node@20.19.42)
+      '@inquirer/type': 4.0.7(@types/node@20.19.42)
     optionalDependencies:
-      '@types/node': 20.19.41
+      '@types/node': 20.19.42
 
-  '@inquirer/select@5.2.1(@types/node@20.19.41)':
+  '@inquirer/select@5.2.1(@types/node@20.19.42)':
     dependencies:
       '@inquirer/ansi': 2.0.7
-      '@inquirer/core': 11.2.1(@types/node@20.19.41)
+      '@inquirer/core': 11.2.1(@types/node@20.19.42)
       '@inquirer/figures': 2.0.7
-      '@inquirer/type': 4.0.7(@types/node@20.19.41)
+      '@inquirer/type': 4.0.7(@types/node@20.19.42)
     optionalDependencies:
-      '@types/node': 20.19.41
+      '@types/node': 20.19.42
 
-  '@inquirer/type@4.0.7(@types/node@20.19.41)':
+  '@inquirer/type@4.0.7(@types/node@20.19.42)':
     optionalDependencies:
-      '@types/node': 20.19.41
+      '@types/node': 20.19.42
 
   '@isaacs/fs-minipass@4.0.1':
     dependencies:
@@ -5869,25 +5872,25 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@lerna-lite/cli@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)':
+  '@lerna-lite/cli@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)':
     dependencies:
-      '@lerna-lite/core': 5.3.0(@types/node@20.19.41)
-      '@lerna-lite/init': 5.3.0(@types/node@20.19.41)
+      '@lerna-lite/core': 5.3.0(@types/node@20.19.42)
+      '@lerna-lite/init': 5.3.0(@types/node@20.19.42)
       '@lerna-lite/npmlog': 5.3.0
       dotenv: 17.4.2
       import-local: 3.2.0
       yargs: 18.0.0
     optionalDependencies:
-      '@lerna-lite/publish': 5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0)
-      '@lerna-lite/version': 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)(conventional-commits-filter@5.0.0)
+      '@lerna-lite/publish': 5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0)
+      '@lerna-lite/version': 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)(conventional-commits-filter@5.0.0)
     transitivePeerDependencies:
       - '@types/node'
 
-  '@lerna-lite/core@5.3.0(@types/node@20.19.41)':
+  '@lerna-lite/core@5.3.0(@types/node@20.19.42)':
     dependencies:
-      '@inquirer/expand': 5.1.1(@types/node@20.19.41)
-      '@inquirer/input': 5.1.2(@types/node@20.19.41)
-      '@inquirer/select': 5.2.1(@types/node@20.19.41)
+      '@inquirer/expand': 5.1.1(@types/node@20.19.42)
+      '@inquirer/input': 5.1.2(@types/node@20.19.42)
+      '@inquirer/select': 5.2.1(@types/node@20.19.42)
       '@lerna-lite/npmlog': 5.3.0
       '@npmcli/run-script': 10.0.4
       ci-info: 4.4.0
@@ -5903,9 +5906,9 @@ snapshots:
     transitivePeerDependencies:
       - '@types/node'
 
-  '@lerna-lite/init@5.3.0(@types/node@20.19.41)':
+  '@lerna-lite/init@5.3.0(@types/node@20.19.42)':
     dependencies:
-      '@lerna-lite/core': 5.3.0(@types/node@20.19.41)
+      '@lerna-lite/core': 5.3.0(@types/node@20.19.42)
       write-json-file: 7.0.0
     transitivePeerDependencies:
       - '@types/node'
@@ -5915,12 +5918,12 @@ snapshots:
       fast-string-width: 3.0.2
       signal-exit: 4.1.0
 
-  '@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0)':
+  '@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0)':
     dependencies:
-      '@lerna-lite/cli': 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)
-      '@lerna-lite/core': 5.3.0(@types/node@20.19.41)
+      '@lerna-lite/cli': 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)
+      '@lerna-lite/core': 5.3.0(@types/node@20.19.42)
       '@lerna-lite/npmlog': 5.3.0
-      '@lerna-lite/version': 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)(conventional-commits-filter@5.0.0)
+      '@lerna-lite/version': 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)(conventional-commits-filter@5.0.0)
       '@npmcli/arborist': 9.7.0
       '@npmcli/package-json': 7.0.5
       ci-info: 4.4.0
@@ -5942,11 +5945,11 @@ snapshots:
       - conventional-commits-filter
       - supports-color
 
-  '@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)(conventional-commits-filter@5.0.0)':
+  '@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)(conventional-commits-filter@5.0.0)':
     dependencies:
       '@conventional-changelog/git-client': 2.7.0(conventional-commits-filter@5.0.0)(conventional-commits-parser@6.4.0)
-      '@lerna-lite/cli': 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)(conventional-commits-filter@5.0.0))(@types/node@20.19.41)
-      '@lerna-lite/core': 5.3.0(@types/node@20.19.41)
+      '@lerna-lite/cli': 5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@lerna-lite/version@5.3.0(@lerna-lite/publish@5.3.0(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)(conventional-commits-filter@5.0.0))(@types/node@20.19.42)
+      '@lerna-lite/core': 5.3.0(@types/node@20.19.42)
       '@lerna-lite/npmlog': 5.3.0
       '@octokit/plugin-enterprise-rest': 6.0.1
       '@octokit/rest': 22.0.1
@@ -6433,6 +6436,10 @@ snapshots:
     dependencies:
       undici-types: 6.21.0
 
+  '@types/node@20.19.42':
+    dependencies:
+      undici-types: 6.21.0
+
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/parse-gitignore@1.0.2':
@@ -6572,6 +6579,14 @@ snapshots:
       magic-string: 0.30.21
     optionalDependencies:
       vite: 8.0.16(@types/node@20.19.41)(jiti@2.6.1)(yaml@2.9.0)
+
+  '@vitest/mocker@4.1.8(vite@8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0))':
+    dependencies:
+      '@vitest/spy': 4.1.8
+      estree-walker: 3.0.3
+      magic-string: 0.30.21
+    optionalDependencies:
+      vite: 8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0)
 
   '@vitest/pretty-format@4.1.8':
     dependencies:
@@ -10590,6 +10605,19 @@ snapshots:
       jiti: 2.6.1
       yaml: 2.9.0
 
+  vite@8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0):
+    dependencies:
+      lightningcss: 1.32.0
+      picomatch: 4.0.4
+      postcss: 8.5.15
+      rolldown: 1.0.3
+      tinyglobby: 0.2.17
+    optionalDependencies:
+      '@types/node': 20.19.42
+      fsevents: 2.3.3
+      jiti: 2.6.1
+      yaml: 2.9.0
+
   vitest@4.1.8(@types/node@20.19.41)(vite@8.0.16(@types/node@20.19.41)(jiti@2.6.1)(yaml@2.9.0)):
     dependencies:
       '@vitest/expect': 4.1.8
@@ -10614,6 +10642,33 @@ snapshots:
       why-is-node-running: 2.3.0
     optionalDependencies:
       '@types/node': 20.19.41
+    transitivePeerDependencies:
+      - msw
+
+  vitest@4.1.8(@types/node@20.19.42)(vite@8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0)):
+    dependencies:
+      '@vitest/expect': 4.1.8
+      '@vitest/mocker': 4.1.8(vite@8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0))
+      '@vitest/pretty-format': 4.1.8
+      '@vitest/runner': 4.1.8
+      '@vitest/snapshot': 4.1.8
+      '@vitest/spy': 4.1.8
+      '@vitest/utils': 4.1.8
+      es-module-lexer: 2.1.0
+      expect-type: 1.3.0
+      magic-string: 0.30.21
+      obug: 2.1.2
+      pathe: 2.0.3
+      picomatch: 4.0.4
+      std-env: 4.1.0
+      tinybench: 2.9.0
+      tinyexec: 1.2.4
+      tinyglobby: 0.2.17
+      tinyrainbow: 3.1.0
+      vite: 8.0.16(@types/node@20.19.42)(jiti@2.6.1)(yaml@2.9.0)
+      why-is-node-running: 2.3.0
+    optionalDependencies:
+      '@types/node': 20.19.42
     transitivePeerDependencies:
       - msw
 
