@@ -1,5 +1,7 @@
 import nodePath from 'node:path';
 import fs from 'node:fs/promises';
+import { ignoreFileParse } from './ignoreFileParse.js';
+import { ignoreRuleResolve } from './ignoreRuleResolve.js';
 
 const GITIGNORE_FILE = '.gitignore';
 
@@ -34,52 +36,110 @@ export async function ignoreFileFind(
   const absoluteRootDir = nodePath.resolve(rootDir);
   const found = new Set<string>();
 
-  // Downward search (BFS) with exclusions and maxDepth for performance
-  const queue: Array<{ dir: string; depth: number }> = [{ dir: absoluteRootDir, depth: 0 }];
-  let current = queue.shift();
-  while (current) {
-    const { dir, depth } = current;
+  // --- Helpers (internal, not exported) ---------------------------------
+  const normalize = (p: string) => p.replaceAll('\\', '/');
 
-    if (depth <= maxDepth) {
-      let entries;
-      try {
-        entries = await fs.readdir(dir, { withFileTypes: true });
-        for (const ent of entries) {
-          if (ent.isFile() && ent.name === GITIGNORE_FILE) {
-            found.add(nodePath.join(dir, ent.name));
-          } else if (ent.isDirectory() && !excludeDirs.has(ent.name)) {
-            const subdir = nodePath.join(dir, ent.name);
-            queue.push({ dir: subdir, depth: depth + 1 });
-          }
-        }
-      } catch {
-        // ignore unreadable directories
+  function lastMatchWins(patterns: string[], candidateRel: string): string | null {
+    const normCandidate = normalize(candidateRel);
+    let lastMatch: string | null = null;
+    for (const p of patterns) {
+      const neg = p.startsWith('!');
+      const pat = neg ? p.slice(1) : p;
+      const patNorm = normalize(pat);
+      if (!patNorm) continue;
+
+      if (normCandidate === patNorm || normCandidate.startsWith(patNorm + '/')) {
+        lastMatch = p;
       }
     }
-
-    current = queue.shift();
+    return lastMatch;
   }
 
-  // Ancestor search: walk up looking for .gitignore; stop at .git when requested
-  let dir = absoluteRootDir;
-  while (true) {
-    try {
+  function isIgnored(patterns: string[], candidateRel: string): boolean {
+    const m = lastMatchWins(patterns, candidateRel);
+    if (!m) return false;
+    return !m.startsWith('!');
+  }
+
+  async function collectAncestorGitignores(startDir: string): Promise<string[]> {
+    const files: string[] = [];
+    let dir = startDir;
+    while (true) {
       const gi = nodePath.join(dir, GITIGNORE_FILE);
-      const stat = await fs.stat(gi).catch(() => null);
-      if (stat && stat.isFile()) found.add(gi);
+      try {
+        const stat = await fs.stat(gi).catch(() => null);
+        if (stat && stat.isFile()) files.push(gi);
+      } catch {
+        // ignore
+      }
 
       if (stopAtGitRoot) {
-        const gitDir = nodePath.join(dir, '.git');
-        const gitStat = await fs.stat(gitDir).catch(() => null);
-        if (gitStat && gitStat.isDirectory()) break;
+        try {
+          const gitStat = await fs.stat(nodePath.join(dir, '.git')).catch(() => null);
+          if (gitStat && gitStat.isDirectory()) break;
+        } catch {
+          // ignore
+        }
       }
+
+      const parent = nodePath.dirname(dir);
+      if (parent === dir) break;
+      dir = parent;
+    }
+    // eslint-disable-next-line unicorn/no-array-reverse
+    return files.reverse();
+  }
+
+  async function parseAndResolve(giPath: string): Promise<string[]> {
+    try {
+      const content = String(await fs.readFile(giPath, 'utf8'));
+      const parsed = ignoreFileParse(content);
+      const prefixRel = nodePath.relative(rootDir, nodePath.dirname(giPath));
+      return parsed.map((p) => ignoreRuleResolve(prefixRel, p));
     } catch {
-      // ignore errors in ancestor checks
+      return [];
+    }
+  }
+
+  // --- Build initial patterns from ancestor .gitignore files -------------
+  const ancestorFiles = await collectAncestorGitignores(absoluteRootDir);
+  const initialPatterns: string[] = [];
+  for (const gi of ancestorFiles) {
+    const parsed = await parseAndResolve(gi);
+    if (parsed.length > 0) initialPatterns.push(...parsed);
+    found.add(gi);
+  }
+
+  // --- BFS downward carrying accumulated patterns -----------------------
+  const queue: Array<{ dir: string; depth: number; patterns: string[] }> = [
+    { dir: absoluteRootDir, depth: 0, patterns: [...initialPatterns] },
+  ];
+
+  while (queue.length > 0) {
+    // eslint-disable-next-line ts/no-non-null-assertion
+    const { dir: currentDir, depth, patterns } = queue.shift()!;
+    if (depth > maxDepth) continue;
+
+    let entries;
+    try {
+      entries = await fs.readdir(currentDir, { withFileTypes: true });
+    } catch {
+      continue; // unreadable
     }
 
-    const parent = nodePath.dirname(dir);
-    if (parent === dir) break; // reached filesystem root
-    dir = parent;
+    // If local .gitignore exists, parse and extend patterns
+    const local = entries.find((e) => e.isFile() && e.name === GITIGNORE_FILE);
+    const combinedPatterns = local ? [...patterns, ...(await parseAndResolve(nodePath.join(currentDir, GITIGNORE_FILE)))] : patterns;
+    if (local) found.add(nodePath.join(currentDir, GITIGNORE_FILE));
+
+    for (const ent of entries) {
+      if (!ent.isDirectory()) continue;
+      if (excludeDirs.has(ent.name)) continue;
+      const subdir = nodePath.join(currentDir, ent.name);
+      const rel = nodePath.relative(rootDir, subdir);
+      if (isIgnored(combinedPatterns, rel)) continue;
+      queue.push({ dir: subdir, depth: depth + 1, patterns: combinedPatterns });
+    }
   }
 
   return [...found].map((p) => nodePath.relative(rootDir, p));
