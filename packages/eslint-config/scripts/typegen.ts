@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import stylisticPlugin from '@stylistic/eslint-plugin';
 // @ts-ignore no definition for import
+import e18ePlugin from '@e18e/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
@@ -18,6 +19,7 @@ await Promise.all(
   (
     [
       // [pluginName, plugin]
+      ['e18e', e18ePlugin],
       ['import', importPlugin],
       ['jsdoc', jsdocPlugin],
       ['jsonc', jsoncPlugin],
