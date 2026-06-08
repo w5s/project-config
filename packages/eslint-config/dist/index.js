@@ -1,7 +1,7 @@
 import { ESLintConfig, Project, interopDefault } from "@w5s/dev";
+import prettierConfig from "@w5s/prettier-config";
 import globals from "globals";
 import eslintConfig from "@eslint/js";
-import prettierConfig from "@w5s/prettier-config";
 import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
 //#region src/type/StylisticConfig.ts
@@ -35,6 +35,48 @@ const StylisticConfig = {
 		};
 	}
 };
+//#endregion
+//#region src/glob.ts
+const sourceGlob$1 = `**/${Project.extensionsToGlob(Project.sourceExtensions())}`;
+const esSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`;
+const jsonSourceGlob = `**/${Project.extensionsToGlob([
+	".json",
+	".json5",
+	".jsonc"
+])}`;
+const tsSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`;
+const ymlSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`;
+//#endregion
+//#region src/config/e18e.ts
+const defaultFiles$8 = [sourceGlob$1];
+/**
+* @see https://e18e.dev
+* @param options
+*/
+async function e18e(options = {}) {
+	const [e18ePlugin] = await Promise.all([interopDefault(import("@e18e/eslint-plugin"))]);
+	const { files = defaultFiles$8, rules = {}, stylistic = true, modernization = true, moduleReplacements = false, performanceImprovements = true } = options;
+	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+	return [{
+		name: "w5s/e18e/setup",
+		plugins: { e18e: e18ePlugin }
+	}, {
+		name: "w5s/e18e/rules",
+		files,
+		rules: {
+			...modernization ? e18ePlugin.configs.modernization.rules : {},
+			...moduleReplacements ? e18ePlugin.configs.moduleReplacements.rules : {},
+			...performanceImprovements ? e18ePlugin.configs.performanceImprovements.rules : {},
+			"e18e/prefer-array-from-map": "off",
+			"e18e/prefer-array-to-reversed": "off",
+			"e18e/prefer-array-to-sorted": "off",
+			"e18e/prefer-array-to-spliced": "off",
+			"e18e/prefer-spread-syntax": "off",
+			...stylisticEnabled ? {} : {},
+			...rules
+		}
+	}];
+}
 //#endregion
 //#region src/rules/esRules/bestPractices.ts
 const bestPractices = () => ({
@@ -438,17 +480,6 @@ const esRules = () => ({
 	...variables(),
 	...overrides()
 });
-//#endregion
-//#region src/glob.ts
-const sourceGlob$1 = `**/${Project.extensionsToGlob(Project.sourceExtensions())}`;
-const esSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`;
-const jsonSourceGlob = `**/${Project.extensionsToGlob([
-	".json",
-	".json5",
-	".jsonc"
-])}`;
-const tsSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`;
-const ymlSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`;
 //#endregion
 //#region src/config/es.ts
 const defaultFiles$7 = [esSourceGlob];
@@ -1115,31 +1146,8 @@ async function defineConfig(options = {}) {
 		enabled: true,
 		...optionsOrBoolean
 	});
-	const esOptions = toOption(options.es);
-	const importOptions = toOption(options.import);
-	const jsdocOptions = toOption(options.jsdoc);
-	const jsoncOptions = toOption(options.jsonc);
-	const markdownOptions = toOption(options.markdown);
-	const nodeOptions = toOption(options.node);
-	const tsOptions = toOption(options.ts);
-	const unicornOptions = toOption(options.unicorn);
-	const ymlOptions = toOption(options.yml);
-	const returnValue = [];
-	const append = (config) => {
-		returnValue.push(config);
-	};
-	append(es(esOptions));
-	append(ignores(options));
-	if (jsoncOptions.enabled) append(jsonc(jsoncOptions));
-	if (jsdocOptions.enabled) append(jsdoc(jsdocOptions));
-	if (stylisticOptions.enabled) append(stylistic(stylisticOptions));
-	if (importOptions.enabled) append(imports(importOptions));
-	if (markdownOptions.enabled) append(markdown(markdownOptions));
-	if (nodeOptions.enabled) append(node(nodeOptions));
-	if (tsOptions.enabled) append(ts(tsOptions));
-	if (ymlOptions.enabled) append(yml(ymlOptions));
-	if (unicornOptions.enabled) append(unicorn(unicornOptions));
-	return ESLintConfig.concat(...returnValue);
+	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
+	return ESLintConfig.concat(...includeEnabled(es, toOption(options.es)), ...includeEnabled(ts, toOption(options.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(options.jsonc)), ...includeEnabled(jsdoc, toOption(options.jsdoc)), ...includeEnabled(stylistic, toOption(options.stylistic)), ...includeEnabled(imports, toOption(options.import)), ...includeEnabled(markdown, toOption(options.markdown)), ...includeEnabled(node, toOption(options.node)), ...includeEnabled(unicorn, toOption(options.unicorn)), ...includeEnabled(yml, toOption(options.yml)));
 }
 //#endregion
 //#region src/meta.ts
@@ -1149,6 +1157,6 @@ const meta = Object.freeze({
 	buildNumber: 1
 });
 //#endregion
-export { StylisticConfig, defineConfig as default, defineConfig, es, ignores, imports, jsdoc, jsonc, markdown, meta, node, stylistic, test, ts, unicorn, yml };
+export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, node, stylistic, test, ts, unicorn, yml };
 
 //# sourceMappingURL=index.js.map

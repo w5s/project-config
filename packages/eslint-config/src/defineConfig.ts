@@ -25,49 +25,20 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
         ? { enabled: optionsOrBoolean }
         : { enabled: true, ...optionsOrBoolean }) as T & { enabled: boolean },
     );
-  const esOptions = toOption(options.es);
-  const importOptions = toOption(options.import);
-  const jsdocOptions = toOption(options.jsdoc);
-  const jsoncOptions = toOption(options.jsonc);
-  const markdownOptions = toOption(options.markdown);
-  const nodeOptions = toOption(options.node);
-  const tsOptions = toOption(options.ts);
-  const unicornOptions = toOption(options.unicorn);
-  const ymlOptions = toOption(options.yml);
+  const includeEnabled = <T extends { enabled?: boolean }, R extends Promise<readonly Config[]>>(factory: (config: T) => R, input: T) =>
+    input.enabled ? [factory(input)] : [];
 
-  const returnValue: Array<Promise<Array<Config>>> = [];
-  const append = (config: Promise<ReadonlyArray<any>>) => {
-    returnValue.push(config as any);
-  };
-  append(es(esOptions));
-  append(ignores(options));
-
-  if (jsoncOptions.enabled) {
-    append(jsonc(jsoncOptions));
-  }
-  if (jsdocOptions.enabled) {
-    append(jsdoc(jsdocOptions));
-  }
-  if (stylisticOptions.enabled) {
-    append(stylistic(stylisticOptions));
-  }
-  if (importOptions.enabled) {
-    append(imports(importOptions));
-  }
-  if (markdownOptions.enabled) {
-    append(markdown(markdownOptions));
-  }
-  if (nodeOptions.enabled) {
-    append(node(nodeOptions));
-  }
-  if (tsOptions.enabled) {
-    append(ts(tsOptions));
-  }
-  if (ymlOptions.enabled) {
-    append(yml(ymlOptions));
-  }
-  if (unicornOptions.enabled) {
-    append(unicorn(unicornOptions));
-  }
-  return ESLintConfig.concat(...returnValue);
+  return ESLintConfig.concat(
+    ...includeEnabled(es, toOption(options.es)),
+    ...includeEnabled(ts, toOption(options.ts)),
+    ...includeEnabled(ignores, toOption(options)),
+    ...includeEnabled(jsonc, toOption(options.jsonc)),
+    ...includeEnabled(jsdoc, toOption(options.jsdoc)),
+    ...includeEnabled(stylistic, toOption(options.stylistic)),
+    ...includeEnabled(imports, toOption(options.import)),
+    ...includeEnabled(markdown, toOption(options.markdown)),
+    ...includeEnabled(node, toOption(options.node)),
+    ...includeEnabled(unicorn, toOption(options.unicorn)),
+    ...includeEnabled(yml, toOption(options.yml)),
+  );
 }

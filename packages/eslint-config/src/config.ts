@@ -1,3 +1,4 @@
+export * from './config/e18e.js';
 export * from './config/es.js';
 export * from './config/ignores.js';
 export * from './config/jsdoc.js';
