@@ -75,7 +75,6 @@
     "eslint-plugin-n": "~18.0.0",
     "eslint-plugin-unicorn": "~64.0.0",
     "eslint-plugin-yml": "~3.4.0",
-    "find-up": "^8.0.0",
     "globals": "^17.0.0",
     "jsonc-eslint-parser": "^3.0.0",
     "parse-gitignore": "^2.0.0",

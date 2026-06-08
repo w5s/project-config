@@ -267,9 +267,6 @@ importers:
       eslint-plugin-yml:
         specifier: ~3.4.0
         version: 3.4.0(eslint@10.4.1(jiti@2.6.1))
-      find-up:
-        specifier: ^8.0.0
-        version: 8.0.0
       globals:
         specifier: ^17.0.0
         version: 17.6.0
