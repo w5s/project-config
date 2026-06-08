@@ -3,7 +3,7 @@ import { type PluginOptionsBase, StylisticConfig, type Config } from '../type.js
 import type { RuleOptions } from '../typegen/import.js';
 
 export async function imports(options: imports.Options = {}) {
-  const { rules = {}, stylistic = true } = options;
+  const { rules = {}, recommended = true, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
   const [importPlugin] = await Promise.all([interopDefault(import('eslint-plugin-import'))] as const);
   return [
@@ -13,23 +13,33 @@ export async function imports(options: imports.Options = {}) {
         import: importPlugin,
       },
       rules: {
-        // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
-        'import/first': 'error',
-        'import/no-duplicates': 'error',
-        'import/no-mutable-exports': 'error',
-        'import/no-named-default': 'error',
-
+        ...(recommended ? imports['recommended'] : {}),
         ...(stylisticEnabled
-          ? {
-              // Stylistic rules
-              'import/newline-after-import': ['error', { count: 1 }],
-            }
+          ? imports['stylistic']
           : {}),
         ...rules,
       },
     },
   ] as [Config] satisfies Array<Config>;
 }
+
+/**
+ * Recommended rules
+ */
+imports['recommended'] = {
+  // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
+  'import/first': 'error',
+  'import/no-duplicates': 'error',
+  'import/no-mutable-exports': 'error',
+  'import/no-named-default': 'error',
+};
+
+/**
+ * Stylistic rules
+ */
+imports['stylistic'] = {
+  'import/newline-after-import': ['error', { count: 1 }],
+};
 
 export namespace imports {
   export type Rules = RuleOptions;

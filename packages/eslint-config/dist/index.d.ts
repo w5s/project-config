@@ -46,6 +46,10 @@ interface PluginOptionsBase<Rules> {
    */
   rules?: Rules;
   /**
+   * Include recommended settings
+   */
+  recommended?: boolean;
+  /**
    * Stylistic options
    */
   stylistic?: boolean | StylisticParameters;
@@ -678,6 +682,342 @@ type JsoncSpaceUnaryOps = [] | [{
 //#endregion
 //#region src/config/es.d.ts
 declare function es(options: es.Options): Promise<[Config, Config]>;
+declare namespace es {
+  var recommended: {
+    'class-methods-use-this': "off";
+    'default-case': "off";
+    'no-console': "error";
+    'no-nested-ternary': "off";
+    'no-param-reassign': ["error", {
+      props: boolean;
+    }];
+    'no-underscore-dangle': "off";
+    'no-unused-vars': ["error", {
+      argsIgnorePattern: string;
+    }];
+    'no-use-before-define': ["error", string];
+    'no-void': ["error", {
+      allowAsStatement: boolean;
+    }];
+    'unicode-bom': ["error", string];
+    'init-declarations': "off";
+    'no-catch-shadow': "off";
+    'no-delete-var': "error";
+    'no-label-var': "error";
+    'no-restricted-globals': ["error", {
+      name: string;
+      message: string;
+    }, {
+      name: string;
+      message: string;
+    }];
+    'no-shadow': "error";
+    'no-shadow-restricted-names': "error";
+    'no-undef': "error";
+    'no-undef-init': "error";
+    'no-undefined': "off";
+    strict: ["error", string];
+    'arrow-body-style': ["error", string, {
+      requireReturnForObjectLiteral: boolean;
+    }];
+    'arrow-parens': ["error", string];
+    'arrow-spacing': ["error", {
+      before: boolean;
+      after: boolean;
+    }];
+    'constructor-super': "error";
+    'generator-star-spacing': ["error", {
+      before: boolean;
+      after: boolean;
+    }];
+    'no-class-assign': "error";
+    'no-confusing-arrow': ["error", {
+      allowParens: boolean;
+    }];
+    'no-const-assign': "error";
+    'no-dupe-class-members': "error";
+    'no-duplicate-imports': "off";
+    'no-new-symbol': "error";
+    'no-restricted-exports': ["error", {
+      restrictedNamedExports: string[];
+    }];
+    'no-restricted-imports': ["off", {
+      paths: never[];
+      patterns: never[];
+    }];
+    'no-this-before-super': "error";
+    'no-useless-computed-key': "error";
+    'no-useless-constructor': "error";
+    'no-useless-rename': ["error", {
+      ignoreDestructuring: boolean;
+      ignoreImport: boolean;
+      ignoreExport: boolean;
+    }];
+    'no-var': "error";
+    'object-shorthand': ["error", string, {
+      ignoreConstructors: boolean;
+      avoidQuotes: boolean;
+    }];
+    'prefer-arrow-callback': ["error", {
+      allowNamedFunctions: boolean;
+      allowUnboundThis: boolean;
+    }];
+    'prefer-const': ["error", {
+      destructuring: string;
+      ignoreReadBeforeAssign: boolean;
+    }];
+    'prefer-destructuring': ["error", {
+      VariableDeclarator: {
+        array: boolean;
+        object: boolean;
+      };
+      AssignmentExpression: {
+        array: boolean;
+        object: boolean;
+      };
+    }, {
+      enforceForRenamedProperties: boolean;
+    }];
+    'prefer-numeric-literals': "error";
+    'prefer-reflect': "off";
+    'prefer-rest-params': "error";
+    'prefer-spread': "error";
+    'prefer-template': "error";
+    'require-yield': "error";
+    'rest-spread-spacing': ["error", string];
+    'sort-imports': ["off", {
+      ignoreCase: boolean;
+      ignoreDeclarationSort: boolean;
+      ignoreMemberSort: boolean;
+      memberSyntaxSortOrder: string[];
+    }];
+    'symbol-description': "error";
+    'template-curly-spacing': "error";
+    'yield-star-spacing': ["error", string];
+    'for-direction': "error";
+    'getter-return': ["error", {
+      allowImplicit: boolean;
+    }];
+    'no-async-promise-executor': "error";
+    'no-await-in-loop': "error";
+    'no-compare-neg-zero': "error";
+    'no-cond-assign': ["error", string];
+    'no-constant-binary-expression': "off";
+    'no-constant-condition': "warn";
+    'no-control-regex': "error";
+    'no-debugger': "error";
+    'no-dupe-args': "error";
+    'no-dupe-else-if': "error";
+    'no-dupe-keys': "error";
+    'no-duplicate-case': "error";
+    'no-empty': "error";
+    'no-empty-character-class': "error";
+    'no-ex-assign': "error";
+    'no-extra-boolean-cast': "error";
+    'no-extra-parens': ["off", string, {
+      conditionalAssign: boolean;
+      nestedBinaryExpressions: boolean;
+      returnAssign: boolean;
+      ignoreJSX: string;
+      enforceForArrowConditionals: boolean;
+    }];
+    'no-extra-semi': "error";
+    'no-func-assign': "error";
+    'no-import-assign': "error";
+    'no-inner-declarations': "error";
+    'no-invalid-regexp': "error";
+    'no-irregular-whitespace': "error";
+    'no-loss-of-precision': "error";
+    'no-misleading-character-class': "error";
+    'no-obj-calls': "error";
+    'no-new-native-nonconstructor': "off";
+    'no-promise-executor-return': "error";
+    'no-prototype-builtins': "error";
+    'no-regex-spaces': "error";
+    'no-setter-return': "error";
+    'no-sparse-arrays': "error";
+    'no-template-curly-in-string': "error";
+    'no-unexpected-multiline': "error";
+    'no-unreachable': "error";
+    'no-unreachable-loop': ["error", {
+      ignore: never[];
+    }];
+    'no-unsafe-finally': "error";
+    'no-unsafe-negation': "error";
+    'no-unsafe-optional-chaining': ["error", {
+      disallowArithmeticOperators: boolean;
+    }];
+    'no-unused-private-class-members': "off";
+    'no-useless-backreference': "error";
+    'no-negated-in-lhs': "off";
+    'require-atomic-updates': "off";
+    'use-isnan': "error";
+    'valid-jsdoc': "off";
+    'valid-typeof': ["error", {
+      requireStringLiterals: boolean;
+    }];
+    'accessor-pairs': "off";
+    'array-callback-return': ["error", {
+      allowImplicit: boolean;
+    }];
+    'block-scoped-var': "error";
+    complexity: ["off", number];
+    'consistent-return': "error";
+    curly: ["error", string];
+    'default-case-last': "error";
+    'default-param-last': "error";
+    'dot-notation': ["error", {
+      allowKeywords: boolean;
+    }];
+    'dot-location': ["error", string];
+    eqeqeq: ["error", string, {
+      null: string;
+    }];
+    'grouped-accessor-pairs': "error";
+    'guard-for-in': "error";
+    'max-classes-per-file': ["error", number];
+    'no-alert': "warn";
+    'no-caller': "error";
+    'no-case-declarations': "error";
+    'no-constructor-return': "error";
+    'no-div-regex': "off";
+    'no-else-return': ["error", {
+      allowElseIf: boolean;
+    }];
+    'no-empty-function': ["error", {
+      allow: string[];
+    }];
+    'no-empty-pattern': "error";
+    'no-empty-static-block': "off";
+    'no-eq-null': "off";
+    'no-eval': "error";
+    'no-extend-native': "error";
+    'no-extra-bind': "error";
+    'no-extra-label': "error";
+    'no-fallthrough': "error";
+    'no-floating-decimal': "error";
+    'no-global-assign': ["error", {
+      exceptions: never[];
+    }];
+    'no-native-reassign': "off";
+    'no-implicit-coercion': ["off", {
+      boolean: boolean;
+      number: boolean;
+      string: boolean;
+      allow: never[];
+    }];
+    'no-implicit-globals': "off";
+    'no-implied-eval': "error";
+    'no-invalid-this': "off";
+    'no-iterator': "error";
+    'no-labels': ["error", {
+      allowLoop: boolean;
+      allowSwitch: boolean;
+    }];
+    'no-lone-blocks': "error";
+    'no-loop-func': "error";
+    'no-magic-numbers': ["off", {
+      ignore: never[];
+      ignoreArrayIndexes: boolean;
+      enforceConst: boolean;
+      detectObjects: boolean;
+    }];
+    'no-multi-spaces': ["error", {
+      ignoreEOLComments: boolean;
+    }];
+    'no-multi-str': "error";
+    'no-new': "error";
+    'no-new-func': "error";
+    'no-new-wrappers': "error";
+    'no-nonoctal-decimal-escape': "error";
+    'no-object-constructor': "off";
+    'no-octal': "error";
+    'no-octal-escape': "error";
+    'no-proto': "error";
+    'no-redeclare': "error";
+    'no-restricted-properties': ["error", {
+      object: string;
+      property: string;
+      message: string;
+    }, {
+      object: string;
+      property: string;
+      message: string;
+    }, {
+      object: string;
+      property: string;
+      message: string;
+    }, {
+      object: string;
+      property: string;
+      message: string;
+    }, {
+      object: string;
+      property: string;
+      message: string;
+    }, {
+      object: string;
+      property: string;
+      message: string;
+    }, {
+      object: string;
+      property: string;
+      message: string;
+    }, {
+      property: string;
+      message: string;
+    }, {
+      property: string;
+      message: string;
+    }, {
+      object: string;
+      property: string;
+      message: string;
+    }];
+    'no-return-assign': ["error", string];
+    'no-return-await': "error";
+    'no-script-url': "error";
+    'no-self-assign': ["error", {
+      props: boolean;
+    }];
+    'no-self-compare': "error";
+    'no-sequences': "error";
+    'no-throw-literal': "error";
+    'no-unmodified-loop-condition': "off";
+    'no-unused-expressions': ["error", {
+      allowShortCircuit: boolean;
+      allowTernary: boolean;
+      allowTaggedTemplates: boolean;
+    }];
+    'no-unused-labels': "error";
+    'no-useless-call': "off";
+    'no-useless-catch': "error";
+    'no-useless-concat': "error";
+    'no-useless-escape': "error";
+    'no-useless-return': "error";
+    'no-warning-comments': ["off", {
+      terms: string[];
+      location: string;
+    }];
+    'no-with': "error";
+    'prefer-promise-reject-errors': ["error", {
+      allowEmptyReject: boolean;
+    }];
+    'prefer-named-capture-group': "off";
+    'prefer-object-has-own': "off";
+    'prefer-regex-literals': ["error", {
+      disallowRedundantWrapping: boolean;
+    }];
+    radix: "error";
+    'require-await': "off";
+    'require-unicode-regexp': "off";
+    'vars-on-top': "error";
+    'wrap-iife': ["error", string, {
+      functionPrototypeMethods: boolean;
+    }];
+    yoda: "error";
+  };
+}
 declare namespace es {
   type Rules = RuleOptions$9;
   interface Options extends PluginOptionsBase<Rules> {}
@@ -2034,6 +2374,19 @@ type ImportPreferDefaultExport = [] | [{
 //#endregion
 //#region src/config/imports.d.ts
 declare function imports(options?: imports.Options): Promise<[Config]>;
+declare namespace imports {
+  var recommended: {
+    'import/first': string;
+    'import/no-duplicates': string;
+    'import/no-mutable-exports': string;
+    'import/no-named-default': string;
+  };
+  var stylistic: {
+    'import/newline-after-import': (string | {
+      count: number;
+    })[];
+  };
+}
 declare namespace imports {
   type Rules = RuleOptions$7;
   interface Options extends PluginOptionsBase<Rules> {}

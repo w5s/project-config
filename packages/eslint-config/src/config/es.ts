@@ -9,7 +9,7 @@ import { esSourceGlob } from '../glob.js';
 const defaultFiles = [esSourceGlob];
 
 export async function es(options: es.Options) {
-  const { rules = {} } = options;
+  const { recommended = true, rules = {} } = options;
 
   return [
     {
@@ -44,13 +44,20 @@ export async function es(options: es.Options) {
       name: 'w5s/es/rules',
       files: defaultFiles,
       rules: {
-        ...eslintConfig.configs.recommended.rules,
-        ...esRules(),
+        ...(recommended ? es['recommended'] : {}),
         ...rules,
       },
     },
   ] as [Config, Config] satisfies Array<Config>;
 }
+
+/**
+ * Recommended rules
+ */
+es['recommended'] = {
+  ...eslintConfig.configs.recommended.rules,
+  ...esRules(),
+};
 
 export namespace es {
   export type Rules = RuleOptions;

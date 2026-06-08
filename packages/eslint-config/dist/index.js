@@ -484,7 +484,7 @@ const esRules = () => ({
 //#region src/config/es.ts
 const defaultFiles$7 = [esSourceGlob];
 async function es(options) {
-	const { rules = {} } = options;
+	const { recommended = true, rules = {} } = options;
 	return [{
 		name: "w5s/es/setup",
 		languageOptions: {
@@ -512,12 +512,18 @@ async function es(options) {
 		name: "w5s/es/rules",
 		files: defaultFiles$7,
 		rules: {
-			...eslintConfig.configs.recommended.rules,
-			...esRules(),
+			...recommended ? es["recommended"] : {},
 			...rules
 		}
 	}];
 }
+/**
+* Recommended rules
+*/
+es["recommended"] = {
+	...eslintConfig.configs.recommended.rules,
+	...esRules()
+};
 //#endregion
 //#region src/config/ignores.ts
 async function ignores(options = {}) {
@@ -802,22 +808,32 @@ function sortPackageJson() {
 //#endregion
 //#region src/config/imports.ts
 async function imports(options = {}) {
-	const { rules = {}, stylistic = true } = options;
+	const { rules = {}, recommended = true, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const [importPlugin] = await Promise.all([interopDefault(import("eslint-plugin-import"))]);
 	return [{
 		name: "w5s/import/rules",
 		plugins: { import: importPlugin },
 		rules: {
-			"import/first": "error",
-			"import/no-duplicates": "error",
-			"import/no-mutable-exports": "error",
-			"import/no-named-default": "error",
-			...stylisticEnabled ? { "import/newline-after-import": ["error", { count: 1 }] } : {},
+			...recommended ? imports["recommended"] : {},
+			...stylisticEnabled ? imports["stylistic"] : {},
 			...rules
 		}
 	}];
 }
+/**
+* Recommended rules
+*/
+imports["recommended"] = {
+	"import/first": "error",
+	"import/no-duplicates": "error",
+	"import/no-mutable-exports": "error",
+	"import/no-named-default": "error"
+};
+/**
+* Stylistic rules
+*/
+imports["stylistic"] = { "import/newline-after-import": ["error", { count: 1 }] };
 //#endregion
 //#region src/config/markdown.ts
 const defaultFiles$4 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];

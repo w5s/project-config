@@ -10,6 +10,11 @@ export interface PluginOptionsBase<Rules> {
   rules?: Rules;
 
   /**
+   * Include recommended settings
+   */
+  recommended?: boolean;
+
+  /**
    * Stylistic options
    */
   stylistic?: boolean | StylisticParameters;
