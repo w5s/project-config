@@ -1,12 +1,13 @@
-_Generated Automatically at Thu, 04 Jun 2026 10:06:59 GMT_
+_Generated Automatically at Mon, 08 Jun 2026 16:25:30 GMT_
 
 ### Desktop
 
 - Android (148)
-- Chrome (147, 146, 145, 144, 142, 133, 131, 120, 116, 112, 111, 109, 103)
-- Edge (147, 146)
-- Firefox (150, 149)
-- Safari (26.4, 26.3, 18.5-18.7)
+- Chrome (148, 147, 146, 145, 144, 142, 133, 131, 125, 124, 120, 118, 117, 116, 112, 111, 110, 109, 108, 107, 106, 105, 104, 103)
+- Edge (148, 147)
+- Firefox (151, 150)
+- Opera (131)
+- Safari (26.5, 26.4, 26.3, 18.5-18.7)
 - Samsung (29)
 
 ### Mobile
@@ -14,7 +15,7 @@ _Generated Automatically at Thu, 04 Jun 2026 10:06:59 GMT_
 - Chrome for Android (148)
 - Firefox for Android (150)
 - UC Browser (15.5)
-- Safari for iOS (26.4, 26.3, 26.2, 26.1, 18.5-18.7, 17.6-17.7, 16.6-16.7, 15.6-15.8, 11.0-11.2)
+- Safari for iOS (26.5, 26.4, 26.3, 26.2, 18.5-18.7, 17.6-17.7, 16.6-16.7, 15.6-15.8, 11.0-11.2)
 - Opera Mobile (80)
 
 [View more in browserslist.dev (usages, coverage)](https://browserslist.dev/?q=PjAuMiUsbm90IGRlYWQsbm90IG9wX21pbmkgYWxs)
