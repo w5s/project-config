@@ -2,7 +2,7 @@ import fs from "node:fs";
 import nodePath from "node:path";
 import process from "node:process";
 import parseGitignore from "parse-gitignore";
-import { findUp } from "find-up";
+import fs$1 from "node:fs/promises";
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/eslint-config-ignore",
@@ -51,12 +51,70 @@ function ignoreFileParse(input) {
 }
 //#endregion
 //#region src/internal/ignoreFileFind.ts
-async function ignoreFileFind(cwd) {
-	return (await Promise.all([
-		findUp(nodePath.join("", ".gitignore"), { cwd }),
-		findUp(nodePath.join("android", ".gitignore"), { cwd }),
-		findUp(nodePath.join("ios", ".gitignore"), { cwd })
-	])).filter((filePath) => filePath !== void 0).map((filePath) => nodePath.relative(cwd, filePath));
+const GITIGNORE_FILE = ".gitignore";
+/**
+* Find `.gitignore` files relevant to `rootDir`.
+*
+* Behavior:
+* - Searches downwards from `rootDir` (BFS) for `.gitignore` files, skipping `excludeDirs`.
+* - Walks ancestors from `rootDir` up to the filesystem root (and stops at a `.git` folder when `stopAtGitRoot` is true).
+* - Returns relative paths to `rootDir`.
+*
+* @param rootDir
+* @param options
+*/
+async function ignoreFileFind(rootDir, options) {
+	const excludeDirs = new Set(options?.excludeDirs ?? [
+		"node_modules",
+		".git",
+		"dist",
+		"build",
+		"out"
+	]);
+	const maxDepth = options?.maxDepth ?? 8;
+	const stopAtGitRoot = options?.stopAtGitRoot ?? true;
+	const absoluteRootDir = nodePath.resolve(rootDir);
+	const found = /* @__PURE__ */ new Set();
+	const queue = [{
+		dir: absoluteRootDir,
+		depth: 0
+	}];
+	let current = queue.shift();
+	while (current) {
+		const { dir, depth } = current;
+		if (depth <= maxDepth) {
+			let entries;
+			try {
+				entries = await fs$1.readdir(dir, { withFileTypes: true });
+				for (const ent of entries) if (ent.isFile() && ent.name === GITIGNORE_FILE) found.add(nodePath.join(dir, ent.name));
+				else if (ent.isDirectory() && !excludeDirs.has(ent.name)) {
+					const subdir = nodePath.join(dir, ent.name);
+					queue.push({
+						dir: subdir,
+						depth: depth + 1
+					});
+				}
+			} catch {}
+		}
+		current = queue.shift();
+	}
+	let dir = absoluteRootDir;
+	while (true) {
+		try {
+			const gi = nodePath.join(dir, GITIGNORE_FILE);
+			const stat = await fs$1.stat(gi).catch(() => null);
+			if (stat && stat.isFile()) found.add(gi);
+			if (stopAtGitRoot) {
+				const gitDir = nodePath.join(dir, ".git");
+				const gitStat = await fs$1.stat(gitDir).catch(() => null);
+				if (gitStat && gitStat.isDirectory()) break;
+			}
+		} catch {}
+		const parent = nodePath.dirname(dir);
+		if (parent === dir) break;
+		dir = parent;
+	}
+	return [...found].map((p) => nodePath.relative(rootDir, p));
 }
 //#endregion
 //#region src/internal/ignoreRuleResolve.ts
