@@ -271,6 +271,7 @@ function task() {
   const rootInputs = [
     ...packageInputs,
     // Ignore workspaces
+    // eslint-disable-next-line e18e/prefer-static-regex
     ...pkg.listWorkspaceMatchers(rootPackageFile).map((_) => `!${_.replace(/\/\*$/, '/**')}`),
   ];
 

@@ -176,7 +176,7 @@ describe(ignoreFileFind, () => {
     expect(result).not.toContain('node_modules/.gitignore');
   });
 
-  it('handles permission errors gracefully', async () => {
+  it.runIf(() => process.platform !== 'win32')('handles permission errors gracefully', async () => {
     const baseDir = nodePath.join(tempRoot, 'project');
     const subDir = nodePath.join(baseDir, 'sub');
 
@@ -184,16 +184,14 @@ describe(ignoreFileFind, () => {
     await fs.writeFile(nodePath.join(baseDir, '.gitignore'), 'root\n');
 
     // Make directory unreadable (if not on Windows)
-    if (process.platform !== 'win32') {
-      await fs.chmod(subDir, 0o000);
+    await fs.chmod(subDir, 0o000);
 
-      // Should not throw and should still return the root .gitignore
-      const result = await ignoreFileFind(baseDir);
-      expect(result).toContain('.gitignore');
+    // Should not throw and should still return the root .gitignore
+    const result = await ignoreFileFind(baseDir);
+    expect(result).toContain('.gitignore');
 
-      // Restore permissions for cleanup
-      await fs.chmod(subDir, 0o755);
-    }
+    // Restore permissions for cleanup
+    await fs.chmod(subDir, 0o755);
   });
 
   it('finds multiple .gitignore files in different ancestor and descendant levels', async () => {

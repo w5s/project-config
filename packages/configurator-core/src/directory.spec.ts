@@ -21,7 +21,9 @@ describe.each([
 
   it('should not throw error if absent', async () => {
     const path = nodePath.join(testPath, 'delete-absent');
-    expect(async () => {
+
+    // eslint-disable-next-line test/no-unneeded-async-expect-function
+    await expect(async () => {
       await subject({
         path,
         state: 'absent',

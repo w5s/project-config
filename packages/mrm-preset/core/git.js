@@ -28,7 +28,9 @@ exports.hasGit = hasGit;
  */
 function trimStartLine(content) {
   return content
+    // eslint-disable-next-line e18e/prefer-static-regex
     .split(/\n/)
+    // eslint-disable-next-line e18e/prefer-static-regex
     .map((line) => line.replace(/^\s+/, ''))
     .filter((_) => _.length > 0)
     .join('\n');

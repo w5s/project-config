@@ -1,5 +1,7 @@
 const { file } = require('mrm-core');
 
+const reToolVersion = /\s+/;
+
 /**
  * @typedef {{ [tool: string]: string }} ASDFConfig
  */
@@ -20,7 +22,7 @@ function asdfConfig({ state, update }) {
     const parsed = Object.fromEntries(
       content
         .split(eol)
-        .map((_) => _.split(/\s+/, 2))
+        .map((_) => _.split(reToolVersion, 2))
         .filter((_) => _[0] !== ''),
     );
 

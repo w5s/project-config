@@ -1,4 +1,4 @@
-import { interopDefault, Project } from '@w5s/dev';
+import { ESLintConfig, interopDefault, Project } from '@w5s/dev';
 import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
 import type { RuleOptions } from '../typegen/test.js';
 
@@ -27,7 +27,12 @@ export async function test(options: test.Options = {}) {
       files,
       name: 'w5s/test/rules',
       rules: {
-        ...vitestPlugin.configs.recommended.rules,
+        ...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, {
+          vitest: 'test',
+        }),
+        'test/valid-title': ESLintConfig.fixme(undefined),
+
+        'e18e/prefer-static-regex': 'off',
         ...(stylisticEnabled
           ? {}
           : {}),

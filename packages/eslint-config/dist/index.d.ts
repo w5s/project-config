@@ -8141,6 +8141,7 @@ declare namespace yml {
 //#endregion
 //#region src/defineConfig.d.ts
 interface DefineConfigOptions extends ignores.Options {
+  e18e?: boolean | e18e.Options;
   es?: boolean | es.Options;
   import?: boolean | imports.Options;
   markdown?: boolean | markdown.Options;
@@ -8148,6 +8149,7 @@ interface DefineConfigOptions extends ignores.Options {
   jsonc?: boolean | jsonc.Options;
   node?: boolean | node.Options;
   stylistic?: boolean | stylistic.Options;
+  test?: boolean | test.Options;
   ts?: boolean | ts.Options;
   unicorn?: boolean | unicorn.Options;
   yml?: boolean | yml.Options;

@@ -95,12 +95,10 @@ describe(file, () => {
 
   it('should not throw error if absent', async () => {
     const path = nodePath.join(testPath, 'delete-absent');
-    expect(async () => {
-      await file({
-        path,
-        state: 'absent',
-      });
-    }).not.toThrow();
+    await expect(file({
+      path,
+      state: 'absent',
+    })).resolves.toBeUndefined();
   });
 
   it('should ignore mode when file is absent', async () => {

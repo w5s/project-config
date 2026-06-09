@@ -19,6 +19,7 @@ export const createParserOpts = (): ParserOptions => ({
     'u',
   ),
   headerCorrespondence: ['type', 'scope', 'subject'],
+  // eslint-disable-next-line e18e/prefer-static-regex
   revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i,
   noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'],
   // revertPattern: /revert:\s([\S\s]*?)\s*this reverts commit (\w*)\./i,

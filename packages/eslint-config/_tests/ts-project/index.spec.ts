@@ -8,7 +8,7 @@ describe('1st', () => {
     });
   });
   context('with 2', () => {
-    it('should do', () => {
+    it('should do 2', () => {
       expect(true).toBe(true);
     });
   });

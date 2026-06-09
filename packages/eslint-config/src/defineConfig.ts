@@ -1,8 +1,9 @@
 import { ESLintConfig } from '@w5s/dev';
-import { jsdoc, jsonc, ignores, imports, markdown, node, ts, yml, unicorn, stylistic, es } from './config.js';
+import { jsdoc, jsonc, ignores, imports, markdown, node, ts, yml, unicorn, stylistic, es, e18e, test } from './config.js';
 import type { Config } from './type.js';
 
 export interface DefineConfigOptions extends ignores.Options {
+  e18e?: boolean | e18e.Options;
   es?: boolean | es.Options;
   import?: boolean | imports.Options;
   markdown?: boolean | markdown.Options;
@@ -10,6 +11,7 @@ export interface DefineConfigOptions extends ignores.Options {
   jsonc?: boolean | jsonc.Options;
   node?: boolean | node.Options;
   stylistic?: boolean | stylistic.Options;
+  test?: boolean | test.Options;
   ts?: boolean | ts.Options;
   unicorn?: boolean | unicorn.Options;
   yml?: boolean | yml.Options;
@@ -29,6 +31,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     input.enabled ? [factory(input)] : [];
 
   return ESLintConfig.concat(
+    ...includeEnabled(e18e, toOption(options.e18e)),
     ...includeEnabled(es, toOption(options.es)),
     ...includeEnabled(ts, toOption(options.ts)),
     ...includeEnabled(ignores, toOption(options)),
@@ -40,5 +43,6 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     ...includeEnabled(node, toOption(options.node)),
     ...includeEnabled(unicorn, toOption(options.unicorn)),
     ...includeEnabled(yml, toOption(options.yml)),
+    ...includeEnabled(test, toOption(options.test)),
   );
 }

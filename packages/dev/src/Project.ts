@@ -134,6 +134,8 @@ function extensionsToMatcher(extensions: readonly Extension[]): RegExp {
   return new RegExp(`(${extensions.map(escapeRegExp).join('|')})$`);
 }
 
+const reExtension = /^\./;
+
 /**
  * Return a glob matcher that will match any list of extensions
  *
@@ -144,7 +146,7 @@ function extensionsToMatcher(extensions: readonly Extension[]): RegExp {
  * ```
  */
 function extensionsToGlob(extensions: readonly Extension[]): string {
-  return `*.+(${extensions.map((_) => _.replace(/^\./, '')).join('|')})`;
+  return `*.+(${extensions.map((_) => _.replace(reExtension, '')).join('|')})`;
 }
 
 export const Project = Object.freeze({

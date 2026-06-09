@@ -945,7 +945,9 @@ async function test(options = {}) {
 		files,
 		name: "w5s/test/rules",
 		rules: {
-			...vitestPlugin.configs.recommended.rules,
+			...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, { vitest: "test" }),
+			"test/valid-title": ESLintConfig.fixme(void 0),
+			"e18e/prefer-static-regex": "off",
 			...stylisticEnabled ? {} : {},
 			...rules
 		}
@@ -1163,7 +1165,7 @@ async function defineConfig(options = {}) {
 		...optionsOrBoolean
 	});
 	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
-	return ESLintConfig.concat(...includeEnabled(es, toOption(options.es)), ...includeEnabled(ts, toOption(options.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(options.jsonc)), ...includeEnabled(jsdoc, toOption(options.jsdoc)), ...includeEnabled(stylistic, toOption(options.stylistic)), ...includeEnabled(imports, toOption(options.import)), ...includeEnabled(markdown, toOption(options.markdown)), ...includeEnabled(node, toOption(options.node)), ...includeEnabled(unicorn, toOption(options.unicorn)), ...includeEnabled(yml, toOption(options.yml)));
+	return ESLintConfig.concat(...includeEnabled(e18e, toOption(options.e18e)), ...includeEnabled(es, toOption(options.es)), ...includeEnabled(ts, toOption(options.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(options.jsonc)), ...includeEnabled(jsdoc, toOption(options.jsdoc)), ...includeEnabled(stylistic, toOption(options.stylistic)), ...includeEnabled(imports, toOption(options.import)), ...includeEnabled(markdown, toOption(options.markdown)), ...includeEnabled(node, toOption(options.node)), ...includeEnabled(unicorn, toOption(options.unicorn)), ...includeEnabled(yml, toOption(options.yml)), ...includeEnabled(test, toOption(options.test)));
 }
 //#endregion
 //#region src/meta.ts

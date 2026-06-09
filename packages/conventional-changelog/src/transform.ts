@@ -26,9 +26,7 @@ export interface CommitTransformFunction<TCommit extends Commit = Commit> {
 export function displayScope(scope: string | null | undefined, scopeDisplayNameMap: Record<string, string>) {
   return scope == null || scope.length === 0
     ? scopeDisplayNameMap['*']
-    : scopeDisplayNameMap[scope] == null
-      ? scope
-      : scopeDisplayNameMap[scope];
+    : scopeDisplayNameMap[scope] ?? scope;
 }
 
 export function displayType(type: string, options: displayType.Options = {}): string {
@@ -49,7 +47,7 @@ export namespace displayType {
 }
 
 export function createTransform(config: TransformConfig): CommitTransformFunction<Commit> {
-  const displayTypes = new Set(config.displayTypes == null ? CommitConventionalType.values() : config.displayTypes);
+  const displayTypes = new Set(config.displayTypes ?? CommitConventionalType.values());
   const ignoreType = (type: string | undefined) => type == null || !displayTypes.has(type as CommitConventionalType);
   const ignoreScope = (scope: string | undefined | null) =>
     config.displayScopes == null ? false : scope != null && !config.displayScopes.includes(scope);

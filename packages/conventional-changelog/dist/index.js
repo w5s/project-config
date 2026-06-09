@@ -223,7 +223,7 @@ const whatBump = (commits) => {
 //#endregion
 //#region src/transform.ts
 function displayScope(scope, scopeDisplayNameMap) {
-	return scope == null || scope.length === 0 ? scopeDisplayNameMap["*"] : scopeDisplayNameMap[scope] == null ? scope : scopeDisplayNameMap[scope];
+	return scope == null || scope.length === 0 ? scopeDisplayNameMap["*"] : scopeDisplayNameMap[scope] ?? scope;
 }
 function displayType(type, options = {}) {
 	const { withEmoji = true, language = "en-US" } = options;
@@ -234,7 +234,7 @@ function displayType(type, options = {}) {
 	return type;
 }
 function createTransform(config) {
-	const displayTypes = new Set(config.displayTypes == null ? CommitConventionalType.values() : config.displayTypes);
+	const displayTypes = new Set(config.displayTypes ?? CommitConventionalType.values());
 	const ignoreType = (type) => type == null || !displayTypes.has(type);
 	const ignoreScope = (scope) => config.displayScopes == null ? false : scope != null && !config.displayScopes.includes(scope);
 	const transform = (commit, { repository, host, owner, repoUrl }) => {
