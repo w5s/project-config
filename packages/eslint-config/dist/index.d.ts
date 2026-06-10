@@ -58,10 +58,10 @@ interface PluginOptionsBase<Rules> {
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$10 {}
+    interface RulesRecord extends RuleOptions$11 {}
   }
 }
-interface RuleOptions$10 {
+interface RuleOptions$11 {
   /**
    * Disallow dependencies in favor of more performant or secure alternatives
    */
@@ -178,7 +178,7 @@ type E18EBanDependencies = [] | [{
  */
 declare function e18e(options?: e18e.Options): Promise<[Config, Config]>;
 declare namespace e18e {
-  type Rules = RuleOptions$10;
+  type Rules = RuleOptions$11;
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * Include modernization default configuration
@@ -204,10 +204,10 @@ declare namespace e18e {
 //#region src/typegen/jsonc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$9 {}
+    interface RulesRecord extends RuleOptions$10 {}
   }
 }
-interface RuleOptions$9 {
+interface RuleOptions$10 {
   /**
    * enforce line breaks after opening and before closing array brackets
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-newline.html
@@ -1019,7 +1019,7 @@ declare namespace es {
   };
 }
 declare namespace es {
-  type Rules = RuleOptions$9;
+  type Rules = RuleOptions$10;
   interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
@@ -1032,10 +1032,10 @@ declare namespace ignores {
 //#region src/typegen/jsdoc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$8 {}
+    interface RulesRecord extends RuleOptions$9 {}
   }
 }
-interface RuleOptions$8 {
+interface RuleOptions$9 {
   /**
    * Checks that `@access` tags have a valid value.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-access.md#repos-sticky-header
@@ -1912,24 +1912,24 @@ type JsdocValidTypes = [] | [{
 //#region src/config/jsdoc.d.ts
 declare function jsdoc(options?: jsdoc.Options): Promise<readonly Config[]>;
 declare namespace jsdoc {
-  type Rules = RuleOptions$8;
+  type Rules = RuleOptions$9;
   interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
 //#region src/config/jsonc.d.ts
 declare function jsonc(options?: jsonc.Options): Promise<readonly Config[]>;
 declare namespace jsonc {
-  type Rules = RuleOptions$9;
+  type Rules = RuleOptions$10;
   interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
 //#region src/typegen/import.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$7 {}
+    interface RulesRecord extends RuleOptions$8 {}
   }
 }
-interface RuleOptions$7 {
+interface RuleOptions$8 {
   /**
    * Enforce or ban the use of inline type-only markers for named imports.
    * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/consistent-type-specifier-style.md
@@ -2388,17 +2388,17 @@ declare namespace imports {
   };
 }
 declare namespace imports {
-  type Rules = RuleOptions$7;
+  type Rules = RuleOptions$8;
   interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
 //#region src/typegen/markdown.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$6 {}
+    interface RulesRecord extends RuleOptions$7 {}
   }
 }
-interface RuleOptions$6 {
+interface RuleOptions$7 {
   /**
    * Require languages for fenced code blocks
    * @see https://github.com/eslint/markdown/blob/main/docs/rules/fenced-code-language.md
@@ -2559,13 +2559,136 @@ type MarkdownTableColumnCount = [] | [{
 //#region src/config/markdown.d.ts
 declare function markdown(options?: markdown.Options): Promise<[Config, Config]>;
 declare namespace markdown {
-  type Rules = RuleOptions$6;
+  type Rules = RuleOptions$7;
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * Default to 'markdown/gfm' (Github Flavored Markdown)
      */
     language?: 'markdown/gfm' | 'markdown/commonmark';
   }
+}
+//#endregion
+//#region src/typegen/next.d.ts
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$6 {}
+  }
+}
+interface RuleOptions$6 {
+  /**
+   * Enforce font-display behavior with Google Fonts.
+   * @see https://nextjs.org/docs/messages/google-font-display
+   */
+  'next/google-font-display'?: Linter.RuleEntry<[]>;
+  /**
+   * Ensure `preconnect` is used with Google Fonts.
+   * @see https://nextjs.org/docs/messages/google-font-preconnect
+   */
+  'next/google-font-preconnect'?: Linter.RuleEntry<[]>;
+  /**
+   * Enforce `id` attribute on `next/script` components with inline content.
+   * @see https://nextjs.org/docs/messages/inline-script-id
+   */
+  'next/inline-script-id'?: Linter.RuleEntry<[]>;
+  /**
+   * Prefer `@next/third-parties/google` when using the inline script for Google Analytics and Tag Manager.
+   * @see https://nextjs.org/docs/messages/next-script-for-ga
+   */
+  'next/next-script-for-ga'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent assignment to the `module` variable.
+   * @see https://nextjs.org/docs/messages/no-assign-module-variable
+   */
+  'next/no-assign-module-variable'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent Client Components from being async functions.
+   * @see https://nextjs.org/docs/messages/no-async-client-component
+   */
+  'next/no-async-client-component'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent usage of `next/script`'s `beforeInteractive` strategy outside of `pages/_document.js`.
+   * @see https://nextjs.org/docs/messages/no-before-interactive-script-outside-document
+   */
+  'next/no-before-interactive-script-outside-document'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent manual stylesheet tags.
+   * @see https://nextjs.org/docs/messages/no-css-tags
+   */
+  'next/no-css-tags'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent importing `next/document` outside of `pages/_document.js`.
+   * @see https://nextjs.org/docs/messages/no-document-import-in-page
+   */
+  'next/no-document-import-in-page'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent duplicate usage of `<Head>` in `pages/_document.js`.
+   * @see https://nextjs.org/docs/messages/no-duplicate-head
+   */
+  'next/no-duplicate-head'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent usage of `<head>` element.
+   * @see https://nextjs.org/docs/messages/no-head-element
+   */
+  'next/no-head-element'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent usage of `next/head` in `pages/_document.js`.
+   * @see https://nextjs.org/docs/messages/no-head-import-in-document
+   */
+  'next/no-head-import-in-document'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent usage of `<a>` elements to navigate to internal Next.js pages.
+   * @see https://nextjs.org/docs/messages/no-html-link-for-pages
+   */
+  'next/no-html-link-for-pages'?: Linter.RuleEntry<NextNoHtmlLinkForPages>;
+  /**
+   * Prevent usage of `<img>` element due to slower LCP and higher bandwidth.
+   * @see https://nextjs.org/docs/messages/no-img-element
+   */
+  'next/no-img-element'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent page-only custom fonts.
+   * @see https://nextjs.org/docs/messages/no-page-custom-font
+   */
+  'next/no-page-custom-font'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent usage of `next/script` in `next/head` component.
+   * @see https://nextjs.org/docs/messages/no-script-component-in-head
+   */
+  'next/no-script-component-in-head'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent usage of `styled-jsx` in `pages/_document.js`.
+   * @see https://nextjs.org/docs/messages/no-styled-jsx-in-document
+   */
+  'next/no-styled-jsx-in-document'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent synchronous scripts.
+   * @see https://nextjs.org/docs/messages/no-sync-scripts
+   */
+  'next/no-sync-scripts'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent usage of `<title>` with `Head` component from `next/document`.
+   * @see https://nextjs.org/docs/messages/no-title-in-document-head
+   */
+  'next/no-title-in-document-head'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent common typos in Next.js data fetching functions.
+   */
+  'next/no-typos'?: Linter.RuleEntry<[]>;
+  /**
+   * Prevent duplicate polyfills from Polyfill.io.
+   * @see https://nextjs.org/docs/messages/no-unwanted-polyfillio
+   */
+  'next/no-unwanted-polyfillio'?: Linter.RuleEntry<[]>;
+}
+/* ======= Declarations ======= */
+// ----- next/no-html-link-for-pages -----
+type NextNoHtmlLinkForPages = [] | [(string | string[])];
+//#endregion
+//#region src/config/next.d.ts
+declare function next(options?: next.Options): Promise<[Config, Config]>;
+declare namespace next {
+  type Rules = RuleOptions$6;
+  interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
 }
 //#endregion
 //#region src/typegen/node.d.ts
@@ -8147,6 +8270,7 @@ interface DefineConfigOptions extends ignores.Options {
   markdown?: boolean | markdown.Options;
   jsdoc?: boolean | jsdoc.Options;
   jsonc?: boolean | jsonc.Options;
+  next?: boolean | next.Options;
   node?: boolean | node.Options;
   stylistic?: boolean | stylistic.Options;
   test?: boolean | test.Options;
@@ -8163,5 +8287,5 @@ declare const meta: Readonly<{
   buildNumber: number;
 }>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, node, stylistic, test, ts, unicorn, yml };
+export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, next, node, stylistic, test, ts, unicorn, yml };
 //# sourceMappingURL=index.d.ts.map

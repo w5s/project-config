@@ -1,5 +1,5 @@
 import { ESLintConfig } from '@w5s/dev';
-import { jsdoc, jsonc, ignores, imports, markdown, node, ts, yml, unicorn, stylistic, es, e18e, test } from './config.js';
+import { jsdoc, jsonc, ignores, imports, markdown, next, node, ts, yml, unicorn, stylistic, es, e18e, test } from './config.js';
 import type { Config } from './type.js';
 
 export interface DefineConfigOptions extends ignores.Options {
@@ -9,6 +9,7 @@ export interface DefineConfigOptions extends ignores.Options {
   markdown?: boolean | markdown.Options;
   jsdoc?: boolean | jsdoc.Options;
   jsonc?: boolean | jsonc.Options;
+  next?: boolean | next.Options;
   node?: boolean | node.Options;
   stylistic?: boolean | stylistic.Options;
   test?: boolean | test.Options;
@@ -40,6 +41,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     ...includeEnabled(stylistic, toOption(options.stylistic)),
     ...includeEnabled(imports, toOption(options.import)),
     ...includeEnabled(markdown, toOption(options.markdown)),
+    ...includeEnabled(next, toOption(options.next)),
     ...includeEnabled(node, toOption(options.node)),
     ...includeEnabled(unicorn, toOption(options.unicorn)),
     ...includeEnabled(yml, toOption(options.yml)),
