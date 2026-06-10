@@ -5,6 +5,7 @@ import e18ePlugin from '@e18e/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
+import nextPlugin from '@next/eslint-plugin-next';
 import nodePlugin from 'eslint-plugin-n';
 import markdownPlugin from '@eslint/markdown';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
@@ -24,6 +25,7 @@ await Promise.all(
       ['jsdoc', jsdocPlugin],
       ['jsonc', jsoncPlugin],
       ['markdown', markdownPlugin],
+      ['next', nextPlugin],
       ['node', nodePlugin],
       ['style', stylisticPlugin],
       ['ts', tsPlugin],
