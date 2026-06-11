@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.4.0](github.com/w5s/project-config/compare/@w5s/dev@3.3.1...@w5s/dev@3.4.0) (2026-06-11)
+
+### ✨ Features
+
+- Enable e18e in ESLint configuration ([01cdd58](github.com/w5s/project-config/commits/01cdd58)) 
+
+### 🐛 Bug Fixes
+
+- Update published files ([d912242](github.com/w5s/project-config/commits/d912242))
+
+**Note:** Version bump only for package @w5s/dev
+
 ## [3.3.3](github.com/w5s/project-config/compare/@w5s/dev@3.3.1...@w5s/dev@3.3.3) (2026-06-05)
 
 ### 🐛 Bug Fixes

@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.7.0](github.com/w5s/project-config/compare/@w5s/eslint-config@3.5.5...@w5s/eslint-config@3.7.0) (2026-06-11)
+
+### ✨ Features
+
+- Add Next.js ESLint plugin ([ef52e94](github.com/w5s/project-config/commits/ef52e94)) 
+- Add recommended parameter to es and imports configuration ([62617c1](github.com/w5s/project-config/commits/62617c1)) 
+- Enable e18e in ESLint configuration ([01cdd58](github.com/w5s/project-config/commits/01cdd58)) 
+- Integrate @w5s/eslint-config-ignore for improved ignore handling ([98a3c5c](github.com/w5s/project-config/commits/98a3c5c)) 
+
+### 🐛 Bug Fixes
+
+- Handle correctly recommended option to ESLint configurations for improved rule management ([886e685](github.com/w5s/project-config/commits/886e685)) 
+- Update published files ([d912242](github.com/w5s/project-config/commits/d912242))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 # [3.6.0](github.com/w5s/project-config/compare/@w5s/eslint-config@3.5.5...@w5s/eslint-config@3.6.0) (2026-06-05)
 
 ### ✨ Features
