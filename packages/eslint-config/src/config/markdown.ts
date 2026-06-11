@@ -7,7 +7,13 @@ const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['m
 
 export async function markdown(options: markdown.Options = {}) {
   const [markdownPlugin] = await Promise.all([interopDefault(import('@eslint/markdown'))] as const);
-  const { language = 'markdown/gfm', files = defaultFiles, rules = {}, stylistic = true } = options;
+  const {
+    language = 'markdown/gfm',
+    files = defaultFiles,
+    recommended = true,
+    rules = {},
+    stylistic = true,
+  } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
@@ -24,7 +30,7 @@ export async function markdown(options: markdown.Options = {}) {
       // eslint-disable-next-line ts/no-non-null-assertion
       processor: mergeProcessors([markdownPlugin.processors!.markdown, processorPassThrough]),
       rules: {
-        ...markdownPlugin.configs.recommended.at(0)?.rules,
+        ...(recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {}),
         ...(stylisticEnabled ? {} : {}),
         ...rules,
       },

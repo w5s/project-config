@@ -7,7 +7,7 @@ const defaultFiles = [sourceGlob];
 
 export async function unicorn(options: unicorn.Options = {}) {
   const [unicornPlugin] = await Promise.all([interopDefault(import('eslint-plugin-unicorn'))] as const);
-  const { files = defaultFiles, rules = {}, stylistic = true } = options;
+  const { files = defaultFiles, recommended = true, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
@@ -21,7 +21,7 @@ export async function unicorn(options: unicorn.Options = {}) {
       name: 'w5s/unicorn/rules',
       files,
       rules: {
-        ...unicornPlugin.configs.recommended?.rules,
+        ...(recommended ? unicornPlugin.configs.recommended?.rules : {}),
         // Disabled for safety
         'unicorn/consistent-destructuring': 'off',
         'unicorn/consistent-function-scoping': 'off', // Too many false positive
@@ -39,7 +39,6 @@ export async function unicorn(options: unicorn.Options = {}) {
         'unicorn/no-object-as-default-parameter': 'off',
         'unicorn/no-process-exit': 'off',
         'unicorn/no-unreadable-array-destructuring': 'off',
-        'unicorn/no-unused-properties': 'warn',
         'unicorn/no-useless-undefined': 'off',
         'unicorn/prefer-add-event-listener': 'off',
         'unicorn/prefer-default-parameters': 'off',

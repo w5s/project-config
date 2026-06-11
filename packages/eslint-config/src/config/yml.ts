@@ -7,7 +7,7 @@ const defaultFiles = [ymlSourceGlob];
 
 export async function yml(options: yml.Options = {}) {
   const [ymlPlugin] = await Promise.all([interopDefault(import('eslint-plugin-yml'))] as const);
-  const { files = defaultFiles, rules = {}, stylistic = true } = options;
+  const { files = defaultFiles, recommended = true, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic);
 
   return [
@@ -22,11 +22,13 @@ export async function yml(options: yml.Options = {}) {
       language: 'yml/yaml',
       name: 'w5s/yml/rules',
       rules: {
-        ...ymlPlugin.configs['recommended'].reduce(
-          (acc, config) => ({ ...acc, ...config.rules }),
-          // eslint-disable-next-line ts/consistent-type-assertions
-          {} as RuleOptions,
-        ),
+        ...(recommended
+          ? ymlPlugin.configs['recommended'].reduce(
+              (acc, config) => ({ ...acc, ...config.rules }),
+              // eslint-disable-next-line ts/consistent-type-assertions
+              {} as RuleOptions,
+            )
+          : {}),
         ...(stylisticEnabled
           ? {
               'style/spaced-comment': 'off', // Fix

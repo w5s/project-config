@@ -7,7 +7,12 @@ const defaultFiles = [sourceGlob];
 
 export async function jsdoc(options: jsdoc.Options = {}): Promise<readonly Config[]> {
   const [jsdocPlugin] = await Promise.all([interopDefault(import('eslint-plugin-jsdoc'))] as const);
-  const { files = defaultFiles, rules = {}, stylistic = true } = options;
+  const {
+    files = defaultFiles,
+    recommended = true,
+    rules = {},
+    stylistic = true,
+  } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
@@ -21,14 +26,20 @@ export async function jsdoc(options: jsdoc.Options = {}): Promise<readonly Confi
       name: 'w5s/jsdoc/rules',
       files,
       rules: {
-        ...jsdocPlugin.configs['flat/recommended-typescript-flavor'].rules,
-        'jsdoc/no-undefined-types': 'off', // https://github.com/gajus/eslint-plugin-jsdoc/issues/839
-        'jsdoc/require-hyphen-before-param-description': ['warn', 'always'],
-        'jsdoc/require-jsdoc': 'off',
-        'jsdoc/require-param-description': 'off',
-        'jsdoc/require-param-type': 'off',
-        'jsdoc/require-returns': 'off',
-        'jsdoc/valid-types': 'off', // FIXME: reports lots of false positive
+        ...(recommended ? jsdocPlugin.configs['flat/recommended-typescript-flavor'].rules : {}),
+
+        ...(recommended
+          ? {
+              'jsdoc/no-undefined-types': 'off', // https://github.com/gajus/eslint-plugin-jsdoc/issues/839
+              'jsdoc/require-hyphen-before-param-description': ['warn', 'always'],
+              'jsdoc/require-jsdoc': 'off',
+              'jsdoc/require-param-description': 'off',
+              'jsdoc/require-param-type': 'off',
+              'jsdoc/require-returns': 'off',
+              'jsdoc/valid-types': 'off', // FIXME: reports lots of false positive
+            }
+          : {}),
+
         // 'strict': ['error', 'safe'],
         ...(stylisticEnabled
           ? {

@@ -13,7 +13,7 @@ export async function test(options: test.Options = {}) {
   const [vitestPlugin] = await Promise.all([
     interopDefault(import('@vitest/eslint-plugin')),
   ] as const);
-  const { files = defaultFiles, rules = {}, stylistic = true } = options;
+  const { files = defaultFiles, recommended = true, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
@@ -27,9 +27,11 @@ export async function test(options: test.Options = {}) {
       files,
       name: 'w5s/test/rules',
       rules: {
-        ...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, {
-          vitest: 'test',
-        }),
+        ...(recommended
+          ? ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, {
+              vitest: 'test',
+            })
+          : {}),
         'test/valid-title': ESLintConfig.fixme(undefined),
 
         'e18e/prefer-static-regex': 'off',

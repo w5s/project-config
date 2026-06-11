@@ -11,7 +11,12 @@ export async function jsonc(options: jsonc.Options = {}): Promise<readonly Confi
     interopDefault(import('eslint-plugin-jsonc')),
     interopDefault(import('jsonc-eslint-parser')),
   ] as const);
-  const { files = defaultFiles, rules = {}, stylistic = true } = options;
+  const {
+    files = defaultFiles,
+    recommended = true,
+    rules = {},
+    stylistic = true,
+  } = options;
   const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic);
 
   return [
@@ -28,7 +33,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<readonly Confi
       },
       name: 'w5s/jsonc/rules',
       rules: {
-        ...jsoncPlugin.configs['flat/recommended-with-json'][0]?.rules,
+        ...(recommended ? jsoncPlugin.configs['flat/recommended-with-json'][0]?.rules : {}),
         ...(stylisticEnabled
           ? {
               'jsonc/array-bracket-spacing': ['error', 'never'],
