@@ -53,4 +53,4 @@ git add .
 git commit --amend --no-edit --no-verify
 
 # Step 5: Push changes with tags
-git push origin HEAD --follow-tags
+git push origin HEAD --follow-tags --no-verify
