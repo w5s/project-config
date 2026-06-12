@@ -10,7 +10,7 @@ on:
       release_type:
         description: 'Release type'
         required: true
-        default: 'alpha'
+        default: 'next'
         type: choice
         options:
           - next
