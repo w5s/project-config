@@ -6,7 +6,7 @@ import fs$1 from "node:fs/promises";
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/eslint-config-ignore",
-	version: "1.2.1",
+	version: "1.2.2",
 	buildNumber: 1
 });
 //#endregion

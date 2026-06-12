@@ -1,7 +1,7 @@
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/prettier-config",
-	version: "3.1.9",
+	version: "3.1.10",
 	buildNumber: 1
 });
 //#endregion
