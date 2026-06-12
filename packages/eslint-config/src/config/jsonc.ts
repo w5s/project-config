@@ -58,7 +58,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<readonly Confi
 
 function sortTsconfigJson() {
   return {
-    files: ['tsconfig*.json'],
+    files: ['**/tsconfig*.json'],
     rules: {
       'jsonc/sort-keys': [
         'error',
@@ -77,7 +77,7 @@ function sortTsconfigJson() {
 
 function sortPackageJson() {
   return {
-    files: ['package.json'],
+    files: ['**/package.json'],
     rules: {
       'jsonc/sort-keys': [
         'error',

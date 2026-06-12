@@ -21,11 +21,11 @@
   "type": "module",
   "exports": {
     ".": {
-      "import": {
+      "require": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
       },
-      "require": {
+      "import": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
       }
