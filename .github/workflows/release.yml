@@ -57,5 +57,7 @@ jobs:
           task: release
         env:
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+          # Not required we use trusted publishing
+          # NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           CI_RELEASE_TYPE: ${{ github.event.inputs.release_type || 'next' }}
