@@ -27,7 +27,7 @@ $NODEJS_PACKAGE_MANAGER_COMMAND exec -- lerna publish "${PUBLISH_ARGS[@]}"
 # GitHub Release: root package.json version stays fixed in independent mode, so "v$(root)"
 # collides every run. Tag the release by commit instead.
 
-export GH_TOKEN="${GH_TOKEN:-$GITHUB_TOKEN}"
+export GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-$(gh auth token)}}"
 RELEASE_TAG="release-$(git rev-parse --short HEAD)"
 if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
   echo "GitHub release $RELEASE_TAG already exists, skipping."
