@@ -14,12 +14,12 @@ jobs:
       - name: ⬇️ Checkout
         uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6
       - name: ⚙️ Setup
-        uses: w5s/actions/setup@d29f05088015af31112b81ba52e571d12920c9be # main
+        uses: w5s/actions/setup@2ff7e95443befd6f22fd2b7e0a9ab9d7468d0bb7 # main
       - name: 🔨 Build
-        uses: w5s/actions/task@d29f05088015af31112b81ba52e571d12920c9be # main
+        uses: w5s/actions/task@2ff7e95443befd6f22fd2b7e0a9ab9d7468d0bb7 # main
         with:
           task: build
       - name: 🔍 Validate
-        uses: w5s/actions/task@d29f05088015af31112b81ba52e571d12920c9be # main
+        uses: w5s/actions/task@2ff7e95443befd6f22fd2b7e0a9ab9d7468d0bb7 # main
         with:
           task: validate
