@@ -16,9 +16,9 @@
       "DOM.Iterable",
       "ES2023" // Use the most compatible value with bundlers, this can be overridden in project
     ],
-    "module": "Node16",
+    "module": "node20",
     "moduleDetection": "force",
-    "moduleResolution": "Node16",
+    "moduleResolution": "node16",
     "noEmit": true,
     "noEmitOnError": true,
     // "noFallthroughCasesInSwitch": true, => Prefer ESLint validation
