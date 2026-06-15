@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url";
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/conventional-changelog",
-	version: "3.2.2",
+	version: "3.2.3",
 	buildNumber: 1
 });
 //#endregion

@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.3](github.com/w5s/project-config/compare/@w5s/mrm-preset@3.5.1...@w5s/mrm-preset@3.5.3) (2026-06-15)
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [3.5.2](github.com/w5s/project-config/compare/@w5s/mrm-preset@3.5.1...@w5s/mrm-preset@3.5.2) (2026-06-12)
 
 **Note:** Version bump only for package @w5s/mrm-preset
