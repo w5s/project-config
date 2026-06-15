@@ -20,13 +20,10 @@
   "author": "Julien Polo <julien.polo@gmail.com>",
   "type": "module",
   "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./dist/*": "./dist/*"
+    "./package.json": "./package.json",
+    ".": "./src/index.ts",
+    "./*": "./src/*.ts",
+    "./internal/*": null
   },
   "files": [
     "dist/",
@@ -76,7 +73,10 @@
     "node": ">=22.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": false,
+    "provenance": true
   },
   "sideEffect": false
 }

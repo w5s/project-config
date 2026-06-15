@@ -142,14 +142,3 @@ dist
 #==================================================================================================
 # END MANAGED BLOCK
 
-# Build directory
-# We keep some built files because they are needed for the repository tooling itself (ex: prettier-config, commitlint-config)
-!packages/dev/dist/
-!packages/commitlint-config/dist/
-!packages/conventional-changelog/dist/
-!packages/cspell-config/dist/
-!packages/eslint-config/dist/
-!packages/eslint-config-ignore/dist/
-!packages/prettier-config/dist/
-!packages/tsdown-config/dist/
-packages/*/dist/**/*.spec.*

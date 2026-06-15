@@ -92,6 +92,7 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
   packages/commitlint-config:
     dependencies:
@@ -120,6 +121,7 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
   packages/configurator-core:
     devDependencies:
@@ -135,6 +137,7 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
   packages/conventional-changelog:
     dependencies:
@@ -166,6 +169,7 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
   packages/cspell-config:
     dependencies:
@@ -194,6 +198,7 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
   packages/dev:
     dependencies:
@@ -213,6 +218,7 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
   packages/eslint-config:
     dependencies:
@@ -319,6 +325,7 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
   packages/eslint-config-ignore:
     dependencies:
@@ -353,6 +360,7 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
   packages/mrm-preset:
     dependencies:
@@ -387,6 +395,7 @@ importers:
       mrm-preset-default:
         specifier: 4.1.11
         version: 4.1.11
+    publishDirectory: dist
 
   packages/prettier-config:
     devDependencies:
@@ -405,12 +414,14 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
   packages/tsconfig:
     devDependencies:
       typescript:
         specifier: 6.0.3
         version: 6.0.3
+    publishDirectory: dist
 
   packages/tsdown-config:
     devDependencies:
@@ -423,6 +434,7 @@ importers:
       vitest:
         specifier: 4.1.8
         version: 4.1.8(@types/node@20.19.43)(vite@8.0.16(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
+    publishDirectory: dist
 
 packages:
 

@@ -41,7 +41,6 @@
     },
     "./dist/*": "./dist/*"
   },
-  "typings": "./index.d.ts",
   "files": [
     "dist/",
     "src/",
@@ -91,7 +90,10 @@
     "node": ">=22.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": false,
+    "provenance": true
   },
   "sideEffect": false
 }

@@ -18,9 +18,10 @@
   "author": "Julien Polo <julien.polo@gmail.com>",
   "type": "module",
   "exports": {
+    "./package.json": "./package.json",
     ".": "./cspell-ext.json",
     "./cspell-ext.json": "./cspell-ext.json",
-    "./dist/*": "./dist/*",
+    "./*": "./src/*.ts",
     "./dict/*": "./dict/*"
   },
   "typings": "./dist/index.d.mts",
@@ -80,7 +81,10 @@
     "node": ">=22.0.0"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "directory": "dist",
+    "linkDirectory": false,
+    "provenance": true
   },
   "sideEffect": false
 }
