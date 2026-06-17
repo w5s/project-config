@@ -66,7 +66,7 @@ const Browser = (() => {
   );
 
   function getVersion(browser) {
-    return browser.split(' ')?.[1];
+    return browser.split(' ', 2)?.[1];
   }
 
   function getName(browser) {
@@ -85,7 +85,7 @@ const Browser = (() => {
 
 async function buildPageContent() {
   function groupsByDeviceType(browserList) {
-    const getPrefix = (browser) => browser.split(' ')[0];
+    const getPrefix = (browser) => browser.split(' ', 1)[0];
 
     const deviceMap = groupBy(browserList, (browser) =>
       (browser.startsWith('ios_') || browser.startsWith('and_') || browser.startsWith('op_') || browser.startsWith('ie_')
