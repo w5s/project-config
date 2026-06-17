@@ -31,9 +31,9 @@
         "default": "./dist/index.js"
       }
     },
-    "./dist/*": "./dist/*"
+    "./dist/*": "./dist/*",
+    "./internal/*": null
   },
-  "typings": "./index.d.ts",
   "files": [
     "dist/",
     "src/",

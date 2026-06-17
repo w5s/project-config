@@ -21,9 +21,9 @@
     ".": "./cspell-ext.json",
     "./cspell-ext.json": "./cspell-ext.json",
     "./dist/*": "./dist/*",
+    "./internal/*": null,
     "./dict/*": "./dict/*"
   },
-  "typings": "./dist/index.d.mts",
   "files": [
     "cspell-ext.json",
     "dict/",

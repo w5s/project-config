@@ -22,7 +22,8 @@
         "default": "./dist/index.js"
       }
     },
-    "./dist/*": "./dist/*"
+    "./dist/*": "./dist/*",
+    "./internal/*": null
   },
   "files": [
     "template/*",

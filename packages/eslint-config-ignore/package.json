@@ -20,13 +20,9 @@
   "author": "Julien Polo <julien.polo@gmail.com>",
   "type": "module",
   "exports": {
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
-    "./dist/*": "./dist/*"
+    ".": "./dist/index.js",
+    "./dist/*": "./dist/*",
+    "./internal/*": null
   },
   "files": [
     "dist/",
