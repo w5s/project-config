@@ -55,7 +55,7 @@
     "typecheck:src": "tsc --noEmit"
   },
   "devDependencies": {
-    "tsdown": "0.22.2",
+    "tsdown": "0.22.3",
     "vite": "8.0.16",
     "vitest": "4.1.8"
   },
