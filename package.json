@@ -5,7 +5,7 @@
   "description": "",
   "repository": {
     "type": "git",
-    "url": "git+ssh@github.com:w5s/project-config.git"
+    "url": "git+https://github.com/w5s/project-config.git"
   },
   "license": "MIT",
   "type": "module",
