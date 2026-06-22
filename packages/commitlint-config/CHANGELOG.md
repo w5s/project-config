@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.1.12](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@3.1.9...@w5s/commitlint-config@3.1.12) (2026-06-22)
+
+### 🐛 Bug Fixes
+
+- Fix file patterns for tsconfig and package JSON sorting rules ([92ca4a5](https://github.com/w5s/project-config/commit/92ca4a5))
+
+**Note:** Version bump only for package @w5s/commitlint-config
+
 ## [3.1.11](github.com/w5s/project-config/compare/@w5s/commitlint-config@3.1.9...@w5s/commitlint-config@3.1.11) (2026-06-15)
 
 ### 🐛 Bug Fixes
