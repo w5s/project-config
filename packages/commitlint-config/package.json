@@ -31,7 +31,6 @@
         "default": "./dist/index.js"
       }
     },
-    "./dist/*": "./dist/*",
     "./internal/*": null
   },
   "files": [

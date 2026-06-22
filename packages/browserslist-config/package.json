@@ -28,7 +28,6 @@
       "require": "./dist/*.cjs",
       "import": "./dist/*.js"
     },
-    "./dist/*": "./dist/*",
     "./internal/*": null
   },
   "files": [

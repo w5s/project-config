@@ -24,7 +24,6 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     },
-    "./dist/*": "./dist/*",
     "./internal/*": null
   },
   "files": [
