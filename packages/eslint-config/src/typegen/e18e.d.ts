@@ -62,6 +62,14 @@ export interface RuleOptions {
    */
   'e18e/prefer-exponentiation-operator'?: Linter.RuleEntry<[]>
   /**
+   * Prefer Array.prototype.flatMap() over .map(fn).flat() to avoid the intermediate array
+   */
+  'e18e/prefer-flatmap-over-map-flat'?: Linter.RuleEntry<[]>
+  /**
+   * Prefer `Map.prototype.getOrInsert()` over reading an entry with a default and writing it back
+   */
+  'e18e/prefer-get-or-insert'?: Linter.RuleEntry<[]>
+  /**
    * Prefer .includes() over indexOf() comparisons for arrays and strings
    */
   'e18e/prefer-includes'?: Linter.RuleEntry<[]>
