@@ -7,6 +7,7 @@ export * from './config/imports.js';
 export * from './config/markdown.js';
 export * from './config/next.js';
 export * from './config/node.js';
+export * from './config/react.js';
 export * from './config/stylistic.js';
 export * from './config/test.js';
 export * from './config/ts.js';
