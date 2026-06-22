@@ -7,6 +7,7 @@ import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
 import nextPlugin from '@next/eslint-plugin-next';
 import nodePlugin from 'eslint-plugin-n';
+import reactPlugin from '@eslint-react/eslint-plugin';
 import markdownPlugin from '@eslint/markdown';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import vitestPlugin from '@vitest/eslint-plugin';
@@ -27,6 +28,7 @@ await Promise.all(
       ['markdown', markdownPlugin],
       ['next', nextPlugin],
       ['node', nodePlugin],
+      ['react', reactPlugin],
       ['style', stylisticPlugin],
       ['ts', tsPlugin],
       ['unicorn', unicornPlugin],
