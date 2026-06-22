@@ -7,8 +7,14 @@ on:
   pull_request:
     branches:
       - main
+
+permissions:
+  actions: read
+  contents: read
+  packages: read
+
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout
