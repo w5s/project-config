@@ -4,10 +4,7 @@ export const defaultConfig: UserConfig = {
   entry: ['src/index.ts', '!src/**/*.test.*', '!src/**/*.spec.*', '!**/__mocks__/**'],
   sourcemap: true,
   format: ['esm'],
-  dts: {
-    enabled: true,
-    sourcemap: true,
-  },
+  dts: true,
   // clean: true,
   // treeshake: 'recommended',
   // splitting: false,
