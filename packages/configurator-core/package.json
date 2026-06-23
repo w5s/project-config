@@ -22,16 +22,7 @@
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
-    ".": {
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/index.cjs"
-      },
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
+    ".": "./dist/index.js",
     "./internal/*": null
   },
   "files": [

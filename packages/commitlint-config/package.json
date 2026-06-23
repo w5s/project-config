@@ -21,16 +21,7 @@
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
-    ".": {
-      "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      },
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
+    ".": "./dist/index.js",
     "./internal/*": null
   },
   "files": [
@@ -38,7 +29,6 @@
     "src/",
     "index.js",
     "index.d.ts",
-    "!*.d.mts.map",
     "!**/*.spec.*",
     "!**/__tests__/**"
   ],

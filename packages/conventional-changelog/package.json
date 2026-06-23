@@ -17,12 +17,7 @@
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
-    ".": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    },
+    ".": "./dist/index.js",
     "./internal/*": null
   },
   "files": [
