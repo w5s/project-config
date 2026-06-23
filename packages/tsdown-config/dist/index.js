@@ -11,7 +11,10 @@ const defaultConfig = {
 	],
 	sourcemap: true,
 	format: ["esm"],
-	dts: true,
+	dts: {
+		enabled: true,
+		sourcemap: true
+	},
 	tsconfig: "tsconfig.build.json",
 	outExtensions({ format }) {
 		return { js: format === "es" ? ".js" : ".cjs" };
