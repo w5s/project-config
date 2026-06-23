@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+# Usage:
+# ./bin/publish
+# In CI (CI or GITHUB_ACTIONS), lerna publish runs with --yes (non-interactive).
+#
+# Flow: publish from-package
+CI=${CI:-${GITHUB_ACTIONS:-}}
+
+# Detect the package manager if not set
+NODEJS_PACKAGE_MANAGER=${NODEJS_PACKAGE_MANAGER:-}
+if [ -z "$NODEJS_PACKAGE_MANAGER" ]; then
+  echo "NODEJS_PACKAGE_MANAGER is required" 1>&2
+  exit 1
+fi
+
+
+# Publish from package.json versions
+PUBLISH_ARGS=(from-package "$@")
+if [ -n "${CI:-}" ]; then
+  PUBLISH_ARGS=(--yes "${PUBLISH_ARGS[@]}")
+fi
+$NODEJS_PACKAGE_MANAGER_COMMAND exec -- lerna publish "${PUBLISH_ARGS[@]}"
+
+# GitHub Release: root package.json version stays fixed in independent mode, so "v$(root)"
+# collides every run. Tag the release by commit instead.
+
+export GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-$(gh auth token)}}"
+RELEASE_TAG="release-$(git rev-parse --short HEAD)"
+if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+  echo "GitHub release $RELEASE_TAG already exists, skipping."
+else
+  gh release create "$RELEASE_TAG" --target "$(git rev-parse HEAD)" --title "Packages $(date -u +%Y-%m-%d)" --generate-notes
+fi

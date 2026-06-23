@@ -1,0 +1,67 @@
+{
+  "name": "@w5s/tsconfig",
+  "version": "3.1.8",
+  "description": "Typescript compiler configuration presets",
+  "keywords": [
+    "typescript",
+    "config",
+    "tsc"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/tsconfig#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w5s/project-config.git",
+    "directory": "packages/tsconfig"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./tsconfig.json"
+  },
+  "files": [
+    "tsconfig.json",
+    "!*.d.ts.map"
+  ],
+  "scripts": {
+    "build": "pnpm run \"/^build:.*/\"",
+    "build:empty": ":",
+    "clean": "pnpm run \"/^clean:.*/\"",
+    "clean:empty": ":",
+    "docs": "node ../../markdown.mjs",
+    "format": "pnpm run \"/^format:.*/\"",
+    "format:src": "eslint . --fix",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:src": "eslint .",
+    "postpack": "clean-package restore",
+    "prepack": "clean-package",
+    "spellcheck": "cspell --no-progress '**'",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3"
+  },
+  "peerDependencies": {
+    "typescript": ">=5.x"
+  },
+  "peerDependenciesMeta": {
+    "typescript": {
+      "optional": true
+    }
+  },
+  "clean-package": "../../clean-package.config.cjs",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffect": false
+}

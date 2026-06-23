@@ -1,0 +1,66 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalEnv": ["ASDF_*", "CI", "DATABASE_URL", "NODE_ENV"],
+  "globalDependencies": [
+    ".tool-versions",
+    "tsconfig.settings.json",
+    "**/.env.*local",
+    ".env"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build", "//#build:root"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"]
+    },
+    "//#build:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
+    "test": {
+      "dependsOn": ["^build", "//#test:root"]
+    },
+    "//#test:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
+    "typecheck": {
+      "dependsOn": ["build", "^build"]
+    },
+    "lint": {
+      "dependsOn": ["//#lint:root", "build", "^build"]
+    },
+    "//#lint:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
+    "prepare": {},
+    "format": {
+      "dependsOn": ["//#format:root"]
+    },
+    "//#format:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
+    "docs": {
+      "dependsOn": ["//#docs:root"],
+      "cache": false
+    },
+    "spellcheck": {
+      "dependsOn": ["//#spellcheck:root"]
+    },
+    "//#spellcheck:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    },
+    "clean": {
+      "dependsOn": ["//#clean:root"],
+      "cache": false
+    },
+    "//#clean:root": {
+      "cache": false
+    },
+    "develop": {
+      "persistent": true,
+      "cache": false
+    },
+    "//#docs:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
+    }
+  }
+}

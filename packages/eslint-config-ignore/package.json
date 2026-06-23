@@ -1,0 +1,87 @@
+{
+  "name": "@w5s/eslint-config-ignore",
+  "version": "1.2.4",
+  "description": "Shared ESLint ignore configuration generator",
+  "keywords": [
+    "eslint",
+    "config",
+    "ignore"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/eslint-config-ignore#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w5s/project-config.git",
+    "directory": "packages/eslint-config-ignore"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js",
+    "./internal/*": null
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "index.js",
+    "index.d.ts",
+    "!**/*.spec.*",
+    "!**/__tests__/**"
+  ],
+  "scripts": {
+    "build": "pnpm run \"/^build:.*/\"",
+    "build:tsc": "tsdown",
+    "clean": "pnpm run \"/^clean:.*/\"",
+    "clean:tsc": "rm -rf dist",
+    "docs": "node ../../markdown.mjs",
+    "format": "pnpm run \"/^format:.*/\"",
+    "format:src": "eslint . --fix",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:src": "eslint .",
+    "postpack": "clean-package restore",
+    "prepack": "clean-package",
+    "prepublishOnly": "pnpm run clean;pnpm run build",
+    "spellcheck": "cspell --no-progress '**'",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:src": "vitest run",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "tsc --noEmit"
+  },
+  "dependencies": {
+    "find-up": "^8.0.0",
+    "parse-gitignore": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "20.19.43",
+    "@types/parse-gitignore": "1.0.2",
+    "@w5s/tsdown-config": "workspace:*",
+    "eslint": "10.5.0",
+    "tsdown": "0.22.3",
+    "vite": "8.0.16",
+    "vitest": "4.1.9"
+  },
+  "peerDependencies": {
+    "eslint": "9.x || 10.x",
+    "typescript": "4.x || 5.x || 6.x"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    }
+  },
+  "clean-package": "../../clean-package.config.cjs",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffect": false
+}

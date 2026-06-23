@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+# Usage:
+# ./.modules/version-dump [stable|alpha|next]
+# In CI, lerna version runs with --yes (non-interactive).
+#
+# Flow: version → build (meta.ts) → amend version commit → publish from-package
+CI=${CI:-${GITHUB_ACTIONS:-}}
+CI_RELEASE_TYPE="${1:-${CI_RELEASE_TYPE:-next}}"
+[ $# -gt 0 ] && shift
+
+# Detect the package manager if not set
+NODEJS_PACKAGE_MANAGER=${NODEJS_PACKAGE_MANAGER:-}
+if [ -z "$NODEJS_PACKAGE_MANAGER" ]; then
+  echo "NODEJS_PACKAGE_MANAGER is required" 1>&2
+  exit 1
+fi
+
+VERSION_ARGS=(--no-push)
+if [ -n "${CI:-}" ]; then
+  VERSION_ARGS=(--yes "${VERSION_ARGS[@]}")
+fi
+
+# Step 0: Reset working tree (build/validate steps may leave uncommitted artifacts)
+git checkout -- .
+
+# Step 1: Version (bump versions, create commit)
+# pnpm exec uses only the local lerna from node_modules (no download)
+if [ "$CI_RELEASE_TYPE" = "next" ]; then
+  $NODEJS_PACKAGE_MANAGER_COMMAND exec -- lerna version "${VERSION_ARGS[@]}"
+elif [ "$CI_RELEASE_TYPE" = "stable" ]; then
+  $NODEJS_PACKAGE_MANAGER_COMMAND exec -- lerna version --conventional-graduate "${VERSION_ARGS[@]}"
+elif [ "$CI_RELEASE_TYPE" = "major" ] || [ "$CI_RELEASE_TYPE" = "minor" ] || [ "$CI_RELEASE_TYPE" = "patch" ]; then
+  $NODEJS_PACKAGE_MANAGER_COMMAND exec -- lerna version "$CI_RELEASE_TYPE" "${VERSION_ARGS[@]}"
+elif [ "$CI_RELEASE_TYPE" = "alpha" ] || [ "$CI_RELEASE_TYPE" = "beta" ] || [ "$CI_RELEASE_TYPE" = "rc" ]; then
+  $NODEJS_PACKAGE_MANAGER_COMMAND exec -- lerna version --conventional-prerelease --preid "$CI_RELEASE_TYPE" --no-changelog "${VERSION_ARGS[@]}"
+else
+  echo "Invalid release type: $CI_RELEASE_TYPE"
+  exit 1
+fi
+
+# Step 2: Update lockfile after version bump
+# Avoid empty "${arr[@]}" with set -u (unbound variable in bash).
+$NODEJS_INSTALL
+
+# Step 3: Rebuild (meta.ts injects version into dist)
+$NODEJS_RUN build
+
+# Step 4: Amend previous commit with built files
+git add .
+git commit --amend --no-edit --no-verify
+
+# Step 5: Push changes with tags
+git push origin HEAD --follow-tags --no-verify

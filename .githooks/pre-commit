@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# BEGIN MANAGED BLOCK
+pnpm dlx lint-staged
+# END MANAGED BLOCK

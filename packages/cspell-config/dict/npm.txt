@@ -1,0 +1,8 @@
+browserslist
+commitlint
+esbuild
+pinia
+stylelint
+stylelintrc
+typedoc
+typescript

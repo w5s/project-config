@@ -1,0 +1,73 @@
+{
+  "name": "@w5s/dev",
+  "version": "3.4.4",
+  "description": "Shared development constants and functions",
+  "keywords": [
+    "config",
+    "dev"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/dev#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w5s/project-config.git",
+    "directory": "packages/dev"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    },
+    "./internal/*": null
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "index.js",
+    "index.d.ts",
+    "!**/*.spec.*",
+    "!**/__tests__/**"
+  ],
+  "scripts": {
+    "build": "pnpm run \"/^build:.*/\"",
+    "build:tsc": "tsdown",
+    "clean": "pnpm run \"/^clean:.*/\"",
+    "clean:tsc": "rm -rf dist",
+    "docs": "node ../../markdown.mjs",
+    "format": "pnpm run \"/^format:.*/\"",
+    "format:src": "eslint . --fix",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:src": "eslint .",
+    "postpack": "clean-package restore",
+    "prepack": "clean-package",
+    "prepublishOnly": "pnpm run clean;pnpm run build",
+    "spellcheck": "cspell --no-progress '**'",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:src": "vitest run",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@types/eslint": "^9.0.0"
+  },
+  "devDependencies": {
+    "@w5s/tsdown-config": "workspace:*",
+    "tsdown": "0.22.3",
+    "vite": "8.0.16",
+    "vitest": "4.1.9"
+  },
+  "clean-package": "../../clean-package.config.cjs",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffect": false
+}

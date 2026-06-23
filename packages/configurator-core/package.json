@@ -1,0 +1,70 @@
+{
+  "name": "@w5s/configurator-core",
+  "version": "1.0.0-alpha.5",
+  "description": "Core library for @w5s/configurator-core",
+  "keywords": [
+    "config",
+    "configurator",
+    "file",
+    "json"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/configurator-core#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w5s/project-config.git",
+    "directory": "packages/configurator-core"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js",
+    "./internal/*": null
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "index.js",
+    "index.d.ts",
+    "!**/*.spec.*",
+    "!**/__tests__/**"
+  ],
+  "scripts": {
+    "build": "pnpm run \"/^build:.*/\"",
+    "build:tsc": "tsdown",
+    "clean": "pnpm run \"/^clean:.*/\"",
+    "clean:tsc": "rm -rf dist",
+    "docs": "node ../../markdown.mjs",
+    "format": "pnpm run \"/^format:.*/\"",
+    "format:src": "eslint . --fix",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:src": "eslint .",
+    "postpack": "clean-package restore",
+    "prepack": "clean-package",
+    "prepublishOnly": "pnpm run clean;pnpm run build",
+    "spellcheck": "cspell --no-progress '**'",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:src": "vitest run",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "tsc --noEmit"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@w5s/tsdown-config": "workspace:*",
+    "tsdown": "0.22.3",
+    "vite": "8.0.16",
+    "vitest": "4.1.9"
+  },
+  "clean-package": "../../clean-package.config.cjs",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffect": false
+}

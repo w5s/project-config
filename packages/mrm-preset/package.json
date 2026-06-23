@@ -1,0 +1,63 @@
+{
+  "name": "@w5s/mrm-preset",
+  "version": "3.5.4",
+  "description": "Mrm configuration presets",
+  "keywords": [
+    "mrm",
+    "config",
+    "bootstrap"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/mrm-preset#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config.git/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w5s/project-config.git",
+    "directory": "packages/mrm-preset"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "commonjs",
+  "main": "config.json",
+  "scripts": {
+    "build": "pnpm run \"/^build:.*/\"",
+    "build:tsc": "tsc",
+    "clean": "pnpm run \"/^clean:.*/\"",
+    "clean:tsc": "rm -rf dist",
+    "docs": "node ../../markdown.mjs",
+    "format": "pnpm run \"/^format:.*/\"",
+    "format:src": "eslint . --fix",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:src": "eslint .",
+    "postpack": "clean-package restore",
+    "prepack": "clean-package",
+    "spellcheck": "cspell --no-progress '**'",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:script": "mkdir -p .temp; cd .temp; mrm bootstrap --dir ..; mrm configure --dir ..",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@w5s/configurator-core": "workspace:^",
+    "@w5s/dev": "workspace:^",
+    "debug": "^4.3.3",
+    "glob": "^13.0.0",
+    "mrm-core": "^7.0.0",
+    "semver-intersect": "^1.4.0",
+    "sync-directory": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/debug": "4.1.13",
+    "mrm": "4.1.22",
+    "mrm-preset-default": "4.1.11"
+  },
+  "clean-package": "../../clean-package.config.cjs",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffect": false
+}
