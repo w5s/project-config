@@ -79,7 +79,6 @@
     "clean-package": "2.2.0",
     "cspell": "10.0.1",
     "eslint": "catalog:",
-    "eslint-plugin-sort-keys": "2.3.5",
     "markdown-magic": "4.10.4",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "1.1.2",
