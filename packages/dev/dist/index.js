@@ -88,8 +88,10 @@ function fixme(_status) {
 */
 function renameRules(rules, map) {
 	return Object.fromEntries(Object.entries(rules).map(([key, value]) => {
-		for (const [from, to] of Object.entries(map)) if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
-		else if (from === "" && !key.includes("/") && to !== "") return [to + key, value];
+		for (const [from, to] of Object.entries(map)) {
+			if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
+			if (from === "" && !key.includes("/") && to !== "") return [to + key, value];
+		}
 		return [key, value];
 	}));
 }
@@ -173,7 +175,7 @@ const registry = {
 * @param languages
 */
 function queryExtensions(languages) {
-	return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort();
+	return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort((a, b) => a.localeCompare(b));
 }
 /**
 * Supported file extensions
