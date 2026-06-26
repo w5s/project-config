@@ -3,6 +3,8 @@
 # Upstream for core.mk used by make self-update
 export MAKEFILE_CORE_URL := https://raw.githubusercontent.com/w5s/makefile-core/main/core.mk
 
+export MAKEFILE_CORE_GIT_COMMIT_FORMAT := gitmoji
+
 # Project name (ex: vesta)
 # export CI_PROJECT_NAME ?= <TODO>
 
