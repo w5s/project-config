@@ -1220,7 +1220,7 @@ async function defineConfig(options = {}) {
 //#region src/meta.ts
 const meta = Object.freeze({
 	name: "@w5s/eslint-config",
-	version: "3.9.0",
+	version: "3.10.0",
 	buildNumber: 1
 });
 //#endregion
