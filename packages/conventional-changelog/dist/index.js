@@ -108,7 +108,7 @@ const CommitConventionalType = (() => {
 		WIP: "wip",
 		Chore: "chore"
 	});
-	const enumValues = Object.freeze(Object.values(enumObject).sort());
+	const enumValues = Object.freeze(Object.values(enumObject).sort((left, right) => left.localeCompare(right)));
 	const enumValuesSet = new Set(enumValues);
 	const typeData = {
 		feat: {
@@ -235,19 +235,19 @@ function displayType(type, options = {}) {
 }
 function createTransform(config) {
 	const displayTypes = new Set(config.displayTypes ?? CommitConventionalType.values());
-	const ignoreType = (type) => type == null || !displayTypes.has(type);
-	const ignoreScope = (scope) => config.displayScopes == null ? false : scope != null && !config.displayScopes.includes(scope);
+	const shouldIgnoreType = (type) => type == null || !displayTypes.has(type);
+	const shouldIgnoreScope = (scope) => config.displayScopes == null ? false : scope != null && !config.displayScopes.includes(scope);
 	const transform = (commit, { repository, host, owner, repoUrl }) => {
-		const discard = commit.notes.length === 0;
+		const isDiscard = commit.notes.length === 0;
 		const issues = /* @__PURE__ */ new Set();
 		const notes = commit.notes.map((note) => ({
 			...note,
 			title: `${config.withEmoji === false ? "" : "💥 "}BREAKING CHANGES`
 		}));
 		const conventionalType = commit.type == null ? void 0 : CommitConventionalType.parse(commit.type) ?? (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : void 0);
-		if (ignoreType(conventionalType) && discard) return false;
+		if (shouldIgnoreType(conventionalType) && isDiscard) return false;
+		if (shouldIgnoreScope(commit.scope)) return false;
 		const type = conventionalType == null ? null : displayType(conventionalType, { withEmoji: config.withEmoji });
-		if (ignoreScope(commit.scope)) return false;
 		const scopeIntermediate = commit.scope === "*" ? "" : commit.scope;
 		const scope = config.scopeDisplayName == null ? null : displayScope(scopeIntermediate, config.scopeDisplayName) ?? null;
 		const hash = typeof commit.hash === "string" ? commit.hash.slice(0, 7) : commit.hash;

@@ -292,8 +292,8 @@ importers:
         specifier: ~18.1.0
         version: 18.1.0(eslint@10.5.0(jiti@2.6.1))(typescript@6.0.3)
       eslint-plugin-unicorn:
-        specifier: ~65.0.0
-        version: 65.0.1(eslint@10.5.0(jiti@2.6.1))
+        specifier: ~68.0.0
+        version: 68.0.0(eslint@10.5.0(jiti@2.6.1))
       eslint-plugin-yml:
         specifier: ~3.5.0
         version: 3.5.0(eslint@10.5.0(jiti@2.6.1))
@@ -2589,11 +2589,11 @@ packages:
   eslint-plugin-sort-keys@2.3.5:
     resolution: {integrity: sha512-2j/XKQ9sNJwK8kIp/U0EvuF6stS6/8aIc53/NskE4C5NRNh4dt3xzbZyOdrVC11cTH6Zo59/pdzA0Kb+2fQGWg==}
 
-  eslint-plugin-unicorn@65.0.1:
-    resolution: {integrity: sha512-daCrQrgxOoOz2uMPWB3Y3vvv/5q+ncwICI8IjoebiwtW87CaY4tAN5EEiRXTYVnf7qi1v1BGBdHOSnZLV0rx6A==}
-    engines: {node: ^20.10.0 || >=21.0.0}
+  eslint-plugin-unicorn@68.0.0:
+    resolution: {integrity: sha512-mHYWvX948Q4H3bGc39bsNMxD/leOuNI+Iws9NVsoSz5VA7EGP86wnz7mZ/SPSvRhefT8L4hd8DHfDuGC+lIoCQ==}
+    engines: {node: '>=22'}
     peerDependencies:
-      eslint: '>=9.38.0'
+      eslint: '>=10.4'
 
   eslint-plugin-yml@3.5.0:
     resolution: {integrity: sha512-u2UkSIp/+th1wYCt0QWeCI6agf24dxX6PbFfCCN18gGQHmXh3Cn9D/U5OiP5RNYTEwjXCLusj1OJRK+zwdvFqQ==}
@@ -7943,10 +7943,11 @@ snapshots:
     dependencies:
       natural-compare: 1.4.0
 
-  eslint-plugin-unicorn@65.0.1(eslint@10.5.0(jiti@2.6.1)):
+  eslint-plugin-unicorn@68.0.0(eslint@10.5.0(jiti@2.6.1)):
     dependencies:
       '@babel/helper-validator-identifier': 7.29.7
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.5.0(jiti@2.6.1))
+      browserslist: 4.28.4
       change-case: 5.4.4
       ci-info: 4.4.0
       core-js-compat: 3.49.0

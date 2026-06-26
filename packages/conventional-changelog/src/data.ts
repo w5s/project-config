@@ -67,7 +67,7 @@ export const CommitConventionalType = (() => {
     Chore: 'chore',
   });
   // eslint-disable-next-line unicorn/no-array-sort
-  const enumValues: readonly CommitConventionalType[] = Object.freeze(Object.values(enumObject).sort());
+  const enumValues: readonly CommitConventionalType[] = Object.freeze(Object.values(enumObject).sort((left, right) => left.localeCompare(right)));
   const enumValuesSet = new Set(enumValues);
 
   const typeData: Record<CommitConventionalType, CommitConventionalTypeData> = {

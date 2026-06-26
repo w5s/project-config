@@ -15,6 +15,7 @@ const Package = {
 };
 const BrowserListDev = {
   getURL(browsersListConfig) {
+    // eslint-disable-next-line unicorn/prefer-uint8array-base64
     const url = `https://browserslist.dev/?q=${btoa(browsersListConfig.join(','))}`;
     return url;
   },

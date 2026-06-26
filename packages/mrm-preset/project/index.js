@@ -205,7 +205,7 @@ function task() {
 
     pkg.script(packageFile, {
       name: project.validate,
-      update: `${turboRun([project.build, project.lint, project.test, project.typecheck, project.spellcheck].join(' '))}`,
+      update: turboRun([project.build, project.lint, project.test, project.typecheck, project.spellcheck].join(' ')),
       state: 'present',
     });
 
@@ -281,7 +281,7 @@ function task() {
     update: (_) => ({
       ..._,
       // eslint-disable-next-line unicorn/no-array-sort
-      globalEnv: [...new Set([...(_.globalEnv ?? []), 'ASDF_*', 'CI', 'DATABASE_URL', 'NODE_ENV'])].sort(),
+      globalEnv: [...new Set([...(_.globalEnv ?? []), 'ASDF_*', 'CI', 'DATABASE_URL', 'NODE_ENV'])].sort((left, right) => left.localeCompare(right)),
       globalDependencies: ['.tool-versions', 'tsconfig.settings.json', '**/.env.*local', '.env'],
       tasks: {
         ..._.tasks,
