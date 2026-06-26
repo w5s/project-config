@@ -4,6 +4,30 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    '@types/node':
+      specifier: 20.19.43
+      version: 20.19.43
+    '@types/parse-gitignore':
+      specifier: 1.0.2
+      version: 1.0.2
+    eslint:
+      specifier: 10.5.0
+      version: 10.5.0
+    tsdown:
+      specifier: 0.22.3
+      version: 0.22.3
+    typescript:
+      specifier: 6.0.3
+      version: 6.0.3
+    vite:
+      specifier: 8.1.0
+      version: 8.1.0
+    vitest:
+      specifier: 4.1.9
+      version: 4.1.9
+
 importers:
 
   .:
@@ -15,7 +39,7 @@ importers:
         specifier: 5.3.0
         version: 5.3.0(@types/node@20.19.43)(conventional-commits-filter@5.0.0)
       '@types/node':
-        specifier: 20.19.43
+        specifier: 'catalog:'
         version: 20.19.43
       '@w5s/commitlint-config':
         specifier: workspace:*
@@ -45,7 +69,7 @@ importers:
         specifier: 10.0.1
         version: 10.0.1
       eslint:
-        specifier: 10.5.0
+        specifier: 'catalog:'
         version: 10.5.0(jiti@2.6.1)
       eslint-plugin-sort-keys:
         specifier: 2.3.5
@@ -63,13 +87,13 @@ importers:
         specifier: 2.9.18
         version: 2.9.18
       typescript:
-        specifier: 6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/browserslist-config:
@@ -84,13 +108,13 @@ importers:
         specifier: 4.18.1
         version: 4.18.1
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/commitlint-config:
@@ -112,13 +136,13 @@ importers:
         specifier: workspace:*
         version: link:../tsdown-config
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/configurator-core:
@@ -127,13 +151,13 @@ importers:
         specifier: workspace:*
         version: link:../tsdown-config
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/conventional-changelog:
@@ -158,13 +182,13 @@ importers:
         specifier: workspace:*
         version: link:../tsdown-config
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/cspell-config:
@@ -186,13 +210,13 @@ importers:
         specifier: workspace:*
         version: link:../tsdown-config
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/dev:
@@ -205,13 +229,13 @@ importers:
         specifier: workspace:*
         version: link:../tsdown-config
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/eslint-config:
@@ -293,7 +317,7 @@ importers:
         specifier: 9.6.1
         version: 9.6.1
       '@types/parse-gitignore':
-        specifier: 1.0.2
+        specifier: 'catalog:'
         version: 1.0.2
       '@types/react':
         specifier: 19.2.17
@@ -302,7 +326,7 @@ importers:
         specifier: workspace:*
         version: link:../tsdown-config
       eslint:
-        specifier: 10.5.0
+        specifier: 'catalog:'
         version: 10.5.0(jiti@2.6.1)
       eslint-find-rules:
         specifier: 5.0.0
@@ -314,13 +338,13 @@ importers:
         specifier: 19.2.7
         version: 19.2.7
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/eslint-config-ignore:
@@ -336,25 +360,25 @@ importers:
         version: 6.0.3
     devDependencies:
       '@types/node':
-        specifier: 20.19.43
+        specifier: 'catalog:'
         version: 20.19.43
       '@types/parse-gitignore':
-        specifier: 1.0.2
+        specifier: 'catalog:'
         version: 1.0.2
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
       eslint:
-        specifier: 10.5.0
+        specifier: 'catalog:'
         version: 10.5.0(jiti@2.6.1)
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/mrm-preset:
@@ -400,31 +424,31 @@ importers:
         specifier: 3.8.4
         version: 3.8.4
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/tsconfig:
     devDependencies:
       typescript:
-        specifier: 6.0.3
+        specifier: 'catalog:'
         version: 6.0.3
 
   packages/tsdown-config:
     devDependencies:
       tsdown:
-        specifier: 0.22.3
+        specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
       vite:
-        specifier: 8.1.0
+        specifier: 'catalog:'
         version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 4.1.9
+        specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
 packages:

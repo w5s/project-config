@@ -53,9 +53,9 @@
     "typecheck:src": "tsc --noEmit"
   },
   "devDependencies": {
-    "tsdown": "0.22.3",
-    "vite": "8.1.0",
-    "vitest": "4.1.9"
+    "tsdown": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
   },
   "peerDependencies": {
     "tsdown": "0.x"

@@ -58,9 +58,9 @@
   "devDependencies": {
     "@commitlint/lint": "21.1.0",
     "@w5s/tsdown-config": "workspace:*",
-    "tsdown": "0.22.3",
-    "vite": "8.1.0",
-    "vitest": "4.1.9"
+    "tsdown": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
   },
   "peerDependencies": {
     "@commitlint/cli": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0"

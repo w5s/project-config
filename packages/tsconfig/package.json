@@ -46,7 +46,7 @@
     "typecheck:src": "tsc --noEmit"
   },
   "devDependencies": {
-    "typescript": "6.0.3"
+    "typescript": "catalog:"
   },
   "peerDependencies": {
     "typescript": ">=5.x"

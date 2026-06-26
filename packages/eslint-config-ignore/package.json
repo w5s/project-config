@@ -56,13 +56,13 @@
     "parse-gitignore": "^2.0.0"
   },
   "devDependencies": {
-    "@types/node": "20.19.43",
-    "@types/parse-gitignore": "1.0.2",
+    "@types/node": "catalog:",
+    "@types/parse-gitignore": "catalog:",
     "@w5s/tsdown-config": "workspace:*",
-    "eslint": "10.5.0",
-    "tsdown": "0.22.3",
-    "vite": "8.1.0",
-    "vitest": "4.1.9"
+    "eslint": "catalog:",
+    "tsdown": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
   },
   "peerDependencies": {
     "eslint": "9.x || 10.x",

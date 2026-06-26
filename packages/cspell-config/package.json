@@ -62,9 +62,9 @@
     "@cspell/cspell-tools": "10.0.1",
     "@cspell/cspell-types": "10.0.1",
     "@w5s/tsdown-config": "workspace:*",
-    "tsdown": "0.22.3",
-    "vite": "8.1.0",
-    "vitest": "4.1.9"
+    "tsdown": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
   },
   "peerDependencies": {
     "cspell": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0"

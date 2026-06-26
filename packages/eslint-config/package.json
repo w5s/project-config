@@ -79,17 +79,17 @@
   },
   "devDependencies": {
     "@types/eslint": "9.6.1",
-    "@types/parse-gitignore": "1.0.2",
+    "@types/parse-gitignore": "catalog:",
     "@types/react": "19.2.17",
     "@typescript-eslint/parser": "8.62.0",
     "@w5s/tsdown-config": "workspace:*",
-    "eslint": "10.5.0",
+    "eslint": "catalog:",
     "eslint-find-rules": "5.0.0",
     "eslint-typegen": "2.3.1",
     "react": "19.2.7",
-    "tsdown": "0.22.3",
-    "vite": "8.1.0",
-    "vitest": "4.1.9"
+    "tsdown": "catalog:",
+    "vite": "catalog:",
+    "vitest": "catalog:"
   },
   "peerDependencies": {
     "eslint": "9.x || 10.x",
