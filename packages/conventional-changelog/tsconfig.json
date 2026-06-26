@@ -1,8 +1,0 @@
-{
-  "$schema": "https://json.schemastore.org/tsconfig.json",
-  "extends": "../../tsconfig.settings.json",
-  "compilerOptions": {
-    "typeRoots": ["./types", "../../node_modules/@types"]
-  },
-  "exclude": ["dist/"]
-}

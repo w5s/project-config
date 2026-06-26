@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-# BEGIN MANAGED BLOCK
-pnpm dlx commitlint --edit "$1"
-# END MANAGED BLOCK
