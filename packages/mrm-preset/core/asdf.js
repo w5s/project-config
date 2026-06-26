@@ -29,8 +29,8 @@ function asdfConfig({ state, update }) {
     // @ts-ignore
     const updated = update ? update(parsed) : parsed;
 
-    const formatted = Object.keys(updated)
-      .map((tool) => `${tool} ${updated[tool]}`)
+    const formatted = Object.entries(updated)
+      .map(([tool, value]) => `${tool} ${value}`)
       .join(eol);
 
     toolVersionsFile.save(formatted);

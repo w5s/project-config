@@ -61,6 +61,7 @@ function forEachWorkspace(fn) {
 
   for (const workspaceMatcher of workspacesMatchers) {
     const directories = glob.sync(workspaceMatcher);
+    // eslint-disable-next-line unicorn/no-for-each
     directories.forEach((directory) => {
       const packageFile = json(path.join(directory, 'package.json'));
       fn({

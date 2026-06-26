@@ -33,6 +33,7 @@ export function displayType(type: string, options: displayType.Options = {}): st
   const { withEmoji = true, language = 'en-US' } = options;
 
   if (CommitConventionalType.hasInstance(type)) {
+    // eslint-disable-next-line unicorn/no-unreadable-object-destructuring
     const { emoji, [language]: title } = CommitConventionalType.getData(type);
     return `${withEmoji ? `${emoji} ` : ''}${title}`;
   }
@@ -48,12 +49,12 @@ export namespace displayType {
 
 export function createTransform(config: TransformConfig): CommitTransformFunction<Commit> {
   const displayTypes = new Set(config.displayTypes ?? CommitConventionalType.values());
-  const ignoreType = (type: string | undefined) => type == null || !displayTypes.has(type as CommitConventionalType);
-  const ignoreScope = (scope: string | undefined | null) =>
+  const shouldIgnoreType = (type: string | undefined) => type == null || !displayTypes.has(type as CommitConventionalType);
+  const shouldIgnoreScope = (scope: string | undefined | null) =>
     config.displayScopes == null ? false : scope != null && !config.displayScopes.includes(scope);
 
   const transform = (commit: Commit, { repository, host, owner, repoUrl }: WriterContext): Commit | false => {
-    const discard = commit.notes.length === 0;
+    const isDiscard = commit.notes.length === 0;
     const issues = new Set<string>();
     const notes = commit.notes.map((note) => ({
       ...note,
@@ -65,7 +66,9 @@ export function createTransform(config: TransformConfig): CommitTransformFunctio
         : (CommitConventionalType.parse(commit.type) ??
           (GitmojiCode.isValid(commit.type) ? GitmojiCode.toConventionalCommitType(commit.type) : undefined));
 
-    if (ignoreType(conventionalType) && discard) return false;
+    if (shouldIgnoreType(conventionalType) && isDiscard) return false;
+
+    if (shouldIgnoreScope(commit.scope)) return false;
 
     const type =
       conventionalType == null
@@ -73,8 +76,6 @@ export function createTransform(config: TransformConfig): CommitTransformFunctio
         : displayType(conventionalType, {
             withEmoji: config.withEmoji,
           });
-
-    if (ignoreScope(commit.scope)) return false;
 
     const scopeIntermediate = commit.scope === '*' ? '' : commit.scope;
     const scope =

@@ -28,7 +28,7 @@ export interface YarnVersionOptions {
 export function yarnVersionSync(options: YarnVersionOptions) {
   const { state, update } = options;
   if (state === 'present') {
-    execSync('yarn', ['set', 'version', `${update == null ? 'berry' : update()}`]);
+    execSync('yarn', ['set', 'version', String(update == null ? 'berry' : update())]);
   } else {
     // TODO: remove yarn.lock
     throw new Error('Not implemented');
@@ -48,7 +48,7 @@ export function yarnVersionSync(options: YarnVersionOptions) {
 export async function yarnVersion(options: YarnVersionOptions): Promise<void> {
   const { state, update } = options;
   if (state === 'present') {
-    await exec('yarn', ['set', 'version', `${update == null ? 'berry' : update()}`]);
+    await exec('yarn', ['set', 'version', String(update == null ? 'berry' : update())]);
   } else {
     // TODO: remove yarn.lock
     throw new Error('Not implemented');

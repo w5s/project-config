@@ -21,21 +21,11 @@ export async function unicorn(options: unicorn.Options = {}) {
       name: 'w5s/unicorn/rules',
       files,
       rules: {
-        ...(recommended ? unicornPlugin.configs.recommended?.rules : {}),
+        ...(recommended && unicornPlugin.configs['unopinionated'].rules),
         // Disabled for safety
-        'unicorn/consistent-destructuring': 'off',
-        'unicorn/consistent-function-scoping': 'off', // Too many false positive
-        'unicorn/filename-case': 'off',
-        'unicorn/import-index': 'off', // Not playing well with ES Module
         'unicorn/new-for-builtins': 'off', // error, @see https://github.com/sindresorhus/eslint-plugin-unicorn/issues/122
-        'unicorn/no-array-callback-reference': 'off', // Many false positive reported
-        'unicorn/no-array-for-each': 'off', // This rule could change browser compatibility
         'unicorn/no-array-method-this-argument': 'off', // Many false positive reported
-        'unicorn/no-array-reduce': 'off', // Array#reduce can be used
         'unicorn/no-console-spaces': 'off',
-        'unicorn/no-fn-reference-in-iterator': 'off', // error ?
-        'unicorn/no-nested-ternary': 'off',
-        'unicorn/no-null': 'off', // https://github.com/sindresorhus/eslint-plugin-unicorn/issues/612
         'unicorn/no-object-as-default-parameter': 'off',
         'unicorn/no-process-exit': 'off',
         'unicorn/no-unreadable-array-destructuring': 'off',
@@ -43,7 +33,6 @@ export async function unicorn(options: unicorn.Options = {}) {
         'unicorn/prefer-add-event-listener': 'off',
         'unicorn/prefer-default-parameters': 'off',
         'unicorn/prefer-set-has': 'off',
-        'unicorn/prevent-abbreviations': 'off', // This rule is so dangerous : it potentially break code while fixing in many cases !!
         'unicorn/throw-new-error': 'off', // Creating errors with call signature is OK
         ...(stylisticEnabled ? {} : {}),
         ...rules,

@@ -36,9 +36,9 @@ await Promise.all(
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {
-    const content = `${await pluginsToRulesDTS({
+    const content = String(await pluginsToRulesDTS({
       [pluginName]: plugin,
-    } as any)}`;
+    } as any));
 
     await fs.writeFile(`src/typegen/${pluginName}.d.ts`, content);
   }),

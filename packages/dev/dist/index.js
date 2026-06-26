@@ -173,7 +173,7 @@ const registry = {
 * @param languages
 */
 function queryExtensions(languages) {
-	return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort();
+	return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort((left, right) => left.localeCompare(right));
 }
 /**
 * Supported file extensions

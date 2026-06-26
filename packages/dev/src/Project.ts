@@ -62,7 +62,7 @@ function queryExtensions(languages: LanguageId[]): readonly Extension[] {
       // eslint-disable-next-line unicorn/prefer-spread
       previousValue.concat(registry[currentValue] ?? ([] as Extension[])), [])
     // eslint-disable-next-line unicorn/no-array-sort
-    .sort();
+    .sort((left, right) => left.localeCompare(right));
 }
 
 /**

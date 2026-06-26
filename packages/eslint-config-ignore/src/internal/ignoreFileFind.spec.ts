@@ -156,6 +156,7 @@ describe(ignoreFileFind, () => {
     const result = await ignoreFileFind(subDir);
 
     // All paths should be relative to subDir
+    // eslint-disable-next-line unicorn/no-for-each
     result.forEach((p) => {
       expect(p).not.toMatch(/^\//);
       expect(nodePath.resolve(subDir, p)).toBeDefined();

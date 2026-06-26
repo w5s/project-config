@@ -29,7 +29,7 @@ function task() {
     pkg.script(packageFile, {
       name: `${project.spellcheck}:root`,
       update: `cspell --no-progress '**' ${
-        hasWorkspaces ? `${workspaceMatchers.map((_) => `--exclude='${_}/**'`).join(' ')}` : ''
+        hasWorkspaces ? (workspaceMatchers.map((_) => `--exclude='${_}/**'`).join(' ')) : ''
       }`,
       state: 'present',
     });
