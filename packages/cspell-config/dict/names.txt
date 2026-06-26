@@ -18,4 +18,6 @@ Stroustrup
 tsdown
 tsup
 typecript
+vite
+vitest
 VueJS
