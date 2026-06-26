@@ -4,7 +4,7 @@ import * as Module from './index.js';
 
 describe('index', () => {
   it('exports', () => {
-    expect(Object.keys(Module).sort()).toEqual(
+    expect(Object.keys(Module).sort((a, b) => a.localeCompare(b))).toEqual(
       [
         // Public API
         'Project',
@@ -12,7 +12,7 @@ describe('index', () => {
         'ESLintConfig',
         'interopDefault',
         'meta',
-      ].sort(),
+      ].sort((a, b) => a.localeCompare(b)),
     );
   });
 });

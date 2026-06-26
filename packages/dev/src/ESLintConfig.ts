@@ -112,7 +112,7 @@ function renameRules(rules: Record<string, any>, map: Record<string, string>): R
     Object.entries(rules).map(([key, value]) => {
       for (const [from, to] of Object.entries(map)) {
         if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
-        else if (from === '' && !key.includes('/') && to !== '') return [to + key, value];
+        if (from === '' && !key.includes('/') && to !== '') return [to + key, value];
       }
       return [key, value];
     }),
