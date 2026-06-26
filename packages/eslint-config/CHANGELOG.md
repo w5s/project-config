@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.11.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@3.7.1...@w5s/eslint-config@3.11.0) (2026-06-26)
+
+### ✨ Features
+
+- Add react configuration ([f3bfb13](https://github.com/w5s/project-config/commit/f3bfb13)) 
+
+### 🐛 Bug Fixes
+
+- Fix file patterns for tsconfig and package JSON sorting rules ([92ca4a5](https://github.com/w5s/project-config/commit/92ca4a5))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 # [3.10.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@3.7.1...@w5s/eslint-config@3.10.0) (2026-06-26)
 
 ### ✨ Features
