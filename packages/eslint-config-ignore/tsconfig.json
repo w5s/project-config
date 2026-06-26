@@ -5,6 +5,6 @@
     "jsx": "react"
   },
   "exclude": [
-    "./_tests"
+    "./test"
   ]
 }

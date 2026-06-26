@@ -13,7 +13,7 @@ test_project ()
 {
   PROJECT_NAME=$1
   echo "Test $PROJECT_NAME"
-  cd "_tests/$PROJECT_NAME";
+  cd "test/$PROJECT_NAME";
 
   shift;
   eslint . "$@";
