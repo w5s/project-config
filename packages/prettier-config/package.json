@@ -58,7 +58,6 @@
     "@w5s/tsdown-config": "workspace:*",
     "prettier": "3.8.4",
     "tsdown": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:"
   },
   "peerDependencies": {

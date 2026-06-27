@@ -61,7 +61,6 @@
     "@w5s/tsdown-config": "workspace:*",
     "eslint": "catalog:",
     "tsdown": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:"
   },
   "peerDependencies": {

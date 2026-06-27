@@ -21,9 +21,6 @@ catalogs:
     typescript:
       specifier: 6.0.3
       version: 6.0.3
-    vite:
-      specifier: 8.1.0
-      version: 8.1.0
     vitest:
       specifier: 4.1.9
       version: 4.1.9
@@ -86,9 +83,6 @@ importers:
       typescript:
         specifier: 'catalog:'
         version: 6.0.3
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
@@ -107,9 +101,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
@@ -135,9 +126,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
@@ -150,9 +138,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
@@ -181,9 +166,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
@@ -209,9 +191,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
@@ -228,9 +207,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
@@ -337,9 +313,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
@@ -371,9 +344,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
@@ -423,9 +393,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
@@ -441,9 +408,6 @@ importers:
       tsdown:
         specifier: 'catalog:'
         version: 0.22.3(typescript@6.0.3)
-      vite:
-        specifier: 'catalog:'
-        version: 8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
         specifier: 'catalog:'
         version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))

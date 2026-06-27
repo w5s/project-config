@@ -59,7 +59,6 @@
     "@commitlint/lint": "21.1.0",
     "@w5s/tsdown-config": "workspace:*",
     "tsdown": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:"
   },
   "peerDependencies": {

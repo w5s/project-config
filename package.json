@@ -84,7 +84,6 @@
     "markdown-magic-subpackage-list": "1.1.2",
     "turbo": "2.10.0",
     "typescript": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:"
   },
   "packageManager": "pnpm@11.9.0",

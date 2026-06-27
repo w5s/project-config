@@ -58,7 +58,6 @@
     "@types/conventional-commits-parser": "5.0.2",
     "@w5s/tsdown-config": "workspace:*",
     "tsdown": "catalog:",
-    "vite": "catalog:",
     "vitest": "catalog:"
   },
   "clean-package": "../../clean-package.config.cjs",
