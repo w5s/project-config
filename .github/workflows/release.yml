@@ -41,18 +41,18 @@ jobs:
           fetch-depth: 0 # full history for Lerna conventional-commits versioning
           ssh-key: ${{ secrets.AUTORELEASE_KEY }}
       - name: ⚙️ Setup
-        uses: w5s/actions/setup@49f59f9ea038797769eea1cf3dab3c22a5129371 # main
+        uses: w5s/actions/setup@82a13784683dceb6f2f0e7720a4ee361a7c7e6d4 # main
       - name: 🔨 Build
-        uses: w5s/actions/task@49f59f9ea038797769eea1cf3dab3c22a5129371 # main
+        uses: w5s/actions/task@82a13784683dceb6f2f0e7720a4ee361a7c7e6d4 # main
         with:
           task: build
       - name: 🔍 Validate
-        uses: w5s/actions/task@49f59f9ea038797769eea1cf3dab3c22a5129371 # main
+        uses: w5s/actions/task@82a13784683dceb6f2f0e7720a4ee361a7c7e6d4 # main
         with:
           task: validate
 
       - name: 🚀 Publish
-        uses: w5s/actions/task@49f59f9ea038797769eea1cf3dab3c22a5129371 # main
+        uses: w5s/actions/task@82a13784683dceb6f2f0e7720a4ee361a7c7e6d4 # main
         with:
           task: release
         env:
