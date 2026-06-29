@@ -9,6 +9,7 @@ datasources
 editorconfig
 esnext
 frontends
+frontmatter
 githooks
 gitmoji
 gitmojis
