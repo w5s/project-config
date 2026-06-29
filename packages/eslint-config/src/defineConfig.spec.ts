@@ -20,13 +20,13 @@ const disabledPlugins = {
 
 describe(defineConfig, () => {
   it('returns only ignore config in full-disable mode', async () => {
-    const config = await defineConfig(disabledPlugins);
+    const config = await defineConfig({ plugins: disabledPlugins });
     expect(config).toHaveLength(1);
     expect(config[0]).toMatchObject({ name: 'w5s/eslint-ignore' });
   });
 
   it('keeps defineConfig promise contract', async () => {
-    const result = defineConfig(disabledPlugins);
+    const result = defineConfig({ plugins: disabledPlugins });
     expect(result).toBeInstanceOf(Promise);
     await expect(result).resolves.toEqual(expect.any(Array));
   });

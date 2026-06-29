@@ -1,5 +1,5 @@
 import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
-import { Linter } from "eslint";
+import eslint, { Linter } from "eslint";
 import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 
 //#region src/type/Config.d.ts
@@ -9993,20 +9993,29 @@ declare namespace yml {
 //#endregion
 //#region src/defineConfig.d.ts
 interface DefineConfigOptions extends ignores.Options {
-  e18e?: boolean | e18e.Options;
-  es?: boolean | es.Options;
-  import?: boolean | imports.Options;
-  markdown?: boolean | markdown.Options;
-  jsdoc?: boolean | jsdoc.Options;
-  jsonc?: boolean | jsonc.Options;
-  next?: boolean | next.Options;
-  node?: boolean | node.Options;
-  react?: boolean | react.Options;
-  stylistic?: boolean | stylistic.Options;
-  test?: boolean | test.Options;
-  ts?: boolean | ts.Options;
-  unicorn?: boolean | unicorn.Options;
-  yml?: boolean | yml.Options;
+  /**
+   * Plugins configuration
+   */
+  plugins?: {
+    e18e?: boolean | e18e.Options;
+    es?: boolean | es.Options;
+    import?: boolean | imports.Options;
+    markdown?: boolean | markdown.Options;
+    jsdoc?: boolean | jsdoc.Options;
+    jsonc?: boolean | jsonc.Options;
+    next?: boolean | next.Options;
+    node?: boolean | node.Options;
+    react?: boolean | react.Options;
+    stylistic?: boolean | stylistic.Options;
+    test?: boolean | test.Options;
+    ts?: boolean | ts.Options;
+    unicorn?: boolean | unicorn.Options;
+    yml?: boolean | yml.Options;
+  };
+  /**
+   * Override rules
+   */
+  rules?: eslint.Linter.RulesRecord;
 }
 declare function defineConfig(options?: DefineConfigOptions): Promise<import("eslint").Linter.Config<import("eslint").Linter.RulesRecord>[]>;
 //#endregion
