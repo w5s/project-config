@@ -20,8 +20,8 @@ test_project ()
   cd "$ROOT";
 }
 
-test_project es-project;
-test_project ts-project;
-test_project json;
-test_project yaml;
-test_project markdown;
+for dir in test/*/; do
+  if [ -d "$dir" ]; then
+    test_project "$(basename "$dir")";
+  fi
+done
