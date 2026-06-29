@@ -48,6 +48,7 @@
     "spellcheck": "cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
     "test:script": "scripts/test",
+    "test:src": "vitest run",
     "test_:rule-coverage": "eslint-find-rules --unused",
     "typecheck": "pnpm run \"/^typecheck:.*/\"",
     "typecheck:src": "tsc --noEmit"
