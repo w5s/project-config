@@ -17,7 +17,7 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },
     "test": {
-      "dependsOn": ["^build", "//#test:root"]
+      "dependsOn": ["build", "^build", "//#test:root"]
     },
     "//#test:root": {
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
