@@ -2573,6 +2573,14 @@ declare namespace markdown {
      * Default to 'markdown/gfm' (Github Flavored Markdown)
      */
     language?: 'markdown/gfm' | 'markdown/commonmark';
+    /**
+     * Default to 'yaml'
+     * If you want to use TOML frontmatter, set this to 'toml'
+     * If you want to disable frontmatter parsing, set this to undefined
+     */
+    languageOptions?: {
+      frontmatter?: 'yaml' | 'toml';
+    };
   }
 }
 //#endregion

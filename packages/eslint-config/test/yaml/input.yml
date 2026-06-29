@@ -1,0 +1,7 @@
+name: eslint-config
+version: 1
+metadata:
+  owner: w5s
+  tags:
+    - lint
+    - config

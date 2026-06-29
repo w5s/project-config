@@ -23,3 +23,5 @@ test_project ()
 test_project es-project;
 test_project ts-project;
 test_project json;
+test_project yaml;
+test_project markdown;

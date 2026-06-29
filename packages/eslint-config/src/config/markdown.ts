@@ -9,6 +9,7 @@ export async function markdown(options: markdown.Options = {}) {
   const [markdownPlugin] = await Promise.all([interopDefault(import('@eslint/markdown'))] as const);
   const {
     language = 'markdown/gfm',
+    languageOptions,
     files = defaultFiles,
     recommended = true,
     rules = {},
@@ -26,6 +27,10 @@ export async function markdown(options: markdown.Options = {}) {
     {
       files,
       language: language,
+      languageOptions: {
+        frontmatter: 'yaml',
+        ...languageOptions,
+      },
       name: 'w5s/markdown/rules',
       // eslint-disable-next-line ts/no-non-null-assertion
       processor: mergeProcessors([markdownPlugin.processors!.markdown, processorPassThrough]),
@@ -46,5 +51,14 @@ export namespace markdown {
      * Default to 'markdown/gfm' (Github Flavored Markdown)
      */
     language?: 'markdown/gfm' | 'markdown/commonmark';
+
+    /**
+     * Default to 'yaml'
+     * If you want to use TOML frontmatter, set this to 'toml'
+     * If you want to disable frontmatter parsing, set this to undefined
+     */
+    languageOptions?: {
+      frontmatter?: 'yaml' | 'toml';
+    };
   }
 }

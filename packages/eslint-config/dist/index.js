@@ -841,7 +841,7 @@ imports["stylistic"] = { "import/newline-after-import": ["error", { count: 1 }] 
 const defaultFiles$6 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
 async function markdown(options = {}) {
 	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
-	const { language = "markdown/gfm", files = defaultFiles$6, recommended = true, rules = {}, stylistic = true } = options;
+	const { language = "markdown/gfm", languageOptions, files = defaultFiles$6, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
 		name: "w5s/markdown/setup",
@@ -849,6 +849,10 @@ async function markdown(options = {}) {
 	}, {
 		files,
 		language,
+		languageOptions: {
+			frontmatter: "yaml",
+			...languageOptions
+		},
 		name: "w5s/markdown/rules",
 		processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
 		rules: {
