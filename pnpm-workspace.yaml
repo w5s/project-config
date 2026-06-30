@@ -4,7 +4,7 @@ catalogs:
   default:
     '@types/node': 20.19.43
     '@types/parse-gitignore': 1.0.2
-    eslint: 10.5.0
+    eslint: 10.6.0
     tsdown: 0.22.3
     typescript: 6.0.3
     vite: 8.1.0
