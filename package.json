@@ -79,7 +79,7 @@
     "clean-package": "2.2.0",
     "cspell": "10.0.1",
     "eslint": "catalog:",
-    "markdown-magic": "4.10.5",
+    "markdown-magic": "4.11.0",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "1.1.2",
     "turbo": "2.10.0",
