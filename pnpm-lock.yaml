@@ -69,14 +69,14 @@ importers:
         specifier: 'catalog:'
         version: 10.6.0(jiti@2.6.1)
       markdown-magic:
-        specifier: 4.10.5
-        version: 4.10.5
+        specifier: 4.11.0
+        version: 4.11.0
       markdown-magic-package-json:
         specifier: 2.0.2
         version: 2.0.2
       markdown-magic-subpackage-list:
         specifier: 1.1.2
-        version: 1.1.2(markdown-magic@4.10.5)
+        version: 1.1.2(markdown-magic@4.11.0)
       turbo:
         specifier: 2.10.1
         version: 2.10.1
@@ -3661,8 +3661,8 @@ packages:
     peerDependencies:
       markdown-magic: '>=0.1 <=2.x'
 
-  markdown-magic@4.10.5:
-    resolution: {integrity: sha512-aPYWSU1BMG33QgMUIpWWePWs3y4+AOXeffZI65ot3MyvzPYoxjbdj9nfZOJf9Aqtw0eMU0tniyfuYgN9MlkgQA==}
+  markdown-magic@4.11.0:
+    resolution: {integrity: sha512-GTdLzcvFZ/07V0cA7G6/7c9cPLX7M4WBJD8aIhIdfPHnv6l36I5fSc+Fx6O9wtnJG0P9+jSeA3W8C14zAyWpDA==}
     hasBin: true
 
   markdown-table@3.0.4:
@@ -9047,11 +9047,11 @@ snapshots:
     dependencies:
       findup: 0.1.5
 
-  markdown-magic-subpackage-list@1.1.2(markdown-magic@4.10.5):
+  markdown-magic-subpackage-list@1.1.2(markdown-magic@4.11.0):
     dependencies:
-      markdown-magic: 4.10.5
+      markdown-magic: 4.11.0
 
-  markdown-magic@4.10.5:
+  markdown-magic@4.11.0:
     dependencies:
       '@davidwells/dx-args': 0.2.2
       '@davidwells/md-utils': 0.0.53
