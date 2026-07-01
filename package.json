@@ -82,7 +82,7 @@
     "markdown-magic": "4.10.5",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "1.1.2",
-    "turbo": "2.10.0",
+    "turbo": "2.10.1",
     "typescript": "catalog:",
     "vitest": "catalog:"
   },
