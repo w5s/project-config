@@ -22,21 +22,21 @@
   "main": "config.json",
   "scripts": {
     "build": "pnpm run \"/^build:.*/\"",
-    "build:tsc": "tsc",
+    "build:tsc": "pnpm exec tsc",
     "clean": "pnpm run \"/^clean:.*/\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
     "format": "pnpm run \"/^format:.*/\"",
-    "format:src": "eslint . --fix",
+    "format:src": "pnpm exec eslint . --fix",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:src": "eslint .",
+    "lint:src": "pnpm exec eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
-    "spellcheck": "cspell --no-progress '**'",
+    "spellcheck": "pnpm exec cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
     "test:script": "mkdir -p .temp; cd .temp; mrm bootstrap --dir ..; mrm configure --dir ..",
     "typecheck": "pnpm run \"/^typecheck:.*/\"",
-    "typecheck:src": "tsc --noEmit"
+    "typecheck:src": "pnpm exec tsc --noEmit"
   },
   "dependencies": {
     "@w5s/configurator-core": "workspace:^",

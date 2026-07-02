@@ -34,22 +34,22 @@
   ],
   "scripts": {
     "build": "pnpm run \"/^build:.*/\"",
-    "build:tsc": "tsdown",
+    "build:tsc": "pnpm exec tsdown",
     "clean": "pnpm run \"/^clean:.*/\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
     "format": "pnpm run \"/^format:.*/\"",
-    "format:src": "eslint . --fix",
+    "format:src": "pnpm exec eslint . --fix",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:src": "eslint .",
+    "lint:src": "pnpm exec eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
     "prepublishOnly": "pnpm run clean;pnpm run build",
-    "spellcheck": "cspell --no-progress '**'",
+    "spellcheck": "pnpm exec cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
-    "test:src": "vitest run",
+    "test:src": "pnpm exec vitest run",
     "typecheck": "pnpm run \"/^typecheck:.*/\"",
-    "typecheck:src": "tsc --noEmit"
+    "typecheck:src": "pnpm exec tsc --noEmit"
   },
   "dependencies": {
     "@commitlint/types": "^21.0.0",
@@ -57,9 +57,7 @@
   },
   "devDependencies": {
     "@commitlint/lint": "21.1.0",
-    "@w5s/tsdown-config": "workspace:*",
-    "tsdown": "catalog:",
-    "vitest": "catalog:"
+    "@w5s/tsdown-config": "workspace:*"
   },
   "peerDependencies": {
     "@commitlint/cli": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0"

@@ -34,19 +34,16 @@
     "clean:empty": ":",
     "docs": "node ../../markdown.mjs",
     "format": "pnpm run \"/^format:.*/\"",
-    "format:src": "eslint . --fix",
+    "format:src": "pnpm exec eslint . --fix",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:src": "eslint .",
+    "lint:src": "pnpm exec eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
-    "spellcheck": "cspell --no-progress '**'",
+    "spellcheck": "pnpm exec cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
-    "test:script": "tsc -p _tests/tsconfig.json --noEmit --skipLibCheck",
+    "test:script": "pnpm exec tsc -p _tests/tsconfig.json --noEmit --skipLibCheck",
     "typecheck": "pnpm run \"/^typecheck:.*/\"",
-    "typecheck:src": "tsc --noEmit"
-  },
-  "devDependencies": {
-    "typescript": "catalog:"
+    "typecheck:src": "pnpm exec tsc --noEmit"
   },
   "peerDependencies": {
     "typescript": ">=5.x"

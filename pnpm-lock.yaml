@@ -4,27 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-catalogs:
-  default:
-    '@types/node':
-      specifier: 20.19.43
-      version: 20.19.43
-    '@types/parse-gitignore':
-      specifier: 1.0.2
-      version: 1.0.2
-    eslint:
-      specifier: 10.6.0
-      version: 10.6.0
-    tsdown:
-      specifier: 0.22.3
-      version: 0.22.3
-    typescript:
-      specifier: 6.0.3
-      version: 6.0.3
-    vitest:
-      specifier: 4.1.9
-      version: 4.1.9
-
 importers:
 
   .:
@@ -36,8 +15,11 @@ importers:
         specifier: 5.3.0
         version: 5.3.0(@types/node@20.19.43)(conventional-commits-filter@5.0.0)
       '@types/node':
-        specifier: 'catalog:'
+        specifier: 20.19.43
         version: 20.19.43
+      '@types/parse-gitignore':
+        specifier: 1.0.2
+        version: 1.0.2
       '@w5s/commitlint-config':
         specifier: workspace:*
         version: link:packages/commitlint-config
@@ -66,7 +48,7 @@ importers:
         specifier: 10.0.1
         version: 10.0.1
       eslint:
-        specifier: 'catalog:'
+        specifier: 10.6.0
         version: 10.6.0(jiti@2.6.1)
       markdown-magic:
         specifier: 4.11.0
@@ -77,14 +59,20 @@ importers:
       markdown-magic-subpackage-list:
         specifier: 1.1.2
         version: 1.1.2(markdown-magic@4.11.0)
+      tsdown:
+        specifier: 0.22.3
+        version: 0.22.3(typescript@6.0.3)
       turbo:
         specifier: 2.10.1
         version: 2.10.1
       typescript:
-        specifier: 'catalog:'
+        specifier: 6.0.3
         version: 6.0.3
+      vite:
+        specifier: 8.1.0
+        version: 8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)
       vitest:
-        specifier: 'catalog:'
+        specifier: 4.1.9
         version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/browserslist-config:
@@ -98,12 +86,6 @@ importers:
       lodash-es:
         specifier: 4.18.1
         version: 4.18.1
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/commitlint-config:
     dependencies:
@@ -123,24 +105,12 @@ importers:
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/configurator-core:
     devDependencies:
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/conventional-changelog:
     dependencies:
@@ -163,12 +133,6 @@ importers:
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/cspell-config:
     dependencies:
@@ -188,12 +152,6 @@ importers:
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/dev:
     dependencies:
@@ -204,12 +162,6 @@ importers:
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/eslint-config:
     dependencies:
@@ -249,6 +201,9 @@ importers:
       '@w5s/prettier-config':
         specifier: workspace:^
         version: link:../prettier-config
+      eslint:
+        specifier: 9.x || 10.x
+        version: 10.6.0(jiti@2.6.1)
       eslint-merge-processors:
         specifier: ^2.0.0
         version: 2.0.0(eslint@10.6.0(jiti@2.6.1))
@@ -289,18 +244,12 @@ importers:
       '@types/eslint':
         specifier: 9.6.1
         version: 9.6.1
-      '@types/parse-gitignore':
-        specifier: 'catalog:'
-        version: 1.0.2
       '@types/react':
         specifier: 19.2.17
         version: 19.2.17
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
-      eslint:
-        specifier: 'catalog:'
-        version: 10.6.0(jiti@2.6.1)
       eslint-find-rules:
         specifier: 5.0.0
         version: 5.0.0(eslint@10.6.0(jiti@2.6.1))
@@ -310,15 +259,12 @@ importers:
       react:
         specifier: 19.2.7
         version: 19.2.7
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/eslint-config-ignore:
     dependencies:
+      eslint:
+        specifier: 9.x || 10.x
+        version: 10.6.0(jiti@2.6.1)
       find-up:
         specifier: ^8.0.0
         version: 8.0.0
@@ -329,24 +275,9 @@ importers:
         specifier: 4.x || 5.x || 6.x
         version: 6.0.3
     devDependencies:
-      '@types/node':
-        specifier: 'catalog:'
-        version: 20.19.43
-      '@types/parse-gitignore':
-        specifier: 'catalog:'
-        version: 1.0.2
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
-      eslint:
-        specifier: 'catalog:'
-        version: 10.6.0(jiti@2.6.1)
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/mrm-preset:
     dependencies:
@@ -390,27 +321,18 @@ importers:
       prettier:
         specifier: 3.9.4
         version: 3.9.4
-      tsdown:
-        specifier: 'catalog:'
-        version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
 
   packages/tsconfig:
-    devDependencies:
+    dependencies:
       typescript:
-        specifier: 'catalog:'
+        specifier: '>=5.x'
         version: 6.0.3
 
   packages/tsdown-config:
-    devDependencies:
+    dependencies:
       tsdown:
-        specifier: 'catalog:'
+        specifier: 0.x
         version: 0.22.3(typescript@6.0.3)
-      vitest:
-        specifier: 'catalog:'
-        version: 4.1.9(@types/node@26.0.1)(vite@8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0))
 
 packages:
 
@@ -6508,7 +6430,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.2.0
       '@types/keyv': 3.1.4
-      '@types/node': 26.0.1
+      '@types/node': 20.19.43
       '@types/responselike': 1.0.3
 
   '@types/chai@5.2.3':
@@ -6519,11 +6441,11 @@ snapshots:
   '@types/conventional-changelog-writer@4.0.11':
     dependencies:
       '@types/conventional-commits-parser': 5.0.2
-      '@types/node': 26.0.1
+      '@types/node': 20.19.43
 
   '@types/conventional-commits-parser@5.0.2':
     dependencies:
-      '@types/node': 26.0.1
+      '@types/node': 20.19.43
 
   '@types/debug@4.1.13':
     dependencies:
@@ -6556,7 +6478,7 @@ snapshots:
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 26.0.1
+      '@types/node': 20.19.43
 
   '@types/mdast@4.0.4':
     dependencies:
@@ -6571,12 +6493,13 @@ snapshots:
   '@types/node@26.0.1':
     dependencies:
       undici-types: 8.3.0
+    optional: true
 
   '@types/normalize-package-data@2.4.4': {}
 
   '@types/parse-gitignore@1.0.2':
     dependencies:
-      '@types/node': 26.0.1
+      '@types/node': 20.19.43
 
   '@types/parse-path@7.1.0':
     dependencies:
@@ -6588,7 +6511,7 @@ snapshots:
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 26.0.1
+      '@types/node': 20.19.43
 
   '@types/unist@3.0.3': {}
 
@@ -6719,6 +6642,7 @@ snapshots:
       magic-string: 0.30.21
     optionalDependencies:
       vite: 8.1.0(@types/node@26.0.1)(jiti@2.6.1)(yaml@2.9.0)
+    optional: true
 
   '@vitest/pretty-format@4.1.9':
     dependencies:
@@ -10738,7 +10662,8 @@ snapshots:
 
   undici-types@6.21.0: {}
 
-  undici-types@8.3.0: {}
+  undici-types@8.3.0:
+    optional: true
 
   undici@6.27.0: {}
 
@@ -10881,6 +10806,7 @@ snapshots:
       fsevents: 2.3.3
       jiti: 2.6.1
       yaml: 2.9.0
+    optional: true
 
   vitest@4.1.9(@types/node@20.19.43)(vite@8.1.0(@types/node@20.19.43)(jiti@2.6.1)(yaml@2.9.0)):
     dependencies:
@@ -10935,6 +10861,7 @@ snapshots:
       '@types/node': 26.0.1
     transitivePeerDependencies:
       - msw
+    optional: true
 
   vscode-languageserver-textdocument@1.0.12: {}
 

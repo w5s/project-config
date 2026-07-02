@@ -37,22 +37,22 @@
   "scripts": {
     "__build:dict": "cd dict;cspell-tools-cli compile filetypes.txt",
     "build": "pnpm run \"/^build:.*/\"",
-    "build:tsc": "tsdown",
+    "build:tsc": "pnpm exec tsdown",
     "clean": "pnpm run \"/^clean:.*/\"",
     "clean:tsc": "rm -rf dist",
     "docs": "node ../../markdown.mjs",
     "format": "pnpm run \"/^format:.*/\"",
-    "format:src": "eslint . --fix",
+    "format:src": "pnpm exec eslint . --fix",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:src": "eslint .",
+    "lint:src": "pnpm exec eslint .",
     "postpack": "clean-package restore",
     "prepack": "clean-package",
     "prepublishOnly": "pnpm run clean;pnpm run build",
-    "spellcheck": "cspell --no-progress '**'",
+    "spellcheck": "pnpm exec cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
-    "test:src": "vitest run",
+    "test:src": "pnpm exec vitest run",
     "typecheck": "pnpm run \"/^typecheck:.*/\"",
-    "typecheck:src": "tsc --noEmit"
+    "typecheck:src": "pnpm exec tsc --noEmit"
   },
   "dependencies": {
     "@cspell/cspell-bundled-dicts": "^10.0.0"
@@ -61,9 +61,7 @@
     "@cspell/cspell-bundled-dicts": "10.0.1",
     "@cspell/cspell-tools": "10.0.1",
     "@cspell/cspell-types": "10.0.1",
-    "@w5s/tsdown-config": "workspace:*",
-    "tsdown": "catalog:",
-    "vitest": "catalog:"
+    "@w5s/tsdown-config": "workspace:*"
   },
   "peerDependencies": {
     "cspell": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0"

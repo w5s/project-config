@@ -68,7 +68,8 @@
   "devDependencies": {
     "@lerna-lite/cli": "5.3.0",
     "@lerna-lite/publish": "5.3.0",
-    "@types/node": "catalog:",
+    "@types/node": "20.19.43",
+    "@types/parse-gitignore": "1.0.2",
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/conventional-changelog": "workspace:*",
     "@w5s/cspell-config": "workspace:*",
@@ -78,13 +79,15 @@
     "@w5s/tsconfig": "workspace:*",
     "clean-package": "2.2.0",
     "cspell": "10.0.1",
-    "eslint": "catalog:",
+    "eslint": "10.6.0",
     "markdown-magic": "4.11.0",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "1.1.2",
+    "tsdown": "0.22.3",
     "turbo": "2.10.1",
-    "typescript": "catalog:",
-    "vitest": "catalog:"
+    "typescript": "6.0.3",
+    "vite": "8.1.0",
+    "vitest": "4.1.9"
   },
   "packageManager": "pnpm@11.9.0",
   "engines": {
@@ -93,8 +96,8 @@
     "pnpm": ">=10.0.0"
   },
   "overrides": {
-    "vite": "catalog:",
-    "vitest": "catalog:"
+    "vite": "8.1.0",
+    "vitest": "4.1.9"
   },
   "sideEffect": false
 }
