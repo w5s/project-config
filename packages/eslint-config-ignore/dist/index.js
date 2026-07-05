@@ -108,7 +108,8 @@ async function ignoreFileFind(rootDir, options) {
 		const normCandidate = normalize(candidateRel);
 		let lastMatch = null;
 		for (const p of patterns) {
-			const patNorm = normalize(p.startsWith("!") ? p.slice(1) : p);
+			const pat = p.startsWith("!") ? p.slice(1) : p;
+			const patNorm = normalize(pat);
 			if (!patNorm) continue;
 			if (normCandidate === patNorm || normCandidate.startsWith(patNorm + "/")) lastMatch = p;
 		}
