@@ -62,7 +62,7 @@
     "@stylistic/eslint-plugin": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
-    "@vitest/eslint-plugin": "^1.0.0",
+    "@vitest/eslint-plugin": "~1.6.20",
     "@w5s/dev": "workspace:^",
     "@w5s/eslint-config-ignore": "workspace:^",
     "@w5s/prettier-config": "workspace:^",
