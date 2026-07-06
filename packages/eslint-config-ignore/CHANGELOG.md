@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.8](https://github.com/w5s/project-config/compare/@w5s/eslint-config-ignore@1.2.1...@w5s/eslint-config-ignore@1.2.8) (2026-07-06)
+
+**Note:** Version bump only for package @w5s/eslint-config-ignore
+
 ## [1.2.7](https://github.com/w5s/project-config/compare/@w5s/eslint-config-ignore@1.2.1...@w5s/eslint-config-ignore@1.2.7) (2026-06-26)
 
 **Note:** Version bump only for package @w5s/eslint-config-ignore

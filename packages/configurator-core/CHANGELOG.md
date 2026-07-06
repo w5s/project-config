@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.9](https://github.com/w5s/project-config/compare/@w5s/configurator-core@1.0.0-alpha.4...@w5s/configurator-core@1.0.0-alpha.9) (2026-07-06)
+
+### ✨ Features
+
+- Add YAML support ([9f773a5](https://github.com/w5s/project-config/commit/9f773a5))
+
+**Note:** Version bump only for package @w5s/configurator-core
+
 # [1.0.0-alpha.8](https://github.com/w5s/project-config/compare/@w5s/configurator-core@1.0.0-alpha.4...@w5s/configurator-core@1.0.0-alpha.8) (2026-06-26)
 
 **Note:** Version bump only for package @w5s/configurator-core
