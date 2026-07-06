@@ -10,10 +10,13 @@ export async function imports(options: imports.Options = {}) {
   const [importPlugin] = await Promise.all([interopDefault(import('eslint-plugin-import'))] as const);
   return [
     {
-      name: 'w5s/import/rules',
+      name: 'w5s/import/setup',
       plugins: {
         import: importPlugin,
       },
+    },
+    {
+      name: 'w5s/import/rules',
       rules: {
         ...(recommended ? imports['recommended'] : {}),
         ...(stylisticEnabled
@@ -22,7 +25,7 @@ export async function imports(options: imports.Options = {}) {
         ...rules,
       },
     },
-  ] as [Config] satisfies Array<Config>;
+  ] as [Config, Config] satisfies Array<Config>;
 }
 
 /**

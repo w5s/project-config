@@ -1490,7 +1490,7 @@ type ImportPreferDefaultExport = [] | [{
 }];
 //#endregion
 //#region src/config/imports.d.ts
-declare function imports(options?: imports.Options): Promise<[Config]>;
+declare function imports(options?: imports.Options): Promise<[Config, Config]>;
 declare namespace imports {
   var recommended: {
     'import/first': string;

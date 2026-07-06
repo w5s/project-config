@@ -548,8 +548,10 @@ async function imports(options = {}) {
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const [importPlugin] = await Promise.all([interopDefault(import("eslint-plugin-import"))]);
 	return [{
+		name: "w5s/import/setup",
+		plugins: { import: importPlugin }
+	}, {
 		name: "w5s/import/rules",
-		plugins: { import: importPlugin },
 		rules: {
 			...recommended ? imports["recommended"] : {},
 			...stylisticEnabled ? imports["stylistic"] : {},
