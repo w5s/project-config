@@ -1,5 +1,6 @@
-const { file, ini } = require('mrm-core');
 const { blockSync } = require('@w5s/configurator-core');
+const { file, ini } = require('mrm-core');
+
 const templateMap = require('./git.ignore.js');
 
 /**
@@ -64,8 +65,8 @@ function gitIgnore(flags) {
 
   blockSync({
     block: templateContent,
-    path: '.gitignore',
     insertPosition: ['before', 'BeginningOfFile'],
+    path: '.gitignore',
   });
 }
 exports.gitIgnore = gitIgnore;

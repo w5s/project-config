@@ -1,19 +1,20 @@
 import { readFileSync } from 'node:fs';
 import nodePath from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { createTransform, type CommitTransformFunction } from './transform.js';
-import { CommitConventionalType, type Commit } from './data.js';
+
+import { type Commit, CommitConventionalType } from './data.js';
+import { type CommitTransformFunction, createTransform } from './transform.js';
 
 export interface WriterOptions {
-  transform?: CommitTransformFunction<Commit> | undefined;
-  groupBy?: string | false | undefined;
-  commitGroupsSort?: string | readonly string[] | false | undefined;
-  commitsSort?: string | readonly string[] | false | undefined;
-  noteGroupsSort?: string | readonly string[] | false | undefined;
-  mainTemplate?: string | undefined;
-  headerPartial?: string | undefined;
+  commitGroupsSort?: false | readonly string[] | string | undefined;
   commitPartial?: string | undefined;
+  commitsSort?: false | readonly string[] | string | undefined;
   footerPartial?: string | undefined;
+  groupBy?: false | string | undefined;
+  headerPartial?: string | undefined;
+  mainTemplate?: string | undefined;
+  noteGroupsSort?: false | readonly string[] | string | undefined;
+  transform?: CommitTransformFunction<Commit> | undefined;
 }
 
 const _dirname = typeof __dirname === 'undefined' ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
@@ -29,18 +30,18 @@ export const createWriterOpts = async (): Promise<WriterOptions> => {
   const author = readFileSync(`${basePath}/author.hbs`, 'utf8');
 
   return {
+    commitGroupsSort: 'title',
+    // eslint-disable-next-line unicorn/prefer-string-replace-all
+    commitPartial: commitPartial.replace(/{{gitUserInfo}}/g, author),
+    // @ts-ignore FIXME: unknown error
+    commitsSort: ['scope', 'subject'],
+    footerPartial,
+    groupBy: 'type',
+    headerPartial,
+    mainTemplate,
+    noteGroupsSort: 'title',
     transform: createTransform({
       displayTypes: defaultDisplayTypes,
     }),
-    groupBy: 'type',
-    commitGroupsSort: 'title',
-    // @ts-ignore FIXME: unknown error
-    commitsSort: ['scope', 'subject'],
-    noteGroupsSort: 'title',
-    mainTemplate,
-    headerPartial,
-    // eslint-disable-next-line unicorn/prefer-string-replace-all
-    commitPartial: commitPartial.replace(/{{gitUserInfo}}/g, author),
-    footerPartial,
   };
 };

@@ -1,6 +1,5 @@
-const path = require('node:path');
 const { yaml } = require('mrm-core');
-
+const path = require('node:path');
 /** @type {typeof import('sync-directory')['default']} */
 const syncDirectory = /** @type {any} */ (require('sync-directory'));
 

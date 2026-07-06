@@ -9,34 +9,13 @@ export interface YarnConfigOptions {
   /**
    * Option target state
    */
-  readonly state: 'present' | 'absent';
+  readonly state: 'absent' | 'present';
 
   /**
    * File content mapping function
    *
    */
   readonly update?: ((content: string) => string | undefined) | undefined;
-}
-
-/**
- * Synchronous version of {@link yarnConfig}
- *
- * @param options
- * @example
- * yarnConfigSync({
- *   key: 'nodeLinker',
- *   state: 'present',
- *   update: (content) => content.replace('node-modules', 'hoisted'),
- * })
- */
-export function yarnConfigSync(options: YarnConfigOptions) {
-  const { key, state, update } = options;
-  if (state === 'present') {
-    const { stdout } = execSync('yarn', ['config', 'get', String(key)]);
-    execSync('yarn', ['config', 'set', String(key), String(update == null ? '' : update(stdout))]);
-  } else {
-    execSync('yarn', ['config', 'unset']);
-  }
 }
 
 /**
@@ -57,5 +36,26 @@ export async function yarnConfig(options: YarnConfigOptions): Promise<void> {
     await exec('yarn', ['config', 'set', String(key), String(update == null ? '' : update(stdout))]);
   } else {
     await exec('yarn', ['config', 'unset']);
+  }
+}
+
+/**
+ * Synchronous version of {@link yarnConfig}
+ *
+ * @param options
+ * @example
+ * yarnConfigSync({
+ *   key: 'nodeLinker',
+ *   state: 'present',
+ *   update: (content) => content.replace('node-modules', 'hoisted'),
+ * })
+ */
+export function yarnConfigSync(options: YarnConfigOptions) {
+  const { key, state, update } = options;
+  if (state === 'present') {
+    const { stdout } = execSync('yarn', ['config', 'get', String(key)]);
+    execSync('yarn', ['config', 'set', String(key), String(update == null ? '' : update(stdout))]);
+  } else {
+    execSync('yarn', ['config', 'unset']);
   }
 }

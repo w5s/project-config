@@ -1,4 +1,5 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import * as Module from './index.js';
 
 describe('index', () => {
@@ -6,9 +7,9 @@ describe('index', () => {
     const { meta, ...rest } = Module;
     expect(rest).toMatchSnapshot();
     expect(meta).toEqual({
+      buildNumber: expect.any(Number),
       name: expect.any(String),
       version: expect.any(String),
-      buildNumber: expect.any(Number),
     });
   });
 });

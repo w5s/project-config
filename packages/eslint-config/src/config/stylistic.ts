@@ -1,6 +1,8 @@
 import { interopDefault } from '@w5s/dev';
-import { StylisticConfig, type PluginOptionsBase, type Config, type StylisticParameters } from '../type.js';
+
 import type { RuleOptions } from '../typegen/style.js';
+
+import { type Config, type PluginOptionsBase, StylisticConfig, type StylisticParameters } from '../type.js';
 
 export async function stylistic(options: stylistic.Options = {}) {
   const [stylisticPlugin] = await Promise.all([
@@ -33,8 +35,8 @@ export async function stylistic(options: stylistic.Options = {}) {
               ...config.rules,
               'style/arrow-parens': ['error', 'always'],
               'style/brace-style': ['error', '1tbs'],
-              'style/operator-linebreak': ['error', 'after', { overrides: { ':': 'before', '?': 'before', '|>': 'before', '|': 'before' } }],
-              'style/quotes': ['error', quotes ?? StylisticConfig.default.quotes, { avoidEscape: true, allowTemplateLiterals: 'always' }],
+              'style/operator-linebreak': ['error', 'after', { overrides: { ':': 'before', '?': 'before', '|': 'before', '|>': 'before' } }],
+              'style/quotes': ['error', quotes ?? StylisticConfig.default.quotes, { allowTemplateLiterals: 'always', avoidEscape: true }],
             }
           : {}),
         ...rules,
@@ -44,7 +46,7 @@ export async function stylistic(options: stylistic.Options = {}) {
 }
 
 export namespace stylistic {
-  export type Rules = RuleOptions;
-
   export interface Options extends Pick<PluginOptionsBase<Rules>, 'rules'>, StylisticParameters {}
+
+  export type Rules = RuleOptions;
 }

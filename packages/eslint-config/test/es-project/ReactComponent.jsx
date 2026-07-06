@@ -1,15 +1,5 @@
 import * as React from 'react';
 
-// @ts-ignore
-function FunctionComponent({
-  // @ts-ignore
-  onPress,
-  // @ts-ignore
-  onLongPress,
-}) {
-  return null;
-}
-
 export class MarkupView extends React.PureComponent {
   /**
    * @override
@@ -38,4 +28,14 @@ export class MarkupView extends React.PureComponent {
   render() {
     return this.state.fooState ? <FunctionComponent onLongPress={() => null} onPress={this.handlePress} /> : null;
   }
+}
+
+// @ts-ignore
+function FunctionComponent({
+  // @ts-ignore
+  onLongPress,
+  // @ts-ignore
+  onPress,
+}) {
+  return null;
 }

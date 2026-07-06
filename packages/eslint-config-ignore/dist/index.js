@@ -1,15 +1,8 @@
 import fs from "node:fs";
 import nodePath from "node:path";
 import process from "node:process";
-import parseGitignore from "parse-gitignore";
 import fs$1 from "node:fs/promises";
-//#region src/meta.ts
-const meta = Object.freeze({
-	name: "@w5s/eslint-config-ignore",
-	version: "1.2.7",
-	buildNumber: 1
-});
-//#endregion
+import parseGitignore from "parse-gitignore";
 //#region src/defaultIgnores.ts
 const defaultIgnores = [
 	"**/package-lock.json",
@@ -156,12 +149,12 @@ async function ignoreFileFind(rootDir, options) {
 		found.add(gi);
 	}
 	const queue = [{
-		dir: absoluteRootDir,
 		depth: 0,
+		dir: absoluteRootDir,
 		patterns: [...initialPatterns]
 	}];
 	while (queue.length > 0) {
-		const { dir: currentDir, depth, patterns } = queue.shift();
+		const { depth, dir: currentDir, patterns } = queue.shift();
 		if (depth > maxDepth) continue;
 		let entries;
 		try {
@@ -178,8 +171,8 @@ async function ignoreFileFind(rootDir, options) {
 			const subdir = nodePath.join(currentDir, ent.name);
 			if (isIgnored(combinedPatterns, nodePath.relative(rootDir, subdir))) continue;
 			queue.push({
-				dir: subdir,
 				depth: depth + 1,
+				dir: subdir,
 				patterns: combinedPatterns
 			});
 		}
@@ -216,12 +209,18 @@ async function eslintIgnores(options = {}) {
 		return patterns.map((pattern) => ignoreRuleResolve(ignoreDirectoryRelative, pattern));
 	}));
 	const mergedIgnores = [...recommended ? defaultIgnores : [], ...ignoreGlobs.flat()];
-	const ignores = typeof options.ignores === "function" ? options.ignores(mergedIgnores) : options.ignores ? [...mergedIgnores, ...options.ignores] : mergedIgnores;
 	return {
-		name: options.name ?? "w5s/eslint-ignore",
-		ignores
+		ignores: typeof options.ignores === "function" ? options.ignores(mergedIgnores) : options.ignores ? [...mergedIgnores, ...options.ignores] : mergedIgnores,
+		name: options.name ?? "w5s/eslint-ignore"
 	};
 }
+//#endregion
+//#region src/meta.ts
+const meta = Object.freeze({
+	buildNumber: 1,
+	name: "@w5s/eslint-config-ignore",
+	version: "1.2.7"
+});
 //#endregion
 export { eslintIgnores as default, eslintIgnores, meta };
 

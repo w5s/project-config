@@ -13,15 +13,15 @@ export const bestPractices = () => ({
   // https://eslint.org/docs/rules/block-scoped-var
   'block-scoped-var': 'error',
 
-  // specify the maximum cyclomatic complexity allowed in a program
-  // https://eslint.org/docs/rules/complexity
-  'complexity': ['off', 20],
-
   // enforce that class methods use "this"
   // https://eslint.org/docs/rules/class-methods-use-this
   'class-methods-use-this': ['error', {
     exceptMethods: [],
   }],
+
+  // specify the maximum cyclomatic complexity allowed in a program
+  // https://eslint.org/docs/rules/complexity
+  'complexity': ['off', 20],
 
   // require return statements to either always or never specify values
   // https://eslint.org/docs/rules/consistent-return
@@ -42,13 +42,13 @@ export const bestPractices = () => ({
   // https://eslint.org/docs/rules/default-param-last
   'default-param-last': 'error',
 
-  // encourages use of dot notation whenever possible
-  // https://eslint.org/docs/rules/dot-notation
-  'dot-notation': ['error', { allowKeywords: true }],
-
   // enforces consistent newlines before or after dots
   // https://eslint.org/docs/rules/dot-location
   'dot-location': ['error', 'property'],
+
+  // encourages use of dot notation whenever possible
+  // https://eslint.org/docs/rules/dot-notation
+  'dot-notation': ['error', { allowKeywords: true }],
 
   // require the use of === and !==
   // https://eslint.org/docs/rules/eqeqeq
@@ -142,17 +142,13 @@ export const bestPractices = () => ({
   // https://eslint.org/docs/rules/no-global-assign
   'no-global-assign': ['error', { exceptions: [] }],
 
-  // deprecated in favor of no-global-assign
-  // https://eslint.org/docs/rules/no-native-reassign
-  'no-native-reassign': 'off',
-
   // disallow implicit type conversions
   // https://eslint.org/docs/rules/no-implicit-coercion
   'no-implicit-coercion': ['off', {
+    allow: [],
     boolean: false,
     number: true,
     string: true,
-    allow: [],
   }],
 
   // disallow var and named functions in global scope
@@ -186,10 +182,10 @@ export const bestPractices = () => ({
   // disallow magic numbers
   // https://eslint.org/docs/rules/no-magic-numbers
   'no-magic-numbers': ['off', {
+    detectObjects: false,
+    enforceConst: true,
     ignore: [],
     ignoreArrayIndexes: true,
-    enforceConst: true,
-    detectObjects: false,
   }],
 
   // disallow use of multiple spaces
@@ -201,6 +197,10 @@ export const bestPractices = () => ({
   // disallow use of multiline strings
   // https://eslint.org/docs/rules/no-multi-str
   'no-multi-str': 'error',
+
+  // deprecated in favor of no-global-assign
+  // https://eslint.org/docs/rules/no-native-reassign
+  'no-native-reassign': 'off',
 
   // disallow use of new operator when not part of the assignment or comparison
   // https://eslint.org/docs/rules/no-new
@@ -236,7 +236,6 @@ export const bestPractices = () => ({
   // disallow parameter object manipulation except for specific exclusions
   // rule: https://eslint.org/docs/rules/no-param-reassign.html
   'no-param-reassign': ['error', {
-    props: true,
     ignorePropertyModificationsFor: [
       'acc', // for reduce accumulators
       'accumulator', // for reduce accumulators
@@ -250,6 +249,7 @@ export const bestPractices = () => ({
       '$scope', // for Angular 1 scopes
       'staticContext', // for ReactRouter context
     ],
+    props: true,
   }],
 
   // disallow usage of __proto__ property
@@ -263,43 +263,43 @@ export const bestPractices = () => ({
   // disallow certain object properties
   // https://eslint.org/docs/rules/no-restricted-properties
   'no-restricted-properties': ['error', {
+    message: 'arguments.callee is deprecated',
     object: 'arguments',
     property: 'callee',
-    message: 'arguments.callee is deprecated',
   }, {
+    message: 'Please use Number.isFinite instead',
     object: 'global',
     property: 'isFinite',
-    message: 'Please use Number.isFinite instead',
   }, {
+    message: 'Please use Number.isFinite instead',
     object: 'self',
     property: 'isFinite',
-    message: 'Please use Number.isFinite instead',
   }, {
+    message: 'Please use Number.isFinite instead',
     object: 'window',
     property: 'isFinite',
-    message: 'Please use Number.isFinite instead',
   }, {
+    message: 'Please use Number.isNaN instead',
     object: 'global',
     property: 'isNaN',
-    message: 'Please use Number.isNaN instead',
   }, {
+    message: 'Please use Number.isNaN instead',
     object: 'self',
     property: 'isNaN',
-    message: 'Please use Number.isNaN instead',
   }, {
+    message: 'Please use Number.isNaN instead',
     object: 'window',
     property: 'isNaN',
-    message: 'Please use Number.isNaN instead',
   }, {
+    message: 'Please use Object.defineProperty instead.',
     property: '__defineGetter__',
-    message: 'Please use Object.defineProperty instead.',
   }, {
+    message: 'Please use Object.defineProperty instead.',
     property: '__defineSetter__',
-    message: 'Please use Object.defineProperty instead.',
   }, {
+    message: 'Use the exponentiation operator (**) instead.',
     object: 'Math',
     property: 'pow',
-    message: 'Use the exponentiation operator (**) instead.',
   }],
 
   // disallow use of assignment in return statement
@@ -340,8 +340,8 @@ export const bestPractices = () => ({
   // https://eslint.org/docs/rules/no-unused-expressions
   'no-unused-expressions': ['error', {
     allowShortCircuit: false,
-    allowTernary: false,
     allowTaggedTemplates: false,
+    allowTernary: false,
   }],
 
   // disallow unused labels
@@ -374,15 +374,11 @@ export const bestPractices = () => ({
 
   // disallow usage of configurable warning terms in comments: e.g. todo
   // https://eslint.org/docs/rules/no-warning-comments
-  'no-warning-comments': ['off', { terms: ['todo', 'fixme', 'xxx'], location: 'start' }],
+  'no-warning-comments': ['off', { location: 'start', terms: ['todo', 'fixme', 'xxx'] }],
 
   // disallow use of the with statement
   // https://eslint.org/docs/rules/no-with
   'no-with': 'error',
-
-  // require using Error objects as Promise rejection reasons
-  // https://eslint.org/docs/rules/prefer-promise-reject-errors
-  'prefer-promise-reject-errors': ['error', { allowEmptyReject: true }],
 
   // Suggest using named capture group in regular expression
   // https://eslint.org/docs/rules/prefer-named-capture-group
@@ -392,6 +388,10 @@ export const bestPractices = () => ({
   // https://eslint.org/docs/rules/prefer-object-has-own
   // TODO: semver-major: enable thus rule, once eslint v8.5.0 is required
   'prefer-object-has-own': 'off',
+
+  // require using Error objects as Promise rejection reasons
+  // https://eslint.org/docs/rules/prefer-promise-reject-errors
+  'prefer-promise-reject-errors': ['error', { allowEmptyReject: true }],
 
   // https://eslint.org/docs/rules/prefer-regex-literals
   'prefer-regex-literals': ['error', {

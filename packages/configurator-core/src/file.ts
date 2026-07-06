@@ -1,27 +1,13 @@
-import { chmod, readFile, rm, writeFile } from 'node:fs/promises';
 import { chmodSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { chmod, readFile, rm, writeFile } from 'node:fs/promises';
+
+import type { FileMode } from './FileMode.js';
+
 import { __exists } from './__exists.js';
 import { __existsSync } from './__existsSync.js';
-import type { FileMode } from './FileMode.js';
 import { __toMode } from './__toMode.js';
 
 export interface FileOptions {
-  /**
-   * File path
-   */
-  readonly path: string;
-
-  /**
-   * File target state
-   */
-  readonly state: 'present' | 'absent';
-
-  /**
-   * File content mapping function
-   *
-   */
-  readonly update?: ((content: string) => string | undefined) | undefined;
-
   /**
    * File encoding
    */
@@ -31,6 +17,22 @@ export interface FileOptions {
    * File permissions
    */
   readonly mode?: FileMode;
+
+  /**
+   * File path
+   */
+  readonly path: string;
+
+  /**
+   * File target state
+   */
+  readonly state: 'absent' | 'present';
+
+  /**
+   * File content mapping function
+   *
+   */
+  readonly update?: ((content: string) => string | undefined) | undefined;
 }
 
 /**
@@ -53,7 +55,7 @@ export interface FileOptions {
  * @param options
  */
 export async function file(options: FileOptions): Promise<void> {
-  const { path, state, update, encoding = 'utf8', mode } = options;
+  const { encoding = 'utf8', mode, path, state, update } = options;
   if (state === 'present') {
     const isPresent = await __exists(path);
     const previousContent = isPresent ? await readFile(path, encoding) : '';
@@ -90,7 +92,7 @@ export async function file(options: FileOptions): Promise<void> {
  * @param options
  */
 export function fileSync(options: FileOptions): void {
-  const { path, state, update, encoding = 'utf8', mode } = options;
+  const { encoding = 'utf8', mode, path, state, update } = options;
   if (state === 'present') {
     const isPresent = __existsSync(path);
     const previousContent = isPresent ? readFileSync(path, encoding) : '';

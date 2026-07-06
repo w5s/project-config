@@ -1,22 +1,23 @@
 /* eslint-disable ts/consistent-type-assertions */
 import { describe, expect, it } from 'vitest';
+
 import { typeGitmojiStyle, typeValidGitmoji } from './plugin.js';
 
 type ParsedCommit = Parameters<typeof typeGitmojiStyle>[0];
 
 const generateCommit = (properties: Partial<ParsedCommit>): ParsedCommit => ({
-  raw: '',
-  header: '',
-  type: null,
-  scope: null,
-  subject: null,
   body: null,
   footer: null,
+  header: '',
   mentions: [],
-  references: [],
-  notes: [],
-  revert: null,
   merge: null,
+  notes: [],
+  raw: '',
+  references: [],
+  revert: null,
+  scope: null,
+  subject: null,
+  type: null,
   ...(properties as any),
 } as ParsedCommit);
 const anyEmoji = ':bug:';

@@ -1,44 +1,45 @@
 export interface Commit {
-  merge: Commit.Field;
-  header: Commit.Field;
   body: Commit.Field;
   footer: Commit.Field;
+  hash: null | string;
+  header: Commit.Field;
+  mentions: string[];
+  merge: Commit.Field;
   notes: Commit.Note[];
   references: Commit.Reference[];
-  mentions: string[];
   revert: Commit.Revert | null;
-  type: string | null;
-  subject: string | null;
-  scope: string | null;
-  hash: string | null;
+  scope: null | string;
+  subject: null | string;
+  type: null | string;
 }
 
 export namespace Commit {
-  export type Field = string | null;
+  export type Field = null | string;
 
   export interface Note {
-    title: string;
     text: string;
+    title: string;
   }
 
   export interface Reference {
-    issue: string;
     action: Field;
+    issue: string;
     owner: Field;
-    repository: Field;
     prefix: string;
     raw: string;
+    repository: Field;
   }
 
   export interface Revert {
+    [field: string]: Field | undefined;
     hash?: Field | undefined;
     header?: Field | undefined;
-    [field: string]: Field | undefined;
   }
 }
 
 export type CommitConventionalType =
   | 'build'
+  | 'chore'
   | 'ci'
   | 'docs'
   | 'feat'
@@ -48,12 +49,12 @@ export type CommitConventionalType =
   | 'revert'
   | 'style'
   | 'test'
-  | 'wip'
-  | 'chore';
+  | 'wip';
 
 export const CommitConventionalType = (() => {
   const enumObject = Object.freeze({
     Build: 'build',
+    Chore: 'chore',
     CI: 'ci',
     Docs: 'docs',
     Feat: 'feat',
@@ -64,72 +65,71 @@ export const CommitConventionalType = (() => {
     Style: 'style',
     Test: 'test',
     WIP: 'wip',
-    Chore: 'chore',
   });
   // eslint-disable-next-line unicorn/no-array-sort
   const enumValues: readonly CommitConventionalType[] = Object.freeze(Object.values(enumObject).sort((left, right) => left.localeCompare(right)));
   const enumValuesSet = new Set(enumValues);
 
   const typeData: Record<CommitConventionalType, CommitConventionalTypeData> = {
-    feat: {
-      'emoji': '✨',
-      'en-US': 'Features',
-      'changelog': true,
-    },
-    fix: {
-      'emoji': '🐛',
-      'en-US': 'Bug Fixes',
-      'changelog': true,
-    },
     build: {
+      'changelog': false,
       'emoji': '👷',
       'en-US': 'Build System',
-      'changelog': false,
     },
     chore: {
+      'changelog': false,
       'emoji': '🎫',
       'en-US': 'Chores',
-      'changelog': false,
     },
     ci: {
+      'changelog': false,
       'emoji': '🔧',
       'en-US': 'Continuous Integration',
-      'changelog': false,
     },
     docs: {
+      'changelog': false,
       'emoji': '📝',
       'en-US': 'Documentation',
-      'changelog': false,
     },
-    test: {
-      'emoji': '✅',
-      'en-US': 'Tests',
-      'changelog': false,
+    feat: {
+      'changelog': true,
+      'emoji': '✨',
+      'en-US': 'Features',
+    },
+    fix: {
+      'changelog': true,
+      'emoji': '🐛',
+      'en-US': 'Bug Fixes',
     },
     perf: {
+      'changelog': true,
       'emoji': '⚡',
       'en-US': 'Performance Improvements',
-      'changelog': true,
     },
     refactor: {
+      'changelog': false,
       'emoji': '♻',
       'en-US': 'Code Refactoring',
-      'changelog': false,
     },
     revert: {
+      'changelog': true,
       'emoji': '⏪',
       'en-US': 'Reverts',
-      'changelog': true,
     },
     style: {
+      'changelog': false,
       'emoji': '💄',
       'en-US': 'Styles',
+    },
+    test: {
       'changelog': false,
+      'emoji': '✅',
+      'en-US': 'Tests',
     },
     wip: {
+      'changelog': false,
       'emoji': '🚧',
       'en-US': 'Work in progress',
-      'changelog': false,
     },
   };
 
@@ -153,11 +153,11 @@ export const CommitConventionalType = (() => {
     return enumValues.filter((enumValue) => predicate(getData(enumValue)));
   }
 
-  return { ...enumObject, hasInstance, getData, values, parse, findWhere };
+  return { ...enumObject, findWhere, getData, hasInstance, parse, values };
 })();
 
 export interface CommitConventionalTypeData {
+  'changelog': boolean;
   'emoji': string;
   'en-US': string;
-  'changelog': boolean;
 }

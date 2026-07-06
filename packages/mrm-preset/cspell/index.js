@@ -1,7 +1,7 @@
 const { cspell } = require('../core/cspell.js');
-const project = require('../core/project.js');
-const pkg = require('../core/pkg.js');
 const npm = require('../core/npm.js');
+const pkg = require('../core/pkg.js');
+const project = require('../core/project.js');
 
 function task() {
   const preset = '@w5s/cspell-config';
@@ -23,22 +23,22 @@ function task() {
     const workspaceMatchers = pkg.listWorkspaceMatchers(packageFile);
     pkg.script(packageFile, {
       name: project.spellcheck,
-      update: `turbo run spellcheck`,
       state: 'present',
+      update: `turbo run spellcheck`,
     });
     pkg.script(packageFile, {
       name: `${project.spellcheck}:root`,
+      state: 'present',
       update: `cspell --no-progress '**' ${
         hasWorkspaces ? (workspaceMatchers.map((_) => `--exclude='${_}/**'`).join(' ')) : ''
       }`,
-      state: 'present',
     });
   });
   pkg.forEachWorkspace(({ packageFile }) => {
     pkg.script(packageFile, {
       name: project.spellcheck,
-      update: `cspell --no-progress '**'`,
       state: 'present',
+      update: `cspell --no-progress '**'`,
     });
   });
 }

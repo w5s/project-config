@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest';
 import { readFile } from 'node:fs/promises';
 import nodePath from 'node:path';
+import { describe, expect, it } from 'vitest';
+
 import { block } from './block.js';
 import { file } from './file.js';
 import { getTestPath } from './testing/index.js';
@@ -23,8 +24,8 @@ describe(block, () => {
       });
 
       await block({
-        path,
         block: 'test',
+        path,
         state: 'absent',
       });
       await expect(readFile(path, 'utf8')).resolves.toEqual(
@@ -51,8 +52,8 @@ describe(block, () => {
       });
 
       await block({
-        path,
         block: 'test',
+        path,
         state: 'absent',
       });
       await expect(readFile(path, 'utf8')).resolves.toEqual(
@@ -75,9 +76,9 @@ describe(block, () => {
       });
 
       await block({
-        path,
         block: 'test',
         insertPosition: ['after', 'EndOfFile'],
+        path,
       });
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [
@@ -108,9 +109,9 @@ describe(block, () => {
       });
 
       await block({
-        path,
         block: 'test',
         insertPosition: ['after', /<body>/],
+        path,
       });
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [
@@ -136,9 +137,9 @@ describe(block, () => {
       });
 
       await block({
-        path,
         block: 'test',
         insertPosition: ['before', 'BeginningOfFile'],
+        path,
       });
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [
@@ -168,9 +169,9 @@ describe(block, () => {
       });
 
       await block({
-        path,
         block: 'test',
         insertPosition: ['before', /<body>/],
+        path,
       });
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [
@@ -197,9 +198,9 @@ describe(block, () => {
       });
 
       await block({
-        path,
         block: 'test',
         marker: (marker) => `### ${marker} custom`,
+        path,
       });
       await expect(readFile(path, 'utf8')).resolves.toEqual(
         [

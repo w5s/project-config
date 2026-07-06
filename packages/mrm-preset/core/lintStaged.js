@@ -1,5 +1,5 @@
-const pkg = require('./pkg.js');
 const jsonFile = require('./jsonFile.js');
+const pkg = require('./pkg.js');
 
 /**
  * @typedef {Record<string, string|string[]>} LintStagedConfig
@@ -14,11 +14,11 @@ const jsonFile = require('./jsonFile.js');
 function lintStaged({ state, update }) {
   pkg.withPackageJson((packageFile) => {
     jsonFile.value(packageFile, {
+      /** @type {LintStagedConfig} */
+      default: {},
       path: 'lint-staged',
       state,
       update,
-      /** @type {LintStagedConfig} */
-      default: {},
     });
   });
 

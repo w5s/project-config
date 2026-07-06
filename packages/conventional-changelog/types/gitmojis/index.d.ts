@@ -1,9 +1,16 @@
 declare module 'gitmojis' {
-  type GitmojiUnicode = string;
-
-  type GitmojiEmoji = string;
-
   interface Gitmoji {
+    /**
+     * Gitmoji string code formatted as `:my_emoji:`
+     *
+     * @example
+     * ```ts
+     * ':bug:'
+     * ```
+     */
+    readonly code: GitmojiEmoji;
+    readonly description: string;
+
     /**
      * Gitmoji unicode code
      *
@@ -14,19 +21,13 @@ declare module 'gitmojis' {
      */
     readonly emoji: GitmojiUnicode;
     readonly entity: string;
-    readonly description: string;
     readonly name: string;
-    readonly semver: null | 'patch' | 'minor' | 'major';
 
-    /**
-     * Gitmoji string code formatted as `:my_emoji:`
-     *
-     * @example
-     * ```ts
-     * ':bug:'
-     * ```
-     */
-    readonly code: GitmojiEmoji;
+    readonly semver: 'major' | 'minor' | 'patch' | null;
   }
+
+  type GitmojiEmoji = string;
+
+  type GitmojiUnicode = string;
   export const gitmojis: ReadonlyArray<Gitmoji>;
 }

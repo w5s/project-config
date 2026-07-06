@@ -34,34 +34,34 @@ const spellcheck = 'spellcheck';
 /**
  * @param {string} taskName
  */
-function pre(taskName) {
-  return `pre${taskName}`;
+function post(taskName) {
+  return `post${taskName}`;
 }
 
 /**
  * @param {string} taskName
  */
-function post(taskName) {
-  return `post${taskName}`;
+function pre(taskName) {
+  return `pre${taskName}`;
 }
 
 module.exports = {
   build,
-  docs,
-  prepare,
-  develop,
   clean,
   codeAnalysis,
   coverage,
+  develop,
+  docs,
   format,
   install,
   lint,
   post,
   pre,
+  prepare,
   release,
   rescue,
+  spellcheck,
   test,
   typecheck,
   validate,
-  spellcheck,
 };

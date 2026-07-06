@@ -1,11 +1,9 @@
 import * as TsDown from 'tsdown';
+
 import type { UserConfig, UserConfigFn } from './types.js';
+
 import { defaultConfig } from './defaultConfig.js';
 import { withPackageDefine } from './withPackageDefine.js';
-
-function mergeConfig(base: UserConfig, extension: UserConfig): UserConfig {
-  return TsDown.mergeConfig(base, extension);
-}
 
 /**
  * Returns a `defineConfig`-like function that uses a custom base config instead of the package default.
@@ -34,4 +32,8 @@ export function defineConfigWith(baseConfig: UserConfig): {
             withPackageDefine(optionsOrFn(resolvedBaseConfig, context) as UserConfig)
         : withPackageDefine(mergeConfig(resolvedBaseConfig, optionsOrFn)),
     ) as UserConfig | UserConfigFn;
+}
+
+function mergeConfig(base: UserConfig, extension: UserConfig): UserConfig {
+  return TsDown.mergeConfig(base, extension);
 }

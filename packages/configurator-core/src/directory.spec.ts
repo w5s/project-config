@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest';
-import nodePath from 'node:path';
 import { existsSync } from 'node:fs';
+import nodePath from 'node:path';
+import { describe, expect, it } from 'vitest';
+
 import { directory, directorySync } from './directory.js';
 import { getTestPath } from './testing/index.js';
 

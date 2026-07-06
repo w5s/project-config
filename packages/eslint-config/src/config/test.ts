@@ -1,6 +1,8 @@
 import { ESLintConfig, interopDefault, Project } from '@w5s/dev';
-import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
+
 import type { RuleOptions } from '../typegen/test.js';
+
+import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const sourceGlob = Project.extensionsToGlob(Project.sourceExtensions());
 const defaultFiles = [
@@ -32,9 +34,9 @@ export async function test(options: test.Options = {}) {
               vitest: 'test',
             })
           : {}),
-        'test/valid-title': ESLintConfig.fixme(undefined),
-
         'e18e/prefer-static-regex': 'off',
+
+        'test/valid-title': ESLintConfig.fixme(undefined),
         ...(stylisticEnabled
           ? {}
           : {}),
@@ -45,7 +47,7 @@ export async function test(options: test.Options = {}) {
 }
 
 export namespace test {
-  export type Rules = RuleOptions;
-
   export interface Options extends PluginOptionsBase<Rules> {}
+
+  export type Rules = RuleOptions;
 }

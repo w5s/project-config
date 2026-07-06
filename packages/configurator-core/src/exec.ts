@@ -9,27 +9,7 @@ export interface ExecOptions {
   /**
    * Stdio options
    */
-  stdio?: 'inherit' | 'pipe' | 'ignore';
-}
-
-/**
- * Runs a command in a shell and returns a promise that resolves with an object
- * containing the stdout and stderr strings.
- *
- * @param command The command to run
- * @param args The arguments to pass to the command
- * @param options
- * @returns A promise that resolves with an object like `{ stdout: string, stderr: string }`
- */
-export function execSync(
-  command: string,
-  args: ReadonlyArray<string>,
-  options?: ExecOptions,
-): { stdout: string; stderr: string } {
-  const result = spawnSync(command, args, { ...options });
-  const encoding = 'utf8';
-
-  return { stdout: result.stdout.toString(encoding), stderr: result.stderr.toString(encoding) };
+  stdio?: 'ignore' | 'inherit' | 'pipe';
 }
 
 /**
@@ -44,7 +24,7 @@ export async function exec(
   command: string,
   args: ReadonlyArray<string>,
   options?: ExecOptions,
-): Promise<{ stdout: string; stderr: string }> {
+): Promise<{ stderr: string; stdout: string }> {
   return new Promise((resolve, reject) => {
     const encoding = 'utf8';
     const child = spawn(command, args, { ...options });
@@ -64,10 +44,30 @@ export async function exec(
     }
     // Handle process exit
     child.on('close', (_code) => {
-      resolve({ stdout, stderr });
+      resolve({ stderr, stdout });
     });
 
     // Handle errors
     child.on('error', reject);
   });
+}
+
+/**
+ * Runs a command in a shell and returns a promise that resolves with an object
+ * containing the stdout and stderr strings.
+ *
+ * @param command The command to run
+ * @param args The arguments to pass to the command
+ * @param options
+ * @returns A promise that resolves with an object like `{ stdout: string, stderr: string }`
+ */
+export function execSync(
+  command: string,
+  args: ReadonlyArray<string>,
+  options?: ExecOptions,
+): { stderr: string; stdout: string } {
+  const result = spawnSync(command, args, { ...options });
+  const encoding = 'utf8';
+
+  return { stderr: result.stderr.toString(encoding), stdout: result.stdout.toString(encoding) };
 }

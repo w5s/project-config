@@ -10,11 +10,6 @@ export type Extension = `.${string}`;
  */
 export type ExtensionRegistry = { [K in LanguageId]: readonly Extension[] };
 
-function escapeRegExp(value: string) {
-  // eslint-disable-next-line unicorn/prefer-string-raw
-  return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, '\\$&'); // $& means the whole matched string
-}
-
 /**
  * Supported ECMA version
  *
@@ -25,6 +20,11 @@ function escapeRegExp(value: string) {
  */
 function ecmaVersion() {
   return 2022 as const;
+}
+
+function escapeRegExp(value: string) {
+  // eslint-disable-next-line unicorn/prefer-string-raw
+  return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, '\\$&'); // $& means the whole matched string
 }
 
 const registry: ExtensionRegistry = {
@@ -59,7 +59,7 @@ const registry: ExtensionRegistry = {
 function queryExtensions(languages: LanguageId[]): readonly Extension[] {
   return languages
     .reduce<Extension[]>((previousValue, currentValue) =>
-      // eslint-disable-next-line unicorn/prefer-spread
+
       previousValue.concat(registry[currentValue] ?? ([] as Extension[])), [])
     // eslint-disable-next-line unicorn/no-array-sort
     .sort((left, right) => left.localeCompare(right));
@@ -110,18 +110,6 @@ const IGNORED = Object.freeze([
 ]);
 
 /**
- * Files and folders to always ignore
- *
- * @example
- * ```ts
- * IGNORED // ['node_modules/', 'build/', ...]
- * ```
- */
-function ignored() {
-  return IGNORED;
-}
-
-/**
  * Return a RegExp that will match any list of extensions
  *
  * @param extensions
@@ -132,6 +120,18 @@ function ignored() {
  */
 function extensionsToMatcher(extensions: readonly Extension[]): RegExp {
   return new RegExp(`(${extensions.map(escapeRegExp).join('|')})$`);
+}
+
+/**
+ * Files and folders to always ignore
+ *
+ * @example
+ * ```ts
+ * IGNORED // ['node_modules/', 'build/', ...]
+ * ```
+ */
+function ignored() {
+  return IGNORED;
 }
 
 const reExtension = /^\./;

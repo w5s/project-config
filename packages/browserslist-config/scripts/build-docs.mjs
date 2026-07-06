@@ -1,9 +1,8 @@
-import { writeFile, readFile } from 'node:fs/promises';
+import browserslist from 'browserslist';
+import { entries, groupBy } from 'lodash-es';
+import { readFile, writeFile } from 'node:fs/promises';
 import nodePath from 'node:path';
 import { fileURLToPath } from 'node:url';
-import browserslist from 'browserslist';
-
-import { groupBy, entries } from 'lodash-es';
 
 const Package = {
   async readBrowsersListConfig(fileName) {
@@ -24,44 +23,44 @@ const Browser = (() => {
   const map = new Map(
     Object.entries({
       and_chr: {
-        name: 'Chrome for Android',
         iconName: 'chrome',
+        name: 'Chrome for Android',
       },
       and_ff: {
-        name: 'Firefox for Android',
         iconName: 'firefox',
+        name: 'Firefox for Android',
       },
       and_qq: {
-        name: 'QQ Browser',
         iconName: 'qq',
+        name: 'QQ Browser',
       },
       and_uc: {
-        name: 'UC Browser',
         iconName: 'uc',
-      },
-      ios_saf: {
-        name: 'Safari for iOS',
-        iconName: 'ios-safari',
-      },
-      op_mob: {
-        name: 'Opera Mobile',
-        iconName: 'opera',
-      },
-      op_mini: {
-        name: 'Opera Mini',
-        iconName: 'opera-mini',
+        name: 'UC Browser',
       },
       bb: {
-        name: 'Blackberry',
         iconName: 'blackberry',
+        name: 'Blackberry',
       },
       ie: {
-        name: 'Internet Explorer',
         iconName: 'ie',
+        name: 'Internet Explorer',
       },
       ie_mob: {
-        name: 'IE Mobile',
         iconName: 'ie',
+        name: 'IE Mobile',
+      },
+      ios_saf: {
+        iconName: 'ios-safari',
+        name: 'Safari for iOS',
+      },
+      op_mini: {
+        iconName: 'opera-mini',
+        name: 'Opera Mini',
+      },
+      op_mob: {
+        iconName: 'opera',
+        name: 'Opera Mobile',
       },
     }),
   );
@@ -78,9 +77,9 @@ const Browser = (() => {
     return map.has(browser) ? map.get(browser).iconName : browser;
   }
   return {
-    getVersion,
-    getName,
     getIconName,
+    getName,
+    getVersion,
   };
 })();
 

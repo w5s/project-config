@@ -1,4 +1,4 @@
-import { type FileOptions, file, fileSync } from './file.js';
+import { file, type FileOptions, fileSync } from './file.js';
 
 export interface IgnoreFileOptions extends Omit<FileOptions, 'update'> {
   /**
@@ -6,23 +6,6 @@ export interface IgnoreFileOptions extends Omit<FileOptions, 'update'> {
    * When the file does not yet exist, the callback receives `undefined`.
    */
   readonly update?: ((content: string[] | undefined) => string[] | undefined) | undefined;
-}
-
-function toFileOption({ update, ...otherOptions }: IgnoreFileOptions): FileOptions {
-  return {
-    ...otherOptions,
-
-    update:
-      update == null
-        ? update
-        : (content) => {
-            const eol = content.includes('\r\n') ? '\r\n' : '\n';
-            const lines = content === '' ? undefined : content.split(eol);
-            const updatedLines = update(lines);
-
-            return updatedLines == null ? undefined : updatedLines.join(eol);
-          },
-  };
 }
 
 /**
@@ -55,4 +38,21 @@ export async function ignoreFile(options: IgnoreFileOptions): Promise<void> {
  */
 export function ignoreFileSync(options: IgnoreFileOptions): void {
   return fileSync(toFileOption(options));
+}
+
+function toFileOption({ update, ...otherOptions }: IgnoreFileOptions): FileOptions {
+  return {
+    ...otherOptions,
+
+    update:
+      update == null
+        ? update
+        : (content) => {
+            const eol = content.includes('\r\n') ? '\r\n' : '\n';
+            const lines = content === '' ? undefined : content.split(eol);
+            const updatedLines = update(lines);
+
+            return updatedLines == null ? undefined : updatedLines.join(eol);
+          },
+  };
 }

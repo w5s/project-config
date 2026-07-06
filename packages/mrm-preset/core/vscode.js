@@ -67,7 +67,7 @@ exports.vscodeTask = vscodeTask;
  *   }
  * }} snippets
  */
-function vscodeSnippets({ name = 'mrm', state = 'present', snippets }) {
+function vscodeSnippets({ name = 'mrm', snippets, state = 'present' }) {
   const snippetFile = json(`.vscode/${name}.code-snippets`);
   if (state === 'present') {
     snippetFile.merge(snippets);

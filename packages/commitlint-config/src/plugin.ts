@@ -1,4 +1,5 @@
 import type { Plugin, Rule, RuleConfigCondition } from '@commitlint/types';
+
 import { Emoji, GitmojiCode } from '@w5s/conventional-changelog';
 
 const $if =
@@ -6,7 +7,7 @@ const $if =
     (cond: boolean) =>
       when === 'always' ? cond : !cond;
 
-export const typeGitmojiStyle: Rule<'unicode' | 'emoji'> = (parsed, when = 'always', value = 'unicode') => {
+export const typeGitmojiStyle: Rule<'emoji' | 'unicode'> = (parsed, when = 'always', value = 'unicode') => {
   const type = parsed['type'];
   const isUnicode = type != null && Emoji.isUnicode(type);
   const isEmoji = type != null && Emoji.isText(type);

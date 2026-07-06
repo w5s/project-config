@@ -1,4 +1,5 @@
 import type { AdvancedCSpellSettings } from '@cspell/cspell-types';
+
 // @ts-ignore CSpell config is not typed
 import cSpellSettings from '@cspell/cspell-bundled-dicts/cspell-default.config.js';
 
@@ -11,54 +12,48 @@ const excludeImport = new Set<string>([
 const dictionaryDefinitions: AdvancedCSpellSettings['dictionaryDefinitions'] = [
   {
     addWords: false,
+    description: 'Additional file types',
     name: 'w5s-filetypes',
     path: '../dict/filetypes.txt',
-    description: 'Additional file types',
   },
   {
     addWords: false,
+    description: 'Fullstack terms',
     name: 'w5s-fullstack',
     path: '../dict/fullstack.txt',
-    description: 'Fullstack terms',
   },
   {
     addWords: false,
+    description: 'Typescript keywords',
     name: 'w5s-typescript',
     path: '../dict/typescript.txt',
-    description: 'Typescript keywords',
   },
   {
     addWords: false,
+    description: 'Known names',
     name: 'w5s-names',
     path: '../dict/names.txt',
-    description: 'Known names',
   },
   {
     addWords: false,
+    description: 'NPM packages',
     name: 'w5s-npm',
     path: '../dict/npm.txt',
-    description: 'NPM packages',
   },
 ];
 
 export const config: AdvancedCSpellSettings = {
   ...defaultSettings,
-  name: 'W5S default settings .js',
-  id: 'w5s-default-js',
-  language: 'en',
   description: 'Default cspell configuration.',
-  words: [],
-  flagWords: [],
-  useGitignore: true,
-  dictionaryDefinitions: [...toArray(defaultSettings.dictionaryDefinitions), ...dictionaryDefinitions],
   dictionaries: [
     ...toArray(defaultSettings.dictionaries),
     ...dictionaryDefinitions
       .map((dictionaryDefinition) => dictionaryDefinition.name)
       .filter((name) => !['w5s-typescript'].includes(name)),
   ],
-  ignoreWords: [],
-  import: toArray(defaultSettings.import).filter((dict) => !excludeImport.has(dict)),
+  dictionaryDefinitions: [...toArray(defaultSettings.dictionaryDefinitions), ...dictionaryDefinitions],
+  flagWords: [],
+  id: 'w5s-default-js',
   ignorePaths: [
     ...toArray(defaultSettings.ignorePaths),
     '**/CHANGELOG.md',
@@ -80,22 +75,28 @@ export const config: AdvancedCSpellSettings = {
     '**/*.webp',
     '**/*.webm',
   ],
+  ignoreWords: [],
+  import: toArray(defaultSettings.import).filter((dict) => !excludeImport.has(dict)),
+  language: 'en',
   languageSettings: [
     ...toArray(defaultSettings.languageSettings),
     {
-      languageId: 'typescript,javascript,typescriptreact,javascriptreact',
-      locale: '*',
-      includeRegExpList: [],
-      ignoreRegExpList: ['js-hex-escape', 'js-unicode-escape', 'js-regexp-flags'],
-      patterns: [],
       dictionaries: ['w5s-typescript'],
       dictionaryDefinitions: [],
-    },
-    {
+      ignoreRegExpList: ['js-hex-escape', 'js-unicode-escape', 'js-regexp-flags'],
+      includeRegExpList: [],
       languageId: 'typescript,javascript,typescriptreact,javascriptreact',
       locale: '*',
+      patterns: [],
+    },
+    {
       // eslint-disable-next-line unicorn/prefer-string-raw
       ignoreRegExpList: ['\\/\\* eslint-disable.+', '\\/\\/ eslint-disable.+'],
+      languageId: 'typescript,javascript,typescriptreact,javascriptreact',
+      locale: '*',
     },
   ],
+  name: 'W5S default settings .js',
+  useGitignore: true,
+  words: [],
 };

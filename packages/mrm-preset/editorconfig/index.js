@@ -1,5 +1,6 @@
-const { readFileSync } = require('node:fs');
 const { blockSync } = require('@w5s/configurator-core');
+const { readFileSync } = require('node:fs');
+
 const { vscodeRecommendedExtension } = require('../core/vscode.js');
 
 function task() {
@@ -7,8 +8,8 @@ function task() {
 
   blockSync({
     block: templateContent,
-    path: '.editorconfig',
     insertPosition: ['before', 'BeginningOfFile'],
+    path: '.editorconfig',
   });
 
   vscodeRecommendedExtension({

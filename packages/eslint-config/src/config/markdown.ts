@@ -1,16 +1,18 @@
 import { interopDefault, Project } from '@w5s/dev';
 import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
-import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js';
+
 import type { RuleOptions } from '../typegen/markdown.js';
+
+import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['markdown']))}`];
 
 export async function markdown(options: markdown.Options = {}) {
   const [markdownPlugin] = await Promise.all([interopDefault(import('@eslint/markdown'))] as const);
   const {
+    files = defaultFiles,
     language = 'markdown/gfm',
     languageOptions,
-    files = defaultFiles,
     recommended = true,
     rules = {},
     stylistic = true,
@@ -44,13 +46,11 @@ export async function markdown(options: markdown.Options = {}) {
 }
 
 export namespace markdown {
-  export type Rules = RuleOptions;
-
   export interface Options extends PluginOptionsBase<Rules> {
     /**
      * Default to 'markdown/gfm' (Github Flavored Markdown)
      */
-    language?: 'markdown/gfm' | 'markdown/commonmark';
+    language?: 'markdown/commonmark' | 'markdown/gfm';
 
     /**
      * Default to 'yaml'
@@ -58,7 +58,9 @@ export namespace markdown {
      * If you want to disable frontmatter parsing, set this to undefined
      */
     languageOptions?: {
-      frontmatter?: 'yaml' | 'toml';
+      frontmatter?: 'toml' | 'yaml';
     };
   }
+
+  export type Rules = RuleOptions;
 }

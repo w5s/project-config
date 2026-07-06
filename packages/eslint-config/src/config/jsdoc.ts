@@ -1,7 +1,9 @@
 import { interopDefault } from '@w5s/dev';
-import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
+
 import type { RuleOptions } from '../typegen/jsdoc.js';
+
 import { sourceGlob } from '../glob.js';
+import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [sourceGlob];
 
@@ -23,8 +25,8 @@ export async function jsdoc(options: jsdoc.Options = {}): Promise<readonly Confi
       },
     },
     {
-      name: 'w5s/jsdoc/rules',
       files,
+      name: 'w5s/jsdoc/rules',
       rules: {
         ...(recommended ? jsdocPlugin.configs['flat/recommended-typescript-flavor'].rules : {}),
 
@@ -61,7 +63,7 @@ export async function jsdoc(options: jsdoc.Options = {}): Promise<readonly Confi
 }
 
 export namespace jsdoc {
-  export type Rules = RuleOptions;
-
   export interface Options extends PluginOptionsBase<Rules> {}
+
+  export type Rules = RuleOptions;
 }

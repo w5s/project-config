@@ -1,10 +1,12 @@
-import globals from 'globals';
 import eslintConfig from '@eslint/js';
 import { Project } from '@w5s/dev';
-import { type PluginOptionsBase, type Config } from '../type.js';
+import globals from 'globals';
+
 import type { RuleOptions } from '../typegen/jsonc.js';
-import { esRules } from '../rules/esRules.js';
+
 import { esSourceGlob } from '../glob.js';
+import { esRules } from '../rules/esRules.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [esSourceGlob];
 
@@ -13,7 +15,6 @@ export async function es(options: es.Options) {
 
   return [
     {
-      name: 'w5s/es/setup',
       languageOptions: {
         ecmaVersion: Project.ecmaVersion(),
         globals: {
@@ -39,10 +40,11 @@ export async function es(options: es.Options) {
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
+      name: 'w5s/es/setup',
     },
     {
-      name: 'w5s/es/rules',
       files: defaultFiles,
+      name: 'w5s/es/rules',
       rules: {
         ...(recommended ? es['recommended'] : {}),
         ...rules,
@@ -60,7 +62,7 @@ es['recommended'] = {
 };
 
 export namespace es {
-  export type Rules = RuleOptions;
-
   export interface Options extends PluginOptionsBase<Rules> {}
+
+  export type Rules = RuleOptions;
 }

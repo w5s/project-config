@@ -1,11 +1,4 @@
 import cSpellSettings from "@cspell/cspell-bundled-dicts/cspell-default.config.js";
-//#region src/meta.ts
-const meta = Object.freeze({
-	name: "@w5s/cspell-config",
-	version: "3.1.15",
-	buildNumber: 1
-});
-//#endregion
 //#region src/config.ts
 const toArray = (value) => Array.isArray(value) ? value : value == null ? [] : [value];
 const defaultSettings = cSpellSettings;
@@ -13,48 +6,42 @@ const excludeImport = /* @__PURE__ */ new Set([]);
 const dictionaryDefinitions = [
 	{
 		addWords: false,
+		description: "Additional file types",
 		name: "w5s-filetypes",
-		path: "../dict/filetypes.txt",
-		description: "Additional file types"
+		path: "../dict/filetypes.txt"
 	},
 	{
 		addWords: false,
+		description: "Fullstack terms",
 		name: "w5s-fullstack",
-		path: "../dict/fullstack.txt",
-		description: "Fullstack terms"
+		path: "../dict/fullstack.txt"
 	},
 	{
 		addWords: false,
+		description: "Typescript keywords",
 		name: "w5s-typescript",
-		path: "../dict/typescript.txt",
-		description: "Typescript keywords"
+		path: "../dict/typescript.txt"
 	},
 	{
 		addWords: false,
+		description: "Known names",
 		name: "w5s-names",
-		path: "../dict/names.txt",
-		description: "Known names"
+		path: "../dict/names.txt"
 	},
 	{
 		addWords: false,
+		description: "NPM packages",
 		name: "w5s-npm",
-		path: "../dict/npm.txt",
-		description: "NPM packages"
+		path: "../dict/npm.txt"
 	}
 ];
 const config = {
 	...defaultSettings,
-	name: "W5S default settings .js",
-	id: "w5s-default-js",
-	language: "en",
 	description: "Default cspell configuration.",
-	words: [],
-	flagWords: [],
-	useGitignore: true,
-	dictionaryDefinitions: [...toArray(defaultSettings.dictionaryDefinitions), ...dictionaryDefinitions],
 	dictionaries: [...toArray(defaultSettings.dictionaries), ...dictionaryDefinitions.map((dictionaryDefinition) => dictionaryDefinition.name).filter((name) => !["w5s-typescript"].includes(name))],
-	ignoreWords: [],
-	import: toArray(defaultSettings.import).filter((dict) => !excludeImport.has(dict)),
+	dictionaryDefinitions: [...toArray(defaultSettings.dictionaryDefinitions), ...dictionaryDefinitions],
+	flagWords: [],
+	id: "w5s-default-js",
 	ignorePaths: [
 		...toArray(defaultSettings.ignorePaths),
 		"**/CHANGELOG.md",
@@ -73,28 +60,41 @@ const config = {
 		"**/*.webp",
 		"**/*.webm"
 	],
+	ignoreWords: [],
+	import: toArray(defaultSettings.import).filter((dict) => !excludeImport.has(dict)),
+	language: "en",
 	languageSettings: [
 		...toArray(defaultSettings.languageSettings),
 		{
-			languageId: "typescript,javascript,typescriptreact,javascriptreact",
-			locale: "*",
-			includeRegExpList: [],
+			dictionaries: ["w5s-typescript"],
+			dictionaryDefinitions: [],
 			ignoreRegExpList: [
 				"js-hex-escape",
 				"js-unicode-escape",
 				"js-regexp-flags"
 			],
-			patterns: [],
-			dictionaries: ["w5s-typescript"],
-			dictionaryDefinitions: []
-		},
-		{
+			includeRegExpList: [],
 			languageId: "typescript,javascript,typescriptreact,javascriptreact",
 			locale: "*",
-			ignoreRegExpList: ["\\/\\* eslint-disable.+", "\\/\\/ eslint-disable.+"]
+			patterns: []
+		},
+		{
+			ignoreRegExpList: ["\\/\\* eslint-disable.+", "\\/\\/ eslint-disable.+"],
+			languageId: "typescript,javascript,typescriptreact,javascriptreact",
+			locale: "*"
 		}
-	]
+	],
+	name: "W5S default settings .js",
+	useGitignore: true,
+	words: []
 };
+//#endregion
+//#region src/meta.ts
+const meta = Object.freeze({
+	buildNumber: 1,
+	name: "@w5s/cspell-config",
+	version: "3.1.15"
+});
 //#endregion
 export { config as default, meta };
 

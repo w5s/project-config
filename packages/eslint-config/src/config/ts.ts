@@ -1,9 +1,11 @@
 /* eslint-disable ts/no-non-null-assertion */
 import { ESLintConfig, interopDefault } from '@w5s/dev';
-import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
+
 import type { RuleOptions } from '../typegen/ts.js';
-import { tsRules } from '../rules/tsRules.js';
+
 import { tsSourceGlob } from '../glob.js';
+import { tsRules } from '../rules/tsRules.js';
+import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [tsSourceGlob];
 
@@ -65,12 +67,12 @@ export async function ts(options: ts.Options = {}) {
           },
         ] as const)
       : []),
-  ] as [Config, Config] | [Config, Config, Config] satisfies Array<Config>;
+  ] as [Config, Config, Config] | [Config, Config] satisfies Array<Config>;
 }
 export namespace ts {
-  export type Rules = RuleOptions;
-
   export interface Options extends PluginOptionsBase<Rules> {
     typeChecked?: boolean;
   }
+
+  export type Rules = RuleOptions;
 }

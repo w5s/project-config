@@ -1,9 +1,11 @@
 import { interopDefault } from '@w5s/dev';
-import { type PluginOptionsBase, StylisticConfig, type Config } from '../type.js';
+
 import type { RuleOptions } from '../typegen/import.js';
 
+import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+
 export async function imports(options: imports.Options = {}) {
-  const { rules = {}, recommended = true, stylistic = true } = options;
+  const { recommended = true, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
   const [importPlugin] = await Promise.all([interopDefault(import('eslint-plugin-import'))] as const);
   return [
@@ -42,7 +44,7 @@ imports['stylistic'] = {
 };
 
 export namespace imports {
-  export type Rules = RuleOptions;
-
   export interface Options extends PluginOptionsBase<Rules> {}
+
+  export type Rules = RuleOptions;
 }

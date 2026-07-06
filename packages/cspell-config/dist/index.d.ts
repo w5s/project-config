@@ -1,10 +1,3 @@
-//#region src/meta.d.ts
-declare const meta: Readonly<{
-  name: string;
-  version: string;
-  buildNumber: number;
-}>;
-//#endregion
 //#region ../../node_modules/.pnpm/@cspell+cspell-types@10.0.1/node_modules/@cspell/cspell-types/dist/index-ufqGDeKQ.d.mts
 //#region src/Parser/types.d.ts
 /**
@@ -1804,6 +1797,13 @@ interface CompatibleEngineVersions {
 //#endregion
 //#region src/config.d.ts
 declare const config: AdvancedCSpellSettings;
+//#endregion
+//#region src/meta.d.ts
+declare const meta: Readonly<{
+  buildNumber: number;
+  name: string;
+  version: string;
+}>;
 //#endregion
 export { config as default, meta };
 //# sourceMappingURL=index.d.ts.map

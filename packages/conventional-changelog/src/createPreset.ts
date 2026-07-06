@@ -9,7 +9,7 @@ export async function createPreset() {
   return {
     gitRawCommitOpts,
     parser: createParserOpts(),
-    writer: await createWriterOpts(),
     whatBump,
+    writer: await createWriterOpts(),
   };
 }

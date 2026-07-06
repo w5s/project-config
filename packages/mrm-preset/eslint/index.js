@@ -1,9 +1,10 @@
 const { packageJson } = require('mrm-core');
-const pkg = require('../core/pkg.js');
-const npm = require('../core/npm.js');
+
 const { eslintConfig } = require('../core/eslint.js');
+const npm = require('../core/npm.js');
+const pkg = require('../core/pkg.js');
 const project = require('../core/project.js');
-const { vscodeSettings, vscodeRecommendedExtension } = require('../core/vscode.js');
+const { vscodeRecommendedExtension, vscodeSettings } = require('../core/vscode.js');
 
 function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended' }) {
   /**
@@ -54,13 +55,13 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
       // workspaces
       pkg.script(packageFile, {
         name: `${project.lint}:root`,
-        update: `eslint .${extOption}${hasWorkspaces ? ignorePatterns : ''}`,
         state: 'present',
+        update: `eslint .${extOption}${hasWorkspaces ? ignorePatterns : ''}`,
       });
       pkg.script(packageFile, {
         name: `${project.format}:root`,
-        update: `eslint .${extOption}${hasWorkspaces ? ignorePatterns : ''} --fix`,
         state: 'present',
+        update: `eslint .${extOption}${hasWorkspaces ? ignorePatterns : ''} --fix`,
       });
 
       // clean
@@ -88,13 +89,13 @@ function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended'
           : _);
       pkg.script(packageFile, {
         name: `${project.lint}:src`,
-        update: updater(false),
         state: 'present',
+        update: updater(false),
       });
       pkg.script(packageFile, {
         name: `${project.format}:src`,
-        update: updater(true),
         state: 'present',
+        update: updater(true),
       });
     });
 

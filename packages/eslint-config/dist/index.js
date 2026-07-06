@@ -1,15 +1,26 @@
 import { ESLintConfig, Project, interopDefault } from "@w5s/dev";
 import prettierConfig from "@w5s/prettier-config";
-import globals from "globals";
 import eslintConfig from "@eslint/js";
+import globals from "globals";
 import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
+//#region src/glob.ts
+const sourceGlob$1 = `**/${Project.extensionsToGlob(Project.sourceExtensions())}`;
+const esSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`;
+const jsonSourceGlob = `**/${Project.extensionsToGlob([
+	".json",
+	".json5",
+	".jsonc"
+])}`;
+const tsSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`;
+const ymlSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`;
+//#endregion
 //#region src/type/StylisticConfig.ts
 const defaultConfig = {
 	enabled: true,
 	indent: prettierConfig.tabWidth ?? 2,
-	quotes: prettierConfig.singleQuote ? "single" : "double",
 	jsx: true,
+	quotes: prettierConfig.singleQuote ? "single" : "double",
 	semi: prettierConfig.semi ?? true
 };
 /**
@@ -36,17 +47,6 @@ const StylisticConfig = {
 	}
 };
 //#endregion
-//#region src/glob.ts
-const sourceGlob$1 = `**/${Project.extensionsToGlob(Project.sourceExtensions())}`;
-const esSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`;
-const jsonSourceGlob = `**/${Project.extensionsToGlob([
-	".json",
-	".json5",
-	".jsonc"
-])}`;
-const tsSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`;
-const ymlSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`;
-//#endregion
 //#region src/config/e18e.ts
 const defaultFiles$11 = [sourceGlob$1];
 /**
@@ -55,14 +55,14 @@ const defaultFiles$11 = [sourceGlob$1];
 */
 async function e18e(options = {}) {
 	const [e18ePlugin] = await Promise.all([interopDefault(import("@e18e/eslint-plugin"))]);
-	const { files = defaultFiles$11, rules = {}, stylistic = true, modernization = true, moduleReplacements = false, performanceImprovements = true } = options;
+	const { files = defaultFiles$11, modernization = true, moduleReplacements = false, performanceImprovements = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
 		name: "w5s/e18e/setup",
 		plugins: { e18e: e18ePlugin }
 	}, {
-		name: "w5s/e18e/rules",
 		files,
+		name: "w5s/e18e/rules",
 		rules: {
 			...modernization ? e18ePlugin.configs.modernization.rules : {},
 			...moduleReplacements ? e18ePlugin.configs.moduleReplacements.rules : {},
@@ -83,15 +83,15 @@ const bestPractices = () => ({
 	"accessor-pairs": "off",
 	"array-callback-return": ["error", { allowImplicit: true }],
 	"block-scoped-var": "error",
-	"complexity": ["off", 20],
 	"class-methods-use-this": ["error", { exceptMethods: [] }],
+	"complexity": ["off", 20],
 	"consistent-return": "error",
 	"curly": ["error", "multi-line"],
 	"default-case": ["error", { commentPattern: "^no default$" }],
 	"default-case-last": "error",
 	"default-param-last": "error",
-	"dot-notation": ["error", { allowKeywords: true }],
 	"dot-location": ["error", "property"],
+	"dot-notation": ["error", { allowKeywords: true }],
 	"eqeqeq": [
 		"error",
 		"always",
@@ -121,12 +121,11 @@ const bestPractices = () => ({
 	"no-fallthrough": "error",
 	"no-floating-decimal": "error",
 	"no-global-assign": ["error", { exceptions: [] }],
-	"no-native-reassign": "off",
 	"no-implicit-coercion": ["off", {
+		allow: [],
 		boolean: false,
 		number: true,
-		string: true,
-		allow: []
+		string: true
 	}],
 	"no-implicit-globals": "off",
 	"no-implied-eval": "error",
@@ -139,13 +138,14 @@ const bestPractices = () => ({
 	"no-lone-blocks": "error",
 	"no-loop-func": "error",
 	"no-magic-numbers": ["off", {
-		ignore: [],
-		ignoreArrayIndexes: true,
+		detectObjects: false,
 		enforceConst: true,
-		detectObjects: false
+		ignore: [],
+		ignoreArrayIndexes: true
 	}],
 	"no-multi-spaces": ["error", { ignoreEOLComments: false }],
 	"no-multi-str": "error",
+	"no-native-reassign": "off",
 	"no-new": "error",
 	"no-new-func": "error",
 	"no-new-wrappers": "error",
@@ -154,7 +154,6 @@ const bestPractices = () => ({
 	"no-octal": "error",
 	"no-octal-escape": "error",
 	"no-param-reassign": ["error", {
-		props: true,
 		ignorePropertyModificationsFor: [
 			"acc",
 			"accumulator",
@@ -167,59 +166,60 @@ const bestPractices = () => ({
 			"response",
 			"$scope",
 			"staticContext"
-		]
+		],
+		props: true
 	}],
 	"no-proto": "error",
 	"no-redeclare": "error",
 	"no-restricted-properties": [
 		"error",
 		{
+			message: "arguments.callee is deprecated",
 			object: "arguments",
-			property: "callee",
-			message: "arguments.callee is deprecated"
+			property: "callee"
 		},
 		{
+			message: "Please use Number.isFinite instead",
 			object: "global",
-			property: "isFinite",
-			message: "Please use Number.isFinite instead"
+			property: "isFinite"
 		},
 		{
+			message: "Please use Number.isFinite instead",
 			object: "self",
-			property: "isFinite",
-			message: "Please use Number.isFinite instead"
+			property: "isFinite"
 		},
 		{
+			message: "Please use Number.isFinite instead",
 			object: "window",
-			property: "isFinite",
-			message: "Please use Number.isFinite instead"
+			property: "isFinite"
 		},
 		{
+			message: "Please use Number.isNaN instead",
 			object: "global",
-			property: "isNaN",
-			message: "Please use Number.isNaN instead"
+			property: "isNaN"
 		},
 		{
+			message: "Please use Number.isNaN instead",
 			object: "self",
-			property: "isNaN",
-			message: "Please use Number.isNaN instead"
+			property: "isNaN"
 		},
 		{
+			message: "Please use Number.isNaN instead",
 			object: "window",
-			property: "isNaN",
-			message: "Please use Number.isNaN instead"
+			property: "isNaN"
 		},
 		{
-			property: "__defineGetter__",
-			message: "Please use Object.defineProperty instead."
+			message: "Please use Object.defineProperty instead.",
+			property: "__defineGetter__"
 		},
 		{
-			property: "__defineSetter__",
-			message: "Please use Object.defineProperty instead."
+			message: "Please use Object.defineProperty instead.",
+			property: "__defineSetter__"
 		},
 		{
+			message: "Use the exponentiation operator (**) instead.",
 			object: "Math",
-			property: "pow",
-			message: "Use the exponentiation operator (**) instead."
+			property: "pow"
 		}
 	],
 	"no-return-assign": ["error", "always"],
@@ -232,8 +232,8 @@ const bestPractices = () => ({
 	"no-unmodified-loop-condition": "off",
 	"no-unused-expressions": ["error", {
 		allowShortCircuit: false,
-		allowTernary: false,
-		allowTaggedTemplates: false
+		allowTaggedTemplates: false,
+		allowTernary: false
 	}],
 	"no-unused-labels": "error",
 	"no-useless-call": "off",
@@ -243,17 +243,17 @@ const bestPractices = () => ({
 	"no-useless-return": "error",
 	"no-void": "error",
 	"no-warning-comments": ["off", {
+		location: "start",
 		terms: [
 			"todo",
 			"fixme",
 			"xxx"
-		],
-		location: "start"
+		]
 	}],
 	"no-with": "error",
-	"prefer-promise-reject-errors": ["error", { allowEmptyReject: true }],
 	"prefer-named-capture-group": "off",
 	"prefer-object-has-own": "off",
+	"prefer-promise-reject-errors": ["error", { allowEmptyReject: true }],
 	"prefer-regex-literals": ["error", { disallowRedundantWrapping: true }],
 	"radix": "error",
 	"require-await": "off",
@@ -293,10 +293,10 @@ const errors = () => ({
 		"all",
 		{
 			conditionalAssign: true,
-			nestedBinaryExpressions: false,
-			returnAssign: false,
+			enforceForArrowConditionals: false,
 			ignoreJSX: "all",
-			enforceForArrowConditionals: false
+			nestedBinaryExpressions: false,
+			returnAssign: false
 		}
 	],
 	"no-extra-semi": "error",
@@ -307,8 +307,9 @@ const errors = () => ({
 	"no-irregular-whitespace": "error",
 	"no-loss-of-precision": "error",
 	"no-misleading-character-class": "error",
-	"no-obj-calls": "error",
+	"no-negated-in-lhs": "off",
 	"no-new-native-nonconstructor": "off",
+	"no-obj-calls": "error",
 	"no-promise-executor-return": "error",
 	"no-prototype-builtins": "error",
 	"no-regex-spaces": "error",
@@ -323,7 +324,6 @@ const errors = () => ({
 	"no-unsafe-optional-chaining": ["error", { disallowArithmeticOperators: true }],
 	"no-unused-private-class-members": "off",
 	"no-useless-backreference": "error",
-	"no-negated-in-lhs": "off",
 	"require-atomic-updates": "off",
 	"use-isnan": "error",
 	"valid-jsdoc": "off",
@@ -339,13 +339,13 @@ const es6 = () => ({
 	],
 	"arrow-parens": ["error", "always"],
 	"arrow-spacing": ["error", {
-		before: true,
-		after: true
+		after: true,
+		before: true
 	}],
 	"constructor-super": "error",
 	"generator-star-spacing": ["error", {
-		before: false,
-		after: true
+		after: true,
+		before: false
 	}],
 	"no-class-assign": "error",
 	"no-confusing-arrow": ["error", { allowParens: true }],
@@ -363,16 +363,16 @@ const es6 = () => ({
 	"no-useless-constructor": "error",
 	"no-useless-rename": ["error", {
 		ignoreDestructuring: false,
-		ignoreImport: false,
-		ignoreExport: false
+		ignoreExport: false,
+		ignoreImport: false
 	}],
 	"no-var": "error",
 	"object-shorthand": [
 		"error",
 		"always",
 		{
-			ignoreConstructors: false,
-			avoidQuotes: true
+			avoidQuotes: true,
+			ignoreConstructors: false
 		}
 	],
 	"prefer-arrow-callback": ["error", {
@@ -386,13 +386,13 @@ const es6 = () => ({
 	"prefer-destructuring": [
 		"error",
 		{
-			VariableDeclarator: {
-				array: false,
-				object: true
-			},
 			AssignmentExpression: {
 				array: true,
 				object: false
+			},
+			VariableDeclarator: {
+				array: false,
+				object: true
 			}
 		},
 		{ enforceForRenamedProperties: false }
@@ -446,12 +446,12 @@ const variables = () => ({
 	"no-restricted-globals": [
 		"error",
 		{
-			name: "isFinite",
-			message: "Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite"
+			message: "Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite",
+			name: "isFinite"
 		},
 		{
-			name: "isNaN",
-			message: "Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan"
+			message: "Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan",
+			name: "isNaN"
 		}
 	],
 	"no-shadow": "error",
@@ -460,13 +460,13 @@ const variables = () => ({
 	"no-undef-init": "error",
 	"no-undefined": "off",
 	"no-unused-vars": ["error", {
-		vars: "all",
 		args: "after-used",
-		ignoreRestSiblings: true
+		ignoreRestSiblings: true,
+		vars: "all"
 	}],
 	"no-use-before-define": ["error", {
-		functions: true,
 		classes: true,
+		functions: true,
 		variables: true
 	}]
 });
@@ -486,7 +486,6 @@ const defaultFiles$10 = [esSourceGlob];
 async function es(options) {
 	const { recommended = true, rules = {} } = options;
 	return [{
-		name: "w5s/es/setup",
 		languageOptions: {
 			ecmaVersion: Project.ecmaVersion(),
 			globals: {
@@ -507,10 +506,11 @@ async function es(options) {
 			},
 			sourceType: "module"
 		},
-		linterOptions: { reportUnusedDisableDirectives: true }
+		linterOptions: { reportUnusedDisableDirectives: true },
+		name: "w5s/es/setup"
 	}, {
-		name: "w5s/es/rules",
 		files: defaultFiles$10,
+		name: "w5s/es/rules",
 		rules: {
 			...recommended ? es["recommended"] : {},
 			...rules
@@ -532,7 +532,7 @@ async function ignores(options = {}) {
 //#endregion
 //#region src/config/imports.ts
 async function imports(options = {}) {
-	const { rules = {}, recommended = true, stylistic = true } = options;
+	const { recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const [importPlugin] = await Promise.all([interopDefault(import("eslint-plugin-import"))]);
 	return [{
@@ -569,8 +569,8 @@ async function jsdoc(options = {}) {
 		name: "w5s/jsdoc/setup",
 		plugins: { jsdoc: jsdocPlugin }
 	}, {
-		name: "w5s/jsdoc/rules",
 		files,
+		name: "w5s/jsdoc/rules",
 		rules: {
 			...recommended ? jsdocPlugin.configs["flat/recommended-typescript-flavor"].rules : {},
 			...recommended ? {
@@ -639,31 +639,6 @@ async function jsonc(options = {}) {
 		stylisticEnabled ? sortPackageJson() : {},
 		stylisticEnabled ? sortTsconfigJson() : {}
 	];
-}
-function sortTsconfigJson() {
-	return {
-		files: ["**/tsconfig*.json"],
-		rules: { "jsonc/sort-keys": [
-			"error",
-			{
-				order: [
-					"$schema",
-					"display",
-					"extends",
-					"compilerOptions",
-					"include",
-					"exclude",
-					"files",
-					"references"
-				],
-				pathPattern: "^$"
-			},
-			{
-				order: { type: "asc" },
-				pathPattern: ".*"
-			}
-		] }
-	};
 }
 function sortPackageJson() {
 	return {
@@ -836,12 +811,37 @@ function sortPackageJson() {
 		] }
 	};
 }
+function sortTsconfigJson() {
+	return {
+		files: ["**/tsconfig*.json"],
+		rules: { "jsonc/sort-keys": [
+			"error",
+			{
+				order: [
+					"$schema",
+					"display",
+					"extends",
+					"compilerOptions",
+					"include",
+					"exclude",
+					"files",
+					"references"
+				],
+				pathPattern: "^$"
+			},
+			{
+				order: { type: "asc" },
+				pathPattern: ".*"
+			}
+		] }
+	};
+}
 //#endregion
 //#region src/config/markdown.ts
 const defaultFiles$7 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
 async function markdown(options = {}) {
 	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
-	const { language = "markdown/gfm", languageOptions, files = defaultFiles$7, recommended = true, rules = {}, stylistic = true } = options;
+	const { files = defaultFiles$7, language = "markdown/gfm", languageOptions, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
 		name: "w5s/markdown/setup",
@@ -872,18 +872,18 @@ async function next(options = {}) {
 		name: "w5s/next/setup",
 		plugins: { next: nextPlugin }
 	}, {
-		name: "w5s/next/rules",
 		files,
 		languageOptions: {
 			parserOptions: { ecmaFeatures: { jsx: true } },
 			sourceType: "module"
 		},
-		settings: { react: { version: "detect" } },
+		name: "w5s/next/rules",
 		rules: {
 			...recommended ? ESLintConfig.renameRules(nextPlugin.configs.recommended.rules ?? {}, { "@next/next": "next" }) : {},
 			...recommended ? ESLintConfig.renameRules(nextPlugin.configs["core-web-vitals"].rules ?? {}, { "@next/next": "next" }) : {},
 			...rules
-		}
+		},
+		settings: { react: { version: "detect" } }
 	}];
 }
 //#endregion
@@ -942,12 +942,12 @@ async function react(options = {}) {
 		name: "w5s/react/setup",
 		plugins: { react: reactPlugin }
 	}, {
-		name: "w5s/react/rules",
 		files,
 		languageOptions: {
 			parserOptions: { ecmaFeatures: { jsx: true } },
 			sourceType: "module"
 		},
+		name: "w5s/react/rules",
 		rules: {
 			...recommended ? reactPlugin.configs["recommended"].rules : {},
 			...rules
@@ -983,16 +983,16 @@ async function stylistic(options = {}) {
 					{ overrides: {
 						":": "before",
 						"?": "before",
-						"|>": "before",
-						"|": "before"
+						"|": "before",
+						"|>": "before"
 					} }
 				],
 				"style/quotes": [
 					"error",
 					quotes ?? StylisticConfig.default.quotes,
 					{
-						avoidEscape: true,
-						allowTemplateLiterals: "always"
+						allowTemplateLiterals: "always",
+						avoidEscape: true
 					}
 				]
 			} : {},
@@ -1020,8 +1020,8 @@ async function test(options = {}) {
 		name: "w5s/test/rules",
 		rules: {
 			...recommended ? ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, { vitest: "test" }) : {},
-			"test/valid-title": ESLintConfig.fixme(void 0),
 			"e18e/prefer-static-regex": "off",
+			"test/valid-title": ESLintConfig.fixme(void 0),
 			...stylisticEnabled ? {} : {},
 			...rules
 		}
@@ -1142,8 +1142,8 @@ async function unicorn(options = {}) {
 			plugins: { unicorn: unicornPlugin }
 		},
 		{
-			name: "w5s/unicorn/rules",
 			files,
+			name: "w5s/unicorn/rules",
 			rules: {
 				...recommended && unicornPlugin.configs["unopinionated"].rules,
 				"unicorn/new-for-builtins": "off",
@@ -1162,8 +1162,8 @@ async function unicorn(options = {}) {
 			}
 		},
 		{
-			name: "w5s/unicorn/overrides",
 			files: ["**/*.config.cjs", "**/*.config.js"],
+			name: "w5s/unicorn/overrides",
 			rules: { "unicorn/prefer-module": "off" }
 		}
 	];
@@ -1233,9 +1233,9 @@ async function defineConfig(options = {}) {
 //#endregion
 //#region src/meta.ts
 const meta = Object.freeze({
+	buildNumber: 1,
 	name: "@w5s/eslint-config",
-	version: "3.11.0",
-	buildNumber: 1
+	version: "3.11.0"
 });
 //#endregion
 export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, yml };

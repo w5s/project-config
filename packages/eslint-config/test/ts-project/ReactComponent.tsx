@@ -1,13 +1,6 @@
 import * as React from 'react';
 
 const ignore = (anyValue: unknown) => anyValue;
-function FunctionComponent(props: { onPress: () => void; onLongPress: () => void; children?: React.ReactNode }) {
-  ignore(props.onLongPress);
-  ignore(props.onPress);
-  ignore(props.children);
-  return null;
-}
-
 type ReactComponentProps = {
   foo: boolean;
 };
@@ -36,4 +29,11 @@ export class MarkupView extends React.PureComponent<ReactComponentProps, ReactCo
         )
       : null;
   }
+}
+
+function FunctionComponent(props: { children?: React.ReactNode; onLongPress: () => void; onPress: () => void }) {
+  ignore(props.onLongPress);
+  ignore(props.onPress);
+  ignore(props.children);
+  return null;
 }

@@ -1,12 +1,12 @@
-/* eslint-disable unicorn/prefer-spread */
 import emojiRegexp from 'emoji-regex';
 import { type Gitmoji, gitmojis } from 'gitmojis';
+
 import type { CommitConventionalType } from './data.js';
 
-export type Emoji = Emoji.Unicode | Emoji.Text;
+export type Emoji = Emoji.Text | Emoji.Unicode;
 export namespace Emoji {
-  export type Unicode = string & { '@@EmojiStyle': 'unicode' };
   export type Text = string & { '@@EmojiStyle': 'text' };
+  export type Unicode = string & { '@@EmojiStyle': 'unicode' };
 }
 
 const reEmojiUnicode = emojiRegexp();
@@ -16,16 +16,16 @@ const reMatchOnly = (input: RegExp) => new RegExp(`^${input.source}$`, '');
 const _reEmojiUnicode = reMatchOnly(reEmojiUnicode);
 const _reEmojiText = reMatchOnly(reEmojiText);
 
-function isUnicode(anyValue: string): anyValue is Emoji.Unicode {
-  return _reEmojiUnicode.test(anyValue);
+function hasInstance(anyValue: string): anyValue is Emoji {
+  return isText(anyValue) || isUnicode(anyValue);
 }
 
 function isText(anyValue: string): anyValue is Emoji.Text {
   return _reEmojiText.test(anyValue);
 }
 
-function hasInstance(anyValue: string): anyValue is Emoji {
-  return isText(anyValue) || isUnicode(anyValue);
+function isUnicode(anyValue: string): anyValue is Emoji.Unicode {
+  return _reEmojiUnicode.test(anyValue);
 }
 
 /**
@@ -41,8 +41,8 @@ export const Emoji = Object.freeze({
 
 export type GitmojiCode = Emoji & { '@@Gitmoji': true };
 export namespace GitmojiCode {
-  export type Unicode = Emoji.Unicode & { '@@Gitmoji': true };
   export type Emoji = Emoji.Text & { '@@Gitmoji': true };
+  export type Unicode = Emoji.Unicode & { '@@Gitmoji': true };
 }
 
 const allGitmojiCodes = new Set(
@@ -66,18 +66,18 @@ function isValid(anyValue: string): anyValue is GitmojiCode {
 const defaultType = 'chore';
 const conversionMap: ReadonlyMap<GitmojiCode, CommitConventionalType> = (() => {
   const data: Record<CommitConventionalType, GitmojiCode.Unicode[]> = {
-    feat: ['✨', '♿️', '🚸'] as GitmojiCode.Unicode[],
-    fix: ['🐛'] as GitmojiCode.Unicode[],
-    docs: ['📝'] as GitmojiCode.Unicode[],
-    style: ['🎨', '🚨'] as GitmojiCode.Unicode[],
-    refactor: ['♻️', '🏗️'] as GitmojiCode.Unicode[],
-    test: ['✅', '🧪'] as GitmojiCode.Unicode[],
-    perf: ['⚡️'] as GitmojiCode.Unicode[],
-    revert: ['⏪️'] as GitmojiCode.Unicode[],
-    ci: ['👷', '💚'] as GitmojiCode.Unicode[],
-    wip: ['🚧'] as GitmojiCode.Unicode[],
     build: [] as GitmojiCode.Unicode[],
     chore: ['🔧'] as GitmojiCode.Unicode[],
+    ci: ['👷', '💚'] as GitmojiCode.Unicode[],
+    docs: ['📝'] as GitmojiCode.Unicode[],
+    feat: ['✨', '♿️', '🚸'] as GitmojiCode.Unicode[],
+    fix: ['🐛'] as GitmojiCode.Unicode[],
+    perf: ['⚡️'] as GitmojiCode.Unicode[],
+    refactor: ['♻️', '🏗️'] as GitmojiCode.Unicode[],
+    revert: ['⏪️'] as GitmojiCode.Unicode[],
+    style: ['🎨', '🚨'] as GitmojiCode.Unicode[],
+    test: ['✅', '🧪'] as GitmojiCode.Unicode[],
+    wip: ['🚧'] as GitmojiCode.Unicode[],
   };
 
   const entries = Array.from<[CommitConventionalType, GitmojiCode.Unicode[]]>(

@@ -2,59 +2,6 @@ import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
 import eslint, { Linter } from "eslint";
 import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 
-//#region src/type/Config.d.ts
-interface Config extends Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> {
-  plugins?: Record<string, any>;
-}
-//#endregion
-//#region src/type/StylisticConfig.d.ts
-interface StylisticConfig {
-  enabled: boolean;
-  indent: NonNullable<StylisticCustomizeOptions['indent']>;
-  quotes: NonNullable<StylisticCustomizeOptions['quotes']>;
-  jsx: NonNullable<StylisticCustomizeOptions['jsx']>;
-  semi: NonNullable<StylisticCustomizeOptions['semi']>;
-}
-interface StylisticParameters extends Partial<StylisticConfig> {}
-/**
- * @namespace
- */
-declare const StylisticConfig: {
-  /**
-   * Default config
-   */
-  default: {
-    enabled: true;
-    indent: number;
-    quotes: "single" | "double";
-    jsx: true;
-    semi: boolean;
-  };
-  /**
-   * Return a new StylisticConfig from input
-   *
-   * @param input
-   */
-  from(input: boolean | StylisticParameters): StylisticConfig;
-};
-//#endregion
-//#region src/type/PluginOptionsBase.d.ts
-interface PluginOptionsBase<Rules> {
-  files?: Linter.Config['files'];
-  /**
-   * Plugin rules
-   */
-  rules?: Rules;
-  /**
-   * Include recommended settings
-   */
-  recommended?: boolean;
-  /**
-   * Stylistic options
-   */
-  stylistic?: boolean | StylisticParameters;
-}
-//#endregion
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
@@ -179,6 +126,59 @@ type E18EBanDependencies = [] | [{
   allowed?: string[];
 }];
 //#endregion
+//#region src/type/Config.d.ts
+interface Config extends Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> {
+  plugins?: Record<string, any>;
+}
+//#endregion
+//#region src/type/StylisticConfig.d.ts
+interface StylisticConfig {
+  enabled: boolean;
+  indent: NonNullable<StylisticCustomizeOptions['indent']>;
+  jsx: NonNullable<StylisticCustomizeOptions['jsx']>;
+  quotes: NonNullable<StylisticCustomizeOptions['quotes']>;
+  semi: NonNullable<StylisticCustomizeOptions['semi']>;
+}
+interface StylisticParameters extends Partial<StylisticConfig> {}
+/**
+ * @namespace
+ */
+declare const StylisticConfig: {
+  /**
+   * Default config
+   */
+  default: {
+    enabled: true;
+    indent: number;
+    jsx: true;
+    quotes: "single" | "double";
+    semi: boolean;
+  };
+  /**
+   * Return a new StylisticConfig from input
+   *
+   * @param input
+   */
+  from(input: boolean | StylisticParameters): StylisticConfig;
+};
+//#endregion
+//#region src/type/PluginOptionsBase.d.ts
+interface PluginOptionsBase<Rules> {
+  files?: Linter.Config['files'];
+  /**
+   * Include recommended settings
+   */
+  recommended?: boolean;
+  /**
+   * Plugin rules
+   */
+  rules?: Rules;
+  /**
+   * Stylistic options
+   */
+  stylistic?: boolean | StylisticParameters;
+}
+//#endregion
 //#region src/config/e18e.d.ts
 /**
  * @see https://e18e.dev
@@ -186,7 +186,6 @@ type E18EBanDependencies = [] | [{
  */
 declare function e18e(options?: e18e.Options): Promise<[Config, Config]>;
 declare namespace e18e {
-  type Rules = RuleOptions$13;
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * Include modernization default configuration
@@ -207,6 +206,7 @@ declare namespace e18e {
      */
     performanceImprovements?: boolean;
   }
+  type Rules = RuleOptions$13;
 }
 //#endregion
 //#region src/typegen/jsonc.d.ts
@@ -713,11 +713,11 @@ declare namespace es {
     'no-delete-var': "error";
     'no-label-var': "error";
     'no-restricted-globals': ["error", {
-      name: string;
       message: string;
+      name: string;
     }, {
-      name: string;
       message: string;
+      name: string;
     }];
     'no-shadow': "error";
     'no-shadow-restricted-names': "error";
@@ -730,13 +730,13 @@ declare namespace es {
     }];
     'arrow-parens': ["error", string];
     'arrow-spacing': ["error", {
-      before: boolean;
       after: boolean;
+      before: boolean;
     }];
     'constructor-super': "error";
     'generator-star-spacing': ["error", {
-      before: boolean;
       after: boolean;
+      before: boolean;
     }];
     'no-class-assign': "error";
     'no-confusing-arrow': ["error", {
@@ -758,13 +758,13 @@ declare namespace es {
     'no-useless-constructor': "error";
     'no-useless-rename': ["error", {
       ignoreDestructuring: boolean;
-      ignoreImport: boolean;
       ignoreExport: boolean;
+      ignoreImport: boolean;
     }];
     'no-var': "error";
     'object-shorthand': ["error", string, {
-      ignoreConstructors: boolean;
       avoidQuotes: boolean;
+      ignoreConstructors: boolean;
     }];
     'prefer-arrow-callback': ["error", {
       allowNamedFunctions: boolean;
@@ -775,11 +775,11 @@ declare namespace es {
       ignoreReadBeforeAssign: boolean;
     }];
     'prefer-destructuring': ["error", {
-      VariableDeclarator: {
+      AssignmentExpression: {
         array: boolean;
         object: boolean;
       };
-      AssignmentExpression: {
+      VariableDeclarator: {
         array: boolean;
         object: boolean;
       };
@@ -824,10 +824,10 @@ declare namespace es {
     'no-extra-boolean-cast': "error";
     'no-extra-parens': ["off", string, {
       conditionalAssign: boolean;
+      enforceForArrowConditionals: boolean;
+      ignoreJSX: string;
       nestedBinaryExpressions: boolean;
       returnAssign: boolean;
-      ignoreJSX: string;
-      enforceForArrowConditionals: boolean;
     }];
     'no-extra-semi': "error";
     'no-func-assign': "error";
@@ -837,8 +837,9 @@ declare namespace es {
     'no-irregular-whitespace': "error";
     'no-loss-of-precision': "error";
     'no-misleading-character-class': "error";
-    'no-obj-calls': "error";
+    'no-negated-in-lhs': "off";
     'no-new-native-nonconstructor': "off";
+    'no-obj-calls': "error";
     'no-promise-executor-return': "error";
     'no-prototype-builtins': "error";
     'no-regex-spaces': "error";
@@ -857,7 +858,6 @@ declare namespace es {
     }];
     'no-unused-private-class-members': "off";
     'no-useless-backreference': "error";
-    'no-negated-in-lhs': "off";
     'require-atomic-updates': "off";
     'use-isnan': "error";
     'valid-jsdoc': "off";
@@ -874,10 +874,10 @@ declare namespace es {
     curly: ["error", string];
     'default-case-last': "error";
     'default-param-last': "error";
+    'dot-location': ["error", string];
     'dot-notation': ["error", {
       allowKeywords: boolean;
     }];
-    'dot-location': ["error", string];
     eqeqeq: ["error", string, {
       null: string;
     }];
@@ -907,12 +907,11 @@ declare namespace es {
     'no-global-assign': ["error", {
       exceptions: never[];
     }];
-    'no-native-reassign': "off";
     'no-implicit-coercion': ["off", {
+      allow: never[];
       boolean: boolean;
       number: boolean;
       string: boolean;
-      allow: never[];
     }];
     'no-implicit-globals': "off";
     'no-implied-eval': "error";
@@ -925,15 +924,16 @@ declare namespace es {
     'no-lone-blocks': "error";
     'no-loop-func': "error";
     'no-magic-numbers': ["off", {
+      detectObjects: boolean;
+      enforceConst: boolean;
       ignore: never[];
       ignoreArrayIndexes: boolean;
-      enforceConst: boolean;
-      detectObjects: boolean;
     }];
     'no-multi-spaces': ["error", {
       ignoreEOLComments: boolean;
     }];
     'no-multi-str': "error";
+    'no-native-reassign': "off";
     'no-new': "error";
     'no-new-func': "error";
     'no-new-wrappers': "error";
@@ -944,43 +944,43 @@ declare namespace es {
     'no-proto': "error";
     'no-redeclare': "error";
     'no-restricted-properties': ["error", {
+      message: string;
       object: string;
       property: string;
-      message: string;
     }, {
+      message: string;
       object: string;
       property: string;
-      message: string;
     }, {
+      message: string;
       object: string;
       property: string;
-      message: string;
     }, {
+      message: string;
       object: string;
       property: string;
-      message: string;
     }, {
+      message: string;
       object: string;
       property: string;
-      message: string;
     }, {
+      message: string;
       object: string;
       property: string;
-      message: string;
     }, {
+      message: string;
       object: string;
       property: string;
-      message: string;
     }, {
+      message: string;
       property: string;
-      message: string;
     }, {
+      message: string;
       property: string;
-      message: string;
     }, {
+      message: string;
       object: string;
       property: string;
-      message: string;
     }];
     'no-return-assign': ["error", string];
     'no-return-await': "error";
@@ -994,8 +994,8 @@ declare namespace es {
     'no-unmodified-loop-condition': "off";
     'no-unused-expressions': ["error", {
       allowShortCircuit: boolean;
-      allowTernary: boolean;
       allowTaggedTemplates: boolean;
+      allowTernary: boolean;
     }];
     'no-unused-labels': "error";
     'no-useless-call': "off";
@@ -1004,15 +1004,15 @@ declare namespace es {
     'no-useless-escape': "error";
     'no-useless-return': "error";
     'no-warning-comments': ["off", {
-      terms: string[];
       location: string;
+      terms: string[];
     }];
     'no-with': "error";
+    'prefer-named-capture-group': "off";
+    'prefer-object-has-own': "off";
     'prefer-promise-reject-errors': ["error", {
       allowEmptyReject: boolean;
     }];
-    'prefer-named-capture-group': "off";
-    'prefer-object-has-own': "off";
     'prefer-regex-literals': ["error", {
       disallowRedundantWrapping: boolean;
     }];
@@ -1027,8 +1027,8 @@ declare namespace es {
   };
 }
 declare namespace es {
-  type Rules = RuleOptions$12;
   interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions$12;
 }
 //#endregion
 //#region src/config/ignores.d.ts
@@ -1502,8 +1502,8 @@ declare namespace imports {
   };
 }
 declare namespace imports {
-  type Rules = RuleOptions$11;
   interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions$11;
 }
 //#endregion
 //#region src/typegen/jsdoc.d.ts
@@ -2389,15 +2389,15 @@ type JsdocValidTypes = [] | [{
 //#region src/config/jsdoc.d.ts
 declare function jsdoc(options?: jsdoc.Options): Promise<readonly Config[]>;
 declare namespace jsdoc {
-  type Rules = RuleOptions$10;
   interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions$10;
 }
 //#endregion
 //#region src/config/jsonc.d.ts
 declare function jsonc(options?: jsonc.Options): Promise<readonly Config[]>;
 declare namespace jsonc {
-  type Rules = RuleOptions$12;
   interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions$12;
 }
 //#endregion
 //#region src/typegen/markdown.d.ts
@@ -2567,21 +2567,21 @@ type MarkdownTableColumnCount = [] | [{
 //#region src/config/markdown.d.ts
 declare function markdown(options?: markdown.Options): Promise<[Config, Config]>;
 declare namespace markdown {
-  type Rules = RuleOptions$9;
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * Default to 'markdown/gfm' (Github Flavored Markdown)
      */
-    language?: 'markdown/gfm' | 'markdown/commonmark';
+    language?: 'markdown/commonmark' | 'markdown/gfm';
     /**
      * Default to 'yaml'
      * If you want to use TOML frontmatter, set this to 'toml'
      * If you want to disable frontmatter parsing, set this to undefined
      */
     languageOptions?: {
-      frontmatter?: 'yaml' | 'toml';
+      frontmatter?: 'toml' | 'yaml';
     };
   }
+  type Rules = RuleOptions$9;
 }
 //#endregion
 //#region src/typegen/next.d.ts
@@ -2703,8 +2703,8 @@ type NextNoHtmlLinkForPages = [] | [(string | string[])];
 //#region src/config/next.d.ts
 declare function next(options?: next.Options): Promise<[Config, Config]>;
 declare namespace next {
-  type Rules = RuleOptions$8;
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
+  type Rules = RuleOptions$8;
 }
 //#endregion
 //#region src/typegen/node.d.ts
@@ -3174,8 +3174,8 @@ type NodeShebang = [] | [{
 //#region src/config/node.d.ts
 declare function node(options?: node.Options): Promise<[Config, Config]>;
 declare namespace node {
-  type Rules = RuleOptions$7;
   interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {}
+  type Rules = RuleOptions$7;
 }
 //#endregion
 //#region src/typegen/perfectionist.d.ts
@@ -6674,8 +6674,8 @@ type ReactXUseState = [] | [{
 //#region src/config/react.d.ts
 declare function react(options?: react.Options): Promise<[Config, Config]>;
 declare namespace react {
-  type Rules = RuleOptions$5;
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
+  type Rules = RuleOptions$5;
 }
 //#endregion
 //#region src/typegen/style.d.ts
@@ -8349,8 +8349,8 @@ type StyleYieldStarSpacing = [] | [(("before" | "after" | "both" | "neither") | 
 //#region src/config/stylistic.d.ts
 declare function stylistic(options?: stylistic.Options): Promise<[Config, Config]>;
 declare namespace stylistic {
-  type Rules = RuleOptions$4;
   interface Options extends Pick<PluginOptionsBase<Rules>, 'rules'>, StylisticParameters {}
+  type Rules = RuleOptions$4;
 }
 //#endregion
 //#region src/typegen/test.d.ts
@@ -8871,8 +8871,8 @@ type TestValidTitle = [] | [{
 //#region src/config/test.d.ts
 declare function test(options?: test.Options): Promise<[Config, Config]>;
 declare namespace test {
-  type Rules = RuleOptions$3;
   interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions$3;
 }
 //#endregion
 //#region src/typegen/ts.d.ts
@@ -10461,10 +10461,10 @@ type TsUnifiedSignatures = [] | [{
 //#region src/config/ts.d.ts
 declare function ts(options?: ts.Options): Promise<[Config, Config] | [Config, Config, Config]>;
 declare namespace ts {
-  type Rules = RuleOptions$2;
   interface Options extends PluginOptionsBase<Rules> {
     typeChecked?: boolean;
   }
+  type Rules = RuleOptions$2;
 }
 //#endregion
 //#region src/typegen/unicorn.d.ts
@@ -12433,8 +12433,8 @@ type UnicornTryComplexity = [] | [{
 //#region src/config/unicorn.d.ts
 declare function unicorn(options?: unicorn.Options): Promise<[Config, Config, Config]>;
 declare namespace unicorn {
-  type Rules = RuleOptions$1;
   interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions$1;
 }
 //#endregion
 //#region src/typegen/yml.d.ts
@@ -12789,8 +12789,8 @@ type YmlSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
 //#region src/config/yml.d.ts
 declare function yml(options?: yml.Options): Promise<[Config, Config]>;
 declare namespace yml {
-  type Rules = RuleOptions;
   interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions;
 }
 //#endregion
 //#region src/defineConfig.d.ts
@@ -12820,13 +12820,13 @@ interface DefineConfigOptions extends ignores.Options {
    */
   rules?: eslint.Linter.RulesRecord;
 }
-declare function defineConfig(options?: DefineConfigOptions): Promise<import("eslint").Linter.Config<import("eslint").Linter.RulesRecord>[]>;
+declare function defineConfig(options?: DefineConfigOptions): Promise<Config[]>;
 //#endregion
 //#region src/meta.d.ts
 declare const meta: Readonly<{
+  buildNumber: number;
   name: string;
   version: string;
-  buildNumber: number;
 }>;
 //#endregion
 export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, yml };

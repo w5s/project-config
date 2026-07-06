@@ -1,6 +1,7 @@
-import { describe, it, expect } from 'vitest';
 import { readFile } from 'node:fs/promises';
 import nodePath from 'node:path';
+import { describe, expect, it } from 'vitest';
+
 import { json } from './json.js';
 import { getTestPath } from './testing/index.js';
 

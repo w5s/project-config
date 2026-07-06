@@ -1,13 +1,14 @@
+const { json, makeDirs, packageJson } = require('mrm-core');
 const nodePath = require('node:path');
-const { packageJson, json, makeDirs } = require('mrm-core');
+
 const git = require('../core/git.js');
+const npm = require('../core/npm.js');
 const pkg = require('../core/pkg.js');
 const jsonFile = require('../core/pkg.js');
-const npm = require('../core/npm.js');
-const { vscodeTask } = require('../core/vscode.js');
 const project = require('../core/project.js');
-const mrmPackageJson = require('../package.json');
 const { turbo } = require('../core/turbo.js');
+const { vscodeTask } = require('../core/vscode.js');
+const mrmPackageJson = require('../package.json');
 
 /**
  *
@@ -37,9 +38,9 @@ function task() {
   const rootEngineMinVersion = {
     // @ts-ignore
     node: '>=12.x',
-    yarn: '>=1.x',
-    pnpm: '>=10.x',
     npm: '>=6.x',
+    pnpm: '>=10.x',
+    yarn: '>=1.x',
     ...mrmPackageJson.engines,
   };
   const gitSupported = git.hasGit();
@@ -62,14 +63,14 @@ function task() {
 
   const setDefault = (/** @type {import("mrm-core").Json} */ currentPackageFile, /** @type {boolean} */ root) => {
     jsonFile.value(currentPackageFile, {
+      default: 'module',
       path: 'type',
       state: 'present',
-      default: 'module',
     });
     jsonFile.value(currentPackageFile, {
+      default: false,
       path: 'sideEffect',
       state: 'present',
-      default: false,
     });
     jsonFile.value(currentPackageFile, {
       path: 'license',
@@ -77,9 +78,9 @@ function task() {
       update: (_) => _ ?? (root && rootUseWorkspace ? 'UNLICENSED' : undefined),
     });
     jsonFile.value(currentPackageFile, {
+      default: '1.0.0-alpha.0',
       path: 'version',
       state: root && rootUseWorkspace ? 'absent' : 'present',
-      default: '1.0.0-alpha.0',
     });
     jsonFile.value(currentPackageFile, {
       path: 'description',
@@ -93,20 +94,20 @@ function task() {
     // build
     pkg.script(currentPackageFile, {
       name: project.build,
-      update: useWorkspace ? turboRun(project.build) : npmRunAll(project.build, true),
       state: 'present',
+      update: useWorkspace ? turboRun(project.build) : npmRunAll(project.build, true),
     });
 
     // lint
     pkg.script(currentPackageFile, {
       name: project.lint,
-      update: useWorkspace ? turboRun(project.lint) : npmRunAll(project.lint, true),
       state: 'present',
+      update: useWorkspace ? turboRun(project.lint) : npmRunAll(project.lint, true),
     });
     pkg.script(currentPackageFile, {
       name: project.format,
-      update: useWorkspace ? `${turboRun(project.format)} --continue` : npmRunAll(project.format, true),
       state: 'present',
+      update: useWorkspace ? `${turboRun(project.format)} --continue` : npmRunAll(project.format, true),
     });
 
     // test
@@ -116,30 +117,30 @@ function task() {
     //   state: 'default',
     // });
     pkg.script(currentPackageFile, {
-      name: project.test,
-      update: useWorkspace ? turboRun(project.test) : npmRunAll(project.test, true),
-      state: 'present',
       default: pkg.emptyScript,
+      name: project.test,
+      state: 'present',
+      update: useWorkspace ? turboRun(project.test) : npmRunAll(project.test, true),
     });
     pkg.script(currentPackageFile, {
-      name: project.typecheck,
-      update: useWorkspace ? turboRun(project.typecheck) : npmRunAll(project.typecheck, true),
-      state: 'present',
       default: pkg.emptyScript,
+      name: project.typecheck,
+      state: 'present',
+      update: useWorkspace ? turboRun(project.typecheck) : npmRunAll(project.typecheck, true),
     });
 
     // prepare
     pkg.script(currentPackageFile, {
       name: project.prepare,
-      update: npmRunAll(project.prepare, true),
       state: 'present',
+      update: npmRunAll(project.prepare, true),
     });
 
     // clean
     pkg.script(currentPackageFile, {
       name: project.clean,
-      update: useWorkspace ? turboRun(project.clean) : npmRunAll(project.clean, true),
       state: 'present',
+      update: useWorkspace ? turboRun(project.clean) : npmRunAll(project.clean, true),
     });
 
     // Root
@@ -147,28 +148,28 @@ function task() {
     // rescue
     pkg.script(currentPackageFile, {
       name: project.rescue,
-      update: `${gitSupported ? 'git clean -fdx' : ''};${packageManager} install`,
       state: root ? 'present' : 'absent',
+      update: `${gitSupported ? 'git clean -fdx' : ''};${packageManager} install`,
     });
 
     // release
     pkg.script(currentPackageFile, {
-      name: project.release,
       default: pkg.emptyScript,
+      name: project.release,
       state: root ? 'present' : 'absent',
     });
 
     // code analysis
     pkg.script(currentPackageFile, {
-      name: project.codeAnalysis,
       default: pkg.emptyScript,
+      name: project.codeAnalysis,
       state: root ? 'present' : 'absent',
     });
 
     // develop & auto build & load
     pkg.script(currentPackageFile, {
-      name: project.develop,
       default: pkg.emptyScript,
+      name: project.develop,
       state: root ? 'present' : 'absent',
     });
 
@@ -205,8 +206,8 @@ function task() {
 
     pkg.script(packageFile, {
       name: project.validate,
-      update: turboRun([project.build, project.lint, project.test, project.typecheck, project.spellcheck].join(' ')),
       state: 'present',
+      update: turboRun([project.build, project.lint, project.test, project.typecheck, project.spellcheck].join(' ')),
     });
 
     // Engine
@@ -219,9 +220,9 @@ function task() {
       update: () =>
         (gitRepository
           ? {
+              directory: workspace.projectDir,
               type: 'git',
               url: gitRepository,
-              directory: workspace.projectDir,
             }
           : undefined),
     });
@@ -234,8 +235,8 @@ function task() {
 
   // workspace
   npm.dependency({
-    state: rootUseWorkspace ? 'present' : 'absent',
     name: ['@lerna-lite/publish'],
+    state: rootUseWorkspace ? 'present' : 'absent',
   });
   const lernaConfig = json('lerna.json', {
     version: rootPackageFile.get('version'),
@@ -246,6 +247,7 @@ function task() {
 
     lernaConfig.merge({
       $schema: 'https://json.schemastore.org/lerna.json',
+      changelogPreset: '@w5s/conventional-changelog',
       command: {
         publish: {
           conventionalCommits: true,
@@ -258,7 +260,6 @@ function task() {
         },
       },
       npmClient: packageManager,
-      changelogPreset: '@w5s/conventional-changelog',
     });
     lernaConfig.save();
   } else {
@@ -280,64 +281,64 @@ function task() {
     state: 'present',
     update: (_) => ({
       ..._,
+      globalDependencies: ['.tool-versions', 'tsconfig.settings.json', '**/.env.*local', '.env'],
       // eslint-disable-next-line unicorn/no-array-sort
       globalEnv: [...new Set([...(_.globalEnv ?? []), 'ASDF_*', 'CI', 'DATABASE_URL', 'NODE_ENV'])].sort((left, right) => left.localeCompare(right)),
-      globalDependencies: ['.tool-versions', 'tsconfig.settings.json', '**/.env.*local', '.env'],
       tasks: {
         ..._.tasks,
-        [project.build]: {
-          dependsOn: [`^${project.build}`, `//#${project.build}:root`],
-          inputs: packageInputs,
-          outputs: ['dist/**', '.next/**', '!.next/cache/**'],
-        },
         [`//#${project.build}:root`]: {
           inputs: rootInputs,
         },
-        [project.test]: {
-          dependsOn: [`^${project.build}`, `//#${project.test}:root`],
-        },
-        [`//#${project.test}:root`]: {
-          inputs: rootInputs,
-        },
-        [project.typecheck]: {
-          dependsOn: [project.build, `^${project.build}`],
-        },
-        [project.lint]: {
-          dependsOn: [`^${project.build}`, `//#${project.lint}:root`],
-        },
-        [`//#${project.lint}:root`]: {
-          inputs: rootInputs,
-        },
-        [project.prepare]: {},
-        [project.format]: {
-          dependsOn: [`//#${project.format}:root`],
-        },
-        [`//#${project.format}:root`]: {
-          inputs: rootInputs,
-        },
-        [project.docs]: {
-          dependsOn: [`//#${project.docs}:root`],
+        [`//#${project.clean}:root`]: {
           cache: false,
         },
         [`//#${project.docs}:root`]: {
           inputs: rootInputs,
         },
-        [project.spellcheck]: {
-          dependsOn: [`//#${project.spellcheck}:root`],
+        [`//#${project.format}:root`]: {
+          inputs: rootInputs,
+        },
+        [`//#${project.lint}:root`]: {
+          inputs: rootInputs,
         },
         [`//#${project.spellcheck}:root`]: {
           inputs: rootInputs,
         },
-        [project.clean]: {
-          dependsOn: [`//#${project.clean}:root`],
-          cache: false,
+        [`//#${project.test}:root`]: {
+          inputs: rootInputs,
         },
-        [`//#${project.clean}:root`]: {
+        [project.build]: {
+          dependsOn: [`^${project.build}`, `//#${project.build}:root`],
+          inputs: packageInputs,
+          outputs: ['dist/**', '.next/**', '!.next/cache/**'],
+        },
+        [project.clean]: {
           cache: false,
+          dependsOn: [`//#${project.clean}:root`],
         },
         [project.develop]: {
-          persistent: true,
           cache: false,
+          persistent: true,
+        },
+        [project.docs]: {
+          cache: false,
+          dependsOn: [`//#${project.docs}:root`],
+        },
+        [project.format]: {
+          dependsOn: [`//#${project.format}:root`],
+        },
+        [project.lint]: {
+          dependsOn: [`^${project.build}`, `//#${project.lint}:root`],
+        },
+        [project.prepare]: {},
+        [project.spellcheck]: {
+          dependsOn: [`//#${project.spellcheck}:root`],
+        },
+        [project.test]: {
+          dependsOn: [`^${project.build}`, `//#${project.test}:root`],
+        },
+        [project.typecheck]: {
+          dependsOn: [project.build, `^${project.build}`],
         },
       },
     }),

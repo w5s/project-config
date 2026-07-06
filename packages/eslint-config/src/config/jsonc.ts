@@ -1,8 +1,10 @@
 /* cSpell:disable */
 import { interopDefault } from '@w5s/dev';
-import { StylisticConfig, type PluginOptionsBase, type Config } from '../type.js';
+
 import type { RuleOptions } from '../typegen/jsonc.js';
+
 import { jsonSourceGlob } from '../glob.js';
+import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [jsonSourceGlob];
 
@@ -54,25 +56,6 @@ export async function jsonc(options: jsonc.Options = {}): Promise<readonly Confi
     stylisticEnabled ? sortPackageJson() : {},
     stylisticEnabled ? sortTsconfigJson() : {},
   ] as [Config, Config, Config, Config] satisfies Array<Config>;
-}
-
-function sortTsconfigJson() {
-  return {
-    files: ['**/tsconfig*.json'],
-    rules: {
-      'jsonc/sort-keys': [
-        'error',
-        {
-          order: ['$schema', 'display', 'extends', 'compilerOptions', 'include', 'exclude', 'files', 'references'],
-          pathPattern: '^$',
-        },
-        {
-          order: { type: 'asc' },
-          pathPattern: '.*',
-        },
-      ],
-    },
-  };
 }
 
 function sortPackageJson() {
@@ -235,8 +218,27 @@ function sortPackageJson() {
   };
 }
 
-export namespace jsonc {
-  export type Rules = RuleOptions;
+function sortTsconfigJson() {
+  return {
+    files: ['**/tsconfig*.json'],
+    rules: {
+      'jsonc/sort-keys': [
+        'error',
+        {
+          order: ['$schema', 'display', 'extends', 'compilerOptions', 'include', 'exclude', 'files', 'references'],
+          pathPattern: '^$',
+        },
+        {
+          order: { type: 'asc' },
+          pathPattern: '.*',
+        },
+      ],
+    },
+  };
+}
 
+export namespace jsonc {
   export interface Options extends PluginOptionsBase<Rules> {}
+
+  export type Rules = RuleOptions;
 }

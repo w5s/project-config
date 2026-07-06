@@ -1,6 +1,7 @@
+import { mkdir, rm } from 'node:fs/promises';
 import path from 'node:path';
 import { afterAll, beforeAll } from 'vitest';
-import { mkdir, rm } from 'node:fs/promises';
+
 import { getTempPath } from './getTempPath.js';
 
 export function getTestPath(prefix: string, remove = true) {

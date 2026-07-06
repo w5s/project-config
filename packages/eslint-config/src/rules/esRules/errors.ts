@@ -71,10 +71,10 @@ export const errors = () => ({
   // https://eslint.org/docs/rules/no-extra-parens
   'no-extra-parens': ['off', 'all', {
     conditionalAssign: true,
+    enforceForArrowConditionals: false,
+    ignoreJSX: 'all', // delegate to eslint-plugin-react
     nestedBinaryExpressions: false,
     returnAssign: false,
-    ignoreJSX: 'all', // delegate to eslint-plugin-react
-    enforceForArrowConditionals: false,
   }],
 
   // disallow unnecessary semicolons
@@ -103,13 +103,17 @@ export const errors = () => ({
   // https://eslint.org/docs/rules/no-misleading-character-class
   'no-misleading-character-class': 'error',
 
-  // disallow the use of object properties of the global object (Math and JSON) as functions
-  'no-obj-calls': 'error',
+  // disallow negation of the left operand of an in expression
+  // deprecated in favor of no-unsafe-negation
+  'no-negated-in-lhs': 'off',
 
   // Disallow new operators with global non-constructor functions
   // https://eslint.org/docs/latest/rules/no-new-native-nonconstructor
   // TODO: semver-major, enable
   'no-new-native-nonconstructor': 'off',
+
+  // disallow the use of object properties of the global object (Math and JSON) as functions
+  'no-obj-calls': 'error',
 
   // Disallow returning values from Promise executor functions
   // https://eslint.org/docs/rules/no-promise-executor-return
@@ -166,10 +170,6 @@ export const errors = () => ({
   // Disallow useless backreferences in regular expressions
   // https://eslint.org/docs/rules/no-useless-backreference
   'no-useless-backreference': 'error',
-
-  // disallow negation of the left operand of an in expression
-  // deprecated in favor of no-unsafe-negation
-  'no-negated-in-lhs': 'off',
 
   // Disallow assignments that can lead to race conditions due to usage of await or yield
   // https://eslint.org/docs/rules/require-atomic-updates

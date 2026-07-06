@@ -1,53 +1,56 @@
-//#region src/meta.d.ts
-declare const meta: Readonly<{
-  name: string;
-  version: string;
-  buildNumber: number;
-}>;
+//#region src/parser.d.ts
+interface ParserOptions {
+  headerCorrespondence?: null | string | string[];
+  headerPattern?: null | RegExp | string;
+  noteKeywords?: null | string | string[];
+  revertCorrespondence?: null | string | string[];
+  revertPattern?: null | RegExp | string;
+}
 //#endregion
 //#region src/data.d.ts
 interface Commit {
-  merge: Commit.Field;
-  header: Commit.Field;
   body: Commit.Field;
   footer: Commit.Field;
+  hash: null | string;
+  header: Commit.Field;
+  mentions: string[];
+  merge: Commit.Field;
   notes: Commit.Note[];
   references: Commit.Reference[];
-  mentions: string[];
   revert: Commit.Revert | null;
-  type: string | null;
-  subject: string | null;
-  scope: string | null;
-  hash: string | null;
+  scope: null | string;
+  subject: null | string;
+  type: null | string;
 }
 declare namespace Commit {
-  type Field = string | null;
+  type Field = null | string;
   interface Note {
-    title: string;
     text: string;
+    title: string;
   }
   interface Reference {
-    issue: string;
     action: Field;
+    issue: string;
     owner: Field;
-    repository: Field;
     prefix: string;
     raw: string;
+    repository: Field;
   }
   interface Revert {
+    [field: string]: Field | undefined;
     hash?: Field | undefined;
     header?: Field | undefined;
-    [field: string]: Field | undefined;
   }
 }
-type CommitConventionalType = 'build' | 'ci' | 'docs' | 'feat' | 'fix' | 'perf' | 'refactor' | 'revert' | 'style' | 'test' | 'wip' | 'chore';
+type CommitConventionalType = 'build' | 'chore' | 'ci' | 'docs' | 'feat' | 'fix' | 'perf' | 'refactor' | 'revert' | 'style' | 'test' | 'wip';
 declare const CommitConventionalType: {
-  hasInstance: (anyValue: unknown) => anyValue is CommitConventionalType;
-  getData: (commitType: CommitConventionalType) => CommitConventionalTypeData;
-  values: () => readonly CommitConventionalType[];
-  parse: (anyValue: string) => CommitConventionalType | undefined;
   findWhere: (predicate: (data: CommitConventionalTypeData) => boolean) => CommitConventionalType[];
+  getData: (commitType: CommitConventionalType) => CommitConventionalTypeData;
+  hasInstance: (anyValue: unknown) => anyValue is CommitConventionalType;
+  parse: (anyValue: string) => CommitConventionalType | undefined;
+  values: () => readonly CommitConventionalType[];
   Build: "build";
+  Chore: "chore";
   CI: "ci";
   Docs: "docs";
   Feat: "feat";
@@ -58,27 +61,50 @@ declare const CommitConventionalType: {
   Style: "style";
   Test: "test";
   WIP: "wip";
-  Chore: "chore";
 };
 interface CommitConventionalTypeData {
+  'changelog': boolean;
   'emoji': string;
   'en-US': string;
-  'changelog': boolean;
+}
+//#endregion
+//#region src/transform.d.ts
+interface CommitTransformFunction<TCommit extends Commit = Commit> {
+  (commit: Commit, context: WriterContext, ...args: unknown[]): false | TCommit;
+}
+interface WriterContext {
+  host?: string | undefined;
+  owner?: string | undefined;
+  repository?: string | undefined;
+  repoUrl?: string | undefined;
+}
+//#endregion
+//#region src/writer.d.ts
+interface WriterOptions {
+  commitGroupsSort?: false | readonly string[] | string | undefined;
+  commitPartial?: string | undefined;
+  commitsSort?: false | readonly string[] | string | undefined;
+  footerPartial?: string | undefined;
+  groupBy?: false | string | undefined;
+  headerPartial?: string | undefined;
+  mainTemplate?: string | undefined;
+  noteGroupsSort?: false | readonly string[] | string | undefined;
+  transform?: CommitTransformFunction<Commit> | undefined;
 }
 //#endregion
 //#region src/gitmoji.d.ts
-type Emoji = Emoji.Unicode | Emoji.Text;
+type Emoji = Emoji.Text | Emoji.Unicode;
 declare namespace Emoji {
-  type Unicode = string & {
-    '@@EmojiStyle': 'unicode';
-  };
   type Text = string & {
     '@@EmojiStyle': 'text';
   };
+  type Unicode = string & {
+    '@@EmojiStyle': 'unicode';
+  };
 }
-declare function isUnicode(anyValue: string): anyValue is Emoji.Unicode;
-declare function isText(anyValue: string): anyValue is Emoji.Text;
 declare function hasInstance(anyValue: string): anyValue is Emoji;
+declare function isText(anyValue: string): anyValue is Emoji.Text;
+declare function isUnicode(anyValue: string): anyValue is Emoji.Unicode;
 /**
  * @namespace
  */
@@ -93,10 +119,10 @@ type GitmojiCode = Emoji & {
   '@@Gitmoji': true;
 };
 declare namespace GitmojiCode {
-  type Unicode = Emoji.Unicode & {
+  type Emoji = Emoji.Text & {
     '@@Gitmoji': true;
   };
-  type Emoji = Emoji.Text & {
+  type Unicode = Emoji.Unicode & {
     '@@Gitmoji': true;
   };
 }
@@ -110,50 +136,24 @@ declare const GitmojiCode: Readonly<{
   toConventionalCommitType: typeof toConventionalCommitType;
 }>;
 //#endregion
-//#region src/parser.d.ts
-interface ParserOptions {
-  headerPattern?: RegExp | string | null;
-  headerCorrespondence?: string[] | string | null;
-  revertPattern?: RegExp | string | null;
-  revertCorrespondence?: string[] | string | null;
-  noteKeywords?: string[] | string | null;
-}
-//#endregion
-//#region src/transform.d.ts
-interface WriterContext {
-  repository?: string | undefined;
-  host?: string | undefined;
-  owner?: string | undefined;
-  repoUrl?: string | undefined;
-}
-interface CommitTransformFunction<TCommit extends Commit = Commit> {
-  (commit: Commit, context: WriterContext, ...args: unknown[]): TCommit | false;
-}
-//#endregion
-//#region src/writer.d.ts
-interface WriterOptions {
-  transform?: CommitTransformFunction<Commit> | undefined;
-  groupBy?: string | false | undefined;
-  commitGroupsSort?: string | readonly string[] | false | undefined;
-  commitsSort?: string | readonly string[] | false | undefined;
-  noteGroupsSort?: string | readonly string[] | false | undefined;
-  mainTemplate?: string | undefined;
-  headerPartial?: string | undefined;
-  commitPartial?: string | undefined;
-  footerPartial?: string | undefined;
-}
-//#endregion
 //#region src/createPreset.d.ts
 declare function createPreset(): Promise<{
   gitRawCommitOpts: {
     format: string;
   };
   parser: ParserOptions;
-  writer: WriterOptions;
   whatBump: (commits: ReadonlyArray<Commit>) => {
     level: number;
     reason: string;
   };
+  writer: WriterOptions;
+}>;
+//#endregion
+//#region src/meta.d.ts
+declare const meta: Readonly<{
+  buildNumber: number;
+  name: string;
+  version: string;
 }>;
 //#endregion
 export { Emoji, GitmojiCode, createPreset as default, meta };

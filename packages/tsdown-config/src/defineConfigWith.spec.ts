@@ -1,6 +1,7 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { defineConfigWith } from './defineConfigWith.js';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { defaultConfig } from './defaultConfig.js';
+import { defineConfigWith } from './defineConfigWith.js';
 
 const mockDefineConfig = vi.fn((config: unknown) => config);
 const mockMergeConfig = vi.fn((base: object, ext: object) => ({ ...base, ...ext }));
@@ -30,13 +31,13 @@ describe(defineConfigWith, () => {
     expect(mockDefineConfig).toHaveBeenCalledTimes(1);
     const passed = mockDefineConfig.mock.calls[0]?.[0] as Record<string, unknown>;
     expect(passed).toMatchObject({
-      format: ['esm', 'cjs'],
-      entry: ['src/main.ts'],
       define: {
+        __PACKAGE_BUILD_NUMBER__: expect.any(String),
         __PACKAGE_NAME__: expect.any(String),
         __PACKAGE_VERSION__: expect.any(String),
-        __PACKAGE_BUILD_NUMBER__: expect.any(String),
       },
+      entry: ['src/main.ts'],
+      format: ['esm', 'cjs'],
     });
   });
 

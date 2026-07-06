@@ -1,7 +1,7 @@
-/* eslint-disable unicorn/no-break-in-nested-loop */
 /* eslint-disable unicorn/prefer-await */
-import nodePath from 'node:path';
 import fs from 'node:fs/promises';
+import nodePath from 'node:path';
+
 import { ignoreFileParse } from './ignoreFileParse.js';
 import { ignoreRuleResolve } from './ignoreRuleResolve.js';
 
@@ -41,9 +41,9 @@ export async function ignoreFileFind(
   // --- Helpers (internal, not exported) ---------------------------------
   const normalize = (p: string) => p.replaceAll('\\', '/');
 
-  function lastMatchWins(patterns: string[], candidateRel: string): string | null {
+  function lastMatchWins(patterns: string[], candidateRel: string): null | string {
     const normCandidate = normalize(candidateRel);
-    let lastMatch: string | null = null;
+    let lastMatch: null | string = null;
     for (const p of patterns) {
       const neg = p.startsWith('!');
       const pat = neg ? p.slice(1) : p;
@@ -113,13 +113,13 @@ export async function ignoreFileFind(
   }
 
   // --- BFS downward carrying accumulated patterns -----------------------
-  const queue: Array<{ dir: string; depth: number; patterns: string[] }> = [
-    { dir: absoluteRootDir, depth: 0, patterns: [...initialPatterns] },
+  const queue: Array<{ depth: number; dir: string; patterns: string[] }> = [
+    { depth: 0, dir: absoluteRootDir, patterns: [...initialPatterns] },
   ];
 
   while (queue.length > 0) {
     // eslint-disable-next-line ts/no-non-null-assertion
-    const { dir: currentDir, depth, patterns } = queue.shift()!;
+    const { depth, dir: currentDir, patterns } = queue.shift()!;
     if (depth > maxDepth) continue;
 
     let entries;
@@ -141,7 +141,7 @@ export async function ignoreFileFind(
       const subdir = nodePath.join(currentDir, ent.name);
       const rel = nodePath.relative(rootDir, subdir);
       if (isIgnored(combinedPatterns, rel)) continue;
-      queue.push({ dir: subdir, depth: depth + 1, patterns: combinedPatterns });
+      queue.push({ depth: depth + 1, dir: subdir, patterns: combinedPatterns });
     }
   }
 

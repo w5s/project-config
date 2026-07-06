@@ -6,33 +6,13 @@ export interface YarnVersionOptions {
   /**
    * Option target state
    */
-  readonly state: 'present' | 'absent';
+  readonly state: 'absent' | 'present';
 
   /**
    * Version mapping function
    *
    */
-  readonly update?: (() => YarnVersionKind | undefined) | undefined;
-}
-
-/**
- * Synchronous version of {@link yarnVersion}
- *
- * @param options
- * @example
- * yarnVersionSync({
- *   state: 'present',
- *   update: () => 'berry', // or 'classic'
- * })
- */
-export function yarnVersionSync(options: YarnVersionOptions) {
-  const { state, update } = options;
-  if (state === 'present') {
-    execSync('yarn', ['set', 'version', String(update == null ? 'berry' : update())]);
-  } else {
-    // TODO: remove yarn.lock
-    throw new Error('Not implemented');
-  }
+  readonly update?: (() => undefined | YarnVersionKind) | undefined;
 }
 
 /**
@@ -49,6 +29,26 @@ export async function yarnVersion(options: YarnVersionOptions): Promise<void> {
   const { state, update } = options;
   if (state === 'present') {
     await exec('yarn', ['set', 'version', String(update == null ? 'berry' : update())]);
+  } else {
+    // TODO: remove yarn.lock
+    throw new Error('Not implemented');
+  }
+}
+
+/**
+ * Synchronous version of {@link yarnVersion}
+ *
+ * @param options
+ * @example
+ * yarnVersionSync({
+ *   state: 'present',
+ *   update: () => 'berry', // or 'classic'
+ * })
+ */
+export function yarnVersionSync(options: YarnVersionOptions) {
+  const { state, update } = options;
+  if (state === 'present') {
+    execSync('yarn', ['set', 'version', String(update == null ? 'berry' : update())]);
   } else {
     // TODO: remove yarn.lock
     throw new Error('Not implemented');

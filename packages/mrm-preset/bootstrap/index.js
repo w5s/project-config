@@ -1,9 +1,10 @@
+const { packageJson } = require('mrm-core');
 const path = require('node:path');
 const process = require('node:process');
-const { packageJson } = require('mrm-core');
+
+const { gitIgnore } = require('../core/git.js');
 const npm = require('../core/npm.js');
 const pkg = require('../core/pkg.js');
-const { gitIgnore } = require('../core/git.js');
 
 /**
  * @param {{
@@ -20,11 +21,11 @@ async function task({ mrmPreset, mrmTask, packageManager }) {
    */
 
   packageJson({
-    name: path.basename(process.cwd()),
-    version: '1.0.0-alpha.0',
-    private: true,
-    license: 'UNLICENSED',
     description: '',
+    license: 'UNLICENSED',
+    name: path.basename(process.cwd()),
+    private: true,
+    version: '1.0.0-alpha.0',
   }).save();
   gitIgnore(['macOS', 'NodeJS', 'VisualStudioCode']);
 
@@ -39,14 +40,14 @@ async function task({ mrmPreset, mrmTask, packageManager }) {
   pkg.withPackageJson((packageFile) => {
     // Add MRM default scripts
     pkg.script(packageFile, {
+      default: `npm run mrm -- ${mrmTask}`,
       name: 'configure',
       state: 'present',
-      default: `npm run mrm -- ${mrmTask}`,
     });
     pkg.script(packageFile, {
+      default: `npm exec --package=mrm --package=${mrmPreset}@latest -- mrm --preset ${mrmPreset}`,
       name: 'mrm',
       state: 'present',
-      default: `npm exec --package=mrm --package=${mrmPreset}@latest -- mrm --preset ${mrmPreset}`,
     });
   });
 }
@@ -65,8 +66,8 @@ task.parameters = {
     type: 'input',
   },
   packageManager: {
-    default: 'pnpm',
     choices: ['pnpm', 'yarn@berry', 'yarn@classic', 'npm'],
+    default: 'pnpm',
     message: 'Which default package manager ?',
     name: 'packageManager',
     type: 'input',

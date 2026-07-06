@@ -1,7 +1,9 @@
 import { interopDefault } from '@w5s/dev';
-import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js';
+
 import type { RuleOptions } from '../typegen/yml.js';
+
 import { ymlSourceGlob } from '../glob.js';
+import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [ymlSourceGlob];
 
@@ -56,7 +58,7 @@ export async function yml(options: yml.Options = {}) {
 }
 
 export namespace yml {
-  export type Rules = RuleOptions;
-
   export interface Options extends PluginOptionsBase<Rules> {}
+
+  export type Rules = RuleOptions;
 }

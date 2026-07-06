@@ -1,7 +1,8 @@
-const fs = require('node:fs');
 const { file, packageJson } = require('mrm-core');
-const pkg = require('./pkg.js');
+const fs = require('node:fs');
+
 const npm = require('./npm.js');
+const pkg = require('./pkg.js');
 const project = require('./project.js');
 
 /**
@@ -32,12 +33,12 @@ function vitest({ state }) {
     vitestVersion = packageFile.get('devDependencies.vitest');
     pkg.script(packageFile, {
       name: `${project.test}:root`,
-      update,
       state: hasWorkspace ? 'absent' : 'present',
+      update,
     });
   });
 
-  pkg.forEachWorkspace(({ projectDir, packageFile }) => {
+  pkg.forEachWorkspace(({ packageFile, projectDir }) => {
     const hasSrc = fs.existsSync(`${projectDir}/src`);
     const packageState = hasVitest && hasSrc ? 'present' : 'absent';
     pkg.value(packageFile, {
@@ -52,8 +53,8 @@ function vitest({ state }) {
     });
     pkg.script(packageFile, {
       name: `${project.test}:src`,
-      update,
       state: packageState,
+      update,
     });
     const viteConfig = file(`${projectDir}/vite.config.mts`);
     if (packageState === 'absent') {

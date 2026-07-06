@@ -1,5 +1,6 @@
 import commitlint from '@commitlint/lint';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import * as Module from './index.js';
 import { gitmojiPlugin } from './plugin.js';
 
@@ -10,9 +11,9 @@ const lint = async (input: string) =>
 describe('Commitlint Config', () => {
   it('has meta', () => {
     expect(Module.meta).toEqual({
+      buildNumber: expect.any(Number),
       name: expect.any(String),
       version: expect.any(String),
-      buildNumber: expect.any(Number),
     });
   });
   const generateValidSubject = (length: number) =>
@@ -32,8 +33,8 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: true,
           errors: [],
+          valid: true,
           warnings: [],
         }),
       );
@@ -43,8 +44,8 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: true,
           errors: [],
+          valid: true,
           warnings: [],
         }),
       );
@@ -54,8 +55,8 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: true,
           errors: [],
+          valid: true,
           warnings: [],
         }),
       );
@@ -66,8 +67,8 @@ describe('Commitlint Config', () => {
     ])('should validate examples', async (validExample) => {
       await expect(lint(validExample)).resolves.toEqual(
         expect.objectContaining({
-          valid: true,
           errors: [],
+          valid: true,
           warnings: [],
         }),
       );
@@ -80,8 +81,8 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: true,
           errors: [],
+          valid: true,
           warnings: [
             expect.objectContaining({
               name: 'body-leading-blank',
@@ -98,8 +99,8 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: true,
           errors: [],
+          valid: true,
           warnings: [
             expect.objectContaining({
               name: 'footer-leading-blank',
@@ -117,12 +118,12 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: false,
           errors: [
             expect.objectContaining({
               name: 'header-max-length',
             }),
           ],
+          valid: false,
           warnings: [],
         }),
       );
@@ -135,12 +136,12 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: false,
           errors: expect.arrayContaining([
             expect.objectContaining({
               name: 'scope-case',
             }),
           ]),
+          valid: false,
           warnings: [],
         }),
       );
@@ -155,24 +156,24 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: false,
           errors: [
             expect.objectContaining({
               name: 'subject-empty',
             }),
           ],
+          valid: false,
           warnings: [],
         }),
       );
 
       expect(await lint(`${anyGitmoji} (${anyValidScope}): `)).toEqual(
         expect.objectContaining({
-          valid: false,
           errors: [
             expect.objectContaining({
               name: 'subject-empty',
             }),
           ],
+          valid: false,
           warnings: [],
         }),
       );
@@ -185,12 +186,12 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: false,
           errors: expect.arrayContaining([
             expect.objectContaining({
               name: 'subject-full-stop',
             }),
           ]),
+          valid: false,
           warnings: [],
         }),
       );
@@ -203,12 +204,12 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: false,
           errors: expect.arrayContaining([
             expect.objectContaining({
               name: 'type-case',
             }),
           ]),
+          valid: false,
           warnings: [],
         }),
       );
@@ -221,12 +222,12 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: false,
           errors: expect.arrayContaining([
             expect.objectContaining({
               name: 'type-empty',
             }),
           ]),
+          valid: false,
           warnings: [],
         }),
       );
@@ -238,12 +239,12 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: false,
           errors: expect.arrayContaining([
             expect.objectContaining({
               name: 'type-gitmoji-style',
             }),
           ]),
+          valid: false,
           warnings: [],
         }),
       );
@@ -255,12 +256,12 @@ describe('Commitlint Config', () => {
 
       expect(result).toEqual(
         expect.objectContaining({
-          valid: false,
           errors: expect.arrayContaining([
             expect.objectContaining({
               name: 'type-valid-gitmoji',
             }),
           ]),
+          valid: false,
           warnings: [],
         }),
       );

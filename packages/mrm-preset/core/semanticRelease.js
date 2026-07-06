@@ -1,6 +1,6 @@
+const jsonFile = require('./jsonFile.js');
 const npm = require('./npm.js');
 const pkg = require('./pkg.js');
-const jsonFile = require('./jsonFile.js');
 
 /**
  * @typedef {{
@@ -15,7 +15,7 @@ const jsonFile = require('./jsonFile.js');
  *   update?: (config: SemanticReleaseConfig) => SemanticReleaseConfig
  * }} options
  */
-function semanticRelease({ state, update, preset }) {
+function semanticRelease({ preset, state, update }) {
   npm.dependency({
     dev: true,
     name: ['semantic-release', ...(preset ? [preset] : [])],
@@ -24,13 +24,13 @@ function semanticRelease({ state, update, preset }) {
 
   pkg.withPackageJson((packageFile) => {
     jsonFile.value(packageFile, {
-      path: 'release',
-      state,
-      update,
       /** @type {SemanticReleaseConfig} */
       default: {
         extends: preset ? [preset] : [],
       },
+      path: 'release',
+      state,
+      update,
     });
   });
 }

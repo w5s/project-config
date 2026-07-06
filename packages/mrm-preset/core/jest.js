@@ -1,6 +1,7 @@
 const { packageJson } = require('mrm-core');
-const pkg = require('./pkg.js');
+
 const npm = require('./npm.js');
+const pkg = require('./pkg.js');
 const project = require('./project.js');
 
 /**
@@ -17,6 +18,8 @@ function jest({ state }) {
     const ignorePatterns = ['/node_modules/', '/docs/', '/lib/', '/dist/', '/build/', '/.cache/', '/public/'];
 
     pkg.value(packageFile, {
+      // @ts-ignore
+      default: {},
       path: 'jest',
       state: hasJest ? 'present' : 'absent',
       update: hasWorkspaces
@@ -28,24 +31,22 @@ function jest({ state }) {
           })
         : (config) => ({
             ...config,
-            preset: 'es-jest',
             coveragePathIgnorePatterns: ignorePatterns,
+            preset: 'es-jest',
             testPathIgnorePatterns: ignorePatterns,
           }),
-      // @ts-ignore
-      default: {},
     });
     pkg.script(packageFile, {
+      default: undefined, // pkg.emptyScript,
       name: `${project.coverage}:root`,
-      update: (/** @type {string|undefined} */ _) => (hasWorkspaces ? _ : 'jest --coverage'),
       state: 'present',
-      default: undefined, // pkg.emptyScript,
+      update: (/** @type {string|undefined} */ _) => (hasWorkspaces ? _ : 'jest --coverage'),
     });
     pkg.script(packageFile, {
-      name: `${project.test}:root`,
-      update: (/** @type {string|undefined} */ _) => (hasWorkspaces ? _ : 'jest'),
-      state: 'present',
       default: undefined, // pkg.emptyScript,
+      name: `${project.test}:root`,
+      state: 'present',
+      update: (/** @type {string|undefined} */ _) => (hasWorkspaces ? _ : 'jest'),
     });
   });
 

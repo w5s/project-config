@@ -2,12 +2,6 @@ import { Linter } from "eslint";
 
 //#region src/ESLintConfig.d.ts
 /**
- * Return a new merged flat configuration
- *
- * @param configs
- */
-declare function merge<T extends Linter.Config = Linter.Config>(...configs: Array<T>): T;
-/**
  * Concat multiple flat configs into a single flat config array.
  *
  * It also resolves promises and flattens the result.
@@ -39,13 +33,19 @@ declare function merge<T extends Linter.Config = Linter.Config>(...configs: Arra
  * ```
  * @param configs
  */
-declare function concat<T extends Linter.Config = Linter.Config>(...configs: Array<T | ReadonlyArray<T> | Promise<T> | Promise<ReadonlyArray<T>>>): Promise<Array<T>>;
+declare function concat<T extends Linter.Config = Linter.Config>(...configs: Array<Promise<ReadonlyArray<T>> | Promise<T> | ReadonlyArray<T> | T>): Promise<Array<T>>;
 /**
  * Always return 'off'. `_status` is the previous rule value.
  *
  * @param _status
  */
-declare function fixme(_status: string | number | [string | number, ...any[]] | undefined): "off";
+declare function fixme(_status: [number | string, ...any[]] | number | string | undefined): "off";
+/**
+ * Return a new merged flat configuration
+ *
+ * @param configs
+ */
+declare function merge<T extends Linter.Config = Linter.Config>(...configs: Array<T>): T;
 /**
  * Renames rules in the given object according to the given map.
  *
@@ -61,9 +61,9 @@ declare function renameRules(rules: Record<string, any>, map: Record<string, str
  * @namespace
  */
 declare const ESLintConfig: Readonly<{
-  merge: typeof merge;
   concat: typeof concat;
   fixme: typeof fixme;
+  merge: typeof merge;
   renameRules: typeof renameRules;
 }>;
 //#endregion
@@ -96,6 +96,10 @@ declare function interopDefault<T>(m: T): T extends {
 } ? U : T;
 //#endregion
 //#region src/LanguageId.d.ts
+/**
+ * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
+ */
+type LanguageId = keyof LanguageIdMap;
 interface LanguageIdMap {
   css: true;
   graphql: true;
@@ -113,16 +117,12 @@ interface LanguageIdMap {
   vue: true;
   yaml: true;
 }
-/**
- * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
- */
-type LanguageId = keyof LanguageIdMap;
 //#endregion
 //#region src/meta.d.ts
 declare const meta: Readonly<{
+  buildNumber: number;
   name: string;
   version: string;
-  buildNumber: number;
 }>;
 //#endregion
 //#region src/Project.d.ts
@@ -174,15 +174,6 @@ declare function sourceExtensions(): readonly `.${string}`[];
  */
 declare function resourceExtensions(): readonly `.${string}`[];
 /**
- * Files and folders to always ignore
- *
- * @example
- * ```ts
- * IGNORED // ['node_modules/', 'build/', ...]
- * ```
- */
-declare function ignored(): readonly string[];
-/**
  * Return a RegExp that will match any list of extensions
  *
  * @param extensions
@@ -192,6 +183,15 @@ declare function ignored(): readonly string[];
  * ```
  */
 declare function extensionsToMatcher(extensions: readonly Extension[]): RegExp;
+/**
+ * Files and folders to always ignore
+ *
+ * @example
+ * ```ts
+ * IGNORED // ['node_modules/', 'build/', ...]
+ * ```
+ */
+declare function ignored(): readonly string[];
 /**
  * Return a glob matcher that will match any list of extensions
  *

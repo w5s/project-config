@@ -10,15 +10,6 @@ function task() {
     update: (config) => ({
       name: 'CI',
       ...config,
-      on: {
-        merge_group: {},
-        push: {
-          branches: [baseBranch],
-        },
-        pull_request: {
-          branches: [baseBranch],
-        },
-      },
       jobs: {
         ...config.jobs,
         'code-validate': {
@@ -44,6 +35,15 @@ function task() {
               },
             },
           ],
+        },
+      },
+      on: {
+        merge_group: {},
+        pull_request: {
+          branches: [baseBranch],
+        },
+        push: {
+          branches: [baseBranch],
         },
       },
     }),

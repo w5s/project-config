@@ -1,6 +1,8 @@
 /* eslint-disable ts/consistent-type-assertions */
-import { describe, expect, it } from 'vitest';
 import type { ESLint, Linter } from 'eslint';
+
+import { describe, expect, it } from 'vitest';
+
 import { ESLintConfig } from './ESLintConfig.js';
 
 describe('ESLintConfig', () => {
@@ -12,83 +14,83 @@ describe('ESLintConfig', () => {
             env: {
               a: true,
             },
+            extends: ['a'],
+            files: ['a'],
             globals: {
               ga: true,
             },
-            extends: ['a'],
-            files: ['a'],
             ignores: ['x'],
+            languageOptions: {
+              parserOptions: {
+                ecmaVersion: 2020,
+              },
+            },
             overrides: [{ files: 'a' }],
+            parserOptions: {
+              a: true,
+            },
             plugins: {
               'plugin-a': {} as ESLint.Plugin,
             },
             rules: {
               'rule-a': 'error',
             },
-            parserOptions: {
-              a: true,
-            },
             settings: {
               sa: true,
-            },
-            languageOptions: {
-              parserOptions: {
-                ecmaVersion: 2020,
-              },
             },
           },
           {
             env: {
               b: true,
             },
+            extends: ['b'],
+            files: ['b'],
             globals: {
               gb: true,
             },
-            extends: ['b'],
-            files: ['b'],
             ignores: ['y'],
+            languageOptions: {
+              sourceType: 'module',
+            },
             overrides: [{ files: 'b' }],
+            parserOptions: {
+              b: true,
+            },
             plugins: {
               'plugin-b': {} as ESLint.Plugin,
             },
             rules: {
               'rule-b': 'warn',
             },
-            parserOptions: {
-              b: true,
-            },
             settings: {
               sb: true,
-            },
-            languageOptions: {
-              sourceType: 'module',
             },
           },
           {
             env: {
               c: true,
             },
+            extends: ['c'],
+            files: ['c'],
             globals: {
               gc: true,
             },
-            extends: ['c'],
-            files: ['c'],
             ignores: ['z'],
+            languageOptions: {
+              ecmaVersion: 2022,
+            },
             overrides: [{ files: 'c' }],
+            parserOptions: {
+              c: true,
+            },
             plugins: {
               'plugin-c': {} as ESLint.Plugin,
             },
             rules: {
               'rule-c': 'off',
             },
-            parserOptions: {
-              c: true,
-            },
             settings: {
               sc: true,
-            },
-            languageOptions: {
-              ecmaVersion: 2022,
             },
           },
         ),
@@ -96,12 +98,19 @@ describe('ESLintConfig', () => {
         env: {
           c: true,
         },
+        extends: ['c'],
+        files: ['a', 'b', 'c'],
         globals: {
           gc: true,
         },
-        extends: ['c'],
-        files: ['a', 'b', 'c'],
         ignores: ['x', 'y', 'z'],
+        languageOptions: {
+          ecmaVersion: 2022,
+          parserOptions: {
+            ecmaVersion: 2020,
+          },
+          sourceType: 'module',
+        },
         overrides: [{ files: 'c' }],
         parserOptions: {
           c: true,
@@ -118,13 +127,6 @@ describe('ESLintConfig', () => {
         },
         settings: {
           sc: true,
-        },
-        languageOptions: {
-          parserOptions: {
-            ecmaVersion: 2020,
-          },
-          sourceType: 'module',
-          ecmaVersion: 2022,
         },
       });
     });
@@ -195,24 +197,24 @@ describe('ESLintConfig', () => {
   describe(ESLintConfig.renameRules, () => {
     it('should rename rules according to the given map', () => {
       const rules = {
+        'another-prefix/rule-three': 'off',
         'old-prefix/rule-one': 'error',
         'old-prefix/rule-two': 'warn',
-        'another-prefix/rule-three': 'off',
-        'rule-four': 'error',
         'rule-five': 'error',
+        'rule-four': 'error',
       };
 
       const map = {
-        'old-prefix': 'new-prefix',
         '': 'custom/',
+        'old-prefix': 'new-prefix',
       };
 
       expect(ESLintConfig.renameRules(rules, map)).toEqual({
+        'another-prefix/rule-three': 'off',
+        'custom/rule-five': 'error',
+        'custom/rule-four': 'error',
         'new-prefix/rule-one': 'error',
         'new-prefix/rule-two': 'warn',
-        'another-prefix/rule-three': 'off',
-        'custom/rule-four': 'error',
-        'custom/rule-five': 'error',
       });
     });
   });

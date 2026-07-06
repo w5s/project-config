@@ -1,4 +1,5 @@
 const { packageJson } = require('mrm-core');
+
 const jsonFile = require('./jsonFile.js');
 
 /**
@@ -15,13 +16,13 @@ function eslintConfig({ state, update }) {
   const packageFile = packageJson();
 
   jsonFile.value(packageFile, {
+    /** @type {ESLintConfig} */
+    // @ts-ignore
+    default: {},
     path: 'eslintConfig',
     state,
     // @ts-ignore
     update,
-    /** @type {ESLintConfig} */
-    // @ts-ignore
-    default: {},
   });
 
   packageFile.save();

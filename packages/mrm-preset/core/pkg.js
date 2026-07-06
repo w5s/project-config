@@ -5,11 +5,12 @@
  * @typedef {string|boolean|number|null|Array<unknown>|Record<string, unknown>} JsonValue
  */
 
+const glob = require('glob');
+const { file, json, packageJson } = require('mrm-core');
 const path = require('node:path');
 // @ts-ignore
 const { intersect } = require('semver-intersect');
-const { packageJson, file, json } = require('mrm-core');
-const glob = require('glob');
+
 const jsonFile = require('./jsonFile.js');
 
 /**
@@ -33,23 +34,6 @@ function archetype(packageFile) {
 }
 
 /**
- * @param {(pkg: import('mrm-core').PackageJson) => void} block
- */
-function withPackageJson(block) {
-  const packageFile = packageJson();
-  block(packageFile);
-  packageFile.save();
-}
-
-/**
- * @param {import("mrm-core").Json} packageFile
- * @returns {string[]} - The list of workspace matchers
- */
-function listWorkspaceMatchers(packageFile) {
-  return packageFile.get('workspaces.packages', packageFile.get('workspaces', []));
-}
-
-/**
  * @param {(workspace: {
  *   projectDir: string;
  *   packageFile: import("mrm-core").Json;
@@ -65,12 +49,20 @@ function forEachWorkspace(fn) {
     directories.forEach((directory) => {
       const packageFile = json(path.join(directory, 'package.json'));
       fn({
-        projectDir: directory,
         packageFile,
+        projectDir: directory,
       });
       packageFile.save();
     });
   }
+}
+
+/**
+ * @param {import("mrm-core").Json} packageFile
+ * @returns {string[]} - The list of workspace matchers
+ */
+function listWorkspaceMatchers(packageFile) {
+  return packageFile.get('workspaces.packages', packageFile.get('workspaces', []));
 }
 
 /**
@@ -90,58 +82,16 @@ function script(packageFile, options) {
   });
 }
 
+/**
+ * @param {(pkg: import('mrm-core').PackageJson) => void} block
+ */
+function withPackageJson(block) {
+  const packageFile = packageJson();
+  block(packageFile);
+  packageFile.save();
+}
+
 const defaultManager = 'npm';
-
-/**
- * @param {import('mrm-core').PackageJson} packageFile
- * @returns {'yarn'|'npm'|'pnpm'} - The manager used by the package
- */
-function manager(packageFile) {
-  if (packageFile.get('packageManager')) {
-    const [head, tail] = packageFile.get('packageManager').split('@', 2);
-
-    return head ?? tail;
-  }
-  if (file('yarn.lock').exists()) {
-    return 'yarn';
-  }
-  if (file('package-lock.json').exists()) {
-    return 'npm';
-  }
-  if (file('pnpm-lock.yaml').exists()) {
-    return 'pnpm';
-  }
-
-  return defaultManager;
-}
-
-/**
- *
- * @param {import('mrm-core').Json} packageFile
- */
-function hasWorkspaces(packageFile) {
-  return Boolean(packageFile.get('workspaces'));
-}
-
-/**
- *
- * @param {import('mrm-core').PackageJson} packageFile
- * @param {string} packageName
- * @param {'normal'|'dev'|'peer'=} dependencyType
- */
-function hasDependency(packageFile, packageName, dependencyType) {
-  return Boolean(
-    packageFile.get(
-      `${
-        dependencyType == null || dependencyType === 'normal'
-          ? 'dependencies'
-          : dependencyType === 'dev'
-            ? 'devDependencies'
-            : 'peerDependencies'
-      }.${packageName}`,
-    ),
-  );
-}
 
 /**
  *
@@ -170,16 +120,67 @@ function engineMinVersion(packageFile, engineVersionMap) {
   return packageFile.get('engines');
 }
 
+/**
+ *
+ * @param {import('mrm-core').PackageJson} packageFile
+ * @param {string} packageName
+ * @param {'normal'|'dev'|'peer'=} dependencyType
+ */
+function hasDependency(packageFile, packageName, dependencyType) {
+  return Boolean(
+    packageFile.get(
+      `${
+        dependencyType == null || dependencyType === 'normal'
+          ? 'dependencies'
+          : dependencyType === 'dev'
+            ? 'devDependencies'
+            : 'peerDependencies'
+      }.${packageName}`,
+    ),
+  );
+}
+
+/**
+ *
+ * @param {import('mrm-core').Json} packageFile
+ */
+function hasWorkspaces(packageFile) {
+  return Boolean(packageFile.get('workspaces'));
+}
+
+/**
+ * @param {import('mrm-core').PackageJson} packageFile
+ * @returns {'yarn'|'npm'|'pnpm'} - The manager used by the package
+ */
+function manager(packageFile) {
+  if (packageFile.get('packageManager')) {
+    const [head, tail] = packageFile.get('packageManager').split('@', 2);
+
+    return head ?? tail;
+  }
+  if (file('yarn.lock').exists()) {
+    return 'yarn';
+  }
+  if (file('package-lock.json').exists()) {
+    return 'npm';
+  }
+  if (file('pnpm-lock.yaml').exists()) {
+    return 'pnpm';
+  }
+
+  return defaultManager;
+}
+
 module.exports = {
   ...jsonFile,
-  emptyScript,
   archetype,
-  script,
-  manager,
+  emptyScript,
   engineMinVersion,
+  forEachWorkspace,
   hasDependency,
   hasWorkspaces,
-  withPackageJson,
-  forEachWorkspace,
   listWorkspaceMatchers,
+  manager,
+  script,
+  withPackageJson,
 };

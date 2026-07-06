@@ -1,21 +1,22 @@
 import { describe, expect, it } from 'vitest';
+
 import { defineConfig } from './defineConfig.js';
 
 const disabledPlugins = {
   e18e: false,
   es: false,
-  ts: false,
-  jsonc: false,
-  jsdoc: false,
-  stylistic: false,
   import: false,
+  jsdoc: false,
+  jsonc: false,
   markdown: false,
   next: false,
   node: false,
   react: false,
+  stylistic: false,
+  test: false,
+  ts: false,
   unicorn: false,
   yml: false,
-  test: false,
 } as const;
 
 describe(defineConfig, () => {

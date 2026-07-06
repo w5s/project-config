@@ -1,7 +1,8 @@
-const { packageJson, json } = require('mrm-core');
-const pkg = require('./pkg.js');
-const npm = require('./npm.js');
+const { json, packageJson } = require('mrm-core');
+
 const jsonFile = require('./jsonFile.js');
+const npm = require('./npm.js');
+const pkg = require('./pkg.js');
 
 /**
  * @typedef {{
@@ -30,22 +31,22 @@ function typedoc({ state, update }) {
 
   if (hasTypedoc) {
     jsonFile.value(typedocFile, {
+      /** @type {TypeDocConfig} */
+      default: {},
       path: undefined,
       state,
       update: (config) => ({
         ...update(config),
         ...(hasWorkspaces
           ? {
-              entryPointStrategy: 'packages',
               entryPoints: undefined,
+              entryPointStrategy: 'packages',
             }
           : {
-              entryPointStrategy: undefined,
               entryPoints: ['src/index.ts'],
+              entryPointStrategy: undefined,
             }),
       }),
-      /** @type {TypeDocConfig} */
-      default: {},
     });
 
     /**

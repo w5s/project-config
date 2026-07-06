@@ -1,6 +1,8 @@
 import { interopDefault } from '@w5s/dev';
-import { type Config, type PluginOptionsBase } from '../type.js';
+
 import type { RuleOptions } from '../typegen/node.js';
+
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 export async function node(options: node.Options = {}) {
   const [nodePlugin] = await Promise.all([
@@ -41,7 +43,7 @@ export async function node(options: node.Options = {}) {
 }
 
 export namespace node {
-  export type Rules = RuleOptions;
-
   export interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {}
+
+  export type Rules = RuleOptions;
 }

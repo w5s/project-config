@@ -1,6 +1,7 @@
-import { describe, expect, it } from 'vitest';
 import { chmod, readFile, stat, writeFile } from 'node:fs/promises';
 import nodePath from 'node:path';
+import { describe, expect, it } from 'vitest';
+
 import { file, fileSync } from './file.js';
 import { getTestPath } from './testing/index.js';
 
@@ -26,14 +27,14 @@ describe(file, () => {
   it('should create file with mode if present', async () => {
     const path = nodePath.join(testPath, 'create-with-mode');
     await file({
+      mode: {
+        group: { read: true },
+        other: { read: true },
+        owner: { read: true, write: true },
+      },
       path,
       state: 'present',
       update: () => 'foo',
-      mode: {
-        owner: { read: true, write: true },
-        group: { read: true },
-        other: { read: true },
-      },
     });
 
     await expect(readFile(path, 'utf8')).resolves.toEqual('foo');
@@ -46,13 +47,13 @@ describe(file, () => {
     await chmod(path, 0o600);
 
     await file({
-      path,
-      state: 'present',
       mode: {
-        owner: { read: true, write: true },
         group: { read: true },
         other: { read: true },
+        owner: { read: true, write: true },
       },
+      path,
+      state: 'present',
     });
 
     await expect(readFile(path, 'utf8')).resolves.toEqual('foo');
@@ -65,13 +66,13 @@ describe(file, () => {
     await chmod(path, 0o644);
 
     await file({
+      mode: {
+        group: { execute: true, read: true },
+        other: { execute: true, read: true },
+        owner: { execute: true, read: true, write: true },
+      },
       path,
       state: 'present',
-      mode: {
-        owner: { read: true, write: true, execute: true },
-        group: { read: true, execute: true },
-        other: { read: true, execute: true },
-      },
     });
 
     await expect(readFile(path, 'utf8')).resolves.toEqual('foo');
@@ -106,11 +107,11 @@ describe(file, () => {
     await writeFile(path, 'foo');
 
     await file({
+      mode: {
+        owner: { execute: true, read: true, write: true },
+      },
       path,
       state: 'absent',
-      mode: {
-        owner: { read: true, write: true, execute: true },
-      },
     });
 
     await expect(stat(path)).rejects.toThrow();
@@ -119,13 +120,13 @@ describe(file, () => {
   it('should support mode in fileSync', async () => {
     const path = nodePath.join(testPath, 'sync-mode');
     fileSync({
+      mode: {
+        group: { read: true },
+        owner: { read: true, write: true },
+      },
       path,
       state: 'present',
       update: () => 'foo',
-      mode: {
-        owner: { read: true, write: true },
-        group: { read: true },
-      },
     });
 
     await expect(readFile(path, 'utf8')).resolves.toEqual('foo');

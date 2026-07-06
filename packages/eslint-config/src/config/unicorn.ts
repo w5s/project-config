@@ -1,7 +1,9 @@
 import { interopDefault } from '@w5s/dev';
-import { StylisticConfig, type Config, type PluginOptionsBase } from '../type.js';
+
 import type { RuleOptions } from '../typegen/unicorn.js';
+
 import { sourceGlob } from '../glob.js';
+import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [sourceGlob];
 
@@ -18,8 +20,8 @@ export async function unicorn(options: unicorn.Options = {}) {
       },
     },
     {
-      name: 'w5s/unicorn/rules',
       files,
+      name: 'w5s/unicorn/rules',
       rules: {
         ...(recommended && unicornPlugin.configs['unopinionated'].rules),
         // Disabled for safety
@@ -40,8 +42,8 @@ export async function unicorn(options: unicorn.Options = {}) {
     },
     // TODO: move to another file ?
     {
-      name: 'w5s/unicorn/overrides',
       files: ['**/*.config.cjs', '**/*.config.js'],
+      name: 'w5s/unicorn/overrides',
       rules: {
         'unicorn/prefer-module': 'off',
       },
@@ -50,7 +52,7 @@ export async function unicorn(options: unicorn.Options = {}) {
 }
 
 export namespace unicorn {
-  export type Rules = RuleOptions;
-
   export interface Options extends PluginOptionsBase<Rules> {}
+
+  export type Rules = RuleOptions;
 }

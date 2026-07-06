@@ -1,6 +1,6 @@
-const pkg = require('./pkg.js');
-const npm = require('./npm.js');
 const { gitHook } = require('./githooks.js');
+const npm = require('./npm.js');
+const pkg = require('./pkg.js');
 
 /**
  * @param {{
@@ -8,7 +8,7 @@ const { gitHook } = require('./githooks.js');
  *   preset: string,
  * }} options
  */
-function commitlint({ state, preset }) {
+function commitlint({ preset, state }) {
   pkg.withPackageJson((packageFile) => {
     if (state === 'present') {
       packageFile.merge({
@@ -22,8 +22,8 @@ function commitlint({ state, preset }) {
   });
 
   gitHook({
-    name: 'commit-msg',
     content: 'npm exec -- commitlint --edit $1',
+    name: 'commit-msg',
     state,
   });
 

@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { ProjectScript } from './ProjectScript.js';
 
 describe('ProjectScript', () => {

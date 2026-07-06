@@ -1,11 +1,12 @@
 import type { StylisticCustomizeOptions } from '@stylistic/eslint-plugin';
+
 import prettierConfig from '@w5s/prettier-config';
 
 export interface StylisticConfig {
   enabled: boolean;
   indent: NonNullable<StylisticCustomizeOptions['indent']>;
-  quotes: NonNullable<StylisticCustomizeOptions['quotes']>;
   jsx: NonNullable<StylisticCustomizeOptions['jsx']>;
+  quotes: NonNullable<StylisticCustomizeOptions['quotes']>;
   semi: NonNullable<StylisticCustomizeOptions['semi']>;
 }
 
@@ -14,8 +15,8 @@ export interface StylisticParameters extends Partial<StylisticConfig> {}
 const defaultConfig = {
   enabled: true,
   indent: prettierConfig.tabWidth ?? 2,
-  quotes: prettierConfig.singleQuote ? 'single' : 'double',
   jsx: true,
+  quotes: prettierConfig.singleQuote ? 'single' : 'double',
   semi: prettierConfig.semi ?? true,
 } satisfies StylisticConfig;
 

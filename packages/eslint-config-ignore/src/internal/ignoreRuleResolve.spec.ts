@@ -1,5 +1,6 @@
 import nodePath from 'node:path';
 import { describe, expect, it } from 'vitest';
+
 import { ignoreRuleResolve } from './ignoreRuleResolve.js';
 
 describe('ignoreRuleResolve', () => {

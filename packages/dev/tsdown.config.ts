@@ -1,10 +1,10 @@
 import { defineConfig } from '@w5s/tsdown-config';
 
 export default defineConfig({
-  format: ['esm', 'cjs'],
+  clean: true,
   dts: {
     enabled: true,
     sourcemap: true,
   },
-  clean: true,
+  format: ['esm', 'cjs'],
 });

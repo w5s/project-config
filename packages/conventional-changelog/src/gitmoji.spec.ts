@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+
 import { CommitConventionalType } from './data.js';
 import { Emoji, GitmojiCode } from './gitmoji.js';
 

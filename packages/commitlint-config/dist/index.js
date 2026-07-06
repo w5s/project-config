@@ -1,12 +1,5 @@
 import { RuleConfigSeverity } from "@commitlint/types";
 import conventionalChangelogPreset, { Emoji, GitmojiCode } from "@w5s/conventional-changelog";
-//#region src/meta.ts
-const meta = Object.freeze({
-	name: "@w5s/commitlint-config",
-	version: "3.1.15",
-	buildNumber: 1
-});
-//#endregion
 //#region src/plugin.ts
 const $if = (when = "always") => (cond) => when === "always" ? cond : !cond;
 const typeGitmojiStyle = (parsed, when = "always", value = "unicode") => {
@@ -29,9 +22,10 @@ const gitmojiPlugin = { rules: {
 } };
 //#endregion
 //#region src/config.ts
-const { Error, Warning, Disabled } = RuleConfigSeverity;
+const { Disabled, Error, Warning } = RuleConfigSeverity;
 const config = {
 	parserPreset: { parserOpts: (await conventionalChangelogPreset()).parser },
+	plugins: [gitmojiPlugin],
 	rules: {
 		"body-leading-blank": [Warning, "always"],
 		"body-max-line-length": [
@@ -80,9 +74,15 @@ const config = {
 			"unicode"
 		],
 		"type-valid-gitmoji": [Error, "always"]
-	},
-	plugins: [gitmojiPlugin]
+	}
 };
+//#endregion
+//#region src/meta.ts
+const meta = Object.freeze({
+	buildNumber: 1,
+	name: "@w5s/commitlint-config",
+	version: "3.1.15"
+});
 //#endregion
 export { config as default, meta };
 

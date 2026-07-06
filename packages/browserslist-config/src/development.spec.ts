@@ -1,5 +1,6 @@
 import browserslist from 'browserslist';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
+
 import config from './development.js';
 
 describe('browserslist latest config', () => {

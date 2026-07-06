@@ -1,4 +1,4 @@
-import { CommitConventionalType, type Commit } from './data.js';
+import { type Commit, CommitConventionalType } from './data.js';
 import { GitmojiCode } from './gitmoji.js';
 
 function toConventionalCommitType(text: string) {
@@ -14,7 +14,7 @@ export const whatBump = (commits: ReadonlyArray<Commit>) => {
   let breakings = 0;
   let features = 0;
 
-  for (const { type, notes } of commits) {
+  for (const { notes, type } of commits) {
     const conventionalType = type == null ? type : toConventionalCommitType(type);
     if (notes.length > 0) {
       breakings += notes.length;

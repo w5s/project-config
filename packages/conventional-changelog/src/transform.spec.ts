@@ -1,20 +1,22 @@
 import { describe, expect, it } from 'vitest';
+
 import type { Commit } from './data.js';
+
 import { createTransform, type WriterContext } from './transform.js';
 
 const generateCommit = (commit: Partial<Commit>): Commit => ({
-  header: '',
-  type: null,
-  subject: null,
-  scope: null,
-  hash: null,
-  notes: [],
-  references: [],
-  mentions: [],
   body: null,
   footer: null,
+  hash: null,
+  header: '',
+  mentions: [],
   merge: null,
+  notes: [],
+  references: [],
   revert: null,
+  scope: null,
+  subject: null,
+  type: null,
   ...commit,
 });
 const defaultContext: WriterContext = {};
@@ -33,39 +35,39 @@ describe('createTransform', () => {
     expect(transform(commit, defaultContext, defaultOptions)).toEqual({
       body: null,
       footer: null,
-      merge: null,
-      revert: null,
       hash: null,
+      header: 'amazing new module',
+      mentions: [],
+      merge: null,
+      notes: [],
+      references: [],
+      revert: null,
       scope: null,
       subject: null,
       type: '✨ Features',
-      header: 'amazing new module',
-      mentions: [],
-      notes: [],
-      references: [],
     });
   });
 
   it('should truncated commit hash', () => {
     const transform = createTransform({});
     const commit = generateCommit({
+      hash: '12345678abc',
       header: '',
       type: 'feat',
-      hash: '12345678abc',
     });
 
     expect(transform(commit, defaultContext, defaultOptions)).toEqual({
       body: null,
       footer: null,
-      merge: null,
-      revert: null,
-      scope: null,
-      subject: null,
       hash: '1234567',
       header: '',
       mentions: [],
+      merge: null,
       notes: [],
       references: [],
+      revert: null,
+      scope: null,
+      subject: null,
       type: '✨ Features',
     });
   });
@@ -86,15 +88,15 @@ describe('createTransform', () => {
       expect(transform(fixCommit, defaultContext, defaultOptions)).toEqual({
         body: null,
         footer: null,
-        merge: null,
-        revert: null,
         hash: null,
-        scope: null,
-        subject: null,
         header: '',
         mentions: [],
+        merge: null,
         notes: [],
         references: [],
+        revert: null,
+        scope: null,
+        subject: null,
         type: '🐛 Bug Fixes',
       });
     });
@@ -106,15 +108,15 @@ describe('createTransform', () => {
         {
           body: null,
           footer: null,
-          merge: null,
-          revert: null,
           hash: null,
-          scope: null,
-          subject: null,
           header: '',
           mentions: [],
+          merge: null,
           notes: [],
           references: [],
+          revert: null,
+          scope: null,
+          subject: null,
           type: '🐛 Bug Fixes',
         },
       ],
@@ -125,15 +127,15 @@ describe('createTransform', () => {
         {
           body: null,
           footer: null,
-          merge: null,
-          revert: null,
           hash: null,
-          scope: null,
-          subject: null,
           header: '',
           mentions: [],
+          merge: null,
           notes: [],
           references: [],
+          revert: null,
+          scope: null,
+          subject: null,
           type: '🎫 Chores',
         },
       ],
@@ -144,15 +146,15 @@ describe('createTransform', () => {
         {
           body: null,
           footer: null,
-          merge: null,
-          revert: null,
           hash: null,
-          scope: null,
-          subject: null,
           header: '',
           mentions: [],
+          merge: null,
           notes: [],
           references: [],
+          revert: null,
+          scope: null,
+          subject: null,
           type: '🐛 Bug Fixes',
         },
       ],
@@ -169,22 +171,22 @@ describe('createTransform', () => {
         },
       });
       const commit = generateCommit({
-        type: 'feat',
         scope: 'foo',
+        type: 'feat',
       });
 
       expect(transform(commit, defaultContext, defaultOptions)).toEqual({
         body: null,
         footer: null,
-        merge: null,
-        revert: null,
         hash: null,
-        subject: null,
         header: '',
         mentions: [],
+        merge: null,
         notes: [],
         references: [],
+        revert: null,
         scope: 'module-foo',
+        subject: null,
         type: '✨ Features',
       });
     });

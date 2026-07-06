@@ -1,36 +1,36 @@
-import { CommitConventionalType, type Commit } from './data.js';
+import { type Commit, CommitConventionalType } from './data.js';
 import { GitmojiCode } from './gitmoji.js';
+
+export interface CommitTransformFunction<TCommit extends Commit = Commit> {
+  (commit: Commit, context: WriterContext, ...args: unknown[]): false | TCommit;
+}
 
 export type Language = 'en-US';
 
 export interface TransformConfig {
-  scopeDisplayName?: Record<string, string>;
-  displayTypes?: CommitConventionalType[];
   displayScopes?: string[];
+  displayTypes?: CommitConventionalType[];
+  language?: Language;
+  scopeDisplayName?: Record<string, string>;
   showAuthor?: boolean;
   withEmoji?: boolean;
-  language?: Language;
 }
 
 export interface WriterContext {
-  repository?: string | undefined;
   host?: string | undefined;
   owner?: string | undefined;
+  repository?: string | undefined;
   repoUrl?: string | undefined;
 }
 
-export interface CommitTransformFunction<TCommit extends Commit = Commit> {
-  (commit: Commit, context: WriterContext, ...args: unknown[]): TCommit | false;
-}
-
-export function displayScope(scope: string | null | undefined, scopeDisplayNameMap: Record<string, string>) {
+export function displayScope(scope: null | string | undefined, scopeDisplayNameMap: Record<string, string>) {
   return scope == null || scope.length === 0
     ? scopeDisplayNameMap['*']
     : scopeDisplayNameMap[scope] ?? scope;
 }
 
 export function displayType(type: string, options: displayType.Options = {}): string {
-  const { withEmoji = true, language = 'en-US' } = options;
+  const { language = 'en-US', withEmoji = true } = options;
 
   if (CommitConventionalType.hasInstance(type)) {
     // eslint-disable-next-line unicorn/no-unreadable-object-destructuring
@@ -42,18 +42,18 @@ export function displayType(type: string, options: displayType.Options = {}): st
 }
 export namespace displayType {
   export interface Options {
-    readonly withEmoji?: boolean | undefined;
     readonly language?: Language;
+    readonly withEmoji?: boolean | undefined;
   }
 }
 
 export function createTransform(config: TransformConfig): CommitTransformFunction<Commit> {
   const displayTypes = new Set(config.displayTypes ?? CommitConventionalType.values());
   const shouldIgnoreType = (type: string | undefined) => type == null || !displayTypes.has(type as CommitConventionalType);
-  const shouldIgnoreScope = (scope: string | undefined | null) =>
+  const shouldIgnoreScope = (scope: null | string | undefined) =>
     config.displayScopes == null ? false : scope != null && !config.displayScopes.includes(scope);
 
-  const transform = (commit: Commit, { repository, host, owner, repoUrl }: WriterContext): Commit | false => {
+  const transform = (commit: Commit, { host, owner, repository, repoUrl }: WriterContext): Commit | false => {
     const isDiscard = commit.notes.length === 0;
     const issues = new Set<string>();
     const notes = commit.notes.map((note) => ({
@@ -114,18 +114,18 @@ export function createTransform(config: TransformConfig): CommitTransformFunctio
     // eslint-disable-next-line ts/consistent-type-assertions
     return {
       ...commit,
-      type,
-      hash,
-      scope,
-      subject,
-      references,
-      header: commit.header,
       body: commit.body,
       footer: commit.footer,
-      merge: commit.merge,
-      revert: commit.revert,
-      notes,
+      hash,
+      header: commit.header,
       mentions: commit.mentions,
+      merge: commit.merge,
+      notes,
+      references,
+      revert: commit.revert,
+      scope,
+      subject,
+      type,
     } as Commit;
   };
 

@@ -1,3 +1,8 @@
+/**
+ * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
+ */
+export type LanguageId = keyof LanguageIdMap;
+
 export interface LanguageIdMap {
   css: true;
   graphql: true;
@@ -15,8 +20,3 @@ export interface LanguageIdMap {
   vue: true;
   yaml: true;
 }
-
-/**
- * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
- */
-export type LanguageId = keyof LanguageIdMap;

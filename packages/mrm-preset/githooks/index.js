@@ -1,11 +1,12 @@
-const path = require('node:path');
-const { packageJson, template } = require('mrm-core');
 const { fileSync } = require('@w5s/configurator-core');
-const project = require('../core/project.js');
-const pkg = require('../core/pkg.js');
+const { packageJson, template } = require('mrm-core');
+const path = require('node:path');
+
 const { hasGit } = require('../core/git.js');
 const { gitHook } = require('../core/githooks.js');
 const { lintStaged } = require('../core/lintStaged.js');
+const pkg = require('../core/pkg.js');
+const project = require('../core/project.js');
 
 function task() {
   const gitSupported = hasGit();
@@ -16,14 +17,14 @@ function task() {
     state: gitSupported ? 'present' : 'absent',
     update: (config) => ({
       ...config,
-      '*.{json,jsonc,json5}': [...(hasESLint ? ['eslint'] : [])],
-      '*.{yml,yaml}': [...(hasESLint ? ['eslint'] : [])],
       '*.js?(x)': [...(hasESLint ? ['eslint'] : [])],
       '*.ts?(x)': [
         // TODO: https://github.com/okonet/lint-staged/issues/825
         // ...(hasTsc ? ["tsc --noEmit --skipLibCheck"] : []),
         ...(hasESLint ? ['eslint'] : []),
       ],
+      '*.{json,jsonc,json5}': [...(hasESLint ? ['eslint'] : [])],
+      '*.{yml,yaml}': [...(hasESLint ? ['eslint'] : [])],
     }),
   });
   pkg.withPackageJson((_packageFile) => {
@@ -37,13 +38,13 @@ function task() {
   });
 
   gitHook({
-    name: 'pre-commit',
     content: `npm exec -- lint-staged`,
+    name: 'pre-commit',
     state: gitSupported ? 'present' : 'absent',
   });
   gitHook({
-    name: 'pre-push',
     content: `npm run ${project.validate}`,
+    name: 'pre-push',
     state: gitSupported ? 'present' : 'absent',
   });
 

@@ -1,6 +1,16 @@
-import { type FileOptions, file, fileSync } from './file.js';
+import { file, type FileOptions, fileSync } from './file.js';
 
 export interface BlockOptions {
+  /**
+   * Block content to insert
+   */
+  block: string;
+
+  /**
+   * Insert position
+   */
+  insertPosition?: ['after', 'EndOfFile' | RegExp] | ['before', 'BeginningOfFile' | RegExp];
+
   /**
    * The marker builder function that will take either `markerBegin` or `markerEnd`
    *
@@ -14,19 +24,9 @@ export interface BlockOptions {
   path: string;
 
   /**
-   * Block content to insert
-   */
-  block: string;
-
-  /**
-   * Insert position
-   */
-  insertPosition?: ['before', 'BeginningOfFile' | RegExp] | ['after', 'EndOfFile' | RegExp];
-
-  /**
    * Block target state
    */
-  state?: 'present' | 'absent';
+  state?: 'absent' | 'present';
 }
 
 const EOF = 'EndOfFile';
@@ -49,12 +49,38 @@ const matchLast = (string: string, regexp: RegExp) => {
   return { firstIndex, lastIndex };
 };
 
+/**
+ * Replace asynchronously a block in file that follows pattern :
+ *
+ * marker(markerBegin)
+ * ...
+ * marker(markerEnd)
+ *
+ * @param options
+ */
+export function block(options: BlockOptions) {
+  return file(toFileOptions(options));
+}
+
+/**
+ * Replace synchronously a block in file that follows pattern :
+ *
+ * marker(markerBegin)
+ * ...
+ * marker(markerEnd)
+ *
+ * @param options
+ */
+export function blockSync(options: BlockOptions) {
+  return fileSync(toFileOptions(options));
+}
+
 function toFileOptions(options: BlockOptions): FileOptions {
   const {
-    marker = (mark) => `# ${mark.toUpperCase()} MANAGED BLOCK`,
-    path,
     block: blockName,
     insertPosition = ['after', EOF],
+    marker = (mark) => `# ${mark.toUpperCase()} MANAGED BLOCK`,
+    path,
     state = 'present',
   } = options;
 
@@ -89,17 +115,6 @@ function toFileOptions(options: BlockOptions): FileOptions {
       return fullContent;
     }
     switch (positionDirection) {
-      case 'before': {
-        if (positionAnchor !== BOF) {
-          const { firstIndex } = matchLast(fullContent, positionAnchor);
-          if (firstIndex >= 0) {
-            return insertAt(fullContent, firstIndex, replaceBlock + EOL);
-          }
-        }
-
-        // Beginning of file
-        return replaceBlock + EOL + fullContent;
-      }
       case 'after': {
         // insert
         if (positionAnchor !== EOF) {
@@ -111,6 +126,17 @@ function toFileOptions(options: BlockOptions): FileOptions {
 
         // end of file
         return fullContent + EOL + replaceBlock;
+      }
+      case 'before': {
+        if (positionAnchor !== BOF) {
+          const { firstIndex } = matchLast(fullContent, positionAnchor);
+          if (firstIndex >= 0) {
+            return insertAt(fullContent, firstIndex, replaceBlock + EOL);
+          }
+        }
+
+        // Beginning of file
+        return replaceBlock + EOL + fullContent;
       }
 
       default: {
@@ -124,30 +150,4 @@ function toFileOptions(options: BlockOptions): FileOptions {
     state: 'present',
     update: (sourceContent) => apply(sourceContent, blockName),
   };
-}
-
-/**
- * Replace asynchronously a block in file that follows pattern :
- *
- * marker(markerBegin)
- * ...
- * marker(markerEnd)
- *
- * @param options
- */
-export function block(options: BlockOptions) {
-  return file(toFileOptions(options));
-}
-
-/**
- * Replace synchronously a block in file that follows pattern :
- *
- * marker(markerBegin)
- * ...
- * marker(markerEnd)
- *
- * @param options
- */
-export function blockSync(options: BlockOptions) {
-  return fileSync(toFileOptions(options));
 }

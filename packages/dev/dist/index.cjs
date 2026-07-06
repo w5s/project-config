@@ -1,40 +1,6 @@
 Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
 //#region src/ESLintConfig.ts
 /**
-* Return a new merged flat configuration
-*
-* @param configs
-*/
-function merge(...configs) {
-	const keys = new Set(configs.flatMap((i) => Object.keys(i)));
-	const merged = configs.reduce((acc, cur) => {
-		return {
-			...acc,
-			...cur,
-			files: [...acc.files ?? [], ...cur.files ?? []],
-			ignores: [...acc.ignores ?? [], ...cur.ignores ?? []],
-			plugins: {
-				...acc.plugins,
-				...cur.plugins
-			},
-			rules: {
-				...acc.rules,
-				...cur.rules
-			},
-			languageOptions: {
-				...acc.languageOptions,
-				...cur.languageOptions
-			},
-			linterOptions: {
-				...acc.linterOptions,
-				...cur.linterOptions
-			}
-		};
-	}, {});
-	for (const key of Object.keys(merged)) if (!keys.has(key)) delete merged[key];
-	return merged;
-}
-/**
 * Concat multiple flat configs into a single flat config array.
 *
 * It also resolves promises and flattens the result.
@@ -78,6 +44,40 @@ function fixme(_status) {
 	return "off";
 }
 /**
+* Return a new merged flat configuration
+*
+* @param configs
+*/
+function merge(...configs) {
+	const keys = new Set(configs.flatMap((i) => Object.keys(i)));
+	const merged = configs.reduce((acc, cur) => {
+		return {
+			...acc,
+			...cur,
+			files: [...acc.files ?? [], ...cur.files ?? []],
+			ignores: [...acc.ignores ?? [], ...cur.ignores ?? []],
+			languageOptions: {
+				...acc.languageOptions,
+				...cur.languageOptions
+			},
+			linterOptions: {
+				...acc.linterOptions,
+				...cur.linterOptions
+			},
+			plugins: {
+				...acc.plugins,
+				...cur.plugins
+			},
+			rules: {
+				...acc.rules,
+				...cur.rules
+			}
+		};
+	}, {});
+	for (const key of Object.keys(merged)) if (!keys.has(key)) delete merged[key];
+	return merged;
+}
+/**
 * Renames rules in the given object according to the given map.
 *
 * Given a map `{ 'old-prefix': 'new-prefix' }`, and a rule object
@@ -98,9 +98,9 @@ function renameRules(rules, map) {
 * @namespace
 */
 const ESLintConfig = Object.freeze({
-	merge,
 	concat,
 	fixme,
+	merge,
 	renameRules
 });
 //#endregion
@@ -112,15 +112,12 @@ function interopDefault(m) {
 //#endregion
 //#region src/meta.ts
 const meta = Object.freeze({
+	buildNumber: 1,
 	name: "@w5s/dev",
-	version: "3.4.7",
-	buildNumber: 1
+	version: "3.4.7"
 });
 //#endregion
 //#region src/Project.ts
-function escapeRegExp(value) {
-	return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
-}
 /**
 * Supported ECMA version
 *
@@ -131,6 +128,9 @@ function escapeRegExp(value) {
 */
 function ecmaVersion() {
 	return 2022;
+}
+function escapeRegExp(value) {
+	return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
 }
 const registry = {
 	css: [".css"],
@@ -230,17 +230,6 @@ const IGNORED = Object.freeze([
 	"umd/"
 ]);
 /**
-* Files and folders to always ignore
-*
-* @example
-* ```ts
-* IGNORED // ['node_modules/', 'build/', ...]
-* ```
-*/
-function ignored() {
-	return IGNORED;
-}
-/**
 * Return a RegExp that will match any list of extensions
 *
 * @param extensions
@@ -251,6 +240,17 @@ function ignored() {
 */
 function extensionsToMatcher(extensions) {
 	return new RegExp(`(${extensions.map(escapeRegExp).join("|")})$`);
+}
+/**
+* Files and folders to always ignore
+*
+* @example
+* ```ts
+* IGNORED // ['node_modules/', 'build/', ...]
+* ```
+*/
+function ignored() {
+	return IGNORED;
 }
 const reExtension = /^\./;
 /**

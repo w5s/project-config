@@ -1,4 +1,5 @@
 import type * as TsDown from 'tsdown';
+
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 
@@ -7,13 +8,7 @@ interface PackageJSON {
   version?: string;
 }
 
-function toInt(value: string | undefined): number | undefined {
-  if (value == null) return undefined;
-  const parsed = Number.parseInt(value);
-  return Number.isNaN(parsed) ? undefined : parsed;
-}
-
-export function withPackageDefine<T extends TsDown.UserConfig | TsDown.InlineConfig>(config: T): T {
+export function withPackageDefine<T extends TsDown.InlineConfig | TsDown.UserConfig>(config: T): T {
   let packageJSON: PackageJSON | undefined = undefined;
   const cwd = config.cwd ?? process.cwd();
 
@@ -28,7 +23,7 @@ export function withPackageDefine<T extends TsDown.UserConfig | TsDown.InlineCon
   }
 
   // Ensure we do not stringify undefined values
-  function jsonSafeStringify(value: string | number): string {
+  function jsonSafeStringify(value: number | string): string {
     return JSON.stringify(value);
   }
 
@@ -36,15 +31,21 @@ export function withPackageDefine<T extends TsDown.UserConfig | TsDown.InlineCon
     ...config,
     cwd,
     define: {
-      __PACKAGE_NAME__: jsonSafeStringify(process.env['npm_package_name'] ?? getPackageJSON().name ?? ''),
-      __PACKAGE_VERSION__: jsonSafeStringify(process.env['npm_package_version'] ?? getPackageJSON().version ?? ''),
       __PACKAGE_BUILD_NUMBER__: jsonSafeStringify(
         toInt(process.env['npm_package_build_number']) ??
         toInt(process.env['BUILD_NUMBER']) ??
         toInt(process.env['CI_BUILD_NUMBER']) ??
         Date.now(),
       ),
+      __PACKAGE_NAME__: jsonSafeStringify(process.env['npm_package_name'] ?? getPackageJSON().name ?? ''),
+      __PACKAGE_VERSION__: jsonSafeStringify(process.env['npm_package_version'] ?? getPackageJSON().version ?? ''),
       ...config.define,
     },
   };
+}
+
+function toInt(value: string | undefined): number | undefined {
+  if (value == null) return undefined;
+  const parsed = Number.parseInt(value);
+  return Number.isNaN(parsed) ? undefined : parsed;
 }

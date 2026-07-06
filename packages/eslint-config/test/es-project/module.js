@@ -1,7 +1,7 @@
 export const TestEnum = Object.freeze({
+  default: 'default',
   MyValue1: 'MyValue1',
   MyValue2: 'MyValue2',
-  default: 'default',
 });
 
 export const testDotNotation = TestEnum.default;

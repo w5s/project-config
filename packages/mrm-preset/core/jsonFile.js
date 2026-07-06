@@ -39,7 +39,7 @@ function setValue(jsonFile, path, pathValue) {
  *   default?: T | (() => T)
  * }} options
  */
-function value(jsonFile, { state, path, default: defaultValue, update: nextValue }) {
+function value(jsonFile, { default: defaultValue, path, state, update: nextValue }) {
   if (state === 'present') {
     let currentValue = getValue(jsonFile, path);
 

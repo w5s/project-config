@@ -1,6 +1,6 @@
-const { vscodeRecommendedExtension } = require('../core/vscode.js');
 const { commitlint } = require('../core/commitlint.js');
 const { hasGit } = require('../core/git.js');
+const { vscodeRecommendedExtension } = require('../core/vscode.js');
 
 /**
  *

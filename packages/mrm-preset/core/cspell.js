@@ -1,4 +1,5 @@
 const { json } = require('mrm-core');
+
 const npm = require('./npm.js');
 
 /**
@@ -24,13 +25,13 @@ function cspell({ state, update }) {
   const hasCSpell = state === 'present';
 
   const cSpellFile = json('.cspell.json', {
-    version: '0.2',
-    language: 'en',
-    words: [],
     flagWords: [],
     ignorePaths: [
       '**/[.]*/**', // ignore hidden directories
     ],
+    language: 'en',
+    version: '0.2',
+    words: [],
   });
 
   if (hasCSpell) {

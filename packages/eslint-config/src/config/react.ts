@@ -1,7 +1,9 @@
 import { interopDefault } from '@w5s/dev';
-import { type Config, type PluginOptionsBase } from '../type.js';
+
 import type { RuleOptions } from '../typegen/react.js';
+
 import { sourceGlob } from '../glob.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [sourceGlob];
 
@@ -18,7 +20,6 @@ export async function react(options: react.Options = {}) {
       },
     },
     {
-      name: 'w5s/react/rules',
       files,
       languageOptions: {
         parserOptions: {
@@ -28,6 +29,7 @@ export async function react(options: react.Options = {}) {
         },
         sourceType: 'module',
       },
+      name: 'w5s/react/rules',
       rules: {
         ...(recommended ? reactPlugin.configs['recommended'].rules : {}),
         ...rules,
@@ -37,7 +39,7 @@ export async function react(options: react.Options = {}) {
 }
 
 export namespace react {
-  export type Rules = RuleOptions;
-
   export interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
+
+  export type Rules = RuleOptions;
 }

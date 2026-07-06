@@ -1,6 +1,7 @@
-import nodePath from 'node:path';
 import { readFile, writeFile } from 'node:fs/promises';
+import nodePath from 'node:path';
 import { describe, expect, it } from 'vitest';
+
 import { ignoreFile, ignoreFileSync } from './ignoreFile.js';
 import { getTestPath } from './testing/index.js';
 

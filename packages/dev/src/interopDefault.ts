@@ -22,7 +22,7 @@ const getDefaultOrElse = (_: any) => _?.default ?? _;
  */
 export function interopDefault<T>(m: PromiseLike<T>): Promise<T extends { default: infer U } ? U : T>;
 export function interopDefault<T>(m: T): T extends { default: infer U } ? U : T;
-export function interopDefault<T>(m: T | PromiseLike<T>): Promise<T extends { default: infer U } ? U : T> {
+export function interopDefault<T>(m: PromiseLike<T> | T): Promise<T extends { default: infer U } ? U : T> {
   // @ts-ignore We know what we are doing
   // eslint-disable-next-line unicorn/prefer-await
   return m != null && typeof m.then === 'function' ? Promise.resolve(m).then(getDefaultOrElse) : getDefaultOrElse(m);

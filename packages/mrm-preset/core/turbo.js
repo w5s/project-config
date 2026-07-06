@@ -1,6 +1,7 @@
 const { json } = require('mrm-core');
-const npm = require('./npm.js');
+
 const jsonFile = require('./jsonFile.js');
+const npm = require('./npm.js');
 
 /**
  * @typedef {{
@@ -23,14 +24,14 @@ function turbo({ state, update }) {
 
   if (hasTurbo) {
     jsonFile.value(turboFile, {
+      /** @type {TurboConfig} */
+      default: {},
       path: undefined,
       state,
       update: (previousValue) => ({
         $schema: 'https://turbo.build/schema.json',
         ...update(previousValue),
       }),
-      /** @type {TurboConfig} */
-      default: {},
     });
 
     /**

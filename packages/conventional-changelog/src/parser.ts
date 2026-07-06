@@ -1,12 +1,13 @@
 export interface ParserOptions {
-  headerPattern?: RegExp | string | null;
-  headerCorrespondence?: string[] | string | null;
-  revertPattern?: RegExp | string | null;
-  revertCorrespondence?: string[] | string | null;
-  noteKeywords?: string[] | string | null;
+  headerCorrespondence?: null | string | string[];
+  headerPattern?: null | RegExp | string;
+  noteKeywords?: null | string | string[];
+  revertCorrespondence?: null | string | string[];
+  revertPattern?: null | RegExp | string;
 }
 
 export const createParserOpts = (): ParserOptions => ({
+  headerCorrespondence: ['type', 'scope', 'subject'],
   headerPattern: new RegExp(
     // Type
     // eslint-disable-next-line unicorn/prefer-string-raw
@@ -18,10 +19,9 @@ export const createParserOpts = (): ParserOptions => ({
     `(?<subject>.*)$`,
     'u',
   ),
-  headerCorrespondence: ['type', 'scope', 'subject'],
-  // eslint-disable-next-line e18e/prefer-static-regex
-  revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i,
   noteKeywords: ['BREAKING CHANGE', 'BREAKING CHANGES'],
   // revertPattern: /revert:\s([\S\s]*?)\s*this reverts commit (\w*)\./i,
   revertCorrespondence: [`header`, `hash`],
+  // eslint-disable-next-line e18e/prefer-static-regex
+  revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i,
 });

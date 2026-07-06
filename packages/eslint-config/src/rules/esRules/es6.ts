@@ -14,14 +14,14 @@ export const es6 = () => ({
 
   // require space before/after arrow function's arrow
   // https://eslint.org/docs/rules/arrow-spacing
-  'arrow-spacing': ['error', { before: true, after: true }],
+  'arrow-spacing': ['error', { after: true, before: true }],
 
   // verify super() callings in constructors
   'constructor-super': 'error',
 
   // enforce the spacing around the * in generator functions
   // https://eslint.org/docs/rules/generator-star-spacing
-  'generator-star-spacing': ['error', { before: false, after: true }],
+  'generator-star-spacing': ['error', { after: true, before: false }],
 
   // disallow modifying variables of class declarations
   // https://eslint.org/docs/rules/no-class-assign
@@ -81,8 +81,8 @@ export const es6 = () => ({
   // https://eslint.org/docs/rules/no-useless-rename
   'no-useless-rename': ['error', {
     ignoreDestructuring: false,
-    ignoreImport: false,
     ignoreExport: false,
+    ignoreImport: false,
   }],
 
   // require let or const instead of var
@@ -91,8 +91,8 @@ export const es6 = () => ({
   // require method and property shorthand syntax for object literals
   // https://eslint.org/docs/rules/object-shorthand
   'object-shorthand': ['error', 'always', {
-    ignoreConstructors: false,
     avoidQuotes: true,
+    ignoreConstructors: false,
   }],
 
   // suggest using arrow functions as callbacks
@@ -110,13 +110,13 @@ export const es6 = () => ({
   // Prefer destructuring from arrays and objects
   // https://eslint.org/docs/rules/prefer-destructuring
   'prefer-destructuring': ['error', {
-    VariableDeclarator: {
-      array: false,
-      object: true,
-    },
     AssignmentExpression: {
       array: true,
       object: false,
+    },
+    VariableDeclarator: {
+      array: false,
+      object: true,
     },
   }, {
     enforceForRenamedProperties: false,

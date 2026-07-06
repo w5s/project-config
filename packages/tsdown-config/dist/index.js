@@ -3,27 +3,22 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 //#region src/defaultConfig.ts
 const defaultConfig = {
+	dts: true,
 	entry: [
 		"src/index.ts",
 		"!src/**/*.test.*",
 		"!src/**/*.spec.*",
 		"!**/__mocks__/**"
 	],
-	sourcemap: true,
 	format: ["esm"],
-	dts: true,
-	tsconfig: "tsconfig.build.json",
 	outExtensions({ format }) {
 		return { js: format === "es" ? ".js" : ".cjs" };
-	}
+	},
+	sourcemap: true,
+	tsconfig: "tsconfig.build.json"
 };
 //#endregion
 //#region src/withPackageDefine.ts
-function toInt(value) {
-	if (value == null) return void 0;
-	const parsed = Number.parseInt(value);
-	return Number.isNaN(parsed) ? void 0 : parsed;
-}
 function withPackageDefine(config) {
 	let packageJSON = void 0;
 	const cwd = config.cwd ?? process.cwd();
@@ -43,12 +38,17 @@ function withPackageDefine(config) {
 		...config,
 		cwd,
 		define: {
+			__PACKAGE_BUILD_NUMBER__: jsonSafeStringify(toInt(process.env["npm_package_build_number"]) ?? toInt(process.env["BUILD_NUMBER"]) ?? toInt(process.env["CI_BUILD_NUMBER"]) ?? Date.now()),
 			__PACKAGE_NAME__: jsonSafeStringify(process.env["npm_package_name"] ?? getPackageJSON().name ?? ""),
 			__PACKAGE_VERSION__: jsonSafeStringify(process.env["npm_package_version"] ?? getPackageJSON().version ?? ""),
-			__PACKAGE_BUILD_NUMBER__: jsonSafeStringify(toInt(process.env["npm_package_build_number"]) ?? toInt(process.env["BUILD_NUMBER"]) ?? toInt(process.env["CI_BUILD_NUMBER"]) ?? Date.now()),
 			...config.define
 		}
 	};
+}
+function toInt(value) {
+	if (value == null) return void 0;
+	const parsed = Number.parseInt(value);
+	return Number.isNaN(parsed) ? void 0 : parsed;
 }
 //#endregion
 //#region src/defineConfig.ts
@@ -57,9 +57,6 @@ function defineConfig(optionsOrFn) {
 }
 //#endregion
 //#region src/defineConfigWith.ts
-function mergeConfig(base, extension) {
-	return TsDown.mergeConfig(base, extension);
-}
 /**
 * Returns a `defineConfig`-like function that uses a custom base config instead of the package default.
 * Use this when you have a shared base (e.g. a library preset) and want to reuse it across multiple packages.
@@ -77,6 +74,9 @@ function mergeConfig(base, extension) {
 function defineConfigWith(baseConfig) {
 	const resolvedBaseConfig = mergeConfig(defaultConfig, baseConfig);
 	return (optionsOrFn) => TsDown.defineConfig(typeof optionsOrFn === "function" ? (config, context) => withPackageDefine(optionsOrFn(resolvedBaseConfig, context)) : withPackageDefine(mergeConfig(resolvedBaseConfig, optionsOrFn)));
+}
+function mergeConfig(base, extension) {
+	return TsDown.mergeConfig(base, extension);
 }
 //#endregion
 export { defaultConfig, defineConfig, defineConfigWith };

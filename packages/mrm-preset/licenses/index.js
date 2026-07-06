@@ -1,22 +1,23 @@
 const { packageJson } = require('mrm-core');
-const pkg = require('../core/pkg.js');
+
 const jsonFile = require('../core/jsonFile.js');
+const pkg = require('../core/pkg.js');
 
 function task() {
   pkg.withPackageJson((packageFile) => {
     jsonFile.value(packageFile, {
+      default: 'UNLICENSED',
       path: 'license',
       state: 'present',
-      default: 'UNLICENSED',
     });
   });
   const license = packageJson().get('license');
 
   pkg.forEachWorkspace(({ packageFile }) => {
     jsonFile.value(packageFile, {
+      default: license,
       path: 'license',
       state: 'present',
-      default: license,
     });
   });
 }

@@ -1,4 +1,5 @@
 import { ESLintConfig } from '@w5s/dev';
+
 import { esRules } from './esRules.js';
 
 export const tsRules = () => {

@@ -1,7 +1,8 @@
 import fs from 'node:fs/promises';
-import nodePath from 'node:path';
 import { tmpdir } from 'node:os';
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import nodePath from 'node:path';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import { eslintIgnores } from './eslintIgnores.js';
 
 describe('eslintIgnores', () => {
@@ -69,11 +70,11 @@ describe('eslintIgnores', () => {
     await writeGitignore('', 'root-ignore\n');
 
     const result = await eslintIgnores({
-      recommended: false,
       ignores: (mergedIgnores) => [
         'callback-ignore/**',
         ...(mergedIgnores.includes('root-ignore') ? ['root-ignore'] : []),
       ],
+      recommended: false,
     });
 
     expect(result.ignores).toEqual(['callback-ignore/**', 'root-ignore']);
@@ -115,15 +116,15 @@ describe('eslintIgnores', () => {
   });
 
   it('recommended base still supports appending ignores with an array', async () => {
-    const result = await eslintIgnores({ recommended: true, ignores: ['only-me/**'] });
+    const result = await eslintIgnores({ ignores: ['only-me/**'], recommended: true });
 
     expect(result.ignores).toContain('only-me/**');
   });
 
   it('supports full ignore list replacement with a callback', async () => {
     const result = await eslintIgnores({
-      recommended: true,
       ignores: () => ['only-me/**'],
+      recommended: true,
     });
 
     expect(result.ignores).toEqual(['only-me/**']);

@@ -1,11 +1,18 @@
 import { chmodSync, mkdirSync, rmSync } from 'node:fs';
 import { chmod, mkdir, rm } from 'node:fs/promises';
-import { __exists } from './__exists.js';
+
 import type { FileMode } from './FileMode.js';
-import { __toMode } from './__toMode.js';
+
+import { __exists } from './__exists.js';
 import { __existsSync } from './__existsSync.js';
+import { __toMode } from './__toMode.js';
 
 export interface DirectoryOptions {
+  /**
+   * File permissions
+   */
+  readonly mode?: FileMode;
+
   /**
    * Directory path
    */
@@ -14,12 +21,7 @@ export interface DirectoryOptions {
   /**
    * Directory target state
    */
-  readonly state: 'present' | 'absent';
-
-  /**
-   * File permissions
-   */
-  readonly mode?: FileMode;
+  readonly state: 'absent' | 'present';
 }
 
 /**
@@ -41,12 +43,12 @@ export interface DirectoryOptions {
  * @param options
  */
 export async function directory(options: DirectoryOptions): Promise<void> {
-  const { path, state, mode } = options;
+  const { mode, path, state } = options;
   const isPresent = await __exists(path);
   if (state === 'present') {
     const newMode = __toMode(mode);
     if (!isPresent) {
-      await mkdir(path, { recursive: true, mode: newMode });
+      await mkdir(path, { mode: newMode, recursive: true });
     }
     if (newMode != null && isPresent) {
       await chmod(path, newMode);
@@ -75,12 +77,12 @@ export async function directory(options: DirectoryOptions): Promise<void> {
  * @param options
  */
 export function directorySync(options: DirectoryOptions): void {
-  const { path, state, mode } = options;
+  const { mode, path, state } = options;
   const isPresent = __existsSync(path);
   if (state === 'present') {
     const newMode = __toMode(mode);
     if (!isPresent) {
-      mkdirSync(path, { recursive: true, mode: newMode });
+      mkdirSync(path, { mode: newMode, recursive: true });
     }
     if (newMode != null && isPresent) {
       chmodSync(path, newMode);

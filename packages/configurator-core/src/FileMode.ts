@@ -1,26 +1,4 @@
-export interface FilePermissionSet {
-  /**
-   * Read permission
-   */
-  readonly read?: boolean;
-
-  /**
-   * Write permission
-   */
-  readonly write?: boolean;
-
-  /**
-   * Execute permission
-   */
-  readonly execute?: boolean;
-}
-
 export interface FileMode {
-  /**
-   * Owner permissions
-   */
-  readonly owner?: FilePermissionSet;
-
   /**
    * Group permissions
    */
@@ -30,4 +8,26 @@ export interface FileMode {
    * Other permissions
    */
   readonly other?: FilePermissionSet;
+
+  /**
+   * Owner permissions
+   */
+  readonly owner?: FilePermissionSet;
+}
+
+export interface FilePermissionSet {
+  /**
+   * Execute permission
+   */
+  readonly execute?: boolean;
+
+  /**
+   * Read permission
+   */
+  readonly read?: boolean;
+
+  /**
+   * Write permission
+   */
+  readonly write?: boolean;
 }

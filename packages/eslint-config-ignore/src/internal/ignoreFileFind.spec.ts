@@ -1,7 +1,8 @@
-import nodePath from 'node:path';
 import fs from 'node:fs/promises';
 import { tmpdir } from 'node:os';
+import nodePath from 'node:path';
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
+
 import { ignoreFileFind } from './ignoreFileFind.js';
 
 describe(ignoreFileFind, () => {
@@ -14,7 +15,7 @@ describe(ignoreFileFind, () => {
 
   afterEach(async () => {
     // Clean up temp directory
-    await fs.rm(tempRoot, { recursive: true, force: true });
+    await fs.rm(tempRoot, { force: true, recursive: true });
   });
 
   it('finds .gitignore in the current directory', async () => {

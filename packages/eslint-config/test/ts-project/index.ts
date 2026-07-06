@@ -1,6 +1,13 @@
 import { dep } from './dep.js';
 
-export function test(): 'zero' | 'one' | 'other' {
+export function ternary(): boolean {
+  const booleanValue = true;
+  const falsyValue = undefined;
+
+  return falsyValue == null ? false : booleanValue;
+}
+
+export function test(): 'one' | 'other' | 'zero' {
   dep('param');
 
   const returnValue = [];
@@ -31,11 +38,4 @@ export function test(): 'zero' | 'one' | 'other' {
 
   // Ternary operator
   return parts.length === 0 ? 'zero' : parts.length === 1 ? 'one' : 'other';
-}
-
-export function ternary(): boolean {
-  const booleanValue = true;
-  const falsyValue = undefined;
-
-  return falsyValue == null ? false : booleanValue;
 }

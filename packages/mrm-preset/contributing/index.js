@@ -1,5 +1,5 @@
-const path = require('node:path');
 const { file } = require('mrm-core');
+const path = require('node:path');
 
 function task() {
   // code of conduct
