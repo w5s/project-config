@@ -9,6 +9,7 @@ import nextPlugin from '@next/eslint-plugin-next';
 import nodePlugin from 'eslint-plugin-n';
 import reactPlugin from '@eslint-react/eslint-plugin';
 import markdownPlugin from '@eslint/markdown';
+import perfectionistPlugin from 'eslint-plugin-perfectionist';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import vitestPlugin from '@vitest/eslint-plugin';
 import unicornPlugin from 'eslint-plugin-unicorn';
@@ -28,6 +29,7 @@ await Promise.all(
       ['markdown', markdownPlugin],
       ['next', nextPlugin],
       ['node', nodePlugin],
+      ['perfectionist', perfectionistPlugin],
       ['react', reactPlugin],
       ['style', stylisticPlugin],
       ['ts', tsPlugin],
