@@ -31,8 +31,11 @@ Or in the `.prettierrc.js`, to be able to override rules
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```js\nmodule.exports = {\n  ...require('${name}'),\n  // Override rules\n};\n```) -->
 ```js
-module.exports = {
-  ...require('@w5s/prettier-config'),
+import prettierConfig from '@w5s/prettier-config';
+
+/** @type {import("prettier").Options} */
+export default {
+  ...prettierConfig,
   // Override rules
 };
 ```

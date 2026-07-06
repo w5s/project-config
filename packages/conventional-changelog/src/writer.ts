@@ -17,7 +17,7 @@ export interface WriterOptions {
   transform?: CommitTransformFunction<Commit> | undefined;
 }
 
-const _dirname = typeof __dirname === 'undefined' ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
+const _dirname = nodePath.dirname(fileURLToPath(import.meta.url));
 const basePath = nodePath.resolve(nodePath.dirname(_dirname), './template');
 
 export const defaultDisplayTypes = CommitConventionalType.findWhere((_) => _.changelog);

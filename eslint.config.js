@@ -11,6 +11,5 @@ export default await defineConfig({
   rules: {
     'import/no-unresolved': 'off',
     'node/no-sync': 'off',
-    'unicorn/prefer-module': 'off',
   },
 });

@@ -282,7 +282,7 @@ function createTransform(config) {
 }
 //#endregion
 //#region src/writer.ts
-const _dirname = typeof __dirname === "undefined" ? nodePath.dirname(fileURLToPath(import.meta.url)) : __dirname;
+const _dirname = nodePath.dirname(fileURLToPath(import.meta.url));
 const basePath = nodePath.resolve(nodePath.dirname(_dirname), "./template");
 const defaultDisplayTypes = CommitConventionalType.findWhere((_) => _.changelog);
 const createWriterOpts = async () => {
