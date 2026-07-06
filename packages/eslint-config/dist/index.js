@@ -48,14 +48,14 @@ const tsSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["ty
 const ymlSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`;
 //#endregion
 //#region src/config/e18e.ts
-const defaultFiles$10 = [sourceGlob$1];
+const defaultFiles$11 = [sourceGlob$1];
 /**
 * @see https://e18e.dev
 * @param options
 */
 async function e18e(options = {}) {
 	const [e18ePlugin] = await Promise.all([interopDefault(import("@e18e/eslint-plugin"))]);
-	const { files = defaultFiles$10, rules = {}, stylistic = true, modernization = true, moduleReplacements = false, performanceImprovements = true } = options;
+	const { files = defaultFiles$11, rules = {}, stylistic = true, modernization = true, moduleReplacements = false, performanceImprovements = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
 		name: "w5s/e18e/setup",
@@ -482,7 +482,7 @@ const esRules = () => ({
 });
 //#endregion
 //#region src/config/es.ts
-const defaultFiles$9 = [esSourceGlob];
+const defaultFiles$10 = [esSourceGlob];
 async function es(options) {
 	const { recommended = true, rules = {} } = options;
 	return [{
@@ -510,7 +510,7 @@ async function es(options) {
 		linterOptions: { reportUnusedDisableDirectives: true }
 	}, {
 		name: "w5s/es/rules",
-		files: defaultFiles$9,
+		files: defaultFiles$10,
 		rules: {
 			...recommended ? es["recommended"] : {},
 			...rules
@@ -530,11 +530,40 @@ async function ignores(options = {}) {
 	return [await eslintIgnores(options)];
 }
 //#endregion
+//#region src/config/imports.ts
+async function imports(options = {}) {
+	const { rules = {}, recommended = true, stylistic = true } = options;
+	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+	const [importPlugin] = await Promise.all([interopDefault(import("eslint-plugin-import"))]);
+	return [{
+		name: "w5s/import/rules",
+		plugins: { import: importPlugin },
+		rules: {
+			...recommended ? imports["recommended"] : {},
+			...stylisticEnabled ? imports["stylistic"] : {},
+			...rules
+		}
+	}];
+}
+/**
+* Recommended rules
+*/
+imports["recommended"] = {
+	"import/first": "error",
+	"import/no-duplicates": "error",
+	"import/no-mutable-exports": "error",
+	"import/no-named-default": "error"
+};
+/**
+* Stylistic rules
+*/
+imports["stylistic"] = { "import/newline-after-import": ["error", { count: 1 }] };
+//#endregion
 //#region src/config/jsdoc.ts
-const defaultFiles$8 = [sourceGlob$1];
+const defaultFiles$9 = [sourceGlob$1];
 async function jsdoc(options = {}) {
 	const [jsdocPlugin] = await Promise.all([interopDefault(import("eslint-plugin-jsdoc"))]);
-	const { files = defaultFiles$8, recommended = true, rules = {}, stylistic = true } = options;
+	const { files = defaultFiles$9, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
 		name: "w5s/jsdoc/setup",
@@ -570,10 +599,10 @@ async function jsdoc(options = {}) {
 }
 //#endregion
 //#region src/config/jsonc.ts
-const defaultFiles$7 = [jsonSourceGlob];
+const defaultFiles$8 = [jsonSourceGlob];
 async function jsonc(options = {}) {
 	const [jsoncPlugin, jsoncParser] = await Promise.all([interopDefault(import("eslint-plugin-jsonc")), interopDefault(import("jsonc-eslint-parser"))]);
-	const { files = defaultFiles$7, recommended = true, rules = {}, stylistic = true } = options;
+	const { files = defaultFiles$8, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic);
 	return [
 		{
@@ -808,40 +837,11 @@ function sortPackageJson() {
 	};
 }
 //#endregion
-//#region src/config/imports.ts
-async function imports(options = {}) {
-	const { rules = {}, recommended = true, stylistic = true } = options;
-	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
-	const [importPlugin] = await Promise.all([interopDefault(import("eslint-plugin-import"))]);
-	return [{
-		name: "w5s/import/rules",
-		plugins: { import: importPlugin },
-		rules: {
-			...recommended ? imports["recommended"] : {},
-			...stylisticEnabled ? imports["stylistic"] : {},
-			...rules
-		}
-	}];
-}
-/**
-* Recommended rules
-*/
-imports["recommended"] = {
-	"import/first": "error",
-	"import/no-duplicates": "error",
-	"import/no-mutable-exports": "error",
-	"import/no-named-default": "error"
-};
-/**
-* Stylistic rules
-*/
-imports["stylistic"] = { "import/newline-after-import": ["error", { count: 1 }] };
-//#endregion
 //#region src/config/markdown.ts
-const defaultFiles$6 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
+const defaultFiles$7 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
 async function markdown(options = {}) {
 	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
-	const { language = "markdown/gfm", languageOptions, files = defaultFiles$6, recommended = true, rules = {}, stylistic = true } = options;
+	const { language = "markdown/gfm", languageOptions, files = defaultFiles$7, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
 		name: "w5s/markdown/setup",
@@ -864,10 +864,10 @@ async function markdown(options = {}) {
 }
 //#endregion
 //#region src/config/next.ts
-const defaultFiles$5 = [sourceGlob$1];
+const defaultFiles$6 = [sourceGlob$1];
 async function next(options = {}) {
 	const [nextPlugin] = await Promise.all([interopDefault(import("@next/eslint-plugin-next"))]);
-	const { files = defaultFiles$5, recommended = true, rules = {} } = options;
+	const { files = defaultFiles$6, recommended = true, rules = {} } = options;
 	return [{
 		name: "w5s/next/setup",
 		plugins: { next: nextPlugin }
@@ -908,6 +908,26 @@ async function node(options = {}) {
 				"node/prefer-global/url-search-params": ["error", "always"],
 				"node/process-exit-as-throw": "error"
 			} : {},
+			...rules
+		}
+	}];
+}
+//#endregion
+//#region src/config/perfectionist.ts
+const defaultFiles$5 = [sourceGlob$1];
+async function perfectionist(options = {}) {
+	const [perfectionistPlugin] = await Promise.all([interopDefault(import("eslint-plugin-perfectionist"))]);
+	const { files = defaultFiles$5, recommended = true, rules = {}, stylistic = true } = options;
+	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+	return [{
+		name: "w5s/perfectionist/setup",
+		plugins: { perfectionist: perfectionistPlugin }
+	}, {
+		files,
+		name: "w5s/perfectionist/rules",
+		rules: {
+			...recommended ? perfectionistPlugin.configs["recommended-natural"].rules : {},
+			...stylisticEnabled ? {} : {},
 			...rules
 		}
 	}];
@@ -1194,7 +1214,7 @@ async function yml(options = {}) {
 //#endregion
 //#region src/defineConfig.ts
 async function defineConfig(options = {}) {
-	const { rules, plugins = {} } = options;
+	const { plugins = {}, rules } = options;
 	const stylisticOptions = typeof plugins.stylistic === "boolean" ? { enabled: plugins.stylistic } : {
 		enabled: true,
 		...plugins.stylistic
@@ -1208,7 +1228,7 @@ async function defineConfig(options = {}) {
 		...optionsOrBoolean
 	});
 	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
-	return ESLintConfig.concat(...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(stylistic, toOption(plugins.stylistic)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(next, toOption(plugins.next)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(test, toOption(plugins.test)), ...rules ? [{ rules }] : []);
+	return ESLintConfig.concat(...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(stylistic, toOption(plugins.stylistic)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(next, toOption(plugins.next)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(test, toOption(plugins.test)), ...rules ? [{ rules }] : []);
 }
 //#endregion
 //#region src/meta.ts
@@ -1218,6 +1238,6 @@ const meta = Object.freeze({
 	buildNumber: 1
 });
 //#endregion
-export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, next, node, react, stylistic, test, ts, unicorn, yml };
+export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, yml };
 
 //# sourceMappingURL=index.js.map

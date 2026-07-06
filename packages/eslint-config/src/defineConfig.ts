@@ -1,5 +1,9 @@
-import { ESLintConfig } from '@w5s/dev';
 import type eslint from 'eslint';
+
+import { ESLintConfig } from '@w5s/dev';
+
+import type { Config } from './type.js';
+
 import {
   e18e,
   es,
@@ -10,6 +14,7 @@ import {
   markdown,
   next,
   node,
+  perfectionist,
   react,
   stylistic,
   test,
@@ -17,7 +22,6 @@ import {
   unicorn,
   yml,
 } from './config.js';
-import type { Config } from './type.js';
 
 export interface DefineConfigOptions extends ignores.Options {
   /**
@@ -27,11 +31,12 @@ export interface DefineConfigOptions extends ignores.Options {
     e18e?: boolean | e18e.Options;
     es?: boolean | es.Options;
     import?: boolean | imports.Options;
-    markdown?: boolean | markdown.Options;
     jsdoc?: boolean | jsdoc.Options;
     jsonc?: boolean | jsonc.Options;
+    markdown?: boolean | markdown.Options;
     next?: boolean | next.Options;
     node?: boolean | node.Options;
+    perfectionist?: boolean | perfectionist.Options;
     react?: boolean | react.Options;
     stylistic?: boolean | stylistic.Options;
     test?: boolean | test.Options;
@@ -47,11 +52,11 @@ export interface DefineConfigOptions extends ignores.Options {
 }
 
 export async function defineConfig(options: DefineConfigOptions = {}) {
-  const { rules, plugins = {} } = options;
+  const { plugins = {}, rules } = options;
   const stylisticOptions =
     typeof plugins.stylistic === 'boolean' ? { enabled: plugins.stylistic } : { enabled: true, ...plugins.stylistic };
   const withDefaultStylistic = <T>(_options: T) => ({ stylistic: stylisticOptions, ..._options });
-  const toOption = <T extends {}>(optionsOrBoolean: T | boolean | undefined) =>
+  const toOption = <T extends {}>(optionsOrBoolean: boolean | T | undefined) =>
     withDefaultStylistic(
       (typeof optionsOrBoolean === 'boolean'
         ? { enabled: optionsOrBoolean }
@@ -73,6 +78,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     ...includeEnabled(markdown, toOption(plugins.markdown)),
     ...includeEnabled(next, toOption(plugins.next)),
     ...includeEnabled(node, toOption(plugins.node)),
+    ...includeEnabled(perfectionist, toOption(plugins.perfectionist)),
     ...includeEnabled(unicorn, toOption(plugins.unicorn)),
     ...includeEnabled(yml, toOption(plugins.yml)),
     ...includeEnabled(test, toOption(plugins.test)),

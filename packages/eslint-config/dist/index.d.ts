@@ -58,10 +58,10 @@ interface PluginOptionsBase<Rules> {
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$12 {}
+    interface RulesRecord extends RuleOptions$13 {}
   }
 }
-interface RuleOptions$12 {
+interface RuleOptions$13 {
   /**
    * Disallow dependencies in favor of more performant or secure alternatives
    */
@@ -186,7 +186,7 @@ type E18EBanDependencies = [] | [{
  */
 declare function e18e(options?: e18e.Options): Promise<[Config, Config]>;
 declare namespace e18e {
-  type Rules = RuleOptions$12;
+  type Rules = RuleOptions$13;
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * Include modernization default configuration
@@ -212,10 +212,10 @@ declare namespace e18e {
 //#region src/typegen/jsonc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$11 {}
+    interface RulesRecord extends RuleOptions$12 {}
   }
 }
-interface RuleOptions$11 {
+interface RuleOptions$12 {
   /**
    * enforce line breaks after opening and before closing array brackets
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-newline.html
@@ -1027,7 +1027,7 @@ declare namespace es {
   };
 }
 declare namespace es {
-  type Rules = RuleOptions$11;
+  type Rules = RuleOptions$12;
   interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
@@ -1035,6 +1035,475 @@ declare namespace es {
 declare function ignores(options?: ignores.Options): Promise<import("@w5s/eslint-config-ignore").ESLintIgnoreConfig[]>;
 declare namespace ignores {
   type Options = ESLintIgnoreOptions;
+}
+//#endregion
+//#region src/typegen/import.d.ts
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$11 {}
+  }
+}
+interface RuleOptions$11 {
+  /**
+   * Enforce or ban the use of inline type-only markers for named imports.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/consistent-type-specifier-style.md
+   */
+  'import/consistent-type-specifier-style'?: Linter.RuleEntry<ImportConsistentTypeSpecifierStyle>;
+  /**
+   * Ensure a default export is present, given a default import.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/default.md
+   */
+  'import/default'?: Linter.RuleEntry<[]>;
+  /**
+   * Enforce a leading comment with the webpackChunkName for dynamic imports.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/dynamic-import-chunkname.md
+   */
+  'import/dynamic-import-chunkname'?: Linter.RuleEntry<ImportDynamicImportChunkname>;
+  /**
+   * Enforce either using, or omitting, the `node:` protocol when importing Node.js builtin modules.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/enforce-node-protocol-usage.md
+   */
+  'import/enforce-node-protocol-usage'?: Linter.RuleEntry<ImportEnforceNodeProtocolUsage>;
+  /**
+   * Forbid any invalid exports, i.e. re-export of the same name.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/export.md
+   */
+  'import/export'?: Linter.RuleEntry<[]>;
+  /**
+   * Ensure all exports appear after other statements.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/exports-last.md
+   */
+  'import/exports-last'?: Linter.RuleEntry<[]>;
+  /**
+   * Ensure consistent use of file extension within the import path.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/extensions.md
+   */
+  'import/extensions'?: Linter.RuleEntry<ImportExtensions>;
+  /**
+   * Ensure all imports appear before other statements.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/first.md
+   */
+  'import/first'?: Linter.RuleEntry<ImportFirst>;
+  /**
+   * Prefer named exports to be grouped together in a single export declaration
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/group-exports.md
+   */
+  'import/group-exports'?: Linter.RuleEntry<[]>;
+  /**
+   * Replaced by `import/first`.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/7b25c1cb95ee18acc1531002fd343e1e6031f9ed/docs/rules/imports-first.md
+   * @deprecated
+   */
+  'import/imports-first'?: Linter.RuleEntry<ImportImportsFirst>;
+  /**
+   * Enforce the maximum number of dependencies a module can have.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/max-dependencies.md
+   */
+  'import/max-dependencies'?: Linter.RuleEntry<ImportMaxDependencies>;
+  /**
+   * Ensure named imports correspond to a named export in the remote file.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/named.md
+   */
+  'import/named'?: Linter.RuleEntry<ImportNamed>;
+  /**
+   * Ensure imported namespaces contain dereferenced properties as they are dereferenced.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/namespace.md
+   */
+  'import/namespace'?: Linter.RuleEntry<ImportNamespace>;
+  /**
+   * Enforce a newline after import statements.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/newline-after-import.md
+   */
+  'import/newline-after-import'?: Linter.RuleEntry<ImportNewlineAfterImport>;
+  /**
+   * Forbid import of modules using absolute paths.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-absolute-path.md
+   */
+  'import/no-absolute-path'?: Linter.RuleEntry<ImportNoAbsolutePath>;
+  /**
+   * Forbid AMD `require` and `define` calls.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-amd.md
+   */
+  'import/no-amd'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid anonymous values as default exports.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-anonymous-default-export.md
+   */
+  'import/no-anonymous-default-export'?: Linter.RuleEntry<ImportNoAnonymousDefaultExport>;
+  /**
+   * Forbid CommonJS `require` calls and `module.exports` or `exports.*`.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-commonjs.md
+   */
+  'import/no-commonjs'?: Linter.RuleEntry<ImportNoCommonjs>;
+  /**
+   * Forbid a module from importing a module with a dependency path back to itself.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-cycle.md
+   */
+  'import/no-cycle'?: Linter.RuleEntry<ImportNoCycle>;
+  /**
+   * Forbid default exports.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-default-export.md
+   */
+  'import/no-default-export'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid imported names marked with `@deprecated` documentation tag.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-deprecated.md
+   */
+  'import/no-deprecated'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid repeated import of the same module in multiple places.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-duplicates.md
+   */
+  'import/no-duplicates'?: Linter.RuleEntry<ImportNoDuplicates>;
+  /**
+   * Forbid `require()` calls with expressions.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-dynamic-require.md
+   */
+  'import/no-dynamic-require'?: Linter.RuleEntry<ImportNoDynamicRequire>;
+  /**
+   * Forbid empty named import blocks.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-empty-named-blocks.md
+   */
+  'import/no-empty-named-blocks'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid the use of extraneous packages.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-extraneous-dependencies.md
+   */
+  'import/no-extraneous-dependencies'?: Linter.RuleEntry<ImportNoExtraneousDependencies>;
+  /**
+   * Forbid import statements with CommonJS module.exports.
+   */
+  'import/no-import-module-exports'?: Linter.RuleEntry<ImportNoImportModuleExports>;
+  /**
+   * Forbid importing the submodules of other modules.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-internal-modules.md
+   */
+  'import/no-internal-modules'?: Linter.RuleEntry<ImportNoInternalModules>;
+  /**
+   * Forbid the use of mutable exports with `var` or `let`.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-mutable-exports.md
+   */
+  'import/no-mutable-exports'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid use of exported name as identifier of default export.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-named-as-default.md
+   */
+  'import/no-named-as-default'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid use of exported name as property of default export.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-named-as-default-member.md
+   */
+  'import/no-named-as-default-member'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid named default exports.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-named-default.md
+   */
+  'import/no-named-default'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid named exports.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-named-export.md
+   */
+  'import/no-named-export'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid namespace (a.k.a. "wildcard" `*`) imports.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-namespace.md
+   */
+  'import/no-namespace'?: Linter.RuleEntry<ImportNoNamespace>;
+  /**
+   * Forbid Node.js builtin modules.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-nodejs-modules.md
+   */
+  'import/no-nodejs-modules'?: Linter.RuleEntry<ImportNoNodejsModules>;
+  /**
+   * Forbid importing packages through relative paths.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-relative-packages.md
+   */
+  'import/no-relative-packages'?: Linter.RuleEntry<ImportNoRelativePackages>;
+  /**
+   * Forbid importing modules from parent directories.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-relative-parent-imports.md
+   */
+  'import/no-relative-parent-imports'?: Linter.RuleEntry<ImportNoRelativeParentImports>;
+  /**
+   * Enforce which files can be imported in a given folder.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-restricted-paths.md
+   */
+  'import/no-restricted-paths'?: Linter.RuleEntry<ImportNoRestrictedPaths>;
+  /**
+   * Forbid a module from importing itself.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-self-import.md
+   */
+  'import/no-self-import'?: Linter.RuleEntry<[]>;
+  /**
+   * Forbid unassigned imports
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-unassigned-import.md
+   */
+  'import/no-unassigned-import'?: Linter.RuleEntry<ImportNoUnassignedImport>;
+  /**
+   * Ensure imports point to a file/module that can be resolved.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-unresolved.md
+   */
+  'import/no-unresolved'?: Linter.RuleEntry<ImportNoUnresolved>;
+  /**
+   * Forbid modules without exports, or exports without matching import in another module.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-unused-modules.md
+   */
+  'import/no-unused-modules'?: Linter.RuleEntry<ImportNoUnusedModules>;
+  /**
+   * Forbid unnecessary path segments in import and require statements.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-useless-path-segments.md
+   */
+  'import/no-useless-path-segments'?: Linter.RuleEntry<ImportNoUselessPathSegments>;
+  /**
+   * Forbid webpack loader syntax in imports.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-webpack-loader-syntax.md
+   */
+  'import/no-webpack-loader-syntax'?: Linter.RuleEntry<[]>;
+  /**
+   * Enforce a convention in module import order.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/order.md
+   */
+  'import/order'?: Linter.RuleEntry<ImportOrder>;
+  /**
+   * Prefer a default export if module exports a single name or multiple names.
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/prefer-default-export.md
+   */
+  'import/prefer-default-export'?: Linter.RuleEntry<ImportPreferDefaultExport>;
+  /**
+   * Forbid potentially ambiguous parse goal (`script` vs. `module`).
+   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/unambiguous.md
+   */
+  'import/unambiguous'?: Linter.RuleEntry<[]>;
+}
+/* ======= Declarations ======= */
+// ----- import/consistent-type-specifier-style -----
+type ImportConsistentTypeSpecifierStyle = [] | [("prefer-inline" | "prefer-top-level")]; // ----- import/dynamic-import-chunkname -----
+type ImportDynamicImportChunkname = [] | [{
+  importFunctions?: string[];
+  allowEmpty?: boolean;
+  webpackChunknameFormat?: string;
+  [k: string]: unknown | undefined;
+}]; // ----- import/enforce-node-protocol-usage -----
+type ImportEnforceNodeProtocolUsage = [("always" | "never")]; // ----- import/extensions -----
+type ImportExtensions = ([] | [("always" | "ignorePackages" | "never")] | [] | [("always" | "ignorePackages" | "never")] | [("always" | "ignorePackages" | "never"), {
+  pattern?: {
+    [k: string]: ("always" | "ignorePackages" | "never");
+  };
+  checkTypeImports?: boolean;
+  ignorePackages?: boolean;
+  pathGroupOverrides?: {
+    pattern: string;
+    patternOptions?: {
+      [k: string]: unknown | undefined;
+    };
+    action: ("enforce" | "ignore");
+  }[];
+  [k: string]: unknown | undefined;
+}] | [] | [{
+  pattern?: {
+    [k: string]: ("always" | "ignorePackages" | "never");
+  };
+  checkTypeImports?: boolean;
+  ignorePackages?: boolean;
+  pathGroupOverrides?: {
+    pattern: string;
+    patternOptions?: {
+      [k: string]: unknown | undefined;
+    };
+    action: ("enforce" | "ignore");
+  }[];
+  [k: string]: unknown | undefined;
+}] | [] | [{
+  [k: string]: ("always" | "ignorePackages" | "never");
+}] | [] | [("always" | "ignorePackages" | "never")] | [("always" | "ignorePackages" | "never"), {
+  [k: string]: ("always" | "ignorePackages" | "never");
+}]); // ----- import/first -----
+type ImportFirst = [] | [("absolute-first" | "disable-absolute-first")]; // ----- import/imports-first -----
+type ImportImportsFirst = [] | [("absolute-first" | "disable-absolute-first")]; // ----- import/max-dependencies -----
+type ImportMaxDependencies = [] | [{
+  max?: number;
+  ignoreTypeImports?: boolean;
+}]; // ----- import/named -----
+type ImportNamed = [] | [{
+  commonjs?: boolean;
+}]; // ----- import/namespace -----
+type ImportNamespace = [] | [{
+  allowComputed?: boolean;
+}]; // ----- import/newline-after-import -----
+type ImportNewlineAfterImport = [] | [{
+  count?: number;
+  exactCount?: boolean;
+  considerComments?: boolean;
+}]; // ----- import/no-absolute-path -----
+type ImportNoAbsolutePath = [] | [{
+  commonjs?: boolean;
+  amd?: boolean;
+  esmodule?: boolean;
+  ignore?: [string, ...(string)[]];
+}]; // ----- import/no-anonymous-default-export -----
+type ImportNoAnonymousDefaultExport = [] | [{
+  allowArray?: boolean;
+  allowArrowFunction?: boolean;
+  allowCallExpression?: boolean;
+  allowAnonymousClass?: boolean;
+  allowAnonymousFunction?: boolean;
+  allowLiteral?: boolean;
+  allowObject?: boolean;
+  allowNew?: boolean;
+}]; // ----- import/no-commonjs -----
+type ImportNoCommonjs = ([] | ["allow-primitive-modules"] | [] | [{
+  allowPrimitiveModules?: boolean;
+  allowRequire?: boolean;
+  allowConditionalRequire?: boolean;
+}]); // ----- import/no-cycle -----
+type ImportNoCycle = [] | [{
+  commonjs?: boolean;
+  amd?: boolean;
+  esmodule?: boolean;
+  ignore?: [string, ...(string)[]];
+  maxDepth?: (number | "∞");
+  ignoreExternal?: boolean;
+  allowUnsafeDynamicCyclicDependency?: boolean;
+  disableScc?: boolean;
+}]; // ----- import/no-duplicates -----
+type ImportNoDuplicates = [] | [{
+  considerQueryString?: boolean;
+  "prefer-inline"?: boolean;
+}]; // ----- import/no-dynamic-require -----
+type ImportNoDynamicRequire = [] | [{
+  esmodule?: boolean;
+}]; // ----- import/no-extraneous-dependencies -----
+type ImportNoExtraneousDependencies = [] | [{
+  devDependencies?: (boolean | unknown[]);
+  optionalDependencies?: (boolean | unknown[]);
+  peerDependencies?: (boolean | unknown[]);
+  bundledDependencies?: (boolean | unknown[]);
+  packageDir?: (string | unknown[]);
+  includeInternal?: boolean;
+  includeTypes?: boolean;
+}]; // ----- import/no-import-module-exports -----
+type ImportNoImportModuleExports = [] | [{
+  exceptions?: unknown[];
+}]; // ----- import/no-internal-modules -----
+type ImportNoInternalModules = [] | [({
+  allow?: string[];
+} | {
+  forbid?: string[];
+})]; // ----- import/no-namespace -----
+type ImportNoNamespace = [] | [{
+  ignore?: string[];
+  [k: string]: unknown | undefined;
+}]; // ----- import/no-nodejs-modules -----
+type ImportNoNodejsModules = [] | [{
+  allow?: string[];
+}]; // ----- import/no-relative-packages -----
+type ImportNoRelativePackages = [] | [{
+  commonjs?: boolean;
+  amd?: boolean;
+  esmodule?: boolean;
+  ignore?: [string, ...(string)[]];
+}]; // ----- import/no-relative-parent-imports -----
+type ImportNoRelativeParentImports = [] | [{
+  commonjs?: boolean;
+  amd?: boolean;
+  esmodule?: boolean;
+  ignore?: [string, ...(string)[]];
+}]; // ----- import/no-restricted-paths -----
+type ImportNoRestrictedPaths = [] | [{
+  zones?: [{
+    target?: (string | string[]);
+    from?: (string | string[]);
+    except?: string[];
+    message?: string;
+  }, ...({
+    target?: (string | string[]);
+    from?: (string | string[]);
+    except?: string[];
+    message?: string;
+  })[]];
+  basePath?: string;
+}]; // ----- import/no-unassigned-import -----
+type ImportNoUnassignedImport = [] | [{
+  devDependencies?: (boolean | unknown[]);
+  optionalDependencies?: (boolean | unknown[]);
+  peerDependencies?: (boolean | unknown[]);
+  allow?: string[];
+}]; // ----- import/no-unresolved -----
+type ImportNoUnresolved = [] | [{
+  commonjs?: boolean;
+  amd?: boolean;
+  esmodule?: boolean;
+  ignore?: [string, ...(string)[]];
+  caseSensitive?: boolean;
+  caseSensitiveStrict?: boolean;
+}]; // ----- import/no-unused-modules -----
+type ImportNoUnusedModules = [] | [({
+  unusedExports: true;
+  src?: {
+    [k: string]: unknown | undefined;
+  };
+  [k: string]: unknown | undefined;
+} | {
+  missingExports: true;
+  [k: string]: unknown | undefined;
+})]; // ----- import/no-useless-path-segments -----
+type ImportNoUselessPathSegments = [] | [{
+  commonjs?: boolean;
+  noUselessIndex?: boolean;
+}]; // ----- import/order -----
+type ImportOrder = [] | [{
+  groups?: (("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type") | ("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type")[])[];
+  pathGroupsExcludedImportTypes?: unknown[];
+  distinctGroup?: boolean;
+  pathGroups?: {
+    pattern: string;
+    patternOptions?: {
+      [k: string]: unknown | undefined;
+    };
+    group: ("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type");
+    position?: ("after" | "before");
+  }[];
+  "newlines-between"?: ("ignore" | "always" | "always-and-inside-groups" | "never");
+  "newlines-between-types"?: ("ignore" | "always" | "always-and-inside-groups" | "never");
+  consolidateIslands?: ("inside-groups" | "never");
+  sortTypesGroup?: boolean;
+  named?: (boolean | {
+    enabled?: boolean;
+    import?: boolean;
+    export?: boolean;
+    require?: boolean;
+    cjsExports?: boolean;
+    types?: ("mixed" | "types-first" | "types-last");
+  });
+  alphabetize?: {
+    caseInsensitive?: boolean;
+    order?: ("ignore" | "asc" | "desc");
+    orderImportKind?: ("ignore" | "asc" | "desc");
+  };
+  warnOnUnassignedImports?: boolean;
+}]; // ----- import/prefer-default-export -----
+type ImportPreferDefaultExport = [] | [{
+  target?: ("single" | "any");
+}];
+//#endregion
+//#region src/config/imports.d.ts
+declare function imports(options?: imports.Options): Promise<[Config]>;
+declare namespace imports {
+  var recommended: {
+    'import/first': string;
+    'import/no-duplicates': string;
+    'import/no-mutable-exports': string;
+    'import/no-named-default': string;
+  };
+  var stylistic: {
+    'import/newline-after-import': (string | {
+      count: number;
+    })[];
+  };
+}
+declare namespace imports {
+  type Rules = RuleOptions$11;
+  interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
 //#region src/typegen/jsdoc.d.ts
@@ -1927,486 +2396,17 @@ declare namespace jsdoc {
 //#region src/config/jsonc.d.ts
 declare function jsonc(options?: jsonc.Options): Promise<readonly Config[]>;
 declare namespace jsonc {
-  type Rules = RuleOptions$11;
-  interface Options extends PluginOptionsBase<Rules> {}
-}
-//#endregion
-//#region src/typegen/import.d.ts
-declare module 'eslint' {
-  namespace Linter {
-    interface RulesRecord extends RuleOptions$9 {}
-  }
-}
-interface RuleOptions$9 {
-  /**
-   * Enforce or ban the use of inline type-only markers for named imports.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/consistent-type-specifier-style.md
-   */
-  'import/consistent-type-specifier-style'?: Linter.RuleEntry<ImportConsistentTypeSpecifierStyle>;
-  /**
-   * Ensure a default export is present, given a default import.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/default.md
-   */
-  'import/default'?: Linter.RuleEntry<[]>;
-  /**
-   * Enforce a leading comment with the webpackChunkName for dynamic imports.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/dynamic-import-chunkname.md
-   */
-  'import/dynamic-import-chunkname'?: Linter.RuleEntry<ImportDynamicImportChunkname>;
-  /**
-   * Enforce either using, or omitting, the `node:` protocol when importing Node.js builtin modules.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/enforce-node-protocol-usage.md
-   */
-  'import/enforce-node-protocol-usage'?: Linter.RuleEntry<ImportEnforceNodeProtocolUsage>;
-  /**
-   * Forbid any invalid exports, i.e. re-export of the same name.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/export.md
-   */
-  'import/export'?: Linter.RuleEntry<[]>;
-  /**
-   * Ensure all exports appear after other statements.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/exports-last.md
-   */
-  'import/exports-last'?: Linter.RuleEntry<[]>;
-  /**
-   * Ensure consistent use of file extension within the import path.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/extensions.md
-   */
-  'import/extensions'?: Linter.RuleEntry<ImportExtensions>;
-  /**
-   * Ensure all imports appear before other statements.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/first.md
-   */
-  'import/first'?: Linter.RuleEntry<ImportFirst>;
-  /**
-   * Prefer named exports to be grouped together in a single export declaration
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/group-exports.md
-   */
-  'import/group-exports'?: Linter.RuleEntry<[]>;
-  /**
-   * Replaced by `import/first`.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/7b25c1cb95ee18acc1531002fd343e1e6031f9ed/docs/rules/imports-first.md
-   * @deprecated
-   */
-  'import/imports-first'?: Linter.RuleEntry<ImportImportsFirst>;
-  /**
-   * Enforce the maximum number of dependencies a module can have.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/max-dependencies.md
-   */
-  'import/max-dependencies'?: Linter.RuleEntry<ImportMaxDependencies>;
-  /**
-   * Ensure named imports correspond to a named export in the remote file.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/named.md
-   */
-  'import/named'?: Linter.RuleEntry<ImportNamed>;
-  /**
-   * Ensure imported namespaces contain dereferenced properties as they are dereferenced.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/namespace.md
-   */
-  'import/namespace'?: Linter.RuleEntry<ImportNamespace>;
-  /**
-   * Enforce a newline after import statements.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/newline-after-import.md
-   */
-  'import/newline-after-import'?: Linter.RuleEntry<ImportNewlineAfterImport>;
-  /**
-   * Forbid import of modules using absolute paths.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-absolute-path.md
-   */
-  'import/no-absolute-path'?: Linter.RuleEntry<ImportNoAbsolutePath>;
-  /**
-   * Forbid AMD `require` and `define` calls.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-amd.md
-   */
-  'import/no-amd'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid anonymous values as default exports.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-anonymous-default-export.md
-   */
-  'import/no-anonymous-default-export'?: Linter.RuleEntry<ImportNoAnonymousDefaultExport>;
-  /**
-   * Forbid CommonJS `require` calls and `module.exports` or `exports.*`.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-commonjs.md
-   */
-  'import/no-commonjs'?: Linter.RuleEntry<ImportNoCommonjs>;
-  /**
-   * Forbid a module from importing a module with a dependency path back to itself.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-cycle.md
-   */
-  'import/no-cycle'?: Linter.RuleEntry<ImportNoCycle>;
-  /**
-   * Forbid default exports.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-default-export.md
-   */
-  'import/no-default-export'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid imported names marked with `@deprecated` documentation tag.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-deprecated.md
-   */
-  'import/no-deprecated'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid repeated import of the same module in multiple places.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-duplicates.md
-   */
-  'import/no-duplicates'?: Linter.RuleEntry<ImportNoDuplicates>;
-  /**
-   * Forbid `require()` calls with expressions.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-dynamic-require.md
-   */
-  'import/no-dynamic-require'?: Linter.RuleEntry<ImportNoDynamicRequire>;
-  /**
-   * Forbid empty named import blocks.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-empty-named-blocks.md
-   */
-  'import/no-empty-named-blocks'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid the use of extraneous packages.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-extraneous-dependencies.md
-   */
-  'import/no-extraneous-dependencies'?: Linter.RuleEntry<ImportNoExtraneousDependencies>;
-  /**
-   * Forbid import statements with CommonJS module.exports.
-   */
-  'import/no-import-module-exports'?: Linter.RuleEntry<ImportNoImportModuleExports>;
-  /**
-   * Forbid importing the submodules of other modules.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-internal-modules.md
-   */
-  'import/no-internal-modules'?: Linter.RuleEntry<ImportNoInternalModules>;
-  /**
-   * Forbid the use of mutable exports with `var` or `let`.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-mutable-exports.md
-   */
-  'import/no-mutable-exports'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid use of exported name as identifier of default export.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-named-as-default.md
-   */
-  'import/no-named-as-default'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid use of exported name as property of default export.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-named-as-default-member.md
-   */
-  'import/no-named-as-default-member'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid named default exports.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-named-default.md
-   */
-  'import/no-named-default'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid named exports.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-named-export.md
-   */
-  'import/no-named-export'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid namespace (a.k.a. "wildcard" `*`) imports.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-namespace.md
-   */
-  'import/no-namespace'?: Linter.RuleEntry<ImportNoNamespace>;
-  /**
-   * Forbid Node.js builtin modules.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-nodejs-modules.md
-   */
-  'import/no-nodejs-modules'?: Linter.RuleEntry<ImportNoNodejsModules>;
-  /**
-   * Forbid importing packages through relative paths.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-relative-packages.md
-   */
-  'import/no-relative-packages'?: Linter.RuleEntry<ImportNoRelativePackages>;
-  /**
-   * Forbid importing modules from parent directories.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-relative-parent-imports.md
-   */
-  'import/no-relative-parent-imports'?: Linter.RuleEntry<ImportNoRelativeParentImports>;
-  /**
-   * Enforce which files can be imported in a given folder.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-restricted-paths.md
-   */
-  'import/no-restricted-paths'?: Linter.RuleEntry<ImportNoRestrictedPaths>;
-  /**
-   * Forbid a module from importing itself.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-self-import.md
-   */
-  'import/no-self-import'?: Linter.RuleEntry<[]>;
-  /**
-   * Forbid unassigned imports
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-unassigned-import.md
-   */
-  'import/no-unassigned-import'?: Linter.RuleEntry<ImportNoUnassignedImport>;
-  /**
-   * Ensure imports point to a file/module that can be resolved.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-unresolved.md
-   */
-  'import/no-unresolved'?: Linter.RuleEntry<ImportNoUnresolved>;
-  /**
-   * Forbid modules without exports, or exports without matching import in another module.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-unused-modules.md
-   */
-  'import/no-unused-modules'?: Linter.RuleEntry<ImportNoUnusedModules>;
-  /**
-   * Forbid unnecessary path segments in import and require statements.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-useless-path-segments.md
-   */
-  'import/no-useless-path-segments'?: Linter.RuleEntry<ImportNoUselessPathSegments>;
-  /**
-   * Forbid webpack loader syntax in imports.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/no-webpack-loader-syntax.md
-   */
-  'import/no-webpack-loader-syntax'?: Linter.RuleEntry<[]>;
-  /**
-   * Enforce a convention in module import order.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/order.md
-   */
-  'import/order'?: Linter.RuleEntry<ImportOrder>;
-  /**
-   * Prefer a default export if module exports a single name or multiple names.
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/prefer-default-export.md
-   */
-  'import/prefer-default-export'?: Linter.RuleEntry<ImportPreferDefaultExport>;
-  /**
-   * Forbid potentially ambiguous parse goal (`script` vs. `module`).
-   * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/unambiguous.md
-   */
-  'import/unambiguous'?: Linter.RuleEntry<[]>;
-}
-/* ======= Declarations ======= */
-// ----- import/consistent-type-specifier-style -----
-type ImportConsistentTypeSpecifierStyle = [] | [("prefer-inline" | "prefer-top-level")]; // ----- import/dynamic-import-chunkname -----
-type ImportDynamicImportChunkname = [] | [{
-  importFunctions?: string[];
-  allowEmpty?: boolean;
-  webpackChunknameFormat?: string;
-  [k: string]: unknown | undefined;
-}]; // ----- import/enforce-node-protocol-usage -----
-type ImportEnforceNodeProtocolUsage = [("always" | "never")]; // ----- import/extensions -----
-type ImportExtensions = ([] | [("always" | "ignorePackages" | "never")] | [] | [("always" | "ignorePackages" | "never")] | [("always" | "ignorePackages" | "never"), {
-  pattern?: {
-    [k: string]: ("always" | "ignorePackages" | "never");
-  };
-  checkTypeImports?: boolean;
-  ignorePackages?: boolean;
-  pathGroupOverrides?: {
-    pattern: string;
-    patternOptions?: {
-      [k: string]: unknown | undefined;
-    };
-    action: ("enforce" | "ignore");
-  }[];
-  [k: string]: unknown | undefined;
-}] | [] | [{
-  pattern?: {
-    [k: string]: ("always" | "ignorePackages" | "never");
-  };
-  checkTypeImports?: boolean;
-  ignorePackages?: boolean;
-  pathGroupOverrides?: {
-    pattern: string;
-    patternOptions?: {
-      [k: string]: unknown | undefined;
-    };
-    action: ("enforce" | "ignore");
-  }[];
-  [k: string]: unknown | undefined;
-}] | [] | [{
-  [k: string]: ("always" | "ignorePackages" | "never");
-}] | [] | [("always" | "ignorePackages" | "never")] | [("always" | "ignorePackages" | "never"), {
-  [k: string]: ("always" | "ignorePackages" | "never");
-}]); // ----- import/first -----
-type ImportFirst = [] | [("absolute-first" | "disable-absolute-first")]; // ----- import/imports-first -----
-type ImportImportsFirst = [] | [("absolute-first" | "disable-absolute-first")]; // ----- import/max-dependencies -----
-type ImportMaxDependencies = [] | [{
-  max?: number;
-  ignoreTypeImports?: boolean;
-}]; // ----- import/named -----
-type ImportNamed = [] | [{
-  commonjs?: boolean;
-}]; // ----- import/namespace -----
-type ImportNamespace = [] | [{
-  allowComputed?: boolean;
-}]; // ----- import/newline-after-import -----
-type ImportNewlineAfterImport = [] | [{
-  count?: number;
-  exactCount?: boolean;
-  considerComments?: boolean;
-}]; // ----- import/no-absolute-path -----
-type ImportNoAbsolutePath = [] | [{
-  commonjs?: boolean;
-  amd?: boolean;
-  esmodule?: boolean;
-  ignore?: [string, ...(string)[]];
-}]; // ----- import/no-anonymous-default-export -----
-type ImportNoAnonymousDefaultExport = [] | [{
-  allowArray?: boolean;
-  allowArrowFunction?: boolean;
-  allowCallExpression?: boolean;
-  allowAnonymousClass?: boolean;
-  allowAnonymousFunction?: boolean;
-  allowLiteral?: boolean;
-  allowObject?: boolean;
-  allowNew?: boolean;
-}]; // ----- import/no-commonjs -----
-type ImportNoCommonjs = ([] | ["allow-primitive-modules"] | [] | [{
-  allowPrimitiveModules?: boolean;
-  allowRequire?: boolean;
-  allowConditionalRequire?: boolean;
-}]); // ----- import/no-cycle -----
-type ImportNoCycle = [] | [{
-  commonjs?: boolean;
-  amd?: boolean;
-  esmodule?: boolean;
-  ignore?: [string, ...(string)[]];
-  maxDepth?: (number | "∞");
-  ignoreExternal?: boolean;
-  allowUnsafeDynamicCyclicDependency?: boolean;
-  disableScc?: boolean;
-}]; // ----- import/no-duplicates -----
-type ImportNoDuplicates = [] | [{
-  considerQueryString?: boolean;
-  "prefer-inline"?: boolean;
-}]; // ----- import/no-dynamic-require -----
-type ImportNoDynamicRequire = [] | [{
-  esmodule?: boolean;
-}]; // ----- import/no-extraneous-dependencies -----
-type ImportNoExtraneousDependencies = [] | [{
-  devDependencies?: (boolean | unknown[]);
-  optionalDependencies?: (boolean | unknown[]);
-  peerDependencies?: (boolean | unknown[]);
-  bundledDependencies?: (boolean | unknown[]);
-  packageDir?: (string | unknown[]);
-  includeInternal?: boolean;
-  includeTypes?: boolean;
-}]; // ----- import/no-import-module-exports -----
-type ImportNoImportModuleExports = [] | [{
-  exceptions?: unknown[];
-}]; // ----- import/no-internal-modules -----
-type ImportNoInternalModules = [] | [({
-  allow?: string[];
-} | {
-  forbid?: string[];
-})]; // ----- import/no-namespace -----
-type ImportNoNamespace = [] | [{
-  ignore?: string[];
-  [k: string]: unknown | undefined;
-}]; // ----- import/no-nodejs-modules -----
-type ImportNoNodejsModules = [] | [{
-  allow?: string[];
-}]; // ----- import/no-relative-packages -----
-type ImportNoRelativePackages = [] | [{
-  commonjs?: boolean;
-  amd?: boolean;
-  esmodule?: boolean;
-  ignore?: [string, ...(string)[]];
-}]; // ----- import/no-relative-parent-imports -----
-type ImportNoRelativeParentImports = [] | [{
-  commonjs?: boolean;
-  amd?: boolean;
-  esmodule?: boolean;
-  ignore?: [string, ...(string)[]];
-}]; // ----- import/no-restricted-paths -----
-type ImportNoRestrictedPaths = [] | [{
-  zones?: [{
-    target?: (string | string[]);
-    from?: (string | string[]);
-    except?: string[];
-    message?: string;
-  }, ...({
-    target?: (string | string[]);
-    from?: (string | string[]);
-    except?: string[];
-    message?: string;
-  })[]];
-  basePath?: string;
-}]; // ----- import/no-unassigned-import -----
-type ImportNoUnassignedImport = [] | [{
-  devDependencies?: (boolean | unknown[]);
-  optionalDependencies?: (boolean | unknown[]);
-  peerDependencies?: (boolean | unknown[]);
-  allow?: string[];
-}]; // ----- import/no-unresolved -----
-type ImportNoUnresolved = [] | [{
-  commonjs?: boolean;
-  amd?: boolean;
-  esmodule?: boolean;
-  ignore?: [string, ...(string)[]];
-  caseSensitive?: boolean;
-  caseSensitiveStrict?: boolean;
-}]; // ----- import/no-unused-modules -----
-type ImportNoUnusedModules = [] | [({
-  unusedExports: true;
-  src?: {
-    [k: string]: unknown | undefined;
-  };
-  [k: string]: unknown | undefined;
-} | {
-  missingExports: true;
-  [k: string]: unknown | undefined;
-})]; // ----- import/no-useless-path-segments -----
-type ImportNoUselessPathSegments = [] | [{
-  commonjs?: boolean;
-  noUselessIndex?: boolean;
-}]; // ----- import/order -----
-type ImportOrder = [] | [{
-  groups?: (("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type") | ("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type")[])[];
-  pathGroupsExcludedImportTypes?: unknown[];
-  distinctGroup?: boolean;
-  pathGroups?: {
-    pattern: string;
-    patternOptions?: {
-      [k: string]: unknown | undefined;
-    };
-    group: ("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type");
-    position?: ("after" | "before");
-  }[];
-  "newlines-between"?: ("ignore" | "always" | "always-and-inside-groups" | "never");
-  "newlines-between-types"?: ("ignore" | "always" | "always-and-inside-groups" | "never");
-  consolidateIslands?: ("inside-groups" | "never");
-  sortTypesGroup?: boolean;
-  named?: (boolean | {
-    enabled?: boolean;
-    import?: boolean;
-    export?: boolean;
-    require?: boolean;
-    cjsExports?: boolean;
-    types?: ("mixed" | "types-first" | "types-last");
-  });
-  alphabetize?: {
-    caseInsensitive?: boolean;
-    order?: ("ignore" | "asc" | "desc");
-    orderImportKind?: ("ignore" | "asc" | "desc");
-  };
-  warnOnUnassignedImports?: boolean;
-}]; // ----- import/prefer-default-export -----
-type ImportPreferDefaultExport = [] | [{
-  target?: ("single" | "any");
-}];
-//#endregion
-//#region src/config/imports.d.ts
-declare function imports(options?: imports.Options): Promise<[Config]>;
-declare namespace imports {
-  var recommended: {
-    'import/first': string;
-    'import/no-duplicates': string;
-    'import/no-mutable-exports': string;
-    'import/no-named-default': string;
-  };
-  var stylistic: {
-    'import/newline-after-import': (string | {
-      count: number;
-    })[];
-  };
-}
-declare namespace imports {
-  type Rules = RuleOptions$9;
+  type Rules = RuleOptions$12;
   interface Options extends PluginOptionsBase<Rules> {}
 }
 //#endregion
 //#region src/typegen/markdown.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$8 {}
+    interface RulesRecord extends RuleOptions$9 {}
   }
 }
-interface RuleOptions$8 {
+interface RuleOptions$9 {
   /**
    * Require languages for fenced code blocks
    * @see https://github.com/eslint/markdown/blob/main/docs/rules/fenced-code-language.md
@@ -2567,7 +2567,7 @@ type MarkdownTableColumnCount = [] | [{
 //#region src/config/markdown.d.ts
 declare function markdown(options?: markdown.Options): Promise<[Config, Config]>;
 declare namespace markdown {
-  type Rules = RuleOptions$8;
+  type Rules = RuleOptions$9;
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * Default to 'markdown/gfm' (Github Flavored Markdown)
@@ -2587,10 +2587,10 @@ declare namespace markdown {
 //#region src/typegen/next.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$7 {}
+    interface RulesRecord extends RuleOptions$8 {}
   }
 }
-interface RuleOptions$7 {
+interface RuleOptions$8 {
   /**
    * Enforce font-display behavior with Google Fonts.
    * @see https://nextjs.org/docs/messages/google-font-display
@@ -2703,17 +2703,17 @@ type NextNoHtmlLinkForPages = [] | [(string | string[])];
 //#region src/config/next.d.ts
 declare function next(options?: next.Options): Promise<[Config, Config]>;
 declare namespace next {
-  type Rules = RuleOptions$7;
+  type Rules = RuleOptions$8;
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
 }
 //#endregion
 //#region src/typegen/node.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$6 {}
+    interface RulesRecord extends RuleOptions$7 {}
   }
 }
-interface RuleOptions$6 {
+interface RuleOptions$7 {
   /**
    * require `return` statements after callbacks
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
@@ -3174,8 +3174,2748 @@ type NodeShebang = [] | [{
 //#region src/config/node.d.ts
 declare function node(options?: node.Options): Promise<[Config, Config]>;
 declare namespace node {
-  type Rules = RuleOptions$6;
+  type Rules = RuleOptions$7;
   interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {}
+}
+//#endregion
+//#region src/typegen/perfectionist.d.ts
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$6 {}
+  }
+}
+interface RuleOptions$6 {
+  /**
+   * Enforce sorted arrays before include method.
+   * @see https://perfectionist.dev/rules/sort-array-includes
+   */
+  'perfectionist/sort-array-includes'?: Linter.RuleEntry<PerfectionistSortArrayIncludes>;
+  /**
+   * Enforce sorted arrays.
+   * @see https://perfectionist.dev/rules/sort-arrays
+   */
+  'perfectionist/sort-arrays'?: Linter.RuleEntry<PerfectionistSortArrays>;
+  /**
+   * Enforce sorted classes.
+   * @see https://perfectionist.dev/rules/sort-classes
+   */
+  'perfectionist/sort-classes'?: Linter.RuleEntry<PerfectionistSortClasses>;
+  /**
+   * Enforce sorted decorators.
+   * @see https://perfectionist.dev/rules/sort-decorators
+   */
+  'perfectionist/sort-decorators'?: Linter.RuleEntry<PerfectionistSortDecorators>;
+  /**
+   * Enforce sorted TypeScript enums.
+   * @see https://perfectionist.dev/rules/sort-enums
+   */
+  'perfectionist/sort-enums'?: Linter.RuleEntry<PerfectionistSortEnums>;
+  /**
+   * Enforce sorted export attributes.
+   * @see https://perfectionist.dev/rules/sort-export-attributes
+   */
+  'perfectionist/sort-export-attributes'?: Linter.RuleEntry<PerfectionistSortExportAttributes>;
+  /**
+   * Enforce sorted exports.
+   * @see https://perfectionist.dev/rules/sort-exports
+   */
+  'perfectionist/sort-exports'?: Linter.RuleEntry<PerfectionistSortExports>;
+  /**
+   * Enforce sorted heritage clauses.
+   * @see https://perfectionist.dev/rules/sort-heritage-clauses
+   */
+  'perfectionist/sort-heritage-clauses'?: Linter.RuleEntry<PerfectionistSortHeritageClauses>;
+  /**
+   * Enforce sorted import attributes.
+   * @see https://perfectionist.dev/rules/sort-import-attributes
+   */
+  'perfectionist/sort-import-attributes'?: Linter.RuleEntry<PerfectionistSortImportAttributes>;
+  /**
+   * Enforce sorted imports.
+   * @see https://perfectionist.dev/rules/sort-imports
+   */
+  'perfectionist/sort-imports'?: Linter.RuleEntry<PerfectionistSortImports>;
+  /**
+   * Enforce sorted interface properties.
+   * @see https://perfectionist.dev/rules/sort-interfaces
+   */
+  'perfectionist/sort-interfaces'?: Linter.RuleEntry<PerfectionistSortInterfaces>;
+  /**
+   * Enforce sorted intersection types.
+   * @see https://perfectionist.dev/rules/sort-intersection-types
+   */
+  'perfectionist/sort-intersection-types'?: Linter.RuleEntry<PerfectionistSortIntersectionTypes>;
+  /**
+   * Enforce sorted JSX props.
+   * @see https://perfectionist.dev/rules/sort-jsx-props
+   */
+  'perfectionist/sort-jsx-props'?: Linter.RuleEntry<PerfectionistSortJsxProps>;
+  /**
+   * Enforce sorted Map elements.
+   * @see https://perfectionist.dev/rules/sort-maps
+   */
+  'perfectionist/sort-maps'?: Linter.RuleEntry<PerfectionistSortMaps>;
+  /**
+   * Enforce sorted modules.
+   * @see https://perfectionist.dev/rules/sort-modules
+   */
+  'perfectionist/sort-modules'?: Linter.RuleEntry<PerfectionistSortModules>;
+  /**
+   * Enforce sorted named exports.
+   * @see https://perfectionist.dev/rules/sort-named-exports
+   */
+  'perfectionist/sort-named-exports'?: Linter.RuleEntry<PerfectionistSortNamedExports>;
+  /**
+   * Enforce sorted named imports.
+   * @see https://perfectionist.dev/rules/sort-named-imports
+   */
+  'perfectionist/sort-named-imports'?: Linter.RuleEntry<PerfectionistSortNamedImports>;
+  /**
+   * Enforce sorted object types.
+   * @see https://perfectionist.dev/rules/sort-object-types
+   */
+  'perfectionist/sort-object-types'?: Linter.RuleEntry<PerfectionistSortObjectTypes>;
+  /**
+   * Enforce sorted objects.
+   * @see https://perfectionist.dev/rules/sort-objects
+   */
+  'perfectionist/sort-objects'?: Linter.RuleEntry<PerfectionistSortObjects>;
+  /**
+   * Enforce sorted sets.
+   * @see https://perfectionist.dev/rules/sort-sets
+   */
+  'perfectionist/sort-sets'?: Linter.RuleEntry<PerfectionistSortSets>;
+  /**
+   * Enforce sorted switch cases.
+   * @see https://perfectionist.dev/rules/sort-switch-case
+   */
+  'perfectionist/sort-switch-case'?: Linter.RuleEntry<PerfectionistSortSwitchCase>;
+  /**
+   * Enforce sorted union types.
+   * @see https://perfectionist.dev/rules/sort-union-types
+   */
+  'perfectionist/sort-union-types'?: Linter.RuleEntry<PerfectionistSortUnionTypes>;
+  /**
+   * Enforce sorted variable declarations.
+   * @see https://perfectionist.dev/rules/sort-variable-declarations
+   */
+  'perfectionist/sort-variable-declarations'?: Linter.RuleEntry<PerfectionistSortVariableDeclarations>;
+}
+/* ======= Declarations ======= */
+// ----- perfectionist/sort-array-includes -----
+type PerfectionistSortArrayIncludes = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: "literal";
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: "literal";
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    selector?: "literal";
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-arrays -----
+type PerfectionistSortArrays = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: "literal";
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: "literal";
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    selector?: "literal";
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-classes -----
+type PerfectionistSortClasses = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[];
+      selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method");
+      decoratorNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[];
+      selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method");
+      decoratorNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[];
+    selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method");
+    decoratorNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    elementValuePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  useExperimentalDependencyDetection?: boolean;
+  newlinesBetweenOverloadSignatures?: ("ignore" | number);
+  ignoreCallbackDependenciesPatterns?: (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string));
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-decorators -----
+type PerfectionistSortDecorators = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  sortOnParameters?: boolean;
+  sortOnProperties?: boolean;
+  sortOnAccessors?: boolean;
+  sortOnMethods?: boolean;
+  sortOnClasses?: boolean;
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-enums -----
+type PerfectionistSortEnums = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    elementValuePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  sortByValue?: ("always" | "ifNumericEnum" | "never");
+  useExperimentalDependencyDetection?: boolean;
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-export-attributes -----
+type PerfectionistSortExportAttributes = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-exports -----
+type PerfectionistSortExports = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("value" | "type" | "named" | "wildcard" | "multiline" | "singleline")[];
+      selector?: "export";
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("value" | "type" | "named" | "wildcard" | "multiline" | "singleline")[];
+      selector?: "export";
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("value" | "type" | "named" | "wildcard" | "multiline" | "singleline")[];
+    selector?: "export";
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-heritage-clauses -----
+type PerfectionistSortHeritageClauses = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByNewLine?: boolean;
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+}[]; // ----- perfectionist/sort-import-attributes -----
+type PerfectionistSortImportAttributes = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-imports -----
+type PerfectionistSortImports = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first");
+    order?: ("asc" | "desc");
+    sortBy?: ("specifier" | "path");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  sortBy?: ("specifier" | "path");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first");
+      order?: ("asc" | "desc");
+      sortBy?: ("specifier" | "path");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("specifier" | "path");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("default" | "multiline" | "named" | "require" | "side-effect" | "singleline" | "ts-equals" | "type" | "value" | "wildcard")[];
+      selector?: ("side-effect-style" | "tsconfig-path" | "side-effect" | "external" | "internal" | "builtin" | "sibling" | "subpath" | "import" | "parent" | "index" | "style" | "type");
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("default" | "multiline" | "named" | "require" | "side-effect" | "singleline" | "ts-equals" | "type" | "value" | "wildcard")[];
+      selector?: ("side-effect-style" | "tsconfig-path" | "side-effect" | "external" | "internal" | "builtin" | "sibling" | "subpath" | "import" | "parent" | "index" | "style" | "type");
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first");
+      order?: ("asc" | "desc");
+      sortBy?: ("specifier" | "path");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("specifier" | "path");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("default" | "multiline" | "named" | "require" | "side-effect" | "singleline" | "ts-equals" | "type" | "value" | "wildcard")[];
+    selector?: ("side-effect-style" | "tsconfig-path" | "side-effect" | "external" | "internal" | "builtin" | "sibling" | "subpath" | "import" | "parent" | "index" | "style" | "type");
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first");
+      order?: ("asc" | "desc");
+      sortBy?: ("specifier" | "path");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("specifier" | "path");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  tsconfig?: {
+    rootDir: string;
+    filename?: string;
+  };
+  maxLineLength?: number;
+  sortSideEffects?: boolean;
+  environment?: ("node" | "bun");
+  useExperimentalDependencyDetection?: boolean;
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+  internalPattern?: (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string));
+}[]; // ----- perfectionist/sort-interfaces -----
+type PerfectionistSortInterfaces = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  sortBy?: ("name" | "value");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+      sortBy?: ("name" | "value");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("optional" | "required" | "multiline")[];
+      selector?: ("index-signature" | "member" | "method" | "property");
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("optional" | "required" | "multiline")[];
+      selector?: ("index-signature" | "member" | "method" | "property");
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+      sortBy?: ("name" | "value");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("optional" | "required" | "multiline")[];
+    selector?: ("index-signature" | "member" | "method" | "property");
+    elementValuePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+      sortBy?: ("name" | "value");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    hasNumericKeysOnly?: boolean;
+    declarationCommentMatchesPattern?: (({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+    declarationMatchesPattern?: (({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string));
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-intersection-types -----
+type PerfectionistSortIntersectionTypes = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union");
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union");
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union");
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-jsx-props -----
+type PerfectionistSortJsxProps = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("shorthand" | "multiline")[];
+      selector?: "prop";
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("shorthand" | "multiline")[];
+      selector?: "prop";
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("shorthand" | "multiline")[];
+    selector?: "prop";
+    elementValuePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+    tagMatchesPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  };
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-maps -----
+type PerfectionistSortMaps = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-modules -----
+type PerfectionistSortModules = [] | [{
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("async" | "declare" | "decorated" | "default" | "export")[];
+      selector?: ("enum" | "function" | "interface" | "type" | "class");
+      decoratorNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("async" | "declare" | "decorated" | "default" | "export")[];
+      selector?: ("enum" | "function" | "interface" | "type" | "class");
+      decoratorNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("async" | "declare" | "decorated" | "default" | "export")[];
+    selector?: ("enum" | "function" | "interface" | "type" | "class");
+    decoratorNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useExperimentalDependencyDetection?: boolean;
+  newlinesBetweenOverloadSignatures?: ("ignore" | number);
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}]; // ----- perfectionist/sort-named-exports -----
+type PerfectionistSortNamedExports = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("value" | "type")[];
+      selector?: "export";
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("value" | "type")[];
+      selector?: "export";
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("value" | "type")[];
+    selector?: "export";
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  ignoreAlias?: boolean;
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-named-imports -----
+type PerfectionistSortNamedImports = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("value" | "type")[];
+      selector?: "import";
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("value" | "type")[];
+      selector?: "import";
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("value" | "type")[];
+    selector?: "import";
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  ignoreAlias?: boolean;
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-object-types -----
+type PerfectionistSortObjectTypes = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  sortBy?: ("name" | "value");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+      sortBy?: ("name" | "value");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("optional" | "required" | "multiline")[];
+      selector?: ("index-signature" | "member" | "method" | "property");
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("optional" | "required" | "multiline")[];
+      selector?: ("index-signature" | "member" | "method" | "property");
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+      sortBy?: ("name" | "value");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("optional" | "required" | "multiline")[];
+    selector?: ("index-signature" | "member" | "method" | "property");
+    elementValuePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+      sortBy?: ("name" | "value");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    hasNumericKeysOnly?: boolean;
+    declarationCommentMatchesPattern?: (({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+    declarationMatchesPattern?: (({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string));
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-objects -----
+type PerfectionistSortObjects = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  sortBy?: ("name" | "value");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+      sortBy?: ("name" | "value");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("multiline")[];
+      selector?: ("member" | "method" | "property");
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      modifiers?: ("multiline")[];
+      selector?: ("member" | "method" | "property");
+      elementValuePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+      sortBy?: ("name" | "value");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    modifiers?: ("multiline")[];
+    selector?: ("member" | "method" | "property");
+    elementValuePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+      sortBy?: ("name" | "value");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    sortBy?: ("name" | "value");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    objectType?: ("destructured" | "non-destructured");
+    hasNumericKeysOnly?: boolean;
+    declarationCommentMatchesPattern?: (({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string));
+    callingFunctionNamePattern?: (({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+    declarationMatchesPattern?: (({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      scope?: ("shallow" | "deep");
+      pattern: string;
+      flags?: string;
+    } | string));
+  };
+  partitionByComputedKey?: boolean;
+  styledComponents?: boolean;
+  useExperimentalDependencyDetection?: boolean;
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-sets -----
+type PerfectionistSortSets = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: "literal";
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: "literal";
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    selector?: "literal";
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-switch-case -----
+type PerfectionistSortSwitchCase = [] | [{
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+}]; // ----- perfectionist/sort-union-types -----
+type PerfectionistSortUnionTypes = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union");
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union");
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    selector?: ("intersection" | "conditional" | "function" | "operator" | "keyword" | "literal" | "nullish" | "import" | "object" | "named" | "tuple" | "union");
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[]; // ----- perfectionist/sort-variable-declarations -----
+type PerfectionistSortVariableDeclarations = {
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: ("initialized" | "uninitialized");
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: ("initialized" | "uninitialized");
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    selector?: ("initialized" | "uninitialized");
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf?: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  useExperimentalDependencyDetection?: boolean;
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+}[];
+//#endregion
+//#region src/config/perfectionist.d.ts
+declare function perfectionist(options?: perfectionist.Options): Promise<[Config, Config]>;
+declare namespace perfectionist {
+  interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions$6;
 }
 //#endregion
 //#region src/typegen/react.d.ts
@@ -10062,11 +12802,12 @@ interface DefineConfigOptions extends ignores.Options {
     e18e?: boolean | e18e.Options;
     es?: boolean | es.Options;
     import?: boolean | imports.Options;
-    markdown?: boolean | markdown.Options;
     jsdoc?: boolean | jsdoc.Options;
     jsonc?: boolean | jsonc.Options;
+    markdown?: boolean | markdown.Options;
     next?: boolean | next.Options;
     node?: boolean | node.Options;
+    perfectionist?: boolean | perfectionist.Options;
     react?: boolean | react.Options;
     stylistic?: boolean | stylistic.Options;
     test?: boolean | test.Options;
@@ -10088,5 +12829,5 @@ declare const meta: Readonly<{
   buildNumber: number;
 }>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, next, node, react, stylistic, test, ts, unicorn, yml };
+export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, yml };
 //# sourceMappingURL=index.d.ts.map
