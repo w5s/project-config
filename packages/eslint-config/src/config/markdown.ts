@@ -3,14 +3,15 @@ import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
 
 import type { RuleOptions } from '../typegen/markdown.js';
 
+import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
-const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['markdown']))}`];
+const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['markdown']))}`, '**/CHANGELOG.md', '**/CODE_OF_CONDUCT.md'];
 
 export async function markdown(options: markdown.Options = {}) {
   const [markdownPlugin] = await Promise.all([interopDefault(import('@eslint/markdown'))] as const);
   const {
-    files = defaultFiles,
+    files,
     language = 'markdown/gfm',
     languageOptions,
     recommended = true,
@@ -27,8 +28,8 @@ export async function markdown(options: markdown.Options = {}) {
       },
     },
     {
-      files,
-      language: language,
+      files: withDefaultFiles(files, defaultFiles),
+      language,
       languageOptions: {
         frontmatter: 'yaml',
         ...languageOptions,

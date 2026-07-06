@@ -3,6 +3,7 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/e18e.js';
 
 import { sourceGlob } from '../glob.js';
+import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [sourceGlob];
@@ -13,7 +14,7 @@ const defaultFiles = [sourceGlob];
  */
 export async function e18e(options: e18e.Options = {}) {
   const [e18ePlugin] = await Promise.all([interopDefault(import('@e18e/eslint-plugin'))] as const);
-  const { files = defaultFiles, modernization = true, moduleReplacements = false, performanceImprovements = true, rules = {}, stylistic = true } = options;
+  const { files, modernization = true, moduleReplacements = false, performanceImprovements = true, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
@@ -24,7 +25,7 @@ export async function e18e(options: e18e.Options = {}) {
       },
     },
     {
-      files,
+      files: withDefaultFiles(files, defaultFiles),
       name: 'w5s/e18e/rules',
       rules: {
         ...modernization ? e18ePlugin.configs.modernization.rules : {},

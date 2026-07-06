@@ -3,6 +3,7 @@ import { ESLintConfig, interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/next.js';
 
 import { sourceGlob } from '../glob.js';
+import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [sourceGlob];
@@ -11,7 +12,7 @@ export async function next(options: next.Options = {}) {
   const [nextPlugin] = await Promise.all([
     interopDefault(import('@next/eslint-plugin-next')),
   ] as const);
-  const { files = defaultFiles, recommended = true, rules = {} } = options;
+  const { files, recommended = true, rules = {} } = options;
 
   return [
     {
@@ -21,7 +22,7 @@ export async function next(options: next.Options = {}) {
       },
     },
     {
-      files,
+      files: withDefaultFiles(files, defaultFiles),
       languageOptions: {
         parserOptions: {
           ecmaFeatures: {

@@ -4,6 +4,7 @@ import { ESLintConfig, interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/ts.js';
 
 import { tsSourceGlob } from '../glob.js';
+import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { tsRules } from '../rules/tsRules.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
@@ -17,7 +18,7 @@ export async function ts(options: ts.Options = {}) {
   const tsRecommendedRules = tsPlugin.configs['eslint-recommended']!.overrides![0]!.rules!;
   const tsStrictRules = tsPlugin.configs['strict']!.rules!;
   const tsTypeCheckedRules = tsPlugin.configs['recommended-type-checked-only']!.rules!;
-  const { files = defaultFiles, rules = {}, stylistic = true, typeChecked = false } = options;
+  const { files, rules = {}, stylistic = true, typeChecked = false } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
@@ -28,7 +29,7 @@ export async function ts(options: ts.Options = {}) {
       },
     },
     {
-      files,
+      files: withDefaultFiles(files, defaultFiles),
       languageOptions: {
         parser: tsParser,
         parserOptions: {

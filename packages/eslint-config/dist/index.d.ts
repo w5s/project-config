@@ -164,7 +164,10 @@ declare const StylisticConfig: {
 //#endregion
 //#region src/type/PluginOptionsBase.d.ts
 interface PluginOptionsBase<Rules> {
-  files?: Linter.Config['files'];
+  /**
+   * Files to apply
+   */
+  files?: ((currentFiles: Array<string>) => Array<string>) | Linter.Config['files'];
   /**
    * Include recommended settings
    */

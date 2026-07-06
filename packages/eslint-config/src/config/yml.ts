@@ -3,13 +3,14 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/yml.js';
 
 import { ymlSourceGlob } from '../glob.js';
+import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [ymlSourceGlob];
 
 export async function yml(options: yml.Options = {}) {
   const [ymlPlugin] = await Promise.all([interopDefault(import('eslint-plugin-yml'))] as const);
-  const { files = defaultFiles, recommended = true, rules = {}, stylistic = true } = options;
+  const { files, recommended = true, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic);
 
   return [
@@ -20,7 +21,7 @@ export async function yml(options: yml.Options = {}) {
       },
     },
     {
-      files,
+      files: withDefaultFiles(files, defaultFiles),
       language: 'yml/yaml',
       name: 'w5s/yml/rules',
       rules: {

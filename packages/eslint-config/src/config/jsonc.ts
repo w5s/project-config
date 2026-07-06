@@ -4,6 +4,7 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/jsonc.js';
 
 import { jsonSourceGlob } from '../glob.js';
+import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [jsonSourceGlob];
@@ -14,7 +15,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<readonly Confi
     interopDefault(import('jsonc-eslint-parser')),
   ] as const);
   const {
-    files = defaultFiles,
+    files,
     recommended = true,
     rules = {},
     stylistic = true,
@@ -29,7 +30,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<readonly Confi
       },
     },
     {
-      files,
+      files: withDefaultFiles(files, defaultFiles),
       languageOptions: {
         parser: jsoncParser,
       },

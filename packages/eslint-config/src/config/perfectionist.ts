@@ -3,6 +3,7 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/perfectionist.js';
 
 import { sourceGlob } from '../glob.js';
+import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [sourceGlob];
@@ -10,7 +11,7 @@ const defaultFiles = [sourceGlob];
 export async function perfectionist(options: perfectionist.Options = {}) {
   const [perfectionistPlugin] = await Promise.all([interopDefault(import('eslint-plugin-perfectionist'))] as const);
   const {
-    files = defaultFiles,
+    files,
     recommended = true,
     rules = {},
     stylistic = true,
@@ -25,7 +26,7 @@ export async function perfectionist(options: perfectionist.Options = {}) {
       },
     },
     {
-      files,
+      files: withDefaultFiles(files, defaultFiles),
       name: 'w5s/perfectionist/rules',
       rules: {
         ...(recommended ? perfectionistPlugin.configs['recommended-natural'].rules : {}),
