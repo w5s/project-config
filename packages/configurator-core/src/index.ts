@@ -4,5 +4,6 @@ export * from './file.js';
 export * from './ignoreFile.js';
 export * from './json.js';
 export * from './meta.js';
+export * from './yaml.js';
 export * from './yarnConfig.js';
 export * from './yarnVersion.js';

@@ -52,7 +52,9 @@
     "typecheck": "pnpm run \"/^typecheck:.*/\"",
     "typecheck:src": "pnpm exec tsc --noEmit"
   },
-  "dependencies": {},
+  "dependencies": {
+    "yaml": "^2.9.0"
+  },
   "devDependencies": {
     "@w5s/tsdown-config": "workspace:*"
   },

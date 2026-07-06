@@ -107,6 +107,10 @@ importers:
         version: link:../tsdown-config
 
   packages/configurator-core:
+    dependencies:
+      yaml:
+        specifier: ^2.9.0
+        version: 2.9.0
     devDependencies:
       '@w5s/tsdown-config':
         specifier: workspace:*
