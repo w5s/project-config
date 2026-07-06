@@ -11,6 +11,7 @@ const disabledPlugins = {
   markdown: false,
   next: false,
   node: false,
+  perfectionist: false,
   react: false,
   stylistic: false,
   test: false,
