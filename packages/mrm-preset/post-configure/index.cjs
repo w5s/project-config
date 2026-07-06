@@ -1,9 +1,9 @@
 const { packageJson } = require('mrm-core');
 const { spawnSync } = require('node:child_process');
 
-const npm = require('../core/npm.js');
-const pkg = require('../core/pkg.js');
-const project = require('../core/project.js');
+const npm = require('../core/npm.cjs');
+const pkg = require('../core/pkg.cjs');
+const project = require('../core/project.cjs');
 
 function task() {
   // Remove old deps

@@ -1,7 +1,7 @@
 const { packageJson } = require('mrm-core');
 
-const jsonFile = require('../core/jsonFile.js');
-const pkg = require('../core/pkg.js');
+const jsonFile = require('../core/jsonFile.cjs');
+const pkg = require('../core/pkg.cjs');
 
 function task() {
   pkg.withPackageJson((packageFile) => {

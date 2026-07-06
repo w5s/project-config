@@ -1,6 +1,6 @@
-const jsonFile = require('./jsonFile.js');
-const npm = require('./npm.js');
-const pkg = require('./pkg.js');
+const jsonFile = require('./jsonFile.cjs');
+const npm = require('./npm.cjs');
+const pkg = require('./pkg.cjs');
 
 /**
  * @typedef {{

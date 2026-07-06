@@ -1,10 +1,10 @@
 const { packageJson } = require('mrm-core');
 
-const { eslintConfig } = require('../core/eslint.js');
-const npm = require('../core/npm.js');
-const pkg = require('../core/pkg.js');
-const project = require('../core/project.js');
-const { vscodeRecommendedExtension, vscodeSettings } = require('../core/vscode.js');
+const { eslintConfig } = require('../core/eslint.cjs');
+const npm = require('../core/npm.cjs');
+const pkg = require('../core/pkg.cjs');
+const project = require('../core/project.cjs');
+const { vscodeRecommendedExtension, vscodeSettings } = require('../core/vscode.cjs');
 
 function createESLint({ eslintPreset: eslintPresetDefault = 'eslint:recommended' }) {
   /**

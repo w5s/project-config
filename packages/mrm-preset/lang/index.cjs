@@ -1,9 +1,9 @@
 const path = require('node:path');
 const { json, file, template, packageJson } = require('mrm-core');
-const npm = require('../core/npm.js');
-const project = require('../core/project.js');
-// const { typedoc } = require('../core/typedoc.js');
-const pkg = require('../core/pkg.js');
+const npm = require('../core/npm.cjs');
+const project = require('../core/project.cjs');
+// const { typedoc } = require('../core/typedoc.cjs');
+const pkg = require('../core/pkg.cjs');
 
 /**
  *

@@ -1,7 +1,7 @@
 const { blockSync } = require('@w5s/configurator-core');
 const { file, ini } = require('mrm-core');
 
-const templateMap = require('./git.ignore.js');
+const templateMap = require('./git.ignore.cjs');
 
 /**
  *

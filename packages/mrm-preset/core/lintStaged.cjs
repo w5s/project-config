@@ -1,5 +1,5 @@
-const jsonFile = require('./jsonFile.js');
-const pkg = require('./pkg.js');
+const jsonFile = require('./jsonFile.cjs');
+const pkg = require('./pkg.cjs');
 
 /**
  * @typedef {Record<string, string|string[]>} LintStagedConfig

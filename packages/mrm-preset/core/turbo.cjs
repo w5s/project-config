@@ -1,7 +1,7 @@
 const { json } = require('mrm-core');
 
-const jsonFile = require('./jsonFile.js');
-const npm = require('./npm.js');
+const jsonFile = require('./jsonFile.cjs');
+const npm = require('./npm.cjs');
 
 /**
  * @typedef {{

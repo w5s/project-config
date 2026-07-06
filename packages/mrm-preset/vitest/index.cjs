@@ -1,4 +1,4 @@
-const { vitest } = require('../core/vitest.js');
+const { vitest } = require('../core/vitest.cjs');
 
 /**
  *

@@ -1,8 +1,8 @@
 const { packageJson } = require('mrm-core');
 
-const pkg = require('../core/pkg.js');
-const project = require('../core/project.js');
-const { semanticRelease } = require('../core/semanticRelease.js');
+const pkg = require('../core/pkg.cjs');
+const project = require('../core/project.cjs');
+const { semanticRelease } = require('../core/semanticRelease.cjs');
 
 function task() {
   const useWorkspace = pkg.hasWorkspaces(packageJson());

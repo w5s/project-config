@@ -1,4 +1,4 @@
-const githubCI = require('../core/githubCI.js');
+const githubCI = require('../core/githubCI.cjs');
 
 function task() {
   const state = 'present';

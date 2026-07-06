@@ -1,4 +1,4 @@
-const { asdfConfig } = require('../core/asdf.js');
+const { asdfConfig } = require('../core/asdf.cjs');
 
 function task() {
   asdfConfig({

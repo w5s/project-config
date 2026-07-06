@@ -11,7 +11,7 @@ const path = require('node:path');
 // @ts-ignore
 const { intersect } = require('semver-intersect');
 
-const jsonFile = require('./jsonFile.js');
+const jsonFile = require('./jsonFile.cjs');
 
 /**
  * An empty placeholder for npm script

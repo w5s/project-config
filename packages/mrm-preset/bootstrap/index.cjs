@@ -2,9 +2,9 @@ const { packageJson } = require('mrm-core');
 const path = require('node:path');
 const process = require('node:process');
 
-const { gitIgnore } = require('../core/git.js');
-const npm = require('../core/npm.js');
-const pkg = require('../core/pkg.js');
+const { gitIgnore } = require('../core/git.cjs');
+const npm = require('../core/npm.cjs');
+const pkg = require('../core/pkg.cjs');
 
 /**
  * @param {{

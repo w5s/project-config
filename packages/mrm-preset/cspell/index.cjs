@@ -1,7 +1,7 @@
-const { cspell } = require('../core/cspell.js');
-const npm = require('../core/npm.js');
-const pkg = require('../core/pkg.js');
-const project = require('../core/project.js');
+const { cspell } = require('../core/cspell.cjs');
+const npm = require('../core/npm.cjs');
+const pkg = require('../core/pkg.cjs');
+const project = require('../core/project.cjs');
 
 function task() {
   const preset = '@w5s/cspell-config';

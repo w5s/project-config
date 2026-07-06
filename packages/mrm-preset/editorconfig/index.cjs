@@ -1,7 +1,7 @@
 const { blockSync } = require('@w5s/configurator-core');
 const { readFileSync } = require('node:fs');
 
-const { vscodeRecommendedExtension } = require('../core/vscode.js');
+const { vscodeRecommendedExtension } = require('../core/vscode.cjs');
 
 function task() {
   const templateContent = readFileSync(require.resolve('./_editorconfig'), 'utf8').slice(0, -1);

@@ -2,11 +2,11 @@ const { fileSync } = require('@w5s/configurator-core');
 const { packageJson, template } = require('mrm-core');
 const path = require('node:path');
 
-const { hasGit } = require('../core/git.js');
-const { gitHook } = require('../core/githooks.js');
-const { lintStaged } = require('../core/lintStaged.js');
-const pkg = require('../core/pkg.js');
-const project = require('../core/project.js');
+const { hasGit } = require('../core/git.cjs');
+const { gitHook } = require('../core/githooks.cjs');
+const { lintStaged } = require('../core/lintStaged.cjs');
+const pkg = require('../core/pkg.cjs');
+const project = require('../core/project.cjs');
 
 function task() {
   const gitSupported = hasGit();

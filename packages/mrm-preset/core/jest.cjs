@@ -1,8 +1,8 @@
 const { packageJson } = require('mrm-core');
 
-const npm = require('./npm.js');
-const pkg = require('./pkg.js');
-const project = require('./project.js');
+const npm = require('./npm.cjs');
+const pkg = require('./pkg.cjs');
+const project = require('./project.cjs');
 
 /**
  * @param {{
