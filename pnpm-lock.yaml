@@ -219,6 +219,9 @@ importers:
       eslint-plugin-n:
         specifier: ~18.2.0
         version: 18.2.1(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3)
+      eslint-plugin-perfectionist:
+        specifier: ~5.9.1
+        version: 5.9.1(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3)
       eslint-plugin-unicorn:
         specifier: ~69.0.0
         version: 69.0.0(eslint@10.6.0(jiti@2.6.1))
@@ -2446,6 +2449,12 @@ packages:
       typescript:
         optional: true
 
+  eslint-plugin-perfectionist@5.9.1:
+    resolution: {integrity: sha512-30mHLNfEhzwaq5cquyWgnzrNXvT8AzwIwyeH5aj4U5ajhHSF2uiO6i09xpMDLv7koaZVTjLsvYF4m3gK/15tyA==}
+    engines: {node: ^20.0.0 || >=22.0.0}
+    peerDependencies:
+      eslint: ^8.45.0 || ^9.0.0 || ^10.0.0
+
   eslint-plugin-react-dom@5.10.4:
     resolution: {integrity: sha512-+r4knNhpjjvPEitRWF6j3aiQjxHYcr93QnPFChgt7pChIuifEgIgYeeCj9qwgWk3rGt9YrsESe7s1d9q8iae3w==}
     engines: {node: '>=22.0.0'}
@@ -3924,6 +3933,10 @@ packages:
 
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
+
+  natural-orderby@5.0.0:
+    resolution: {integrity: sha512-kKHJhxwpR/Okycz4HhQKKlhWe4ASEfPgkSWNmKFHd7+ezuQlxkA5cM3+XkBPvm1gmHen3w53qsYAv+8GwRrBlg==}
+    engines: {node: '>=18'}
 
   negotiator@1.0.0:
     resolution: {integrity: sha512-8Ofs/AUQh8MaEcrlq5xOX0CQ9ypTF5dl78mjlMNfOK08fzpgTHQRQPBxcPlEtIw0yRpws+Zo/3r+5WRby7u3Gg==}
@@ -7743,6 +7756,15 @@ snapshots:
     optionalDependencies:
       typescript: 6.0.3
 
+  eslint-plugin-perfectionist@5.9.1(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3):
+    dependencies:
+      '@typescript-eslint/utils': 8.62.1(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3)
+      eslint: 10.6.0(jiti@2.6.1)
+      natural-orderby: 5.0.0
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+
   eslint-plugin-react-dom@5.10.4(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3):
     dependencies:
       '@eslint-react/ast': 5.10.4(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3)
@@ -9588,6 +9610,8 @@ snapshots:
   nanoid@3.3.15: {}
 
   natural-compare@1.4.0: {}
+
+  natural-orderby@5.0.0: {}
 
   negotiator@1.0.0: {}
 
