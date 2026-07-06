@@ -1150,7 +1150,7 @@ async function ts(options = {}) {
 const defaultFiles$1 = [sourceGlob$1];
 async function unicorn(options = {}) {
 	const [unicornPlugin] = await Promise.all([interopDefault(import("eslint-plugin-unicorn"))]);
-	const { files = defaultFiles$1, recommended = true, rules = {}, stylistic = true } = options;
+	const { files, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [
 		{
@@ -1158,7 +1158,7 @@ async function unicorn(options = {}) {
 			plugins: { unicorn: unicornPlugin }
 		},
 		{
-			files,
+			files: withDefaultFiles(files, defaultFiles$1),
 			name: "w5s/unicorn/rules",
 			rules: {
 				...recommended && unicornPlugin.configs["unopinionated"].rules,

@@ -3,13 +3,14 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/unicorn.js';
 
 import { sourceGlob } from '../glob.js';
+import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = [sourceGlob];
 
 export async function unicorn(options: unicorn.Options = {}) {
   const [unicornPlugin] = await Promise.all([interopDefault(import('eslint-plugin-unicorn'))] as const);
-  const { files = defaultFiles, recommended = true, rules = {}, stylistic = true } = options;
+  const { files, recommended = true, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
   return [
@@ -20,7 +21,7 @@ export async function unicorn(options: unicorn.Options = {}) {
       },
     },
     {
-      files,
+      files: withDefaultFiles(files, defaultFiles),
       name: 'w5s/unicorn/rules',
       rules: {
         ...(recommended && unicornPlugin.configs['unopinionated'].rules),
