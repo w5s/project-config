@@ -29,18 +29,18 @@ $NODEJS_PACKAGE_MANAGER_COMMAND exec -- lerna publish "${PUBLISH_ARGS[@]}"
 
 export GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-$(gh auth token)}}"
 RELEASE_TAG="release-$(git rev-parse --short HEAD)"
+RELEASE_NOTES_RESPONSE_FILE=
+RELEASE_NOTES_FILE=
+
+cleanup_release_notes_files() {
+  rm -f "${RELEASE_NOTES_RESPONSE_FILE:-}" "${RELEASE_NOTES_FILE:-}"
+}
+
 if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
   echo "GitHub release $RELEASE_TAG already exists, skipping."
 else
   MAX_RELEASE_NOTES_CHARS=120000
   RELEASE_TARGET="$(git rev-parse HEAD)"
-  RELEASE_NOTES_RESPONSE_FILE=
-  RELEASE_NOTES_FILE=
-
-  cleanup_release_notes_files() {
-    rm -f "${RELEASE_NOTES_RESPONSE_FILE:-}" "${RELEASE_NOTES_FILE:-}"
-  }
-
   trap cleanup_release_notes_files EXIT
   RELEASE_NOTES_RESPONSE_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes-response.XXXXXX.json")"
   RELEASE_NOTES_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes.XXXXXX.md")"
@@ -63,10 +63,10 @@ with open(release_notes_response_path, encoding="utf-8") as release_notes_respon
     release_notes = json.load(release_notes_response_file).get("body", "")
 
 if len(release_notes) > max_chars:
-    if max_chars > len(truncation_suffix):
+    if max_chars >= len(truncation_suffix):
         truncated_release_notes = release_notes[: max_chars - len(truncation_suffix)]
         last_newline = truncated_release_notes.rfind("\n")
-        if last_newline > 0:
+        if last_newline != -1:
             truncated_release_notes = truncated_release_notes[:last_newline]
         release_notes = f"{truncated_release_notes}{truncation_suffix}"
     else:
