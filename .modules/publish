@@ -32,5 +32,35 @@ RELEASE_TAG="release-$(git rev-parse --short HEAD)"
 if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
   echo "GitHub release $RELEASE_TAG already exists, skipping."
 else
-  gh release create "$RELEASE_TAG" --target "$(git rev-parse HEAD)" --title "Packages $(date -u +%Y-%m-%d)" --generate-notes
+  MAX_RELEASE_NOTES_CHARS=120000
+  RELEASE_TARGET="$(git rev-parse HEAD)"
+  RELEASE_NOTES_RESPONSE_FILE=
+  RELEASE_NOTES_FILE=
+
+  cleanup_release_notes_files() {
+    rm -f "${RELEASE_NOTES_RESPONSE_FILE:-}" "${RELEASE_NOTES_FILE:-}"
+  }
+
+  trap cleanup_release_notes_files EXIT
+  RELEASE_NOTES_RESPONSE_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes-response.XXXXXX.json")"
+  RELEASE_NOTES_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes.XXXXXX.md")"
+
+  gh api --method POST "repos/{owner}/{repo}/releases/generate-notes" \
+    -f tag_name="$RELEASE_TAG" \
+    -f target_commitish="$RELEASE_TARGET" >"$RELEASE_NOTES_RESPONSE_FILE"
+
+  python3 - "$RELEASE_NOTES_RESPONSE_FILE" "$RELEASE_NOTES_FILE" "$MAX_RELEASE_NOTES_CHARS" <<'PY'
+import json
+import sys
+
+release_notes_response_path, release_notes_path, max_chars = sys.argv[1], sys.argv[2], int(sys.argv[3])
+
+with open(release_notes_response_path, encoding="utf-8") as release_notes_response_file:
+    release_notes = json.load(release_notes_response_file).get("body", "")
+
+with open(release_notes_path, "w", encoding="utf-8") as release_notes_file:
+    release_notes_file.write(release_notes[:max_chars])
+PY
+
+  gh release create "$RELEASE_TAG" --target "$RELEASE_TARGET" --title "Packages $(date -u +%Y-%m-%d)" --notes-file "$RELEASE_NOTES_FILE"
 fi
