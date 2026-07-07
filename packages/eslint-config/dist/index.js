@@ -1241,12 +1241,12 @@ async function defineConfig(options = {}) {
 		stylistic: stylisticOptions,
 		..._options
 	});
-	const toOption = (optionsOrBoolean) => withDefaultStylistic(typeof optionsOrBoolean === "boolean" ? { enabled: optionsOrBoolean } : {
-		enabled: true,
+	const toOption = (optionsOrBoolean, defaultEnabled = true) => withDefaultStylistic(typeof optionsOrBoolean === "boolean" ? { enabled: optionsOrBoolean } : optionsOrBoolean === void 0 ? { enabled: defaultEnabled } : {
+		enabled: defaultEnabled,
 		...optionsOrBoolean
 	});
 	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
-	return ESLintConfig.concat(...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(stylistic, toOption(plugins.stylistic)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(next, toOption(plugins.next)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(test, toOption(plugins.test)), ...rules ? [{ rules }] : []);
+	return ESLintConfig.concat(...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(stylistic, toOption(plugins.stylistic)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(test, toOption(plugins.test)), ...rules ? [{ rules }] : []);
 }
 //#endregion
 //#region src/meta.ts

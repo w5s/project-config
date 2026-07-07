@@ -56,11 +56,16 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
   const stylisticOptions =
     typeof plugins.stylistic === 'boolean' ? { enabled: plugins.stylistic } : { enabled: true, ...plugins.stylistic };
   const withDefaultStylistic = <T>(_options: T) => ({ stylistic: stylisticOptions, ..._options });
-  const toOption = <T extends {}>(optionsOrBoolean: boolean | T | undefined) =>
+  const toOption = <T extends {}>(
+    optionsOrBoolean: boolean | T | undefined,
+    defaultEnabled = true,
+  ) =>
     withDefaultStylistic(
       (typeof optionsOrBoolean === 'boolean'
         ? { enabled: optionsOrBoolean }
-        : { enabled: true, ...optionsOrBoolean }) as T & { enabled: boolean },
+        : optionsOrBoolean === undefined
+          ? { enabled: defaultEnabled }
+          : { enabled: defaultEnabled, ...optionsOrBoolean }) as T & { enabled: boolean },
     );
   const includeEnabled = <T extends { enabled?: boolean }, R extends Promise<readonly Config[]>>(factory: (config: T) => R, input: T) =>
     input.enabled ? [factory(input)] : [];
@@ -76,7 +81,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     ...includeEnabled(stylistic, toOption(plugins.stylistic)),
     ...includeEnabled(imports, toOption(plugins.import)),
     ...includeEnabled(markdown, toOption(plugins.markdown)),
-    ...includeEnabled(next, toOption(plugins.next)),
+    ...includeEnabled(next, toOption(plugins.next, false)),
     ...includeEnabled(node, toOption(plugins.node)),
     ...includeEnabled(perfectionist, toOption(plugins.perfectionist)),
     ...includeEnabled(unicorn, toOption(plugins.unicorn)),
