@@ -20,11 +20,11 @@ exports.isSupported = isSupported;
 /**
  * @typedef {{
  *  name?: string,
- *  jobs?: Record<string, any>
- *  on?: any,
+ *  jobs?: Record<string, unknown>
+ *  on?: string | string[] | Record<string, unknown>,
  *  env?: Record<string, string>,
- *  permissions?: any,
- *  defaults?: Record<string, any>,
+ *  permissions?: Record<string, unknown>,
+ *  defaults?: Record<string, unknown>,
  *  concurrency?: GithubWorkflowConcurrency,
  * }} GithubWorkflowConfig
  */

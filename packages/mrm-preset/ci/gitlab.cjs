@@ -1,7 +1,6 @@
 const { yaml } = require('mrm-core');
 const path = require('node:path');
-/** @type {typeof import('sync-directory')['default']} */
-const syncDirectory = /** @type {any} */ (require('sync-directory'));
+const syncDirectory = /** @type {typeof import('sync-directory')['default']} */ (/** @type {unknown} */ (require('sync-directory')));
 
 function task() {
   const gitlabCIConfig = yaml('.gitlab-ci.yml');

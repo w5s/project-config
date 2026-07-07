@@ -212,7 +212,7 @@ function getVersionedDep(dep, versions) {
  *
  * @param {Record<string, string> | string[] | string} deps
  * @param {Options} [options]
- * @param {Function=} exec
+ * @param {(command: string, args: string[], options?: RunOptions) => unknown} [exec]
  */
 function install(deps, options = {}, exec) {
   const dev = options.dev !== false;
@@ -273,7 +273,7 @@ function isYarnBerry() {
  *
  * @param {string[]} deps
  * @param {RunOptions} [options]
- * @param {Function} [exec]
+ * @param {(command: string, args: string[], options?: RunOptions) => unknown} [exec]
  */
 function runNpm(deps, options = {}, exec) {
   const args = [options.remove ? 'uninstall' : 'install', options.dev ? '--save-dev' : '--save', ...deps];
@@ -289,7 +289,7 @@ function runNpm(deps, options = {}, exec) {
  *
  * @param {string[]} deps
  * @param {RunOptions} [options]
- * @param {Function} [exec]
+ * @param {(command: string, args: string[], options?: RunOptions) => unknown} [exec]
  */
 function runPnpm(deps, options = {}, exec) {
   const add = options.dev ? ['add', '--save-dev'] : ['add'];
@@ -307,7 +307,7 @@ function runPnpm(deps, options = {}, exec) {
  *
  * @param {string[]} deps
  * @param {RunOptions} [options]
- * @param {Function} [exec]
+ * @param {(command: string, args: string[], options?: RunOptions) => unknown} [exec]
  */
 function runYarn(deps, options = {}, exec) {
   const add = options.dev ? ['add', '--dev'] : ['add'];
@@ -326,7 +326,7 @@ function runYarn(deps, options = {}, exec) {
  *
  * @param {string[] | string} deps
  * @param {Options} [options]
- * @param {Function=} exec
+ * @param {(command: string, args: string[], options?: RunOptions) => unknown} [exec]
  */
 function uninstall(deps, options = {}, exec) {
   deps = _.castArray(deps);

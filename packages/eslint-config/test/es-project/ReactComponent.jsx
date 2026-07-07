@@ -15,8 +15,8 @@ export class MarkupView extends React.PureComponent {
 
   /**
    * @override
-   * @param {any} _previousProps
-   * @param {any} _previousState
+   * @param {unknown} _previousProps
+   * @param {unknown} _previousState
    */
   componentDidUpdate(_previousProps, _previousState) {}
 

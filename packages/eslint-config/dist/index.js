@@ -21,7 +21,7 @@ const ymlSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["y
 *
 * @param options The options to process.
 * @param defaultFiles The default files to apply.
-* @returns An array of strings representing the combined files.
+* @returns {Array<string>} An array of strings representing the combined files.
 */
 function withDefaultFiles(options, defaultFiles) {
 	return typeof options === "function" ? options(defaultFiles) : [...options == null ? [] : options.flat(), ...defaultFiles];

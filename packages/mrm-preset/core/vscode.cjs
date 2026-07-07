@@ -38,7 +38,7 @@ function vscodeTask(newTask) {
     version: '2.0.0',
   });
   /**
-   * @type {Array<any>}
+   * @type {Array<{ script?: string } & Record<string, unknown>>}
    */
   const tasks = vscodeTaskFile.get('tasks', []);
   if (tasks.some((task) => task.script === newTask.script)) {
@@ -81,7 +81,7 @@ exports.vscodeSnippets = vscodeSnippets;
 /**
  * @param {{
  *   state: 'present'|'absent',
- *   update: (settings: Record<string, any>) => Record<string, any>
+ *   update: (settings: Record<string, unknown>) => Record<string, unknown>
  * }} parameters
  */
 function vscodeSettings({ state = 'present', update }) {
