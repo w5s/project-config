@@ -49,8 +49,7 @@
   },
   "devDependencies": {
     "@types/debug": "4.1.13",
-    "mrm": "4.1.22",
-    "mrm-preset-default": "4.1.11"
+    "mrm": "4.1.22"
   },
   "clean-package": "../../clean-package.config.cjs",
   "engines": {
