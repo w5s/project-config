@@ -113,7 +113,7 @@ function interopDefault(m) {
 const meta = Object.freeze({
 	buildNumber: 1,
 	name: "@w5s/dev",
-	version: "3.4.8"
+	version: "3.4.9"
 });
 //#endregion
 //#region src/Project.ts
