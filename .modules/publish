@@ -33,7 +33,7 @@ RELEASE_NOTES_RESPONSE_FILE=
 RELEASE_NOTES_FILE=
 
 cleanup_release_notes_files() {
-  rm -f "${RELEASE_NOTES_RESPONSE_FILE:-}" "${RELEASE_NOTES_FILE:-}"
+  rm -f "$RELEASE_NOTES_RESPONSE_FILE" "$RELEASE_NOTES_FILE"
 }
 
 if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
@@ -42,8 +42,15 @@ else
   MAX_RELEASE_NOTES_CHARS=120000
   RELEASE_TARGET="$(git rev-parse HEAD)"
   trap cleanup_release_notes_files EXIT
-  RELEASE_NOTES_RESPONSE_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes-response.XXXXXX.json")"
-  RELEASE_NOTES_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes.XXXXXX.md")"
+  if ! RELEASE_NOTES_RESPONSE_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes-response.XXXXXX.json")"; then
+    echo "Failed to allocate a temporary file for generated GitHub release notes." 1>&2
+    exit 1
+  fi
+
+  if ! RELEASE_NOTES_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes.XXXXXX.md")"; then
+    echo "Failed to allocate a temporary file for the GitHub release body." 1>&2
+    exit 1
+  fi
 
   if ! gh api --method POST "repos/{owner}/{repo}/releases/generate-notes" \
     -f tag_name="$RELEASE_TAG" \
@@ -63,9 +70,11 @@ with open(release_notes_response_path, encoding="utf-8") as release_notes_respon
     release_notes = json.load(release_notes_response_file).get("body", "")
 
 if len(release_notes) > max_chars:
+    # Keep enough room for the truncation marker even if the limit changes later.
     if max_chars >= len(truncation_suffix):
         truncated_release_notes = release_notes[: max_chars - len(truncation_suffix)]
         last_newline = truncated_release_notes.rfind("\n")
+        # Prefer a full-line boundary when possible; otherwise fall back to the character cap.
         if last_newline != -1:
             truncated_release_notes = truncated_release_notes[:last_newline]
         release_notes = f"{truncated_release_notes}{truncation_suffix}"
