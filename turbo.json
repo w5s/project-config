@@ -39,8 +39,10 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },
     "docs": {
-      "dependsOn": ["//#docs:root"],
-      "cache": false
+      "dependsOn": ["//#docs:root"]
+    },
+    "//#docs:root": {
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },
     "spellcheck": {
       "dependsOn": ["//#spellcheck:root"]
@@ -58,9 +60,6 @@
     "develop": {
       "persistent": true,
       "cache": false
-    },
-    "//#docs:root": {
-      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     }
   }
 }

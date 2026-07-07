@@ -22,7 +22,7 @@ const normalizePath = (p: string) => p.replaceAll('\\', '/').replace(ROOT_PREFIX
  * @internal
  * @param prefix A path prefix that points to the directory containing the `.gitignore` file.
  * @param rule The raw ignore rule parsed from `.gitignore`.
- * @returns {string} A normalized ignore pattern relative to the root `cwd`.
+ * @returns A normalized ignore pattern relative to the root `cwd`.
  */
 export function ignoreRuleResolve(prefix: string, rule: string): string {
   const negated = rule.startsWith('!');

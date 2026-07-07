@@ -52,7 +52,7 @@ function ignoreFileParse(input) {
 *
 * @see https://github.com/eslint/rewrite/blob/main/packages/config-helpers/src/ignore-file.js
 * @param pattern The .eslintignore or .gitignore pattern to convert.
-* @returns {string} The converted minimatch pattern.
+* @returns The converted minimatch pattern.
 */
 function convertIgnorePatternToMinimatch(pattern) {
 	const isNegated = pattern.startsWith("!");
@@ -89,7 +89,7 @@ const normalizePath = (p) => p.replaceAll("\\", "/").replace(ROOT_PREFIX_PATTERN
 * @internal
 * @param prefix A path prefix that points to the directory containing the `.gitignore` file.
 * @param rule The raw ignore rule parsed from `.gitignore`.
-* @returns {string} A normalized ignore pattern relative to the root `cwd`.
+* @returns A normalized ignore pattern relative to the root `cwd`.
 */
 function ignoreRuleResolve(prefix, rule) {
 	const negated = rule.startsWith("!");

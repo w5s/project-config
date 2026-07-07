@@ -21,7 +21,7 @@ const ymlSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["y
 *
 * @param options The options to process.
 * @param defaultFiles The default files to apply.
-* @returns {Array<string>} An array of strings representing the combined files.
+* @returns An array of strings representing the combined files.
 */
 function withDefaultFiles(options, defaultFiles) {
 	return typeof options === "function" ? options(defaultFiles) : [...options == null ? [] : options.flat(), ...defaultFiles];
@@ -60,7 +60,7 @@ const StylisticConfig = {
 };
 //#endregion
 //#region src/config/e18e.ts
-const defaultFiles$11 = [sourceGlob$1];
+const defaultFiles$10 = [sourceGlob$1];
 /**
 * @see https://e18e.dev
 * @param options
@@ -73,7 +73,7 @@ async function e18e(options = {}) {
 		name: "w5s/e18e/setup",
 		plugins: { e18e: e18ePlugin }
 	}, {
-		files: withDefaultFiles(files, defaultFiles$11),
+		files: withDefaultFiles(files, defaultFiles$10),
 		name: "w5s/e18e/rules",
 		rules: {
 			...modernization ? e18ePlugin.configs.modernization.rules : {},
@@ -494,7 +494,7 @@ const esRules = () => ({
 });
 //#endregion
 //#region src/config/es.ts
-const defaultFiles$10 = [esSourceGlob];
+const defaultFiles$9 = [esSourceGlob];
 async function es(options) {
 	const { recommended = true, rules = {} } = options;
 	return [{
@@ -521,7 +521,7 @@ async function es(options) {
 		linterOptions: { reportUnusedDisableDirectives: true },
 		name: "w5s/es/setup"
 	}, {
-		files: defaultFiles$10,
+		files: defaultFiles$9,
 		name: "w5s/es/rules",
 		rules: {
 			...recommended ? es["recommended"] : {},
@@ -574,42 +574,70 @@ imports["recommended"] = {
 imports["stylistic"] = { "import/newline-after-import": ["error", { count: 1 }] };
 //#endregion
 //#region src/config/jsdoc.ts
-const defaultFiles$9 = [sourceGlob$1];
+const defaultJsFiles = [esSourceGlob];
+const defaultTsFiles = [tsSourceGlob];
 async function jsdoc(options = {}) {
 	const [jsdocPlugin] = await Promise.all([interopDefault(import("eslint-plugin-jsdoc"))]);
 	const { files, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
-	return [{
-		name: "w5s/jsdoc/setup",
-		plugins: { jsdoc: jsdocPlugin }
-	}, {
-		files: withDefaultFiles(files, defaultFiles$9),
-		name: "w5s/jsdoc/rules",
-		rules: {
-			...recommended ? jsdocPlugin.configs["flat/recommended-typescript-flavor"].rules : {},
-			...recommended ? {
-				"jsdoc/no-undefined-types": "off",
-				"jsdoc/require-hyphen-before-param-description": ["warn", "always"],
-				"jsdoc/require-jsdoc": "off",
-				"jsdoc/require-param-description": "off",
-				"jsdoc/require-param-type": "off",
-				"jsdoc/require-returns": "off",
-				"jsdoc/valid-types": "off"
-			} : {},
-			...stylisticEnabled ? {
-				...jsdocPlugin.configs["flat/stylistic-typescript"].rules,
-				"jsdoc/check-alignment": "warn",
-				"jsdoc/multiline-blocks": "warn",
-				"jsdoc/tag-lines": [
-					"warn",
-					"any",
-					{ startLines: 1 }
-				]
-			} : {},
-			...rules
+	const recommendedRules = recommended ? jsdocPlugin.configs["flat/recommended-typescript-flavor"].rules : {};
+	const stylisticRules = stylisticEnabled ? {
+		...jsdocPlugin.configs["flat/stylistic-typescript"].rules,
+		"jsdoc/check-alignment": "warn",
+		"jsdoc/multiline-blocks": "warn",
+		"jsdoc/tag-lines": [
+			"warn",
+			"any",
+			{ startLines: 1 }
+		]
+	} : {};
+	return [
+		{
+			name: "w5s/jsdoc/setup",
+			plugins: { jsdoc: jsdocPlugin }
 		},
-		settings: { jsdoc: { mode: "typescript" } }
-	}];
+		{
+			files: withDefaultFiles(files, defaultJsFiles),
+			name: "w5s/jsdoc/rules-js",
+			rules: {
+				...recommendedRules,
+				...recommended ? {
+					"jsdoc/no-undefined-types": "off",
+					"jsdoc/require-hyphen-before-param-description": ["warn", "always"],
+					"jsdoc/require-jsdoc": "off",
+					"jsdoc/require-param-description": "off",
+					"jsdoc/require-param-type": "off",
+					"jsdoc/require-returns": "off",
+					"jsdoc/require-returns-type": "off",
+					"jsdoc/valid-types": "off"
+				} : {},
+				...stylisticRules,
+				...rules
+			},
+			settings: { jsdoc: { mode: "typescript" } }
+		},
+		{
+			files: withDefaultFiles(files, defaultTsFiles),
+			name: "w5s/jsdoc/rules-ts",
+			rules: {
+				...recommendedRules,
+				...recommended ? {
+					"jsdoc/no-types": "warn",
+					"jsdoc/no-undefined-types": "off",
+					"jsdoc/require-hyphen-before-param-description": ["warn", "always"],
+					"jsdoc/require-jsdoc": "off",
+					"jsdoc/require-param-description": "off",
+					"jsdoc/require-param-type": "off",
+					"jsdoc/require-returns": "off",
+					"jsdoc/require-returns-type": "off",
+					"jsdoc/valid-types": "off"
+				} : {},
+				...stylisticRules,
+				...rules
+			},
+			settings: { jsdoc: { mode: "typescript" } }
+		}
+	];
 }
 //#endregion
 //#region src/config/jsonc.ts

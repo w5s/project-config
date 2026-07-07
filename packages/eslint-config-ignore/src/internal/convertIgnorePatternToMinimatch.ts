@@ -5,7 +5,7 @@
  *
  * @see https://github.com/eslint/rewrite/blob/main/packages/config-helpers/src/ignore-file.js
  * @param pattern The .eslintignore or .gitignore pattern to convert.
- * @returns {string} The converted minimatch pattern.
+ * @returns The converted minimatch pattern.
  */
 export function convertIgnorePatternToMinimatch(pattern: string): string {
   const isNegated = pattern.startsWith('!');
