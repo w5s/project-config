@@ -59,6 +59,11 @@ else
     exit 1
   fi
 
+  if ! command -v python3 >/dev/null 2>&1; then
+    echo "python3 is required to prepare GitHub release notes." 1>&2
+    exit 1
+  fi
+
   if ! python3 - "$RELEASE_NOTES_RESPONSE_FILE" "$RELEASE_NOTES_FILE" "$MAX_RELEASE_NOTES_CHARS" <<'PY'
 import json
 import sys
@@ -67,7 +72,12 @@ release_notes_response_path, release_notes_path, max_chars = sys.argv[1], sys.ar
 truncation_suffix = "\n\n… (truncated to fit GitHub release body limit)"
 
 with open(release_notes_response_path, encoding="utf-8") as release_notes_response_file:
-    release_notes = json.load(release_notes_response_file).get("body", "")
+    release_notes_response = json.load(release_notes_response_file)
+
+if not isinstance(release_notes_response, dict) or not isinstance(release_notes_response.get("body"), str):
+    raise ValueError("GitHub release notes response did not contain a string body.")
+
+release_notes = release_notes_response["body"]
 
 if len(release_notes) > max_chars:
     # Keep enough room for the truncation marker even if the limit changes later.
