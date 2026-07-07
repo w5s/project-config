@@ -68,34 +68,36 @@ else
 import json
 import sys
 
-release_notes_response_path, release_notes_path, max_chars = sys.argv[1], sys.argv[2], int(sys.argv[3])
-truncation_suffix = "\n\n… (truncated to fit GitHub release body limit)"
+try:
+    release_notes_response_path, release_notes_path, max_chars = sys.argv[1], sys.argv[2], int(sys.argv[3])
+    truncation_suffix = "\n\n… (truncated to fit GitHub release body limit)"
 
-with open(release_notes_response_path, encoding="utf-8") as release_notes_response_file:
-    release_notes_response = json.load(release_notes_response_file)
+    with open(release_notes_response_path, encoding="utf-8") as release_notes_response_file:
+        release_notes_response = json.load(release_notes_response_file)
 
-if not isinstance(release_notes_response, dict) or not isinstance(release_notes_response.get("body"), str):
-    raise ValueError("GitHub release notes response did not contain a string body.")
+    if not isinstance(release_notes_response, dict) or not isinstance(release_notes_response.get("body"), str):
+        raise ValueError("Invalid response format: expected dict with string body field.")
 
-release_notes = release_notes_response["body"]
+    release_notes = release_notes_response["body"]
 
-if len(release_notes) > max_chars:
-    # Keep enough room for the truncation marker even if the limit changes later.
-    if max_chars >= len(truncation_suffix):
-        truncated_release_notes = release_notes[: max_chars - len(truncation_suffix)]
-        last_newline = truncated_release_notes.rfind("\n")
-        # Prefer a full-line boundary when possible; otherwise fall back to the character cap.
-        if last_newline != -1:
-            truncated_release_notes = truncated_release_notes[:last_newline]
-        release_notes = f"{truncated_release_notes}{truncation_suffix}"
-    else:
-        release_notes = release_notes[:max_chars]
+    if len(release_notes) > max_chars:
+        # Keep enough room for the truncation marker even if the limit changes later.
+        if max_chars > len(truncation_suffix):
+            truncated_release_notes = release_notes[: max_chars - len(truncation_suffix)]
+            last_newline = truncated_release_notes.rfind("\n")
+            # Prefer a full-line boundary when possible; otherwise fall back to the character cap.
+            if last_newline != -1:
+                truncated_release_notes = truncated_release_notes[:last_newline]
+            release_notes = f"{truncated_release_notes}{truncation_suffix}"
+        else:
+            release_notes = release_notes[:max_chars]
 
-with open(release_notes_path, "w", encoding="utf-8") as release_notes_file:
-    release_notes_file.write(release_notes)
+    with open(release_notes_path, "w", encoding="utf-8") as release_notes_file:
+        release_notes_file.write(release_notes)
+except Exception as error:  # pragma: no cover - exercised via shell validation
+    raise SystemExit(f"Failed to prepare GitHub release notes: {error}")
 PY
   then
-    echo "Failed to prepare GitHub release notes for $RELEASE_TAG." 1>&2
     exit 1
   fi
 
