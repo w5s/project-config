@@ -29,8 +29,77 @@ $NODEJS_PACKAGE_MANAGER_COMMAND exec -- lerna publish "${PUBLISH_ARGS[@]}"
 
 export GH_TOKEN="${GH_TOKEN:-${GITHUB_TOKEN:-$(gh auth token)}}"
 RELEASE_TAG="release-$(git rev-parse --short HEAD)"
+RELEASE_NOTES_RESPONSE_FILE=
+RELEASE_NOTES_FILE=
+
+cleanup_release_notes_files() {
+  rm -f "$RELEASE_NOTES_RESPONSE_FILE" "$RELEASE_NOTES_FILE"
+}
+
 if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
   echo "GitHub release $RELEASE_TAG already exists, skipping."
 else
-  gh release create "$RELEASE_TAG" --target "$(git rev-parse HEAD)" --title "Packages $(date -u +%Y-%m-%d)" --generate-notes
+  MAX_RELEASE_NOTES_CHARS=120000
+  RELEASE_TARGET="$(git rev-parse HEAD)"
+  trap cleanup_release_notes_files EXIT
+  if ! RELEASE_NOTES_RESPONSE_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes-response.XXXXXX.json")"; then
+    echo "Failed to allocate a temporary file for generated GitHub release notes." 1>&2
+    exit 1
+  fi
+
+  if ! RELEASE_NOTES_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes.XXXXXX.md")"; then
+    echo "Failed to allocate a temporary file for the GitHub release body." 1>&2
+    exit 1
+  fi
+
+  if ! gh api --method POST "repos/{owner}/{repo}/releases/generate-notes" \
+    -f tag_name="$RELEASE_TAG" \
+    -f target_commitish="$RELEASE_TARGET" >"$RELEASE_NOTES_RESPONSE_FILE"; then
+    echo "Failed to generate GitHub release notes for $RELEASE_TAG." 1>&2
+    exit 1
+  fi
+
+  if ! command -v python3 >/dev/null 2>&1; then
+    echo "python3 is required to prepare GitHub release notes." 1>&2
+    exit 1
+  fi
+
+  if ! python3 - "$RELEASE_NOTES_RESPONSE_FILE" "$RELEASE_NOTES_FILE" "$MAX_RELEASE_NOTES_CHARS" <<'PY'
+import json
+import sys
+
+try:
+    release_notes_response_path, release_notes_path, max_chars = sys.argv[1], sys.argv[2], int(sys.argv[3])
+    truncation_suffix = "\n\n… (truncated to fit GitHub release body limit)"
+
+    with open(release_notes_response_path, encoding="utf-8") as release_notes_response_file:
+        release_notes_response = json.load(release_notes_response_file)
+
+    if not isinstance(release_notes_response, dict) or not isinstance(release_notes_response.get("body"), str):
+        raise ValueError("Invalid response format: expected dict with string body field.")
+
+    release_notes = release_notes_response["body"]
+
+    if len(release_notes) > max_chars:
+        # Keep enough room for the truncation marker even if the limit changes later.
+        if max_chars > len(truncation_suffix):
+            truncated_release_notes = release_notes[: max_chars - len(truncation_suffix)]
+            last_newline = truncated_release_notes.rfind("\n")
+            # Prefer a full-line boundary when possible; otherwise fall back to the character cap.
+            if last_newline != -1:
+                truncated_release_notes = truncated_release_notes[:last_newline]
+            release_notes = f"{truncated_release_notes}{truncation_suffix}"
+        else:
+            release_notes = release_notes[:max_chars]
+
+    with open(release_notes_path, "w", encoding="utf-8") as release_notes_file:
+        release_notes_file.write(release_notes)
+except Exception as error:  # pragma: no cover - exercised via shell validation
+    raise SystemExit(f"Failed to prepare GitHub release notes: {error}")
+PY
+  then
+    exit 1
+  fi
+
+  gh release create "$RELEASE_TAG" --target "$RELEASE_TARGET" --title "Packages $(date -u +%Y-%m-%d)" --notes-file "$RELEASE_NOTES_FILE"
 fi
