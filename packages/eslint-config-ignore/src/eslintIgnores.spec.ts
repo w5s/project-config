@@ -33,10 +33,10 @@ describe('eslintIgnores', () => {
 
     expect(result.name).toBe('w5s/eslint-ignore');
     expect(result.ignores).toContain('**/package-lock.json');
-    expect(result.ignores).toContain('dist');
-    expect(result.ignores).toContain('.env');
-    expect(result.ignores).toContain(nodePath.join('android', 'android-build'));
-    expect(result.ignores).toContain(nodePath.join('ios', 'ios-build'));
+    expect(result.ignores).toContain('**/dist');
+    expect(result.ignores).toContain('**/.env');
+    expect(result.ignores).toContain('android/**/android-build');
+    expect(result.ignores).toContain('ios/**/ios-build');
   });
 
   it('when recommended is false, only gitignore patterns are merged', async () => {
@@ -47,10 +47,10 @@ describe('eslintIgnores', () => {
     const result = await eslintIgnores({ recommended: false });
 
     expect(result.ignores).not.toContain('**/package-lock.json');
-    expect(result.ignores).toContain('dist');
-    expect(result.ignores).toContain('.env');
-    expect(result.ignores).toContain(nodePath.join('android', 'android-build'));
-    expect(result.ignores).toContain(nodePath.join('ios', 'ios-build'));
+    expect(result.ignores).toContain('**/dist');
+    expect(result.ignores).toContain('**/.env');
+    expect(result.ignores).toContain('android/**/android-build');
+    expect(result.ignores).toContain('ios/**/ios-build');
   });
 
   it('allows overriding the configuration name', async () => {
@@ -72,12 +72,12 @@ describe('eslintIgnores', () => {
     const result = await eslintIgnores({
       ignores: (mergedIgnores) => [
         'callback-ignore/**',
-        ...(mergedIgnores.includes('root-ignore') ? ['root-ignore'] : []),
+        ...(mergedIgnores.includes('**/root-ignore') ? ['**/root-ignore'] : []),
       ],
       recommended: false,
     });
 
-    expect(result.ignores).toEqual(['callback-ignore/**', 'root-ignore']);
+    expect(result.ignores).toEqual(['callback-ignore/**', '**/root-ignore']);
   });
 
   it('respects options.cwd when provided', async () => {
@@ -86,7 +86,7 @@ describe('eslintIgnores', () => {
 
     const result = await eslintIgnores({ cwd: nodePath.join(testDir, 'external'), recommended: false });
 
-    expect(result.ignores).toContain('external-ignore');
+    expect(result.ignores).toContain('**/external-ignore');
   });
 
   it('when recommended is true, default ignores are included along with gitignore patterns', async () => {
@@ -94,7 +94,7 @@ describe('eslintIgnores', () => {
 
     const result = await eslintIgnores({ recommended: true });
 
-    expect(result.ignores).toContain('root-ignore');
+    expect(result.ignores).toContain('**/root-ignore');
     expect(result.ignores).toContain('**/package-lock.json');
     expect(result.name).toBe('w5s/eslint-ignore');
   });
@@ -105,6 +105,7 @@ describe('eslintIgnores', () => {
     const result = await eslintIgnores({ recommended: false });
 
     expect(result.ignores).toContain('root-ignore');
+    expect(result.ignores).not.toContain('**/root-ignore');
   });
 
   it('resolves nested .gitignore patterns relative to the ignore file directory', async () => {
@@ -112,7 +113,41 @@ describe('eslintIgnores', () => {
 
     const result = await eslintIgnores({ recommended: false });
 
-    expect(result.ignores).toContain(nodePath.join('android', 'android-build'));
+    expect(result.ignores).toContain('android/android-build');
+  });
+
+  it('converts unanchored out to a recursive minimatch glob', async () => {
+    await writeGitignore('', 'out\n');
+
+    const result = await eslintIgnores({ recommended: false });
+
+    expect(result.ignores).toContain('**/out');
+    expect(result.ignores).not.toContain('out');
+  });
+
+  it('converts nested unanchored rules to scoped recursive globs', async () => {
+    await writeGitignore('android', 'build\n');
+
+    const result = await eslintIgnores({ recommended: false });
+
+    expect(result.ignores).toContain('android/**/build');
+  });
+
+  it('converts anchored dist at the root to a root-only glob', async () => {
+    await writeGitignore('', '/dist\n');
+
+    const result = await eslintIgnores({ recommended: false });
+
+    expect(result.ignores).toContain('dist');
+    expect(result.ignores).not.toContain('**/dist');
+  });
+
+  it('preserves negation patterns from gitignore', async () => {
+    await writeGitignore('', '!packages/foo/dist/\n');
+
+    const result = await eslintIgnores({ recommended: false });
+
+    expect(result.ignores).toContain('!packages/foo/dist/');
   });
 
   it('recommended base still supports appending ignores with an array', async () => {

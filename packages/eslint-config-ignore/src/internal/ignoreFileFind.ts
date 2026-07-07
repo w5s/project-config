@@ -1,4 +1,5 @@
 /* eslint-disable unicorn/prefer-await */
+import { minimatch } from 'minimatch';
 import fs from 'node:fs/promises';
 import nodePath from 'node:path';
 
@@ -31,7 +32,7 @@ export async function ignoreFileFind(
   rootDir: string,
   options?: IgnoreFileFindOptions,
 ): Promise<Array<string>> {
-  const excludeDirs = new Set(options?.excludeDirs ?? ['node_modules', '.git', 'dist', 'build', 'out']);
+  const excludeDirs = new Set(options?.excludeDirs ?? ['node_modules', '.git']);
   const maxDepth = options?.maxDepth ?? 8;
   const stopAtGitRoot = options?.stopAtGitRoot ?? true;
 
@@ -41,16 +42,38 @@ export async function ignoreFileFind(
   // --- Helpers (internal, not exported) ---------------------------------
   const normalize = (p: string) => p.replaceAll('\\', '/');
 
-  function lastMatchWins(patterns: string[], candidateRel: string): null | string {
+  function patternMatchesPath(pattern: string, candidateRel: string): boolean {
     const normCandidate = normalize(candidateRel);
+    const normPattern = normalize(pattern);
+
+    if (minimatch(normCandidate, normPattern, { dot: true })) {
+      return true;
+    }
+
+    if (minimatch(normCandidate, `${normPattern}/**`, { dot: true })) {
+      return true;
+    }
+
+    if (normPattern.endsWith('/')) {
+      const withoutTrailing = normPattern.slice(0, -1);
+      if (minimatch(normCandidate, withoutTrailing, { dot: true })) {
+        return true;
+      }
+      if (minimatch(normCandidate, `${withoutTrailing}/**`, { dot: true })) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function lastMatchWins(patterns: string[], candidateRel: string): null | string {
     let lastMatch: null | string = null;
     for (const p of patterns) {
-      const neg = p.startsWith('!');
-      const pat = neg ? p.slice(1) : p;
-      const patNorm = normalize(pat);
-      if (!patNorm) continue;
+      const pat = p.startsWith('!') ? p.slice(1) : p;
+      if (!pat) continue;
 
-      if (normCandidate === patNorm || normCandidate.startsWith(patNorm + '/')) {
+      if (patternMatchesPath(pat, candidateRel)) {
         lastMatch = p;
       }
     }

@@ -178,6 +178,21 @@ describe(ignoreFileFind, () => {
     expect(result).not.toContain('node_modules/.gitignore');
   });
 
+  it('skips gitignored directories during downward search', async () => {
+    const baseDir = nodePath.join(tempRoot, 'project');
+    const agenticDir = nodePath.join(baseDir, 'agentic');
+    const ignoredOutDir = nodePath.join(agenticDir, 'out');
+
+    await fs.mkdir(ignoredOutDir, { recursive: true });
+    await fs.writeFile(nodePath.join(baseDir, '.gitignore'), 'out\n');
+    await fs.writeFile(nodePath.join(ignoredOutDir, '.gitignore'), 'nested\n');
+
+    const result = await ignoreFileFind(baseDir);
+
+    expect(result).toContain('.gitignore');
+    expect(result).not.toContain('agentic/out/.gitignore');
+  });
+
   it.runIf(() => process.platform !== 'win32')('handles permission errors gracefully', async () => {
     const baseDir = nodePath.join(tempRoot, 'project');
     const subDir = nodePath.join(baseDir, 'sub');

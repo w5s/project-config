@@ -275,6 +275,9 @@ importers:
       find-up:
         specifier: ^8.0.0
         version: 8.0.0
+      minimatch:
+        specifier: ^10.2.0
+        version: 10.2.5
       parse-gitignore:
         specifier: ^2.0.0
         version: 2.0.0

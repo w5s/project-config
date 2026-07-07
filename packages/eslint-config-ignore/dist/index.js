@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import nodePath from "node:path";
 import process from "node:process";
+import { minimatch } from "minimatch";
 import fs$1 from "node:fs/promises";
 import parseGitignore from "parse-gitignore";
 //#region src/defaultIgnores.ts
@@ -43,32 +44,61 @@ function ignoreFileParse(input) {
 	return parseGitignore.parse(input).patterns;
 }
 //#endregion
-//#region src/internal/ignoreRuleResolve.ts
+//#region src/internal/convertIgnorePatternToMinimatch.ts
 /**
-* Resolve a raw ignore rule from a `.gitignore` file into a path
-* relative to the configured working directory.
+* Converts a gitignore-style pattern to an ESLint-compatible minimatch pattern.
+*
+* Ported from `@eslint/config-helpers` (eslint/rewrite).
+*
+* @see https://github.com/eslint/rewrite/blob/main/packages/config-helpers/src/ignore-file.js
+* @param pattern The .eslintignore or .gitignore pattern to convert.
+* @returns {string} The converted minimatch pattern.
+*/
+function convertIgnorePatternToMinimatch(pattern) {
+	const isNegated = pattern.startsWith("!");
+	const negatedPrefix = isNegated ? "!" : "";
+	const patternToTest = (isNegated ? pattern.slice(1) : pattern).trimEnd();
+	if ([
+		"",
+		"**",
+		"**/",
+		"/**"
+	].includes(patternToTest)) return `${negatedPrefix}${patternToTest}`;
+	const firstIndexOfSlash = patternToTest.indexOf("/");
+	return `${negatedPrefix}${firstIndexOfSlash === -1 || firstIndexOfSlash === patternToTest.length - 1 ? "**/" : ""}${(firstIndexOfSlash === 0 ? patternToTest.slice(1) : patternToTest).replaceAll(/(?=((?:\\.|[^{(])*))\1([{(])/guy, String.raw`$1\$2`)}${patternToTest.endsWith("/**") ? "/*" : ""}`;
+}
+//#endregion
+//#region src/internal/ignoreRuleResolve.ts
+const ROOT_PREFIX_PATTERN = /^\.\/?/;
+const normalizePath = (p) => p.replaceAll("\\", "/").replace(ROOT_PREFIX_PATTERN, "");
+/**
+* Resolve a raw ignore rule from a `.gitignore` file into a flat ESLint
+* minimatch glob relative to the configured working directory.
 *
 * @example
 * ```ts
 * import { ignoreRuleResolve } from './internal/ignoreRuleResolve.js';
 *
-* ignoreRuleResolve('.', 'dist'); // 'dist'
+* ignoreRuleResolve('.', 'out'); // '**\/out'
 * ignoreRuleResolve('.', '/dist'); // 'dist'
-* ignoreRuleResolve('android', 'android-build'); // 'android/android-build'
-* ignoreRuleResolve('android', '!android-build'); // '!android/android-build'
+* ignoreRuleResolve('android', 'build'); // 'android/**\/build'
+* ignoreRuleResolve('android', '/build'); // 'android/build'
+* ignoreRuleResolve('android', '!build'); // '!android/**\/build'
 * ```
 *
 * @internal
 * @param prefix A path prefix that points to the directory containing the `.gitignore` file.
 * @param rule The raw ignore rule parsed from `.gitignore`.
-* @returns A normalized ignore pattern relative to the root `cwd`.
+* @returns {string} A normalized ignore pattern relative to the root `cwd`.
 */
 function ignoreRuleResolve(prefix, rule) {
 	const negated = rule.startsWith("!");
-	const normalizedPattern = negated ? rule.slice(1) : rule;
-	const trimmedPattern = normalizedPattern.startsWith("/") ? normalizedPattern.slice(1) : normalizedPattern;
-	const relativeIgnorePath = nodePath.join(prefix, trimmedPattern);
-	return negated ? `!${relativeIgnorePath}` : relativeIgnorePath;
+	const raw = negated ? rule.slice(1) : rule;
+	const normalizedPrefix = prefix === "." || prefix === "" ? "" : normalizePath(prefix);
+	let converted;
+	if (raw.startsWith("/")) converted = convertIgnorePatternToMinimatch(`/${normalizedPrefix ? `${normalizedPrefix}/${raw.slice(1)}` : raw.slice(1)}`);
+	else converted = (normalizedPrefix ? `${normalizedPrefix}/` : "") + convertIgnorePatternToMinimatch(raw);
+	return negated ? `!${converted}` : converted;
 }
 //#endregion
 //#region src/internal/ignoreFileFind.ts
@@ -85,26 +115,30 @@ const GITIGNORE_FILE = ".gitignore";
 * @param options
 */
 async function ignoreFileFind(rootDir, options) {
-	const excludeDirs = new Set(options?.excludeDirs ?? [
-		"node_modules",
-		".git",
-		"dist",
-		"build",
-		"out"
-	]);
+	const excludeDirs = new Set(options?.excludeDirs ?? ["node_modules", ".git"]);
 	const maxDepth = options?.maxDepth ?? 8;
 	const stopAtGitRoot = options?.stopAtGitRoot ?? true;
 	const absoluteRootDir = nodePath.resolve(rootDir);
 	const found = /* @__PURE__ */ new Set();
 	const normalize = (p) => p.replaceAll("\\", "/");
-	function lastMatchWins(patterns, candidateRel) {
+	function patternMatchesPath(pattern, candidateRel) {
 		const normCandidate = normalize(candidateRel);
+		const normPattern = normalize(pattern);
+		if (minimatch(normCandidate, normPattern, { dot: true })) return true;
+		if (minimatch(normCandidate, `${normPattern}/**`, { dot: true })) return true;
+		if (normPattern.endsWith("/")) {
+			const withoutTrailing = normPattern.slice(0, -1);
+			if (minimatch(normCandidate, withoutTrailing, { dot: true })) return true;
+			if (minimatch(normCandidate, `${withoutTrailing}/**`, { dot: true })) return true;
+		}
+		return false;
+	}
+	function lastMatchWins(patterns, candidateRel) {
 		let lastMatch = null;
 		for (const p of patterns) {
 			const pat = p.startsWith("!") ? p.slice(1) : p;
-			const patNorm = normalize(pat);
-			if (!patNorm) continue;
-			if (normCandidate === patNorm || normCandidate.startsWith(patNorm + "/")) lastMatch = p;
+			if (!pat) continue;
+			if (patternMatchesPath(pat, candidateRel)) lastMatch = p;
 		}
 		return lastMatch;
 	}
