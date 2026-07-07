@@ -45,22 +45,40 @@ else
   RELEASE_NOTES_RESPONSE_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes-response.XXXXXX.json")"
   RELEASE_NOTES_FILE="$(mktemp "${TMPDIR:-/tmp}/release-notes.XXXXXX.md")"
 
-  gh api --method POST "repos/{owner}/{repo}/releases/generate-notes" \
+  if ! gh api --method POST "repos/{owner}/{repo}/releases/generate-notes" \
     -f tag_name="$RELEASE_TAG" \
-    -f target_commitish="$RELEASE_TARGET" >"$RELEASE_NOTES_RESPONSE_FILE"
+    -f target_commitish="$RELEASE_TARGET" >"$RELEASE_NOTES_RESPONSE_FILE"; then
+    echo "Failed to generate GitHub release notes for $RELEASE_TAG." 1>&2
+    exit 1
+  fi
 
-  python3 - "$RELEASE_NOTES_RESPONSE_FILE" "$RELEASE_NOTES_FILE" "$MAX_RELEASE_NOTES_CHARS" <<'PY'
+  if ! python3 - "$RELEASE_NOTES_RESPONSE_FILE" "$RELEASE_NOTES_FILE" "$MAX_RELEASE_NOTES_CHARS" <<'PY'
 import json
 import sys
 
 release_notes_response_path, release_notes_path, max_chars = sys.argv[1], sys.argv[2], int(sys.argv[3])
+truncation_suffix = "\n\n… (truncated to fit GitHub release body limit)"
 
 with open(release_notes_response_path, encoding="utf-8") as release_notes_response_file:
     release_notes = json.load(release_notes_response_file).get("body", "")
 
+if len(release_notes) > max_chars:
+    if max_chars > len(truncation_suffix):
+        truncated_release_notes = release_notes[: max_chars - len(truncation_suffix)]
+        last_newline = truncated_release_notes.rfind("\n")
+        if last_newline > 0:
+            truncated_release_notes = truncated_release_notes[:last_newline]
+        release_notes = f"{truncated_release_notes}{truncation_suffix}"
+    else:
+        release_notes = release_notes[:max_chars]
+
 with open(release_notes_path, "w", encoding="utf-8") as release_notes_file:
-    release_notes_file.write(release_notes[:max_chars])
+    release_notes_file.write(release_notes)
 PY
+  then
+    echo "Failed to prepare GitHub release notes for $RELEASE_TAG." 1>&2
+    exit 1
+  fi
 
   gh release create "$RELEASE_TAG" --target "$RELEASE_TARGET" --title "Packages $(date -u +%Y-%m-%d)" --notes-file "$RELEASE_NOTES_FILE"
 fi
