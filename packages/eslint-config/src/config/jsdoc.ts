@@ -9,7 +9,7 @@ import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js
 const defaultJsFiles = [esSourceGlob];
 const defaultTsFiles = [tsSourceGlob];
 
-export async function jsdoc(options: jsdoc.Options = {}): Promise<readonly Config[]> {
+export async function jsdoc(options: jsdoc.Options = {}): Promise<ReadonlyArray<Config>> {
   const [jsdocPlugin] = await Promise.all([interopDefault(import('eslint-plugin-jsdoc'))] as const);
   const {
     files,

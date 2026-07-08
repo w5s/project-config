@@ -5,7 +5,7 @@ export interface IgnoreFileOptions extends Omit<FileOptions, 'update'> {
    * File content mapping function where content is represented as lines.
    * When the file does not yet exist, the callback receives `undefined`.
    */
-  readonly update?: ((content: string[] | undefined) => string[] | undefined) | undefined;
+  readonly update?: ((content: Array<string> | undefined) => Array<string> | undefined) | undefined;
 }
 
 /**

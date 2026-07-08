@@ -6,14 +6,14 @@ import { type Commit, CommitConventionalType } from './data.js';
 import { type CommitTransformFunction, createTransform } from './transform.js';
 
 export interface WriterOptions {
-  commitGroupsSort?: false | readonly string[] | string | undefined;
+  commitGroupsSort?: false | ReadonlyArray<string> | string | undefined;
   commitPartial?: string | undefined;
-  commitsSort?: false | readonly string[] | string | undefined;
+  commitsSort?: false | ReadonlyArray<string> | string | undefined;
   footerPartial?: string | undefined;
   groupBy?: false | string | undefined;
   headerPartial?: string | undefined;
   mainTemplate?: string | undefined;
-  noteGroupsSort?: false | readonly string[] | string | undefined;
+  noteGroupsSort?: false | ReadonlyArray<string> | string | undefined;
   transform?: CommitTransformFunction<Commit> | undefined;
 }
 

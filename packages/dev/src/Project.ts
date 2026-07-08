@@ -8,7 +8,7 @@ export type Extension = `.${string}`;
 /**
  * Object hash of all well-known file extension category to file extensions mapping
  */
-export type ExtensionRegistry = { [K in LanguageId]: readonly Extension[] };
+export type ExtensionRegistry = Record<LanguageId, ReadonlyArray<Extension>>;
 
 /**
  * Supported ECMA version
@@ -56,11 +56,11 @@ const registry: ExtensionRegistry = {
  *
  * @param languages
  */
-function queryExtensions(languages: LanguageId[]): readonly Extension[] {
+function queryExtensions(languages: Array<LanguageId>): ReadonlyArray<Extension> {
   return languages
-    .reduce<Extension[]>((previousValue, currentValue) =>
+    .reduce<Array<Extension>>((previousValue, currentValue) =>
 
-      previousValue.concat(registry[currentValue] ?? ([] as Extension[])), [])
+      previousValue.concat(registry[currentValue] ?? ([] as Array<Extension>)), [])
     // eslint-disable-next-line unicorn/no-array-sort
     .sort((left, right) => left.localeCompare(right));
 }
@@ -77,7 +77,7 @@ function sourceExtensions() {
   return queryExtensions(['javascript', 'javascriptreact', 'typescript', 'typescriptreact']);
 }
 
-const RESOURCE_EXTENSIONS: readonly Extension[] = Object.freeze([
+const RESOURCE_EXTENSIONS: ReadonlyArray<Extension> = Object.freeze([
   '.gif',
   '.png',
   '.svg',
@@ -118,7 +118,7 @@ const IGNORED = Object.freeze([
  * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
  * ```
  */
-function extensionsToMatcher(extensions: readonly Extension[]): RegExp {
+function extensionsToMatcher(extensions: ReadonlyArray<Extension>): RegExp {
   return new RegExp(`(${extensions.map(escapeRegExp).join('|')})$`);
 }
 
@@ -145,7 +145,7 @@ const reExtension = /^\./;
  * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
  * ```
  */
-function extensionsToGlob(extensions: readonly Extension[]): string {
+function extensionsToGlob(extensions: ReadonlyArray<Extension>): string {
   return `*.+(${extensions.map((_) => _.replace(reExtension, '')).join('|')})`;
 }
 

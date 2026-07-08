@@ -44,7 +44,7 @@ async function concat<T extends Linter.Config = Linter.Config>(
  *
  * @param _status
  */
-function fixme(_status: [number | string, ...any[]] | number | string | undefined) {
+function fixme(_status: [number | string, ...Array<any>] | number | string | undefined) {
   return 'off' as const;
 }
 
@@ -84,7 +84,6 @@ function merge<T extends Linter.Config = Linter.Config>(...configs: Array<T>): T
         ...cur.rules,
       },
     };
-  // eslint-disable-next-line ts/consistent-type-assertions
   }, {} as T);
 
   // Remove unused keys

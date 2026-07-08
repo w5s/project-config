@@ -10,7 +10,7 @@ const GITIGNORE_FILE = '.gitignore';
 
 export interface IgnoreFileFindOptions {
   /** Directory names to skip when searching downward from `rootDir`. */
-  excludeDirs?: string[];
+  excludeDirs?: Array<string>;
   /** Maximum recursion depth when searching downward. Defaults to 8. */
   maxDepth?: number;
   /** When true (default), stop ancestor traversal when a `.git` directory is found. */
@@ -67,7 +67,7 @@ export async function ignoreFileFind(
     return false;
   }
 
-  function lastMatchWins(patterns: string[], candidateRel: string): null | string {
+  function lastMatchWins(patterns: Array<string>, candidateRel: string): null | string {
     let lastMatch: null | string = null;
     for (const p of patterns) {
       const pat = p.startsWith('!') ? p.slice(1) : p;
@@ -80,14 +80,14 @@ export async function ignoreFileFind(
     return lastMatch;
   }
 
-  function isIgnored(patterns: string[], candidateRel: string): boolean {
+  function isIgnored(patterns: Array<string>, candidateRel: string): boolean {
     const m = lastMatchWins(patterns, candidateRel);
     if (!m) return false;
     return !m.startsWith('!');
   }
 
-  async function collectAncestorGitignores(startDir: string): Promise<string[]> {
-    const files: string[] = [];
+  async function collectAncestorGitignores(startDir: string): Promise<Array<string>> {
+    const files: Array<string> = [];
     let dir = startDir;
     while (true) {
       const gi = nodePath.join(dir, GITIGNORE_FILE);
@@ -115,7 +115,7 @@ export async function ignoreFileFind(
     return files.reverse();
   }
 
-  async function parseAndResolve(giPath: string): Promise<string[]> {
+  async function parseAndResolve(giPath: string): Promise<Array<string>> {
     try {
       const content = String(await fs.readFile(giPath, 'utf8'));
       const parsed = ignoreFileParse(content);
@@ -128,7 +128,7 @@ export async function ignoreFileFind(
 
   // --- Build initial patterns from ancestor .gitignore files -------------
   const ancestorFiles = await collectAncestorGitignores(absoluteRootDir);
-  const initialPatterns: string[] = [];
+  const initialPatterns: Array<string> = [];
   for (const gi of ancestorFiles) {
     const parsed = await parseAndResolve(gi);
     if (parsed.length > 0) initialPatterns.push(...parsed);
@@ -136,7 +136,7 @@ export async function ignoreFileFind(
   }
 
   // --- BFS downward carrying accumulated patterns -----------------------
-  const queue: Array<{ depth: number; dir: string; patterns: string[] }> = [
+  const queue: Array<{ depth: number; dir: string; patterns: Array<string> }> = [
     { depth: 0, dir: absoluteRootDir, patterns: [...initialPatterns] },
   ];
 

@@ -20,6 +20,7 @@ export async function ts(options: ts.Options = {}) {
   const tsTypeCheckedRules = tsPlugin.configs['recommended-type-checked-only']!.rules!;
   const { files, rules = {}, stylistic = true, typeChecked = false } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  const tsCustomRules = tsRules();
 
   return [
     {
@@ -51,8 +52,44 @@ export async function ts(options: ts.Options = {}) {
       rules: {
         ...ESLintConfig.renameRules(tsRecommendedRules, { '@typescript-eslint': 'ts' }),
         ...ESLintConfig.renameRules(tsStrictRules, { '@typescript-eslint': 'ts' }),
-        ...tsRules(),
-        ...(stylisticEnabled ? {} : {}),
+        ...tsCustomRules,
+        ...(stylisticEnabled
+          ? {
+              // eslint-disable-next-line ts/no-non-null-asserted-optional-chain
+              ...ESLintConfig.renameRules(tsPlugin.configs['stylistic']?.rules!, { '@typescript-eslint': 'ts' }),
+              'ts/array-type': ['error', { default: 'generic' }],
+              'ts/consistent-type-assertions': [
+                'error',
+                { assertionStyle: 'as', objectLiteralTypeAssertions: 'allow' },
+              ],
+              'ts/naming-convention': [
+                'error',
+                // {
+                //   format: ['PascalCase', 'camelCase'],
+                //   leadingUnderscore: 'allow',
+                //   selector: 'default',
+                //   trailingUnderscore: 'allow',
+                // },
+                {
+                  format: ['PascalCase', 'camelCase', 'UPPER_CASE'],
+                  leadingUnderscore: 'allow',
+                  selector: 'variable',
+                  trailingUnderscore: 'allow',
+                },
+                // {
+                //   format: ['PascalCase', 'camelCase', 'UPPER_CASE'],
+                //   leadingUnderscore: 'allowSingleOrDouble',
+                //   selector: 'memberLike',
+                //   trailingUnderscore: 'allowDouble',
+                // },
+                {
+                  format: ['PascalCase'],
+                  selector: 'typeLike',
+                },
+              ],
+              'ts/no-empty-function': tsCustomRules['ts/no-empty-function'],
+            }
+          : {}),
         ...rules,
       },
     },

@@ -41,7 +41,7 @@ describe('GitmojiCode', () => {
     it.each([
       ['✨', CommitConventionalType.Feat],
       [':sparkles:', CommitConventionalType.Feat],
-    ] as [GitmojiCode, CommitConventionalType][])('should return correct values for %s', (gitmoji, expected) => {
+    ] as Array<[GitmojiCode, CommitConventionalType]>)('should return correct values for %s', (gitmoji, expected) => {
       expect(GitmojiCode.toConventionalCommitType(gitmoji)).toBe(expected);
     });
   });

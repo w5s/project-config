@@ -3,10 +3,10 @@ export interface Commit {
   footer: Commit.Field;
   hash: null | string;
   header: Commit.Field;
-  mentions: string[];
+  mentions: Array<string>;
   merge: Commit.Field;
-  notes: Commit.Note[];
-  references: Commit.Reference[];
+  notes: Array<Commit.Note>;
+  references: Array<Commit.Reference>;
   revert: Commit.Revert | null;
   scope: null | string;
   subject: null | string;
@@ -67,7 +67,7 @@ export const CommitConventionalType = (() => {
     WIP: 'wip',
   });
   // eslint-disable-next-line unicorn/no-array-sort
-  const enumValues: readonly CommitConventionalType[] = Object.freeze(Object.values(enumObject).sort((left, right) => left.localeCompare(right)));
+  const enumValues: ReadonlyArray<CommitConventionalType> = Object.freeze(Object.values(enumObject).sort((left, right) => left.localeCompare(right)));
   const enumValuesSet = new Set(enumValues);
 
   const typeData: Record<CommitConventionalType, CommitConventionalTypeData> = {
@@ -149,7 +149,7 @@ export const CommitConventionalType = (() => {
     return enumValues;
   }
 
-  function findWhere(predicate: (data: CommitConventionalTypeData) => boolean): CommitConventionalType[] {
+  function findWhere(predicate: (data: CommitConventionalTypeData) => boolean): Array<CommitConventionalType> {
     return enumValues.filter((enumValue) => predicate(getData(enumValue)));
   }
 

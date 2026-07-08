@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 const ignore = (anyValue: unknown) => anyValue;
-type ReactComponentProps = {
+interface ReactComponentProps {
   foo: boolean;
-};
+}
 
-type ReactComponentState = {
+interface ReactComponentState {
   fooState: boolean;
-};
+}
 
 export class MarkupView extends React.PureComponent<ReactComponentProps, ReactComponentState> {
   override state: ReactComponentState = {

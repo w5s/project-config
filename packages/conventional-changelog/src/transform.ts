@@ -1,15 +1,13 @@
 import { type Commit, CommitConventionalType } from './data.js';
 import { GitmojiCode } from './gitmoji.js';
 
-export interface CommitTransformFunction<TCommit extends Commit = Commit> {
-  (commit: Commit, context: WriterContext, ...args: unknown[]): false | TCommit;
-}
+export type CommitTransformFunction<TCommit extends Commit = Commit> = (commit: Commit, context: WriterContext, ...args: Array<unknown>) => false | TCommit;
 
 export type Language = 'en-US';
 
 export interface TransformConfig {
-  displayScopes?: string[];
-  displayTypes?: CommitConventionalType[];
+  displayScopes?: Array<string>;
+  displayTypes?: Array<CommitConventionalType>;
   language?: Language;
   scopeDisplayName?: Record<string, string>;
   showAuthor?: boolean;
@@ -111,7 +109,6 @@ export function createTransform(config: TransformConfig): CommitTransformFunctio
     // Remove references that already appear in the subject
     const references = commit.references.filter((reference) => !issues.has(reference.issue));
 
-    // eslint-disable-next-line ts/consistent-type-assertions
     return {
       ...commit,
       body: commit.body,

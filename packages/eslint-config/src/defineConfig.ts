@@ -67,7 +67,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
           ? { enabled: defaultEnabled }
           : { enabled: defaultEnabled, ...optionsOrBoolean }) as T & { enabled: boolean },
     );
-  const includeEnabled = <T extends { enabled?: boolean }, R extends Promise<readonly Config[]>>(factory: (config: T) => R, input: T) =>
+  const includeEnabled = <T extends { enabled?: boolean }, R extends Promise<ReadonlyArray<Config>>>(factory: (config: T) => R, input: T) =>
     input.enabled ? [factory(input)] : [];
 
   return ESLintConfig.concat(

@@ -44,7 +44,7 @@ export const bestPractices = () => ({
 
   // enforces consistent newlines before or after dots
   // https://eslint.org/docs/rules/dot-location
-  'dot-location': ['error', 'property'],
+  // 'dot-location': ['error', 'property'],
 
   // encourages use of dot notation whenever possible
   // https://eslint.org/docs/rules/dot-notation
@@ -190,9 +190,9 @@ export const bestPractices = () => ({
 
   // disallow use of multiple spaces
   // https://eslint.org/docs/rules/no-multi-spaces
-  'no-multi-spaces': ['error', {
-    ignoreEOLComments: false,
-  }],
+  // 'no-multi-spaces': ['error', {
+  //   ignoreEOLComments: false,
+  // }],
 
   // disallow use of multiline strings
   // https://eslint.org/docs/rules/no-multi-str

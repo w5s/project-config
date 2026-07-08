@@ -28,7 +28,7 @@ export async function yml(options: yml.Options = {}) {
         ...(recommended
           ? ymlPlugin.configs['recommended'].reduce(
               (acc, config) => ({ ...acc, ...config.rules }),
-              // eslint-disable-next-line ts/consistent-type-assertions
+
               {} as RuleOptions,
             )
           : {}),

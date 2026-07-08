@@ -1,9 +1,9 @@
 //#region src/parser.d.ts
 interface ParserOptions {
-  headerCorrespondence?: null | string | string[];
+  headerCorrespondence?: Array<string> | null | string;
   headerPattern?: null | RegExp | string;
-  noteKeywords?: null | string | string[];
-  revertCorrespondence?: null | string | string[];
+  noteKeywords?: Array<string> | null | string;
+  revertCorrespondence?: Array<string> | null | string;
   revertPattern?: null | RegExp | string;
 }
 //#endregion
@@ -13,10 +13,10 @@ interface Commit {
   footer: Commit.Field;
   hash: null | string;
   header: Commit.Field;
-  mentions: string[];
+  mentions: Array<string>;
   merge: Commit.Field;
-  notes: Commit.Note[];
-  references: Commit.Reference[];
+  notes: Array<Commit.Note>;
+  references: Array<Commit.Reference>;
   revert: Commit.Revert | null;
   scope: null | string;
   subject: null | string;
@@ -44,7 +44,7 @@ declare namespace Commit {
 }
 type CommitConventionalType = 'build' | 'chore' | 'ci' | 'docs' | 'feat' | 'fix' | 'perf' | 'refactor' | 'revert' | 'style' | 'test' | 'wip';
 declare const CommitConventionalType: {
-  findWhere: (predicate: (data: CommitConventionalTypeData) => boolean) => CommitConventionalType[];
+  findWhere: (predicate: (data: CommitConventionalTypeData) => boolean) => Array<CommitConventionalType>;
   getData: (commitType: CommitConventionalType) => CommitConventionalTypeData;
   hasInstance: (anyValue: unknown) => anyValue is CommitConventionalType;
   parse: (anyValue: string) => CommitConventionalType | undefined;
@@ -69,9 +69,7 @@ interface CommitConventionalTypeData {
 }
 //#endregion
 //#region src/transform.d.ts
-interface CommitTransformFunction<TCommit extends Commit = Commit> {
-  (commit: Commit, context: WriterContext, ...args: unknown[]): false | TCommit;
-}
+type CommitTransformFunction<TCommit extends Commit = Commit> = (commit: Commit, context: WriterContext, ...args: Array<unknown>) => false | TCommit;
 interface WriterContext {
   host?: string | undefined;
   owner?: string | undefined;
@@ -81,14 +79,14 @@ interface WriterContext {
 //#endregion
 //#region src/writer.d.ts
 interface WriterOptions {
-  commitGroupsSort?: false | readonly string[] | string | undefined;
+  commitGroupsSort?: false | ReadonlyArray<string> | string | undefined;
   commitPartial?: string | undefined;
-  commitsSort?: false | readonly string[] | string | undefined;
+  commitsSort?: false | ReadonlyArray<string> | string | undefined;
   footerPartial?: string | undefined;
   groupBy?: false | string | undefined;
   headerPartial?: string | undefined;
   mainTemplate?: string | undefined;
-  noteGroupsSort?: false | readonly string[] | string | undefined;
+  noteGroupsSort?: false | ReadonlyArray<string> | string | undefined;
   transform?: CommitTransformFunction<Commit> | undefined;
 }
 //#endregion

@@ -1,8 +1,8 @@
 export interface ParserOptions {
-  headerCorrespondence?: null | string | string[];
+  headerCorrespondence?: Array<string> | null | string;
   headerPattern?: null | RegExp | string;
-  noteKeywords?: null | string | string[];
-  revertCorrespondence?: null | string | string[];
+  noteKeywords?: Array<string> | null | string;
+  revertCorrespondence?: Array<string> | null | string;
   revertPattern?: null | RegExp | string;
 }
 

@@ -9,7 +9,7 @@ import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js
 
 const defaultFiles = [jsonSourceGlob];
 
-export async function jsonc(options: jsonc.Options = {}): Promise<readonly Config[]> {
+export async function jsonc(options: jsonc.Options = {}): Promise<ReadonlyArray<Config>> {
   const [jsoncPlugin, jsoncParser] = await Promise.all([
     interopDefault(import('eslint-plugin-jsonc')),
     interopDefault(import('jsonc-eslint-parser')),

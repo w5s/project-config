@@ -710,7 +710,6 @@ declare namespace es {
     'no-void': ["error", {
       allowAsStatement: boolean;
     }];
-    'unicode-bom': ["error", string];
     'init-declarations': "off";
     'no-catch-shadow': "off";
     'no-delete-var': "error";
@@ -728,19 +727,7 @@ declare namespace es {
     'no-undef-init': "error";
     'no-undefined': "off";
     strict: ["error", string];
-    'arrow-body-style': ["error", string, {
-      requireReturnForObjectLiteral: boolean;
-    }];
-    'arrow-parens': ["error", string];
-    'arrow-spacing': ["error", {
-      after: boolean;
-      before: boolean;
-    }];
     'constructor-super': "error";
-    'generator-star-spacing': ["error", {
-      after: boolean;
-      before: boolean;
-    }];
     'no-class-assign': "error";
     'no-confusing-arrow': ["error", {
       allowParens: boolean;
@@ -765,29 +752,9 @@ declare namespace es {
       ignoreImport: boolean;
     }];
     'no-var': "error";
-    'object-shorthand': ["error", string, {
-      avoidQuotes: boolean;
-      ignoreConstructors: boolean;
-    }];
-    'prefer-arrow-callback': ["error", {
-      allowNamedFunctions: boolean;
-      allowUnboundThis: boolean;
-    }];
     'prefer-const': ["error", {
       destructuring: string;
       ignoreReadBeforeAssign: boolean;
-    }];
-    'prefer-destructuring': ["error", {
-      AssignmentExpression: {
-        array: boolean;
-        object: boolean;
-      };
-      VariableDeclarator: {
-        array: boolean;
-        object: boolean;
-      };
-    }, {
-      enforceForRenamedProperties: boolean;
     }];
     'prefer-numeric-literals': "error";
     'prefer-reflect': "off";
@@ -795,16 +762,7 @@ declare namespace es {
     'prefer-spread': "error";
     'prefer-template': "error";
     'require-yield': "error";
-    'rest-spread-spacing': ["error", string];
-    'sort-imports': ["off", {
-      ignoreCase: boolean;
-      ignoreDeclarationSort: boolean;
-      ignoreMemberSort: boolean;
-      memberSyntaxSortOrder: string[];
-    }];
     'symbol-description': "error";
-    'template-curly-spacing': "error";
-    'yield-star-spacing': ["error", string];
     'for-direction': "error";
     'getter-return': ["error", {
       allowImplicit: boolean;
@@ -825,13 +783,6 @@ declare namespace es {
     'no-empty-character-class': "error";
     'no-ex-assign': "error";
     'no-extra-boolean-cast': "error";
-    'no-extra-parens': ["off", string, {
-      conditionalAssign: boolean;
-      enforceForArrowConditionals: boolean;
-      ignoreJSX: string;
-      nestedBinaryExpressions: boolean;
-      returnAssign: boolean;
-    }];
     'no-extra-semi': "error";
     'no-func-assign': "error";
     'no-import-assign': "error";
@@ -877,7 +828,6 @@ declare namespace es {
     curly: ["error", string];
     'default-case-last': "error";
     'default-param-last': "error";
-    'dot-location': ["error", string];
     'dot-notation': ["error", {
       allowKeywords: boolean;
     }];
@@ -931,9 +881,6 @@ declare namespace es {
       enforceConst: boolean;
       ignore: never[];
       ignoreArrayIndexes: boolean;
-    }];
-    'no-multi-spaces': ["error", {
-      ignoreEOLComments: boolean;
     }];
     'no-multi-str': "error";
     'no-native-reassign': "off";
@@ -2390,14 +2337,14 @@ type JsdocValidTypes = [] | [{
 }];
 //#endregion
 //#region src/config/jsdoc.d.ts
-declare function jsdoc(options?: jsdoc.Options): Promise<readonly Config[]>;
+declare function jsdoc(options?: jsdoc.Options): Promise<ReadonlyArray<Config>>;
 declare namespace jsdoc {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$10;
 }
 //#endregion
 //#region src/config/jsonc.d.ts
-declare function jsonc(options?: jsonc.Options): Promise<readonly Config[]>;
+declare function jsonc(options?: jsonc.Options): Promise<ReadonlyArray<Config>>;
 declare namespace jsonc {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$12;

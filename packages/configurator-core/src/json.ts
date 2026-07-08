@@ -7,7 +7,7 @@ export interface JSONOption<V = JSONValue> extends Omit<FileOptions, 'update'> {
   readonly update?: ((content: undefined | V) => undefined | V) | undefined;
 }
 
-export type JSONValue = boolean | JSONValue[] | null | number | string | { [key: string]: JSONValue };
+export type JSONValue = Array<JSONValue> | boolean | null | number | string | { [key: string]: JSONValue };
 
 /**
  * Ensure file is present/absent asynchronously with content value initialized or modified with `update`

@@ -69,13 +69,13 @@ export const errors = () => ({
 
   // disallow unnecessary parentheses
   // https://eslint.org/docs/rules/no-extra-parens
-  'no-extra-parens': ['off', 'all', {
-    conditionalAssign: true,
-    enforceForArrowConditionals: false,
-    ignoreJSX: 'all', // delegate to eslint-plugin-react
-    nestedBinaryExpressions: false,
-    returnAssign: false,
-  }],
+  // 'no-extra-parens': ['off', 'all', {
+  //   conditionalAssign: true,
+  //   enforceForArrowConditionals: false,
+  //   ignoreJSX: 'all', // delegate to eslint-plugin-react
+  //   nestedBinaryExpressions: false,
+  //   returnAssign: false,
+  // }],
 
   // disallow unnecessary semicolons
   'no-extra-semi': 'error',

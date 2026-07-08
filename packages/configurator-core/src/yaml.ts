@@ -9,7 +9,7 @@ export interface YAMLOption<V = YAMLValue> extends Omit<FileOptions, 'update'> {
   readonly update?: ((content: undefined | V) => undefined | V) | undefined;
 }
 
-export type YAMLValue = boolean | null | number | string | YAMLValue[] | { [key: string]: YAMLValue };
+export type YAMLValue = Array<YAMLValue> | boolean | null | number | string | { [key: string]: YAMLValue };
 
 /**
  * Ensure file is present/absent asynchronously with content value initialized or modified with `update`

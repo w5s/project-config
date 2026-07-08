@@ -7,16 +7,6 @@ export const tsRules = () => {
 
   return ESLintConfig.renameRules(
     {
-      // '@typescript-eslint/comma-dangle': [
-      //   baseRules['comma-dangle'][0],
-      //   {
-      //     ...baseRules['comma-dangle'][1],
-      //     enums: baseRules['comma-dangle'][1].arrays,
-      //     generics: baseRules['comma-dangle'][1].arrays,
-      //     tuples: baseRules['comma-dangle'][1].arrays,
-      //   },
-      // ],
-      '@typescript-eslint/adjacent-overload-signatures': 'error',
       '@typescript-eslint/ban-ts-comment': [
         'warn',
         {
@@ -27,65 +17,17 @@ export const tsRules = () => {
           'ts-nocheck': true,
         },
       ],
-      // '@typescript-eslint/brace-style': baseRules['brace-style'],
-      // '@typescript-eslint/comma-dangle': [
-      //   baseRules['comma-dangle'][0],
-      //   {
-      //     ...baseRules['comma-dangle'][1],
-      //     enums: baseRules['comma-dangle'][1].arrays,
-      //     generics: baseRules['comma-dangle'][1].arrays,
-      //     tuples: baseRules['comma-dangle'][1].arrays,
-      //   },
-      // ],
-      // '@typescript-eslint/comma-spacing': baseRules['comma-spacing'],
-      '@typescript-eslint/consistent-type-assertions': [
-        'error',
-        { assertionStyle: 'as', objectLiteralTypeAssertions: 'never' },
-      ],
       '@typescript-eslint/default-param-last': baseRules['default-param-last'],
-      // '@typescript-eslint/dot-notation': baseRules['dot-notation'], // TODO: Stylistic typechecked
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
-      // '@typescript-eslint/func-call-spacing': baseRules['func-call-spacing'],
-      // '@typescript-eslint/indent': baseRules.indent,
-      // '@typescript-eslint/keyword-spacing': baseRules['keyword-spacing'],
-      // '@typescript-eslint/lines-between-class-members': baseRules['lines-between-class-members'],
-      // '@typescript-eslint/member-delimiter-style': 'error', // TODO: @stylistic/member-delimiter-style
-      '@typescript-eslint/naming-convention': [
-        'error',
-        // {
-        //   format: ['PascalCase', 'camelCase'],
-        //   leadingUnderscore: 'allow',
-        //   selector: 'default',
-        //   trailingUnderscore: 'allow',
-        // },
-        {
-          format: ['PascalCase', 'camelCase', 'UPPER_CASE'],
-          leadingUnderscore: 'allow',
-          selector: 'variable',
-          trailingUnderscore: 'allow',
-        },
-        // {
-        //   format: ['PascalCase', 'camelCase', 'UPPER_CASE'],
-        //   leadingUnderscore: 'allowSingleOrDouble',
-        //   selector: 'memberLike',
-        //   trailingUnderscore: 'allowDouble',
-        // },
-        {
-          format: ['PascalCase'],
-          selector: 'typeLike',
-        },
-      ],
+      '@typescript-eslint/no-dupe-class-members': baseRules['no-dupe-class-members'],
       // '@typescript-eslint/no-array-constructor': baseRules['no-array-constructor'],
       // '@typescript-eslint/no-base-to-string': 'error', // TODO: require type check
-      '@typescript-eslint/no-dupe-class-members': baseRules['no-dupe-class-members'],
       '@typescript-eslint/no-empty-function': baseRules['no-empty-function'],
       '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: true }],
       '@typescript-eslint/no-empty-object-type': 'off',
       '@typescript-eslint/no-explicit-any': 'off', // if any is explicit then it's wanted
-      '@typescript-eslint/no-extra-parens': baseRules['no-extra-parens'],
       // '@typescript-eslint/no-extra-semi': baseRules['no-extra-semi'], // TODO: @stylistic/no-extra-semi
-      '@typescript-eslint/no-inferrable-types': 'error',
       '@typescript-eslint/no-loop-func': baseRules['no-loop-func'],
       '@typescript-eslint/no-loss-of-precision': baseRules['no-loss-of-precision'],
       '@typescript-eslint/no-magic-numbers': baseRules['no-magic-numbers'],
@@ -110,8 +52,6 @@ export const tsRules = () => {
       // '@typescript-eslint/quotes': baseRules.quotes,
       '@typescript-eslint/require-await': baseRules['require-await'],
       // '@typescript-eslint/return-await': baseRules['no-return-await'], // TODO: strict type check
-      // '@typescript-eslint/semi': baseRules.semi,
-      // '@typescript-eslint/space-before-function-paren': baseRules['space-before-function-paren'],
       // '@typescript-eslint/space-infix-ops': baseRules['space-infix-ops'],
       // '@typescript-eslint/strict-boolean-expressions': [
       //   'error',
@@ -123,7 +63,6 @@ export const tsRules = () => {
       // ], //TODO: require typing
       // '@typescript-eslint/switch-exhaustiveness-check': 'error',//TODO: require type check
       '@typescript-eslint/triple-slash-reference': 'error',
-      // '@typescript-eslint/type-annotation-spacing': 'error',// TODO: @stylistic/type-annotation-spacing
     },
     {
       '@typescript-eslint': 'ts',

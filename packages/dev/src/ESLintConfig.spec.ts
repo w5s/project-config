@@ -1,4 +1,3 @@
-/* eslint-disable ts/consistent-type-assertions */
 import type { ESLint, Linter } from 'eslint';
 
 import { describe, expect, it } from 'vitest';

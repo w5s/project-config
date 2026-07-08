@@ -55,7 +55,7 @@ const index = {
   emoji: createIndex(gitmojis, 'emoji'),
 };
 
-function createIndex<K extends keyof Gitmoji>(list: readonly Gitmoji[], key: K): ReadonlyMap<Gitmoji[K], Gitmoji> {
+function createIndex<K extends keyof Gitmoji>(list: ReadonlyArray<Gitmoji>, key: K): ReadonlyMap<Gitmoji[K], Gitmoji> {
   return new Map(list.map((gitmoji) => [gitmoji[key], gitmoji]));
 }
 
@@ -65,22 +65,22 @@ function isValid(anyValue: string): anyValue is GitmojiCode {
 
 const defaultType = 'chore';
 const conversionMap: ReadonlyMap<GitmojiCode, CommitConventionalType> = (() => {
-  const data: Record<CommitConventionalType, GitmojiCode.Unicode[]> = {
-    build: [] as GitmojiCode.Unicode[],
-    chore: ['🔧'] as GitmojiCode.Unicode[],
-    ci: ['👷', '💚'] as GitmojiCode.Unicode[],
-    docs: ['📝'] as GitmojiCode.Unicode[],
-    feat: ['✨', '♿️', '🚸'] as GitmojiCode.Unicode[],
-    fix: ['🐛'] as GitmojiCode.Unicode[],
-    perf: ['⚡️'] as GitmojiCode.Unicode[],
-    refactor: ['♻️', '🏗️'] as GitmojiCode.Unicode[],
-    revert: ['⏪️'] as GitmojiCode.Unicode[],
-    style: ['🎨', '🚨'] as GitmojiCode.Unicode[],
-    test: ['✅', '🧪'] as GitmojiCode.Unicode[],
-    wip: ['🚧'] as GitmojiCode.Unicode[],
+  const data: Record<CommitConventionalType, Array<GitmojiCode.Unicode>> = {
+    build: [] as Array<GitmojiCode.Unicode>,
+    chore: ['🔧'] as Array<GitmojiCode.Unicode>,
+    ci: ['👷', '💚'] as Array<GitmojiCode.Unicode>,
+    docs: ['📝'] as Array<GitmojiCode.Unicode>,
+    feat: ['✨', '♿️', '🚸'] as Array<GitmojiCode.Unicode>,
+    fix: ['🐛'] as Array<GitmojiCode.Unicode>,
+    perf: ['⚡️'] as Array<GitmojiCode.Unicode>,
+    refactor: ['♻️', '🏗️'] as Array<GitmojiCode.Unicode>,
+    revert: ['⏪️'] as Array<GitmojiCode.Unicode>,
+    style: ['🎨', '🚨'] as Array<GitmojiCode.Unicode>,
+    test: ['✅', '🧪'] as Array<GitmojiCode.Unicode>,
+    wip: ['🚧'] as Array<GitmojiCode.Unicode>,
   };
 
-  const entries = Array.from<[CommitConventionalType, GitmojiCode.Unicode[]]>(
+  const entries = Array.from<[CommitConventionalType, Array<GitmojiCode.Unicode>]>(
     // @ts-ignore entries are not well typed
     Object.entries(data),
   );

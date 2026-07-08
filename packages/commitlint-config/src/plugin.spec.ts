@@ -1,4 +1,3 @@
-/* eslint-disable ts/consistent-type-assertions */
 import { describe, expect, it } from 'vitest';
 
 import { typeGitmojiStyle, typeValidGitmoji } from './plugin.js';

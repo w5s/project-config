@@ -102,7 +102,6 @@ const bestPractices = () => ({
 	"default-case": ["error", { commentPattern: "^no default$" }],
 	"default-case-last": "error",
 	"default-param-last": "error",
-	"dot-location": ["error", "property"],
 	"dot-notation": ["error", { allowKeywords: true }],
 	"eqeqeq": [
 		"error",
@@ -155,7 +154,6 @@ const bestPractices = () => ({
 		ignore: [],
 		ignoreArrayIndexes: true
 	}],
-	"no-multi-spaces": ["error", { ignoreEOLComments: false }],
 	"no-multi-str": "error",
 	"no-native-reassign": "off",
 	"no-new": "error",
@@ -300,17 +298,6 @@ const errors = () => ({
 	"no-empty-character-class": "error",
 	"no-ex-assign": "error",
 	"no-extra-boolean-cast": "error",
-	"no-extra-parens": [
-		"off",
-		"all",
-		{
-			conditionalAssign: true,
-			enforceForArrowConditionals: false,
-			ignoreJSX: "all",
-			nestedBinaryExpressions: false,
-			returnAssign: false
-		}
-	],
 	"no-extra-semi": "error",
 	"no-func-assign": "error",
 	"no-import-assign": "error",
@@ -344,21 +331,7 @@ const errors = () => ({
 //#endregion
 //#region src/rules/esRules/es6.ts
 const es6 = () => ({
-	"arrow-body-style": [
-		"error",
-		"as-needed",
-		{ requireReturnForObjectLiteral: false }
-	],
-	"arrow-parens": ["error", "always"],
-	"arrow-spacing": ["error", {
-		after: true,
-		before: true
-	}],
 	"constructor-super": "error",
-	"generator-star-spacing": ["error", {
-		after: true,
-		before: false
-	}],
 	"no-class-assign": "error",
 	"no-confusing-arrow": ["error", { allowParens: true }],
 	"no-const-assign": "error",
@@ -379,57 +352,17 @@ const es6 = () => ({
 		ignoreImport: false
 	}],
 	"no-var": "error",
-	"object-shorthand": [
-		"error",
-		"always",
-		{
-			avoidQuotes: true,
-			ignoreConstructors: false
-		}
-	],
-	"prefer-arrow-callback": ["error", {
-		allowNamedFunctions: false,
-		allowUnboundThis: true
-	}],
 	"prefer-const": ["error", {
 		destructuring: "any",
 		ignoreReadBeforeAssign: true
 	}],
-	"prefer-destructuring": [
-		"error",
-		{
-			AssignmentExpression: {
-				array: true,
-				object: false
-			},
-			VariableDeclarator: {
-				array: false,
-				object: true
-			}
-		},
-		{ enforceForRenamedProperties: false }
-	],
 	"prefer-numeric-literals": "error",
 	"prefer-reflect": "off",
 	"prefer-rest-params": "error",
 	"prefer-spread": "error",
 	"prefer-template": "error",
 	"require-yield": "error",
-	"rest-spread-spacing": ["error", "never"],
-	"sort-imports": ["off", {
-		ignoreCase: false,
-		ignoreDeclarationSort: false,
-		ignoreMemberSort: false,
-		memberSyntaxSortOrder: [
-			"none",
-			"all",
-			"multiple",
-			"single"
-		]
-	}],
-	"symbol-description": "error",
-	"template-curly-spacing": "error",
-	"yield-star-spacing": ["error", "after"]
+	"symbol-description": "error"
 });
 //#endregion
 //#region src/rules/esRules/overrides.ts
@@ -442,8 +375,7 @@ const overrides = () => ({
 	"no-underscore-dangle": "off",
 	"no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
 	"no-use-before-define": ["error", "nofunc"],
-	"no-void": ["error", { allowAsStatement: true }],
-	"unicode-bom": ["error", "never"]
+	"no-void": ["error", { allowAsStatement: true }]
 });
 //#endregion
 //#region src/rules/esRules/strict.ts
@@ -1078,7 +1010,6 @@ async function test(options = {}) {
 const tsRules = () => {
 	const baseRules = esRules();
 	return ESLintConfig.renameRules({
-		"@typescript-eslint/adjacent-overload-signatures": "error",
 		"@typescript-eslint/ban-ts-comment": ["warn", {
 			"minimumDescriptionLength": 3,
 			"ts-check": false,
@@ -1086,37 +1017,14 @@ const tsRules = () => {
 			"ts-ignore": "allow-with-description",
 			"ts-nocheck": true
 		}],
-		"@typescript-eslint/consistent-type-assertions": ["error", {
-			assertionStyle: "as",
-			objectLiteralTypeAssertions: "never"
-		}],
 		"@typescript-eslint/default-param-last": baseRules["default-param-last"],
 		"@typescript-eslint/explicit-function-return-type": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
-		"@typescript-eslint/naming-convention": [
-			"error",
-			{
-				format: [
-					"PascalCase",
-					"camelCase",
-					"UPPER_CASE"
-				],
-				leadingUnderscore: "allow",
-				selector: "variable",
-				trailingUnderscore: "allow"
-			},
-			{
-				format: ["PascalCase"],
-				selector: "typeLike"
-			}
-		],
 		"@typescript-eslint/no-dupe-class-members": baseRules["no-dupe-class-members"],
 		"@typescript-eslint/no-empty-function": baseRules["no-empty-function"],
 		"@typescript-eslint/no-empty-interface": ["error", { allowSingleExtends: true }],
 		"@typescript-eslint/no-empty-object-type": "off",
 		"@typescript-eslint/no-explicit-any": "off",
-		"@typescript-eslint/no-extra-parens": baseRules["no-extra-parens"],
-		"@typescript-eslint/no-inferrable-types": "error",
 		"@typescript-eslint/no-loop-func": baseRules["no-loop-func"],
 		"@typescript-eslint/no-loss-of-precision": baseRules["no-loss-of-precision"],
 		"@typescript-eslint/no-magic-numbers": baseRules["no-magic-numbers"],
@@ -1147,6 +1055,7 @@ async function ts(options = {}) {
 	const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
 	const { files, rules = {}, stylistic = true, typeChecked = false } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+	const tsCustomRules = tsRules();
 	return [
 		{
 			name: "w5s/ts/setup",
@@ -1162,8 +1071,33 @@ async function ts(options = {}) {
 			rules: {
 				...ESLintConfig.renameRules(tsRecommendedRules, { "@typescript-eslint": "ts" }),
 				...ESLintConfig.renameRules(tsStrictRules, { "@typescript-eslint": "ts" }),
-				...tsRules(),
-				...stylisticEnabled ? {} : {},
+				...tsCustomRules,
+				...stylisticEnabled ? {
+					...ESLintConfig.renameRules(tsPlugin.configs["stylistic"]?.rules, { "@typescript-eslint": "ts" }),
+					"ts/array-type": ["error", { default: "generic" }],
+					"ts/consistent-type-assertions": ["error", {
+						assertionStyle: "as",
+						objectLiteralTypeAssertions: "allow"
+					}],
+					"ts/naming-convention": [
+						"error",
+						{
+							format: [
+								"PascalCase",
+								"camelCase",
+								"UPPER_CASE"
+							],
+							leadingUnderscore: "allow",
+							selector: "variable",
+							trailingUnderscore: "allow"
+						},
+						{
+							format: ["PascalCase"],
+							selector: "typeLike"
+						}
+					],
+					"ts/no-empty-function": tsCustomRules["ts/no-empty-function"]
+				} : {},
 				...rules
 			}
 		},

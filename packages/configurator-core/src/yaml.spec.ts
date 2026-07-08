@@ -24,7 +24,7 @@ describe(json, () => {
       state: 'present',
       update: () => ['foo'],
     });
-    await json<string[]>({
+    await json<Array<string>>({
       path,
       state: 'present',
       update: (_ = []) => [..._, 'bar'],

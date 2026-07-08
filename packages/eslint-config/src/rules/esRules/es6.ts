@@ -4,24 +4,24 @@ export const es6 = () => ({
 // enforces no braces where they can be omitted
   // https://eslint.org/docs/rules/arrow-body-style
   // TODO: enable requireReturnForObjectLiteral?
-  'arrow-body-style': ['error', 'as-needed', {
-    requireReturnForObjectLiteral: false,
-  }],
+  // 'arrow-body-style': ['error', 'as-needed', {
+  //   requireReturnForObjectLiteral: false,
+  // }],
 
   // require parens in arrow function arguments
   // https://eslint.org/docs/rules/arrow-parens
-  'arrow-parens': ['error', 'always'],
+  // 'arrow-parens': ['error', 'always'],
 
   // require space before/after arrow function's arrow
   // https://eslint.org/docs/rules/arrow-spacing
-  'arrow-spacing': ['error', { after: true, before: true }],
+  // 'arrow-spacing': ['error', { after: true, before: true }],
 
   // verify super() callings in constructors
   'constructor-super': 'error',
 
   // enforce the spacing around the * in generator functions
   // https://eslint.org/docs/rules/generator-star-spacing
-  'generator-star-spacing': ['error', { after: true, before: false }],
+  // 'generator-star-spacing': ['error', { after: true, before: false }],
 
   // disallow modifying variables of class declarations
   // https://eslint.org/docs/rules/no-class-assign
@@ -90,16 +90,16 @@ export const es6 = () => ({
 
   // require method and property shorthand syntax for object literals
   // https://eslint.org/docs/rules/object-shorthand
-  'object-shorthand': ['error', 'always', {
-    avoidQuotes: true,
-    ignoreConstructors: false,
-  }],
+  // 'object-shorthand': ['error', 'always', {
+  //   avoidQuotes: true,
+  //   ignoreConstructors: false,
+  // }],
 
   // suggest using arrow functions as callbacks
-  'prefer-arrow-callback': ['error', {
-    allowNamedFunctions: false,
-    allowUnboundThis: true,
-  }],
+  // 'prefer-arrow-callback': ['error', {
+  //   allowNamedFunctions: false,
+  //   allowUnboundThis: true,
+  // }],
 
   // suggest using of const declaration for variables that are never modified after declared
   'prefer-const': ['error', {
@@ -109,18 +109,18 @@ export const es6 = () => ({
 
   // Prefer destructuring from arrays and objects
   // https://eslint.org/docs/rules/prefer-destructuring
-  'prefer-destructuring': ['error', {
-    AssignmentExpression: {
-      array: true,
-      object: false,
-    },
-    VariableDeclarator: {
-      array: false,
-      object: true,
-    },
-  }, {
-    enforceForRenamedProperties: false,
-  }],
+  // 'prefer-destructuring': ['error', {
+  //   AssignmentExpression: {
+  //     array: true,
+  //     object: false,
+  //   },
+  //   VariableDeclarator: {
+  //     array: false,
+  //     object: true,
+  //   },
+  // }, {
+  //   enforceForRenamedProperties: false,
+  // }],
 
   // disallow parseInt() in favor of binary, octal, and hexadecimal literals
   // https://eslint.org/docs/rules/prefer-numeric-literals
@@ -148,16 +148,16 @@ export const es6 = () => ({
 
   // enforce spacing between object rest-spread
   // https://eslint.org/docs/rules/rest-spread-spacing
-  'rest-spread-spacing': ['error', 'never'],
+  // 'rest-spread-spacing': ['error', 'never'],
 
   // import sorting
   // https://eslint.org/docs/rules/sort-imports
-  'sort-imports': ['off', {
-    ignoreCase: false,
-    ignoreDeclarationSort: false,
-    ignoreMemberSort: false,
-    memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
-  }],
+  // 'sort-imports': ['off', {
+  //   ignoreCase: false,
+  //   ignoreDeclarationSort: false,
+  //   ignoreMemberSort: false,
+  //   memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+  // }],
 
   // require a Symbol description
   // https://eslint.org/docs/rules/symbol-description
@@ -165,9 +165,9 @@ export const es6 = () => ({
 
   // enforce usage of spacing in template strings
   // https://eslint.org/docs/rules/template-curly-spacing
-  'template-curly-spacing': 'error',
+  // 'template-curly-spacing': 'error',
 
   // enforce spacing around the * in yield* expressions
   // https://eslint.org/docs/rules/yield-star-spacing
-  'yield-star-spacing': ['error', 'after'],
+  // 'yield-star-spacing': ['error', 'after'],
 } satisfies Linter.RulesRecord);

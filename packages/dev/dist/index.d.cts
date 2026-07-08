@@ -39,7 +39,7 @@ declare function concat<T extends Linter.Config = Linter.Config>(...configs: Arr
  *
  * @param _status
  */
-declare function fixme(_status: [number | string, ...any[]] | number | string | undefined): "off";
+declare function fixme(_status: [number | string, ...Array<any>] | number | string | undefined): "off";
 /**
  * Return a new merged flat configuration
  *
@@ -133,7 +133,7 @@ type Extension = `.${string}`;
 /**
  * Object hash of all well-known file extension category to file extensions mapping
  */
-type ExtensionRegistry = { [K in LanguageId]: readonly Extension[] };
+type ExtensionRegistry = Record<LanguageId, ReadonlyArray<Extension>>;
 /**
  * Supported ECMA version
  *
@@ -154,7 +154,7 @@ declare function ecmaVersion(): 2022;
  *
  * @param languages
  */
-declare function queryExtensions(languages: LanguageId[]): readonly Extension[];
+declare function queryExtensions(languages: Array<LanguageId>): ReadonlyArray<Extension>;
 /**
  * Supported file extensions
  *
@@ -182,7 +182,7 @@ declare function resourceExtensions(): readonly `.${string}`[];
  * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
  * ```
  */
-declare function extensionsToMatcher(extensions: readonly Extension[]): RegExp;
+declare function extensionsToMatcher(extensions: ReadonlyArray<Extension>): RegExp;
 /**
  * Files and folders to always ignore
  *
@@ -201,7 +201,7 @@ declare function ignored(): readonly string[];
  * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
  * ```
  */
-declare function extensionsToGlob(extensions: readonly Extension[]): string;
+declare function extensionsToGlob(extensions: ReadonlyArray<Extension>): string;
 declare const Project: Readonly<{
   ecmaVersion: typeof ecmaVersion;
   extensionsToGlob: typeof extensionsToGlob;
