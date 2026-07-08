@@ -12,7 +12,7 @@ const config = {
 const meta = Object.freeze({
 	buildNumber: 1,
 	name: "@w5s/prettier-config",
-	version: "3.1.17"
+	version: "3.1.18"
 });
 //#endregion
 export { config as default, meta };

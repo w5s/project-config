@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.14.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@3.7.1...@w5s/eslint-config@3.14.0) (2026-07-08)
+
+### ✨ Features
+
+- Add perfectionist configuration to ESLint setup ([1b1de73](https://github.com/w5s/project-config/commit/1b1de73)) 
+- Add react configuration ([f3bfb13](https://github.com/w5s/project-config/commit/f3bfb13)) 
+- Handle files as function callback ([728cbe9](https://github.com/w5s/project-config/commit/728cbe9)) 
+- Restructure defineConfig options to include plugins and rules ([98846a5](https://github.com/w5s/project-config/commit/98846a5)) 
+- Update TypeScript rules and add consistent-type-assertions rule ([71b0eb1](https://github.com/w5s/project-config/commit/71b0eb1)) 
+
+### 🐛 Bug Fixes
+
+- Disable &#x27;ts/no-var-requires&#x27; rule as it is deprecated ([f68f7b3](https://github.com/w5s/project-config/commit/f68f7b3)) 
+- Disable next as default enabled ([6a1dff8](https://github.com/w5s/project-config/commit/6a1dff8)) 
+- Fix file patterns for tsconfig and package JSON sorting rules ([92ca4a5](https://github.com/w5s/project-config/commit/92ca4a5)) 
+- Fix frontmatter linting ([3f7d93f](https://github.com/w5s/project-config/commit/3f7d93f)) 
+- Fix unicorn config to use default files for ESLint rules ([d7ca4a1](https://github.com/w5s/project-config/commit/d7ca4a1)) 
+- Update jsdoc configuration for TypeScript support and improve turbo.json structure ([c6e2e62](https://github.com/w5s/project-config/commit/c6e2e62))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 # [3.13.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@3.7.1...@w5s/eslint-config@3.13.0) (2026-07-07)
 
 ### ✨ Features
