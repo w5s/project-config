@@ -82,7 +82,7 @@
   "devDependencies": {
     "@types/eslint": "9.6.1",
     "@types/react": "19.2.17",
-    "@typescript-eslint/parser": "8.62.1",
+    "@typescript-eslint/parser": "8.63.0",
     "@w5s/tsdown-config": "workspace:*",
     "eslint-find-rules": "5.0.0",
     "eslint-typegen": "2.3.1",
