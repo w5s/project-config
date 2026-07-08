@@ -1131,7 +1131,6 @@ const tsRules = () => {
 		"@typescript-eslint/no-unused-vars": baseRules["no-unused-vars"],
 		"@typescript-eslint/no-use-before-define": baseRules["no-use-before-define"],
 		"@typescript-eslint/no-useless-constructor": baseRules["no-useless-constructor"],
-		"@typescript-eslint/no-var-requires": "error",
 		"@typescript-eslint/no-wrapper-object-types": "error",
 		"@typescript-eslint/prefer-namespace-keyword": "error",
 		"@typescript-eslint/require-await": baseRules["require-await"],
