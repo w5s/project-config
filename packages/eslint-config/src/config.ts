@@ -4,6 +4,7 @@ export * from './config/ignores.js';
 export * from './config/imports.js';
 export * from './config/jsdoc.js';
 export * from './config/jsonc.js';
+export * from './config/jsx.js';
 export * from './config/markdown.js';
 export * from './config/next.js';
 export * from './config/node.js';

@@ -4,6 +4,8 @@ export const sourceGlob = `**/${Project.extensionsToGlob(Project.sourceExtension
 
 export const esSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(['javascript', 'javascriptreact']))}`;
 
+export const jsxSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(['javascriptreact', 'typescriptreact']))}`;
+
 export const jsonSourceGlob = `**/${Project.extensionsToGlob(['.json', '.json5', '.jsonc'])}`;
 
 export const tsSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(['typescript', 'typescriptreact']))}`;

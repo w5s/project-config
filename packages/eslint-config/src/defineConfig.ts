@@ -11,6 +11,7 @@ import {
   imports,
   jsdoc,
   jsonc,
+  jsx,
   markdown,
   next,
   node,
@@ -33,6 +34,7 @@ export interface DefineConfigOptions extends ignores.Options {
     import?: boolean | imports.Options;
     jsdoc?: boolean | jsdoc.Options;
     jsonc?: boolean | jsonc.Options;
+    jsx?: boolean | jsx.Options;
     markdown?: boolean | markdown.Options;
     next?: boolean | next.Options;
     node?: boolean | node.Options;
@@ -77,6 +79,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     ...includeEnabled(ignores, toOption(options)),
     ...includeEnabled(jsonc, toOption(plugins.jsonc)),
     ...includeEnabled(jsdoc, toOption(plugins.jsdoc)),
+    ...includeEnabled(jsx, toOption(plugins.jsx)),
     ...includeEnabled(react, toOption(plugins.react)),
     ...includeEnabled(stylistic, toOption(plugins.stylistic)),
     ...includeEnabled(imports, toOption(plugins.import)),

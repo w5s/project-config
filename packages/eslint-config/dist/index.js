@@ -4,9 +4,13 @@ import eslintConfig from "@eslint/js";
 import globals from "globals";
 import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
+//#region \0rolldown/runtime.js
+var __commonJSMin = (cb, mod) => () => (mod || (cb((mod = { exports: {} }).exports, mod), cb = null), mod.exports);
+//#endregion
 //#region src/glob.ts
 const sourceGlob$1 = `**/${Project.extensionsToGlob(Project.sourceExtensions())}`;
 const esSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`;
+const jsxSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascriptreact", "typescriptreact"]))}`;
 const jsonSourceGlob = `**/${Project.extensionsToGlob([
 	".json",
 	".json5",
@@ -60,7 +64,7 @@ const StylisticConfig = {
 };
 //#endregion
 //#region src/config/e18e.ts
-const defaultFiles$10 = [sourceGlob$1];
+const defaultFiles$11 = [sourceGlob$1];
 /**
 * @see https://e18e.dev
 * @param options
@@ -73,7 +77,7 @@ async function e18e(options = {}) {
 		name: "w5s/e18e/setup",
 		plugins: { e18e: e18ePlugin }
 	}, {
-		files: withDefaultFiles(files, defaultFiles$10),
+		files: withDefaultFiles(files, defaultFiles$11),
 		name: "w5s/e18e/rules",
 		rules: {
 			...modernization ? e18ePlugin.configs.modernization.rules : {},
@@ -426,7 +430,7 @@ const esRules = () => ({
 });
 //#endregion
 //#region src/config/es.ts
-const defaultFiles$9 = [esSourceGlob];
+const defaultFiles$10 = [esSourceGlob];
 async function es(options) {
 	const { recommended = true, rules = {} } = options;
 	return [{
@@ -453,7 +457,7 @@ async function es(options) {
 		linterOptions: { reportUnusedDisableDirectives: true },
 		name: "w5s/es/setup"
 	}, {
-		files: defaultFiles$9,
+		files: defaultFiles$10,
 		name: "w5s/es/rules",
 		rules: {
 			...recommended ? es["recommended"] : {},
@@ -573,7 +577,7 @@ async function jsdoc(options = {}) {
 }
 //#endregion
 //#region src/config/jsonc.ts
-const defaultFiles$8 = [jsonSourceGlob];
+const defaultFiles$9 = [jsonSourceGlob];
 async function jsonc(options = {}) {
 	const [jsoncPlugin, jsoncParser] = await Promise.all([interopDefault(import("eslint-plugin-jsonc")), interopDefault(import("jsonc-eslint-parser"))]);
 	const { files, recommended = true, rules = {}, stylistic = true } = options;
@@ -584,7 +588,7 @@ async function jsonc(options = {}) {
 			plugins: { jsonc: jsoncPlugin }
 		},
 		{
-			files: withDefaultFiles(files, defaultFiles$8),
+			files: withDefaultFiles(files, defaultFiles$9),
 			languageOptions: { parser: jsoncParser },
 			name: "w5s/jsonc/rules",
 			rules: {
@@ -811,6 +815,28 @@ function sortTsconfigJson() {
 	};
 }
 //#endregion
+//#region src/config/jsx.ts
+const defaultFiles$8 = [jsxSourceGlob];
+async function jsx(options = {}) {
+	const { files, jsxA11y = false, recommended = true, rules = {} } = options;
+	const [jsxA11yPlugin] = await Promise.all([jsxA11y ? interopDefault(import("eslint-plugin-jsx-a11y")) : void 0]);
+	return [{
+		languageOptions: {
+			parserOptions: { ecmaFeatures: { jsx: true } },
+			sourceType: "module"
+		},
+		name: "w5s/jsx/setup",
+		plugins: { ...jsxA11yPlugin ? { "jsx-a11y": jsxA11yPlugin } : {} }
+	}, {
+		files: withDefaultFiles(files, defaultFiles$8),
+		name: "w5s/jsx/rules",
+		rules: {
+			...recommended && jsxA11yPlugin != null ? jsxA11yPlugin.configs["recommended"].rules : {},
+			...rules
+		}
+	}];
+}
+//#endregion
 //#region src/config/markdown.ts
 const defaultFiles$7 = [
 	`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`,
@@ -912,10 +938,307 @@ async function perfectionist(options = {}) {
 }
 //#endregion
 //#region src/config/react.ts
+var import_dist = (/* @__PURE__ */ __commonJSMin(((exports) => {
+	Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+	/**
+	* Concat multiple flat configs into a single flat config array.
+	*
+	* It also resolves promises and flattens the result.
+	*
+	* @example
+	*
+	* ```ts
+	* import eslint from '@eslint/js'
+	*
+	* export default ESLintConfig.concat(
+	*   {
+	*     plugins: {},
+	*     rules: {},
+	*   },
+	*   // It can also takes a array of configs:
+	*   [
+	*     {
+	*       plugins: {},
+	*       rules: {},
+	*     }
+	*    // ...
+	*   ],
+	*   // Or promises:
+	*   Promise.resolve({
+	*     files: ['*.ts'],
+	*     rules: {},
+	*   })
+	* );
+	* ```
+	* @param configs
+	*/
+	async function concat(...configs) {
+		return (await Promise.all(configs)).flat();
+	}
+	/**
+	* Always return 'off'. `_status` is the previous rule value.
+	*
+	* @param _status
+	*/
+	function fixme(_status) {
+		return "off";
+	}
+	/**
+	* Return a new merged flat configuration
+	*
+	* @param configs
+	*/
+	function merge(...configs) {
+		const keys = new Set(configs.flatMap((i) => Object.keys(i)));
+		const merged = configs.reduce((acc, cur) => {
+			return {
+				...acc,
+				...cur,
+				files: [...acc.files ?? [], ...cur.files ?? []],
+				ignores: [...acc.ignores ?? [], ...cur.ignores ?? []],
+				languageOptions: {
+					...acc.languageOptions,
+					...cur.languageOptions
+				},
+				linterOptions: {
+					...acc.linterOptions,
+					...cur.linterOptions
+				},
+				plugins: {
+					...acc.plugins,
+					...cur.plugins
+				},
+				rules: {
+					...acc.rules,
+					...cur.rules
+				}
+			};
+		}, {});
+		for (const key of Object.keys(merged)) if (!keys.has(key)) delete merged[key];
+		return merged;
+	}
+	/**
+	* Renames rules in the given object according to the given map.
+	*
+	* Given a map `{ 'old-prefix': 'new-prefix' }`, and a rule object
+	* `{ 'old-prefix/rule-name': 'error' }`, this function will return
+	* `{ 'new-prefix/rule-name': 'error' }`.
+	*
+	* @param rules The object containing the rules to rename.
+	* @param map The object containing the rename map.
+	*/
+	function renameRules(rules, map) {
+		return Object.fromEntries(Object.entries(rules).map(([key, value]) => {
+			for (const [from, to] of Object.entries(map)) if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
+			else if (from === "" && !key.includes("/") && to !== "") return [to + key, value];
+			return [key, value];
+		}));
+	}
+	/**
+	* @namespace
+	*/
+	const ESLintConfig = Object.freeze({
+		concat,
+		fixme,
+		merge,
+		renameRules
+	});
+	const getDefaultOrElse = (_) => _?.default ?? _;
+	function interopDefault(m) {
+		return m != null && typeof m.then === "function" ? Promise.resolve(m).then(getDefaultOrElse) : getDefaultOrElse(m);
+	}
+	const meta = Object.freeze({
+		buildNumber: 1,
+		name: "@w5s/dev",
+		version: "3.5.0"
+	});
+	/**
+	* Supported ECMA version
+	*
+	* @example
+	* ```ts
+	* Project.ecmaVersion() // 2022
+	* ```
+	*/
+	function ecmaVersion() {
+		return 2022;
+	}
+	function escapeRegExp(value) {
+		return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, "\\$&");
+	}
+	const registry = {
+		css: [".css"],
+		graphql: [".gql", ".graphql"],
+		javascript: [
+			".js",
+			".cjs",
+			".mjs"
+		],
+		javascriptreact: [".jsx"],
+		jpeg: [".jpg", ".jpeg"],
+		json: [".json"],
+		jsonc: [".jsonc"],
+		less: [".less"],
+		markdown: [
+			".markdown",
+			".mdown",
+			".mkd",
+			".md"
+		],
+		sass: [".sass"],
+		scss: [".scss"],
+		typescript: [
+			".ts",
+			".cts",
+			".mts"
+		],
+		typescriptreact: [".tsx"],
+		vue: [".vue"],
+		yaml: [".yaml", ".yml"]
+	};
+	/**
+	* Return a list of extensions
+	*
+	* @example
+	* ```ts
+	* Project.queryExtensions(['javascript']); // ['.js', '.cjs', ...]
+	* Project.queryExtensions(['typescript', 'typescriptreact']); // ['.ts', '.mts', ..., '.tsx']
+	* ```
+	*
+	* @param languages
+	*/
+	function queryExtensions(languages) {
+		return languages.reduce((previousValue, currentValue) => previousValue.concat(registry[currentValue] ?? []), []).sort((left, right) => left.localeCompare(right));
+	}
+	/**
+	* Supported file extensions
+	*
+	* @example
+	* ```ts
+	* Project.sourceExtensions() // ['.ts', '.js', ...]
+	* ```
+	*/
+	function sourceExtensions() {
+		return queryExtensions([
+			"javascript",
+			"javascriptreact",
+			"typescript",
+			"typescriptreact"
+		]);
+	}
+	const RESOURCE_EXTENSIONS = Object.freeze([
+		".gif",
+		".png",
+		".svg",
+		...queryExtensions([
+			"css",
+			"graphql",
+			"jpeg",
+			"less",
+			"sass",
+			"sass",
+			"yaml"
+		])
+	]);
+	/**
+	* Resource file extensions
+	*
+	* @example
+	* ```ts
+	* Project.resourceExtensions() // ['.css', '.sass', ...]
+	* ```
+	*/
+	function resourceExtensions() {
+		return RESOURCE_EXTENSIONS;
+	}
+	const IGNORED = Object.freeze([
+		"node_modules/",
+		"build/",
+		"cjs/",
+		"coverage/",
+		"dist/",
+		"dts/",
+		"esm/",
+		"lib/",
+		"mjs/",
+		"umd/"
+	]);
+	/**
+	* Return a RegExp that will match any list of extensions
+	*
+	* @param extensions
+	* @example
+	* ```ts
+	* Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
+	* ```
+	*/
+	function extensionsToMatcher(extensions) {
+		return new RegExp(`(${extensions.map(escapeRegExp).join("|")})$`);
+	}
+	/**
+	* Files and folders to always ignore
+	*
+	* @example
+	* ```ts
+	* IGNORED // ['node_modules/', 'build/', ...]
+	* ```
+	*/
+	function ignored() {
+		return IGNORED;
+	}
+	const reExtension = /^\./;
+	/**
+	* Return a glob matcher that will match any list of extensions
+	*
+	* @param extensions
+	* @example
+	* ```ts
+	* Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
+	* ```
+	*/
+	function extensionsToGlob(extensions) {
+		return `*.+(${extensions.map((_) => _.replace(reExtension, "")).join("|")})`;
+	}
+	const Project = Object.freeze({
+		ecmaVersion,
+		extensionsToGlob,
+		extensionsToMatcher,
+		ignored,
+		queryExtensions,
+		resourceExtensions,
+		sourceExtensions
+	});
+	/**
+	* Project common scripts
+	*/
+	const ProjectScript = {
+		Build: "build",
+		Clean: "clean",
+		CodeAnalysis: "code-analysis",
+		Coverage: "coverage",
+		Develop: "develop",
+		Docs: "docs",
+		Format: "format",
+		Install: "install",
+		Lint: "lint",
+		Prepare: "prepare",
+		Release: "release",
+		Rescue: "rescue",
+		Spellcheck: "spellcheck",
+		Test: "test",
+		Typecheck: "typecheck",
+		Validate: "validate"
+	};
+	exports.ESLintConfig = ESLintConfig;
+	exports.Project = Project;
+	exports.ProjectScript = ProjectScript;
+	exports.interopDefault = interopDefault;
+	exports.meta = meta;
+})))();
 const defaultFiles$4 = [sourceGlob$1];
 async function react(options = {}) {
 	const [reactPlugin] = await Promise.all([interopDefault(import("@eslint-react/eslint-plugin"))]);
-	const { files, recommended, rules = {} } = options;
+	const { files, recommended = true, rules = {} } = options;
 	return [{
 		name: "w5s/react/setup",
 		plugins: { react: reactPlugin }
@@ -927,7 +1250,7 @@ async function react(options = {}) {
 		},
 		name: "w5s/react/rules",
 		rules: {
-			...recommended ? reactPlugin.configs["recommended"].rules : {},
+			...recommended ? import_dist.ESLintConfig.renameRules(reactPlugin.configs["recommended"].rules, { "@eslint-react": "react" }) : {},
 			...rules
 		}
 	}];
@@ -1207,7 +1530,7 @@ async function defineConfig(options = {}) {
 		...optionsOrBoolean
 	});
 	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
-	return ESLintConfig.concat(...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(stylistic, toOption(plugins.stylistic)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(test, toOption(plugins.test)), ...rules ? [{ rules }] : []);
+	return ESLintConfig.concat(...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(jsx, toOption(plugins.jsx)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(stylistic, toOption(plugins.stylistic)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(test, toOption(plugins.test)), ...rules ? [{ rules }] : []);
 }
 //#endregion
 //#region src/meta.ts
@@ -1217,6 +1540,6 @@ const meta = Object.freeze({
 	version: "3.14.0"
 });
 //#endregion
-export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, yml };
+export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, yml };
 
 //# sourceMappingURL=index.js.map

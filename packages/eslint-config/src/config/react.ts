@@ -2,6 +2,7 @@ import { interopDefault } from '@w5s/dev';
 
 import type { RuleOptions } from '../typegen/react.js';
 
+import { ESLintConfig } from '../../../dev/dist/index.cjs';
 import { sourceGlob } from '../glob.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase } from '../type.js';
@@ -12,7 +13,7 @@ export async function react(options: react.Options = {}) {
   const [reactPlugin] = await Promise.all([
     interopDefault(import('@eslint-react/eslint-plugin')),
   ] as const);
-  const { files, recommended, rules = {} } = options;
+  const { files, recommended = true, rules = {} } = options;
   return [
     {
       name: 'w5s/react/setup',
@@ -32,7 +33,8 @@ export async function react(options: react.Options = {}) {
       },
       name: 'w5s/react/rules',
       rules: {
-        ...(recommended ? reactPlugin.configs['recommended'].rules : {}),
+        // eslint-disable-next-line ts/no-non-null-assertion
+        ...(recommended ? ESLintConfig.renameRules(reactPlugin.configs['recommended'].rules!, { '@eslint-react': 'react' }) : {}),
         ...rules,
       },
     },

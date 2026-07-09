@@ -8,6 +8,7 @@ const disabledPlugins = {
   import: false,
   jsdoc: false,
   jsonc: false,
+  jsx: false,
   markdown: false,
   next: false,
   node: false,
