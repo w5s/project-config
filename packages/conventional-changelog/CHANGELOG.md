@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@3.2.1...@w5s/conventional-changelog@3.5.0) (2026-07-09)
+
+### ✨ Features
+
+- Update TypeScript rules and add consistent-type-assertions rule ([71b0eb1](https://github.com/w5s/project-config/commit/71b0eb1))
+
+**Note:** Version bump only for package @w5s/conventional-changelog
+
 # [3.4.0](https://github.com/w5s/project-config/compare/@w5s/conventional-changelog@3.2.1...@w5s/conventional-changelog@3.4.0) (2026-07-09)
 
 ### ✨ Features
