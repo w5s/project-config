@@ -9,6 +9,7 @@ import vitestPlugin from '@vitest/eslint-plugin';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
+import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import nodePlugin from 'eslint-plugin-n';
 import perfectionistPlugin from 'eslint-plugin-perfectionist';
 import unicornPlugin from 'eslint-plugin-unicorn';
@@ -26,6 +27,7 @@ await Promise.all(
       ['import', importPlugin],
       ['jsdoc', jsdocPlugin],
       ['jsonc', jsoncPlugin],
+      ['jsx-a11y', jsxA11yPlugin],
       ['markdown', markdownPlugin],
       ['next', nextPlugin],
       ['node', nodePlugin],
