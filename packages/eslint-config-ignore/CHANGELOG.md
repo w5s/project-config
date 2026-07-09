@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config-ignore@1.2.1...@w5s/eslint-config-ignore@1.5.0) (2026-07-09)
+
+### ✨ Features
+
+- Add minimatch support for ignore patterns and enhance ignore rule resolution ([4ca0318](https://github.com/w5s/project-config/commit/4ca0318)) 
+- Update TypeScript rules and add consistent-type-assertions rule ([71b0eb1](https://github.com/w5s/project-config/commit/71b0eb1)) 
+
+### 🐛 Bug Fixes
+
+- Update jsdoc configuration for TypeScript support and improve turbo.json structure ([c6e2e62](https://github.com/w5s/project-config/commit/c6e2e62))
+
+**Note:** Version bump only for package @w5s/eslint-config-ignore
+
 # [1.4.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config-ignore@1.2.1...@w5s/eslint-config-ignore@1.4.0) (2026-07-08)
 
 ### ✨ Features
