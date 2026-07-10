@@ -27,6 +27,7 @@ export const defaultIgnores = [
   '**/.history',
   '**/.nuxt',
   '**/.next',
+  '**/next-env.d.ts',
   '**/.svelte-kit',
   '**/.vercel',
   '**/.idea',
