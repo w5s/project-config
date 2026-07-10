@@ -1,5 +1,4 @@
 import { Linter } from "eslint";
-
 //#region src/ESLintConfig.d.ts
 /**
  * Concat multiple flat configs into a single flat config array.

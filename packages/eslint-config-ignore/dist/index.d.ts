@@ -15,6 +15,10 @@ interface ESLintIgnoreOptions {
    */
   cwd?: string;
   /**
+   * Whether to ignore git submodules (default: true)
+   */
+  ignoreGitModules?: boolean;
+  /**
    * Override or customize ignore patterns.
    * - If passed an array, it appends patterns to the merged ignore list.
    * - If passed a function, it receives the merged list and returns the final array.

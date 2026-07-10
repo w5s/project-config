@@ -23,6 +23,7 @@ exports[`defaultIgnores > has defined values 1`] = `
   "**/.history",
   "**/.nuxt",
   "**/.next",
+  "**/next-env.d.ts",
   "**/.svelte-kit",
   "**/.vercel",
   "**/.idea",

@@ -3,6 +3,7 @@ import nodePath from 'node:path';
 import process from 'node:process';
 
 import { defaultIgnores } from './defaultIgnores.js';
+import { gitModulesIgnore } from './internal/gitModulesIgnore.js';
 import { ignoreFileFind } from './internal/ignoreFileFind.js';
 import { ignoreFileParse } from './internal/ignoreFileParse.js';
 import { ignoreRuleResolve } from './internal/ignoreRuleResolve.js';
@@ -24,6 +25,11 @@ export interface ESLintIgnoreOptions {
    * Override current working directory
    */
   cwd?: string;
+
+  /**
+   * Whether to ignore git submodules (default: true)
+   */
+  ignoreGitModules?: boolean;
 
   /**
    * Override or customize ignore patterns.
@@ -77,6 +83,11 @@ export async function eslintIgnores(options: ESLintIgnoreOptions = {}): Promise<
     ...(recommended ? defaultIgnores : []),
     ...ignoreGlobs.flat(),
   ];
+
+  // Optionally include .gitmodules entries as ignores (each submodule path -> `${path}/**`)
+  if (options.ignoreGitModules ?? true) {
+    mergedIgnores.push(...await gitModulesIgnore(cwd));
+  }
 
   const ignores = typeof options.ignores === 'function'
     ? options.ignores(mergedIgnores)

@@ -1,7 +1,6 @@
 import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
 import eslint, { Linter } from "eslint";
 import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
-
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
@@ -445,12 +444,14 @@ interface RuleOptions$13 {
 type JsoncArrayBracketNewline = [] | [(("always" | "never" | "consistent") | {
   multiline?: boolean;
   minItems?: (number | null);
-})]; // ----- jsonc/array-bracket-spacing -----
+})];
+// ----- jsonc/array-bracket-spacing -----
 type JsoncArrayBracketSpacing = [] | [("always" | "never")] | [("always" | "never"), {
   singleValue?: boolean;
   objectsInArrays?: boolean;
   arraysInArrays?: boolean;
-}]; // ----- jsonc/array-element-newline -----
+}];
+// ----- jsonc/array-element-newline -----
 type JsoncArrayElementNewline = [] | [(_JsoncArrayElementNewlineBasicConfig | {
   ArrayExpression?: _JsoncArrayElementNewlineBasicConfig;
   JSONArrayExpression?: _JsoncArrayElementNewlineBasicConfig;
@@ -459,7 +460,8 @@ type JsoncArrayElementNewline = [] | [(_JsoncArrayElementNewlineBasicConfig | {
 type _JsoncArrayElementNewlineBasicConfig = (("always" | "never" | "consistent") | {
   multiline?: boolean;
   minItems?: (number | null);
-}); // ----- jsonc/comma-dangle -----
+});
+// ----- jsonc/comma-dangle -----
 type JsoncCommaDangle = [] | [(_JsoncCommaDangleValue | {
   arrays?: _JsoncCommaDangleValueWithIgnore;
   objects?: _JsoncCommaDangleValueWithIgnore;
@@ -468,12 +470,14 @@ type JsoncCommaDangle = [] | [(_JsoncCommaDangleValue | {
   functions?: _JsoncCommaDangleValueWithIgnore;
 })];
 type _JsoncCommaDangleValue = ("always-multiline" | "always" | "never" | "only-multiline");
-type _JsoncCommaDangleValueWithIgnore = ("always-multiline" | "always" | "ignore" | "never" | "only-multiline"); // ----- jsonc/comma-style -----
+type _JsoncCommaDangleValueWithIgnore = ("always-multiline" | "always" | "ignore" | "never" | "only-multiline");
+// ----- jsonc/comma-style -----
 type JsoncCommaStyle = [] | [("first" | "last")] | [("first" | "last"), {
   exceptions?: {
     [k: string]: boolean | undefined;
   };
-}]; // ----- jsonc/indent -----
+}];
+// ----- jsonc/indent -----
 type JsoncIndent = [] | [("tab" | number)] | [("tab" | number), {
   SwitchCase?: number;
   VariableDeclarator?: ((number | ("first" | "off")) | {
@@ -504,7 +508,8 @@ type JsoncIndent = [] | [("tab" | number)] | [("tab" | number), {
   offsetTernaryExpressions?: boolean;
   ignoredNodes?: string[];
   ignoreComments?: boolean;
-}]; // ----- jsonc/key-name-casing -----
+}];
+// ----- jsonc/key-name-casing -----
 type JsoncKeyNameCasing = [] | [{
   camelCase?: boolean;
   PascalCase?: boolean;
@@ -512,7 +517,8 @@ type JsoncKeyNameCasing = [] | [{
   "kebab-case"?: boolean;
   snake_case?: boolean;
   ignores?: string[];
-}]; // ----- jsonc/key-spacing -----
+}];
+// ----- jsonc/key-spacing -----
 type JsoncKeySpacing = [] | [({
   align?: (("colon" | "value") | {
     mode?: ("strict" | "minimum");
@@ -557,17 +563,20 @@ type JsoncKeySpacing = [] | [({
     beforeColon?: boolean;
     afterColon?: boolean;
   };
-})]; // ----- jsonc/no-irregular-whitespace -----
+})];
+// ----- jsonc/no-irregular-whitespace -----
 type JsoncNoIrregularWhitespace = [] | [{
   skipComments?: boolean;
   skipStrings?: boolean;
   skipTemplates?: boolean;
   skipRegExps?: boolean;
   skipJSXText?: boolean;
-}]; // ----- jsonc/no-useless-escape -----
+}];
+// ----- jsonc/no-useless-escape -----
 type JsoncNoUselessEscape = [] | [{
   allowRegexCharacters?: string[];
-}]; // ----- jsonc/object-curly-newline -----
+}];
+// ----- jsonc/object-curly-newline -----
 type JsoncObjectCurlyNewline = [] | [((("always" | "never") | {
   multiline?: boolean;
   minProperties?: number;
@@ -593,25 +602,30 @@ type JsoncObjectCurlyNewline = [] | [((("always" | "never") | {
     minProperties?: number;
     consistent?: boolean;
   });
-})]; // ----- jsonc/object-curly-spacing -----
+})];
+// ----- jsonc/object-curly-spacing -----
 type JsoncObjectCurlySpacing = [] | [("always" | "never")] | [("always" | "never"), {
   arraysInObjects?: boolean;
   objectsInObjects?: boolean;
   emptyObjects?: ("ignore" | "always" | "never");
-}]; // ----- jsonc/object-property-newline -----
+}];
+// ----- jsonc/object-property-newline -----
 type JsoncObjectPropertyNewline = [] | [{
   allowAllPropertiesOnSameLine?: boolean;
   allowMultiplePropertiesPerLine?: boolean;
-}]; // ----- jsonc/quote-props -----
+}];
+// ----- jsonc/quote-props -----
 type JsoncQuoteProps = ([] | [("always" | "as-needed" | "consistent" | "consistent-as-needed")] | [] | [("always" | "as-needed" | "consistent" | "consistent-as-needed")] | [("always" | "as-needed" | "consistent" | "consistent-as-needed"), {
   keywords?: boolean;
   unnecessary?: boolean;
   numbers?: boolean;
-}]); // ----- jsonc/quotes -----
+}]);
+// ----- jsonc/quotes -----
 type JsoncQuotes = [] | [("single" | "double" | "backtick")] | [("single" | "double" | "backtick"), ("avoid-escape" | {
   avoidEscape?: boolean;
   allowTemplateLiterals?: boolean;
-})]; // ----- jsonc/sort-array-values -----
+})];
+// ----- jsonc/sort-array-values -----
 type JsoncSortArrayValues = [{
   pathPattern: string;
   order: ((string | {
@@ -620,11 +634,13 @@ type JsoncSortArrayValues = [{
       type?: ("asc" | "desc");
       caseSensitive?: boolean;
       natural?: boolean;
+      key?: string;
     };
   })[] | {
     type?: ("asc" | "desc");
     caseSensitive?: boolean;
     natural?: boolean;
+    key?: string;
   });
   minValues?: number;
 }, ...({
@@ -635,14 +651,17 @@ type JsoncSortArrayValues = [{
       type?: ("asc" | "desc");
       caseSensitive?: boolean;
       natural?: boolean;
+      key?: string;
     };
   })[] | {
     type?: ("asc" | "desc");
     caseSensitive?: boolean;
     natural?: boolean;
+    key?: string;
   });
   minValues?: number;
-})[]]; // ----- jsonc/sort-keys -----
+})[]];
+// ----- jsonc/sort-keys -----
 type JsoncSortKeys = ([{
   pathPattern: string;
   hasProperties?: string[];
@@ -682,7 +701,8 @@ type JsoncSortKeys = ([{
   natural?: boolean;
   minKeys?: number;
   allowLineSeparatedGroups?: boolean;
-}]); // ----- jsonc/space-unary-ops -----
+}]);
+// ----- jsonc/space-unary-ops -----
 type JsoncSpaceUnaryOps = [] | [{
   words?: boolean;
   nonwords?: boolean;
@@ -1227,14 +1247,17 @@ interface RuleOptions$12 {
 }
 /* ======= Declarations ======= */
 // ----- import/consistent-type-specifier-style -----
-type ImportConsistentTypeSpecifierStyle = [] | [("prefer-inline" | "prefer-top-level")]; // ----- import/dynamic-import-chunkname -----
+type ImportConsistentTypeSpecifierStyle = [] | [("prefer-inline" | "prefer-top-level")];
+// ----- import/dynamic-import-chunkname -----
 type ImportDynamicImportChunkname = [] | [{
   importFunctions?: string[];
   allowEmpty?: boolean;
   webpackChunknameFormat?: string;
   [k: string]: unknown | undefined;
-}]; // ----- import/enforce-node-protocol-usage -----
-type ImportEnforceNodeProtocolUsage = [("always" | "never")]; // ----- import/extensions -----
+}];
+// ----- import/enforce-node-protocol-usage -----
+type ImportEnforceNodeProtocolUsage = [("always" | "never")];
+// ----- import/extensions -----
 type ImportExtensions = ([] | [("always" | "ignorePackages" | "never")] | [] | [("always" | "ignorePackages" | "never")] | [("always" | "ignorePackages" | "never"), {
   pattern?: {
     [k: string]: ("always" | "ignorePackages" | "never");
@@ -1267,30 +1290,38 @@ type ImportExtensions = ([] | [("always" | "ignorePackages" | "never")] | [] | [
   [k: string]: ("always" | "ignorePackages" | "never");
 }] | [] | [("always" | "ignorePackages" | "never")] | [("always" | "ignorePackages" | "never"), {
   [k: string]: ("always" | "ignorePackages" | "never");
-}]); // ----- import/first -----
-type ImportFirst = [] | [("absolute-first" | "disable-absolute-first")]; // ----- import/imports-first -----
-type ImportImportsFirst = [] | [("absolute-first" | "disable-absolute-first")]; // ----- import/max-dependencies -----
+}]);
+// ----- import/first -----
+type ImportFirst = [] | [("absolute-first" | "disable-absolute-first")];
+// ----- import/imports-first -----
+type ImportImportsFirst = [] | [("absolute-first" | "disable-absolute-first")];
+// ----- import/max-dependencies -----
 type ImportMaxDependencies = [] | [{
   max?: number;
   ignoreTypeImports?: boolean;
-}]; // ----- import/named -----
+}];
+// ----- import/named -----
 type ImportNamed = [] | [{
   commonjs?: boolean;
-}]; // ----- import/namespace -----
+}];
+// ----- import/namespace -----
 type ImportNamespace = [] | [{
   allowComputed?: boolean;
-}]; // ----- import/newline-after-import -----
+}];
+// ----- import/newline-after-import -----
 type ImportNewlineAfterImport = [] | [{
   count?: number;
   exactCount?: boolean;
   considerComments?: boolean;
-}]; // ----- import/no-absolute-path -----
+}];
+// ----- import/no-absolute-path -----
 type ImportNoAbsolutePath = [] | [{
   commonjs?: boolean;
   amd?: boolean;
   esmodule?: boolean;
   ignore?: [string, ...(string)[]];
-}]; // ----- import/no-anonymous-default-export -----
+}];
+// ----- import/no-anonymous-default-export -----
 type ImportNoAnonymousDefaultExport = [] | [{
   allowArray?: boolean;
   allowArrowFunction?: boolean;
@@ -1300,12 +1331,14 @@ type ImportNoAnonymousDefaultExport = [] | [{
   allowLiteral?: boolean;
   allowObject?: boolean;
   allowNew?: boolean;
-}]; // ----- import/no-commonjs -----
+}];
+// ----- import/no-commonjs -----
 type ImportNoCommonjs = ([] | ["allow-primitive-modules"] | [] | [{
   allowPrimitiveModules?: boolean;
   allowRequire?: boolean;
   allowConditionalRequire?: boolean;
-}]); // ----- import/no-cycle -----
+}]);
+// ----- import/no-cycle -----
 type ImportNoCycle = [] | [{
   commonjs?: boolean;
   amd?: boolean;
@@ -1315,14 +1348,17 @@ type ImportNoCycle = [] | [{
   ignoreExternal?: boolean;
   allowUnsafeDynamicCyclicDependency?: boolean;
   disableScc?: boolean;
-}]; // ----- import/no-duplicates -----
+}];
+// ----- import/no-duplicates -----
 type ImportNoDuplicates = [] | [{
   considerQueryString?: boolean;
   "prefer-inline"?: boolean;
-}]; // ----- import/no-dynamic-require -----
+}];
+// ----- import/no-dynamic-require -----
 type ImportNoDynamicRequire = [] | [{
   esmodule?: boolean;
-}]; // ----- import/no-extraneous-dependencies -----
+}];
+// ----- import/no-extraneous-dependencies -----
 type ImportNoExtraneousDependencies = [] | [{
   devDependencies?: (boolean | unknown[]);
   optionalDependencies?: (boolean | unknown[]);
@@ -1331,34 +1367,41 @@ type ImportNoExtraneousDependencies = [] | [{
   packageDir?: (string | unknown[]);
   includeInternal?: boolean;
   includeTypes?: boolean;
-}]; // ----- import/no-import-module-exports -----
+}];
+// ----- import/no-import-module-exports -----
 type ImportNoImportModuleExports = [] | [{
   exceptions?: unknown[];
-}]; // ----- import/no-internal-modules -----
+}];
+// ----- import/no-internal-modules -----
 type ImportNoInternalModules = [] | [({
   allow?: string[];
 } | {
   forbid?: string[];
-})]; // ----- import/no-namespace -----
+})];
+// ----- import/no-namespace -----
 type ImportNoNamespace = [] | [{
   ignore?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- import/no-nodejs-modules -----
+}];
+// ----- import/no-nodejs-modules -----
 type ImportNoNodejsModules = [] | [{
   allow?: string[];
-}]; // ----- import/no-relative-packages -----
+}];
+// ----- import/no-relative-packages -----
 type ImportNoRelativePackages = [] | [{
   commonjs?: boolean;
   amd?: boolean;
   esmodule?: boolean;
   ignore?: [string, ...(string)[]];
-}]; // ----- import/no-relative-parent-imports -----
+}];
+// ----- import/no-relative-parent-imports -----
 type ImportNoRelativeParentImports = [] | [{
   commonjs?: boolean;
   amd?: boolean;
   esmodule?: boolean;
   ignore?: [string, ...(string)[]];
-}]; // ----- import/no-restricted-paths -----
+}];
+// ----- import/no-restricted-paths -----
 type ImportNoRestrictedPaths = [] | [{
   zones?: [{
     target?: (string | string[]);
@@ -1372,13 +1415,15 @@ type ImportNoRestrictedPaths = [] | [{
     message?: string;
   })[]];
   basePath?: string;
-}]; // ----- import/no-unassigned-import -----
+}];
+// ----- import/no-unassigned-import -----
 type ImportNoUnassignedImport = [] | [{
   devDependencies?: (boolean | unknown[]);
   optionalDependencies?: (boolean | unknown[]);
   peerDependencies?: (boolean | unknown[]);
   allow?: string[];
-}]; // ----- import/no-unresolved -----
+}];
+// ----- import/no-unresolved -----
 type ImportNoUnresolved = [] | [{
   commonjs?: boolean;
   amd?: boolean;
@@ -1386,7 +1431,8 @@ type ImportNoUnresolved = [] | [{
   ignore?: [string, ...(string)[]];
   caseSensitive?: boolean;
   caseSensitiveStrict?: boolean;
-}]; // ----- import/no-unused-modules -----
+}];
+// ----- import/no-unused-modules -----
 type ImportNoUnusedModules = [] | [({
   unusedExports: true;
   src?: {
@@ -1396,11 +1442,13 @@ type ImportNoUnusedModules = [] | [({
 } | {
   missingExports: true;
   [k: string]: unknown | undefined;
-})]; // ----- import/no-useless-path-segments -----
+})];
+// ----- import/no-useless-path-segments -----
 type ImportNoUselessPathSegments = [] | [{
   commonjs?: boolean;
   noUselessIndex?: boolean;
-}]; // ----- import/order -----
+}];
+// ----- import/order -----
 type ImportOrder = [] | [{
   groups?: (("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type") | ("builtin" | "external" | "internal" | "unknown" | "parent" | "sibling" | "index" | "object" | "type")[])[];
   pathGroupsExcludedImportTypes?: unknown[];
@@ -1431,7 +1479,8 @@ type ImportOrder = [] | [{
     orderImportKind?: ("ignore" | "asc" | "desc");
   };
   warnOnUnassignedImports?: boolean;
-}]; // ----- import/prefer-default-export -----
+}];
+// ----- import/prefer-default-export -----
 type ImportPreferDefaultExport = [] | [{
   target?: ("single" | "any");
 }];
@@ -1843,7 +1892,8 @@ interface RuleOptions$11 {
 // ----- jsdoc/check-alignment -----
 type JsdocCheckAlignment = [] | [{
   innerIndent?: number;
-}]; // ----- jsdoc/check-examples -----
+}];
+// ----- jsdoc/check-examples -----
 type JsdocCheckExamples = [] | [{
   allowInlineConfig?: boolean;
   baseConfig?: {
@@ -1864,11 +1914,13 @@ type JsdocCheckExamples = [] | [{
   paddedIndent?: number;
   rejectExampleCodeRegex?: string;
   reportUnusedDisableDirectives?: boolean;
-}]; // ----- jsdoc/check-indentation -----
+}];
+// ----- jsdoc/check-indentation -----
 type JsdocCheckIndentation = [] | [{
   allowIndentedSections?: boolean;
   excludeTags?: string[];
-}]; // ----- jsdoc/check-line-alignment -----
+}];
+// ----- jsdoc/check-line-alignment -----
 type JsdocCheckLineAlignment = [] | [("always" | "never" | "any")] | [("always" | "never" | "any"), {
   customSpacings?: {
     postDelimiter?: number;
@@ -1881,7 +1933,8 @@ type JsdocCheckLineAlignment = [] | [("always" | "never" | "any")] | [("always" 
   preserveMainDescriptionPostDelimiter?: boolean;
   tags?: string[];
   wrapIndent?: string;
-}]; // ----- jsdoc/check-param-names -----
+}];
+// ----- jsdoc/check-param-names -----
 type JsdocCheckParamNames = [] | [{
   allowExtraTrailingParamDocs?: boolean;
   checkDestructured?: boolean;
@@ -1891,17 +1944,20 @@ type JsdocCheckParamNames = [] | [{
   disableMissingParamChecks?: boolean;
   enableFixer?: boolean;
   useDefaultObjectProperties?: boolean;
-}]; // ----- jsdoc/check-property-names -----
+}];
+// ----- jsdoc/check-property-names -----
 type JsdocCheckPropertyNames = [] | [{
   enableFixer?: boolean;
-}]; // ----- jsdoc/check-tag-names -----
+}];
+// ----- jsdoc/check-tag-names -----
 type JsdocCheckTagNames = [] | [{
   definedTags?: string[];
   enableFixer?: boolean;
   inlineTags?: string[];
   jsxTags?: boolean;
   typed?: boolean;
-}]; // ----- jsdoc/check-types -----
+}];
+// ----- jsdoc/check-types -----
 type JsdocCheckTypes = [] | [{
   exemptTagContexts?: {
     tag?: string;
@@ -1909,13 +1965,15 @@ type JsdocCheckTypes = [] | [{
   }[];
   noDefaults?: boolean;
   unifyParentAndChildTypeChecks?: boolean;
-}]; // ----- jsdoc/check-values -----
+}];
+// ----- jsdoc/check-values -----
 type JsdocCheckValues = [] | [{
   allowedAuthors?: string[];
   allowedLicenses?: (string[] | boolean);
   licensePattern?: string;
   numericOnlyVariation?: boolean;
-}]; // ----- jsdoc/convert-to-jsdoc-comments -----
+}];
+// ----- jsdoc/convert-to-jsdoc-comments -----
 type JsdocConvertToJsdocComments = [] | [{
   allowedPrefixes?: string[];
   contexts?: (string | {
@@ -1933,35 +1991,41 @@ type JsdocConvertToJsdocComments = [] | [{
   enableFixer?: boolean;
   enforceJsdocLineStyle?: ("multi" | "single");
   lineOrBlockStyle?: ("block" | "line" | "both");
-}]; // ----- jsdoc/empty-tags -----
+}];
+// ----- jsdoc/empty-tags -----
 type JsdocEmptyTags = [] | [{
   tags?: string[];
-}]; // ----- jsdoc/escape-inline-tags -----
+}];
+// ----- jsdoc/escape-inline-tags -----
 type JsdocEscapeInlineTags = [] | [{
   allowedInlineTags?: string[];
   enableFixer?: boolean;
   fixType?: ("backticks" | "backslash");
-}]; // ----- jsdoc/implements-on-classes -----
+}];
+// ----- jsdoc/implements-on-classes -----
 type JsdocImplementsOnClasses = [] | [{
   contexts?: (string | {
     comment?: string;
     context?: string;
   })[];
-}]; // ----- jsdoc/informative-docs -----
+}];
+// ----- jsdoc/informative-docs -----
 type JsdocInformativeDocs = [] | [{
   aliases?: {
     [k: string]: string[];
   };
   excludedTags?: string[];
   uselessWords?: string[];
-}]; // ----- jsdoc/lines-before-block -----
+}];
+// ----- jsdoc/lines-before-block -----
 type JsdocLinesBeforeBlock = [] | [{
   checkBlockStarts?: boolean;
   excludedTags?: string[];
   ignoreSameLine?: boolean;
   ignoreSingleLines?: boolean;
   lines?: number;
-}]; // ----- jsdoc/match-description -----
+}];
+// ----- jsdoc/match-description -----
 type JsdocMatchDescription = [] | [{
   contexts?: (string | {
     comment?: string;
@@ -1980,7 +2044,8 @@ type JsdocMatchDescription = [] | [{
       message?: string;
     });
   };
-}]; // ----- jsdoc/match-name -----
+}];
+// ----- jsdoc/match-name -----
 type JsdocMatchName = [] | [{
   match: {
     allowName?: string;
@@ -1991,7 +2056,8 @@ type JsdocMatchName = [] | [{
     replacement?: string;
     tags?: string[];
   }[];
-}]; // ----- jsdoc/multiline-blocks -----
+}];
+// ----- jsdoc/multiline-blocks -----
 type JsdocMultilineBlocks = [] | [{
   allowMultipleTags?: boolean;
   minimumLengthForMultiline?: number;
@@ -2002,21 +2068,25 @@ type JsdocMultilineBlocks = [] | [{
   noZeroLineText?: boolean;
   requireSingleLineUnderCount?: number;
   singleLineTags?: string[];
-}]; // ----- jsdoc/no-bad-blocks -----
+}];
+// ----- jsdoc/no-bad-blocks -----
 type JsdocNoBadBlocks = [] | [{
   ignore?: string[];
   preventAllMultiAsteriskBlocks?: boolean;
-}]; // ----- jsdoc/no-blank-blocks -----
+}];
+// ----- jsdoc/no-blank-blocks -----
 type JsdocNoBlankBlocks = [] | [{
   enableFixer?: boolean;
-}]; // ----- jsdoc/no-defaults -----
+}];
+// ----- jsdoc/no-defaults -----
 type JsdocNoDefaults = [] | [{
   contexts?: (string | {
     comment?: string;
     context?: string;
   })[];
   noOptionalParamNames?: boolean;
-}]; // ----- jsdoc/no-missing-syntax -----
+}];
+// ----- jsdoc/no-missing-syntax -----
 type JsdocNoMissingSyntax = [] | [{
   contexts?: (string | {
     comment?: string;
@@ -2024,43 +2094,50 @@ type JsdocNoMissingSyntax = [] | [{
     message?: string;
     minimum?: number;
   })[];
-}]; // ----- jsdoc/no-multi-asterisks -----
+}];
+// ----- jsdoc/no-multi-asterisks -----
 type JsdocNoMultiAsterisks = [] | [{
   allowWhitespace?: boolean;
   preventAtEnd?: boolean;
   preventAtMiddleLines?: boolean;
-}]; // ----- jsdoc/no-restricted-syntax -----
+}];
+// ----- jsdoc/no-restricted-syntax -----
 type JsdocNoRestrictedSyntax = [] | [{
   contexts: (string | {
     comment?: string;
     context?: string;
     message?: string;
   })[];
-}]; // ----- jsdoc/no-types -----
+}];
+// ----- jsdoc/no-types -----
 type JsdocNoTypes = [] | [{
   contexts?: (string | {
     comment?: string;
     context?: string;
   })[];
-}]; // ----- jsdoc/no-undefined-types -----
+}];
+// ----- jsdoc/no-undefined-types -----
 type JsdocNoUndefinedTypes = [] | [{
   checkUsedTypedefs?: boolean;
   definedTypes?: string[];
   disableReporting?: boolean;
   markVariablesAsUsed?: boolean;
-}]; // ----- jsdoc/prefer-import-tag -----
+}];
+// ----- jsdoc/prefer-import-tag -----
 type JsdocPreferImportTag = [] | [{
   enableFixer?: boolean;
   exemptTypedefs?: boolean;
   outputType?: ("named-import" | "namespaced-import");
-}]; // ----- jsdoc/require-asterisk-prefix -----
+}];
+// ----- jsdoc/require-asterisk-prefix -----
 type JsdocRequireAsteriskPrefix = [] | [("always" | "never" | "any")] | [("always" | "never" | "any"), {
   tags?: {
     always?: string[];
     any?: string[];
     never?: string[];
   };
-}]; // ----- jsdoc/require-description -----
+}];
+// ----- jsdoc/require-description -----
 type JsdocRequireDescription = [] | [{
   checkConstructors?: boolean;
   checkGetters?: boolean;
@@ -2071,12 +2148,14 @@ type JsdocRequireDescription = [] | [{
   })[];
   descriptionStyle?: ("body" | "tag" | "any");
   exemptedBy?: string[];
-}]; // ----- jsdoc/require-description-complete-sentence -----
+}];
+// ----- jsdoc/require-description-complete-sentence -----
 type JsdocRequireDescriptionCompleteSentence = [] | [{
   abbreviations?: string[];
   newlineBeforeCapsAssumesBadSentenceEnd?: boolean;
   tags?: string[];
-}]; // ----- jsdoc/require-example -----
+}];
+// ----- jsdoc/require-example -----
 type JsdocRequireExample = [] | [{
   checkConstructors?: boolean;
   checkGetters?: boolean;
@@ -2088,7 +2167,8 @@ type JsdocRequireExample = [] | [{
   enableFixer?: boolean;
   exemptedBy?: string[];
   exemptNoArguments?: boolean;
-}]; // ----- jsdoc/require-file-overview -----
+}];
+// ----- jsdoc/require-file-overview -----
 type JsdocRequireFileOverview = [] | [{
   tags?: {
     [k: string]: {
@@ -2097,12 +2177,14 @@ type JsdocRequireFileOverview = [] | [{
       preventDuplicates?: boolean;
     };
   };
-}]; // ----- jsdoc/require-hyphen-before-param-description -----
+}];
+// ----- jsdoc/require-hyphen-before-param-description -----
 type JsdocRequireHyphenBeforeParamDescription = [] | [("always" | "never")] | [("always" | "never"), {
   tags?: ({
     [k: string]: ("always" | "never");
   } | "any");
-}]; // ----- jsdoc/require-jsdoc -----
+}];
+// ----- jsdoc/require-jsdoc -----
 type JsdocRequireJsdoc = [] | [{
   checkAllFunctionExpressions?: boolean;
   checkConstructors?: boolean;
@@ -2134,7 +2216,8 @@ type JsdocRequireJsdoc = [] | [{
     MethodDefinition?: boolean;
   };
   skipInterveningOverloadedDeclarations?: boolean;
-}]; // ----- jsdoc/require-param -----
+}];
+// ----- jsdoc/require-param -----
 type JsdocRequireParam = [] | [{
   autoIncrementBase?: number;
   checkConstructors?: boolean;
@@ -2156,7 +2239,8 @@ type JsdocRequireParam = [] | [{
   interfaceExemptsParamsCheck?: boolean;
   unnamedRootBase?: string[];
   useDefaultObjectProperties?: boolean;
-}]; // ----- jsdoc/require-param-description -----
+}];
+// ----- jsdoc/require-param-description -----
 type JsdocRequireParamDescription = [] | [{
   contexts?: (string | {
     comment?: string;
@@ -2164,13 +2248,15 @@ type JsdocRequireParamDescription = [] | [{
   })[];
   defaultDestructuredRootDescription?: string;
   setDefaultDestructuredRootDescription?: boolean;
-}]; // ----- jsdoc/require-param-name -----
+}];
+// ----- jsdoc/require-param-name -----
 type JsdocRequireParamName = [] | [{
   contexts?: (string | {
     comment?: string;
     context?: string;
   })[];
-}]; // ----- jsdoc/require-param-type -----
+}];
+// ----- jsdoc/require-param-type -----
 type JsdocRequireParamType = [] | [{
   contexts?: (string | {
     comment?: string;
@@ -2178,14 +2264,16 @@ type JsdocRequireParamType = [] | [{
   })[];
   defaultDestructuredRootType?: string;
   setDefaultDestructuredRootType?: boolean;
-}]; // ----- jsdoc/require-rejects -----
+}];
+// ----- jsdoc/require-rejects -----
 type JsdocRequireRejects = [] | [{
   contexts?: (string | {
     comment?: string;
     context?: string;
   })[];
   exemptedBy?: string[];
-}]; // ----- jsdoc/require-returns -----
+}];
+// ----- jsdoc/require-returns -----
 type JsdocRequireReturns = [] | [{
   checkConstructors?: boolean;
   checkGetters?: boolean;
@@ -2204,43 +2292,50 @@ type JsdocRequireReturns = [] | [{
     esm?: boolean;
     window?: boolean;
   });
-}]; // ----- jsdoc/require-returns-check -----
+}];
+// ----- jsdoc/require-returns-check -----
 type JsdocRequireReturnsCheck = [] | [{
   exemptAsync?: boolean;
   exemptGenerators?: boolean;
   noNativeTypes?: boolean;
   reportMissingReturnForUndefinedTypes?: boolean;
-}]; // ----- jsdoc/require-returns-description -----
+}];
+// ----- jsdoc/require-returns-description -----
 type JsdocRequireReturnsDescription = [] | [{
   contexts?: (string | {
     comment?: string;
     context?: string;
   })[];
-}]; // ----- jsdoc/require-returns-type -----
+}];
+// ----- jsdoc/require-returns-type -----
 type JsdocRequireReturnsType = [] | [{
   contexts?: (string | {
     comment?: string;
     context?: string;
   })[];
-}]; // ----- jsdoc/require-tags -----
+}];
+// ----- jsdoc/require-tags -----
 type JsdocRequireTags = [] | [{
   tags?: (string | {
     context?: string;
     tag?: string;
     [k: string]: unknown | undefined;
   })[];
-}]; // ----- jsdoc/require-template -----
+}];
+// ----- jsdoc/require-template -----
 type JsdocRequireTemplate = [] | [{
   exemptedBy?: string[];
   requireSeparateTemplates?: boolean;
-}]; // ----- jsdoc/require-throws -----
+}];
+// ----- jsdoc/require-throws -----
 type JsdocRequireThrows = [] | [{
   contexts?: (string | {
     comment?: string;
     context?: string;
   })[];
   exemptedBy?: string[];
-}]; // ----- jsdoc/require-yields -----
+}];
+// ----- jsdoc/require-yields -----
 type JsdocRequireYields = [] | [{
   contexts?: (string | {
     comment?: string;
@@ -2252,7 +2347,8 @@ type JsdocRequireYields = [] | [{
   next?: boolean;
   nextWithGeneratorTag?: boolean;
   withGeneratorTag?: boolean;
-}]; // ----- jsdoc/require-yields-check -----
+}];
+// ----- jsdoc/require-yields-check -----
 type JsdocRequireYieldsCheck = [] | [{
   checkGeneratorsOnly?: boolean;
   contexts?: (string | {
@@ -2260,7 +2356,8 @@ type JsdocRequireYieldsCheck = [] | [{
     context?: string;
   })[];
   next?: boolean;
-}]; // ----- jsdoc/sort-tags -----
+}];
+// ----- jsdoc/sort-tags -----
 type JsdocSortTags = [] | [{
   alphabetizeExtras?: boolean;
   linesBetween?: number;
@@ -2272,7 +2369,8 @@ type JsdocSortTags = [] | [{
   tagSequence?: {
     tags?: string[];
   }[];
-}]; // ----- jsdoc/tag-lines -----
+}];
+// ----- jsdoc/tag-lines -----
 type JsdocTagLines = [] | [("always" | "any" | "never")] | [("always" | "any" | "never"), {
   applyToEndTag?: boolean;
   count?: number;
@@ -2286,20 +2384,25 @@ type JsdocTagLines = [] | [("always" | "any" | "never")] | [("always" | "any" | 
       lines?: ("always" | "never" | "any");
     };
   };
-}]; // ----- jsdoc/text-escaping -----
+}];
+// ----- jsdoc/text-escaping -----
 type JsdocTextEscaping = [] | [{
   escapeHTML?: boolean;
   escapeMarkdown?: boolean;
-}]; // ----- jsdoc/ts-method-signature-style -----
+}];
+// ----- jsdoc/ts-method-signature-style -----
 type JsdocTsMethodSignatureStyle = [] | [("method" | "property")] | [("method" | "property"), {
   enableFixer?: boolean;
-}]; // ----- jsdoc/ts-no-unnecessary-template-expression -----
+}];
+// ----- jsdoc/ts-no-unnecessary-template-expression -----
 type JsdocTsNoUnnecessaryTemplateExpression = [] | [{
   enableFixer?: boolean;
-}]; // ----- jsdoc/ts-prefer-function-type -----
+}];
+// ----- jsdoc/ts-prefer-function-type -----
 type JsdocTsPreferFunctionType = [] | [{
   enableFixer?: boolean;
-}]; // ----- jsdoc/type-formatting -----
+}];
+// ----- jsdoc/type-formatting -----
 type JsdocTypeFormatting = [] | [{
   arrayBrackets?: ("angle" | "square");
   arrowFunctionPostReturnMarkerSpacing?: string;
@@ -2331,7 +2434,8 @@ type JsdocTypeFormatting = [] | [{
   trailingPunctuationMultilineOnly?: boolean;
   typeBracketSpacing?: string;
   unionSpacing?: string;
-}]; // ----- jsdoc/valid-types -----
+}];
+// ----- jsdoc/valid-types -----
 type JsdocValidTypes = [] | [{
   allowEmptyNamepaths?: boolean;
 }];
@@ -2560,7 +2664,8 @@ interface RuleOptions$10 {
 // ----- jsx-a11y/accessible-emoji -----
 type JsxA11YAccessibleEmoji = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/alt-text -----
+}];
+// ----- jsx-a11y/alt-text -----
 type JsxA11YAltText = [] | [{
   elements?: string[];
   img?: string[];
@@ -2568,45 +2673,56 @@ type JsxA11YAltText = [] | [{
   area?: string[];
   "input[type=\"image\"]"?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/anchor-ambiguous-text -----
+}];
+// ----- jsx-a11y/anchor-ambiguous-text -----
 type JsxA11YAnchorAmbiguousText = [] | [{
   words?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/anchor-has-content -----
+}];
+// ----- jsx-a11y/anchor-has-content -----
 type JsxA11YAnchorHasContent = [] | [{
   components?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/anchor-is-valid -----
+}];
+// ----- jsx-a11y/anchor-is-valid -----
 type JsxA11YAnchorIsValid = [] | [{
   components?: string[];
   specialLink?: string[];
   aspects?: [("noHref" | "invalidHref" | "preferButton"), ...(("noHref" | "invalidHref" | "preferButton"))[]];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/aria-activedescendant-has-tabindex -----
+}];
+// ----- jsx-a11y/aria-activedescendant-has-tabindex -----
 type JsxA11YAriaActivedescendantHasTabindex = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/aria-props -----
+}];
+// ----- jsx-a11y/aria-props -----
 type JsxA11YAriaProps = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/aria-proptypes -----
+}];
+// ----- jsx-a11y/aria-proptypes -----
 type JsxA11YAriaProptypes = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/aria-role -----
+}];
+// ----- jsx-a11y/aria-role -----
 type JsxA11YAriaRole = [] | [{
   allowedInvalidRoles?: string[];
   ignoreNonDOM?: boolean;
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/aria-unsupported-elements -----
+}];
+// ----- jsx-a11y/aria-unsupported-elements -----
 type JsxA11YAriaUnsupportedElements = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/autocomplete-valid -----
+}];
+// ----- jsx-a11y/autocomplete-valid -----
 type JsxA11YAutocompleteValid = [] | [{
   inputComponents?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/click-events-have-key-events -----
+}];
+// ----- jsx-a11y/click-events-have-key-events -----
 type JsxA11YClickEventsHaveKeyEvents = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/control-has-associated-label -----
+}];
+// ----- jsx-a11y/control-has-associated-label -----
 type JsxA11YControlHasAssociatedLabel = [] | [{
   labelAttributes?: string[];
   controlComponents?: string[];
@@ -2614,26 +2730,32 @@ type JsxA11YControlHasAssociatedLabel = [] | [{
   ignoreRoles?: string[];
   depth?: number;
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/heading-has-content -----
+}];
+// ----- jsx-a11y/heading-has-content -----
 type JsxA11YHeadingHasContent = [] | [{
   components?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/html-has-lang -----
+}];
+// ----- jsx-a11y/html-has-lang -----
 type JsxA11YHtmlHasLang = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/iframe-has-title -----
+}];
+// ----- jsx-a11y/iframe-has-title -----
 type JsxA11YIframeHasTitle = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/img-redundant-alt -----
+}];
+// ----- jsx-a11y/img-redundant-alt -----
 type JsxA11YImgRedundantAlt = [] | [{
   components?: string[];
   words?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/interactive-supports-focus -----
+}];
+// ----- jsx-a11y/interactive-supports-focus -----
 type JsxA11YInteractiveSupportsFocus = [] | [{
   tabbable?: ("button" | "checkbox" | "columnheader" | "combobox" | "grid" | "gridcell" | "link" | "listbox" | "menu" | "menubar" | "menuitem" | "menuitemcheckbox" | "menuitemradio" | "option" | "progressbar" | "radio" | "radiogroup" | "row" | "rowheader" | "scrollbar" | "searchbox" | "slider" | "spinbutton" | "switch" | "tab" | "tablist" | "textbox" | "tree" | "treegrid" | "treeitem" | "doc-backlink" | "doc-biblioref" | "doc-glossref" | "doc-noteref")[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/label-has-associated-control -----
+}];
+// ----- jsx-a11y/label-has-associated-control -----
 type JsxA11YLabelHasAssociatedControl = [] | [{
   labelComponents?: string[];
   labelAttributes?: string[];
@@ -2641,7 +2763,8 @@ type JsxA11YLabelHasAssociatedControl = [] | [{
   assert?: ("htmlFor" | "nesting" | "both" | "either");
   depth?: number;
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/label-has-for -----
+}];
+// ----- jsx-a11y/label-has-for -----
 type JsxA11YLabelHasFor = [] | [{
   components?: string[];
   required?: (("nesting" | "id") | {
@@ -2653,72 +2776,91 @@ type JsxA11YLabelHasFor = [] | [{
   });
   allowChildren?: boolean;
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/lang -----
+}];
+// ----- jsx-a11y/lang -----
 type JsxA11YLang = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/media-has-caption -----
+}];
+// ----- jsx-a11y/media-has-caption -----
 type JsxA11YMediaHasCaption = [] | [{
   audio?: string[];
   video?: string[];
   track?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/mouse-events-have-key-events -----
+}];
+// ----- jsx-a11y/mouse-events-have-key-events -----
 type JsxA11YMouseEventsHaveKeyEvents = [] | [{
   hoverInHandlers?: string[];
   hoverOutHandlers?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/no-access-key -----
+}];
+// ----- jsx-a11y/no-access-key -----
 type JsxA11YNoAccessKey = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/no-aria-hidden-on-focusable -----
+}];
+// ----- jsx-a11y/no-aria-hidden-on-focusable -----
 type JsxA11YNoAriaHiddenOnFocusable = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/no-autofocus -----
+}];
+// ----- jsx-a11y/no-autofocus -----
 type JsxA11YNoAutofocus = [] | [{
   ignoreNonDOM?: boolean;
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/no-distracting-elements -----
+}];
+// ----- jsx-a11y/no-distracting-elements -----
 type JsxA11YNoDistractingElements = [] | [{
   elements?: ("marquee" | "blink")[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/no-interactive-element-to-noninteractive-role -----
+}];
+// ----- jsx-a11y/no-interactive-element-to-noninteractive-role -----
 type JsxA11YNoInteractiveElementToNoninteractiveRole = [] | [{
   [k: string]: string[] | undefined;
-}]; // ----- jsx-a11y/no-noninteractive-element-interactions -----
+}];
+// ----- jsx-a11y/no-noninteractive-element-interactions -----
 type JsxA11YNoNoninteractiveElementInteractions = [] | [{
   handlers?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/no-noninteractive-element-to-interactive-role -----
+}];
+// ----- jsx-a11y/no-noninteractive-element-to-interactive-role -----
 type JsxA11YNoNoninteractiveElementToInteractiveRole = [] | [{
   [k: string]: string[] | undefined;
-}]; // ----- jsx-a11y/no-noninteractive-tabindex -----
+}];
+// ----- jsx-a11y/no-noninteractive-tabindex -----
 type JsxA11YNoNoninteractiveTabindex = [] | [{
   roles?: string[];
   tags?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/no-onchange -----
+}];
+// ----- jsx-a11y/no-onchange -----
 type JsxA11YNoOnchange = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/no-redundant-roles -----
+}];
+// ----- jsx-a11y/no-redundant-roles -----
 type JsxA11YNoRedundantRoles = [] | [{
   [k: string]: string[] | undefined;
-}]; // ----- jsx-a11y/no-static-element-interactions -----
+}];
+// ----- jsx-a11y/no-static-element-interactions -----
 type JsxA11YNoStaticElementInteractions = [] | [{
   handlers?: string[];
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/prefer-tag-over-role -----
+}];
+// ----- jsx-a11y/prefer-tag-over-role -----
 type JsxA11YPreferTagOverRole = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/role-has-required-aria-props -----
+}];
+// ----- jsx-a11y/role-has-required-aria-props -----
 type JsxA11YRoleHasRequiredAriaProps = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/role-supports-aria-props -----
+}];
+// ----- jsx-a11y/role-supports-aria-props -----
 type JsxA11YRoleSupportsAriaProps = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/scope -----
+}];
+// ----- jsx-a11y/scope -----
 type JsxA11YScope = [] | [{
   [k: string]: unknown | undefined;
-}]; // ----- jsx-a11y/tabindex-no-positive -----
+}];
+// ----- jsx-a11y/tabindex-no-positive -----
 type JsxA11YTabindexNoPositive = [] | [{
   [k: string]: unknown | undefined;
 }];
@@ -2852,49 +2994,62 @@ interface RuleOptions$9 {
 // ----- markdown/fenced-code-language -----
 type MarkdownFencedCodeLanguage = [] | [{
   required?: string[];
-}]; // ----- markdown/fenced-code-meta -----
-type MarkdownFencedCodeMeta = [] | [("always" | "never")]; // ----- markdown/heading-increment -----
+}];
+// ----- markdown/fenced-code-meta -----
+type MarkdownFencedCodeMeta = [] | [("always" | "never")];
+// ----- markdown/heading-increment -----
 type MarkdownHeadingIncrement = [] | [{
   frontmatterTitle?: string;
-}]; // ----- markdown/no-duplicate-definitions -----
+}];
+// ----- markdown/no-duplicate-definitions -----
 type MarkdownNoDuplicateDefinitions = [] | [{
   allowDefinitions?: string[];
   allowFootnoteDefinitions?: string[];
   checkFootnoteDefinitions?: boolean;
-}]; // ----- markdown/no-duplicate-headings -----
+}];
+// ----- markdown/no-duplicate-headings -----
 type MarkdownNoDuplicateHeadings = [] | [{
   checkSiblingsOnly?: boolean;
-}]; // ----- markdown/no-empty-definitions -----
+}];
+// ----- markdown/no-empty-definitions -----
 type MarkdownNoEmptyDefinitions = [] | [{
   allowDefinitions?: string[];
   allowFootnoteDefinitions?: string[];
   checkFootnoteDefinitions?: boolean;
-}]; // ----- markdown/no-html -----
+}];
+// ----- markdown/no-html -----
 type MarkdownNoHtml = [] | [{
   allowed?: string[];
   allowedIgnoreCase?: boolean;
-}]; // ----- markdown/no-missing-atx-heading-space -----
+}];
+// ----- markdown/no-missing-atx-heading-space -----
 type MarkdownNoMissingAtxHeadingSpace = [] | [{
   checkClosedHeadings?: boolean;
-}]; // ----- markdown/no-missing-label-refs -----
+}];
+// ----- markdown/no-missing-label-refs -----
 type MarkdownNoMissingLabelRefs = [] | [{
   allowLabels?: string[];
-}]; // ----- markdown/no-missing-link-fragments -----
+}];
+// ----- markdown/no-missing-link-fragments -----
 type MarkdownNoMissingLinkFragments = [] | [{
   ignoreCase?: boolean;
   allowPattern?: string;
-}]; // ----- markdown/no-multiple-h1 -----
+}];
+// ----- markdown/no-multiple-h1 -----
 type MarkdownNoMultipleH1 = [] | [{
   frontmatterTitle?: string;
-}]; // ----- markdown/no-space-in-emphasis -----
+}];
+// ----- markdown/no-space-in-emphasis -----
 type MarkdownNoSpaceInEmphasis = [] | [{
   checkStrikethrough?: boolean;
-}]; // ----- markdown/no-unused-definitions -----
+}];
+// ----- markdown/no-unused-definitions -----
 type MarkdownNoUnusedDefinitions = [] | [{
   allowDefinitions?: string[];
   allowFootnoteDefinitions?: string[];
   checkFootnoteDefinitions?: boolean;
-}]; // ----- markdown/table-column-count -----
+}];
+// ----- markdown/table-column-count -----
 type MarkdownTableColumnCount = [] | [{
   checkMissingCells?: boolean;
 }];
@@ -3269,14 +3424,18 @@ interface RuleOptions$7 {
 }
 /* ======= Declarations ======= */
 // ----- node/callback-return -----
-type NodeCallbackReturn = [] | [string[]]; // ----- node/exports-style -----
+type NodeCallbackReturn = [] | [string[]];
+// ----- node/exports-style -----
 type NodeExportsStyle = [] | [("module.exports" | "exports")] | [("module.exports" | "exports"), {
   allowBatchAssign?: boolean;
-}]; // ----- node/file-extension-in-import -----
+}];
+// ----- node/file-extension-in-import -----
 type NodeFileExtensionInImport = [] | [("always" | "never")] | [("always" | "never"), {
   [k: string]: ("always" | "never") | undefined;
-}]; // ----- node/handle-callback-err -----
-type NodeHandleCallbackErr = [] | [string]; // ----- node/hashbang -----
+}];
+// ----- node/handle-callback-err -----
+type NodeHandleCallbackErr = [] | [string];
+// ----- node/hashbang -----
 type NodeHashbang = [] | [{
   convertPath?: ({
     [k: string]: [string, string];
@@ -3294,13 +3453,15 @@ type NodeHashbang = [] | [{
   executableMap?: {
     [k: string]: string;
   };
-}]; // ----- node/no-deprecated-api -----
+}];
+// ----- node/no-deprecated-api -----
 type NodeNoDeprecatedApi = [] | [{
   version?: string;
   ignoreModuleItems?: ("_linklist" | "_stream_wrap" | "async_hooks.currentId" | "async_hooks.triggerId" | "buffer.Buffer()" | "new buffer.Buffer()" | "buffer.SlowBuffer" | "constants" | "crypto._toBuf" | "crypto.Credentials" | "crypto.DEFAULT_ENCODING" | "crypto.createCipher" | "crypto.createCredentials" | "crypto.createDecipher" | "crypto.fips" | "crypto.prng" | "crypto.pseudoRandomBytes" | "crypto.rng" | "domain" | "events.EventEmitter.listenerCount" | "events.listenerCount" | "freelist" | "fs.SyncWriteStream" | "fs.exists" | "fs.lchmod" | "fs.lchmodSync" | "http.createClient" | "module.Module.createRequireFromPath" | "module.Module.requireRepl" | "module.Module._debug" | "module.createRequireFromPath" | "module.requireRepl" | "module._debug" | "net._setSimultaneousAccepts" | "os.getNetworkInterfaces" | "os.tmpDir" | "path._makeLong" | "process.EventEmitter" | "process.assert" | "process.binding" | "process.env.NODE_REPL_HISTORY_FILE" | "process.report.triggerReport" | "punycode" | "readline.codePointAt" | "readline.getStringWidth" | "readline.isFullWidthCodePoint" | "readline.stripVTControlCharacters" | "repl.REPLServer" | "repl.Recoverable" | "repl.REPL_MODE_MAGIC" | "repl.builtinModules" | "safe-buffer.Buffer()" | "new safe-buffer.Buffer()" | "safe-buffer.SlowBuffer" | "sys" | "timers.enroll" | "timers.unenroll" | "tls.CleartextStream" | "tls.CryptoStream" | "tls.SecurePair" | "tls.convertNPNProtocols" | "tls.createSecurePair" | "tls.parseCertString" | "tty.setRawMode" | "url.parse" | "url.resolve" | "util.debug" | "util.error" | "util.isArray" | "util.isBoolean" | "util.isBuffer" | "util.isDate" | "util.isError" | "util.isFunction" | "util.isNull" | "util.isNullOrUndefined" | "util.isNumber" | "util.isObject" | "util.isPrimitive" | "util.isRegExp" | "util.isString" | "util.isSymbol" | "util.isUndefined" | "util.log" | "util.print" | "util.pump" | "util.puts" | "util._extend" | "vm.runInDebugContext" | "zlib.BrotliCompress()" | "zlib.BrotliDecompress()" | "zlib.Deflate()" | "zlib.DeflateRaw()" | "zlib.Gunzip()" | "zlib.Gzip()" | "zlib.Inflate()" | "zlib.InflateRaw()" | "zlib.Unzip()")[];
   ignoreGlobalItems?: ("Buffer()" | "new Buffer()" | "COUNTER_NET_SERVER_CONNECTION" | "COUNTER_NET_SERVER_CONNECTION_CLOSE" | "COUNTER_HTTP_SERVER_REQUEST" | "COUNTER_HTTP_SERVER_RESPONSE" | "COUNTER_HTTP_CLIENT_REQUEST" | "COUNTER_HTTP_CLIENT_RESPONSE" | "GLOBAL" | "Intl.v8BreakIterator" | "require.extensions" | "root" | "process.EventEmitter" | "process.assert" | "process.binding" | "process.env.NODE_REPL_HISTORY_FILE" | "process.report.triggerReport")[];
   ignoreIndirectDependencies?: boolean;
-}]; // ----- node/no-extraneous-import -----
+}];
+// ----- node/no-extraneous-import -----
 type NodeNoExtraneousImport = [] | [{
   allowModules?: string[];
   convertPath?: ({
@@ -3318,7 +3479,8 @@ type NodeNoExtraneousImport = [] | [{
   resolverConfig?: {
     [k: string]: unknown | undefined;
   };
-}]; // ----- node/no-extraneous-require -----
+}];
+// ----- node/no-extraneous-require -----
 type NodeNoExtraneousRequire = [] | [{
   allowModules?: string[];
   convertPath?: ({
@@ -3337,12 +3499,14 @@ type NodeNoExtraneousRequire = [] | [{
     [k: string]: unknown | undefined;
   };
   tryExtensions?: string[];
-}]; // ----- node/no-hide-core-modules -----
+}];
+// ----- node/no-hide-core-modules -----
 type NodeNoHideCoreModules = [] | [{
   allow?: ("assert" | "buffer" | "child_process" | "cluster" | "console" | "constants" | "crypto" | "dgram" | "dns" | "events" | "fs" | "http" | "https" | "module" | "net" | "os" | "path" | "querystring" | "readline" | "repl" | "stream" | "string_decoder" | "timers" | "tls" | "tty" | "url" | "util" | "vm" | "zlib")[];
   ignoreDirectDependencies?: boolean;
   ignoreIndirectDependencies?: boolean;
-}]; // ----- node/no-missing-import -----
+}];
+// ----- node/no-missing-import -----
 type NodeNoMissingImport = [] | [{
   allowModules?: string[];
   resolvePaths?: string[];
@@ -3353,7 +3517,8 @@ type NodeNoMissingImport = [] | [{
   ignoreTypeImport?: boolean;
   tsconfigPath?: string;
   typescriptExtensionMap?: (unknown[][] | ("react" | "react-jsx" | "react-jsxdev" | "react-native" | "preserve"));
-}]; // ----- node/no-missing-require -----
+}];
+// ----- node/no-missing-require -----
 type NodeNoMissingRequire = [] | [{
   allowModules?: string[];
   tryExtensions?: string[];
@@ -3363,22 +3528,27 @@ type NodeNoMissingRequire = [] | [{
   };
   typescriptExtensionMap?: (unknown[][] | ("react" | "react-jsx" | "react-jsxdev" | "react-native" | "preserve"));
   tsconfigPath?: string;
-}]; // ----- node/no-mixed-requires -----
+}];
+// ----- node/no-mixed-requires -----
 type NodeNoMixedRequires = [] | [(boolean | {
   grouping?: boolean;
   allowCall?: boolean;
-})]; // ----- node/no-process-env -----
+})];
+// ----- node/no-process-env -----
 type NodeNoProcessEnv = [] | [{
   allowedVariables?: string[];
-}]; // ----- node/no-restricted-import -----
+}];
+// ----- node/no-restricted-import -----
 type NodeNoRestrictedImport = [] | [(string | {
   name: (string | string[]);
   message?: string;
-})[]]; // ----- node/no-restricted-require -----
+})[]];
+// ----- node/no-restricted-require -----
 type NodeNoRestrictedRequire = [] | [(string | {
   name: (string | string[]);
   message?: string;
-})[]]; // ----- node/no-sync -----
+})[]];
+// ----- node/no-sync -----
 type NodeNoSync = [] | [{
   allowAtRootLevel?: boolean;
   ignores?: (string | {
@@ -3393,7 +3563,8 @@ type NodeNoSync = [] | [{
     package?: string;
     name?: string[];
   })[];
-}]; // ----- node/no-top-level-await -----
+}];
+// ----- node/no-top-level-await -----
 type NodeNoTopLevelAwait = [] | [{
   ignoreBin?: boolean;
   convertPath?: ({
@@ -3407,7 +3578,8 @@ type NodeNoTopLevelAwait = [] | [{
     exclude?: string[];
     replace: [string, string];
   })[]]);
-}]; // ----- node/no-unpublished-bin -----
+}];
+// ----- node/no-unpublished-bin -----
 type NodeNoUnpublishedBin = [] | [{
   convertPath?: ({
     [k: string]: [string, string];
@@ -3420,7 +3592,8 @@ type NodeNoUnpublishedBin = [] | [{
     exclude?: string[];
     replace: [string, string];
   })[]]);
-}]; // ----- node/no-unpublished-import -----
+}];
+// ----- node/no-unpublished-import -----
 type NodeNoUnpublishedImport = [] | [{
   allowModules?: string[];
   convertPath?: ({
@@ -3441,7 +3614,8 @@ type NodeNoUnpublishedImport = [] | [{
   tryExtensions?: string[];
   ignoreTypeImport?: boolean;
   ignorePrivate?: boolean;
-}]; // ----- node/no-unpublished-require -----
+}];
+// ----- node/no-unpublished-require -----
 type NodeNoUnpublishedRequire = [] | [{
   allowModules?: string[];
   convertPath?: ({
@@ -3461,32 +3635,46 @@ type NodeNoUnpublishedRequire = [] | [{
   };
   tryExtensions?: string[];
   ignorePrivate?: boolean;
-}]; // ----- node/no-unsupported-features/es-builtins -----
+}];
+// ----- node/no-unsupported-features/es-builtins -----
 type NodeNoUnsupportedFeaturesEsBuiltins = [] | [{
   version?: string;
   ignores?: ("AggregateError" | "Array" | "Array.from" | "Array.isArray" | "Array.length" | "Array.of" | "Array.toLocaleString" | "ArrayBuffer" | "ArrayBuffer.isView" | "Atomics" | "Atomics.add" | "Atomics.and" | "Atomics.compareExchange" | "Atomics.exchange" | "Atomics.isLockFree" | "Atomics.load" | "Atomics.notify" | "Atomics.or" | "Atomics.store" | "Atomics.sub" | "Atomics.wait" | "Atomics.waitAsync" | "Atomics.xor" | "BigInt" | "BigInt.asIntN" | "BigInt.asUintN" | "BigInt64Array" | "BigInt64Array.BYTES_PER_ELEMENT" | "BigInt64Array.from" | "BigInt64Array.name" | "BigInt64Array.of" | "BigUint64Array" | "BigUint64Array.BYTES_PER_ELEMENT" | "BigUint64Array.from" | "BigUint64Array.name" | "BigUint64Array.of" | "Boolean" | "DataView" | "Date" | "Date.UTC" | "Date.now" | "Date.parse" | "Date.toLocaleDateString" | "Date.toLocaleString" | "Date.toLocaleTimeString" | "Error" | "Error.cause" | "EvalError" | "FinalizationRegistry" | "Float32Array" | "Float32Array.BYTES_PER_ELEMENT" | "Float32Array.from" | "Float32Array.name" | "Float32Array.of" | "Float64Array" | "Float64Array.BYTES_PER_ELEMENT" | "Float64Array.from" | "Float64Array.name" | "Float64Array.of" | "Function" | "Function.length" | "Function.name" | "Infinity" | "Int16Array" | "Int16Array.BYTES_PER_ELEMENT" | "Int16Array.from" | "Int16Array.name" | "Int16Array.of" | "Int32Array" | "Int32Array.BYTES_PER_ELEMENT" | "Int32Array.from" | "Int32Array.name" | "Int32Array.of" | "Int8Array" | "Int8Array.BYTES_PER_ELEMENT" | "Int8Array.from" | "Int8Array.name" | "Int8Array.of" | "Intl" | "Intl.Collator" | "Intl.DateTimeFormat" | "Intl.DisplayNames" | "Intl.ListFormat" | "Intl.Locale" | "Intl.NumberFormat" | "Intl.PluralRules" | "Intl.RelativeTimeFormat" | "Intl.Segmenter" | "Intl.Segments" | "Intl.getCanonicalLocales" | "Intl.supportedValuesOf" | "JSON" | "JSON.parse" | "JSON.stringify" | "Map" | "Map.groupBy" | "Math" | "Math.E" | "Math.LN10" | "Math.LN2" | "Math.LOG10E" | "Math.LOG2E" | "Math.PI" | "Math.SQRT1_2" | "Math.SQRT2" | "Math.abs" | "Math.acos" | "Math.acosh" | "Math.asin" | "Math.asinh" | "Math.atan" | "Math.atan2" | "Math.atanh" | "Math.cbrt" | "Math.ceil" | "Math.clz32" | "Math.cos" | "Math.cosh" | "Math.exp" | "Math.expm1" | "Math.floor" | "Math.fround" | "Math.hypot" | "Math.imul" | "Math.log" | "Math.log10" | "Math.log1p" | "Math.log2" | "Math.max" | "Math.min" | "Math.pow" | "Math.random" | "Math.round" | "Math.sign" | "Math.sin" | "Math.sinh" | "Math.sqrt" | "Math.tan" | "Math.tanh" | "Math.trunc" | "NaN" | "Number.EPSILON" | "Number.MAX_SAFE_INTEGER" | "Number.MAX_VALUE" | "Number.MIN_SAFE_INTEGER" | "Number.MIN_VALUE" | "Number.NEGATIVE_INFINITY" | "Number.NaN" | "Number.POSITIVE_INFINITY" | "Number.isFinite" | "Number.isInteger" | "Number.isNaN" | "Number.isSafeInteger" | "Number.parseFloat" | "Number.parseInt" | "Number.toLocaleString" | "Object.assign" | "Object.create" | "Object.defineGetter" | "Object.defineProperties" | "Object.defineProperty" | "Object.defineSetter" | "Object.entries" | "Object.freeze" | "Object.fromEntries" | "Object.getOwnPropertyDescriptor" | "Object.getOwnPropertyDescriptors" | "Object.getOwnPropertyNames" | "Object.getOwnPropertySymbols" | "Object.getPrototypeOf" | "Object.groupBy" | "Object.hasOwn" | "Object.is" | "Object.isExtensible" | "Object.isFrozen" | "Object.isSealed" | "Object.keys" | "Object.lookupGetter" | "Object.lookupSetter" | "Object.preventExtensions" | "Object.proto" | "Object.seal" | "Object.setPrototypeOf" | "Object.values" | "Promise" | "Promise.all" | "Promise.allSettled" | "Promise.any" | "Promise.race" | "Promise.reject" | "Promise.resolve" | "Proxy" | "Proxy.revocable" | "RangeError" | "ReferenceError" | "Reflect" | "Reflect.apply" | "Reflect.construct" | "Reflect.defineProperty" | "Reflect.deleteProperty" | "Reflect.get" | "Reflect.getOwnPropertyDescriptor" | "Reflect.getPrototypeOf" | "Reflect.has" | "Reflect.isExtensible" | "Reflect.ownKeys" | "Reflect.preventExtensions" | "Reflect.set" | "Reflect.setPrototypeOf" | "RegExp" | "RegExp.dotAll" | "RegExp.hasIndices" | "RegExp.input" | "RegExp.lastIndex" | "RegExp.lastMatch" | "RegExp.lastParen" | "RegExp.leftContext" | "RegExp.n" | "RegExp.rightContext" | "Set" | "SharedArrayBuffer" | "String" | "String.fromCharCode" | "String.fromCodePoint" | "String.length" | "String.localeCompare" | "String.raw" | "String.toLocaleLowerCase" | "String.toLocaleUpperCase" | "Symbol" | "Symbol.asyncIterator" | "Symbol.for" | "Symbol.hasInstance" | "Symbol.isConcatSpreadable" | "Symbol.iterator" | "Symbol.keyFor" | "Symbol.match" | "Symbol.matchAll" | "Symbol.replace" | "Symbol.search" | "Symbol.species" | "Symbol.split" | "Symbol.toPrimitive" | "Symbol.toStringTag" | "Symbol.unscopables" | "SyntaxError" | "TypeError" | "URIError" | "Uint16Array" | "Uint16Array.BYTES_PER_ELEMENT" | "Uint16Array.from" | "Uint16Array.name" | "Uint16Array.of" | "Uint32Array" | "Uint32Array.BYTES_PER_ELEMENT" | "Uint32Array.from" | "Uint32Array.name" | "Uint32Array.of" | "Uint8Array" | "Uint8Array.BYTES_PER_ELEMENT" | "Uint8Array.from" | "Uint8Array.name" | "Uint8Array.of" | "Uint8ClampedArray" | "Uint8ClampedArray.BYTES_PER_ELEMENT" | "Uint8ClampedArray.from" | "Uint8ClampedArray.name" | "Uint8ClampedArray.of" | "WeakMap" | "WeakRef" | "WeakSet" | "decodeURI" | "decodeURIComponent" | "encodeURI" | "encodeURIComponent" | "escape" | "eval" | "globalThis" | "isFinite" | "isNaN" | "parseFloat" | "parseInt" | "unescape")[];
-}]; // ----- node/no-unsupported-features/es-syntax -----
+}];
+// ----- node/no-unsupported-features/es-syntax -----
 type NodeNoUnsupportedFeaturesEsSyntax = [] | [{
   version?: string;
   ignores?: ("no-accessor-properties" | "accessor-properties" | "accessorProperties" | "no-arbitrary-module-namespace-names" | "arbitrary-module-namespace-names" | "arbitraryModuleNamespaceNames" | "no-array-from" | "array-from" | "arrayFrom" | "no-array-isarray" | "array-isarray" | "arrayIsarray" | "no-array-of" | "array-of" | "arrayOf" | "no-array-prototype-copywithin" | "array-prototype-copywithin" | "arrayPrototypeCopywithin" | "no-array-prototype-entries" | "array-prototype-entries" | "arrayPrototypeEntries" | "no-array-prototype-every" | "array-prototype-every" | "arrayPrototypeEvery" | "no-array-prototype-fill" | "array-prototype-fill" | "arrayPrototypeFill" | "no-array-prototype-filter" | "array-prototype-filter" | "arrayPrototypeFilter" | "no-array-prototype-find" | "array-prototype-find" | "arrayPrototypeFind" | "no-array-prototype-findindex" | "array-prototype-findindex" | "arrayPrototypeFindindex" | "no-array-prototype-findlast-findlastindex" | "array-prototype-findlast-findlastindex" | "arrayPrototypeFindlastFindlastindex" | "no-array-prototype-flat" | "array-prototype-flat" | "arrayPrototypeFlat" | "no-array-prototype-foreach" | "array-prototype-foreach" | "arrayPrototypeForeach" | "no-array-prototype-includes" | "array-prototype-includes" | "arrayPrototypeIncludes" | "no-array-prototype-indexof" | "array-prototype-indexof" | "arrayPrototypeIndexof" | "no-array-prototype-keys" | "array-prototype-keys" | "arrayPrototypeKeys" | "no-array-prototype-lastindexof" | "array-prototype-lastindexof" | "arrayPrototypeLastindexof" | "no-array-prototype-map" | "array-prototype-map" | "arrayPrototypeMap" | "no-array-prototype-reduce" | "array-prototype-reduce" | "arrayPrototypeReduce" | "no-array-prototype-reduceright" | "array-prototype-reduceright" | "arrayPrototypeReduceright" | "no-array-prototype-some" | "array-prototype-some" | "arrayPrototypeSome" | "no-array-prototype-toreversed" | "array-prototype-toreversed" | "arrayPrototypeToreversed" | "no-array-prototype-tosorted" | "array-prototype-tosorted" | "arrayPrototypeTosorted" | "no-array-prototype-tospliced" | "array-prototype-tospliced" | "arrayPrototypeTospliced" | "no-array-prototype-values" | "array-prototype-values" | "arrayPrototypeValues" | "no-array-prototype-with" | "array-prototype-with" | "arrayPrototypeWith" | "no-array-string-prototype-at" | "array-string-prototype-at" | "arrayStringPrototypeAt" | "no-arrow-functions" | "arrow-functions" | "arrowFunctions" | "no-async-functions" | "async-functions" | "asyncFunctions" | "no-async-iteration" | "async-iteration" | "asyncIteration" | "no-atomics-waitasync" | "atomics-waitasync" | "atomicsWaitasync" | "no-atomics" | "atomics" | "no-bigint" | "bigint" | "no-binary-numeric-literals" | "binary-numeric-literals" | "binaryNumericLiterals" | "no-block-scoped-functions" | "block-scoped-functions" | "blockScopedFunctions" | "no-block-scoped-variables" | "block-scoped-variables" | "blockScopedVariables" | "no-class-fields" | "class-fields" | "classFields" | "no-class-static-block" | "class-static-block" | "classStaticBlock" | "no-classes" | "classes" | "no-computed-properties" | "computed-properties" | "computedProperties" | "no-date-now" | "date-now" | "dateNow" | "no-date-prototype-getyear-setyear" | "date-prototype-getyear-setyear" | "datePrototypeGetyearSetyear" | "no-date-prototype-togmtstring" | "date-prototype-togmtstring" | "datePrototypeTogmtstring" | "no-default-parameters" | "default-parameters" | "defaultParameters" | "no-destructuring" | "destructuring" | "no-dynamic-import" | "dynamic-import" | "dynamicImport" | "no-error-cause" | "error-cause" | "errorCause" | "no-escape-unescape" | "escape-unescape" | "escapeUnescape" | "no-exponential-operators" | "exponential-operators" | "exponentialOperators" | "no-export-ns-from" | "export-ns-from" | "exportNsFrom" | "no-for-of-loops" | "for-of-loops" | "forOfLoops" | "no-function-declarations-in-if-statement-clauses-without-block" | "function-declarations-in-if-statement-clauses-without-block" | "functionDeclarationsInIfStatementClausesWithoutBlock" | "no-function-prototype-bind" | "function-prototype-bind" | "functionPrototypeBind" | "no-generators" | "generators" | "no-global-this" | "global-this" | "globalThis" | "no-hashbang" | "hashbang" | "no-import-meta" | "import-meta" | "importMeta" | "no-initializers-in-for-in" | "initializers-in-for-in" | "initializersInForIn" | "no-intl-datetimeformat-prototype-formatrange" | "intl-datetimeformat-prototype-formatrange" | "intlDatetimeformatPrototypeFormatrange" | "no-intl-datetimeformat-prototype-formattoparts" | "intl-datetimeformat-prototype-formattoparts" | "intlDatetimeformatPrototypeFormattoparts" | "no-intl-displaynames" | "intl-displaynames" | "intlDisplaynames" | "no-intl-getcanonicallocales" | "intl-getcanonicallocales" | "intlGetcanonicallocales" | "no-intl-listformat" | "intl-listformat" | "intlListformat" | "no-intl-locale" | "intl-locale" | "intlLocale" | "no-intl-numberformat-prototype-formatrange" | "intl-numberformat-prototype-formatrange" | "intlNumberformatPrototypeFormatrange" | "no-intl-numberformat-prototype-formatrangetoparts" | "intl-numberformat-prototype-formatrangetoparts" | "intlNumberformatPrototypeFormatrangetoparts" | "no-intl-numberformat-prototype-formattoparts" | "intl-numberformat-prototype-formattoparts" | "intlNumberformatPrototypeFormattoparts" | "no-intl-pluralrules-prototype-selectrange" | "intl-pluralrules-prototype-selectrange" | "intlPluralrulesPrototypeSelectrange" | "no-intl-pluralrules" | "intl-pluralrules" | "intlPluralrules" | "no-intl-relativetimeformat" | "intl-relativetimeformat" | "intlRelativetimeformat" | "no-intl-segmenter" | "intl-segmenter" | "intlSegmenter" | "no-intl-supportedvaluesof" | "intl-supportedvaluesof" | "intlSupportedvaluesof" | "no-json-superset" | "json-superset" | "jsonSuperset" | "no-json" | "json" | "no-keyword-properties" | "keyword-properties" | "keywordProperties" | "no-labelled-function-declarations" | "labelled-function-declarations" | "labelledFunctionDeclarations" | "no-legacy-object-prototype-accessor-methods" | "legacy-object-prototype-accessor-methods" | "legacyObjectPrototypeAccessorMethods" | "no-logical-assignment-operators" | "logical-assignment-operators" | "logicalAssignmentOperators" | "no-malformed-template-literals" | "malformed-template-literals" | "malformedTemplateLiterals" | "no-map" | "map" | "no-math-acosh" | "math-acosh" | "mathAcosh" | "no-math-asinh" | "math-asinh" | "mathAsinh" | "no-math-atanh" | "math-atanh" | "mathAtanh" | "no-math-cbrt" | "math-cbrt" | "mathCbrt" | "no-math-clz32" | "math-clz32" | "mathClz32" | "no-math-cosh" | "math-cosh" | "mathCosh" | "no-math-expm1" | "math-expm1" | "mathExpm1" | "no-math-fround" | "math-fround" | "mathFround" | "no-math-hypot" | "math-hypot" | "mathHypot" | "no-math-imul" | "math-imul" | "mathImul" | "no-math-log10" | "math-log10" | "mathLog10" | "no-math-log1p" | "math-log1p" | "mathLog1p" | "no-math-log2" | "math-log2" | "mathLog2" | "no-math-sign" | "math-sign" | "mathSign" | "no-math-sinh" | "math-sinh" | "mathSinh" | "no-math-tanh" | "math-tanh" | "mathTanh" | "no-math-trunc" | "math-trunc" | "mathTrunc" | "no-modules" | "modules" | "no-new-target" | "new-target" | "newTarget" | "new.target" | "no-nullish-coalescing-operators" | "nullish-coalescing-operators" | "nullishCoalescingOperators" | "no-number-epsilon" | "number-epsilon" | "numberEpsilon" | "no-number-isfinite" | "number-isfinite" | "numberIsfinite" | "no-number-isinteger" | "number-isinteger" | "numberIsinteger" | "no-number-isnan" | "number-isnan" | "numberIsnan" | "no-number-issafeinteger" | "number-issafeinteger" | "numberIssafeinteger" | "no-number-maxsafeinteger" | "number-maxsafeinteger" | "numberMaxsafeinteger" | "no-number-minsafeinteger" | "number-minsafeinteger" | "numberMinsafeinteger" | "no-number-parsefloat" | "number-parsefloat" | "numberParsefloat" | "no-number-parseint" | "number-parseint" | "numberParseint" | "no-numeric-separators" | "numeric-separators" | "numericSeparators" | "no-object-assign" | "object-assign" | "objectAssign" | "no-object-create" | "object-create" | "objectCreate" | "no-object-defineproperties" | "object-defineproperties" | "objectDefineproperties" | "no-object-defineproperty" | "object-defineproperty" | "objectDefineproperty" | "no-object-entries" | "object-entries" | "objectEntries" | "no-object-freeze" | "object-freeze" | "objectFreeze" | "no-object-fromentries" | "object-fromentries" | "objectFromentries" | "no-object-getownpropertydescriptor" | "object-getownpropertydescriptor" | "objectGetownpropertydescriptor" | "no-object-getownpropertydescriptors" | "object-getownpropertydescriptors" | "objectGetownpropertydescriptors" | "no-object-getownpropertynames" | "object-getownpropertynames" | "objectGetownpropertynames" | "no-object-getownpropertysymbols" | "object-getownpropertysymbols" | "objectGetownpropertysymbols" | "no-object-getprototypeof" | "object-getprototypeof" | "objectGetprototypeof" | "no-object-hasown" | "object-hasown" | "objectHasown" | "no-object-is" | "object-is" | "objectIs" | "no-object-isextensible" | "object-isextensible" | "objectIsextensible" | "no-object-isfrozen" | "object-isfrozen" | "objectIsfrozen" | "no-object-issealed" | "object-issealed" | "objectIssealed" | "no-object-keys" | "object-keys" | "objectKeys" | "no-object-map-groupby" | "object-map-groupby" | "objectMapGroupby" | "no-object-preventextensions" | "object-preventextensions" | "objectPreventextensions" | "no-object-seal" | "object-seal" | "objectSeal" | "no-object-setprototypeof" | "object-setprototypeof" | "objectSetprototypeof" | "no-object-super-properties" | "object-super-properties" | "objectSuperProperties" | "no-object-values" | "object-values" | "objectValues" | "no-octal-numeric-literals" | "octal-numeric-literals" | "octalNumericLiterals" | "no-optional-catch-binding" | "optional-catch-binding" | "optionalCatchBinding" | "no-optional-chaining" | "optional-chaining" | "optionalChaining" | "no-private-in" | "private-in" | "privateIn" | "no-promise-all-settled" | "promise-all-settled" | "promiseAllSettled" | "no-promise-any" | "promise-any" | "promiseAny" | "no-promise-prototype-finally" | "promise-prototype-finally" | "promisePrototypeFinally" | "no-promise-withresolvers" | "promise-withresolvers" | "promiseWithresolvers" | "no-promise" | "promise" | "no-property-shorthands" | "property-shorthands" | "propertyShorthands" | "no-proxy" | "proxy" | "no-reflect" | "reflect" | "no-regexp-d-flag" | "regexp-d-flag" | "regexpDFlag" | "no-regexp-lookbehind-assertions" | "regexp-lookbehind-assertions" | "regexpLookbehindAssertions" | "regexpLookbehind" | "no-regexp-named-capture-groups" | "regexp-named-capture-groups" | "regexpNamedCaptureGroups" | "no-regexp-prototype-compile" | "regexp-prototype-compile" | "regexpPrototypeCompile" | "no-regexp-prototype-flags" | "regexp-prototype-flags" | "regexpPrototypeFlags" | "no-regexp-s-flag" | "regexp-s-flag" | "regexpSFlag" | "regexpS" | "no-regexp-u-flag" | "regexp-u-flag" | "regexpUFlag" | "regexpU" | "no-regexp-unicode-property-escapes-2019" | "regexp-unicode-property-escapes-2019" | "regexpUnicodePropertyEscapes2019" | "no-regexp-unicode-property-escapes-2020" | "regexp-unicode-property-escapes-2020" | "regexpUnicodePropertyEscapes2020" | "no-regexp-unicode-property-escapes-2021" | "regexp-unicode-property-escapes-2021" | "regexpUnicodePropertyEscapes2021" | "no-regexp-unicode-property-escapes-2022" | "regexp-unicode-property-escapes-2022" | "regexpUnicodePropertyEscapes2022" | "no-regexp-unicode-property-escapes-2023" | "regexp-unicode-property-escapes-2023" | "regexpUnicodePropertyEscapes2023" | "no-regexp-unicode-property-escapes" | "regexp-unicode-property-escapes" | "regexpUnicodePropertyEscapes" | "regexpUnicodeProperties" | "no-regexp-v-flag" | "regexp-v-flag" | "regexpVFlag" | "no-regexp-y-flag" | "regexp-y-flag" | "regexpYFlag" | "regexpY" | "no-resizable-and-growable-arraybuffers" | "resizable-and-growable-arraybuffers" | "resizableAndGrowableArraybuffers" | "no-rest-parameters" | "rest-parameters" | "restParameters" | "no-rest-spread-properties" | "rest-spread-properties" | "restSpreadProperties" | "no-set" | "set" | "no-shadow-catch-param" | "shadow-catch-param" | "shadowCatchParam" | "no-shared-array-buffer" | "shared-array-buffer" | "sharedArrayBuffer" | "no-spread-elements" | "spread-elements" | "spreadElements" | "no-string-create-html-methods" | "string-create-html-methods" | "stringCreateHtmlMethods" | "no-string-fromcodepoint" | "string-fromcodepoint" | "stringFromcodepoint" | "no-string-prototype-codepointat" | "string-prototype-codepointat" | "stringPrototypeCodepointat" | "no-string-prototype-endswith" | "string-prototype-endswith" | "stringPrototypeEndswith" | "no-string-prototype-includes" | "string-prototype-includes" | "stringPrototypeIncludes" | "no-string-prototype-iswellformed-towellformed" | "string-prototype-iswellformed-towellformed" | "stringPrototypeIswellformedTowellformed" | "no-string-prototype-matchall" | "string-prototype-matchall" | "stringPrototypeMatchall" | "no-string-prototype-normalize" | "string-prototype-normalize" | "stringPrototypeNormalize" | "no-string-prototype-padstart-padend" | "string-prototype-padstart-padend" | "stringPrototypePadstartPadend" | "no-string-prototype-repeat" | "string-prototype-repeat" | "stringPrototypeRepeat" | "no-string-prototype-replaceall" | "string-prototype-replaceall" | "stringPrototypeReplaceall" | "no-string-prototype-startswith" | "string-prototype-startswith" | "stringPrototypeStartswith" | "no-string-prototype-substr" | "string-prototype-substr" | "stringPrototypeSubstr" | "no-string-prototype-trim" | "string-prototype-trim" | "stringPrototypeTrim" | "no-string-prototype-trimleft-trimright" | "string-prototype-trimleft-trimright" | "stringPrototypeTrimleftTrimright" | "no-string-prototype-trimstart-trimend" | "string-prototype-trimstart-trimend" | "stringPrototypeTrimstartTrimend" | "no-string-raw" | "string-raw" | "stringRaw" | "no-subclassing-builtins" | "subclassing-builtins" | "subclassingBuiltins" | "no-symbol-prototype-description" | "symbol-prototype-description" | "symbolPrototypeDescription" | "no-symbol" | "symbol" | "no-template-literals" | "template-literals" | "templateLiterals" | "no-top-level-await" | "top-level-await" | "topLevelAwait" | "no-trailing-commas" | "trailing-commas" | "trailingCommas" | "no-trailing-function-commas" | "trailing-function-commas" | "trailingFunctionCommas" | "trailingCommasInFunctions" | "no-typed-arrays" | "typed-arrays" | "typedArrays" | "no-unicode-codepoint-escapes" | "unicode-codepoint-escapes" | "unicodeCodepointEscapes" | "unicodeCodePointEscapes" | "no-weak-map" | "weak-map" | "weakMap" | "no-weak-set" | "weak-set" | "weakSet" | "no-weakrefs" | "weakrefs")[];
-}]; // ----- node/no-unsupported-features/node-builtins -----
+}];
+// ----- node/no-unsupported-features/node-builtins -----
 type NodeNoUnsupportedFeaturesNodeBuiltins = [] | [{
   version?: string;
   allowExperimental?: boolean;
   ignores?: ("__filename" | "__dirname" | "require" | "require.cache" | "require.extensions" | "require.main" | "require.resolve" | "require.resolve.paths" | "module" | "module.children" | "module.exports" | "module.filename" | "module.id" | "module.isPreloading" | "module.loaded" | "module.parent" | "module.path" | "module.paths" | "module.require" | "exports" | "AbortController" | "AbortSignal" | "AbortSignal.abort" | "AbortSignal.timeout" | "AbortSignal.any" | "DOMException" | "FormData" | "Headers" | "MessageEvent" | "Navigator" | "Request" | "Response" | "WebAssembly" | "WebSocket" | "fetch" | "global" | "queueMicrotask" | "navigator" | "navigator.hardwareConcurrency" | "navigator.language" | "navigator.languages" | "navigator.locks" | "navigator.locks.request" | "navigator.locks.query" | "navigator.platform" | "navigator.userAgent" | "structuredClone" | "localStorage" | "sessionStorage" | "Storage" | "Blob" | "new Buffer()" | "Buffer" | "Buffer.alloc" | "Buffer.allocUnsafe" | "Buffer.allocUnsafeSlow" | "Buffer.byteLength" | "Buffer.compare" | "Buffer.concat" | "Buffer.copyBytesFrom" | "Buffer.from" | "Buffer.isBuffer" | "Buffer.isEncoding" | "File" | "atob" | "btoa" | "console" | "console.profile" | "console.profileEnd" | "console.timeStamp" | "console.Console" | "console.assert" | "console.clear" | "console.count" | "console.countReset" | "console.debug" | "console.dir" | "console.dirxml" | "console.error" | "console.group" | "console.groupCollapsed" | "console.groupEnd" | "console.info" | "console.log" | "console.table" | "console.time" | "console.timeEnd" | "console.timeLog" | "console.trace" | "console.warn" | "crypto" | "crypto.subtle" | "crypto.subtle.decapsulateBits" | "crypto.subtle.decapsulateKey" | "crypto.subtle.decrypt" | "crypto.subtle.deriveBits" | "crypto.subtle.deriveKey" | "crypto.subtle.digest" | "crypto.subtle.encapsulateBits" | "crypto.subtle.encapsulateKey" | "crypto.subtle.encrypt" | "crypto.subtle.exportKey" | "crypto.subtle.generateKey" | "crypto.subtle.getPublicKey" | "crypto.subtle.importKey" | "crypto.subtle.sign" | "crypto.subtle.unwrapKey" | "crypto.subtle.verify" | "crypto.subtle.wrapKey" | "crypto.getRandomValues" | "crypto.randomUUID" | "Crypto" | "CryptoKey" | "SubtleCrypto" | "SubtleCrypto.supports" | "CloseEvent" | "CustomEvent" | "Event" | "EventSource" | "EventTarget" | "PerformanceEntry" | "PerformanceMark" | "PerformanceMeasure" | "PerformanceObserver" | "PerformanceObserverEntryList" | "PerformanceResourceTiming" | "performance" | "performance.clearMarks" | "performance.clearMeasures" | "performance.clearResourceTimings" | "performance.eventLoopUtilization" | "performance.getEntries" | "performance.getEntriesByName" | "performance.getEntriesByType" | "performance.mark" | "performance.markResourceTiming" | "performance.measure" | "performance.nodeTiming" | "performance.nodeTiming.bootstrapComplete" | "performance.nodeTiming.environment" | "performance.nodeTiming.idleTime" | "performance.nodeTiming.loopExit" | "performance.nodeTiming.loopStart" | "performance.nodeTiming.nodeStart" | "performance.nodeTiming.uvMetricsInfo" | "performance.nodeTiming.v8Start" | "performance.now" | "performance.onresourcetimingbufferfull" | "performance.setResourceTimingBufferSize" | "performance.timeOrigin" | "performance.timerify" | "performance.toJSON" | "process" | "process.allowedNodeEnvironmentFlags" | "process.availableMemory" | "process.arch" | "process.argv" | "process.argv0" | "process.channel" | "process.config" | "process.connected" | "process.debugPort" | "process.env" | "process.execArgv" | "process.execPath" | "process.execve" | "process.exitCode" | "process.features.cached_builtins" | "process.features.debug" | "process.features.inspector" | "process.features.ipv6" | "process.features.require_module" | "process.features.tls" | "process.features.tls_alpn" | "process.features.tls_ocsp" | "process.features.tls_sni" | "process.features.typescript" | "process.features.uv" | "process.finalization.register" | "process.finalization.registerBeforeExit" | "process.finalization.unregister" | "process.getBuiltinModule" | "process.mainModule" | "process.noDeprecation" | "process.permission" | "process.pid" | "process.platform" | "process.ppid" | "process.ref" | "process.release" | "process.report" | "process.report.excludeEnv" | "process.sourceMapsEnabled" | "process.stdin" | "process.stdin.isRaw" | "process.stdin.isTTY" | "process.stdin.setRawMode" | "process.stdout" | "process.stdout.clearLine" | "process.stdout.clearScreenDown" | "process.stdout.columns" | "process.stdout.cursorTo" | "process.stdout.getColorDepth" | "process.stdout.getWindowSize" | "process.stdout.hasColors" | "process.stdout.isTTY" | "process.stdout.moveCursor" | "process.stdout.rows" | "process.stderr" | "process.stderr.clearLine" | "process.stderr.clearScreenDown" | "process.stderr.columns" | "process.stderr.cursorTo" | "process.stderr.getColorDepth" | "process.stderr.getWindowSize" | "process.stderr.hasColors" | "process.stderr.isTTY" | "process.stderr.moveCursor" | "process.stderr.rows" | "process.threadCpuUsage" | "process.throwDeprecation" | "process.title" | "process.traceDeprecation" | "process.version" | "process.versions" | "process.abort" | "process.chdir" | "process.constrainedMemory" | "process.cpuUsage" | "process.cwd" | "process.disconnect" | "process.dlopen" | "process.emitWarning" | "process.exit" | "process.getActiveResourcesInfo" | "process.getegid" | "process.geteuid" | "process.getgid" | "process.getgroups" | "process.getuid" | "process.hasUncaughtExceptionCaptureCallback" | "process.hrtime" | "process.hrtime.bigint" | "process.initgroups" | "process.kill" | "process.loadEnvFile" | "process.memoryUsage" | "process.rss" | "process.nextTick" | "process.resourceUsage" | "process.send" | "process.setegid" | "process.seteuid" | "process.setgid" | "process.setgroups" | "process.setuid" | "process.setSourceMapsEnabled" | "process.setUncaughtExceptionCaptureCallback" | "process.umask" | "process.unref" | "process.uptime" | "ReadableStream" | "ReadableStream.from" | "ReadableStreamDefaultReader" | "ReadableStreamBYOBReader" | "ReadableStreamDefaultController" | "ReadableByteStreamController" | "ReadableStreamBYOBRequest" | "WritableStream" | "WritableStreamDefaultWriter" | "WritableStreamDefaultController" | "TransformStream" | "TransformStreamDefaultController" | "ByteLengthQueuingStrategy" | "CountQueuingStrategy" | "TextEncoderStream" | "TextDecoderStream" | "CompressionStream" | "DecompressionStream" | "setInterval" | "clearInterval" | "setTimeout" | "clearTimeout" | "setImmediate" | "clearImmediate" | "URL" | "URL.canParse" | "URL.createObjectURL" | "URL.revokeObjectURL" | "URLSearchParams" | "TextDecoder" | "TextEncoder" | "BroadcastChannel" | "MessageChannel" | "MessagePort" | "assert" | "assert.Assert" | "assert.assert" | "assert.deepEqual" | "assert.deepStrictEqual" | "assert.doesNotMatch" | "assert.doesNotReject" | "assert.doesNotThrow" | "assert.equal" | "assert.fail" | "assert.ifError" | "assert.match" | "assert.notDeepEqual" | "assert.notDeepStrictEqual" | "assert.notEqual" | "assert.notStrictEqual" | "assert.ok" | "assert.partialDeepStrictEqual" | "assert.rejects" | "assert.strictEqual" | "assert.throws" | "assert.CallTracker" | "assert.strict" | "assert.strict.Assert" | "assert.strict.assert" | "assert.strict.deepEqual" | "assert.strict.deepStrictEqual" | "assert.strict.doesNotMatch" | "assert.strict.doesNotReject" | "assert.strict.doesNotThrow" | "assert.strict.equal" | "assert.strict.fail" | "assert.strict.ifError" | "assert.strict.match" | "assert.strict.notDeepEqual" | "assert.strict.notDeepStrictEqual" | "assert.strict.notEqual" | "assert.strict.notStrictEqual" | "assert.strict.ok" | "assert.strict.partialDeepStrictEqual" | "assert.strict.rejects" | "assert.strict.strictEqual" | "assert.strict.throws" | "assert.strict.CallTracker" | "assert/strict" | "assert/strict.Assert" | "assert/strict.assert" | "assert/strict.deepEqual" | "assert/strict.deepStrictEqual" | "assert/strict.doesNotMatch" | "assert/strict.doesNotReject" | "assert/strict.doesNotThrow" | "assert/strict.equal" | "assert/strict.fail" | "assert/strict.ifError" | "assert/strict.match" | "assert/strict.notDeepEqual" | "assert/strict.notDeepStrictEqual" | "assert/strict.notEqual" | "assert/strict.notStrictEqual" | "assert/strict.ok" | "assert/strict.partialDeepStrictEqual" | "assert/strict.rejects" | "assert/strict.strictEqual" | "assert/strict.throws" | "assert/strict.CallTracker" | "async_hooks" | "async_hooks.createHook" | "async_hooks.executionAsyncResource" | "async_hooks.executionAsyncId" | "async_hooks.triggerAsyncId" | "async_hooks.AsyncLocalStorage" | "async_hooks.AsyncLocalStorage.bind" | "async_hooks.AsyncLocalStorage.snapshot" | "async_hooks.AsyncResource" | "async_hooks.AsyncResource.bind" | "buffer" | "buffer.constants" | "buffer.INSPECT_MAX_BYTES" | "buffer.kMaxLength" | "buffer.kStringMaxLength" | "buffer.atob" | "buffer.btoa" | "buffer.isAscii" | "buffer.isUtf8" | "buffer.resolveObjectURL" | "buffer.transcode" | "buffer.SlowBuffer" | "buffer.Blob" | "new buffer.Buffer()" | "buffer.Buffer" | "buffer.Buffer.alloc" | "buffer.Buffer.allocUnsafe" | "buffer.Buffer.allocUnsafeSlow" | "buffer.Buffer.byteLength" | "buffer.Buffer.compare" | "buffer.Buffer.concat" | "buffer.Buffer.copyBytesFrom" | "buffer.Buffer.from" | "buffer.Buffer.isBuffer" | "buffer.Buffer.isEncoding" | "buffer.File" | "child_process" | "child_process.exec" | "child_process.execFile" | "child_process.fork" | "child_process.spawn" | "child_process.execFileSync" | "child_process.execSync" | "child_process.spawnSync" | "child_process.ChildProcess" | "cluster" | "cluster.isMaster" | "cluster.isPrimary" | "cluster.isWorker" | "cluster.schedulingPolicy" | "cluster.settings" | "cluster.worker" | "cluster.workers" | "cluster.disconnect" | "cluster.fork" | "cluster.setupMaster" | "cluster.setupPrimary" | "cluster.Worker" | "crypto.constants" | "crypto.fips" | "crypto.webcrypto" | "crypto.webcrypto.subtle" | "crypto.webcrypto.subtle.decapsulateBits" | "crypto.webcrypto.subtle.decapsulateKey" | "crypto.webcrypto.subtle.decrypt" | "crypto.webcrypto.subtle.deriveBits" | "crypto.webcrypto.subtle.deriveKey" | "crypto.webcrypto.subtle.digest" | "crypto.webcrypto.subtle.encapsulateBits" | "crypto.webcrypto.subtle.encapsulateKey" | "crypto.webcrypto.subtle.encrypt" | "crypto.webcrypto.subtle.exportKey" | "crypto.webcrypto.subtle.generateKey" | "crypto.webcrypto.subtle.getPublicKey" | "crypto.webcrypto.subtle.importKey" | "crypto.webcrypto.subtle.sign" | "crypto.webcrypto.subtle.unwrapKey" | "crypto.webcrypto.subtle.verify" | "crypto.webcrypto.subtle.wrapKey" | "crypto.webcrypto.getRandomValues" | "crypto.webcrypto.randomUUID" | "crypto.argon2" | "crypto.argon2Sync" | "crypto.checkPrime" | "crypto.checkPrimeSync" | "crypto.createCipher" | "crypto.createCipheriv" | "crypto.createDecipher" | "crypto.createDecipheriv" | "crypto.createDiffieHellman" | "crypto.createDiffieHellmanGroup" | "crypto.createECDH" | "crypto.createHash" | "crypto.createHmac" | "crypto.createPrivateKey" | "crypto.createPublicKey" | "crypto.createSecretKey" | "crypto.createSign" | "crypto.createVerify" | "crypto.decapsulate" | "crypto.diffieHellman" | "crypto.encapsulate" | "crypto.generateKey" | "crypto.generateKeyPair" | "crypto.generateKeyPairSync" | "crypto.generateKeySync" | "crypto.generatePrime" | "crypto.generatePrimeSync" | "crypto.getCipherInfo" | "crypto.getCiphers" | "crypto.getCurves" | "crypto.getDiffieHellman" | "crypto.getFips" | "crypto.getHashes" | "crypto.hash" | "crypto.hkdf" | "crypto.hkdfSync" | "crypto.pbkdf2" | "crypto.pbkdf2Sync" | "crypto.privateDecrypt" | "crypto.privateEncrypt" | "crypto.publicDecrypt" | "crypto.publicEncrypt" | "crypto.randomBytes" | "crypto.randomFillSync" | "crypto.randomFill" | "crypto.randomInt" | "crypto.scrypt" | "crypto.scryptSync" | "crypto.secureHeapUsed" | "crypto.setEngine" | "crypto.setFips" | "crypto.sign" | "crypto.timingSafeEqual" | "crypto.verify" | "crypto.Certificate" | "crypto.Certificate.exportChallenge" | "crypto.Certificate.exportPublicKey" | "crypto.Certificate.verifySpkac" | "crypto.Cipher" | "crypto.Decipher" | "crypto.DiffieHellman" | "crypto.DiffieHellmanGroup" | "crypto.ECDH" | "crypto.ECDH.convertKey" | "crypto.Hash()" | "new crypto.Hash()" | "crypto.Hash" | "crypto.Hmac()" | "new crypto.Hmac()" | "crypto.Hmac" | "crypto.KeyObject" | "crypto.KeyObject.from" | "crypto.Sign" | "crypto.Verify" | "crypto.X509Certificate" | "dgram" | "dgram.createSocket" | "dgram.Socket" | "diagnostics_channel" | "diagnostics_channel.hasSubscribers" | "diagnostics_channel.channel" | "diagnostics_channel.subscribe" | "diagnostics_channel.unsubscribe" | "diagnostics_channel.tracingChannel" | "diagnostics_channel.Channel" | "diagnostics_channel.TracingChannel" | "dns" | "dns.Resolver" | "dns.getServers" | "dns.lookup" | "dns.lookupService" | "dns.resolve" | "dns.resolve4" | "dns.resolve6" | "dns.resolveAny" | "dns.resolveCname" | "dns.resolveCaa" | "dns.resolveMx" | "dns.resolveNaptr" | "dns.resolveNs" | "dns.resolvePtr" | "dns.resolveSoa" | "dns.resolveSrv" | "dns.resolveTlsa" | "dns.resolveTxt" | "dns.reverse" | "dns.setDefaultResultOrder" | "dns.getDefaultResultOrder" | "dns.setServers" | "dns.promises" | "dns.promises.Resolver" | "dns.promises.cancel" | "dns.promises.getServers" | "dns.promises.lookup" | "dns.promises.lookupService" | "dns.promises.resolve" | "dns.promises.resolve4" | "dns.promises.resolve6" | "dns.promises.resolveAny" | "dns.promises.resolveCaa" | "dns.promises.resolveCname" | "dns.promises.resolveMx" | "dns.promises.resolveNaptr" | "dns.promises.resolveNs" | "dns.promises.resolvePtr" | "dns.promises.resolveSoa" | "dns.promises.resolveSrv" | "dns.promises.resolveTlsa" | "dns.promises.resolveTxt" | "dns.promises.reverse" | "dns.promises.setDefaultResultOrder" | "dns.promises.getDefaultResultOrder" | "dns.promises.setServers" | "dns/promises" | "dns/promises.Resolver" | "dns/promises.cancel" | "dns/promises.getServers" | "dns/promises.lookup" | "dns/promises.lookupService" | "dns/promises.resolve" | "dns/promises.resolve4" | "dns/promises.resolve6" | "dns/promises.resolveAny" | "dns/promises.resolveCaa" | "dns/promises.resolveCname" | "dns/promises.resolveMx" | "dns/promises.resolveNaptr" | "dns/promises.resolveNs" | "dns/promises.resolvePtr" | "dns/promises.resolveSoa" | "dns/promises.resolveSrv" | "dns/promises.resolveTlsa" | "dns/promises.resolveTxt" | "dns/promises.reverse" | "dns/promises.setDefaultResultOrder" | "dns/promises.getDefaultResultOrder" | "dns/promises.setServers" | "domain" | "domain.create" | "domain.Domain" | "events" | "events.Event" | "events.EventTarget" | "events.CustomEvent" | "events.NodeEventTarget" | "events.EventEmitter" | "events.EventEmitter.defaultMaxListeners" | "events.EventEmitter.errorMonitor" | "events.EventEmitter.captureRejections" | "events.EventEmitter.captureRejectionSymbol" | "events.EventEmitter.getEventListeners" | "events.EventEmitter.getMaxListeners" | "events.EventEmitter.once" | "events.EventEmitter.listenerCount" | "events.EventEmitter.on" | "events.EventEmitter.setMaxListeners" | "events.EventEmitter.addAbortListener" | "events.EventEmitterAsyncResource" | "events.EventEmitterAsyncResource.defaultMaxListeners" | "events.EventEmitterAsyncResource.errorMonitor" | "events.EventEmitterAsyncResource.captureRejections" | "events.EventEmitterAsyncResource.captureRejectionSymbol" | "events.EventEmitterAsyncResource.getEventListeners" | "events.EventEmitterAsyncResource.getMaxListeners" | "events.EventEmitterAsyncResource.once" | "events.EventEmitterAsyncResource.listenerCount" | "events.EventEmitterAsyncResource.on" | "events.EventEmitterAsyncResource.setMaxListeners" | "events.EventEmitterAsyncResource.addAbortListener" | "events.defaultMaxListeners" | "events.errorMonitor" | "events.captureRejections" | "events.captureRejectionSymbol" | "events.getEventListeners" | "events.getMaxListeners" | "events.once" | "events.listenerCount" | "events.on" | "events.setMaxListeners" | "events.addAbortListener" | "fs" | "fs.promises" | "fs.promises.FileHandle" | "fs.promises.access" | "fs.promises.appendFile" | "fs.promises.chmod" | "fs.promises.chown" | "fs.promises.constants" | "fs.promises.copyFile" | "fs.promises.cp" | "fs.promises.glob" | "fs.promises.lchmod" | "fs.promises.lchown" | "fs.promises.link" | "fs.promises.lstat" | "fs.promises.lutimes" | "fs.promises.mkdir" | "fs.promises.mkdtemp" | "fs.promises.mkdtempDisposable" | "fs.promises.open" | "fs.promises.opendir" | "fs.promises.readFile" | "fs.promises.readdir" | "fs.promises.readlink" | "fs.promises.realpath" | "fs.promises.rename" | "fs.promises.rm" | "fs.promises.rmdir" | "fs.promises.stat" | "fs.promises.statfs" | "fs.promises.symlink" | "fs.promises.truncate" | "fs.promises.unlink" | "fs.promises.utimes" | "fs.promises.watch" | "fs.promises.writeFile" | "fs.access" | "fs.appendFile" | "fs.chmod" | "fs.chown" | "fs.close" | "fs.copyFile" | "fs.cp" | "fs.createReadStream" | "fs.createWriteStream" | "fs.exists" | "fs.fchmod" | "fs.fchown" | "fs.fdatasync" | "fs.fstat" | "fs.fsync" | "fs.ftruncate" | "fs.futimes" | "fs.glob" | "fs.lchmod" | "fs.lchown" | "fs.link" | "fs.lstat" | "fs.lutimes" | "fs.mkdir" | "fs.mkdtemp" | "fs.native" | "fs.open" | "fs.openAsBlob" | "fs.opendir" | "fs.read" | "fs.readdir" | "fs.readFile" | "fs.readlink" | "fs.readv" | "fs.realpath" | "fs.realpath.native" | "fs.rename" | "fs.rm" | "fs.rmdir" | "fs.stat" | "fs.statfs" | "fs.symlink" | "fs.truncate" | "fs.unlink" | "fs.unwatchFile" | "fs.utimes" | "fs.watch" | "fs.watchFile" | "fs.write" | "fs.writeFile" | "fs.writev" | "fs.accessSync" | "fs.appendFileSync" | "fs.chmodSync" | "fs.chownSync" | "fs.closeSync" | "fs.copyFileSync" | "fs.cpSync" | "fs.existsSync" | "fs.fchmodSync" | "fs.fchownSync" | "fs.fdatasyncSync" | "fs.fstatSync" | "fs.fsyncSync" | "fs.ftruncateSync" | "fs.futimesSync" | "fs.globSync" | "fs.lchmodSync" | "fs.lchownSync" | "fs.linkSync" | "fs.lstatSync" | "fs.lutimesSync" | "fs.mkdirSync" | "fs.mkdtempSync" | "fs.mkdtempDisposableSync" | "fs.opendirSync" | "fs.openSync" | "fs.readdirSync" | "fs.readFileSync" | "fs.readlinkSync" | "fs.readSync" | "fs.readvSync" | "fs.realpathSync" | "fs.realpathSync.native" | "fs.renameSync" | "fs.rmdirSync" | "fs.rmSync" | "fs.statfsSync" | "fs.statSync" | "fs.symlinkSync" | "fs.truncateSync" | "fs.unlinkSync" | "fs.utimesSync" | "fs.writeFileSync" | "fs.writeSync" | "fs.writevSync" | "fs.constants" | "fs.Dir" | "fs.Dirent" | "fs.FSWatcher" | "fs.StatWatcher" | "fs.ReadStream" | "fs.Stats()" | "new fs.Stats()" | "fs.Stats" | "fs.StatFs" | "fs.WriteStream" | "fs.Utf8Stream" | "fs.common_objects" | "fs/promises" | "fs/promises.FileHandle" | "fs/promises.access" | "fs/promises.appendFile" | "fs/promises.chmod" | "fs/promises.chown" | "fs/promises.constants" | "fs/promises.copyFile" | "fs/promises.cp" | "fs/promises.glob" | "fs/promises.lchmod" | "fs/promises.lchown" | "fs/promises.link" | "fs/promises.lstat" | "fs/promises.lutimes" | "fs/promises.mkdir" | "fs/promises.mkdtemp" | "fs/promises.mkdtempDisposable" | "fs/promises.open" | "fs/promises.opendir" | "fs/promises.readFile" | "fs/promises.readdir" | "fs/promises.readlink" | "fs/promises.realpath" | "fs/promises.rename" | "fs/promises.rm" | "fs/promises.rmdir" | "fs/promises.stat" | "fs/promises.statfs" | "fs/promises.symlink" | "fs/promises.truncate" | "fs/promises.unlink" | "fs/promises.utimes" | "fs/promises.watch" | "fs/promises.writeFile" | "http2" | "http2.constants" | "http2.sensitiveHeaders" | "http2.createServer" | "http2.createSecureServer" | "http2.connect" | "http2.getDefaultSettings" | "http2.getPackedSettings" | "http2.getUnpackedSettings" | "http2.performServerHandshake" | "http2.Http2Session" | "http2.ServerHttp2Session" | "http2.ClientHttp2Session" | "http2.Http2Stream" | "http2.ClientHttp2Stream" | "http2.ServerHttp2Stream" | "http2.Http2Server" | "http2.Http2SecureServer" | "http2.Http2ServerRequest" | "http2.Http2ServerResponse" | "http" | "http.METHODS" | "http.STATUS_CODES" | "http.globalAgent" | "http.maxHeaderSize" | "http.createServer" | "http.get" | "http.request" | "http.validateHeaderName" | "http.validateHeaderValue" | "http.setMaxIdleHTTPParsers" | "http.Agent()" | "http.Agent" | "http.ClientRequest()" | "http.ClientRequest" | "http.Server()" | "http.Server" | "http.ServerResponse()" | "http.ServerResponse" | "http.IncomingMessage()" | "http.IncomingMessage" | "http.OutgoingMessage()" | "http.OutgoingMessage" | "http.WebSocket()" | "http.WebSocket" | "_http_agent" | "_http_client" | "_http_common" | "_http_incoming" | "_http_outgoing" | "_http_server" | "https" | "https.globalAgent" | "https.createServer" | "https.get" | "https.request" | "https.Agent" | "https.Server" | "inspector" | "inspector.Session" | "inspector.Network.dataReceived" | "inspector.Network.dataSent" | "inspector.Network.loadingFailed" | "inspector.Network.loadingFinished" | "inspector.Network.requestWillBeSent" | "inspector.Network.responseReceived" | "inspector.Network.webSocketCreated" | "inspector.Network.webSocketHandshakeResponseReceived" | "inspector.Network.webSocketClosed" | "inspector.NetworkResources.put" | "inspector.console" | "inspector.close" | "inspector.open" | "inspector.url" | "inspector.waitForDebugger" | "inspector/promises" | "inspector/promises.Session" | "inspector/promises.Network.dataReceived" | "inspector/promises.Network.dataSent" | "inspector/promises.Network.loadingFailed" | "inspector/promises.Network.loadingFinished" | "inspector/promises.Network.requestWillBeSent" | "inspector/promises.Network.responseReceived" | "inspector/promises.Network.webSocketCreated" | "inspector/promises.Network.webSocketHandshakeResponseReceived" | "inspector/promises.Network.webSocketClosed" | "inspector/promises.NetworkResources.put" | "inspector/promises.console" | "inspector/promises.close" | "inspector/promises.open" | "inspector/promises.url" | "inspector/promises.waitForDebugger" | "module.builtinModules" | "module.constants.compileCacheStatus" | "module.createRequire" | "module.createRequireFromPath" | "module.enableCompileCache" | "module.findPackageJSON" | "module.flushCompileCache" | "module.getCompileCacheDir" | "module.getSourceMapsSupport" | "module.isBuiltin" | "module.registerHooks" | "module.register" | "module.setSourceMapsSupport" | "module.stripTypeScriptTypes" | "module.syncBuiltinESMExports" | "module.findSourceMap" | "module.SourceMap" | "module.Module.builtinModules" | "module.Module.createRequire" | "module.Module.createRequireFromPath" | "module.Module.enableCompileCache" | "module.Module.findPackageJSON" | "module.Module.flushCompileCache" | "module.Module.getCompileCacheDir" | "module.Module.getSourceMapsSupport" | "module.Module.isBuiltin" | "module.Module.registerHooks" | "module.Module.register" | "module.Module.setSourceMapsSupport" | "module.Module.stripTypeScriptTypes" | "module.Module.syncBuiltinESMExports" | "module.Module.findSourceMap" | "module.Module.SourceMap" | "net" | "net.connect" | "net.createConnection" | "net.createServer" | "net.getDefaultAutoSelectFamily" | "net.setDefaultAutoSelectFamily" | "net.getDefaultAutoSelectFamilyAttemptTimeout" | "net.setDefaultAutoSelectFamilyAttemptTimeout" | "net.isIP" | "net.isIPv4" | "net.isIPv6" | "net.BlockList" | "net.BlockList.isBlockList" | "net.SocketAddress" | "net.SocketAddress.parse" | "net.Server" | "net.Socket" | "os" | "os.EOL" | "os.constants" | "os.constants.priority" | "os.devNull" | "os.availableParallelism" | "os.arch" | "os.cpus" | "os.endianness" | "os.freemem" | "os.getPriority" | "os.homedir" | "os.hostname" | "os.loadavg" | "os.machine" | "os.networkInterfaces" | "os.platform" | "os.release" | "os.setPriority" | "os.tmpdir" | "os.totalmem" | "os.type" | "os.uptime" | "os.userInfo" | "os.version" | "path" | "path.posix" | "path.posix.delimiter" | "path.posix.sep" | "path.posix.basename" | "path.posix.dirname" | "path.posix.extname" | "path.posix.format" | "path.posix.matchesGlob" | "path.posix.isAbsolute" | "path.posix.join" | "path.posix.normalize" | "path.posix.parse" | "path.posix.relative" | "path.posix.resolve" | "path.posix.toNamespacedPath" | "path.win32" | "path.win32.delimiter" | "path.win32.sep" | "path.win32.basename" | "path.win32.dirname" | "path.win32.extname" | "path.win32.format" | "path.win32.matchesGlob" | "path.win32.isAbsolute" | "path.win32.join" | "path.win32.normalize" | "path.win32.parse" | "path.win32.relative" | "path.win32.resolve" | "path.win32.toNamespacedPath" | "path.delimiter" | "path.sep" | "path.basename" | "path.dirname" | "path.extname" | "path.format" | "path.matchesGlob" | "path.isAbsolute" | "path.join" | "path.normalize" | "path.parse" | "path.relative" | "path.resolve" | "path.toNamespacedPath" | "path/posix" | "path/posix.delimiter" | "path/posix.sep" | "path/posix.basename" | "path/posix.dirname" | "path/posix.extname" | "path/posix.format" | "path/posix.matchesGlob" | "path/posix.isAbsolute" | "path/posix.join" | "path/posix.normalize" | "path/posix.parse" | "path/posix.relative" | "path/posix.resolve" | "path/posix.toNamespacedPath" | "path/win32" | "path/win32.delimiter" | "path/win32.sep" | "path/win32.basename" | "path/win32.dirname" | "path/win32.extname" | "path/win32.format" | "path/win32.matchesGlob" | "path/win32.isAbsolute" | "path/win32.join" | "path/win32.normalize" | "path/win32.parse" | "path/win32.relative" | "path/win32.resolve" | "path/win32.toNamespacedPath" | "perf_hooks" | "perf_hooks.performance" | "perf_hooks.performance.clearMarks" | "perf_hooks.performance.clearMeasures" | "perf_hooks.performance.clearResourceTimings" | "perf_hooks.performance.eventLoopUtilization" | "perf_hooks.performance.getEntries" | "perf_hooks.performance.getEntriesByName" | "perf_hooks.performance.getEntriesByType" | "perf_hooks.performance.mark" | "perf_hooks.performance.markResourceTiming" | "perf_hooks.performance.measure" | "perf_hooks.performance.nodeTiming" | "perf_hooks.performance.nodeTiming.bootstrapComplete" | "perf_hooks.performance.nodeTiming.environment" | "perf_hooks.performance.nodeTiming.idleTime" | "perf_hooks.performance.nodeTiming.loopExit" | "perf_hooks.performance.nodeTiming.loopStart" | "perf_hooks.performance.nodeTiming.nodeStart" | "perf_hooks.performance.nodeTiming.uvMetricsInfo" | "perf_hooks.performance.nodeTiming.v8Start" | "perf_hooks.performance.now" | "perf_hooks.performance.onresourcetimingbufferfull" | "perf_hooks.performance.setResourceTimingBufferSize" | "perf_hooks.performance.timeOrigin" | "perf_hooks.performance.timerify" | "perf_hooks.performance.toJSON" | "perf_hooks.createHistogram" | "perf_hooks.eventLoopUtilization" | "perf_hooks.timerify" | "perf_hooks.monitorEventLoopDelay" | "perf_hooks.PerformanceEntry" | "perf_hooks.PerformanceMark" | "perf_hooks.PerformanceMeasure" | "perf_hooks.PerformanceNodeEntry" | "perf_hooks.PerformanceNodeTiming" | "perf_hooks.PerformanceResourceTiming" | "perf_hooks.PerformanceObserver" | "perf_hooks.PerformanceObserverEntryList" | "perf_hooks.Histogram" | "perf_hooks.IntervalHistogram" | "perf_hooks.RecordableHistogram" | "punycode" | "punycode.ucs2" | "punycode.version" | "punycode.decode" | "punycode.encode" | "punycode.toASCII" | "punycode.toUnicode" | "querystring" | "querystring.decode" | "querystring.encode" | "querystring.escape" | "querystring.parse" | "querystring.stringify" | "querystring.unescape" | "readline" | "readline.promises" | "readline.promises.createInterface" | "readline.promises.Interface" | "readline.promises.Readline" | "readline.clearLine" | "readline.clearScreenDown" | "readline.createInterface" | "readline.cursorTo" | "readline.moveCursor" | "readline.Interface" | "readline.emitKeypressEvents" | "readline.InterfaceConstructor" | "readline/promises" | "readline/promises.createInterface" | "readline/promises.Interface" | "readline/promises.Readline" | "repl" | "repl.start" | "repl.writer" | "repl.REPLServer()" | "repl.REPLServer" | "repl.REPL_MODE_MAGIC" | "repl.REPL_MODE_SLOPPY" | "repl.REPL_MODE_STRICT" | "repl.Recoverable()" | "repl.Recoverable" | "repl.builtinModules" | "sea" | "sea.isSea" | "sea.getAsset" | "sea.getAssetAsBlob" | "sea.getAssetKeys" | "sea.getRawAsset" | "sea.sea.isSea" | "sea.sea.getAsset" | "sea.sea.getAssetAsBlob" | "sea.sea.getAssetKeys" | "sea.sea.getRawAsset" | "stream" | "stream.promises" | "stream.promises.pipeline" | "stream.promises.finished" | "stream.finished" | "stream.pipeline" | "stream.compose" | "stream.duplexPair" | "stream.Readable" | "stream.Readable.from" | "stream.Readable.isDisturbed" | "stream.Readable.fromWeb" | "stream.Readable.toWeb" | "stream.Writable" | "stream.Writable.fromWeb" | "stream.Writable.toWeb" | "stream.Duplex" | "stream.Duplex.from" | "stream.Duplex.fromWeb" | "stream.Duplex.toWeb" | "stream.Transform" | "stream.isErrored" | "stream.isReadable" | "stream.addAbortSignal" | "stream.getDefaultHighWaterMark" | "stream.setDefaultHighWaterMark" | "stream/promises.pipeline" | "stream/promises.finished" | "stream/web" | "stream/web.ReadableStream" | "stream/web.ReadableStream.from" | "stream/web.ReadableStreamDefaultReader" | "stream/web.ReadableStreamBYOBReader" | "stream/web.ReadableStreamDefaultController" | "stream/web.ReadableByteStreamController" | "stream/web.ReadableStreamBYOBRequest" | "stream/web.WritableStream" | "stream/web.WritableStreamDefaultWriter" | "stream/web.WritableStreamDefaultController" | "stream/web.TransformStream" | "stream/web.TransformStreamDefaultController" | "stream/web.ByteLengthQueuingStrategy" | "stream/web.CountQueuingStrategy" | "stream/web.TextEncoderStream" | "stream/web.TextDecoderStream" | "stream/web.CompressionStream" | "stream/web.DecompressionStream" | "stream/consumers" | "stream/consumers.arrayBuffer" | "stream/consumers.blob" | "stream/consumers.buffer" | "stream/consumers.json" | "stream/consumers.text" | "_stream_duplex" | "_stream_passthrough" | "_stream_readable" | "_stream_transform" | "_stream_wrap" | "_stream_writable" | "string_decoder" | "string_decoder.StringDecoder" | "sqlite" | "sqlite.constants" | "sqlite.constants.SQLITE_CHANGESET_OMIT" | "sqlite.constants.SQLITE_CHANGESET_REPLACE" | "sqlite.constants.SQLITE_CHANGESET_ABORT" | "sqlite.backup" | "sqlite.DatabaseSync" | "sqlite.Session" | "sqlite.StatementSync" | "sqlite.SQLITE_CHANGESET_OMIT" | "sqlite.SQLITE_CHANGESET_REPLACE" | "sqlite.SQLITE_CHANGESET_ABORT" | "test" | "test.after" | "test.afterEach" | "test.assert" | "test.assert.register" | "test.before" | "test.beforeEach" | "test.describe" | "test.describe.only" | "test.describe.skip" | "test.describe.todo" | "test.it" | "test.it.only" | "test.it.skip" | "test.it.todo" | "test.mock" | "test.mock.fn" | "test.mock.getter" | "test.mock.method" | "test.mock.module" | "test.mock.property" | "test.mock.reset" | "test.mock.restoreAll" | "test.mock.setter" | "test.mock.timers" | "test.mock.timers.enable" | "test.mock.timers.reset" | "test.mock.timers.tick" | "test.only" | "test.run" | "test.snapshot" | "test.snapshot.setDefaultSnapshotSerializers" | "test.snapshot.setResolveSnapshotPath" | "test.skip" | "test.suite" | "test.test" | "test.test.only" | "test.test.skip" | "test.test.todo" | "test.todo" | "timers" | "timers.Immediate" | "timers.Timeout" | "timers.setImmediate" | "timers.clearImmediate" | "timers.setInterval" | "timers.clearInterval" | "timers.setTimeout" | "timers.clearTimeout" | "timers.promises" | "timers.promises.setTimeout" | "timers.promises.setImmediate" | "timers.promises.setInterval" | "timers.promises.scheduler.wait" | "timers.promises.scheduler.yield" | "timers/promises" | "timers/promises.setTimeout" | "timers/promises.setImmediate" | "timers/promises.setInterval" | "timers/promises.scheduler.wait" | "timers/promises.scheduler.yield" | "tls" | "tls.checkServerIdentity" | "tls.connect" | "tls.createSecureContext" | "tls.createSecurePair" | "tls.createServer" | "tls.CryptoStream" | "tls.DEFAULT_CIPHERS" | "tls.DEFAULT_ECDH_CURVE" | "tls.DEFAULT_MAX_VERSION" | "tls.DEFAULT_MIN_VERSION" | "tls.getCACertificates" | "tls.getCiphers" | "tls.rootCertificates" | "tls.SecureContext" | "tls.SecurePair" | "tls.Server" | "tls.setDefaultCACertificates" | "tls.TLSSocket" | "_tls_common" | "_tls_wrap" | "trace_events" | "trace_events.createTracing" | "trace_events.getEnabledCategories" | "tty" | "tty.isatty" | "tty.ReadStream" | "tty.WriteStream" | "url" | "url.domainToASCII" | "url.domainToUnicode" | "url.fileURLToPath" | "url.format" | "url.pathToFileURL" | "url.urlToHttpOptions" | "url.URL" | "url.URL.canParse" | "url.URL.createObjectURL" | "url.URL.revokeObjectURL" | "url.URLPattern" | "url.URLSearchParams" | "url.Url" | "util.promisify" | "util.promisify.custom" | "util.callbackify" | "util.debuglog" | "util.debug" | "util.deprecate" | "util.diff" | "util.format" | "util.formatWithOptions" | "util.getCallSite" | "util.getCallSites" | "util.getSystemErrorName" | "util.getSystemErrorMap" | "util.getSystemErrorMessage" | "util.inherits" | "util.inspect" | "util.inspect.custom" | "util.inspect.defaultOptions" | "util.inspect.replDefaults" | "util.isDeepStrictEqual" | "util.parseArgs" | "util.parseEnv" | "util.setTraceSigInt" | "util.stripVTControlCharacters" | "util.styleText" | "util.toUSVString" | "util.transferableAbortController" | "util.transferableAbortSignal" | "util.aborted" | "util.MIMEType" | "util.MIMEParams" | "util.TextDecoder" | "util.TextEncoder" | "util.types" | "util.types.isExternal" | "util.types.isDate" | "util.types.isArgumentsObject" | "util.types.isBigIntObject" | "util.types.isBooleanObject" | "util.types.isNumberObject" | "util.types.isStringObject" | "util.types.isSymbolObject" | "util.types.isNativeError" | "util.types.isRegExp" | "util.types.isAsyncFunction" | "util.types.isGeneratorFunction" | "util.types.isGeneratorObject" | "util.types.isPromise" | "util.types.isMap" | "util.types.isSet" | "util.types.isMapIterator" | "util.types.isSetIterator" | "util.types.isWeakMap" | "util.types.isWeakSet" | "util.types.isArrayBuffer" | "util.types.isDataView" | "util.types.isSharedArrayBuffer" | "util.types.isProxy" | "util.types.isModuleNamespaceObject" | "util.types.isAnyArrayBuffer" | "util.types.isBoxedPrimitive" | "util.types.isArrayBufferView" | "util.types.isTypedArray" | "util.types.isUint8Array" | "util.types.isUint8ClampedArray" | "util.types.isUint16Array" | "util.types.isUint32Array" | "util.types.isInt8Array" | "util.types.isInt16Array" | "util.types.isInt32Array" | "util.types.isFloat16Array" | "util.types.isFloat32Array" | "util.types.isFloat64Array" | "util.types.isBigInt64Array" | "util.types.isBigUint64Array" | "util.types.isKeyObject" | "util.types.isCryptoKey" | "util.types.isWebAssemblyCompiledModule" | "util._extend" | "util.isArray" | "util.isBoolean" | "util.isBuffer" | "util.isDate" | "util.isError" | "util.isFunction" | "util.isNull" | "util.isNullOrUndefined" | "util.isNumber" | "util.isObject" | "util.isPrimitive" | "util.isRegExp" | "util.isString" | "util.isSymbol" | "util.isUndefined" | "util.log" | "util" | "util/types" | "util/types.isExternal" | "util/types.isDate" | "util/types.isArgumentsObject" | "util/types.isBigIntObject" | "util/types.isBooleanObject" | "util/types.isNumberObject" | "util/types.isStringObject" | "util/types.isSymbolObject" | "util/types.isNativeError" | "util/types.isRegExp" | "util/types.isAsyncFunction" | "util/types.isGeneratorFunction" | "util/types.isGeneratorObject" | "util/types.isPromise" | "util/types.isMap" | "util/types.isSet" | "util/types.isMapIterator" | "util/types.isSetIterator" | "util/types.isWeakMap" | "util/types.isWeakSet" | "util/types.isArrayBuffer" | "util/types.isDataView" | "util/types.isSharedArrayBuffer" | "util/types.isProxy" | "util/types.isModuleNamespaceObject" | "util/types.isAnyArrayBuffer" | "util/types.isBoxedPrimitive" | "util/types.isArrayBufferView" | "util/types.isTypedArray" | "util/types.isUint8Array" | "util/types.isUint8ClampedArray" | "util/types.isUint16Array" | "util/types.isUint32Array" | "util/types.isInt8Array" | "util/types.isInt16Array" | "util/types.isInt32Array" | "util/types.isFloat16Array" | "util/types.isFloat32Array" | "util/types.isFloat64Array" | "util/types.isBigInt64Array" | "util/types.isBigUint64Array" | "util/types.isKeyObject" | "util/types.isCryptoKey" | "util/types.isWebAssemblyCompiledModule" | "v8" | "v8.serialize" | "v8.deserialize" | "v8.Serializer" | "v8.Deserializer" | "v8.DefaultSerializer" | "v8.DefaultDeserializer" | "v8.promiseHooks" | "v8.promiseHooks.onInit" | "v8.promiseHooks.onSettled" | "v8.promiseHooks.onBefore" | "v8.promiseHooks.onAfter" | "v8.promiseHooks.createHook" | "v8.startupSnapshot" | "v8.startupSnapshot.addSerializeCallback" | "v8.startupSnapshot.addDeserializeCallback" | "v8.startupSnapshot.setDeserializeMainFunction" | "v8.startupSnapshot.isBuildingSnapshot" | "v8.cachedDataVersionTag" | "v8.getHeapCodeStatistics" | "v8.getHeapSnapshot" | "v8.getHeapSpaceStatistics" | "v8.getHeapStatistics" | "v8.isStringOneByteRepresentation" | "v8.queryObjects" | "v8.setFlagsFromString" | "v8.stopCoverage" | "v8.takeCoverage" | "v8.writeHeapSnapshot" | "v8.setHeapSnapshotNearHeapLimit" | "v8.GCProfiler" | "v8.startCpuProfile" | "vm.constants" | "vm.compileFunction" | "vm.createContext" | "vm.isContext" | "vm.measureMemory" | "vm.runInContext" | "vm.runInNewContext" | "vm.runInThisContext" | "vm.Script" | "vm.Module" | "vm.SourceTextModule" | "vm.SyntheticModule" | "vm" | "wasi.WASI" | "wasi" | "worker_threads" | "worker_threads.parentPort" | "worker_threads.resourceLimits" | "worker_threads.SHARE_ENV" | "worker_threads.threadId" | "worker_threads.threadName" | "worker_threads.workerData" | "worker_threads.getEnvironmentData" | "worker_threads.getHeapStatistics" | "worker_threads.markAsUncloneable" | "worker_threads.markAsUntransferable" | "worker_threads.isInternalThread" | "worker_threads.isMainThread" | "worker_threads.isMarkedAsUntransferable" | "worker_threads.locks" | "worker_threads.locks.request" | "worker_threads.locks.query" | "worker_threads.moveMessagePortToContext" | "worker_threads.postMessageToThread" | "worker_threads.receiveMessageOnPort" | "worker_threads.setEnvironmentData" | "worker_threads.BroadcastChannel" | "worker_threads.MessageChannel" | "worker_threads.MessagePort" | "worker_threads.Worker" | "zlib.brotliCompress" | "zlib.brotliCompressSync" | "zlib.brotliDecompress" | "zlib.brotliDecompressSync" | "zlib.constants" | "zlib.constants.ZSTD_e_continue" | "zlib.constants.ZSTD_e_flush" | "zlib.constants.ZSTD_e_end" | "zlib.constants.ZSTD_fast" | "zlib.constants.ZSTD_dfast" | "zlib.constants.ZSTD_greedy" | "zlib.constants.ZSTD_lazy" | "zlib.constants.ZSTD_lazy2" | "zlib.constants.ZSTD_btlazy2" | "zlib.constants.ZSTD_btopt" | "zlib.constants.ZSTD_btultra" | "zlib.constants.ZSTD_btultra2" | "zlib.constants.ZSTD_c_compressionLevel" | "zlib.constants.ZSTD_c_windowLog" | "zlib.constants.ZSTD_c_hashLog" | "zlib.constants.ZSTD_c_chainLog" | "zlib.constants.ZSTD_c_searchLog" | "zlib.constants.ZSTD_c_minMatch" | "zlib.constants.ZSTD_c_targetLength" | "zlib.constants.ZSTD_c_strategy" | "zlib.constants.ZSTD_c_enableLongDistanceMatching" | "zlib.constants.ZSTD_c_ldmHashLog" | "zlib.constants.ZSTD_c_ldmMinMatch" | "zlib.constants.ZSTD_c_ldmBucketSizeLog" | "zlib.constants.ZSTD_c_ldmHashRateLog" | "zlib.constants.ZSTD_c_contentSizeFlag" | "zlib.constants.ZSTD_c_checksumFlag" | "zlib.constants.ZSTD_c_dictIDFlag" | "zlib.constants.ZSTD_c_nbWorkers" | "zlib.constants.ZSTD_c_jobSize" | "zlib.constants.ZSTD_c_overlapLog" | "zlib.constants.ZSTD_d_windowLogMax" | "zlib.constants.ZSTD_CLEVEL_DEFAULT" | "zlib.constants.ZSTD_error_no_error" | "zlib.constants.ZSTD_error_GENERIC" | "zlib.constants.ZSTD_error_prefix_unknown" | "zlib.constants.ZSTD_error_version_unsupported" | "zlib.constants.ZSTD_error_frameParameter_unsupported" | "zlib.constants.ZSTD_error_frameParameter_windowTooLarge" | "zlib.constants.ZSTD_error_corruption_detected" | "zlib.constants.ZSTD_error_checksum_wrong" | "zlib.constants.ZSTD_error_literals_headerWrong" | "zlib.constants.ZSTD_error_dictionary_corrupted" | "zlib.constants.ZSTD_error_dictionary_wrong" | "zlib.constants.ZSTD_error_dictionaryCreation_failed" | "zlib.constants.ZSTD_error_parameter_unsupported" | "zlib.constants.ZSTD_error_parameter_combination_unsupported" | "zlib.constants.ZSTD_error_parameter_outOfBound" | "zlib.constants.ZSTD_error_tableLog_tooLarge" | "zlib.constants.ZSTD_error_maxSymbolValue_tooLarge" | "zlib.constants.ZSTD_error_maxSymbolValue_tooSmall" | "zlib.constants.ZSTD_error_stabilityCondition_notRespected" | "zlib.constants.ZSTD_error_stage_wrong" | "zlib.constants.ZSTD_error_init_missing" | "zlib.constants.ZSTD_error_memory_allocation" | "zlib.constants.ZSTD_error_workSpace_tooSmall" | "zlib.constants.ZSTD_error_dstSize_tooSmall" | "zlib.constants.ZSTD_error_srcSize_wrong" | "zlib.constants.ZSTD_error_dstBuffer_null" | "zlib.constants.ZSTD_error_noForwardProgress_destFull" | "zlib.constants.ZSTD_error_noForwardProgress_inputEmpty" | "zlib.crc32" | "zlib.createBrotliCompress" | "zlib.createBrotliDecompress" | "zlib.createDeflate" | "zlib.createDeflateRaw" | "zlib.createGunzip" | "zlib.createGzip" | "zlib.createInflate" | "zlib.createInflateRaw" | "zlib.createUnzip" | "zlib.createZstdCompress" | "zlib.createZstdDecompress" | "zlib.deflate" | "zlib.deflateRaw" | "zlib.deflateRawSync" | "zlib.deflateSync" | "zlib.gunzip" | "zlib.gunzipSync" | "zlib.gzip" | "zlib.gzipSync" | "zlib.inflate" | "zlib.inflateRaw" | "zlib.inflateRawSync" | "zlib.inflateSync" | "zlib.unzip" | "zlib.unzipSync" | "zlib.zstdCompress" | "zlib.zstdCompressSync" | "zlib.zstdDecompress" | "zlib.zstdDecompressSync" | "zlib.BrotliCompress()" | "zlib.BrotliCompress" | "zlib.BrotliDecompress()" | "zlib.BrotliDecompress" | "zlib.Deflate()" | "zlib.Deflate" | "zlib.DeflateRaw()" | "zlib.DeflateRaw" | "zlib.Gunzip()" | "zlib.Gunzip" | "zlib.Gzip()" | "zlib.Gzip" | "zlib.Inflate()" | "zlib.Inflate" | "zlib.InflateRaw()" | "zlib.InflateRaw" | "zlib.Unzip()" | "zlib.Unzip" | "zlib.ZstdCompress" | "zlib.ZstdDecompress" | "zlib.ZstdOptions" | "zlib" | "import.meta.resolve" | "import.meta.dirname" | "import.meta.filename" | "import.meta.main")[];
-}]; // ----- node/prefer-global/buffer -----
-type NodePreferGlobalBuffer = [] | [("always" | "never")]; // ----- node/prefer-global/console -----
-type NodePreferGlobalConsole = [] | [("always" | "never")]; // ----- node/prefer-global/crypto -----
-type NodePreferGlobalCrypto = [] | [("always" | "never")]; // ----- node/prefer-global/process -----
-type NodePreferGlobalProcess = [] | [("always" | "never")]; // ----- node/prefer-global/text-decoder -----
-type NodePreferGlobalTextDecoder = [] | [("always" | "never")]; // ----- node/prefer-global/text-encoder -----
-type NodePreferGlobalTextEncoder = [] | [("always" | "never")]; // ----- node/prefer-global/timers -----
-type NodePreferGlobalTimers = [] | [("always" | "never")]; // ----- node/prefer-global/url -----
-type NodePreferGlobalUrl = [] | [("always" | "never")]; // ----- node/prefer-global/url-search-params -----
-type NodePreferGlobalUrlSearchParams = [] | [("always" | "never")]; // ----- node/prefer-node-protocol -----
+}];
+// ----- node/prefer-global/buffer -----
+type NodePreferGlobalBuffer = [] | [("always" | "never")];
+// ----- node/prefer-global/console -----
+type NodePreferGlobalConsole = [] | [("always" | "never")];
+// ----- node/prefer-global/crypto -----
+type NodePreferGlobalCrypto = [] | [("always" | "never")];
+// ----- node/prefer-global/process -----
+type NodePreferGlobalProcess = [] | [("always" | "never")];
+// ----- node/prefer-global/text-decoder -----
+type NodePreferGlobalTextDecoder = [] | [("always" | "never")];
+// ----- node/prefer-global/text-encoder -----
+type NodePreferGlobalTextEncoder = [] | [("always" | "never")];
+// ----- node/prefer-global/timers -----
+type NodePreferGlobalTimers = [] | [("always" | "never")];
+// ----- node/prefer-global/url -----
+type NodePreferGlobalUrl = [] | [("always" | "never")];
+// ----- node/prefer-global/url-search-params -----
+type NodePreferGlobalUrlSearchParams = [] | [("always" | "never")];
+// ----- node/prefer-node-protocol -----
 type NodePreferNodeProtocol = [] | [{
   version?: string;
-}]; // ----- node/shebang -----
+}];
+// ----- node/shebang -----
 type NodeShebang = [] | [{
   convertPath?: ({
     [k: string]: [string, string];
@@ -3743,8 +3931,9 @@ type PerfectionistSortArrayIncludes = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-arrays -----
-type PerfectionistSortArrays = {
+}[];
+// ----- perfectionist/sort-arrays -----
+type PerfectionistSortArrays = [{
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
     order?: ("asc" | "desc");
@@ -3849,7 +4038,113 @@ type PerfectionistSortArrays = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-classes -----
+}, ...({
+  fallbackSort?: {
+    type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    order?: ("asc" | "desc");
+  };
+  type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+  specialCharacters?: ("remove" | "trim" | "keep");
+  ignoreCase?: boolean;
+  alphabet?: string;
+  locales?: (string | string[]);
+  order?: ("asc" | "desc");
+  customGroups?: ({
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    anyOf: [{
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: "literal";
+    }, ...({
+      elementNamePattern?: (({
+        pattern: string;
+        flags?: string;
+      } | string)[] | ({
+        pattern: string;
+        flags?: string;
+      } | string));
+      selector?: "literal";
+    })[]];
+  } | {
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    groupName: string;
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+    elementNamePattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    selector?: "literal";
+  })[];
+  newlinesInside?: (("ignore" | number) | "newlinesBetween");
+  groups?: (string | [string, ...(string)[]] | {
+    newlinesBetween: ("ignore" | number);
+  } | {
+    group: (string | [string, ...(string)[]]);
+    fallbackSort?: {
+      type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+      order?: ("asc" | "desc");
+    };
+    commentAbove?: string;
+    type?: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
+    newlinesInside?: ("ignore" | number);
+    order?: ("asc" | "desc");
+  })[];
+  newlinesBetween?: ("ignore" | number);
+  useConfigurationIf: {
+    allNamesMatchPattern?: (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string));
+    matchesAstSelector?: string;
+  };
+  partitionByComment?: (boolean | (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string)) | {
+    block?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+    line?: (boolean | (({
+      pattern: string;
+      flags?: string;
+    } | string)[] | ({
+      pattern: string;
+      flags?: string;
+    } | string)));
+  });
+  partitionByNewLine?: boolean;
+})[]];
+// ----- perfectionist/sort-classes -----
 type PerfectionistSortClasses = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -4009,7 +4304,8 @@ type PerfectionistSortClasses = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-decorators -----
+}[];
+// ----- perfectionist/sort-decorators -----
 type PerfectionistSortDecorators = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -4107,7 +4403,8 @@ type PerfectionistSortDecorators = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-enums -----
+}[];
+// ----- perfectionist/sort-enums -----
 type PerfectionistSortEnums = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -4198,6 +4495,7 @@ type PerfectionistSortEnums = {
     order?: ("asc" | "desc");
   })[];
   newlinesBetween?: ("ignore" | number);
+  sortByValue?: ("always" | "ifNumericEnum" | "never");
   useConfigurationIf?: {
     allNamesMatchPattern?: (({
       pattern: string;
@@ -4208,7 +4506,6 @@ type PerfectionistSortEnums = {
     } | string));
     matchesAstSelector?: string;
   };
-  sortByValue?: ("always" | "ifNumericEnum" | "never");
   useExperimentalDependencyDetection?: boolean;
   partitionByComment?: (boolean | (({
     pattern: string;
@@ -4233,7 +4530,8 @@ type PerfectionistSortEnums = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-export-attributes -----
+}[];
+// ----- perfectionist/sort-export-attributes -----
 type PerfectionistSortExportAttributes = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -4336,7 +4634,8 @@ type PerfectionistSortExportAttributes = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-exports -----
+}[];
+// ----- perfectionist/sort-exports -----
 type PerfectionistSortExports = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -4435,7 +4734,8 @@ type PerfectionistSortExports = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-heritage-clauses -----
+}[];
+// ----- perfectionist/sort-heritage-clauses -----
 type PerfectionistSortHeritageClauses = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -4538,7 +4838,8 @@ type PerfectionistSortHeritageClauses = {
       flags?: string;
     } | string)));
   });
-}[]; // ----- perfectionist/sort-import-attributes -----
+}[];
+// ----- perfectionist/sort-import-attributes -----
 type PerfectionistSortImportAttributes = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -4641,7 +4942,8 @@ type PerfectionistSortImportAttributes = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-imports -----
+}[];
+// ----- perfectionist/sort-imports -----
 type PerfectionistSortImports = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "type-import-first");
@@ -4763,7 +5065,8 @@ type PerfectionistSortImports = {
     pattern: string;
     flags?: string;
   } | string));
-}[]; // ----- perfectionist/sort-interfaces -----
+}[];
+// ----- perfectionist/sort-interfaces -----
 type PerfectionistSortInterfaces = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -4920,7 +5223,8 @@ type PerfectionistSortInterfaces = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-intersection-types -----
+}[];
+// ----- perfectionist/sort-intersection-types -----
 type PerfectionistSortIntersectionTypes = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -5026,7 +5330,9 @@ type PerfectionistSortIntersectionTypes = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-jsx-props -----
+  ignoreCallableTypes?: boolean;
+}[];
+// ----- perfectionist/sort-jsx-props -----
 type PerfectionistSortJsxProps = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -5141,7 +5447,8 @@ type PerfectionistSortJsxProps = {
     } | string));
   };
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-maps -----
+}[];
+// ----- perfectionist/sort-maps -----
 type PerfectionistSortMaps = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -5244,7 +5551,8 @@ type PerfectionistSortMaps = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-modules -----
+}[];
+// ----- perfectionist/sort-modules -----
 type PerfectionistSortModules = [] | [{
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order" | "usage");
@@ -5366,7 +5674,8 @@ type PerfectionistSortModules = [] | [{
     } | string)));
   });
   partitionByNewLine?: boolean;
-}]; // ----- perfectionist/sort-named-exports -----
+}];
+// ----- perfectionist/sort-named-exports -----
 type PerfectionistSortNamedExports = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -5476,7 +5785,8 @@ type PerfectionistSortNamedExports = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-named-imports -----
+}[];
+// ----- perfectionist/sort-named-imports -----
 type PerfectionistSortNamedImports = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -5586,7 +5896,8 @@ type PerfectionistSortNamedImports = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-object-types -----
+}[];
+// ----- perfectionist/sort-object-types -----
 type PerfectionistSortObjectTypes = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -5743,7 +6054,8 @@ type PerfectionistSortObjectTypes = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-objects -----
+}[];
+// ----- perfectionist/sort-objects -----
 type PerfectionistSortObjects = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -5913,7 +6225,8 @@ type PerfectionistSortObjects = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-sets -----
+}[];
+// ----- perfectionist/sort-sets -----
 type PerfectionistSortSets = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -6019,7 +6332,8 @@ type PerfectionistSortSets = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-switch-case -----
+}[];
+// ----- perfectionist/sort-switch-case -----
 type PerfectionistSortSwitchCase = [] | [{
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -6031,7 +6345,8 @@ type PerfectionistSortSwitchCase = [] | [{
   alphabet?: string;
   locales?: (string | string[]);
   order?: ("asc" | "desc");
-}]; // ----- perfectionist/sort-union-types -----
+}];
+// ----- perfectionist/sort-union-types -----
 type PerfectionistSortUnionTypes = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -6137,7 +6452,8 @@ type PerfectionistSortUnionTypes = {
     } | string)));
   });
   partitionByNewLine?: boolean;
-}[]; // ----- perfectionist/sort-variable-declarations -----
+}[];
+// ----- perfectionist/sort-variable-declarations -----
 type PerfectionistSortVariableDeclarations = {
   fallbackSort?: {
     type: ("alphabetical" | "natural" | "line-length" | "custom" | "unsorted" | "subgroup-order");
@@ -6966,40 +7282,49 @@ interface RuleOptions$5 {
 type ReactDomNoUnknownProperty = [] | [{
   ignore?: string[];
   requireDataLowercase?: boolean;
-}]; // ----- react/exhaustive-deps -----
+}];
+// ----- react/exhaustive-deps -----
 type ReactExhaustiveDeps = [] | [{
   additionalHooks?: string;
   enableDangerousAutofixThisMayCauseInfiniteLoops?: boolean;
   experimental_autoDependenciesHooks?: string[];
   requireExplicitEffectDeps?: boolean;
-}]; // ----- react/jsx-no-useless-fragment -----
+}];
+// ----- react/jsx-no-useless-fragment -----
 type ReactJsxNoUselessFragment = [] | [{
   allowEmptyFragment?: boolean;
   allowExpressions?: boolean;
-}]; // ----- react/no-unstable-default-props -----
+}];
+// ----- react/no-unstable-default-props -----
 type ReactNoUnstableDefaultProps = [] | [{
   safeDefaultProps?: string[];
-}]; // ----- react/rules-of-hooks -----
+}];
+// ----- react/rules-of-hooks -----
 type ReactRulesOfHooks = [] | [{
   additionalHooks?: string;
-}]; // ----- react/use-state -----
+}];
+// ----- react/use-state -----
 type ReactUseState = [] | [{
   enforceAssignment?: boolean;
   enforceLazyInitialization?: boolean;
   enforceSetterName?: boolean;
-}]; // ----- react/x-exhaustive-deps -----
+}];
+// ----- react/x-exhaustive-deps -----
 type ReactXExhaustiveDeps = [] | [{
   additionalHooks?: string;
   enableDangerousAutofixThisMayCauseInfiniteLoops?: boolean;
   experimental_autoDependenciesHooks?: string[];
   requireExplicitEffectDeps?: boolean;
-}]; // ----- react/x-no-unstable-default-props -----
+}];
+// ----- react/x-no-unstable-default-props -----
 type ReactXNoUnstableDefaultProps = [] | [{
   safeDefaultProps?: string[];
-}]; // ----- react/x-rules-of-hooks -----
+}];
+// ----- react/x-rules-of-hooks -----
 type ReactXRulesOfHooks = [] | [{
   additionalHooks?: string;
-}]; // ----- react/x-use-state -----
+}];
+// ----- react/x-use-state -----
 type ReactXUseState = [] | [{
   enforceAssignment?: boolean;
   enforceLazyInitialization?: boolean;
@@ -7514,12 +7839,14 @@ interface RuleOptions$4 {
 type StyleArrayBracketNewline = [] | [(("always" | "never" | "consistent") | {
   multiline?: boolean;
   minItems?: (number | null);
-})]; // ----- style/array-bracket-spacing -----
+})];
+// ----- style/array-bracket-spacing -----
 type StyleArrayBracketSpacing = [] | [("always" | "never")] | [("always" | "never"), {
   singleValue?: boolean;
   objectsInArrays?: boolean;
   arraysInArrays?: boolean;
-}]; // ----- style/array-element-newline -----
+}];
+// ----- style/array-element-newline -----
 type StyleArrayElementNewline = [] | [(_StyleArrayElementNewlineBasicConfig | {
   ArrayExpression?: _StyleArrayElementNewlineBasicConfig;
   ArrayPattern?: _StyleArrayElementNewlineBasicConfig;
@@ -7528,18 +7855,23 @@ type _StyleArrayElementNewlineBasicConfig = (("always" | "never" | "consistent")
   consistent?: boolean;
   multiline?: boolean;
   minItems?: (number | null);
-}); // ----- style/arrow-parens -----
+});
+// ----- style/arrow-parens -----
 type StyleArrowParens = [] | [("always" | "as-needed")] | [("always" | "as-needed"), {
   requireForBlockBody?: boolean;
-}]; // ----- style/arrow-spacing -----
+}];
+// ----- style/arrow-spacing -----
 type StyleArrowSpacing = [] | [{
   before?: boolean;
   after?: boolean;
-}]; // ----- style/block-spacing -----
-type StyleBlockSpacing = [] | [("always" | "never")]; // ----- style/brace-style -----
+}];
+// ----- style/block-spacing -----
+type StyleBlockSpacing = [] | [("always" | "never")];
+// ----- style/brace-style -----
 type StyleBraceStyle = [] | [("1tbs" | "stroustrup" | "allman")] | [("1tbs" | "stroustrup" | "allman"), {
   allowSingleLine?: boolean;
-}]; // ----- style/comma-dangle -----
+}];
+// ----- style/comma-dangle -----
 type StyleCommaDangle = [] | [(_StyleCommaDangleValue | {
   arrays?: _StyleCommaDangleValueWithIgnore;
   objects?: _StyleCommaDangleValueWithIgnore;
@@ -7553,19 +7885,23 @@ type StyleCommaDangle = [] | [(_StyleCommaDangleValue | {
   tuples?: _StyleCommaDangleValueWithIgnore;
 })];
 type _StyleCommaDangleValue = ("always-multiline" | "always" | "never" | "only-multiline");
-type _StyleCommaDangleValueWithIgnore = ("always-multiline" | "always" | "never" | "only-multiline" | "ignore"); // ----- style/comma-spacing -----
+type _StyleCommaDangleValueWithIgnore = ("always-multiline" | "always" | "never" | "only-multiline" | "ignore");
+// ----- style/comma-spacing -----
 type StyleCommaSpacing = [] | [{
   before?: boolean;
   after?: boolean;
-}]; // ----- style/comma-style -----
+}];
+// ----- style/comma-style -----
 type StyleCommaStyle = [] | [("first" | "last")] | [("first" | "last"), {
   exceptions?: {
     [k: string]: boolean | undefined;
   };
-}]; // ----- style/computed-property-spacing -----
+}];
+// ----- style/computed-property-spacing -----
 type StyleComputedPropertySpacing = [] | [("always" | "never")] | [("always" | "never"), {
   enforceForClassMembers?: boolean;
-}]; // ----- style/curly-newline -----
+}];
+// ----- style/curly-newline -----
 type StyleCurlyNewline = [] | [(("always" | "never") | {
   IfStatementConsequent?: (("always" | "never") | {
     multiline?: boolean;
@@ -7675,9 +8011,12 @@ type StyleCurlyNewline = [] | [(("always" | "never") | {
   multiline?: boolean;
   minElements?: number;
   consistent?: boolean;
-})]; // ----- style/dot-location -----
-type StyleDotLocation = [] | [("object" | "property")]; // ----- style/eol-last -----
-type StyleEolLast = [] | [("always" | "never" | "unix" | "windows")]; // ----- style/exp-jsx-props-style -----
+})];
+// ----- style/dot-location -----
+type StyleDotLocation = [] | [("object" | "property")];
+// ----- style/eol-last -----
+type StyleEolLast = [] | [("always" | "never" | "unix" | "windows")];
+// ----- style/exp-jsx-props-style -----
 type StyleExpJsxPropsStyle = [] | [{
   singleLine?: {
     maxItems?: number;
@@ -7686,7 +8025,8 @@ type StyleExpJsxPropsStyle = [] | [{
     minItems?: number;
     maxItemsPerLine?: number;
   };
-}]; // ----- style/exp-list-style -----
+}];
+// ----- style/exp-list-style -----
 type StyleExpListStyle = [] | [{
   singleLine?: _StyleExpListStyle_SingleLineConfig;
   multiLine?: _StyleExpListStyle_MultiLineConfig;
@@ -7730,18 +8070,22 @@ interface _StyleExpListStyle_MultiLineConfig {
 interface _StyleExpListStyle_BaseConfig {
   singleLine?: _StyleExpListStyle_SingleLineConfig;
   multiline?: _StyleExpListStyle_MultiLineConfig;
-} // ----- style/function-call-argument-newline -----
-type StyleFunctionCallArgumentNewline = [] | [("always" | "never" | "consistent")]; // ----- style/function-call-spacing -----
+}
+// ----- style/function-call-argument-newline -----
+type StyleFunctionCallArgumentNewline = [] | [("always" | "never" | "consistent")];
+// ----- style/function-call-spacing -----
 type StyleFunctionCallSpacing = ([] | ["never"] | [] | ["always"] | ["always", {
   allowNewlines?: boolean;
   optionalChain?: {
     before?: boolean;
     after?: boolean;
   };
-}]); // ----- style/function-paren-newline -----
+}]);
+// ----- style/function-paren-newline -----
 type StyleFunctionParenNewline = [] | [(("always" | "never" | "consistent" | "multiline" | "multiline-arguments") | {
   minItems?: number;
-})]; // ----- style/generator-star-spacing -----
+})];
+// ----- style/generator-star-spacing -----
 type StyleGeneratorStarSpacing = [] | [(("before" | "after" | "both" | "neither") | {
   before?: boolean;
   after?: boolean;
@@ -7761,8 +8105,10 @@ type StyleGeneratorStarSpacing = [] | [(("before" | "after" | "both" | "neither"
     before?: boolean;
     after?: boolean;
   });
-})]; // ----- style/implicit-arrow-linebreak -----
-type StyleImplicitArrowLinebreak = [] | [("beside" | "below")]; // ----- style/indent -----
+})];
+// ----- style/implicit-arrow-linebreak -----
+type StyleImplicitArrowLinebreak = [] | [("beside" | "below")];
+// ----- style/indent -----
 type StyleIndent = [] | [("tab" | number)] | [("tab" | number), {
   SwitchCase?: number;
   VariableDeclarator?: ((number | ("first" | "off")) | {
@@ -7803,24 +8149,30 @@ type StyleIndent = [] | [("tab" | number)] | [("tab" | number), {
   ignoredNodes?: string[];
   ignoreComments?: boolean;
   tabLength?: number;
-}]; // ----- style/indent-binary-ops -----
-type StyleIndentBinaryOps = [] | [(number | "tab")]; // ----- style/jsx-closing-bracket-location -----
+}];
+// ----- style/indent-binary-ops -----
+type StyleIndentBinaryOps = [] | [(number | "tab")];
+// ----- style/jsx-closing-bracket-location -----
 type StyleJsxClosingBracketLocation = [] | [(("after-props" | "props-aligned" | "tag-aligned" | "line-aligned") | {
   location?: ("after-props" | "props-aligned" | "tag-aligned" | "line-aligned");
 } | {
   nonEmpty?: (("after-props" | "props-aligned" | "tag-aligned" | "line-aligned") | false);
   selfClosing?: (("after-props" | "props-aligned" | "tag-aligned" | "line-aligned") | false);
-})]; // ----- style/jsx-closing-tag-location -----
-type StyleJsxClosingTagLocation = [] | [("tag-aligned" | "line-aligned")]; // ----- style/jsx-curly-brace-presence -----
+})];
+// ----- style/jsx-closing-tag-location -----
+type StyleJsxClosingTagLocation = [] | [("tag-aligned" | "line-aligned")];
+// ----- style/jsx-curly-brace-presence -----
 type StyleJsxCurlyBracePresence = [] | [({
   props?: ("always" | "never" | "ignore");
   children?: ("always" | "never" | "ignore");
   propElementValues?: ("always" | "never" | "ignore");
-} | ("always" | "never" | "ignore"))]; // ----- style/jsx-curly-newline -----
+} | ("always" | "never" | "ignore"))];
+// ----- style/jsx-curly-newline -----
 type StyleJsxCurlyNewline = [] | [(("consistent" | "never") | {
   singleline?: ("consistent" | "require" | "forbid");
   multiline?: ("consistent" | "require" | "forbid");
-})]; // ----- style/jsx-curly-spacing -----
+})];
+// ----- style/jsx-curly-spacing -----
 type StyleJsxCurlySpacing = [] | [({
   when?: ("always" | "never");
   allowMultiline?: boolean;
@@ -7866,18 +8218,24 @@ type StyleJsxCurlySpacing = [] | [({
   spacing?: {
     objectLiterals?: ("always" | "never");
   };
-}]; // ----- style/jsx-equals-spacing -----
-type StyleJsxEqualsSpacing = [] | [("always" | "never")]; // ----- style/jsx-first-prop-new-line -----
-type StyleJsxFirstPropNewLine = [] | [("always" | "never" | "multiline" | "multiline-multiprop" | "multiprop")]; // ----- style/jsx-function-call-newline -----
-type StyleJsxFunctionCallNewline = [] | [("always" | "multiline")]; // ----- style/jsx-indent -----
+}];
+// ----- style/jsx-equals-spacing -----
+type StyleJsxEqualsSpacing = [] | [("always" | "never")];
+// ----- style/jsx-first-prop-new-line -----
+type StyleJsxFirstPropNewLine = [] | [("always" | "never" | "multiline" | "multiline-multiprop" | "multiprop")];
+// ----- style/jsx-function-call-newline -----
+type StyleJsxFunctionCallNewline = [] | [("always" | "multiline")];
+// ----- style/jsx-indent -----
 type StyleJsxIndent = [] | [("tab" | number)] | [("tab" | number), {
   checkAttributes?: boolean;
   indentLogicalExpressions?: boolean;
-}]; // ----- style/jsx-indent-props -----
+}];
+// ----- style/jsx-indent-props -----
 type StyleJsxIndentProps = [] | [(("tab" | "first") | number | {
   indentMode?: (("tab" | "first") | number);
   ignoreTernaryOperator?: boolean;
-})]; // ----- style/jsx-max-props-per-line -----
+})];
+// ----- style/jsx-max-props-per-line -----
 type StyleJsxMaxPropsPerLine = [] | [({
   maximum?: {
     single?: number;
@@ -7886,25 +8244,31 @@ type StyleJsxMaxPropsPerLine = [] | [({
 } | {
   maximum?: number;
   when?: ("always" | "multiline");
-})]; // ----- style/jsx-newline -----
+})];
+// ----- style/jsx-newline -----
 type StyleJsxNewline = [] | [{
   prevent?: boolean;
   allowMultilines?: boolean;
-}]; // ----- style/jsx-one-expression-per-line -----
+}];
+// ----- style/jsx-one-expression-per-line -----
 type StyleJsxOneExpressionPerLine = [] | [{
   allow?: ("none" | "literal" | "single-child" | "single-line" | "non-jsx");
-}]; // ----- style/jsx-pascal-case -----
+}];
+// ----- style/jsx-pascal-case -----
 type StyleJsxPascalCase = [] | [{
   allowAllCaps?: boolean;
   allowLeadingUnderscore?: boolean;
   allowNamespace?: boolean;
   ignore?: string[];
-}]; // ----- style/jsx-quotes -----
-type StyleJsxQuotes = [] | [("prefer-single" | "prefer-double")]; // ----- style/jsx-self-closing-comp -----
+}];
+// ----- style/jsx-quotes -----
+type StyleJsxQuotes = [] | [("prefer-single" | "prefer-double")];
+// ----- style/jsx-self-closing-comp -----
 type StyleJsxSelfClosingComp = [] | [{
   component?: boolean;
   html?: boolean;
-}]; // ----- style/jsx-sort-props -----
+}];
+// ----- style/jsx-sort-props -----
 type StyleJsxSortProps = [] | [{
   callbacksLast?: boolean;
   shorthandFirst?: boolean;
@@ -7915,13 +8279,15 @@ type StyleJsxSortProps = [] | [{
   reservedFirst?: (string[] | boolean);
   reservedLast?: string[];
   locale?: string;
-}]; // ----- style/jsx-tag-spacing -----
+}];
+// ----- style/jsx-tag-spacing -----
 type StyleJsxTagSpacing = [] | [{
   closingSlash?: ("always" | "never" | "allow");
   beforeSelfClosing?: ("always" | "proportional-always" | "never" | "allow");
   afterOpening?: ("always" | "allow-multiline" | "never" | "allow");
   beforeClosing?: ("always" | "proportional-always" | "never" | "allow");
-}]; // ----- style/jsx-wrap-multilines -----
+}];
+// ----- style/jsx-wrap-multilines -----
 type StyleJsxWrapMultilines = [] | [{
   declaration?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"));
   assignment?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"));
@@ -7931,7 +8297,8 @@ type StyleJsxWrapMultilines = [] | [{
   logical?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"));
   prop?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"));
   propertyValue?: ((true | false | "ignore" | "parens" | "parens-new-line") | (true | false | "ignore" | "parens" | "parens-new-line"));
-}]; // ----- style/key-spacing -----
+}];
+// ----- style/key-spacing -----
 type StyleKeySpacing = [] | [({
   align?: (("colon" | "value") | {
     mode?: ("strict" | "minimum");
@@ -7977,7 +8344,8 @@ type StyleKeySpacing = [] | [({
     beforeColon?: boolean;
     afterColon?: boolean;
   };
-})]; // ----- style/keyword-spacing -----
+})];
+// ----- style/keyword-spacing -----
 type StyleKeywordSpacing = [] | [{
   before?: boolean;
   after?: boolean;
@@ -8279,14 +8647,17 @@ type StyleKeywordSpacing = [] | [{
       after?: boolean;
     };
   };
-}]; // ----- style/line-comment-position -----
+}];
+// ----- style/line-comment-position -----
 type StyleLineCommentPosition = [] | [(("above" | "beside") | {
   position?: ("above" | "beside");
   ignorePattern?: string;
   applyDefaultPatterns?: boolean;
   applyDefaultIgnorePatterns?: boolean;
-})]; // ----- style/linebreak-style -----
-type StyleLinebreakStyle = [] | [("unix" | "windows")]; // ----- style/lines-around-comment -----
+})];
+// ----- style/linebreak-style -----
+type StyleLinebreakStyle = [] | [("unix" | "windows")];
+// ----- style/lines-around-comment -----
 type StyleLinesAroundComment = [] | [{
   beforeBlockComment?: boolean;
   afterBlockComment?: boolean;
@@ -8311,7 +8682,8 @@ type StyleLinesAroundComment = [] | [{
   ignorePattern?: string;
   applyDefaultIgnorePatterns?: boolean;
   afterHashbangComment?: boolean;
-}]; // ----- style/lines-between-class-members -----
+}];
+// ----- style/lines-between-class-members -----
 type StyleLinesBetweenClassMembers = [] | [({
   enforce: [{
     blankLine: ("always" | "never");
@@ -8335,7 +8707,8 @@ type StyleLinesBetweenClassMembers = [] | [({
 } | ("always" | "never")), {
   exceptAfterSingleLine?: boolean;
   exceptAfterOverload?: boolean;
-}]; // ----- style/max-len -----
+}];
+// ----- style/max-len -----
 type StyleMaxLen = [] | [({
   code?: number;
   comments?: number;
@@ -8402,11 +8775,13 @@ type StyleMaxLen = [] | [({
   ignoreTemplateLiterals?: boolean;
   ignoreRegExpLiterals?: boolean;
   ignoreTrailingComments?: boolean;
-}]; // ----- style/max-statements-per-line -----
+}];
+// ----- style/max-statements-per-line -----
 type StyleMaxStatementsPerLine = [] | [{
   max?: number;
   ignoredNodes?: ("BreakStatement" | "ClassDeclaration" | "ContinueStatement" | "DebuggerStatement" | "DoWhileStatement" | "ExpressionStatement" | "ForInStatement" | "ForOfStatement" | "ForStatement" | "FunctionDeclaration" | "IfStatement" | "ImportDeclaration" | "LabeledStatement" | "ReturnStatement" | "SwitchStatement" | "ThrowStatement" | "TryStatement" | "VariableDeclaration" | "WhileStatement" | "WithStatement" | "ExportNamedDeclaration" | "ExportDefaultDeclaration" | "ExportAllDeclaration")[];
-}]; // ----- style/member-delimiter-style -----
+}];
+// ----- style/member-delimiter-style -----
 type StyleMemberDelimiterStyle = [] | [{
   multiline?: {
     delimiter?: ("none" | "semi" | "comma");
@@ -8431,22 +8806,28 @@ interface _StyleMemberDelimiterStyle_DelimiterConfig {
     delimiter?: ("semi" | "comma");
     requireLast?: boolean;
   };
-} // ----- style/multiline-comment-style -----
+}
+// ----- style/multiline-comment-style -----
 type StyleMultilineCommentStyle = ([] | [("starred-block" | "bare-block")] | [] | ["separate-lines"] | ["separate-lines", {
   checkJSDoc?: boolean;
   checkExclamation?: boolean;
-}]); // ----- style/multiline-ternary -----
+}]);
+// ----- style/multiline-ternary -----
 type StyleMultilineTernary = [] | [("always" | "always-multiline" | "never")] | [("always" | "always-multiline" | "never"), {
   ignoreJSX?: boolean;
-}]; // ----- style/new-parens -----
-type StyleNewParens = [] | [("always" | "never")]; // ----- style/newline-per-chained-call -----
+}];
+// ----- style/new-parens -----
+type StyleNewParens = [] | [("always" | "never")];
+// ----- style/newline-per-chained-call -----
 type StyleNewlinePerChainedCall = [] | [{
   ignoreChainWithDepth?: number;
-}]; // ----- style/no-confusing-arrow -----
+}];
+// ----- style/no-confusing-arrow -----
 type StyleNoConfusingArrow = [] | [{
   allowParens?: boolean;
   onlyOneSimpleParam?: boolean;
-}]; // ----- style/no-extra-parens -----
+}];
+// ----- style/no-extra-parens -----
 type StyleNoExtraParens = ([] | ["functions"] | [] | ["all"] | ["all", {
   conditionalAssign?: boolean;
   ternaryOperandBinaryExpressions?: boolean;
@@ -8465,31 +8846,38 @@ type StyleNoExtraParens = ([] | ["functions"] | [] | ["all"] | ["all", {
     AwaitExpression?: boolean;
   };
   ignoredNodes?: string[];
-}]); // ----- style/no-mixed-operators -----
+}]);
+// ----- style/no-mixed-operators -----
 type StyleNoMixedOperators = [] | [{
   groups?: [("+" | "-" | "*" | "/" | "%" | "**" | "&" | "|" | "^" | "~" | "<<" | ">>" | ">>>" | "==" | "!=" | "===" | "!==" | ">" | ">=" | "<" | "<=" | "&&" | "||" | "in" | "instanceof" | "?:" | "??"), ("+" | "-" | "*" | "/" | "%" | "**" | "&" | "|" | "^" | "~" | "<<" | ">>" | ">>>" | "==" | "!=" | "===" | "!==" | ">" | ">=" | "<" | "<=" | "&&" | "||" | "in" | "instanceof" | "?:" | "??"), ...(("+" | "-" | "*" | "/" | "%" | "**" | "&" | "|" | "^" | "~" | "<<" | ">>" | ">>>" | "==" | "!=" | "===" | "!==" | ">" | ">=" | "<" | "<=" | "&&" | "||" | "in" | "instanceof" | "?:" | "??"))[]][];
   allowSamePrecedence?: boolean;
-}]; // ----- style/no-mixed-spaces-and-tabs -----
-type StyleNoMixedSpacesAndTabs = [] | [("smart-tabs" | boolean)]; // ----- style/no-multi-spaces -----
+}];
+// ----- style/no-mixed-spaces-and-tabs -----
+type StyleNoMixedSpacesAndTabs = [] | [("smart-tabs" | boolean)];
+// ----- style/no-multi-spaces -----
 type StyleNoMultiSpaces = [] | [{
   exceptions?: {
     [k: string]: boolean;
   };
   ignoreEOLComments?: boolean;
   includeTabs?: boolean;
-}]; // ----- style/no-multiple-empty-lines -----
+}];
+// ----- style/no-multiple-empty-lines -----
 type StyleNoMultipleEmptyLines = [] | [{
   max: number;
   maxEOF?: number;
   maxBOF?: number;
-}]; // ----- style/no-tabs -----
+}];
+// ----- style/no-tabs -----
 type StyleNoTabs = [] | [{
   allowIndentationTabs?: boolean;
-}]; // ----- style/no-trailing-spaces -----
+}];
+// ----- style/no-trailing-spaces -----
 type StyleNoTrailingSpaces = [] | [{
   skipBlankLines?: boolean;
   ignoreComments?: boolean;
-}]; // ----- style/nonblock-statement-body-position -----
+}];
+// ----- style/nonblock-statement-body-position -----
 type StyleNonblockStatementBodyPosition = [] | [("beside" | "below" | "any")] | [("beside" | "below" | "any"), {
   overrides?: {
     if?: ("beside" | "below" | "any");
@@ -8498,7 +8886,8 @@ type StyleNonblockStatementBodyPosition = [] | [("beside" | "below" | "any")] | 
     do?: ("beside" | "below" | "any");
     for?: ("beside" | "below" | "any");
   };
-}]; // ----- style/object-curly-newline -----
+}];
+// ----- style/object-curly-newline -----
 type StyleObjectCurlyNewline = [] | [((("always" | "never") | {
   multiline?: boolean;
   minProperties?: number;
@@ -8539,7 +8928,8 @@ type StyleObjectCurlyNewline = [] | [((("always" | "never") | {
     minProperties?: number;
     consistent?: boolean;
   });
-})]; // ----- style/object-curly-spacing -----
+})];
+// ----- style/object-curly-spacing -----
 type StyleObjectCurlySpacing = [] | [("always" | "never")] | [("always" | "never"), {
   arraysInObjects?: boolean;
   objectsInObjects?: boolean;
@@ -8556,16 +8946,20 @@ type StyleObjectCurlySpacing = [] | [("always" | "never")] | [("always" | "never
     TSEnumBody?: ("always" | "never");
   };
   emptyObjects?: ("ignore" | "always" | "never");
-}]; // ----- style/object-property-newline -----
+}];
+// ----- style/object-property-newline -----
 type StyleObjectPropertyNewline = [] | [{
   allowAllPropertiesOnSameLine?: boolean;
-}]; // ----- style/one-var-declaration-per-line -----
-type StyleOneVarDeclarationPerLine = [] | [("always" | "initializations")]; // ----- style/operator-linebreak -----
+}];
+// ----- style/one-var-declaration-per-line -----
+type StyleOneVarDeclarationPerLine = [] | [("always" | "initializations")];
+// ----- style/operator-linebreak -----
 type StyleOperatorLinebreak = [] | [(("after" | "before" | "none") | null)] | [(("after" | "before" | "none") | null), {
   overrides?: {
     [k: string]: ("after" | "before" | "none" | "ignore") | undefined;
   };
-}]; // ----- style/padded-blocks -----
+}];
+// ----- style/padded-blocks -----
 type StylePaddedBlocks = [] | [(("always" | "never" | "start" | "end") | {
   blocks?: ("always" | "never" | "start" | "end");
   switches?: ("always" | "never" | "start" | "end");
@@ -8576,7 +8970,8 @@ type StylePaddedBlocks = [] | [(("always" | "never" | "start" | "end") | {
   classes?: ("always" | "never" | "start" | "end");
 }), {
   allowSingleLineBlocks?: boolean;
-}]; // ----- style/padding-line-between-statements -----
+}];
+// ----- style/padding-line-between-statements -----
 type _StylePaddingLineBetweenStatementsPaddingType = ("any" | "never" | "always");
 type _StylePaddingLineBetweenStatementsStatementOption = (_StylePaddingLineBetweenStatementsStatementMatcher | [_StylePaddingLineBetweenStatementsStatementMatcher, ...(_StylePaddingLineBetweenStatementsStatementMatcher)[]]);
 type _StylePaddingLineBetweenStatementsStatementMatcher = (_StylePaddingLineBetweenStatementsStatementType | _StylePaddingLineBetweenStatements_SelectorOption);
@@ -8589,55 +8984,67 @@ type StylePaddingLineBetweenStatements = {
 interface _StylePaddingLineBetweenStatements_SelectorOption {
   selector: string;
   lineMode?: ("any" | "singleline" | "multiline");
-} // ----- style/quote-props -----
+}
+// ----- style/quote-props -----
 type StyleQuoteProps = ([] | [("always" | "as-needed" | "consistent" | "consistent-as-needed")] | [] | [("always" | "as-needed" | "consistent" | "consistent-as-needed")] | [("always" | "as-needed" | "consistent" | "consistent-as-needed"), {
   keywords?: boolean;
   unnecessary?: boolean;
   numbers?: boolean;
-}]); // ----- style/quotes -----
+}]);
+// ----- style/quotes -----
 type StyleQuotes = [] | [("single" | "double" | "backtick")] | [("single" | "double" | "backtick"), ("avoid-escape" | {
   avoidEscape?: boolean;
   allowTemplateLiterals?: (boolean | ("never" | "avoidEscape" | "always"));
   ignoreStringLiterals?: boolean;
-})]; // ----- style/rest-spread-spacing -----
-type StyleRestSpreadSpacing = [] | [("always" | "never")]; // ----- style/semi -----
+})];
+// ----- style/rest-spread-spacing -----
+type StyleRestSpreadSpacing = [] | [("always" | "never")];
+// ----- style/semi -----
 type StyleSemi = ([] | ["never"] | ["never", {
   beforeStatementContinuationChars?: ("always" | "any" | "never");
 }] | [] | ["always"] | ["always", {
   omitLastInOneLineBlock?: boolean;
   omitLastInOneLineClassBody?: boolean;
-}]); // ----- style/semi-spacing -----
+}]);
+// ----- style/semi-spacing -----
 type StyleSemiSpacing = [] | [{
   before?: boolean;
   after?: boolean;
-}]; // ----- style/semi-style -----
-type StyleSemiStyle = [] | [("last" | "first")]; // ----- style/space-before-blocks -----
+}];
+// ----- style/semi-style -----
+type StyleSemiStyle = [] | [("last" | "first")];
+// ----- style/space-before-blocks -----
 type StyleSpaceBeforeBlocks = [] | [(("always" | "never") | {
   keywords?: ("always" | "never" | "off");
   functions?: ("always" | "never" | "off");
   classes?: ("always" | "never" | "off");
   modules?: ("always" | "never" | "off");
-})]; // ----- style/space-before-function-paren -----
+})];
+// ----- style/space-before-function-paren -----
 type StyleSpaceBeforeFunctionParen = [] | [(("always" | "never") | {
   anonymous?: ("always" | "never" | "ignore");
   named?: ("always" | "never" | "ignore");
   asyncArrow?: ("always" | "never" | "ignore");
   catch?: ("always" | "never" | "ignore");
-})]; // ----- style/space-in-parens -----
+})];
+// ----- style/space-in-parens -----
 type StyleSpaceInParens = [] | [("always" | "never")] | [("always" | "never"), {
   exceptions?: ("{}" | "[]" | "()" | "empty")[];
-}]; // ----- style/space-infix-ops -----
+}];
+// ----- style/space-infix-ops -----
 type StyleSpaceInfixOps = [] | [{
   int32Hint?: boolean;
   ignoreTypes?: boolean;
-}]; // ----- style/space-unary-ops -----
+}];
+// ----- style/space-unary-ops -----
 type StyleSpaceUnaryOps = [] | [{
   words?: boolean;
   nonwords?: boolean;
   overrides?: {
     [k: string]: boolean | undefined;
   };
-}]; // ----- style/spaced-comment -----
+}];
+// ----- style/spaced-comment -----
 type StyleSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
   exceptions?: string[];
   markers?: string[];
@@ -8650,13 +9057,17 @@ type StyleSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
     markers?: string[];
     balanced?: boolean;
   };
-}]; // ----- style/switch-colon-spacing -----
+}];
+// ----- style/switch-colon-spacing -----
 type StyleSwitchColonSpacing = [] | [{
   before?: boolean;
   after?: boolean;
-}]; // ----- style/template-curly-spacing -----
-type StyleTemplateCurlySpacing = [] | [("always" | "never")]; // ----- style/template-tag-spacing -----
-type StyleTemplateTagSpacing = [] | [("always" | "never")]; // ----- style/type-annotation-spacing -----
+}];
+// ----- style/template-curly-spacing -----
+type StyleTemplateCurlySpacing = [] | [("always" | "never")];
+// ----- style/template-tag-spacing -----
+type StyleTemplateTagSpacing = [] | [("always" | "never")];
+// ----- style/type-annotation-spacing -----
 type StyleTypeAnnotationSpacing = [] | [{
   before?: boolean;
   after?: boolean;
@@ -8672,10 +9083,12 @@ type StyleTypeAnnotationSpacing = [] | [{
 interface _StyleTypeAnnotationSpacing_SpacingConfig {
   before?: boolean;
   after?: boolean;
-} // ----- style/wrap-iife -----
+}
+// ----- style/wrap-iife -----
 type StyleWrapIife = [] | [("outside" | "inside" | "any")] | [("outside" | "inside" | "any"), {
   functionPrototypeMethods?: boolean;
-}]; // ----- style/yield-star-spacing -----
+}];
+// ----- style/yield-star-spacing -----
 type StyleYieldStarSpacing = [] | [(("before" | "after" | "both" | "neither") | {
   before?: boolean;
   after?: boolean;
@@ -9114,86 +9527,109 @@ type TestConsistentEachFor = [] | [{
   it?: ("each" | "for");
   describe?: ("each" | "for");
   suite?: ("each" | "for");
-}]; // ----- test/consistent-test-filename -----
+}];
+// ----- test/consistent-test-filename -----
 type TestConsistentTestFilename = [] | [{
   pattern?: string;
   allTestPattern?: string;
-}]; // ----- test/consistent-test-it -----
+}];
+// ----- test/consistent-test-it -----
 type TestConsistentTestIt = [] | [{
   fn?: ("test" | "it");
   withinDescribe?: ("test" | "it");
-}]; // ----- test/consistent-vitest-vi -----
+}];
+// ----- test/consistent-vitest-vi -----
 type TestConsistentVitestVi = [] | [{
   fn?: ("vi" | "vitest");
-}]; // ----- test/expect-expect -----
+}];
+// ----- test/expect-expect -----
 type TestExpectExpect = [] | [{
   assertFunctionNames?: string[];
   additionalTestBlockFunctions?: string[];
-}]; // ----- test/max-expects -----
+}];
+// ----- test/max-expects -----
 type TestMaxExpects = [] | [{
   max?: number;
-}]; // ----- test/max-nested-describe -----
+}];
+// ----- test/max-nested-describe -----
 type TestMaxNestedDescribe = [] | [{
   max?: number;
-}]; // ----- test/no-conditional-expect -----
+}];
+// ----- test/no-conditional-expect -----
 type TestNoConditionalExpect = [] | [{
   expectAssertions?: boolean;
-}]; // ----- test/no-focused-tests -----
+}];
+// ----- test/no-focused-tests -----
 type TestNoFocusedTests = [] | [{
   fixable?: boolean;
-}]; // ----- test/no-hooks -----
+}];
+// ----- test/no-hooks -----
 type TestNoHooks = [] | [{
   allow?: ("beforeAll" | "beforeEach" | "afterAll" | "afterEach")[];
-}]; // ----- test/no-large-snapshots -----
+}];
+// ----- test/no-large-snapshots -----
 type TestNoLargeSnapshots = [] | [{
   maxSize?: number;
   inlineMaxSize?: number;
   allowedSnapshots?: {
     [k: string]: unknown[] | undefined;
   };
-}]; // ----- test/no-restricted-matchers -----
+}];
+// ----- test/no-restricted-matchers -----
 type TestNoRestrictedMatchers = [] | [{
   [k: string]: (string | null) | undefined;
-}]; // ----- test/no-restricted-vi-methods -----
+}];
+// ----- test/no-restricted-vi-methods -----
 type TestNoRestrictedViMethods = [] | [{
   [k: string]: (string | null) | undefined;
-}]; // ----- test/no-standalone-expect -----
+}];
+// ----- test/no-standalone-expect -----
 type TestNoStandaloneExpect = [] | [{
   additionalTestBlockFunctions?: string[];
-}]; // ----- test/prefer-expect-assertions -----
+}];
+// ----- test/prefer-expect-assertions -----
 type TestPreferExpectAssertions = [] | [{
   onlyFunctionsWithAsyncKeyword?: boolean;
   onlyFunctionsWithExpectInLoop?: boolean;
   onlyFunctionsWithExpectInCallback?: boolean;
-}]; // ----- test/prefer-import-in-mock -----
+}];
+// ----- test/prefer-import-in-mock -----
 type TestPreferImportInMock = [] | [{
   fixable?: boolean;
-}]; // ----- test/prefer-lowercase-title -----
+}];
+// ----- test/prefer-lowercase-title -----
 type TestPreferLowercaseTitle = [] | [{
   ignore?: ("describe" | "test" | "it")[];
   allowedPrefixes?: string[];
   ignoreTopLevelDescribe?: boolean;
   lowercaseFirstCharacterOnly?: boolean;
-}]; // ----- test/prefer-snapshot-hint -----
-type TestPreferSnapshotHint = [] | [("always" | "multi")]; // ----- test/require-hook -----
+}];
+// ----- test/prefer-snapshot-hint -----
+type TestPreferSnapshotHint = [] | [("always" | "multi")];
+// ----- test/require-hook -----
 type TestRequireHook = [] | [{
   allowedFunctionCalls?: string[];
-}]; // ----- test/require-mock-type-parameters -----
+}];
+// ----- test/require-mock-type-parameters -----
 type TestRequireMockTypeParameters = [] | [{
   checkImportFunctions?: boolean;
-}]; // ----- test/require-top-level-describe -----
+}];
+// ----- test/require-top-level-describe -----
 type TestRequireTopLevelDescribe = [] | [{
   maxNumberOfTopLevelDescribes?: number;
-}]; // ----- test/unbound-method -----
+}];
+// ----- test/unbound-method -----
 type TestUnboundMethod = [] | [{
   ignoreStatic?: boolean;
-}]; // ----- test/valid-expect -----
+}];
+// ----- test/valid-expect -----
 type TestValidExpect = [] | [{
   alwaysAwait?: boolean;
   asyncMatchers?: string[];
   minArgs?: number;
   maxArgs?: number;
-}]; // ----- test/valid-title -----
+}];
+// ----- test/valid-title -----
 type TestValidTitle = [] | [{
   ignoreTypeOfDescribeName?: boolean;
   allowArguments?: boolean;
@@ -9900,7 +10336,8 @@ interface RuleOptions$2 {
 type TsArrayType = [] | [{
   default?: ("array" | "generic" | "array-simple");
   readonly?: ("array" | "generic" | "array-simple");
-}]; // ----- ts/ban-ts-comment -----
+}];
+// ----- ts/ban-ts-comment -----
 type TsBanTsComment = [] | [{
   minimumDescriptionLength?: number;
   "ts-check"?: (boolean | "allow-with-description" | {
@@ -9915,42 +10352,53 @@ type TsBanTsComment = [] | [{
   "ts-nocheck"?: (boolean | "allow-with-description" | {
     descriptionFormat?: string;
   });
-}]; // ----- ts/class-literal-property-style -----
-type TsClassLiteralPropertyStyle = [] | [("fields" | "getters")]; // ----- ts/class-methods-use-this -----
+}];
+// ----- ts/class-literal-property-style -----
+type TsClassLiteralPropertyStyle = [] | [("fields" | "getters")];
+// ----- ts/class-methods-use-this -----
 type TsClassMethodsUseThis = [] | [{
   enforceForClassFields?: boolean;
   exceptMethods?: string[];
   ignoreClassesThatImplementAnInterface?: (boolean | "public-fields");
   ignoreOverrideMethods?: boolean;
-}]; // ----- ts/consistent-generic-constructors -----
-type TsConsistentGenericConstructors = [] | [("type-annotation" | "constructor")]; // ----- ts/consistent-indexed-object-style -----
-type TsConsistentIndexedObjectStyle = [] | [("record" | "index-signature")]; // ----- ts/consistent-return -----
+}];
+// ----- ts/consistent-generic-constructors -----
+type TsConsistentGenericConstructors = [] | [("type-annotation" | "constructor")];
+// ----- ts/consistent-indexed-object-style -----
+type TsConsistentIndexedObjectStyle = [] | [("record" | "index-signature")];
+// ----- ts/consistent-return -----
 type TsConsistentReturn = [] | [{
   treatUndefinedAsUnspecified?: boolean;
-}]; // ----- ts/consistent-type-assertions -----
+}];
+// ----- ts/consistent-type-assertions -----
 type TsConsistentTypeAssertions = [] | [({
   assertionStyle: "never";
 } | {
   arrayLiteralTypeAssertions?: ("allow" | "allow-as-parameter" | "never");
   assertionStyle?: ("as" | "angle-bracket");
   objectLiteralTypeAssertions?: ("allow" | "allow-as-parameter" | "never");
-})]; // ----- ts/consistent-type-definitions -----
-type TsConsistentTypeDefinitions = [] | [("interface" | "type")]; // ----- ts/consistent-type-exports -----
+})];
+// ----- ts/consistent-type-definitions -----
+type TsConsistentTypeDefinitions = [] | [("interface" | "type")];
+// ----- ts/consistent-type-exports -----
 type TsConsistentTypeExports = [] | [{
   fixMixedExportsWithInlineTypeSpecifier?: boolean;
-}]; // ----- ts/consistent-type-imports -----
+}];
+// ----- ts/consistent-type-imports -----
 type TsConsistentTypeImports = [] | [{
   disallowTypeAnnotations?: boolean;
   fixStyle?: ("separate-type-imports" | "inline-type-imports");
   prefer?: ("type-imports" | "no-type-imports");
-}]; // ----- ts/dot-notation -----
+}];
+// ----- ts/dot-notation -----
 type TsDotNotation = [] | [{
   allowIndexSignaturePropertyAccess?: boolean;
   allowKeywords?: boolean;
   allowPattern?: string;
   allowPrivateClassPropertyAccess?: boolean;
   allowProtectedClassPropertyAccess?: boolean;
-}]; // ----- ts/explicit-function-return-type -----
+}];
+// ----- ts/explicit-function-return-type -----
 type TsExplicitFunctionReturnType = [] | [{
   allowConciseArrowFunctionExpressionsStartingWithVoid?: boolean;
   allowDirectConstAssertionInArrowFunctions?: boolean;
@@ -9960,7 +10408,8 @@ type TsExplicitFunctionReturnType = [] | [{
   allowHigherOrderFunctions?: boolean;
   allowIIFEs?: boolean;
   allowTypedFunctionExpressions?: boolean;
-}]; // ----- ts/explicit-member-accessibility -----
+}];
+// ----- ts/explicit-member-accessibility -----
 type TsExplicitMemberAccessibility = [] | [{
   accessibility?: ("explicit" | "no-public" | "off");
   ignoredMethodNames?: string[];
@@ -9971,7 +10420,8 @@ type TsExplicitMemberAccessibility = [] | [{
     parameterProperties?: ("explicit" | "no-public" | "off");
     properties?: ("explicit" | "no-public" | "off");
   };
-}]; // ----- ts/explicit-module-boundary-types -----
+}];
+// ----- ts/explicit-module-boundary-types -----
 type TsExplicitModuleBoundaryTypes = [] | [{
   allowArgumentsExplicitlyTypedAsAny?: boolean;
   allowDirectConstAssertionInArrowFunctions?: boolean;
@@ -9979,15 +10429,18 @@ type TsExplicitModuleBoundaryTypes = [] | [{
   allowHigherOrderFunctions?: boolean;
   allowOverloadFunctions?: boolean;
   allowTypedFunctionExpressions?: boolean;
-}]; // ----- ts/init-declarations -----
+}];
+// ----- ts/init-declarations -----
 type TsInitDeclarations = ([] | ["always"] | [] | ["never"] | ["never", {
   ignoreForLoopInit?: boolean;
-}]); // ----- ts/max-params -----
+}]);
+// ----- ts/max-params -----
 type TsMaxParams = [] | [{
   countVoidThis?: boolean;
   max?: number;
   maximum?: number;
-}]; // ----- ts/member-ordering -----
+}];
+// ----- ts/member-ordering -----
 type TsMemberOrdering = [] | [{
   classes?: ("never" | (("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization") | ("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization")[])[] | {
     memberTypes?: ((("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization") | ("readonly-signature" | "signature" | "readonly-field" | "public-readonly-field" | "public-decorated-readonly-field" | "decorated-readonly-field" | "static-readonly-field" | "public-static-readonly-field" | "instance-readonly-field" | "public-instance-readonly-field" | "abstract-readonly-field" | "public-abstract-readonly-field" | "protected-readonly-field" | "protected-decorated-readonly-field" | "protected-static-readonly-field" | "protected-instance-readonly-field" | "protected-abstract-readonly-field" | "private-readonly-field" | "private-decorated-readonly-field" | "private-static-readonly-field" | "private-instance-readonly-field" | "#private-readonly-field" | "#private-static-readonly-field" | "#private-instance-readonly-field" | "field" | "public-field" | "public-decorated-field" | "decorated-field" | "static-field" | "public-static-field" | "instance-field" | "public-instance-field" | "abstract-field" | "public-abstract-field" | "protected-field" | "protected-decorated-field" | "protected-static-field" | "protected-instance-field" | "protected-abstract-field" | "private-field" | "private-decorated-field" | "private-static-field" | "private-instance-field" | "#private-field" | "#private-static-field" | "#private-instance-field" | "method" | "public-method" | "public-decorated-method" | "decorated-method" | "static-method" | "public-static-method" | "instance-method" | "public-instance-method" | "abstract-method" | "public-abstract-method" | "protected-method" | "protected-decorated-method" | "protected-static-method" | "protected-instance-method" | "protected-abstract-method" | "private-method" | "private-decorated-method" | "private-static-method" | "private-instance-method" | "#private-method" | "#private-static-method" | "#private-instance-method" | "call-signature" | "constructor" | "public-constructor" | "protected-constructor" | "private-constructor" | "accessor" | "public-accessor" | "public-decorated-accessor" | "decorated-accessor" | "static-accessor" | "public-static-accessor" | "instance-accessor" | "public-instance-accessor" | "abstract-accessor" | "public-abstract-accessor" | "protected-accessor" | "protected-decorated-accessor" | "protected-static-accessor" | "protected-instance-accessor" | "protected-abstract-accessor" | "private-accessor" | "private-decorated-accessor" | "private-static-accessor" | "private-instance-accessor" | "#private-accessor" | "#private-static-accessor" | "#private-instance-accessor" | "get" | "public-get" | "public-decorated-get" | "decorated-get" | "static-get" | "public-static-get" | "instance-get" | "public-instance-get" | "abstract-get" | "public-abstract-get" | "protected-get" | "protected-decorated-get" | "protected-static-get" | "protected-instance-get" | "protected-abstract-get" | "private-get" | "private-decorated-get" | "private-static-get" | "private-instance-get" | "#private-get" | "#private-static-get" | "#private-instance-get" | "set" | "public-set" | "public-decorated-set" | "decorated-set" | "static-set" | "public-static-set" | "instance-set" | "public-instance-set" | "abstract-set" | "public-abstract-set" | "protected-set" | "protected-decorated-set" | "protected-static-set" | "protected-instance-set" | "protected-abstract-set" | "private-set" | "private-decorated-set" | "private-static-set" | "private-instance-set" | "#private-set" | "#private-static-set" | "#private-instance-set" | "static-initialization" | "static-static-initialization" | "public-static-static-initialization" | "instance-static-initialization" | "public-instance-static-initialization" | "abstract-static-initialization" | "public-abstract-static-initialization" | "protected-static-static-initialization" | "protected-instance-static-initialization" | "protected-abstract-static-initialization" | "private-static-static-initialization" | "private-instance-static-initialization" | "#private-static-static-initialization" | "#private-instance-static-initialization")[])[] | "never");
@@ -10014,8 +10467,10 @@ type TsMemberOrdering = [] | [{
     optionalityOrder?: ("optional-first" | "required-first");
     order?: ("alphabetically" | "alphabetically-case-insensitive" | "as-written" | "natural" | "natural-case-insensitive");
   });
-}]; // ----- ts/method-signature-style -----
-type TsMethodSignatureStyle = [] | [("property" | "method")]; // ----- ts/naming-convention -----
+}];
+// ----- ts/method-signature-style -----
+type TsMethodSignatureStyle = [] | [("property" | "method")];
+// ----- ts/naming-convention -----
 type _TsNamingConventionFormatOptionsConfig = (_TsNamingConventionPredefinedFormats[] | null);
 type _TsNamingConventionPredefinedFormats = ("camelCase" | "strictCamelCase" | "PascalCase" | "StrictPascalCase" | "snake_case" | "UPPER_CASE");
 type _TsNamingConventionUnderscoreOptions = ("forbid" | "allow" | "require" | "requireDouble" | "allowDouble" | "allowSingleOrDouble");
@@ -10333,16 +10788,19 @@ type TsNamingConvention = ({
 interface _TsNamingConvention_MatchRegexConfig {
   match: boolean;
   regex: string;
-} // ----- ts/no-base-to-string -----
+}
+// ----- ts/no-base-to-string -----
 type TsNoBaseToString = [] | [{
   checkUnknown?: boolean;
   ignoredTypeNames?: string[];
-}]; // ----- ts/no-confusing-void-expression -----
+}];
+// ----- ts/no-confusing-void-expression -----
 type TsNoConfusingVoidExpression = [] | [{
   ignoreArrowShorthand?: boolean;
   ignoreVoidOperator?: boolean;
   ignoreVoidReturningFunctions?: boolean;
-}]; // ----- ts/no-deprecated -----
+}];
+// ----- ts/no-deprecated -----
 type TsNoDeprecated = [] | [{
   allow?: (string | {
     from: "file";
@@ -10356,32 +10814,39 @@ type TsNoDeprecated = [] | [{
     name: (string | [string, ...(string)[]]);
     package: string;
   })[];
-}]; // ----- ts/no-duplicate-type-constituents -----
+}];
+// ----- ts/no-duplicate-type-constituents -----
 type TsNoDuplicateTypeConstituents = [] | [{
   ignoreIntersections?: boolean;
   ignoreUnions?: boolean;
-}]; // ----- ts/no-empty-function -----
+}];
+// ----- ts/no-empty-function -----
 type TsNoEmptyFunction = [] | [{
   allow?: ("functions" | "arrowFunctions" | "generatorFunctions" | "methods" | "generatorMethods" | "getters" | "setters" | "constructors" | "private-constructors" | "protected-constructors" | "asyncFunctions" | "asyncMethods" | "decoratedFunctions" | "overrideMethods")[];
-}]; // ----- ts/no-empty-interface -----
+}];
+// ----- ts/no-empty-interface -----
 type TsNoEmptyInterface = [] | [{
   allowSingleExtends?: boolean;
-}]; // ----- ts/no-empty-object-type -----
+}];
+// ----- ts/no-empty-object-type -----
 type TsNoEmptyObjectType = [] | [{
   allowInterfaces?: ("always" | "never" | "with-single-extends");
   allowObjectTypes?: ("always" | "never");
   allowWithName?: string;
-}]; // ----- ts/no-explicit-any -----
+}];
+// ----- ts/no-explicit-any -----
 type TsNoExplicitAny = [] | [{
   fixToUnknown?: boolean;
   ignoreRestArgs?: boolean;
-}]; // ----- ts/no-extraneous-class -----
+}];
+// ----- ts/no-extraneous-class -----
 type TsNoExtraneousClass = [] | [{
   allowConstructorOnly?: boolean;
   allowEmpty?: boolean;
   allowStaticOnly?: boolean;
   allowWithDecorator?: boolean;
-}]; // ----- ts/no-floating-promises -----
+}];
+// ----- ts/no-floating-promises -----
 type TsNoFloatingPromises = [] | [{
   allowForKnownSafeCalls?: (string | {
     from: "file";
@@ -10410,18 +10875,22 @@ type TsNoFloatingPromises = [] | [{
   checkThenables?: boolean;
   ignoreIIFE?: boolean;
   ignoreVoid?: boolean;
-}]; // ----- ts/no-inferrable-types -----
+}];
+// ----- ts/no-inferrable-types -----
 type TsNoInferrableTypes = [] | [{
   ignoreParameters?: boolean;
   ignoreProperties?: boolean;
-}]; // ----- ts/no-invalid-this -----
+}];
+// ----- ts/no-invalid-this -----
 type TsNoInvalidThis = [] | [{
   capIsConstructor?: boolean;
-}]; // ----- ts/no-invalid-void-type -----
+}];
+// ----- ts/no-invalid-void-type -----
 type TsNoInvalidVoidType = [] | [{
   allowAsThisParameter?: boolean;
   allowInGenericTypeArguments?: (boolean | [string, ...(string)[]]);
-}]; // ----- ts/no-magic-numbers -----
+}];
+// ----- ts/no-magic-numbers -----
 type TsNoMagicNumbers = [] | [{
   detectObjects?: boolean;
   enforceConst?: boolean;
@@ -10433,10 +10902,12 @@ type TsNoMagicNumbers = [] | [{
   ignoreNumericLiteralTypes?: boolean;
   ignoreReadonlyClassProperties?: boolean;
   ignoreTypeIndexes?: boolean;
-}]; // ----- ts/no-meaningless-void-operator -----
+}];
+// ----- ts/no-meaningless-void-operator -----
 type TsNoMeaninglessVoidOperator = [] | [{
   checkNever?: boolean;
-}]; // ----- ts/no-misused-promises -----
+}];
+// ----- ts/no-misused-promises -----
 type TsNoMisusedPromises = [] | [{
   checksConditionals?: boolean;
   checksSpreads?: boolean;
@@ -10448,7 +10919,8 @@ type TsNoMisusedPromises = [] | [{
     returns?: boolean;
     variables?: boolean;
   });
-}]; // ----- ts/no-misused-spread -----
+}];
+// ----- ts/no-misused-spread -----
 type TsNoMisusedSpread = [] | [{
   allow?: (string | {
     from: "file";
@@ -10462,19 +10934,23 @@ type TsNoMisusedSpread = [] | [{
     name: (string | [string, ...(string)[]]);
     package: string;
   })[];
-}]; // ----- ts/no-namespace -----
+}];
+// ----- ts/no-namespace -----
 type TsNoNamespace = [] | [{
   allowDeclarations?: boolean;
   allowDefinitionFiles?: boolean;
-}]; // ----- ts/no-redeclare -----
+}];
+// ----- ts/no-redeclare -----
 type TsNoRedeclare = [] | [{
   builtinGlobals?: boolean;
   ignoreDeclarationMerge?: boolean;
-}]; // ----- ts/no-require-imports -----
+}];
+// ----- ts/no-require-imports -----
 type TsNoRequireImports = [] | [{
   allow?: string[];
   allowAsImport?: boolean;
-}]; // ----- ts/no-restricted-imports -----
+}];
+// ----- ts/no-restricted-imports -----
 type TsNoRestrictedImports = ((string | {
   name: string;
   message?: string;
@@ -10500,7 +10976,8 @@ type TsNoRestrictedImports = ((string | {
     caseSensitive?: boolean;
     allowTypeImports?: boolean;
   }[]);
-}]); // ----- ts/no-restricted-types -----
+}]);
+// ----- ts/no-restricted-types -----
 type TsNoRestrictedTypes = [] | [{
   types?: {
     [k: string]: (true | string | {
@@ -10509,7 +10986,8 @@ type TsNoRestrictedTypes = [] | [{
       suggest?: string[];
     }) | undefined;
   };
-}]; // ----- ts/no-shadow -----
+}];
+// ----- ts/no-shadow -----
 type TsNoShadow = [] | [{
   allow?: string[];
   builtinGlobals?: boolean;
@@ -10517,11 +10995,13 @@ type TsNoShadow = [] | [{
   ignoreFunctionTypeParameterNameValueShadow?: boolean;
   ignoreOnInitialization?: boolean;
   ignoreTypeValueShadow?: boolean;
-}]; // ----- ts/no-this-alias -----
+}];
+// ----- ts/no-this-alias -----
 type TsNoThisAlias = [] | [{
   allowDestructuring?: boolean;
   allowedNames?: string[];
-}]; // ----- ts/no-type-alias -----
+}];
+// ----- ts/no-type-alias -----
 type TsNoTypeAlias = [] | [{
   allowAliases?: ("always" | "never" | "in-unions" | "in-intersections" | "in-unions-and-intersections");
   allowCallbacks?: ("always" | "never");
@@ -10531,31 +11011,37 @@ type TsNoTypeAlias = [] | [{
   allowLiterals?: ("always" | "never" | "in-unions" | "in-intersections" | "in-unions-and-intersections");
   allowMappedTypes?: ("always" | "never" | "in-unions" | "in-intersections" | "in-unions-and-intersections");
   allowTupleTypes?: ("always" | "never" | "in-unions" | "in-intersections" | "in-unions-and-intersections");
-}]; // ----- ts/no-unnecessary-boolean-literal-compare -----
+}];
+// ----- ts/no-unnecessary-boolean-literal-compare -----
 type TsNoUnnecessaryBooleanLiteralCompare = [] | [{
   allowComparingNullableBooleansToFalse?: boolean;
   allowComparingNullableBooleansToTrue?: boolean;
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean;
-}]; // ----- ts/no-unnecessary-condition -----
+}];
+// ----- ts/no-unnecessary-condition -----
 type TsNoUnnecessaryCondition = [] | [{
   allowConstantLoopConditions?: (boolean | ("always" | "never" | "only-allowed-literals"));
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean;
   checkTypePredicates?: boolean;
-}]; // ----- ts/no-unnecessary-type-assertion -----
+}];
+// ----- ts/no-unnecessary-type-assertion -----
 type TsNoUnnecessaryTypeAssertion = [] | [{
   checkLiteralConstAssertions?: boolean;
   typesToIgnore?: string[];
-}]; // ----- ts/no-unsafe-member-access -----
+}];
+// ----- ts/no-unsafe-member-access -----
 type TsNoUnsafeMemberAccess = [] | [{
   allowOptionalChaining?: boolean;
-}]; // ----- ts/no-unused-expressions -----
+}];
+// ----- ts/no-unused-expressions -----
 type TsNoUnusedExpressions = [] | [{
   allowShortCircuit?: boolean;
   allowTernary?: boolean;
   allowTaggedTemplates?: boolean;
   enforceForJSX?: boolean;
   ignoreDirectives?: boolean;
-}]; // ----- ts/no-unused-vars -----
+}];
+// ----- ts/no-unused-vars -----
 type TsNoUnusedVars = [] | [(("all" | "local") | {
   args?: ("all" | "after-used" | "none");
   argsIgnorePattern?: string;
@@ -10571,7 +11057,8 @@ type TsNoUnusedVars = [] | [(("all" | "local") | {
   reportUsedIgnorePattern?: boolean;
   vars?: ("all" | "local");
   varsIgnorePattern?: string;
-})]; // ----- ts/no-use-before-define -----
+})];
+// ----- ts/no-use-before-define -----
 type TsNoUseBeforeDefine = [] | [("nofunc" | {
   allowNamedExports?: boolean;
   classes?: boolean;
@@ -10580,13 +11067,16 @@ type TsNoUseBeforeDefine = [] | [("nofunc" | {
   ignoreTypeReferences?: boolean;
   typedefs?: boolean;
   variables?: boolean;
-})]; // ----- ts/no-useless-default-assignment -----
+})];
+// ----- ts/no-useless-default-assignment -----
 type TsNoUselessDefaultAssignment = [] | [{
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean;
-}]; // ----- ts/no-var-requires -----
+}];
+// ----- ts/no-var-requires -----
 type TsNoVarRequires = [] | [{
   allow?: string[];
-}]; // ----- ts/only-throw-error -----
+}];
+// ----- ts/only-throw-error -----
 type TsOnlyThrowError = [] | [{
   allow?: (string | {
     from: "file";
@@ -10603,11 +11093,13 @@ type TsOnlyThrowError = [] | [{
   allowRethrowing?: boolean;
   allowThrowingAny?: boolean;
   allowThrowingUnknown?: boolean;
-}]; // ----- ts/parameter-properties -----
+}];
+// ----- ts/parameter-properties -----
 type TsParameterProperties = [] | [{
   allow?: ("readonly" | "private" | "protected" | "public" | "private readonly" | "protected readonly" | "public readonly")[];
   prefer?: ("class-property" | "parameter-property");
-}]; // ----- ts/prefer-destructuring -----
+}];
+// ----- ts/prefer-destructuring -----
 type TsPreferDestructuring = [] | [({
   AssignmentExpression?: {
     array?: boolean;
@@ -10635,10 +11127,12 @@ type TsPreferDestructuring = [] | [({
 }), {
   enforceForDeclarationWithTypeAnnotation?: boolean;
   enforceForRenamedProperties?: boolean;
-}]; // ----- ts/prefer-literal-enum-member -----
+}];
+// ----- ts/prefer-literal-enum-member -----
 type TsPreferLiteralEnumMember = [] | [{
   allowBitwiseExpressions?: boolean;
-}]; // ----- ts/prefer-nullish-coalescing -----
+}];
+// ----- ts/prefer-nullish-coalescing -----
 type TsPreferNullishCoalescing = [] | [{
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean;
   ignoreBooleanCoercion?: boolean;
@@ -10652,7 +11146,8 @@ type TsPreferNullishCoalescing = [] | [{
     string?: boolean;
   } | true);
   ignoreTernaryTests?: boolean;
-}]; // ----- ts/prefer-optional-chain -----
+}];
+// ----- ts/prefer-optional-chain -----
 type TsPreferOptionalChain = [] | [{
   allowPotentiallyUnsafeFixesThatModifyTheReturnTypeIKnowWhatImDoing?: boolean;
   checkAny?: boolean;
@@ -10662,7 +11157,8 @@ type TsPreferOptionalChain = [] | [{
   checkString?: boolean;
   checkUnknown?: boolean;
   requireNullish?: boolean;
-}]; // ----- ts/prefer-promise-reject-errors -----
+}];
+// ----- ts/prefer-promise-reject-errors -----
 type TsPreferPromiseRejectErrors = [] | [{
   allow?: (string | {
     from: "file";
@@ -10679,10 +11175,12 @@ type TsPreferPromiseRejectErrors = [] | [{
   allowEmptyReject?: boolean;
   allowThrowingAny?: boolean;
   allowThrowingUnknown?: boolean;
-}]; // ----- ts/prefer-readonly -----
+}];
+// ----- ts/prefer-readonly -----
 type TsPreferReadonly = [] | [{
   onlyInlineLambdas?: boolean;
-}]; // ----- ts/prefer-readonly-parameter-types -----
+}];
+// ----- ts/prefer-readonly-parameter-types -----
 type TsPreferReadonlyParameterTypes = [] | [{
   allow?: (string | {
     from: "file";
@@ -10699,10 +11197,12 @@ type TsPreferReadonlyParameterTypes = [] | [{
   checkParameterProperties?: boolean;
   ignoreInferredTypes?: boolean;
   treatMethodsAsReadonly?: boolean;
-}]; // ----- ts/prefer-string-starts-ends-with -----
+}];
+// ----- ts/prefer-string-starts-ends-with -----
 type TsPreferStringStartsEndsWith = [] | [{
   allowSingleElementEquality?: ("always" | "never");
-}]; // ----- ts/promise-function-async -----
+}];
+// ----- ts/promise-function-async -----
 type TsPromiseFunctionAsync = [] | [{
   allowAny?: boolean;
   allowedPromiseNames?: string[];
@@ -10710,10 +11210,12 @@ type TsPromiseFunctionAsync = [] | [{
   checkFunctionDeclarations?: boolean;
   checkFunctionExpressions?: boolean;
   checkMethodDeclarations?: boolean;
-}]; // ----- ts/require-array-sort-compare -----
+}];
+// ----- ts/require-array-sort-compare -----
 type TsRequireArraySortCompare = [] | [{
   ignoreStringArrays?: boolean;
-}]; // ----- ts/restrict-plus-operands -----
+}];
+// ----- ts/restrict-plus-operands -----
 type TsRestrictPlusOperands = [] | [{
   allowAny?: boolean;
   allowBoolean?: boolean;
@@ -10721,7 +11223,8 @@ type TsRestrictPlusOperands = [] | [{
   allowNumberAndString?: boolean;
   allowRegExp?: boolean;
   skipCompoundAssignments?: boolean;
-}]; // ----- ts/restrict-template-expressions -----
+}];
+// ----- ts/restrict-template-expressions -----
 type TsRestrictTemplateExpressions = [] | [{
   allowAny?: boolean;
   allowArray?: boolean;
@@ -10742,14 +11245,17 @@ type TsRestrictTemplateExpressions = [] | [{
     name: (string | [string, ...(string)[]]);
     package: string;
   })[];
-}]; // ----- ts/return-await -----
-type TsReturnAwait = [] | [(("always" | "error-handling-correctness-only" | "in-try-catch" | "never") & string)]; // ----- ts/sort-type-constituents -----
+}];
+// ----- ts/return-await -----
+type TsReturnAwait = [] | [(("always" | "error-handling-correctness-only" | "in-try-catch" | "never") & string)];
+// ----- ts/sort-type-constituents -----
 type TsSortTypeConstituents = [] | [{
   caseSensitive?: boolean;
   checkIntersections?: boolean;
   checkUnions?: boolean;
   groupOrder?: ("conditional" | "function" | "import" | "intersection" | "keyword" | "nullish" | "literal" | "named" | "object" | "operator" | "tuple" | "union")[];
-}]; // ----- ts/strict-boolean-expressions -----
+}];
+// ----- ts/strict-boolean-expressions -----
 type TsStrictBooleanExpressions = [] | [{
   allowAny?: boolean;
   allowNullableBoolean?: boolean;
@@ -10760,21 +11266,25 @@ type TsStrictBooleanExpressions = [] | [{
   allowNumber?: boolean;
   allowRuleToRunWithoutStrictNullChecksIKnowWhatIAmDoing?: boolean;
   allowString?: boolean;
-}]; // ----- ts/strict-void-return -----
+}];
+// ----- ts/strict-void-return -----
 type TsStrictVoidReturn = [] | [{
   allowReturnAny?: boolean;
-}]; // ----- ts/switch-exhaustiveness-check -----
+}];
+// ----- ts/switch-exhaustiveness-check -----
 type TsSwitchExhaustivenessCheck = [] | [{
   allowDefaultCaseForExhaustiveSwitch?: boolean;
   considerDefaultExhaustiveForUnions?: boolean;
   defaultCaseCommentPattern?: string;
   requireDefaultForNonUnion?: boolean;
-}]; // ----- ts/triple-slash-reference -----
+}];
+// ----- ts/triple-slash-reference -----
 type TsTripleSlashReference = [] | [{
   lib?: ("always" | "never");
   path?: ("always" | "never");
   types?: ("always" | "never" | "prefer-import");
-}]; // ----- ts/typedef -----
+}];
+// ----- ts/typedef -----
 type TsTypedef = [] | [{
   arrayDestructuring?: boolean;
   arrowParameter?: boolean;
@@ -10784,10 +11294,12 @@ type TsTypedef = [] | [{
   propertyDeclaration?: boolean;
   variableDeclaration?: boolean;
   variableDeclarationIgnoreFunction?: boolean;
-}]; // ----- ts/unbound-method -----
+}];
+// ----- ts/unbound-method -----
 type TsUnboundMethod = [] | [{
   ignoreStatic?: boolean;
-}]; // ----- ts/unified-signatures -----
+}];
+// ----- ts/unified-signatures -----
 type TsUnifiedSignatures = [] | [{
   ignoreDifferentlyNamedParameters?: boolean;
   ignoreOverloadsWithDifferentJSDoc?: boolean;
@@ -12433,11 +12945,13 @@ interface RuleOptions$1 {
 type UnicornCatchErrorName = [] | [{
   name?: string;
   ignore?: unknown[];
-}]; // ----- unicorn/class-reference-in-static-methods -----
+}];
+// ----- unicorn/class-reference-in-static-methods -----
 type UnicornClassReferenceInStaticMethods = [] | [{
   preferThis?: boolean;
   preferSuper?: boolean;
-}]; // ----- unicorn/comment-content -----
+}];
+// ----- unicorn/comment-content -----
 type UnicornCommentContent = [] | [{
   checkUniformCase?: boolean;
   extendDefaultReplacements?: boolean;
@@ -12447,17 +12961,20 @@ type UnicornCommentContent = [] | [{
       caseSensitive?: boolean;
     }) | undefined;
   };
-}]; // ----- unicorn/consistent-boolean-name -----
+}];
+// ----- unicorn/consistent-boolean-name -----
 type UnicornConsistentBooleanName = [] | [{
   checkProperties?: boolean;
   prefixes?: {
     [k: string]: boolean | undefined;
   };
   ignore?: unknown[];
-}]; // ----- unicorn/consistent-class-member-order -----
+}];
+// ----- unicorn/consistent-class-member-order -----
 type UnicornConsistentClassMemberOrder = [] | [{
   order?: [("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method"), ("static-field" | "static-block" | "static-method" | "private-field" | "public-field" | "constructor" | "private-method" | "public-method")];
-}]; // ----- unicorn/consistent-compound-words -----
+}];
+// ----- unicorn/consistent-compound-words -----
 type UnicornConsistentCompoundWords = [] | [{
   checkProperties?: boolean;
   checkVariables?: boolean;
@@ -12473,12 +12990,16 @@ interface _UnicornConsistentCompoundWords_Replacements {
 }
 interface _UnicornConsistentCompoundWords_TrueObject {
   [k: string]: true | undefined;
-} // ----- unicorn/consistent-conditional-object-spread -----
-type UnicornConsistentConditionalObjectSpread = [] | [("logical" | "ternary")]; // ----- unicorn/consistent-export-decorator-position -----
-type UnicornConsistentExportDecoratorPosition = [] | [("above" | "before" | "after")]; // ----- unicorn/consistent-function-scoping -----
+}
+// ----- unicorn/consistent-conditional-object-spread -----
+type UnicornConsistentConditionalObjectSpread = [] | [("logical" | "ternary")];
+// ----- unicorn/consistent-export-decorator-position -----
+type UnicornConsistentExportDecoratorPosition = [] | [("above" | "before" | "after")];
+// ----- unicorn/consistent-function-scoping -----
 type UnicornConsistentFunctionScoping = [] | [{
   checkArrowFunctions?: boolean;
-}]; // ----- unicorn/consistent-function-style -----
+}];
+// ----- unicorn/consistent-function-style -----
 type UnicornConsistentFunctionStyle = [] | [{
   default?: ("declaration" | "function-expression" | "arrow-function" | "ignore");
   namedFunctions?: ("declaration" | "function-expression" | "arrow-function" | "ignore");
@@ -12487,16 +13008,21 @@ type UnicornConsistentFunctionStyle = [] | [{
   objectProperties?: ("method" | "function-expression" | "arrow-function" | "ignore");
   reassignedVariables?: ("function-expression" | "arrow-function" | "ignore");
   typedVariables?: ("function-expression" | "arrow-function" | "ignore");
-}]; // ----- unicorn/consistent-json-file-read -----
-type UnicornConsistentJsonFileRead = [] | [("string" | "buffer")]; // ----- unicorn/default-export-style -----
+}];
+// ----- unicorn/consistent-json-file-read -----
+type UnicornConsistentJsonFileRead = [] | [("string" | "buffer")];
+// ----- unicorn/default-export-style -----
 type UnicornDefaultExportStyle = [] | [{
   functions?: ("inline" | "separate" | "ignore");
   classes?: ("inline" | "separate" | "ignore");
-}]; // ----- unicorn/dom-node-dataset -----
+}];
+// ----- unicorn/dom-node-dataset -----
 type UnicornDomNodeDataset = [] | [{
   preferAttributes?: boolean;
-}]; // ----- unicorn/escape-case -----
-type UnicornEscapeCase = [] | [("uppercase" | "lowercase")]; // ----- unicorn/expiring-todo-comments -----
+}];
+// ----- unicorn/escape-case -----
+type UnicornEscapeCase = [] | [("uppercase" | "lowercase")];
+// ----- unicorn/expiring-todo-comments -----
 type UnicornExpiringTodoComments = [] | [{
   terms?: string[];
   ignore?: unknown[];
@@ -12504,11 +13030,14 @@ type UnicornExpiringTodoComments = [] | [{
   checkDatesOnPullRequests?: boolean;
   allowWarningComments?: boolean;
   date?: string;
-}]; // ----- unicorn/explicit-length-check -----
+}];
+// ----- unicorn/explicit-length-check -----
 type UnicornExplicitLengthCheck = [] | [{
   "non-zero"?: ("greater-than" | "not-equal");
-}]; // ----- unicorn/explicit-timer-delay -----
-type UnicornExplicitTimerDelay = [] | [("always" | "never")]; // ----- unicorn/filename-case -----
+}];
+// ----- unicorn/explicit-timer-delay -----
+type UnicornExplicitTimerDelay = [] | [("always" | "never")];
+// ----- unicorn/filename-case -----
 type UnicornFilenameCase = [] | [({
   case?: ("camelCase" | "camelCaseWithAcronyms" | "snakeCase" | "kebabCase" | "pascalCase");
   ignore?: unknown[];
@@ -12525,14 +13054,16 @@ type UnicornFilenameCase = [] | [({
   ignore?: unknown[];
   multipleFileExtensions?: boolean;
   checkDirectories?: boolean;
-})]; // ----- unicorn/id-match -----
+})];
+// ----- unicorn/id-match -----
 type UnicornIdMatch = [] | [string] | [string, {
   properties?: boolean;
   classFields?: boolean;
   onlyDeclarations?: boolean;
   ignoreDestructuring?: boolean;
   checkNamedSpecifiers?: boolean;
-}]; // ----- unicorn/import-style -----
+}];
+// ----- unicorn/import-style -----
 type UnicornImportStyle = [] | [{
   checkImport?: boolean;
   checkDynamicImport?: boolean;
@@ -12547,7 +13078,8 @@ interface _UnicornImportStyle_ModuleStyles {
 }
 interface _UnicornImportStyle_BooleanObject {
   [k: string]: boolean | undefined;
-} // ----- unicorn/isolated-functions -----
+}
+// ----- unicorn/isolated-functions -----
 type UnicornIsolatedFunctions = [] | [{
   overrideGlobals?: {
     [k: string]: (boolean | ("readonly" | "writable" | "writeable" | "off")) | undefined;
@@ -12555,13 +13087,16 @@ type UnicornIsolatedFunctions = [] | [{
   functions?: string[];
   selectors?: string[];
   comments?: string[];
-}]; // ----- unicorn/logical-assignment-operators -----
+}];
+// ----- unicorn/logical-assignment-operators -----
 type UnicornLogicalAssignmentOperators = (([] | ["always"] | ["always", {
   enforceForIfStatements?: boolean;
-}] | ["never"]) & unknown[]); // ----- unicorn/max-nested-calls -----
+}] | ["never"]) & unknown[]);
+// ----- unicorn/max-nested-calls -----
 type UnicornMaxNestedCalls = [] | [{
   max?: number;
-}]; // ----- unicorn/name-replacements -----
+}];
+// ----- unicorn/name-replacements -----
 type UnicornNameReplacements = [] | [{
   checkProperties?: boolean;
   checkVariables?: boolean;
@@ -12584,67 +13119,84 @@ interface _UnicornNameReplacements_BooleanObject {
 }
 interface _UnicornNameReplacements_BooleanObject {
   [k: string]: boolean | undefined;
-} // ----- unicorn/no-array-callback-reference -----
+}
+// ----- unicorn/no-array-callback-reference -----
 type UnicornNoArrayCallbackReference = [] | [{
   ignore?: string[];
-}]; // ----- unicorn/no-array-reduce -----
+}];
+// ----- unicorn/no-array-reduce -----
 type UnicornNoArrayReduce = [] | [{
   allowSimpleOperations?: boolean;
-}]; // ----- unicorn/no-array-reverse -----
+}];
+// ----- unicorn/no-array-reverse -----
 type UnicornNoArrayReverse = [] | [{
   allowExpressionStatement?: boolean;
-}]; // ----- unicorn/no-array-sort -----
+}];
+// ----- unicorn/no-array-sort -----
 type UnicornNoArraySort = [] | [{
   allowExpressionStatement?: boolean;
-}]; // ----- unicorn/no-empty-file -----
+}];
+// ----- unicorn/no-empty-file -----
 type UnicornNoEmptyFile = [] | [{
   allowComments?: boolean;
-}]; // ----- unicorn/no-instanceof-builtins -----
+}];
+// ----- unicorn/no-instanceof-builtins -----
 type UnicornNoInstanceofBuiltins = [] | [{
   useErrorIsError?: boolean;
   strategy?: ("loose" | "strict");
   include?: string[];
   exclude?: string[];
-}]; // ----- unicorn/no-invalid-argument-count -----
+}];
+// ----- unicorn/no-invalid-argument-count -----
 type UnicornNoInvalidArgumentCount = [] | [{
   [k: string]: (number | [number, ...(number)[]] | {
     min?: number;
     max?: number;
   }) | undefined;
-}]; // ----- unicorn/no-keyword-prefix -----
+}];
+// ----- unicorn/no-keyword-prefix -----
 type UnicornNoKeywordPrefix = [] | [{
   disallowedPrefixes?: [] | [string];
   checkProperties?: boolean;
   onlyCamelCase?: boolean;
-}]; // ----- unicorn/no-negated-comparison -----
+}];
+// ----- unicorn/no-negated-comparison -----
 type UnicornNoNegatedComparison = [] | [{
   checkLogicalExpressions?: boolean;
-}]; // ----- unicorn/no-non-function-verb-prefix -----
+}];
+// ----- unicorn/no-non-function-verb-prefix -----
 type UnicornNoNonFunctionVerbPrefix = [] | [{
   verbs?: string[];
-}]; // ----- unicorn/no-null -----
+}];
+// ----- unicorn/no-null -----
 type UnicornNoNull = [] | [{
   checkArguments?: boolean;
   checkStrictEquality?: boolean;
-}]; // ----- unicorn/no-typeof-undefined -----
+}];
+// ----- unicorn/no-typeof-undefined -----
 type UnicornNoTypeofUndefined = [] | [{
   checkGlobalVariables?: boolean;
-}]; // ----- unicorn/no-unnecessary-polyfills -----
+}];
+// ----- unicorn/no-unnecessary-polyfills -----
 type UnicornNoUnnecessaryPolyfills = [] | [{
   targets?: (string | unknown[] | {
     [k: string]: unknown | undefined;
   });
-}]; // ----- unicorn/no-unreadable-array-destructuring -----
+}];
+// ----- unicorn/no-unreadable-array-destructuring -----
 type UnicornNoUnreadableArrayDestructuring = [] | [{
   maximumIgnoredElements?: number;
-}]; // ----- unicorn/no-useless-undefined -----
+}];
+// ----- unicorn/no-useless-undefined -----
 type UnicornNoUselessUndefined = [] | [{
   checkArguments?: boolean;
   checkArrowFunctionBody?: boolean;
-}]; // ----- unicorn/number-literal-case -----
+}];
+// ----- unicorn/number-literal-case -----
 type UnicornNumberLiteralCase = [] | [{
   hexadecimalValue?: ("uppercase" | "lowercase");
-}]; // ----- unicorn/numeric-separators-style -----
+}];
+// ----- unicorn/numeric-separators-style -----
 type UnicornNumericSeparatorsStyle = [] | [{
   binary?: {
     onlyIfContainsSeparator?: boolean;
@@ -12668,77 +13220,101 @@ type UnicornNumericSeparatorsStyle = [] | [{
     fractionGroupLength?: number;
   };
   onlyIfContainsSeparator?: boolean;
-}]; // ----- unicorn/operator-assignment -----
-type UnicornOperatorAssignment = [] | [("always" | "never")]; // ----- unicorn/prefer-add-event-listener -----
+}];
+// ----- unicorn/operator-assignment -----
+type UnicornOperatorAssignment = [] | [("always" | "never")];
+// ----- unicorn/prefer-add-event-listener -----
 type UnicornPreferAddEventListener = [] | [{
   excludedPackages?: string[];
-}]; // ----- unicorn/prefer-array-find -----
+}];
+// ----- unicorn/prefer-array-find -----
 type UnicornPreferArrayFind = [] | [{
   checkFromLast?: boolean;
-}]; // ----- unicorn/prefer-array-flat -----
+}];
+// ----- unicorn/prefer-array-flat -----
 type UnicornPreferArrayFlat = [] | [{
   functions?: unknown[];
-}]; // ----- unicorn/prefer-at -----
+}];
+// ----- unicorn/prefer-at -----
 type UnicornPreferAt = [] | [{
   getLastElementFunctions?: unknown[];
   checkAllIndexAccess?: boolean;
-}]; // ----- unicorn/prefer-continue -----
+}];
+// ----- unicorn/prefer-continue -----
 type UnicornPreferContinue = [] | [{
   maximumStatements?: number;
-}]; // ----- unicorn/prefer-early-return -----
+}];
+// ----- unicorn/prefer-early-return -----
 type UnicornPreferEarlyReturn = [] | [{
   maximumStatements?: number;
-}]; // ----- unicorn/prefer-export-from -----
+}];
+// ----- unicorn/prefer-export-from -----
 type UnicornPreferExportFrom = [] | [{
   checkUsedVariables?: boolean;
-}]; // ----- unicorn/prefer-includes-over-repeated-comparisons -----
+}];
+// ----- unicorn/prefer-includes-over-repeated-comparisons -----
 type UnicornPreferIncludesOverRepeatedComparisons = [] | [{
   minimumComparisons?: number;
-}]; // ----- unicorn/prefer-minimal-ternary -----
+}];
+// ----- unicorn/prefer-minimal-ternary -----
 type UnicornPreferMinimalTernary = [] | [{
   checkVaryingCallee?: boolean;
   checkComputedMemberAccess?: boolean;
-}]; // ----- unicorn/prefer-number-properties -----
+}];
+// ----- unicorn/prefer-number-properties -----
 type UnicornPreferNumberProperties = [] | [{
   checkInfinity?: boolean;
   checkNaN?: boolean;
-}]; // ----- unicorn/prefer-object-from-entries -----
+}];
+// ----- unicorn/prefer-object-from-entries -----
 type UnicornPreferObjectFromEntries = [] | [{
   functions?: unknown[];
-}]; // ----- unicorn/prefer-query-selector -----
+}];
+// ----- unicorn/prefer-query-selector -----
 type UnicornPreferQuerySelector = [] | [{
   allowWithVariables?: boolean;
-}]; // ----- unicorn/prefer-queue-microtask -----
+}];
+// ----- unicorn/prefer-queue-microtask -----
 type UnicornPreferQueueMicrotask = [] | [{
   checkSetImmediate?: boolean;
   checkSetTimeout?: boolean;
-}]; // ----- unicorn/prefer-set-has -----
+}];
+// ----- unicorn/prefer-set-has -----
 type UnicornPreferSetHas = [] | [{
   minimumItems?: number;
-}]; // ----- unicorn/prefer-single-call -----
+}];
+// ----- unicorn/prefer-single-call -----
 type UnicornPreferSingleCall = [] | [{
   ignore?: unknown[];
-}]; // ----- unicorn/prefer-string-repeat -----
+}];
+// ----- unicorn/prefer-string-repeat -----
 type UnicornPreferStringRepeat = [] | [{
   minimumRepetitions?: number;
-}]; // ----- unicorn/prefer-structured-clone -----
+}];
+// ----- unicorn/prefer-structured-clone -----
 type UnicornPreferStructuredClone = [] | [{
   functions?: unknown[];
-}]; // ----- unicorn/prefer-switch -----
+}];
+// ----- unicorn/prefer-switch -----
 type UnicornPreferSwitch = [] | [{
   minimumCases?: number;
   emptyDefaultCase?: ("no-default-comment" | "do-nothing-comment" | "no-default-case");
-}]; // ----- unicorn/prefer-temporal -----
+}];
+// ----- unicorn/prefer-temporal -----
 type UnicornPreferTemporal = [] | [{
   checkDateNow?: boolean;
   checkReferences?: boolean;
   checkMethods?: boolean;
-}]; // ----- unicorn/prefer-ternary -----
-type UnicornPreferTernary = [] | [("always" | "only-single-line")]; // ----- unicorn/relative-url-style -----
-type UnicornRelativeUrlStyle = [] | [("never" | "always")]; // ----- unicorn/require-css-escape -----
+}];
+// ----- unicorn/prefer-ternary -----
+type UnicornPreferTernary = [] | [("always" | "only-single-line")];
+// ----- unicorn/relative-url-style -----
+type UnicornRelativeUrlStyle = [] | [("never" | "always")];
+// ----- unicorn/require-css-escape -----
 type UnicornRequireCssEscape = [] | [{
   checkAllSelectors?: boolean;
-}]; // ----- unicorn/string-content -----
+}];
+// ----- unicorn/string-content -----
 type UnicornStringContent = [] | [{
   patterns?: {
     [k: string]: (string | {
@@ -12749,18 +13325,22 @@ type UnicornStringContent = [] | [{
     }) | undefined;
   };
   selectors?: string[];
-}]; // ----- unicorn/switch-case-braces -----
-type UnicornSwitchCaseBraces = [] | [("always" | "avoid" | "single-statement")]; // ----- unicorn/template-indent -----
+}];
+// ----- unicorn/switch-case-braces -----
+type UnicornSwitchCaseBraces = [] | [("always" | "avoid" | "single-statement")];
+// ----- unicorn/template-indent -----
 type UnicornTemplateIndent = [] | [{
   indent?: (string | number);
   tags?: string[];
   functions?: string[];
   selectors?: string[];
   comments?: string[];
-}]; // ----- unicorn/text-encoding-identifier-case -----
+}];
+// ----- unicorn/text-encoding-identifier-case -----
 type UnicornTextEncodingIdentifierCase = [] | [{
   withDash?: boolean;
-}]; // ----- unicorn/try-complexity -----
+}];
+// ----- unicorn/try-complexity -----
 type UnicornTryComplexity = [] | [{
   max?: number;
 }];
@@ -12930,45 +13510,56 @@ interface RuleOptions {
 type YmlBlockMapping = [] | [(("always" | "never") | {
   singleline?: ("always" | "never" | "ignore");
   multiline?: ("always" | "never" | "ignore");
-})]; // ----- yml/block-mapping-colon-indicator-newline -----
-type YmlBlockMappingColonIndicatorNewline = [] | [("always" | "never")]; // ----- yml/block-mapping-question-indicator-newline -----
-type YmlBlockMappingQuestionIndicatorNewline = [] | [("always" | "never")]; // ----- yml/block-sequence -----
+})];
+// ----- yml/block-mapping-colon-indicator-newline -----
+type YmlBlockMappingColonIndicatorNewline = [] | [("always" | "never")];
+// ----- yml/block-mapping-question-indicator-newline -----
+type YmlBlockMappingQuestionIndicatorNewline = [] | [("always" | "never")];
+// ----- yml/block-sequence -----
 type YmlBlockSequence = [] | [(("always" | "never") | {
   singleline?: ("always" | "never" | "ignore");
   multiline?: ("always" | "never" | "ignore");
-})]; // ----- yml/block-sequence-hyphen-indicator-newline -----
+})];
+// ----- yml/block-sequence-hyphen-indicator-newline -----
 type YmlBlockSequenceHyphenIndicatorNewline = [] | [("always" | "never")] | [("always" | "never"), {
   nestedHyphen?: ("always" | "never");
   blockMapping?: ("always" | "never");
-}]; // ----- yml/file-extension -----
+}];
+// ----- yml/file-extension -----
 type YmlFileExtension = [] | [{
   extension?: ("yaml" | "yml");
   caseSensitive?: boolean;
-}]; // ----- yml/flow-mapping-curly-newline -----
+}];
+// ----- yml/flow-mapping-curly-newline -----
 type YmlFlowMappingCurlyNewline = [] | [(("always" | "never") | {
   multiline?: boolean;
   minProperties?: number;
   consistent?: boolean;
-})]; // ----- yml/flow-mapping-curly-spacing -----
+})];
+// ----- yml/flow-mapping-curly-spacing -----
 type YmlFlowMappingCurlySpacing = [] | [("always" | "never")] | [("always" | "never"), {
   arraysInObjects?: boolean;
   objectsInObjects?: boolean;
   emptyObjects?: ("ignore" | "always" | "never");
-}]; // ----- yml/flow-sequence-bracket-newline -----
+}];
+// ----- yml/flow-sequence-bracket-newline -----
 type YmlFlowSequenceBracketNewline = [] | [(("always" | "never" | "consistent") | {
   multiline?: boolean;
   minItems?: (number | null);
-})]; // ----- yml/flow-sequence-bracket-spacing -----
+})];
+// ----- yml/flow-sequence-bracket-spacing -----
 type YmlFlowSequenceBracketSpacing = [] | [("always" | "never")] | [("always" | "never"), {
   singleValue?: boolean;
   objectsInArrays?: boolean;
   arraysInArrays?: boolean;
-}]; // ----- yml/indent -----
+}];
+// ----- yml/indent -----
 type YmlIndent = [] | [number] | [number, {
   indentBlockSequences?: boolean;
   indicatorValueIndent?: number;
   alignMultilineFlowScalars?: boolean;
-}]; // ----- yml/key-name-casing -----
+}];
+// ----- yml/key-name-casing -----
 type YmlKeyNameCasing = [] | [{
   camelCase?: boolean;
   PascalCase?: boolean;
@@ -12976,7 +13567,8 @@ type YmlKeyNameCasing = [] | [{
   "kebab-case"?: boolean;
   snake_case?: boolean;
   ignores?: string[];
-}]; // ----- yml/key-spacing -----
+}];
+// ----- yml/key-spacing -----
 type YmlKeySpacing = [] | [({
   align?: (("colon" | "value") | {
     on?: ("colon" | "value");
@@ -13021,30 +13613,36 @@ type YmlKeySpacing = [] | [({
     beforeColon?: boolean;
     afterColon?: boolean;
   };
-})]; // ----- yml/no-irregular-whitespace -----
+})];
+// ----- yml/no-irregular-whitespace -----
 type YmlNoIrregularWhitespace = [] | [{
   skipComments?: boolean;
   skipQuotedScalars?: boolean;
-}]; // ----- yml/no-multiple-empty-lines -----
+}];
+// ----- yml/no-multiple-empty-lines -----
 type YmlNoMultipleEmptyLines = [] | [{
   max: number;
   maxEOF?: number;
   maxBOF?: number;
-}]; // ----- yml/no-trailing-spaces -----
+}];
+// ----- yml/no-trailing-spaces -----
 type YmlNoTrailingSpaces = [] | [{
   skipBlankLines?: boolean;
   ignoreComments?: boolean;
-}]; // ----- yml/plain-scalar -----
+}];
+// ----- yml/plain-scalar -----
 type YmlPlainScalar = [] | [("always" | "never")] | [("always" | "never"), {
   ignorePatterns?: string[];
   overrides?: {
     mappingKey?: ("always" | "never" | null);
   };
-}]; // ----- yml/quotes -----
+}];
+// ----- yml/quotes -----
 type YmlQuotes = [] | [{
   prefer?: ("double" | "single");
   avoidEscape?: boolean;
-}]; // ----- yml/sort-keys -----
+}];
+// ----- yml/sort-keys -----
 type YmlSortKeys = ([{
   pathPattern: string;
   hasProperties?: string[];
@@ -13084,7 +13682,8 @@ type YmlSortKeys = ([{
   natural?: boolean;
   minKeys?: number;
   allowLineSeparatedGroups?: boolean;
-}]); // ----- yml/sort-sequence-values -----
+}]);
+// ----- yml/sort-sequence-values -----
 type YmlSortSequenceValues = [{
   pathPattern: string;
   order: ((string | {
@@ -13093,11 +13692,13 @@ type YmlSortSequenceValues = [{
       type?: ("asc" | "desc");
       caseSensitive?: boolean;
       natural?: boolean;
+      key?: string;
     };
   })[] | {
     type?: ("asc" | "desc");
     caseSensitive?: boolean;
     natural?: boolean;
+    key?: string;
   });
   minValues?: number;
 }, ...({
@@ -13108,14 +13709,17 @@ type YmlSortSequenceValues = [{
       type?: ("asc" | "desc");
       caseSensitive?: boolean;
       natural?: boolean;
+      key?: string;
     };
   })[] | {
     type?: ("asc" | "desc");
     caseSensitive?: boolean;
     natural?: boolean;
+    key?: string;
   });
   minValues?: number;
-})[]]; // ----- yml/spaced-comment -----
+})[]];
+// ----- yml/spaced-comment -----
 type YmlSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
   exceptions?: string[];
   markers?: string[];

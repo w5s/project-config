@@ -15,6 +15,12 @@ describe('eslintIgnores', () => {
     await fs.writeFile(nodePath.join(targetDir, '.gitignore'), content, 'utf8');
   };
 
+  const writeGitmodules = async (prefix: string, content: string) => {
+    const targetDir = nodePath.join(testDir, prefix);
+    await fs.mkdir(targetDir, { recursive: true });
+    await fs.writeFile(nodePath.join(targetDir, '.gitmodules'), content, 'utf8');
+  };
+
   beforeEach(async () => {
     testDir = await fs.mkdtemp(nodePath.join(tmpdir(), 'eslint-ignore-'));
     cwdSpy = vi.spyOn(process, 'cwd').mockReturnValue(testDir);
@@ -163,5 +169,21 @@ describe('eslintIgnores', () => {
     });
 
     expect(result.ignores).toEqual(['only-me/**']);
+  });
+
+  it('includes git submodules when ignoreGitModules is enabled (default)', async () => {
+    await writeGitmodules('', '[submodule "foo"]\n\tpath = packages/foo\n\turl = https://example.com/foo.git\n');
+
+    const result = await eslintIgnores({ recommended: false });
+
+    expect(result.ignores).toContain('packages/foo/**');
+  });
+
+  it('does not include git submodules when ignoreGitModules is false', async () => {
+    await writeGitmodules('', '[submodule "foo"]\n\tpath = packages/foo\n\turl = https://example.com/foo.git\n');
+
+    const result = await eslintIgnores({ ignoreGitModules: false, recommended: false });
+
+    expect(result.ignores).not.toContain('packages/foo/**');
   });
 });

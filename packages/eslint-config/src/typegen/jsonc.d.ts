@@ -426,11 +426,13 @@ type JsoncSortArrayValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 }, ...({
@@ -441,11 +443,13 @@ type JsoncSortArrayValues = [{
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
+      key?: string
     }
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+    key?: string
   })
   minValues?: number
 })[]]

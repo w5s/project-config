@@ -1,5 +1,4 @@
 import { Config } from "prettier";
-
 //#region src/config.d.ts
 declare const config: Config;
 //#endregion
