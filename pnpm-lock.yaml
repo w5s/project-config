@@ -222,7 +222,7 @@ importers:
         version: 3.3.0(eslint@10.6.0(jiti@2.6.1))
       eslint-plugin-n:
         specifier: ~18.2.0
-        version: 18.2.1(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3)
+        version: 18.2.2(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3)
       eslint-plugin-perfectionist:
         specifier: ~5.10.0
         version: 5.10.0(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3)
@@ -2575,8 +2575,8 @@ packages:
     peerDependencies:
       eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9
 
-  eslint-plugin-n@18.2.1:
-    resolution: {integrity: sha512-aO3C9//yq8JIvYOi/T+jPvcZ9hZzpwzbR8esrYpFtgE9vpbyM8kn42AQOtIqYspVmpaSWr8X+nrlQuAJYxXAaw==}
+  eslint-plugin-n@18.2.2:
+    resolution: {integrity: sha512-gOO0lIqwEjZ750kv9/SptCWArUoAZXJoBr0vYWTO2dCBxctHUXlBIigiC8xuxxr/NKqgIT6Ehz1xRcilj8a5cA==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
     peerDependencies:
       eslint: '>=8.57.1'
@@ -3524,8 +3524,8 @@ packages:
   json-stringify-nice@1.1.4:
     resolution: {integrity: sha512-5Z5RFW63yxReJ7vANgW6eZFGWaQvnPE3WNmZoOJrSkGju2etKA2L5rrOa1sm877TVTFt57A80BH1bArcmlLfPw==}
 
-  json-with-bigint@3.5.8:
-    resolution: {integrity: sha512-eq/4KP6K34kwa7TcFdtvnftvHCD9KvHOGGICWwMFc4dOOKF5t4iYqnfLK8otCRCRv06FXOzGGyqE8h8ElMvvdw==}
+  json-with-bigint@3.5.9:
+    resolution: {integrity: sha512-jZY/PjDH718nqF5pM/6+dBjimLZMIetH0suawGcZfZsvNZZ0qTaSxL136zXnjHupPpzspSI/1X8VKW+XHVvt7Q==}
 
   json5@1.0.2:
     resolution: {integrity: sha512-g1MWMLBiz8FKi1e4w0UyVL3w+iJceWAFBAaBnnGKOpNa5f8TLktkbre1+s6oICydWAm+HRUGTmI+//xv2hvXYA==}
@@ -4605,8 +4605,8 @@ packages:
     deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
-  rolldown-plugin-dts@0.27.4:
-    resolution: {integrity: sha512-z1uz1gH2sJ55i6JY/xi3q7gsI5CPthefDp5HYXnBlrkN1L3K4tx+gyAQO3Udt69ASWItWKwXJ55nKQq2HCMVfA==}
+  rolldown-plugin-dts@0.27.5:
+    resolution: {integrity: sha512-VdCqTdngmO/nKlBR59PJECymc28Hd5Z6JJvMNs0JXBYq+ITipxmD/47sAFb+Q8zJ6EHgH1sNabvNtgdVIVNsFw==}
     engines: {node: ^22.18.0 || >=24.11.0}
     peerDependencies:
       '@ts-macro/tsc': ^0.3.6
@@ -6451,7 +6451,7 @@ snapshots:
       '@octokit/request-error': 7.1.0
       '@octokit/types': 16.0.0
       content-type: 2.0.0
-      json-with-bigint: 3.5.8
+      json-with-bigint: 3.5.9
       universal-user-agent: 7.0.3
 
   '@octokit/rest@22.0.1':
@@ -8009,7 +8009,7 @@ snapshots:
       safe-regex-test: 1.1.0
       string.prototype.includes: 2.0.1
 
-  eslint-plugin-n@18.2.1(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3):
+  eslint-plugin-n@18.2.2(eslint@10.6.0(jiti@2.6.1))(typescript@6.0.3):
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@10.6.0(jiti@2.6.1))
       enhanced-resolve: 5.24.2
@@ -9079,7 +9079,7 @@ snapshots:
 
   json-stringify-nice@1.1.4: {}
 
-  json-with-bigint@3.5.8: {}
+  json-with-bigint@3.5.9: {}
 
   json5@1.0.2:
     dependencies:
@@ -10446,7 +10446,7 @@ snapshots:
     dependencies:
       glob: 7.2.3
 
-  rolldown-plugin-dts@0.27.4(rolldown@1.1.5)(typescript@6.0.3):
+  rolldown-plugin-dts@0.27.5(rolldown@1.1.5)(typescript@6.0.3):
     dependencies:
       dts-resolver: 3.0.0
       get-tsconfig: 5.0.0-beta.5
@@ -10884,7 +10884,7 @@ snapshots:
       obug: 2.1.3
       picomatch: 4.0.5
       rolldown: 1.1.5
-      rolldown-plugin-dts: 0.27.4(rolldown@1.1.5)(typescript@6.0.3)
+      rolldown-plugin-dts: 0.27.5(rolldown@1.1.5)(typescript@6.0.3)
       semver: 7.8.5
       tinyexec: 1.2.4
       tinyglobby: 0.2.17
