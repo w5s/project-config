@@ -83,7 +83,7 @@
     "@types/eslint": "9.6.1",
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@types/react": "19.2.17",
-    "@typescript-eslint/parser": "8.63.0",
+    "@typescript-eslint/parser": "8.64.0",
     "@w5s/tsdown-config": "workspace:*",
     "eslint-find-rules": "5.0.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
