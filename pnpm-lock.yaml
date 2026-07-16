@@ -57,8 +57,8 @@ importers:
         specifier: 2.0.2
         version: 2.0.2
       markdown-magic-subpackage-list:
-        specifier: 1.1.2
-        version: 1.1.2(markdown-magic@4.11.0)
+        specifier: 2.1.0
+        version: 2.1.0(markdown-magic@4.11.0)
       tsdown:
         specifier: 0.22.7
         version: 0.22.7(typescript@6.0.3)
@@ -3893,10 +3893,11 @@ packages:
     resolution: {integrity: sha512-zUDk8AwA+Unjt1cYUsdc6qFVenZb1OLz3SiEFcU2mli0vWPYECQi7whlPgXemoMigKNI+fhvQc/+385TDwqVLg==}
     engines: {node: '>=10'}
 
-  markdown-magic-subpackage-list@1.1.2:
-    resolution: {integrity: sha512-ln5ggfNLWJmK7K4sFiB6f+wGZSE765Mb4txHZ32L+Zgp2s6A1D6t74O2+ilrcp0a6/EBbergcEKGeTdYiGV+ew==}
+  markdown-magic-subpackage-list@2.1.0:
+    resolution: {integrity: sha512-8r61p9QDV56lGbb5wVIEkTTvznizP1Ml4YmpAJfx1LlLRdUZBTUmhvzK9N2A9sCgbMO9mMdnxCJIOSj8qch1kg==}
+    engines: {node: '>=22.18.0'}
     peerDependencies:
-      markdown-magic: '>=0.1 <=2.x'
+      markdown-magic: ^4
 
   markdown-magic@4.11.0:
     resolution: {integrity: sha512-GTdLzcvFZ/07V0cA7G6/7c9cPLX7M4WBJD8aIhIdfPHnv6l36I5fSc+Fx6O9wtnJG0P9+jSeA3W8C14zAyWpDA==}
@@ -9605,7 +9606,7 @@ snapshots:
     dependencies:
       findup: 0.1.5
 
-  markdown-magic-subpackage-list@1.1.2(markdown-magic@4.11.0):
+  markdown-magic-subpackage-list@2.1.0(markdown-magic@4.11.0):
     dependencies:
       markdown-magic: 4.11.0
 
