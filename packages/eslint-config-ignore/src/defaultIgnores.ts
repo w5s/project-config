@@ -34,6 +34,9 @@ export const defaultIgnores = [
   '**/.yarn',
   '**/__snapshots__/**',
 
+  // Generated markdown
+  '**/CHANGELOG.md',
+
   // git submodules (makefile-core / makefile-ci)
   '.modules/',
 

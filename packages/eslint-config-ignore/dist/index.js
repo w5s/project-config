@@ -33,6 +33,7 @@ const defaultIgnores = [
 	"**/.idea",
 	"**/.yarn",
 	"**/__snapshots__/**",
+	"**/CHANGELOG.md",
 	".modules/",
 	"**/.context",
 	"**/.claude",

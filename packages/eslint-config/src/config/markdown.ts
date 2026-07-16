@@ -6,7 +6,7 @@ import type { RuleOptions } from '../typegen/markdown.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
-const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['markdown']))}`, '**/CHANGELOG.md', '**/CODE_OF_CONDUCT.md'];
+const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['markdown']))}`];
 
 export async function markdown(options: markdown.Options = {}) {
   const [markdownPlugin] = await Promise.all([interopDefault(import('@eslint/markdown'))] as const);

@@ -29,6 +29,7 @@ exports[`defaultIgnores > has defined values 1`] = `
   "**/.idea",
   "**/.yarn",
   "**/__snapshots__/**",
+  "**/CHANGELOG.md",
   ".modules/",
   "**/.context",
   "**/.claude",

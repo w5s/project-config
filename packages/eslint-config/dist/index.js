@@ -838,11 +838,7 @@ async function jsx(options = {}) {
 }
 //#endregion
 //#region src/config/markdown.ts
-const defaultFiles$7 = [
-	`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`,
-	"**/CHANGELOG.md",
-	"**/CODE_OF_CONDUCT.md"
-];
+const defaultFiles$7 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
 async function markdown(options = {}) {
 	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
 	const { files, language = "markdown/gfm", languageOptions, recommended = true, rules = {}, stylistic = true } = options;
