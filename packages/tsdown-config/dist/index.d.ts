@@ -1,5 +1,4 @@
 import { DtsOptions, Format, InlineConfig, OutExtensionContext, OutExtensionFactory, OutExtensionObject, Sourcemap, TsdownPlugin, TsdownPluginOption, UserConfig, UserConfig as UserConfig$1, UserConfigExport, UserConfigFn } from "tsdown";
-
 //#region src/defaultConfig.d.ts
 declare const defaultConfig: UserConfig$1;
 //#endregion

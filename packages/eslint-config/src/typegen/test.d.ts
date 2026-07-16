@@ -483,7 +483,7 @@ type TestNoFocusedTests = []|[{
 // ----- test/no-hooks -----
 type TestNoHooks = []|[{
   
-  allow?: ("beforeAll" | "beforeEach" | "afterAll" | "afterEach")[]
+  allow?: ("beforeAll" | "beforeEach" | "afterAll" | "afterEach" | "aroundAll" | "aroundEach")[]
 }]
 // ----- test/no-large-snapshots -----
 type TestNoLargeSnapshots = []|[{
@@ -517,6 +517,8 @@ type TestPreferExpectAssertions = []|[{
   onlyFunctionsWithExpectInLoop?: boolean
   
   onlyFunctionsWithExpectInCallback?: boolean
+  
+  disallowHasAssertions?: boolean
 }]
 // ----- test/prefer-import-in-mock -----
 type TestPreferImportInMock = []|[{
