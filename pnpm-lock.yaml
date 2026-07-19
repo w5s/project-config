@@ -3955,8 +3955,8 @@ packages:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
     engines: {node: '>= 8'}
 
-  micro-mdx-parser@1.1.29:
-    resolution: {integrity: sha512-SjmleibdxdTRN3aDU4dw5DIbN4NzUE1ZXferVIMbpYyVomxqWfkLUGWO2tV98tgTONJCKZ9Q4Dsg+tPlujEKpQ==}
+  micro-mdx-parser@1.1.32:
+    resolution: {integrity: sha512-hcS3fk5o8KuAPATXf93UVpxO1s7UFa7RBEPqqn2JE1sBrLTeE8f0GYKAd9Oo5gg/KRzaTKL6vx7vpmBfQNO0qg==}
 
   micromark-core-commonmark@2.0.3:
     resolution: {integrity: sha512-RDBrHEMSxVFLg6xvnXmb1Ayr2WzLAWjeSATAoxwKYJV94TeNavgoIdA0a9ytzDSVzBy2YKFK+emCPOEibLeCrg==}
@@ -6036,7 +6036,7 @@ snapshots:
   '@davidwells/md-utils@0.0.53':
     dependencies:
       gray-matter: 4.0.3
-      micro-mdx-parser: 1.1.29
+      micro-mdx-parser: 1.1.32
       oparser: 3.1.1
 
   '@e18e/eslint-plugin@0.5.1(eslint@10.7.0(jiti@2.6.1))':
@@ -9582,7 +9582,7 @@ snapshots:
       is-glob: 4.0.3
       is-local-path: 0.1.6
       is-valid-path: 0.1.1
-      micro-mdx-parser: 1.1.29
+      micro-mdx-parser: 1.1.32
       module-alias: 2.3.4
       mri: 1.2.0
       node-fetch: 2.7.0
@@ -9735,7 +9735,7 @@ snapshots:
 
   merge2@1.4.1: {}
 
-  micro-mdx-parser@1.1.29:
+  micro-mdx-parser@1.1.32:
     dependencies:
       oparser: 3.1.1
 
