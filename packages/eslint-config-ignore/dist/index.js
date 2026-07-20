@@ -117,7 +117,17 @@ function convertIgnorePatternToMinimatch(pattern) {
 		"/**"
 	].includes(patternToTest)) return `${negatedPrefix}${patternToTest}`;
 	const firstIndexOfSlash = patternToTest.indexOf("/");
-	return `${negatedPrefix}${firstIndexOfSlash === -1 || firstIndexOfSlash === patternToTest.length - 1 ? "**/" : ""}${(firstIndexOfSlash === 0 ? patternToTest.slice(1) : patternToTest).replaceAll(/(?=((?:\\.|[^{(])*))\1([{(])/guy, String.raw`$1\$2`)}${patternToTest.endsWith("/**") ? "/*" : ""}`;
+	const matchEverywherePrefix = firstIndexOfSlash === -1 || firstIndexOfSlash === patternToTest.length - 1 ? "**/" : "";
+	const patternWithoutLeadingSlash = firstIndexOfSlash === 0 ? patternToTest.slice(1) : patternToTest;
+	let escapedPatternWithoutLeadingSlash = "";
+	let isEscaped = false;
+	for (const char of patternWithoutLeadingSlash) {
+		if (!isEscaped && (char === "{" || char === "(")) escapedPatternWithoutLeadingSlash += "\\";
+		escapedPatternWithoutLeadingSlash += char;
+		isEscaped = char === "\\" ? !isEscaped : false;
+	}
+	const matchInsideSuffix = patternToTest.endsWith("/**") ? "/*" : "";
+	return `${negatedPrefix}${matchEverywherePrefix}${escapedPatternWithoutLeadingSlash}${matchInsideSuffix}`;
 }
 //#endregion
 //#region src/internal/ignoreRuleResolve.ts
