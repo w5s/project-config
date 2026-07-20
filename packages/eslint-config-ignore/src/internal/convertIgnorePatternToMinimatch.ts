@@ -28,10 +28,18 @@ export function convertIgnorePatternToMinimatch(pattern: string): string {
    * literal characters without any specific syntactic meaning,
    * while in minimatch patterns they can form brace expansion or ext glob syntax.
    */
-  const escapedPatternWithoutLeadingSlash = patternWithoutLeadingSlash.replaceAll(
-    /(?=((?:\\.|[^{(])*))\1([{(])/guy,
-    String.raw`$1\$2`,
-  );
+  let escapedPatternWithoutLeadingSlash = '';
+  let isEscaped = false;
+
+  for (const char of patternWithoutLeadingSlash) {
+    if (!isEscaped && (char === '{' || char === '(')) {
+      escapedPatternWithoutLeadingSlash += '\\';
+    }
+
+    escapedPatternWithoutLeadingSlash += char;
+
+    isEscaped = char === '\\' ? !isEscaped : false;
+  }
 
   const matchInsideSuffix = patternToTest.endsWith('/**') ? '/*' : '';
 
