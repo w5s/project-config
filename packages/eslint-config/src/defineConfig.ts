@@ -90,9 +90,10 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     ...includeEnabled(node, toOption(plugins.node)),
     ...includeEnabled(perfectionist, toOption(plugins.perfectionist)),
     ...includeEnabled(unicorn, toOption(plugins.unicorn)),
-    ...includeEnabled(unusedImports, toOption(plugins['unused-imports'])),
     ...includeEnabled(yml, toOption(plugins.yml)),
     ...includeEnabled(test, toOption(plugins.test)),
+    // Unused imports plugin is a special case because it needs to be included in the config even if it's disabled, to ensure that the rules are applied correctly.
+    ...includeEnabled(unusedImports, toOption(plugins['unused-imports'])),
     ...(rules ? [{ rules }] : []),
   );
 }

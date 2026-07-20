@@ -31,11 +31,6 @@ export class MarkupView extends React.PureComponent {
 }
 
 // @ts-ignore
-function FunctionComponent({
-  // @ts-ignore
-  onLongPress,
-  // @ts-ignore
-  onPress,
-}) {
+function FunctionComponent(_props) {
   return null;
 }

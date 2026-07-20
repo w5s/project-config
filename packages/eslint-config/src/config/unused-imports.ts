@@ -2,13 +2,14 @@ import { interopDefault } from '@w5s/dev';
 
 import type { RuleOptions } from '../typegen/unused-imports.js';
 
+import { sourceGlob } from '../glob.js';
 import { type Config, type PluginOptionsBase } from '../type.js';
 
 export async function unusedImports(options: unusedImports.Options = {}) {
   const [unusedImportPlugin] = await Promise.all([
     interopDefault(import('eslint-plugin-unused-imports')),
   ] as const);
-  const { recommended = true, rules = {} } = options;
+  const { files = [sourceGlob], recommended = true, rules = {} } = options;
 
   return [
     {
@@ -18,10 +19,13 @@ export async function unusedImports(options: unusedImports.Options = {}) {
       },
     },
     {
+      files,
       name: 'w5s/unused-imports/rules',
       rules: {
         ...(recommended
           ? {
+              'no-unused-vars': 'off', // disable the base rule as it can report incorrect errors
+              'ts/no-unused-vars': 'off', // disable the base rule as it can report incorrect errors
               'unused-imports/no-unused-imports': 'error',
               'unused-imports/no-unused-vars': [
                 'error',

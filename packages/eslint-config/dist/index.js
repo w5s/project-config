@@ -1470,14 +1470,17 @@ async function unicorn(options = {}) {
 //#region src/config/unused-imports.ts
 async function unusedImports(options = {}) {
 	const [unusedImportPlugin] = await Promise.all([interopDefault(import("eslint-plugin-unused-imports"))]);
-	const { recommended = true, rules = {} } = options;
+	const { files = [sourceGlob$1], recommended = true, rules = {} } = options;
 	return [{
 		name: "w5s/unused-imports/setup",
 		plugins: { "unused-imports": unusedImportPlugin }
 	}, {
+		files,
 		name: "w5s/unused-imports/rules",
 		rules: {
 			...recommended ? {
+				"no-unused-vars": "off",
+				"ts/no-unused-vars": "off",
 				"unused-imports/no-unused-imports": "error",
 				"unused-imports/no-unused-vars": ["error", {
 					args: "after-used",
@@ -1550,7 +1553,7 @@ async function defineConfig(options = {}) {
 		...optionsOrBoolean
 	});
 	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
-	return ESLintConfig.concat(...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(jsx, toOption(plugins.jsx)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(stylistic, toOption(plugins.stylistic)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(unusedImports, toOption(plugins["unused-imports"])), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(test, toOption(plugins.test)), ...rules ? [{ rules }] : []);
+	return ESLintConfig.concat(...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(ignores, toOption(options)), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(jsx, toOption(plugins.jsx)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(stylistic, toOption(plugins.stylistic)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(test, toOption(plugins.test)), ...includeEnabled(unusedImports, toOption(plugins["unused-imports"])), ...rules ? [{ rules }] : []);
 }
 //#endregion
 //#region src/meta.ts
