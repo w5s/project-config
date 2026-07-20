@@ -4,10 +4,10 @@ import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$14 {}
+    interface RulesRecord extends RuleOptions$15 {}
   }
 }
-interface RuleOptions$14 {
+interface RuleOptions$15 {
   /**
    * Disallow dependencies in favor of more performant or secure alternatives
    */
@@ -208,16 +208,16 @@ declare namespace e18e {
      */
     performanceImprovements?: boolean;
   }
-  type Rules = RuleOptions$14;
+  type Rules = RuleOptions$15;
 }
 //#endregion
 //#region src/typegen/jsonc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$13 {}
+    interface RulesRecord extends RuleOptions$14 {}
   }
 }
-interface RuleOptions$13 {
+interface RuleOptions$14 {
   /**
    * enforce line breaks after opening and before closing array brackets
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-newline.html
@@ -998,7 +998,7 @@ declare namespace es {
 }
 declare namespace es {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$13;
+  type Rules = RuleOptions$14;
 }
 //#endregion
 //#region src/config/ignores.d.ts
@@ -1010,10 +1010,10 @@ declare namespace ignores {
 //#region src/typegen/import.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$12 {}
+    interface RulesRecord extends RuleOptions$13 {}
   }
 }
-interface RuleOptions$12 {
+interface RuleOptions$13 {
   /**
    * Enforce or ban the use of inline type-only markers for named imports.
    * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/consistent-type-specifier-style.md
@@ -1502,16 +1502,16 @@ declare namespace imports {
 }
 declare namespace imports {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$12;
+  type Rules = RuleOptions$13;
 }
 //#endregion
 //#region src/typegen/jsdoc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$11 {}
+    interface RulesRecord extends RuleOptions$12 {}
   }
 }
-interface RuleOptions$11 {
+interface RuleOptions$12 {
   /**
    * Checks that `@access` tags have a valid value.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-access.md#repos-sticky-header
@@ -2444,23 +2444,23 @@ type JsdocValidTypes = [] | [{
 declare function jsdoc(options?: jsdoc.Options): Promise<ReadonlyArray<Config>>;
 declare namespace jsdoc {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$11;
+  type Rules = RuleOptions$12;
 }
 //#endregion
 //#region src/config/jsonc.d.ts
 declare function jsonc(options?: jsonc.Options): Promise<ReadonlyArray<Config>>;
 declare namespace jsonc {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$13;
+  type Rules = RuleOptions$14;
 }
 //#endregion
 //#region src/typegen/jsx-a11y.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$10 {}
+    interface RulesRecord extends RuleOptions$11 {}
   }
 }
-interface RuleOptions$10 {
+interface RuleOptions$11 {
   /**
    * Enforce emojis are wrapped in `<span>` and provide screen reader access.
    * @see https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/accessible-emoji.md
@@ -2874,16 +2874,16 @@ declare namespace jsx {
      */
     jsxA11y?: boolean;
   }
-  type Rules = RuleOptions$10;
+  type Rules = RuleOptions$11;
 }
 //#endregion
 //#region src/typegen/markdown.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$9 {}
+    interface RulesRecord extends RuleOptions$10 {}
   }
 }
-interface RuleOptions$9 {
+interface RuleOptions$10 {
   /**
    * Require languages for fenced code blocks
    * @see https://github.com/eslint/markdown/blob/main/docs/rules/fenced-code-language.md
@@ -3071,16 +3071,16 @@ declare namespace markdown {
       frontmatter?: 'toml' | 'yaml';
     };
   }
-  type Rules = RuleOptions$9;
+  type Rules = RuleOptions$10;
 }
 //#endregion
 //#region src/typegen/next.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$8 {}
+    interface RulesRecord extends RuleOptions$9 {}
   }
 }
-interface RuleOptions$8 {
+interface RuleOptions$9 {
   /**
    * Enforce font-display behavior with Google Fonts.
    * @see https://nextjs.org/docs/messages/google-font-display
@@ -3194,16 +3194,16 @@ type NextNoHtmlLinkForPages = [] | [(string | string[])];
 declare function next(options?: next.Options): Promise<[Config, Config]>;
 declare namespace next {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
-  type Rules = RuleOptions$8;
+  type Rules = RuleOptions$9;
 }
 //#endregion
 //#region src/typegen/node.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$7 {}
+    interface RulesRecord extends RuleOptions$8 {}
   }
 }
-interface RuleOptions$7 {
+interface RuleOptions$8 {
   /**
    * require `return` statements after callbacks
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
@@ -3698,16 +3698,16 @@ type NodeShebang = [] | [{
 declare function node(options?: node.Options): Promise<[Config, Config]>;
 declare namespace node {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {}
-  type Rules = RuleOptions$7;
+  type Rules = RuleOptions$8;
 }
 //#endregion
 //#region src/typegen/perfectionist.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$6 {}
+    interface RulesRecord extends RuleOptions$7 {}
   }
 }
-interface RuleOptions$6 {
+interface RuleOptions$7 {
   /**
    * Enforce sorted arrays before include method.
    * @see https://perfectionist.dev/rules/sort-array-includes
@@ -6566,16 +6566,16 @@ type PerfectionistSortVariableDeclarations = {
 declare function perfectionist(options?: perfectionist.Options): Promise<[Config, Config]>;
 declare namespace perfectionist {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$6;
+  type Rules = RuleOptions$7;
 }
 //#endregion
 //#region src/typegen/react.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$5 {}
+    interface RulesRecord extends RuleOptions$6 {}
   }
 }
-interface RuleOptions$5 {
+interface RuleOptions$6 {
   /**
    * Disallows DOM elements from using 'dangerouslySetInnerHTML'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-dangerously-set-innerhtml
@@ -7335,16 +7335,16 @@ type ReactXUseState = [] | [{
 declare function react(options?: react.Options): Promise<[Config, Config]>;
 declare namespace react {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
-  type Rules = RuleOptions$5;
+  type Rules = RuleOptions$6;
 }
 //#endregion
 //#region src/typegen/style.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$4 {}
+    interface RulesRecord extends RuleOptions$5 {}
   }
 }
-interface RuleOptions$4 {
+interface RuleOptions$5 {
   /**
    * Enforce linebreaks after opening and before closing array brackets
    * @see https://eslint.style/rules/array-bracket-newline
@@ -9098,16 +9098,16 @@ type StyleYieldStarSpacing = [] | [(("before" | "after" | "both" | "neither") | 
 declare function stylistic(options?: stylistic.Options): Promise<[Config, Config]>;
 declare namespace stylistic {
   interface Options extends Pick<PluginOptionsBase<Rules>, 'rules'>, StylisticParameters {}
-  type Rules = RuleOptions$4;
+  type Rules = RuleOptions$5;
 }
 //#endregion
 //#region src/typegen/test.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$3 {}
+    interface RulesRecord extends RuleOptions$4 {}
   }
 }
-interface RuleOptions$3 {
+interface RuleOptions$4 {
   /**
    * enforce using `.each` or `.for` consistently
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-each-for.md
@@ -9644,16 +9644,16 @@ type TestValidTitle = [] | [{
 declare function test(options?: test.Options): Promise<[Config, Config]>;
 declare namespace test {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$3;
+  type Rules = RuleOptions$4;
 }
 //#endregion
 //#region src/typegen/ts.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$2 {}
+    interface RulesRecord extends RuleOptions$3 {}
   }
 }
-interface RuleOptions$2 {
+interface RuleOptions$3 {
   /**
    * Require that function overload signatures be consecutive
    * @see https://typescript-eslint.io/rules/adjacent-overload-signatures
@@ -11313,16 +11313,16 @@ declare namespace ts {
   interface Options extends PluginOptionsBase<Rules> {
     typeChecked?: boolean;
   }
-  type Rules = RuleOptions$2;
+  type Rules = RuleOptions$3;
 }
 //#endregion
 //#region src/typegen/unicorn.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$1 {}
+    interface RulesRecord extends RuleOptions$2 {}
   }
 }
-interface RuleOptions$1 {
+interface RuleOptions$2 {
   /**
    * Prefer better DOM traversal APIs.
    * @see https://github.com/sindresorhus/eslint-plugin-unicorn/blob/v71.1.0/docs/rules/better-dom-traversing.md
@@ -13402,6 +13402,67 @@ type UnicornTryComplexity = [] | [{
 declare function unicorn(options?: unicorn.Options): Promise<[Config, Config, Config]>;
 declare namespace unicorn {
   interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions$2;
+}
+//#endregion
+//#region src/typegen/unused-imports.d.ts
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$1 {}
+  }
+}
+interface RuleOptions$1 {
+  /**
+   * Disallow unused variables
+   * @see https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-imports.md
+   */
+  'unused-imports/no-unused-imports'?: Linter.RuleEntry<UnusedImportsNoUnusedImports>;
+  /**
+   * Disallow unused variables
+   * @see https://github.com/sweepline/eslint-plugin-unused-imports/blob/master/docs/rules/no-unused-vars.md
+   */
+  'unused-imports/no-unused-vars'?: Linter.RuleEntry<UnusedImportsNoUnusedVars>;
+}
+/* ======= Declarations ======= */
+// ----- unused-imports/no-unused-imports -----
+type UnusedImportsNoUnusedImports = [] | [(("all" | "local") | {
+  args?: ("all" | "after-used" | "none");
+  argsIgnorePattern?: string;
+  caughtErrors?: ("all" | "none");
+  caughtErrorsIgnorePattern?: string;
+  destructuredArrayIgnorePattern?: string;
+  enableAutofixRemoval?: {
+    imports?: boolean;
+  };
+  ignoreClassWithStaticInitBlock?: boolean;
+  ignoreRestSiblings?: boolean;
+  ignoreUsingDeclarations?: boolean;
+  reportUsedIgnorePattern?: boolean;
+  vars?: ("all" | "local");
+  varsIgnorePattern?: string;
+})];
+// ----- unused-imports/no-unused-vars -----
+type UnusedImportsNoUnusedVars = [] | [(("all" | "local") | {
+  args?: ("all" | "after-used" | "none");
+  argsIgnorePattern?: string;
+  caughtErrors?: ("all" | "none");
+  caughtErrorsIgnorePattern?: string;
+  destructuredArrayIgnorePattern?: string;
+  enableAutofixRemoval?: {
+    imports?: boolean;
+  };
+  ignoreClassWithStaticInitBlock?: boolean;
+  ignoreRestSiblings?: boolean;
+  ignoreUsingDeclarations?: boolean;
+  reportUsedIgnorePattern?: boolean;
+  vars?: ("all" | "local");
+  varsIgnorePattern?: string;
+})];
+//#endregion
+//#region src/config/unused-imports.d.ts
+declare function unusedImports(options?: unusedImports.Options): Promise<[Config, Config]>;
+declare namespace unusedImports {
+  interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$1;
 }
 //#endregion
@@ -13791,22 +13852,23 @@ interface DefineConfigOptions extends ignores.Options {
    * Plugins configuration
    */
   plugins?: {
-    e18e?: boolean | e18e.Options;
-    es?: boolean | es.Options;
-    import?: boolean | imports.Options;
-    jsdoc?: boolean | jsdoc.Options;
-    jsonc?: boolean | jsonc.Options;
-    jsx?: boolean | jsx.Options;
-    markdown?: boolean | markdown.Options;
-    next?: boolean | next.Options;
-    node?: boolean | node.Options;
-    perfectionist?: boolean | perfectionist.Options;
-    react?: boolean | react.Options;
-    stylistic?: boolean | stylistic.Options;
-    test?: boolean | test.Options;
-    ts?: boolean | ts.Options;
-    unicorn?: boolean | unicorn.Options;
-    yml?: boolean | yml.Options;
+    'e18e'?: boolean | e18e.Options;
+    'es'?: boolean | es.Options;
+    'import'?: boolean | imports.Options;
+    'jsdoc'?: boolean | jsdoc.Options;
+    'jsonc'?: boolean | jsonc.Options;
+    'jsx'?: boolean | jsx.Options;
+    'markdown'?: boolean | markdown.Options;
+    'next'?: boolean | next.Options;
+    'node'?: boolean | node.Options;
+    'perfectionist'?: boolean | perfectionist.Options;
+    'react'?: boolean | react.Options;
+    'stylistic'?: boolean | stylistic.Options;
+    'test'?: boolean | test.Options;
+    'ts'?: boolean | ts.Options;
+    'unicorn'?: boolean | unicorn.Options;
+    'unused-imports'?: boolean | unusedImports.Options;
+    'yml'?: boolean | yml.Options;
   };
   /**
    * Override rules
@@ -13822,5 +13884,5 @@ declare const meta: Readonly<{
   version: string;
 }>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, yml };
+export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, unusedImports, yml };
 //# sourceMappingURL=index.d.ts.map

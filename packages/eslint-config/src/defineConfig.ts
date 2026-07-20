@@ -21,6 +21,7 @@ import {
   test,
   ts,
   unicorn,
+  unusedImports,
   yml,
 } from './config.js';
 
@@ -29,22 +30,23 @@ export interface DefineConfigOptions extends ignores.Options {
    * Plugins configuration
    */
   plugins?: {
-    e18e?: boolean | e18e.Options;
-    es?: boolean | es.Options;
-    import?: boolean | imports.Options;
-    jsdoc?: boolean | jsdoc.Options;
-    jsonc?: boolean | jsonc.Options;
-    jsx?: boolean | jsx.Options;
-    markdown?: boolean | markdown.Options;
-    next?: boolean | next.Options;
-    node?: boolean | node.Options;
-    perfectionist?: boolean | perfectionist.Options;
-    react?: boolean | react.Options;
-    stylistic?: boolean | stylistic.Options;
-    test?: boolean | test.Options;
-    ts?: boolean | ts.Options;
-    unicorn?: boolean | unicorn.Options;
-    yml?: boolean | yml.Options;
+    'e18e'?: boolean | e18e.Options;
+    'es'?: boolean | es.Options;
+    'import'?: boolean | imports.Options;
+    'jsdoc'?: boolean | jsdoc.Options;
+    'jsonc'?: boolean | jsonc.Options;
+    'jsx'?: boolean | jsx.Options;
+    'markdown'?: boolean | markdown.Options;
+    'next'?: boolean | next.Options;
+    'node'?: boolean | node.Options;
+    'perfectionist'?: boolean | perfectionist.Options;
+    'react'?: boolean | react.Options;
+    'stylistic'?: boolean | stylistic.Options;
+    'test'?: boolean | test.Options;
+    'ts'?: boolean | ts.Options;
+    'unicorn'?: boolean | unicorn.Options;
+    'unused-imports'?: boolean | unusedImports.Options;
+    'yml'?: boolean | yml.Options;
   };
 
   /**
@@ -88,6 +90,7 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     ...includeEnabled(node, toOption(plugins.node)),
     ...includeEnabled(perfectionist, toOption(plugins.perfectionist)),
     ...includeEnabled(unicorn, toOption(plugins.unicorn)),
+    ...includeEnabled(unusedImports, toOption(plugins['unused-imports'])),
     ...includeEnabled(yml, toOption(plugins.yml)),
     ...includeEnabled(test, toOption(plugins.test)),
     ...(rules ? [{ rules }] : []),

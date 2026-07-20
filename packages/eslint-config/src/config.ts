@@ -14,4 +14,5 @@ export * from './config/stylistic.js';
 export * from './config/test.js';
 export * from './config/ts.js';
 export * from './config/unicorn.js';
+export * from './config/unused-imports.js';
 export * from './config/yml.js';
