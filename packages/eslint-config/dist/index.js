@@ -1318,6 +1318,7 @@ async function test(options = {}) {
 		rules: {
 			...recommended ? ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, { vitest: "test" }) : {},
 			"e18e/prefer-static-regex": "off",
+			"test/expect-expect": ["error", { assertFunctionNames: ["expect*", "assert*"] }],
 			"test/valid-title": ESLintConfig.fixme(void 0),
 			...stylisticEnabled ? {} : {},
 			...rules

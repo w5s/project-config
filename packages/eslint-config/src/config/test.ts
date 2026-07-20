@@ -37,6 +37,7 @@ export async function test(options: test.Options = {}) {
           : {}),
         'e18e/prefer-static-regex': 'off',
 
+        'test/expect-expect': ['error', { assertFunctionNames: ['expect*', 'assert*'] }],
         'test/valid-title': ESLintConfig.fixme(undefined),
         ...(stylisticEnabled
           ? {}
