@@ -1046,7 +1046,7 @@ var import_dist = (/* @__PURE__ */ __commonJSMin(((exports) => {
 	const meta = Object.freeze({
 		buildNumber: 1,
 		name: "@w5s/dev",
-		version: "3.7.0"
+		version: "3.8.0"
 	});
 	/**
 	* Supported ECMA version
@@ -1560,7 +1560,7 @@ async function defineConfig(options = {}) {
 const meta = Object.freeze({
 	buildNumber: 1,
 	name: "@w5s/eslint-config",
-	version: "3.16.0"
+	version: "3.17.0"
 });
 //#endregion
 export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, unusedImports, yml };

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.5.0](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@3.1.9...@w5s/commitlint-config@3.5.0) (2026-07-20)
+
+### ✨ Features
+
+- Update TypeScript rules and add consistent-type-assertions rule ([71b0eb1](https://github.com/w5s/project-config/commit/71b0eb1)) 
+
+### 🐛 Bug Fixes
+
+- Fix file patterns for tsconfig and package JSON sorting rules ([92ca4a5](https://github.com/w5s/project-config/commit/92ca4a5))
+
+**Note:** Version bump only for package @w5s/commitlint-config
+
 # [3.4.0](https://github.com/w5s/project-config/compare/@w5s/commitlint-config@3.1.9...@w5s/commitlint-config@3.4.0) (2026-07-09)
 
 ### ✨ Features
