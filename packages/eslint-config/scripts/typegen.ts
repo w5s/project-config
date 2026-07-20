@@ -13,6 +13,7 @@ import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import nodePlugin from 'eslint-plugin-n';
 import perfectionistPlugin from 'eslint-plugin-perfectionist';
 import unicornPlugin from 'eslint-plugin-unicorn';
+import unusedImportsPlugin from 'eslint-plugin-unused-imports';
 import ymlPlugin from 'eslint-plugin-yml';
 import { pluginsToRulesDTS } from 'eslint-typegen/core';
 import fs from 'node:fs/promises';
@@ -36,6 +37,7 @@ await Promise.all(
       ['style', stylisticPlugin],
       ['ts', tsPlugin],
       ['unicorn', unicornPlugin],
+      ['unused-imports', unusedImportsPlugin],
       ['test', vitestPlugin],
       ['yml', ymlPlugin],
     ] as const
