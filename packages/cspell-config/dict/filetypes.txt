@@ -6,4 +6,5 @@ mdwn
 mtsx
 pcss
 plopfile
+pnpmfile
 tsbuildinfo
