@@ -1,0 +1,29 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`defaultConfig > should match snapshot 1`] = `
+{
+  "allowBuilds": {
+    "@swc/core": true,
+    "core-js": true,
+    "es5-ext": true,
+    "esbuild": true,
+    "lefthook": true,
+    "nx": true,
+    "protobufjs": true,
+  },
+  "blockExoticSubdeps": true,
+  "enableGlobalVirtualStore": true,
+  "enablePrePostScripts": false,
+  "ignorePatchFailures": false,
+  "minimumReleaseAge": 1440,
+  "minimumReleaseAgeExclude": [
+    "@w5s/*",
+  ],
+  "optimisticRepeatInstall": true,
+  "overrides": {},
+  "resolutionMode": "lowest-direct",
+  "trustPolicy": "no-downgrade",
+  "trustPolicyIgnoreAfter": 10080,
+  "verifyDepsBeforeRun": "install",
+}
+`;

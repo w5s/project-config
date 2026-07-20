@@ -150,6 +150,7 @@ dist
 !packages/cspell-config/dist/
 !packages/eslint-config/dist/
 !packages/eslint-config-ignore/dist/
+!packages/pnpm-plugin-config/dist/
 !packages/prettier-config/dist/
 !packages/tsdown-config/dist/
 packages/*/dist/**/*.spec.*
