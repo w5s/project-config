@@ -13,7 +13,7 @@ export const defaultConfig = Object.freeze({
     'sqlite3': true,
   },
   blockExoticSubdeps: true,
-  enableGlobalVirtualStore: true,
+  // enableGlobalVirtualStore: true, FIXME: this does not work
   enablePrePostScripts: false,
   ignorePatchFailures: false,
   minimumReleaseAge: 1 * 24 * 60,

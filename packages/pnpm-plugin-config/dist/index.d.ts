@@ -12,7 +12,6 @@ declare const defaultConfig: Readonly<{
     sqlite3: true;
   };
   blockExoticSubdeps: true;
-  enableGlobalVirtualStore: true;
   enablePrePostScripts: false;
   ignorePatchFailures: false;
   minimumReleaseAge: number;

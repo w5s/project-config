@@ -13,7 +13,6 @@ exports[`defaultConfig > should match snapshot 1`] = `
     "sqlite3": true,
   },
   "blockExoticSubdeps": true,
-  "enableGlobalVirtualStore": true,
   "enablePrePostScripts": false,
   "ignorePatchFailures": false,
   "minimumReleaseAge": 1440,

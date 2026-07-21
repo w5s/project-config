@@ -11,7 +11,6 @@ const defaultConfig = Object.freeze({
 		"sqlite3": true
 	},
 	blockExoticSubdeps: true,
-	enableGlobalVirtualStore: true,
 	enablePrePostScripts: false,
 	ignorePatchFailures: false,
 	minimumReleaseAge: 1440,
