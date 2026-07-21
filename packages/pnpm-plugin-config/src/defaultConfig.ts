@@ -10,6 +10,7 @@ export const defaultConfig = Object.freeze({
     'lefthook': true,
     'nx': true,
     'protobufjs': true,
+    'sqlite3': true,
   },
   blockExoticSubdeps: true,
   enableGlobalVirtualStore: true,

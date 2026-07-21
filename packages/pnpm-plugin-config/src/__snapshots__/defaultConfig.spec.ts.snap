@@ -10,6 +10,7 @@ exports[`defaultConfig > should match snapshot 1`] = `
     "lefthook": true,
     "nx": true,
     "protobufjs": true,
+    "sqlite3": true,
   },
   "blockExoticSubdeps": true,
   "enableGlobalVirtualStore": true,

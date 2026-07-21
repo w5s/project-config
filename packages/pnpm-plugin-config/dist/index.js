@@ -7,7 +7,8 @@ const defaultConfig = Object.freeze({
 		"esbuild": true,
 		"lefthook": true,
 		"nx": true,
-		"protobufjs": true
+		"protobufjs": true,
+		"sqlite3": true
 	},
 	blockExoticSubdeps: true,
 	enableGlobalVirtualStore: true,
