@@ -68,7 +68,7 @@
     "@w5s/prettier-config": "workspace:^",
     "eslint-merge-processors": "^2.0.0",
     "eslint-plugin-import": "~2.32.0",
-    "eslint-plugin-jsdoc": "~63.0.0",
+    "eslint-plugin-jsdoc": "~63.1.0",
     "eslint-plugin-jsonc": "~3.3.0",
     "eslint-plugin-n": "~18.2.0",
     "eslint-plugin-perfectionist": "~5.10.0",
