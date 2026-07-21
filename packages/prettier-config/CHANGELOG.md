@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.3.0](https://github.com/w5s/project-config/compare/@w5s/prettier-config@3.1.9...@w5s/prettier-config@3.3.0) (2026-07-21)
+
+### ✨ Features
+
+- Add ignoreGitModules option (default to true) ([1a3385f](https://github.com/w5s/project-config/commit/1a3385f))
+
+**Note:** Version bump only for package @w5s/prettier-config
+
 # [3.2.0](https://github.com/w5s/project-config/compare/@w5s/prettier-config@3.1.9...@w5s/prettier-config@3.2.0) (2026-07-20)
 
 ### ✨ Features

@@ -316,7 +316,7 @@ async function eslintIgnores(options = {}) {
 const meta = Object.freeze({
 	buildNumber: 1,
 	name: "@w5s/eslint-config-ignore",
-	version: "1.7.0"
+	version: "1.8.0"
 });
 //#endregion
 export { eslintIgnores as default, eslintIgnores, meta };
