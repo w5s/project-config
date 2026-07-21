@@ -16,7 +16,7 @@
     "url": "git@github.com:w5s/project-config.git",
     "directory": "packages/pnpm-plugin-config"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
