@@ -1,6 +1,6 @@
 {
   "name": "@w5s/pnpm-plugin-config",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Shared pnpm configuration plugin with org defaults",
   "keywords": [
     "pnpm",
