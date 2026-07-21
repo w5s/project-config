@@ -31,14 +31,15 @@ export async function test(options: test.Options = {}) {
       name: 'w5s/test/rules',
       rules: {
         ...(recommended
-          ? ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, {
-              vitest: 'test',
-            })
+          ? {
+              ...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, {
+                vitest: 'test',
+              }),
+              'e18e/prefer-static-regex': 'off',
+              'test/expect-expect': ['error', { assertFunctionNames: ['expect*', 'assert*'] }],
+              'test/valid-title': ESLintConfig.fixme(undefined),
+            }
           : {}),
-        'e18e/prefer-static-regex': 'off',
-
-        'test/expect-expect': ['error', { assertFunctionNames: ['expect*', 'assert*'] }],
-        'test/valid-title': ESLintConfig.fixme(undefined),
         ...(stylisticEnabled
           ? {}
           : {}),

@@ -1316,10 +1316,12 @@ async function test(options = {}) {
 		files: withDefaultFiles(files, defaultFiles$3),
 		name: "w5s/test/rules",
 		rules: {
-			...recommended ? ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, { vitest: "test" }) : {},
-			"e18e/prefer-static-regex": "off",
-			"test/expect-expect": ["error", { assertFunctionNames: ["expect*", "assert*"] }],
-			"test/valid-title": ESLintConfig.fixme(void 0),
+			...recommended ? {
+				...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, { vitest: "test" }),
+				"e18e/prefer-static-regex": "off",
+				"test/expect-expect": ["error", { assertFunctionNames: ["expect*", "assert*"] }],
+				"test/valid-title": ESLintConfig.fixme(void 0)
+			} : {},
 			...stylisticEnabled ? {} : {},
 			...rules
 		}
