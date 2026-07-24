@@ -94,7 +94,7 @@
   "peerDependencies": {
     "eslint": "9.x || 10.x",
     "eslint-plugin-jsx-a11y": ">=6.10.2",
-    "typescript": "4.x || 5.x || 6.x"
+    "typescript": "4.x || 5.x || 6.x || 7.x"
   },
   "peerDependenciesMeta": {
     "eslint": {
