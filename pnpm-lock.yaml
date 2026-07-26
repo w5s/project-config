@@ -3560,8 +3560,8 @@ packages:
     resolution: {integrity: sha512-4gd7VpWNQNB4UKKCFFVcp1AVv+FMOgs9NKzjHKusc8jTMhd5eL1NqQqOpE0KzMds804/yHlglp3uxgluOqAPLw==}
     engines: {node: '>= 0.4'}
 
-  ip-address@10.2.2:
-    resolution: {integrity: sha512-aNJVEVdXTr/g5+N2VCLo+CTrFLo/Y+9rx9RC5BpxPtf7NEknmzY+UQvMO8Fjni5KFmDaHJieL8HCMJKjJXsTgg==}
+  ip-address@10.3.0:
+    resolution: {integrity: sha512-WjqUcdgafPtBplAfDpvR1ZWncdjC2q0P1PHmCkh4edxwiANBDhuDx26cKD7HIl6UGd6BSjwnPVt58X0r5Z85eQ==}
     engines: {node: '>= 12'}
 
   is-absolute@1.0.0:
@@ -9636,7 +9636,7 @@ snapshots:
       hasown: 2.0.4
       side-channel: 1.1.1
 
-  ip-address@10.2.2: {}
+  ip-address@10.3.0: {}
 
   is-absolute@1.0.0:
     dependencies:
@@ -11564,7 +11564,7 @@ snapshots:
 
   socks@2.8.9:
     dependencies:
-      ip-address: 10.2.2
+      ip-address: 10.3.0
       smart-buffer: 4.2.0
 
   sort-keys@6.0.1:
