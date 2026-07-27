@@ -337,6 +337,9 @@ importers:
       '@pnpm/config':
         specifier: 1004.11.0
         version: 1004.11.0(@pnpm/logger@1001.0.1)
+      '@pnpm/pnpmfile':
+        specifier: 1002.1.13
+        version: 1002.1.13(@pnpm/logger@1001.0.1)
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config

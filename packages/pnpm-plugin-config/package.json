@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@pnpm/config": "1004.11.0",
+    "@pnpm/pnpmfile": "1002.1.13",
     "@w5s/tsdown-config": "workspace:*"
   },
   "clean-package": "../../clean-package.config.cjs",

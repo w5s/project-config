@@ -1266,7 +1266,7 @@ declare const PnpmUserConfig: Readonly<{
 //#endregion
 //#region src/PnpmHooks.d.ts
 /** Hooks exported by this plugin's pnpmfile. */
-interface PnpmHooks {
+interface PnpmHooks extends Omit<Hooks, 'updateConfig'> {
   updateConfig?: (config: PnpmUserConfig) => PnpmUserConfig | Promise<PnpmUserConfig>;
 }
 //#endregion
