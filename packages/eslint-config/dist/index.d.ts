@@ -53,6 +53,10 @@ interface RuleOptions$15 {
    */
   'e18e/prefer-array-to-spliced'?: Linter.RuleEntry<[]>;
   /**
+   * Prefer `charCodeAt()` over indexed string access for single-character comparisons inside loops
+   */
+  'e18e/prefer-charcode-at-in-loop'?: Linter.RuleEntry<[]>;
+  /**
    * Prefer Date.now() over new Date().getTime() and +new Date()
    */
   'e18e/prefer-date-now'?: Linter.RuleEntry<[]>;
@@ -93,6 +97,10 @@ interface RuleOptions$15 {
    */
   'e18e/prefer-regex-test'?: Linter.RuleEntry<[]>;
   /**
+   * Prefer `indexOf(needle)` and `slice(...)` over `split()[N]` when splitting a string into two pieces.
+   */
+  'e18e/prefer-slice-over-split-index'?: Linter.RuleEntry<[]>;
+  /**
    * Prefer spread syntax over Array.concat(), Array.from(), Object.assign({}, ...), and Function.apply()
    */
   'e18e/prefer-spread-syntax'?: Linter.RuleEntry<[]>;
@@ -108,6 +116,10 @@ interface RuleOptions$15 {
    * Prefer String.fromCharCode() over String.fromCodePoint() for code points below 0x10000
    */
   'e18e/prefer-string-fromcharcode'?: Linter.RuleEntry<[]>;
+  /**
+   * Prefer `{throwIfNoEntry: false}` over relying on a thrown error for missing fs entries from sync stat calls
+   */
+  'e18e/prefer-throw-if-no-entry'?: Linter.RuleEntry<[]>;
   /**
    * Prefer passing function and arguments directly to setTimeout/setInterval instead of wrapping in an arrow function or using bind
    */
