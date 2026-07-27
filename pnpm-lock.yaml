@@ -170,8 +170,8 @@ importers:
   packages/eslint-config:
     dependencies:
       '@e18e/eslint-plugin':
-        specifier: ^0.5.0
-        version: 0.5.1(eslint@10.8.0(jiti@2.6.1))
+        specifier: ^0.6.0
+        version: 0.6.0(eslint@10.8.0(jiti@2.6.1))
       '@eslint-react/eslint-plugin':
         specifier: 5.17.3
         version: 5.17.3(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
@@ -713,11 +713,11 @@ packages:
   '@davidwells/md-utils@0.0.53':
     resolution: {integrity: sha512-qAF7lvZ8ZduJQ/9SPfhlYU03/bPdG3g9IQVmfGzPvi0XM5EJPj/8cUMf5bcoIREF1P2nz82LYeFGHTXQ0slJbg==}
 
-  '@e18e/eslint-plugin@0.5.1':
-    resolution: {integrity: sha512-mqUozeyNI9xvJbjrOO7y765dT7Kud3bwCm/DHwctxdEngPdJWQaS9BNGgpM1wCCzZfOtlKQh4ZRhm3VRomT9KA==}
+  '@e18e/eslint-plugin@0.6.0':
+    resolution: {integrity: sha512-JQkeXoZA12f9WM2H4t4IobIRqlPvYLeNAjZF6raFu2vmD5YoyuzKmwsLZNJ4g/39c3v1Se2ad3o+oq4y2et/RA==}
     peerDependencies:
       eslint: ^9.0.0 || ^10.0.0
-      oxlint: ^1.68.0
+      oxlint: ^1.72.0
     peerDependenciesMeta:
       eslint:
         optional: true
@@ -6355,7 +6355,7 @@ snapshots:
       micro-mdx-parser: 1.1.32
       oparser: 3.1.1
 
-  '@e18e/eslint-plugin@0.5.1(eslint@10.8.0(jiti@2.6.1))':
+  '@e18e/eslint-plugin@0.6.0(eslint@10.8.0(jiti@2.6.1))':
     dependencies:
       empathic: 2.0.1
       module-replacements: 3.1.0
