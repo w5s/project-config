@@ -2,14 +2,17 @@ import { Cafs, ResolvedFrom } from "@pnpm/cafs-types";
 //#region src/defaultConfig.d.ts
 declare const defaultConfig: Readonly<{
   allowBuilds: {
+    '@parcel/watcher': true;
     '@swc/core': true;
     'core-js': true;
+    'core-js-pure': true;
+    electron: true;
     'es5-ext': true;
     esbuild: true;
     lefthook: true;
     nx: true;
     protobufjs: true;
-    sqlite3: true;
+    sharp: true;
   };
   blockExoticSubdeps: true;
   enablePrePostScripts: false;
