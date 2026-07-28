@@ -23,7 +23,11 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },
     "typecheck": {
-      "dependsOn": ["build", "^build"]
+      "dependsOn": ["//#typecheck:root", "build", "^build"]
+    },
+    "//#typecheck:root": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },
     "lint": {
       "dependsOn": ["//#lint:root", "^build"]
