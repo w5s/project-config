@@ -49,18 +49,13 @@ export const PnpmUserConfig = Object.freeze({
    * @param extension
    */
   merge(base: PnpmUserConfig, extension: PnpmUserConfig): PnpmUserConfig {
-    const hoistPattern =
-      extension.hoistPattern?.length === 1 && extension.hoistPattern[0] === '*'
-        ? []
-        : (extension.hoistPattern ?? base.hoistPattern);
-
     return {
       ...extension,
       allowBuilds: objectMergeForce(base, extension, 'allowBuilds'),
       blockExoticSubdeps: extension.blockExoticSubdeps ?? base.blockExoticSubdeps,
       enableGlobalVirtualStore: extension.enableGlobalVirtualStore ?? base.enableGlobalVirtualStore,
       enablePrePostScripts: extension.enablePrePostScripts ?? base.enablePrePostScripts,
-      hoistPattern,
+      hoistPattern: extension.hoistPattern ?? base.hoistPattern,
       ignorePatchFailures: extension.ignorePatchFailures ?? base.ignorePatchFailures,
       minimumReleaseAge: extension.minimumReleaseAge ?? base.minimumReleaseAge,
       minimumReleaseAgeExclude: arrayMerge(

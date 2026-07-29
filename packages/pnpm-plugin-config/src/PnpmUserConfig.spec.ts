@@ -65,7 +65,7 @@ describe('PnpmUserConfig.merge', () => {
       { hoistPattern: ['*'] },
     );
 
-    expect(result.hoistPattern).toEqual([]);
+    expect(result.hoistPattern).toEqual(['*']);
   });
 
   it('preserves custom hoistPattern values', () => {
