@@ -17,6 +17,7 @@
     "directory": "packages/pnpm-plugin-config"
   },
   "license": "MIT",
+  "sideEffects": false,
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -60,6 +61,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "sideEffect": false
+  }
 }

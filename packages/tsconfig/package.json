@@ -18,6 +18,7 @@
   },
   "license": "MIT",
   "author": "Julien Polo <julien.polo@gmail.com>",
+  "sideEffects": false,
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -59,6 +60,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "sideEffect": false
+  }
 }

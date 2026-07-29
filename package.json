@@ -8,6 +8,7 @@
     "url": "git+https://github.com/w5s/project-config.git"
   },
   "license": "MIT",
+  "sideEffects": false,
   "type": "module",
   "files": [],
   "workspaces": {
@@ -99,6 +100,5 @@
   "overrides": {
     "vite": "8.1.5",
     "vitest": "4.1.10"
-  },
-  "sideEffect": false
+  }
 }
