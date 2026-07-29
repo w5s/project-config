@@ -3,11 +3,11 @@ import type { PnpmConfig } from './PnpmConfig.js';
 export type PnpmUserConfig = Partial<PnpmConfig>;
 
 function arrayMerge<T>(
-  base: ReadonlyArray<T> | undefined,
-  extension: ReadonlyArray<T> | undefined,
+  base: ReadonlyArray<T> | T | undefined,
+  extension: ReadonlyArray<T> | T | undefined,
 ): Array<T> | undefined {
-  const baseArray = base ?? [];
-  const extensionArray = extension ?? [];
+  const baseArray = base == null ? [] : Array.isArray(base) ? base : [base];
+  const extensionArray = extension == null ? [] : Array.isArray(extension) ? extension : [extension];
   if (baseArray.length === 0 && extensionArray.length === 0) return undefined;
   return [...new Set([...baseArray, ...extensionArray])];
 }
@@ -41,9 +41,10 @@ export const PnpmUserConfig = Object.freeze({
   /**
    * Merge two configs immutably. `extension` values win; `base` fills in
    * undefined slots. `allowBuilds` and `overrides` are deep-merged (extension
-   * entries win). `minimumReleaseAgeExclude` is merged as a deduplicated union
-   * of both arrays. A `hoistPattern` of `['*']` in extension is normalized to
-   * `[]` following pnpm-plugin-better-defaults behavior.
+   * entries win). `minimumReleaseAgeExclude`, `hoistPattern`, and
+   * `publicHoistPattern` are merged as deduplicated unions of both arrays
+   * (base first, extension second — so pnpm `!`-negation entries in extension
+   * can exclude org defaults).
    *
    * @param base
    * @param extension
@@ -55,7 +56,7 @@ export const PnpmUserConfig = Object.freeze({
       blockExoticSubdeps: extension.blockExoticSubdeps ?? base.blockExoticSubdeps,
       enableGlobalVirtualStore: extension.enableGlobalVirtualStore ?? base.enableGlobalVirtualStore,
       enablePrePostScripts: extension.enablePrePostScripts ?? base.enablePrePostScripts,
-      hoistPattern: extension.hoistPattern ?? base.hoistPattern,
+      hoistPattern: arrayMerge(base.hoistPattern, extension.hoistPattern),
       ignorePatchFailures: extension.ignorePatchFailures ?? base.ignorePatchFailures,
       minimumReleaseAge: extension.minimumReleaseAge ?? base.minimumReleaseAge,
       minimumReleaseAgeExclude: arrayMerge(
@@ -64,7 +65,10 @@ export const PnpmUserConfig = Object.freeze({
       ),
       optimisticRepeatInstall: extension.optimisticRepeatInstall ?? base.optimisticRepeatInstall,
       overrides: objectMergeDefault(base, extension, 'overrides'),
-      publicHoistPattern: extension.publicHoistPattern ?? base.publicHoistPattern,
+      publicHoistPattern: arrayMerge(
+        base.publicHoistPattern,
+        extension.publicHoistPattern,
+      ),
       resolutionMode: extension.resolutionMode ?? base.resolutionMode,
       trustPolicy: extension.trustPolicy ?? base.trustPolicy,
       trustPolicyIgnoreAfter: extension.trustPolicyIgnoreAfter ?? base.trustPolicyIgnoreAfter,

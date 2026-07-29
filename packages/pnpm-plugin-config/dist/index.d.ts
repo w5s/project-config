@@ -1257,9 +1257,10 @@ declare const PnpmUserConfig: Readonly<{
   /**
    * Merge two configs immutably. `extension` values win; `base` fills in
    * undefined slots. `allowBuilds` and `overrides` are deep-merged (extension
-   * entries win). `minimumReleaseAgeExclude` is merged as a deduplicated union
-   * of both arrays. A `hoistPattern` of `['*']` in extension is normalized to
-   * `[]` following pnpm-plugin-better-defaults behavior.
+   * entries win). `minimumReleaseAgeExclude`, `hoistPattern`, and
+   * `publicHoistPattern` are merged as deduplicated unions of both arrays
+   * (base first, extension second — so pnpm `!`-negation entries in extension
+   * can exclude org defaults).
    *
    * @param base
    * @param extension

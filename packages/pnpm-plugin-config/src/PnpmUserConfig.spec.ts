@@ -65,16 +65,16 @@ describe('PnpmUserConfig.merge', () => {
       { hoistPattern: ['*'] },
     );
 
-    expect(result.hoistPattern).toEqual(['*']);
+    expect(result.hoistPattern).toEqual(['eslint', '*']);
   });
 
   it('preserves custom hoistPattern values', () => {
     const result = PnpmUserConfig.merge(
-      { hoistPattern: ['eslint'] },
+      { hoistPattern: ['eslint', '*other*'] },
       { hoistPattern: ['eslint', '*types*'] },
     );
 
-    expect(result.hoistPattern).toEqual(['eslint', '*types*']);
+    expect(result.hoistPattern).toEqual(['eslint', '*other*', '*types*']);
   });
 
   it('falls back to base hoistPattern when extension omits it', () => {
