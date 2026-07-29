@@ -14,4 +14,5 @@ export const defaultConfig: UserConfig = {
   // treeshake: 'recommended',
   // splitting: false,
   tsconfig: 'tsconfig.build.json',
+  // TODO: add plugins: [pure()] when possible
 };
