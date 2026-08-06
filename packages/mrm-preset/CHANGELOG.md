@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.5.22](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@3.5.1...@w5s/mrm-preset@3.5.22) (2026-08-06)
+
+### 🐛 Bug Fixes
+
+- Fix ignored changelog files ([104fada](https://github.com/w5s/project-config/commit/104fada))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 ## [3.5.21](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@3.5.1...@w5s/mrm-preset@3.5.21) (2026-08-06)
 
 ### 🐛 Bug Fixes

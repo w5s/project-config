@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.3.0 (2026-08-06)
+
+### ✨ Features
+
+- Add more allowBuilds ([8a27779](https://github.com/w5s/project-config/commit/8a27779)) 
+- Add pnpm-plugin-config ([3694faa](https://github.com/w5s/project-config/commit/3694faa)) 
+- Add sqlite3 support to default configuration ([71e3fa6](https://github.com/w5s/project-config/commit/71e3fa6)) 
+
+### 🐛 Bug Fixes
+
+- Fix arraymerge behavior for hoist configuration ([f920c91](https://github.com/w5s/project-config/commit/f920c91)) 
+- Fix hoistPattern strange behavior ([bd65b44](https://github.com/w5s/project-config/commit/bd65b44)) 
+- Fix missing typing properties for PnpmHooks ([facce62](https://github.com/w5s/project-config/commit/facce62)) 
+- Fix pnpm install/build ([de7977b](https://github.com/w5s/project-config/commit/de7977b))
+
+**Note:** Version bump only for package @w5s/pnpm-plugin-config
+
 # 1.2.0 (2026-08-06)
 
 ### ✨ Features
