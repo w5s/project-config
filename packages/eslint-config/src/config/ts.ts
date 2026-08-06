@@ -8,6 +8,9 @@ import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { tsRules } from '../rules/tsRules.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
+const tsRenameMap = {
+  '@typescript-eslint': 'ts',
+};
 const defaultFiles = [tsSourceGlob];
 
 export async function ts(options: ts.Options = {}) {
@@ -51,13 +54,14 @@ export async function ts(options: ts.Options = {}) {
       },
       name: 'w5s/ts/rules',
       rules: {
-        ...ESLintConfig.renameRules(tsRecommendedRules, { '@typescript-eslint': 'ts' }),
-        ...ESLintConfig.renameRules(tsStrictRules, { '@typescript-eslint': 'ts' }),
+        ...ESLintConfig.renameRules(tsRecommendedRules, tsRenameMap),
+        ...ESLintConfig.renameRules(tsStrictRules, tsRenameMap),
         ...tsCustomRules,
+        ...(typeChecked ? ESLintConfig.renameRules(tsTypeCheckedRules, tsRenameMap) : {}),
         ...(stylisticEnabled
           ? {
               // eslint-disable-next-line ts/no-non-null-asserted-optional-chain
-              ...ESLintConfig.renameRules(tsPlugin.configs['stylistic']?.rules!, { '@typescript-eslint': 'ts' }),
+              ...ESLintConfig.renameRules(tsPlugin.configs['stylistic']?.rules!, tsRenameMap),
               'ts/array-type': ['error', { default: 'generic' }],
               'ts/consistent-type-assertions': [
                 'error',
@@ -91,21 +95,10 @@ export async function ts(options: ts.Options = {}) {
               'ts/no-empty-function': tsCustomRules['ts/no-empty-function'],
             }
           : {}),
+
         ...rules,
       },
     },
-    ...(typeChecked
-      ? ([
-          {
-            files: resolvedFiles,
-            // ignores: ignoresTypeAware,
-            name: 'w5s/ts/rules-type-checked',
-            rules: {
-              ...ESLintConfig.renameRules(tsTypeCheckedRules, { '@typescript-eslint': 'ts' }),
-            },
-          },
-        ] as const)
-      : []),
   ] as [Config, Config, Config] | [Config, Config] satisfies Array<Config>;
 }
 export namespace ts {
