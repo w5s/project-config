@@ -154,7 +154,6 @@ function extensionsToGlob(extensions: ReadonlyArray<Extension>): string {
  * This is useful to generate globs for vitest/jest matchers
  *
  * @param extensions
- * @param tests list of supported test filename suffixes
  * @param options
  * @param options.testExtensions
  * @param options.testFolders
