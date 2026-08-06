@@ -35,8 +35,8 @@ export async function markdown(options: markdown.Options = {}) {
         ...languageOptions,
       },
       name: 'w5s/markdown/rules',
-      // eslint-disable-next-line ts/no-non-null-assertion
-      processor: mergeProcessors([markdownPlugin.processors!.markdown, processorPassThrough]),
+
+      processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
       rules: {
         ...(recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {}),
         ...(stylisticEnabled ? {} : {}),

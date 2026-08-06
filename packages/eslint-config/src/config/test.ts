@@ -8,8 +8,9 @@ import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js
 const defaultFiles = Project.extensionsToTestGlob(Project.sourceExtensions());
 
 export async function test(options: test.Options = {}) {
-  const [vitestPlugin] = await Promise.all([
+  const [vitestPlugin, tsPlugin] = await Promise.all([
     interopDefault(import('@vitest/eslint-plugin')),
+    interopDefault(import('@typescript-eslint/eslint-plugin')),
   ] as const);
   const { files, recommended = true, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
@@ -36,6 +37,11 @@ export async function test(options: test.Options = {}) {
               'test/expect-expect': ['error', { assertFunctionNames: ['expect*', 'assert*'] }],
               'test/valid-title': ESLintConfig.fixme(undefined),
               // Loose typing
+              // eslint-disable-next-line ts/no-non-null-assertion
+              ...ESLintConfig.renameRules(tsPlugin.configs['disable-type-checked']!.rules as any, {
+                '@typescript-eslint': 'ts',
+              }),
+
               'ts/explicit-module-boundary-types': 'off',
               'ts/no-empty-function': 'off',
               'ts/no-explicit-any': 'off',

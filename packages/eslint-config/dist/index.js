@@ -1001,7 +1001,7 @@ async function stylistic(options = {}) {
 //#region src/config/test.ts
 const defaultFiles$3 = Project.extensionsToTestGlob(Project.sourceExtensions());
 async function test(options = {}) {
-	const [vitestPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin"))]);
+	const [vitestPlugin, tsPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin")), interopDefault(import("@typescript-eslint/eslint-plugin"))]);
 	const { files, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
@@ -1016,6 +1016,7 @@ async function test(options = {}) {
 				"e18e/prefer-static-regex": "off",
 				"test/expect-expect": ["error", { assertFunctionNames: ["expect*", "assert*"] }],
 				"test/valid-title": ESLintConfig.fixme(void 0),
+				...ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" }),
 				"ts/explicit-module-boundary-types": "off",
 				"ts/no-empty-function": "off",
 				"ts/no-explicit-any": "off",
