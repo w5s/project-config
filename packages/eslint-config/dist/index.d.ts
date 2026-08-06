@@ -3086,7 +3086,7 @@ type MarkdownTableColumnCount = [] | [{
 }];
 //#endregion
 //#region src/config/markdown.d.ts
-declare function markdown(options?: markdown.Options): Promise<[Config, Config]>;
+declare function markdown(options?: markdown.Options): Promise<[Config, Config, Config]>;
 declare namespace markdown {
   interface Options extends PluginOptionsBase<Rules> {
     /**

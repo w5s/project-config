@@ -837,27 +837,40 @@ async function jsx(options = {}) {
 //#region src/config/markdown.ts
 const defaultFiles$7 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
 async function markdown(options = {}) {
-	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
+	const [markdownPlugin, tsPlugin] = await Promise.all([interopDefault(import("@eslint/markdown")), interopDefault(import("@typescript-eslint/eslint-plugin"))]);
 	const { files, language = "markdown/gfm", languageOptions, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
-	return [{
-		name: "w5s/markdown/setup",
-		plugins: { markdown: markdownPlugin }
-	}, {
-		files: withDefaultFiles(files, defaultFiles$7),
-		language,
-		languageOptions: {
-			frontmatter: "yaml",
-			...languageOptions
+	const resolvedFiles = withDefaultFiles(files, defaultFiles$7);
+	return [
+		{
+			name: "w5s/markdown/setup",
+			plugins: { markdown: markdownPlugin }
 		},
-		name: "w5s/markdown/rules",
-		processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
-		rules: {
-			...recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {},
-			...stylisticEnabled ? {} : {},
-			...rules
+		{
+			files: resolvedFiles,
+			language,
+			languageOptions: {
+				frontmatter: "yaml",
+				...languageOptions
+			},
+			name: "w5s/markdown/rules",
+			processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
+			rules: {
+				...recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {},
+				...stylisticEnabled ? {} : {},
+				...rules
+			}
+		},
+		{
+			files: resolvedFiles.map((f) => `${f}/**/*`),
+			languageOptions: { parserOptions: {
+				project: false,
+				projectService: false
+			} },
+			name: "w5s/markdown/embed",
+			rules: ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" })
 		}
-	}];
+	];
 }
 //#endregion
 //#region src/config/next.ts

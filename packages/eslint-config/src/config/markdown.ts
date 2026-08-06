@@ -1,4 +1,4 @@
-import { interopDefault, Project } from '@w5s/dev';
+import { ESLintConfig, interopDefault, Project } from '@w5s/dev';
 import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
 
 import type { RuleOptions } from '../typegen/markdown.js';
@@ -9,7 +9,10 @@ import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js
 const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['markdown']))}`];
 
 export async function markdown(options: markdown.Options = {}) {
-  const [markdownPlugin] = await Promise.all([interopDefault(import('@eslint/markdown'))] as const);
+  const [markdownPlugin, tsPlugin] = await Promise.all([
+    interopDefault(import('@eslint/markdown')),
+    interopDefault(import('@typescript-eslint/eslint-plugin')),
+  ] as const);
   const {
     files,
     language = 'markdown/gfm',
@@ -20,6 +23,7 @@ export async function markdown(options: markdown.Options = {}) {
   } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
+  const resolvedFiles = withDefaultFiles(files, defaultFiles);
   return [
     {
       name: 'w5s/markdown/setup',
@@ -28,7 +32,7 @@ export async function markdown(options: markdown.Options = {}) {
       },
     },
     {
-      files: withDefaultFiles(files, defaultFiles),
+      files: resolvedFiles,
       language,
       languageOptions: {
         frontmatter: 'yaml',
@@ -43,7 +47,21 @@ export async function markdown(options: markdown.Options = {}) {
         ...rules,
       },
     },
-  ] as [Config, Config] satisfies Array<Config>;
+    {
+      files: resolvedFiles.map((f) => `${f}/**/*`),
+      languageOptions: {
+        parserOptions: {
+          project: false,
+          projectService: false,
+        },
+      },
+      name: 'w5s/markdown/embed',
+      // eslint-disable-next-line ts/no-non-null-assertion
+      rules: ESLintConfig.renameRules(tsPlugin.configs['disable-type-checked']!.rules as any, {
+        '@typescript-eslint': 'ts',
+      }),
+    },
+  ] as [Config, Config, Config] satisfies Array<Config>;
 }
 
 export namespace markdown {

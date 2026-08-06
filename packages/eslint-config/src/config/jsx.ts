@@ -10,6 +10,7 @@ const defaultFiles = [jsxSourceGlob];
 
 export async function jsx(options: jsx.Options = {}) {
   const { files, jsxA11y = false, recommended = true, rules = {} } = options;
+  // eslint-disable-next-line ts/await-thenable
   const [jsxA11yPlugin] = await Promise.all([
     jsxA11y ? interopDefault(import('eslint-plugin-jsx-a11y')) : undefined,
   ] as const);
