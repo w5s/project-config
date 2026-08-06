@@ -123,8 +123,8 @@ export function createTransform(config: TransformConfig): CommitTransformFunctio
       scope,
       subject,
       type,
-    } as Commit;
+    };
   };
 
-  return transform as unknown as CommitTransformFunction<Commit>;
+  return transform;
 }

@@ -25,7 +25,7 @@ export async function gitModulesIgnore(cwd: string): Promise<Array<string>> {
     }
     if (!stat?.isFile()) return [];
 
-    const content = String(await fs.promises.readFile(gmPath, 'utf8'));
+    const content = (await fs.promises.readFile(gmPath, 'utf8'));
     const paths = gitModulesParse(content);
     return paths.map((p) => `${p.replaceAll('\\', '/')}/**`);
   } catch {

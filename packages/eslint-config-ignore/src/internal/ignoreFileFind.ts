@@ -117,7 +117,7 @@ export async function ignoreFileFind(
 
   async function parseAndResolve(giPath: string): Promise<Array<string>> {
     try {
-      const content = String(await fs.readFile(giPath, 'utf8'));
+      const content = (await fs.readFile(giPath, 'utf8'));
       const parsed = ignoreFileParse(content);
       const prefixRel = nodePath.relative(rootDir, nodePath.dirname(giPath));
       return parsed.map((p) => ignoreRuleResolve(prefixRel, p));
@@ -154,6 +154,7 @@ export async function ignoreFileFind(
 
     // If local .gitignore exists, parse and extend patterns
 
+    // eslint-disable-next-line unicorn/prefer-array-some
     const local = entries.find((e) => e.isFile() && e.name === GITIGNORE_FILE);
     const combinedPatterns = local ? [...patterns, ...(await parseAndResolve(nodePath.join(currentDir, GITIGNORE_FILE)))] : patterns;
     if (local) found.add(nodePath.join(currentDir, GITIGNORE_FILE));
