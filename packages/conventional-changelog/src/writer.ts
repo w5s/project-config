@@ -22,6 +22,7 @@ const basePath = nodePath.resolve(nodePath.dirname(_dirname), './template');
 
 export const defaultDisplayTypes = CommitConventionalType.findWhere((_) => _.changelog);
 
+// eslint-disable-next-line ts/require-await
 export const createWriterOpts = async (): Promise<WriterOptions> => {
   const mainTemplate = readFileSync(`${basePath}/template.hbs`, 'utf8');
   const headerPartial = readFileSync(`${basePath}/header.hbs`, 'utf8');

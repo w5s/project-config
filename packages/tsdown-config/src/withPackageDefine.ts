@@ -15,6 +15,7 @@ export function withPackageDefine<T extends TsDown.InlineConfig | TsDown.UserCon
   function getPackageJSON() {
     if (packageJSON) return packageJSON;
     try {
+      // eslint-disable-next-line ts/no-unsafe-assignment
       packageJSON = JSON.parse(readFileSync(path.join(cwd, 'package.json'), 'utf8'));
       return packageJSON as unknown as PackageJSON;
     } catch {
