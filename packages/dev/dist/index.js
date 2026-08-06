@@ -278,7 +278,7 @@ function extensionsToGlob(extensions) {
 * Project.extensionsToTestGlob(['.js', '.ts']);
 * // ['<tests-folder-glob>', '<test-suffix-glob>']
 *
-* Project.extensionsToTestGlob(['.js', '.ts'], ['unit']);
+* Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['unit'] });
 * // ['<tests-folder-glob>', '<custom-test-suffix-glob>']
 * ```
 */
