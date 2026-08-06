@@ -1015,7 +1015,18 @@ async function test(options = {}) {
 				...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, { vitest: "test" }),
 				"e18e/prefer-static-regex": "off",
 				"test/expect-expect": ["error", { assertFunctionNames: ["expect*", "assert*"] }],
-				"test/valid-title": ESLintConfig.fixme(void 0)
+				"test/valid-title": ESLintConfig.fixme(void 0),
+				"ts/explicit-module-boundary-types": "off",
+				"ts/no-empty-function": "off",
+				"ts/no-explicit-any": "off",
+				"ts/no-non-null-assertion": "off",
+				"ts/no-unsafe-argument": "off",
+				"ts/no-unsafe-assignment": "off",
+				"ts/no-unsafe-call": "off",
+				"ts/no-unsafe-member-access": "off",
+				"ts/no-unsafe-return": "off",
+				"ts/require-await": "off",
+				"ts/unbound-method": "off"
 			} : {},
 			...stylisticEnabled ? {} : {},
 			...rules

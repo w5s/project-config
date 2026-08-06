@@ -30,9 +30,23 @@ export async function test(options: test.Options = {}) {
               ...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, {
                 vitest: 'test',
               }),
+              // Loose rules
               'e18e/prefer-static-regex': 'off',
+              // Improve some rules
               'test/expect-expect': ['error', { assertFunctionNames: ['expect*', 'assert*'] }],
               'test/valid-title': ESLintConfig.fixme(undefined),
+              // Loose typing
+              'ts/explicit-module-boundary-types': 'off',
+              'ts/no-empty-function': 'off',
+              'ts/no-explicit-any': 'off',
+              'ts/no-non-null-assertion': 'off',
+              'ts/no-unsafe-argument': 'off',
+              'ts/no-unsafe-assignment': 'off',
+              'ts/no-unsafe-call': 'off',
+              'ts/no-unsafe-member-access': 'off',
+              'ts/no-unsafe-return': 'off',
+              'ts/require-await': 'off',
+              'ts/unbound-method': 'off',
             }
           : {}),
         ...(stylisticEnabled
