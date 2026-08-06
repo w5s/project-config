@@ -264,10 +264,34 @@ const reExtension = /^\./;
 function extensionsToGlob(extensions) {
 	return `*.+(${extensions.map((_) => _.replace(reExtension, "")).join("|")})`;
 }
+/**
+* Return a list of test glob matchers for a list of extensions.
+* This is useful to generate globs for vitest/jest matchers
+*
+* @param extensions
+* @param tests list of supported test filename suffixes
+* @param options
+* @param options.testExtensions
+* @param options.testFolders
+* @example
+* ```ts
+* Project.extensionsToTestGlob(['.js', '.ts']);
+* // ['<tests-folder-glob>', '<test-suffix-glob>']
+*
+* Project.extensionsToTestGlob(['.js', '.ts'], ['unit']);
+* // ['<tests-folder-glob>', '<custom-test-suffix-glob>']
+* ```
+*/
+function extensionsToTestGlob(extensions, options = {}) {
+	const { testExtensions = ["spec", "test"], testFolders = ["__tests__"] } = options;
+	const extensionPattern = extensions.map((_) => _.replace(reExtension, "")).join("|");
+	return [...testFolders.map((folder) => `**/${folder}/**/*.+(${extensionPattern})`), `**/*.+(${testExtensions.join("|")}).+(${extensionPattern})`];
+}
 const Project = Object.freeze({
 	ecmaVersion,
 	extensionsToGlob,
 	extensionsToMatcher,
+	extensionsToTestGlob,
 	ignored,
 	queryExtensions,
 	resourceExtensions,

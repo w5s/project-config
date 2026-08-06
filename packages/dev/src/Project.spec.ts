@@ -39,4 +39,24 @@ describe('Project', () => {
       expect(Project.extensionsToGlob(['.js', '.ts'])).toEqual('*.+(js|ts)');
     });
   });
+  describe('.extensionsToTestGlob()', () => {
+    it('should return default test globs', () => {
+      expect(Project.extensionsToTestGlob(['.js', '.ts'])).toEqual([
+        '**/__tests__/**/*.+(js|ts)',
+        '**/*.+(spec|test).+(js|ts)',
+      ]);
+    });
+    it('should support custom test suffixes', () => {
+      expect(Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['unit'] })).toEqual([
+        '**/__tests__/**/*.+(js|ts)',
+        '**/*.+(unit).+(js|ts)',
+      ]);
+    });
+    it('should support custom test folders', () => {
+      expect(Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['unit'], testFolders: ['custom_tests'] })).toEqual([
+        '**/custom_tests/**/*.+(js|ts)',
+        '**/*.+(unit).+(js|ts)',
+      ]);
+    });
+  });
 });

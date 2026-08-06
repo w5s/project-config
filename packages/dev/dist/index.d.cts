@@ -201,10 +201,33 @@ declare function ignored(): readonly string[];
  * ```
  */
 declare function extensionsToGlob(extensions: ReadonlyArray<Extension>): string;
+/**
+ * Return a list of test glob matchers for a list of extensions.
+ * This is useful to generate globs for vitest/jest matchers
+ *
+ * @param extensions
+ * @param tests list of supported test filename suffixes
+ * @param options
+ * @param options.testExtensions
+ * @param options.testFolders
+ * @example
+ * ```ts
+ * Project.extensionsToTestGlob(['.js', '.ts']);
+ * // ['<tests-folder-glob>', '<test-suffix-glob>']
+ *
+ * Project.extensionsToTestGlob(['.js', '.ts'], ['unit']);
+ * // ['<tests-folder-glob>', '<custom-test-suffix-glob>']
+ * ```
+ */
+declare function extensionsToTestGlob(extensions: ReadonlyArray<Extension>, options?: {
+  testExtensions?: ReadonlyArray<string>;
+  testFolders?: ReadonlyArray<string>;
+}): Array<string>;
 declare const Project: Readonly<{
   ecmaVersion: typeof ecmaVersion;
   extensionsToGlob: typeof extensionsToGlob;
   extensionsToMatcher: typeof extensionsToMatcher;
+  extensionsToTestGlob: typeof extensionsToTestGlob;
   ignored: typeof ignored;
   queryExtensions: typeof queryExtensions;
   resourceExtensions: typeof resourceExtensions;
