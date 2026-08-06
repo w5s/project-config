@@ -1,8 +1,7 @@
-import { interopDefault } from '@w5s/dev';
+import { ESLintConfig, interopDefault } from '@w5s/dev';
 
 import type { RuleOptions } from '../typegen/react.js';
 
-import { ESLintConfig } from '../../../dev/dist/index.cjs';
 import { sourceGlob } from '../glob.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase } from '../type.js';

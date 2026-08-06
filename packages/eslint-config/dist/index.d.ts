@@ -13623,6 +13623,11 @@ interface RuleOptions {
    */
   'yml/key-spacing'?: Linter.RuleEntry<YmlKeySpacing>;
   /**
+   * disallow boolean mapping keys
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-boolean-key.html
+   */
+  'yml/no-boolean-key'?: Linter.RuleEntry<[]>;
+  /**
    * disallow empty document
    * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-empty-document.html
    */
