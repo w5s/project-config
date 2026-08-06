@@ -1096,7 +1096,7 @@ async function ts(options = {}) {
 	const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
 	const tsStrictRules = tsPlugin.configs["strict"].rules;
 	const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
-	const { files, parserOptions = {}, recommended = true, rules = {}, stylistic = true, tsconfigPath, typeChecked = true } = options;
+	const { files, parserOptions = {}, recommended = true, rules = {}, stylistic = true, tsconfigPath = "./tsconfig.json", typeChecked = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const tsCustomRules = tsRules();
 	const resolvedFiles = withDefaultFiles(files, defaultFiles$2);

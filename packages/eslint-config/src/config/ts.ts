@@ -27,7 +27,7 @@ export async function ts(options: ts.Options = {}) {
     recommended = true,
     rules = {},
     stylistic = true,
-    tsconfigPath,
+    tsconfigPath = './tsconfig.json',
     typeChecked = true,
   } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
