@@ -1070,19 +1070,30 @@ async function ts(options = {}) {
 	const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
 	const tsStrictRules = tsPlugin.configs["strict"].rules;
 	const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
-	const { files, rules = {}, stylistic = true, typeChecked = false } = options;
+	const { files, parserOptions = {}, rules = {}, stylistic = true, tsconfigPath, typeChecked = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const tsCustomRules = tsRules();
+	const resolvedFiles = withDefaultFiles(files, defaultFiles$2);
 	return [
 		{
 			name: "w5s/ts/setup",
 			plugins: { ts: tsPlugin }
 		},
 		{
-			files: withDefaultFiles(files, defaultFiles$2),
+			files: resolvedFiles,
 			languageOptions: {
 				parser: tsParser,
-				parserOptions: { sourceType: "module" }
+				parserOptions: {
+					sourceType: "module",
+					...typeChecked ? {
+						projectService: {
+							allowDefaultProject: ["./*.js"],
+							defaultProject: tsconfigPath
+						},
+						tsconfigRootDir: process.cwd()
+					} : {},
+					...parserOptions
+				}
 			},
 			name: "w5s/ts/rules",
 			rules: {
@@ -1119,7 +1130,7 @@ async function ts(options = {}) {
 			}
 		},
 		...typeChecked ? [{
-			files: defaultFiles$2,
+			files: resolvedFiles,
 			name: "w5s/ts/rules-type-checked",
 			rules: { ...ESLintConfig.renameRules(tsTypeCheckedRules, { "@typescript-eslint": "ts" }) }
 		}] : []
