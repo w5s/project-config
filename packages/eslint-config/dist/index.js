@@ -5,7 +5,7 @@ import globals from "globals";
 import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
 //#region src/glob.ts
-const sourceGlob$1 = `**/${Project.extensionsToGlob(Project.sourceExtensions())}`;
+const sourceGlob = `**/${Project.extensionsToGlob(Project.sourceExtensions())}`;
 const esSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`;
 const jsxSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascriptreact", "typescriptreact"]))}`;
 const jsonSourceGlob = `**/${Project.extensionsToGlob([
@@ -61,7 +61,7 @@ const StylisticConfig = {
 };
 //#endregion
 //#region src/config/e18e.ts
-const defaultFiles$11 = [sourceGlob$1];
+const defaultFiles$11 = [sourceGlob];
 /**
 * @see https://e18e.dev
 * @param options
@@ -861,7 +861,7 @@ async function markdown(options = {}) {
 }
 //#endregion
 //#region src/config/next.ts
-const defaultFiles$6 = [sourceGlob$1];
+const defaultFiles$6 = [sourceGlob];
 async function next(options = {}) {
 	const [nextPlugin] = await Promise.all([interopDefault(import("@next/eslint-plugin-next"))]);
 	const { files, recommended = true, rules = {} } = options;
@@ -911,7 +911,7 @@ async function node(options = {}) {
 }
 //#endregion
 //#region src/config/perfectionist.ts
-const defaultFiles$5 = [sourceGlob$1];
+const defaultFiles$5 = [sourceGlob];
 async function perfectionist(options = {}) {
 	const [perfectionistPlugin] = await Promise.all([interopDefault(import("eslint-plugin-perfectionist"))]);
 	const { files, recommended = true, rules = {}, stylistic = true } = options;
@@ -931,7 +931,7 @@ async function perfectionist(options = {}) {
 }
 //#endregion
 //#region src/config/react.ts
-const defaultFiles$4 = [sourceGlob$1];
+const defaultFiles$4 = [sourceGlob];
 async function react(options = {}) {
 	const [reactPlugin] = await Promise.all([interopDefault(import("@eslint-react/eslint-plugin"))]);
 	const { files, recommended = true, rules = {} } = options;
@@ -999,12 +999,7 @@ async function stylistic(options = {}) {
 }
 //#endregion
 //#region src/config/test.ts
-const sourceGlob = Project.extensionsToGlob(Project.sourceExtensions());
-const defaultFiles$3 = [
-	`**/__mocks__/**/${sourceGlob}`,
-	`**/__tests__/**/${sourceGlob}`,
-	`**/?(*.)+(spec|test)${sourceGlob.slice(1)}`
-];
+const defaultFiles$3 = Project.extensionsToTestGlob(Project.sourceExtensions());
 async function test(options = {}) {
 	const [vitestPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin"))]);
 	const { files, recommended = true, rules = {}, stylistic = true } = options;
@@ -1132,7 +1127,7 @@ async function ts(options = {}) {
 }
 //#endregion
 //#region src/config/unicorn.ts
-const defaultFiles$1 = [sourceGlob$1];
+const defaultFiles$1 = [sourceGlob];
 async function unicorn(options = {}) {
 	const [unicornPlugin] = await Promise.all([interopDefault(import("eslint-plugin-unicorn"))]);
 	const { files, recommended = true, rules = {}, stylistic = true } = options;
@@ -1173,7 +1168,7 @@ async function unicorn(options = {}) {
 //#region src/config/unused-imports.ts
 async function unusedImports(options = {}) {
 	const [unusedImportPlugin] = await Promise.all([interopDefault(import("eslint-plugin-unused-imports"))]);
-	const { files = [sourceGlob$1], recommended = true, rules = {} } = options;
+	const { files = [sourceGlob], recommended = true, rules = {} } = options;
 	return [{
 		name: "w5s/unused-imports/setup",
 		plugins: { "unused-imports": unusedImportPlugin }

@@ -5,12 +5,7 @@ import type { RuleOptions } from '../typegen/test.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
-const sourceGlob = Project.extensionsToGlob(Project.sourceExtensions());
-const defaultFiles = [
-  `**/__mocks__/**/${sourceGlob}`,
-  `**/__tests__/**/${sourceGlob}`,
-  `**/?(*.)+(spec|test)${sourceGlob.slice(1)}`,
-];
+const defaultFiles = Project.extensionsToTestGlob(Project.sourceExtensions());
 
 export async function test(options: test.Options = {}) {
   const [vitestPlugin] = await Promise.all([
