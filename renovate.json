@@ -8,6 +8,6 @@
       "pnpm install --frozen-lockfile",
       "pnpm --filter \"./packages/eslint-config\" run build"
     ],
-    "fileFilters": ["./packages/eslint-config/dist/", "./packages/eslint-config/typegen/"]
+    "fileFilters": ["**/dist/**", "**/typegen/**"]
   }
 }
