@@ -35,7 +35,7 @@ export async function yarnConfig(options: YarnConfigOptions): Promise<void> {
     const { stdout } = await exec('yarn', ['config', 'get', key]);
     await exec('yarn', ['config', 'set', key, String(update == null ? '' : update(stdout))]);
   } else {
-    await exec('yarn', ['config', 'unset']);
+    await exec('yarn', ['config', 'unset', key]);
   }
 }
 
@@ -56,6 +56,6 @@ export function yarnConfigSync(options: YarnConfigOptions) {
     const { stdout } = execSync('yarn', ['config', 'get', key]);
     execSync('yarn', ['config', 'set', key, String(update == null ? '' : update(stdout))]);
   } else {
-    execSync('yarn', ['config', 'unset']);
+    execSync('yarn', ['config', 'unset', key]);
   }
 }
