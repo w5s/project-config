@@ -459,15 +459,19 @@ type JsoncSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
@@ -476,15 +480,19 @@ type JsoncSortKeys = ([{
   hasProperties?: string[]
   order: ((string | {
     keyPattern?: string
-    order?: {
+    order?: ({
       type?: ("asc" | "desc")
       caseSensitive?: boolean
       natural?: boolean
-    }
+    } | {
+      type: "ignore"
+    })
   })[] | {
     type?: ("asc" | "desc")
     caseSensitive?: boolean
     natural?: boolean
+  } | {
+    type: "ignore"
   })
   minKeys?: number
   allowLineSeparatedGroups?: boolean
