@@ -91,7 +91,7 @@ const config = {
 //#endregion
 //#region src/meta.ts
 const meta = Object.freeze({
-	buildNumber: 1,
+	buildNumber: 0,
 	name: "@w5s/cspell-config",
 	version: "3.14.0"
 });

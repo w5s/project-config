@@ -35,7 +35,7 @@ export function withPackageDefine<T extends TsDown.InlineConfig | TsDown.UserCon
         toInt(process.env['npm_package_build_number']) ??
         toInt(process.env['BUILD_NUMBER']) ??
         toInt(process.env['CI_BUILD_NUMBER']) ??
-        Date.now(),
+        0,
       ),
       __PACKAGE_NAME__: jsonSafeStringify(process.env['npm_package_name'] ?? getPackageJSON().name ?? ''),
       __PACKAGE_VERSION__: jsonSafeStringify(process.env['npm_package_version'] ?? getPackageJSON().version ?? ''),
