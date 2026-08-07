@@ -64,7 +64,7 @@ async function gitModulesIgnore(cwd) {
 			stat = null;
 		}
 		if (!stat?.isFile()) return [];
-		return gitModulesParse(String(await fs.promises.readFile(gmPath, "utf8"))).map((p) => `${p.replaceAll("\\", "/")}/**`);
+		return gitModulesParse(await fs.promises.readFile(gmPath, "utf8")).map((p) => `${p.replaceAll("\\", "/")}/**`);
 	} catch {
 		return [];
 	}
@@ -230,7 +230,7 @@ async function ignoreFileFind(rootDir, options) {
 	}
 	async function parseAndResolve(giPath) {
 		try {
-			const parsed = ignoreFileParse(String(await fs$1.readFile(giPath, "utf8")));
+			const parsed = ignoreFileParse(await fs$1.readFile(giPath, "utf8"));
 			const prefixRel = nodePath.relative(rootDir, nodePath.dirname(giPath));
 			return parsed.map((p) => ignoreRuleResolve(prefixRel, p));
 		} catch {

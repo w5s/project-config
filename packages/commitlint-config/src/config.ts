@@ -7,6 +7,7 @@ const { Disabled, Error, Warning } = RuleConfigSeverity;
 
 const parserPreset = {
 
+  // eslint-disable-next-line ts/no-unsafe-assignment
   parserOpts: (await conventionalChangelogPreset()).parser as any,
 } satisfies LintOptions;
 

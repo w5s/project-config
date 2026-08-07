@@ -8,6 +8,9 @@ import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { tsRules } from '../rules/tsRules.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
+const tsRenameMap = {
+  '@typescript-eslint': 'ts',
+};
 const defaultFiles = [tsSourceGlob];
 
 export async function ts(options: ts.Options = {}) {
@@ -18,9 +21,18 @@ export async function ts(options: ts.Options = {}) {
   const tsRecommendedRules = tsPlugin.configs['eslint-recommended']!.overrides![0]!.rules!;
   const tsStrictRules = tsPlugin.configs['strict']!.rules!;
   const tsTypeCheckedRules = tsPlugin.configs['recommended-type-checked-only']!.rules!;
-  const { files, rules = {}, stylistic = true, typeChecked = false } = options;
+  const {
+    files,
+    parserOptions = {},
+    recommended = true,
+    rules = {},
+    stylistic = true,
+    tsconfigPath = './tsconfig.json',
+    typeChecked = true,
+  } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
   const tsCustomRules = tsRules();
+  const resolvedFiles = withDefaultFiles(files, defaultFiles);
 
   return [
     {
@@ -30,33 +42,34 @@ export async function ts(options: ts.Options = {}) {
       },
     },
     {
-      files: withDefaultFiles(files, defaultFiles),
+      files: resolvedFiles,
       languageOptions: {
         parser: tsParser,
         parserOptions: {
           sourceType: 'module',
           // extraFileExtensions: componentExts.map(ext => `.${ext}`),
-          // ...typeAware
-          //   ? {
-          //       projectService: {
-          //         allowDefaultProject: ['./*.js'],
-          //         defaultProject: tsconfigPath,
-          //       },
-          //       tsconfigRootDir: process.cwd(),
-          //     }
-          //   : {},
-          // ...parserOptions as any,
+          ...typeChecked
+            ? {
+                projectService: {
+                  allowDefaultProject: ['./*.js'],
+                  defaultProject: tsconfigPath,
+                },
+                tsconfigRootDir: process.cwd(),
+              }
+            : {},
+          ...parserOptions,
         },
       },
       name: 'w5s/ts/rules',
       rules: {
-        ...ESLintConfig.renameRules(tsRecommendedRules, { '@typescript-eslint': 'ts' }),
-        ...ESLintConfig.renameRules(tsStrictRules, { '@typescript-eslint': 'ts' }),
-        ...tsCustomRules,
+        ...(recommended ? ESLintConfig.renameRules(tsRecommendedRules, tsRenameMap) : {}),
+        ...(recommended ? ESLintConfig.renameRules(tsStrictRules, tsRenameMap) : {}),
+        ...(recommended ? tsCustomRules : {}),
+        ...(recommended && typeChecked ? ESLintConfig.renameRules(tsTypeCheckedRules, tsRenameMap) : {}),
         ...(stylisticEnabled
           ? {
               // eslint-disable-next-line ts/no-non-null-asserted-optional-chain
-              ...ESLintConfig.renameRules(tsPlugin.configs['stylistic']?.rules!, { '@typescript-eslint': 'ts' }),
+              ...ESLintConfig.renameRules(tsPlugin.configs['stylistic']?.rules!, tsRenameMap),
               'ts/array-type': ['error', { default: 'generic' }],
               'ts/consistent-type-assertions': [
                 'error',
@@ -90,25 +103,31 @@ export async function ts(options: ts.Options = {}) {
               'ts/no-empty-function': tsCustomRules['ts/no-empty-function'],
             }
           : {}),
+
         ...rules,
       },
     },
-    ...(typeChecked
-      ? ([
-          {
-            files: defaultFiles,
-            // ignores: ignoresTypeAware,
-            name: 'w5s/ts/rules-type-checked',
-            rules: {
-              ...ESLintConfig.renameRules(tsTypeCheckedRules, { '@typescript-eslint': 'ts' }),
-            },
-          },
-        ] as const)
-      : []),
   ] as [Config, Config, Config] | [Config, Config] satisfies Array<Config>;
 }
 export namespace ts {
   export interface Options extends PluginOptionsBase<Rules> {
+    /**
+     * Parser options for TypeScript ESLint parser
+     */
+    // TODO: find real type for parserOptions
+    parserOptions?: Record<string, unknown>;
+
+    /**
+     * Path to the tsconfig.json file.
+     * This must be to enable type aware rules.
+     *
+     * @default './tsconfig.json'
+     */
+    tsconfigPath?: string;
+
+    /**
+     * Whether to enable type aware rules
+     */
     typeChecked?: boolean;
   }
 

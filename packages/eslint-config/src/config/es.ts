@@ -10,6 +10,7 @@ import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [esSourceGlob];
 
+// eslint-disable-next-line ts/require-await
 export async function es(options: es.Options) {
   const { recommended = true, rules = {} } = options;
 

@@ -42,7 +42,7 @@ await Promise.all(
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {
-    const content = String(await pluginsToRulesDTS({
+    const content = (await pluginsToRulesDTS({
       [pluginName]: plugin,
     } as any));
 

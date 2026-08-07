@@ -837,27 +837,40 @@ async function jsx(options = {}) {
 //#region src/config/markdown.ts
 const defaultFiles$7 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
 async function markdown(options = {}) {
-	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
+	const [markdownPlugin, tsPlugin] = await Promise.all([interopDefault(import("@eslint/markdown")), interopDefault(import("@typescript-eslint/eslint-plugin"))]);
 	const { files, language = "markdown/gfm", languageOptions, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
-	return [{
-		name: "w5s/markdown/setup",
-		plugins: { markdown: markdownPlugin }
-	}, {
-		files: withDefaultFiles(files, defaultFiles$7),
-		language,
-		languageOptions: {
-			frontmatter: "yaml",
-			...languageOptions
+	const resolvedFiles = withDefaultFiles(files, defaultFiles$7);
+	return [
+		{
+			name: "w5s/markdown/setup",
+			plugins: { markdown: markdownPlugin }
 		},
-		name: "w5s/markdown/rules",
-		processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
-		rules: {
-			...recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {},
-			...stylisticEnabled ? {} : {},
-			...rules
+		{
+			files: resolvedFiles,
+			language,
+			languageOptions: {
+				frontmatter: "yaml",
+				...languageOptions
+			},
+			name: "w5s/markdown/rules",
+			processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
+			rules: {
+				...recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {},
+				...stylisticEnabled ? {} : {},
+				...rules
+			}
+		},
+		{
+			files: resolvedFiles.map((f) => `${f}/**/*`),
+			languageOptions: { parserOptions: {
+				project: false,
+				projectService: false
+			} },
+			name: "w5s/markdown/embed",
+			rules: ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" })
 		}
-	}];
+	];
 }
 //#endregion
 //#region src/config/next.ts
@@ -1001,7 +1014,7 @@ async function stylistic(options = {}) {
 //#region src/config/test.ts
 const defaultFiles$3 = Project.extensionsToTestGlob(Project.sourceExtensions());
 async function test(options = {}) {
-	const [vitestPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin"))]);
+	const [vitestPlugin, tsPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin")), interopDefault(import("@typescript-eslint/eslint-plugin"))]);
 	const { files, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
@@ -1015,7 +1028,19 @@ async function test(options = {}) {
 				...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, { vitest: "test" }),
 				"e18e/prefer-static-regex": "off",
 				"test/expect-expect": ["error", { assertFunctionNames: ["expect*", "assert*"] }],
-				"test/valid-title": ESLintConfig.fixme(void 0)
+				"test/valid-title": ESLintConfig.fixme(void 0),
+				...ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" }),
+				"ts/explicit-module-boundary-types": "off",
+				"ts/no-empty-function": "off",
+				"ts/no-explicit-any": "off",
+				"ts/no-non-null-assertion": "off",
+				"ts/no-unsafe-argument": "off",
+				"ts/no-unsafe-assignment": "off",
+				"ts/no-unsafe-call": "off",
+				"ts/no-unsafe-member-access": "off",
+				"ts/no-unsafe-return": "off",
+				"ts/require-await": "off",
+				"ts/unbound-method": "off"
 			} : {},
 			...stylisticEnabled ? {} : {},
 			...rules
@@ -1064,66 +1089,71 @@ const tsRules = () => {
 };
 //#endregion
 //#region src/config/ts.ts
+const tsRenameMap = { "@typescript-eslint": "ts" };
 const defaultFiles$2 = [tsSourceGlob];
 async function ts(options = {}) {
 	const [tsPlugin, tsParser] = await Promise.all([interopDefault(import("@typescript-eslint/eslint-plugin")), interopDefault(import("@typescript-eslint/parser"))]);
 	const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
 	const tsStrictRules = tsPlugin.configs["strict"].rules;
 	const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
-	const { files, rules = {}, stylistic = true, typeChecked = false } = options;
+	const { files, parserOptions = {}, recommended = true, rules = {}, stylistic = true, tsconfigPath = "./tsconfig.json", typeChecked = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const tsCustomRules = tsRules();
-	return [
-		{
-			name: "w5s/ts/setup",
-			plugins: { ts: tsPlugin }
-		},
-		{
-			files: withDefaultFiles(files, defaultFiles$2),
-			languageOptions: {
-				parser: tsParser,
-				parserOptions: { sourceType: "module" }
-			},
-			name: "w5s/ts/rules",
-			rules: {
-				...ESLintConfig.renameRules(tsRecommendedRules, { "@typescript-eslint": "ts" }),
-				...ESLintConfig.renameRules(tsStrictRules, { "@typescript-eslint": "ts" }),
-				...tsCustomRules,
-				...stylisticEnabled ? {
-					...ESLintConfig.renameRules(tsPlugin.configs["stylistic"]?.rules, { "@typescript-eslint": "ts" }),
-					"ts/array-type": ["error", { default: "generic" }],
-					"ts/consistent-type-assertions": ["error", {
-						assertionStyle: "as",
-						objectLiteralTypeAssertions: "allow"
-					}],
-					"ts/naming-convention": [
-						"error",
-						{
-							format: [
-								"PascalCase",
-								"camelCase",
-								"UPPER_CASE"
-							],
-							leadingUnderscore: "allow",
-							selector: "variable",
-							trailingUnderscore: "allow"
-						},
-						{
-							format: ["PascalCase"],
-							selector: "typeLike"
-						}
-					],
-					"ts/no-empty-function": tsCustomRules["ts/no-empty-function"]
+	const resolvedFiles = withDefaultFiles(files, defaultFiles$2);
+	return [{
+		name: "w5s/ts/setup",
+		plugins: { ts: tsPlugin }
+	}, {
+		files: resolvedFiles,
+		languageOptions: {
+			parser: tsParser,
+			parserOptions: {
+				sourceType: "module",
+				...typeChecked ? {
+					projectService: {
+						allowDefaultProject: ["./*.js"],
+						defaultProject: tsconfigPath
+					},
+					tsconfigRootDir: process.cwd()
 				} : {},
-				...rules
+				...parserOptions
 			}
 		},
-		...typeChecked ? [{
-			files: defaultFiles$2,
-			name: "w5s/ts/rules-type-checked",
-			rules: { ...ESLintConfig.renameRules(tsTypeCheckedRules, { "@typescript-eslint": "ts" }) }
-		}] : []
-	];
+		name: "w5s/ts/rules",
+		rules: {
+			...recommended ? ESLintConfig.renameRules(tsRecommendedRules, tsRenameMap) : {},
+			...recommended ? ESLintConfig.renameRules(tsStrictRules, tsRenameMap) : {},
+			...recommended ? tsCustomRules : {},
+			...recommended && typeChecked ? ESLintConfig.renameRules(tsTypeCheckedRules, tsRenameMap) : {},
+			...stylisticEnabled ? {
+				...ESLintConfig.renameRules(tsPlugin.configs["stylistic"]?.rules, tsRenameMap),
+				"ts/array-type": ["error", { default: "generic" }],
+				"ts/consistent-type-assertions": ["error", {
+					assertionStyle: "as",
+					objectLiteralTypeAssertions: "allow"
+				}],
+				"ts/naming-convention": [
+					"error",
+					{
+						format: [
+							"PascalCase",
+							"camelCase",
+							"UPPER_CASE"
+						],
+						leadingUnderscore: "allow",
+						selector: "variable",
+						trailingUnderscore: "allow"
+					},
+					{
+						format: ["PascalCase"],
+						selector: "typeLike"
+					}
+				],
+				"ts/no-empty-function": tsCustomRules["ts/no-empty-function"]
+			} : {},
+			...rules
+		}
+	}];
 }
 //#endregion
 //#region src/config/unicorn.ts

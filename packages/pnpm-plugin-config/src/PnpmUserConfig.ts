@@ -20,7 +20,7 @@ function objectMergeDefault<P extends string, V extends object>(
   return {
     ...base[property],
     ...extension[property],
-  } as V;
+  };
 }
 
 function objectMergeForce<P extends string, V extends object>(
@@ -31,7 +31,7 @@ function objectMergeForce<P extends string, V extends object>(
   return {
     ...extension[property],
     ...base[property],
-  } as V;
+  };
 }
 
 /**

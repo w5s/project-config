@@ -1,4 +1,4 @@
-import type { ESLint, Linter } from 'eslint';
+import type { Linter } from 'eslint';
 
 import { describe, expect, it } from 'vitest';
 
@@ -29,7 +29,7 @@ describe('ESLintConfig', () => {
               a: true,
             },
             plugins: {
-              'plugin-a': {} as ESLint.Plugin,
+              'plugin-a': {},
             },
             rules: {
               'rule-a': 'error',
@@ -56,7 +56,7 @@ describe('ESLintConfig', () => {
               b: true,
             },
             plugins: {
-              'plugin-b': {} as ESLint.Plugin,
+              'plugin-b': {},
             },
             rules: {
               'rule-b': 'warn',
@@ -83,7 +83,7 @@ describe('ESLintConfig', () => {
               c: true,
             },
             plugins: {
-              'plugin-c': {} as ESLint.Plugin,
+              'plugin-c': {},
             },
             rules: {
               'rule-c': 'off',

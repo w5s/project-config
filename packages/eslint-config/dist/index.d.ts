@@ -3086,7 +3086,7 @@ type MarkdownTableColumnCount = [] | [{
 }];
 //#endregion
 //#region src/config/markdown.d.ts
-declare function markdown(options?: markdown.Options): Promise<[Config, Config]>;
+declare function markdown(options?: markdown.Options): Promise<[Config, Config, Config]>;
 declare namespace markdown {
   interface Options extends PluginOptionsBase<Rules> {
     /**
@@ -11343,6 +11343,20 @@ type TsUnifiedSignatures = [] | [{
 declare function ts(options?: ts.Options): Promise<[Config, Config] | [Config, Config, Config]>;
 declare namespace ts {
   interface Options extends PluginOptionsBase<Rules> {
+    /**
+     * Parser options for TypeScript ESLint parser
+     */
+    parserOptions?: Record<string, unknown>;
+    /**
+     * Path to the tsconfig.json file.
+     * This must be to enable type aware rules.
+     *
+     * @default './tsconfig.json'
+     */
+    tsconfigPath?: string;
+    /**
+     * Whether to enable type aware rules
+     */
     typeChecked?: boolean;
   }
   type Rules = RuleOptions$3;

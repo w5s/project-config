@@ -35,6 +35,7 @@ import type { Linter } from 'eslint';
 async function concat<T extends Linter.Config = Linter.Config>(
   ...configs: Array<Promise<ReadonlyArray<T>> | Promise<T> | ReadonlyArray<T> | T>
 ): Promise<Array<T>> {
+  // eslint-disable-next-line ts/await-thenable
   const resolved = await Promise.all(configs);
   return resolved.flat() as Array<T>;
 }
@@ -89,11 +90,11 @@ function merge<T extends Linter.Config = Linter.Config>(...configs: Array<T>): T
   // Remove unused keys
   for (const key of Object.keys(merged)) {
     if (!keys.has(key))
-      // eslint-disable-next-line ts/no-dynamic-delete
+      // eslint-disable-next-line ts/no-dynamic-delete, ts/no-unsafe-member-access
       delete (merged as any)[key];
   }
 
-  return merged as T;
+  return merged;
 }
 
 /**

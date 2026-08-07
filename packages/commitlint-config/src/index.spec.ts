@@ -95,7 +95,7 @@ describe('Commitlint Config', () => {
 
   describe('footer-leading-blank', () => {
     it('should return error when no blank line between body and footer', async () => {
-      const result = await lint(`${anyValidHeader}\n\n${anyValidBody}\n${anyValidFooter}`);
+      const result = await lint(`${anyValidHeader}\n\n${anyValidBody}\n${anyValidFooter.join(',')}`);
 
       expect(result).toEqual(
         expect.objectContaining({
