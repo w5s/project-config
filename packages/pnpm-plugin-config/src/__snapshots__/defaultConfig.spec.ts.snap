@@ -13,6 +13,7 @@ exports[`defaultConfig > should match snapshot 1`] = `
     "lefthook": true,
     "nx": true,
     "protobufjs": true,
+    "re2": true,
     "sharp": true,
   },
   "blockExoticSubdeps": true,

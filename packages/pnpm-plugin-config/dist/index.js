@@ -11,6 +11,7 @@ const defaultConfig = Object.freeze({
 		"lefthook": true,
 		"nx": true,
 		"protobufjs": true,
+		"re2": true,
 		"sharp": true
 	},
 	blockExoticSubdeps: true,

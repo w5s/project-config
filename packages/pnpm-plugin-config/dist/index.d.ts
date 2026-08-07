@@ -12,6 +12,7 @@ declare const defaultConfig: Readonly<{
     lefthook: true;
     nx: true;
     protobufjs: true;
+    re2: true;
     sharp: true;
   };
   blockExoticSubdeps: true;
