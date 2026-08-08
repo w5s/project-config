@@ -55,7 +55,7 @@
     "typecheck:src": "pnpm exec tsc --noEmit"
   },
   "dependencies": {
-    "@e18e/eslint-plugin": "^0.6.0",
+    "@e18e/eslint-plugin": "^0.8.0",
     "@eslint-react/eslint-plugin": "5.18.2",
     "@eslint/js": "^10.0.0",
     "@eslint/markdown": "^8.0.0",
