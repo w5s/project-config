@@ -3317,7 +3317,7 @@ interface RuleOptions$8 {
    */
   'node/no-new-require'?: Linter.RuleEntry<[]>;
   /**
-   * disallow string concatenation with `__dirname` and `__filename`
+   * disallow string concatenation with `__dirname`, `__filename`, and `import.meta` paths
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/no-path-concat.md
    */
   'node/no-path-concat'?: Linter.RuleEntry<[]>;
@@ -3427,10 +3427,20 @@ interface RuleOptions$8 {
    */
   'node/prefer-global/url-search-params'?: Linter.RuleEntry<NodePreferGlobalUrlSearchParams>;
   /**
+   * enforce using `node:assert/strict` instead of `node:assert`.
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-import/assert-strict.md
+   */
+  'node/prefer-import/assert-strict'?: Linter.RuleEntry<[]>;
+  /**
    * enforce using the `node:` protocol when importing Node.js builtin modules.
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-node-protocol.md
    */
   'node/prefer-node-protocol'?: Linter.RuleEntry<NodePreferNodeProtocol>;
+  /**
+   * enforce using `process.getBuiltinModule()` to load Node.js built-in modules
+   * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-process-get-builtin-module.md
+   */
+  'node/prefer-process-get-builtin-module'?: Linter.RuleEntry<NodePreferProcessGetBuiltinModule>;
   /**
    * enforce `require("dns").promises`
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/prefer-promises/dns.md
@@ -3703,6 +3713,10 @@ type NodePreferGlobalUrl = [] | [("always" | "never")];
 type NodePreferGlobalUrlSearchParams = [] | [("always" | "never")];
 // ----- node/prefer-node-protocol -----
 type NodePreferNodeProtocol = [] | [{
+  version?: string;
+}];
+// ----- node/prefer-process-get-builtin-module -----
+type NodePreferProcessGetBuiltinModule = [] | [{
   version?: string;
 }];
 // ----- node/shebang -----
