@@ -28,9 +28,9 @@ const mrmPackageJson = require('../package.json');
 
 /**
  *
- * @param {string} script
+ * @param {...string} scripts
  */
-const turboRun = (script) => `turbo run ${script}`;
+const turboRun = (...scripts) => `turbo run ${scripts.join(' ')}`;
 
 function task() {
   const rootPackageFile = packageJson();
@@ -95,19 +95,19 @@ function task() {
     pkg.script(currentPackageFile, {
       name: project.build,
       state: 'present',
-      update: useWorkspace ? turboRun(project.build) : npmRunAll(project.build, true),
+      update: useWorkspace ? turboRun(project.build, `${project.build}:root`) : npmRunAll(project.build, true),
     });
 
     // lint
     pkg.script(currentPackageFile, {
       name: project.lint,
       state: 'present',
-      update: useWorkspace ? turboRun(project.lint) : npmRunAll(project.lint, true),
+      update: useWorkspace ? turboRun(project.lint, `${project.lint}:root`) : npmRunAll(project.lint, true),
     });
     pkg.script(currentPackageFile, {
       name: project.format,
       state: 'present',
-      update: useWorkspace ? `${turboRun(project.format)} --continue` : npmRunAll(project.format, true),
+      update: useWorkspace ? `${turboRun(project.format, `${project.format}:root`)} --continue` : npmRunAll(project.format, true),
     });
 
     // test
@@ -120,13 +120,13 @@ function task() {
       default: pkg.emptyScript,
       name: project.test,
       state: 'present',
-      update: useWorkspace ? turboRun(project.test) : npmRunAll(project.test, true),
+      update: useWorkspace ? turboRun(project.test, `${project.test}:root`) : npmRunAll(project.test, true),
     });
     pkg.script(currentPackageFile, {
       default: pkg.emptyScript,
       name: project.typecheck,
       state: 'present',
-      update: useWorkspace ? turboRun(project.typecheck) : npmRunAll(project.typecheck, true),
+      update: useWorkspace ? turboRun(project.typecheck, `${project.typecheck}:root`) : npmRunAll(project.typecheck, true),
     });
 
     // prepare
@@ -140,7 +140,7 @@ function task() {
     pkg.script(currentPackageFile, {
       name: project.clean,
       state: 'present',
-      update: useWorkspace ? turboRun(project.clean) : npmRunAll(project.clean, true),
+      update: useWorkspace ? turboRun(project.clean, `${project.clean}:root`) : npmRunAll(project.clean, true),
     });
 
     // Root
@@ -308,13 +308,12 @@ function task() {
           inputs: rootInputs,
         },
         [project.build]: {
-          dependsOn: [`^${project.build}`, `//#${project.build}:root`],
+          dependsOn: [`^${project.build}`],
           inputs: packageInputs,
           outputs: ['dist/**', '.next/**', '!.next/cache/**'],
         },
         [project.clean]: {
           cache: false,
-          dependsOn: [`//#${project.clean}:root`],
         },
         [project.develop]: {
           cache: false,
@@ -322,20 +321,16 @@ function task() {
         },
         [project.docs]: {
           cache: false,
-          dependsOn: [`//#${project.docs}:root`],
         },
         [project.format]: {
-          dependsOn: [`//#${project.format}:root`],
         },
         [project.lint]: {
-          dependsOn: [`^${project.build}`, `//#${project.lint}:root`],
+          dependsOn: [`^${project.build}`],
         },
         [project.prepare]: {},
-        [project.spellcheck]: {
-          dependsOn: [`//#${project.spellcheck}:root`],
-        },
+        [project.spellcheck]: {},
         [project.test]: {
-          dependsOn: [`^${project.build}`, `//#${project.test}:root`],
+          dependsOn: [`^${project.build}`],
         },
         [project.typecheck]: {
           dependsOn: [project.build, `^${project.build}`],
