@@ -81,7 +81,7 @@
     "@w5s/tsconfig": "workspace:*",
     "clean-package": "2.2.0",
     "cspell": "10.0.1",
-    "eslint": "10.8.0",
+    "eslint": "10.8.1",
     "markdown-magic": "4.11.0",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "2.1.0",
