@@ -80,6 +80,7 @@ async function e18e(options = {}) {
 			...modernization ? e18ePlugin.configs.modernization.rules : {},
 			...moduleReplacements ? e18ePlugin.configs.moduleReplacements.rules : {},
 			...performanceImprovements ? e18ePlugin.configs.performanceImprovements.rules : {},
+			"e18e/prefer-array-at": "off",
 			"e18e/prefer-array-from-map": "off",
 			"e18e/prefer-array-to-reversed": "off",
 			"e18e/prefer-array-to-sorted": "off",

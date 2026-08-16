@@ -33,6 +33,7 @@ export async function e18e(options: e18e.Options = {}) {
         ...performanceImprovements ? e18ePlugin.configs.performanceImprovements.rules : {},
 
         // Disable dangerous (also prefer unicorn)
+        'e18e/prefer-array-at': 'off',
         'e18e/prefer-array-from-map': 'off',
         'e18e/prefer-array-to-reversed': 'off',
         'e18e/prefer-array-to-sorted': 'off',
