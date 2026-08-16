@@ -515,7 +515,7 @@ async function jsdoc(options = {}) {
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const recommendedRules = recommended ? jsdocPlugin.configs["flat/recommended-typescript-flavor"].rules : {};
 	const stylisticRules = stylisticEnabled ? {
-		...jsdocPlugin.configs["flat/stylistic-typescript"].rules,
+		...jsdocPlugin.configs["flat/stylistic-typescript-flavor"].rules,
 		"jsdoc/check-alignment": "warn",
 		"jsdoc/multiline-blocks": "warn",
 		"jsdoc/tag-lines": [

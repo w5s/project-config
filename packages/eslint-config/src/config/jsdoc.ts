@@ -24,7 +24,7 @@ export async function jsdoc(options: jsdoc.Options = {}): Promise<ReadonlyArray<
     : {};
   const stylisticRules = stylisticEnabled
     ? {
-        ...jsdocPlugin.configs['flat/stylistic-typescript'].rules,
+        ...jsdocPlugin.configs['flat/stylistic-typescript-flavor'].rules,
         'jsdoc/check-alignment': 'warn',
         'jsdoc/multiline-blocks': 'warn',
         'jsdoc/tag-lines': ['warn', 'any', { startLines: 1 }],
