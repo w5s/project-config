@@ -42,7 +42,7 @@
     "prepack": "clean-package",
     "spellcheck": "pnpm exec cspell --no-progress '**'",
     "test": "pnpm run \"/^test:.*/\"",
-    "test:script": "pnpm exec tsc -p _tests/tsconfig.json --noEmit --skipLibCheck",
+    "test:script": "pnpm exec tsc -p test/tsconfig.json --noEmit --skipLibCheck",
     "typecheck": "pnpm run \"/^typecheck:.*/\"",
     "typecheck:src": "pnpm exec tsc --noEmit"
   },
