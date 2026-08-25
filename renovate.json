@@ -7,7 +7,6 @@
     "commands": [
       "pnpm install --frozen-lockfile",
       "pnpm --filter \"./packages/eslint-config\" run build"
-    ],
-    "fileFilters": ["**/dist/**", "**/typegen/**"]
+    ]
   }
 }
