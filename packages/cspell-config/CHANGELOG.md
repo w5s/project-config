@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.17.0](https://github.com/w5s/project-config/compare/@w5s/cspell-config@3.1.9...@w5s/cspell-config@3.17.0) (2026-08-26)
+
+### ✨ Features
+
+- Add ignoreGitModules option (default to true) ([1a3385f](https://github.com/w5s/project-config/commit/1a3385f)) 
+- Update TypeScript rules and add consistent-type-assertions rule ([71b0eb1](https://github.com/w5s/project-config/commit/71b0eb1))
+
+**Note:** Version bump only for package @w5s/cspell-config
+
 # [3.16.0](https://github.com/w5s/project-config/compare/@w5s/cspell-config@3.1.9...@w5s/cspell-config@3.16.0) (2026-08-25)
 
 ### ✨ Features
