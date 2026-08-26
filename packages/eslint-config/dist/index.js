@@ -863,13 +863,37 @@ async function markdown(options = {}) {
 			}
 		},
 		{
-			files: resolvedFiles.map((f) => `${f}/**/*`),
+			files: resolvedFiles.map((f) => `${f}/${sourceGlob}`),
 			languageOptions: { parserOptions: {
 				project: false,
 				projectService: false
 			} },
-			name: "w5s/markdown/embed",
-			rules: ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" })
+			name: "w5s/markdown/embed-code",
+			rules: Object.assign(ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" }), {
+				"e18e/prefer-static-regex": "off",
+				"no-alert": "off",
+				"no-console": "off",
+				"no-labels": "off",
+				"no-lone-blocks": "off",
+				"no-restricted-syntax": "off",
+				"no-undef": "off",
+				"no-unused-expressions": "off",
+				"no-unused-labels": "off",
+				"no-unused-vars": "off",
+				"node/prefer-global/process": "off",
+				"style/eol-last": "off",
+				"ts/consistent-type-imports": "off",
+				"ts/explicit-function-return-type": "off",
+				"ts/no-namespace": "off",
+				"ts/no-redeclare": "off",
+				"ts/no-require-imports": "off",
+				"ts/no-unused-expressions": "off",
+				"ts/no-unused-vars": "off",
+				"ts/no-use-before-define": "off",
+				"unicode-bom": "off",
+				"unused-imports/no-unused-imports": "off",
+				"unused-imports/no-unused-vars": "off"
+			})
 		}
 	];
 }
