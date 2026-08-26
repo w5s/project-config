@@ -3,15 +3,15 @@ import { ESLintConfig, interopDefault, Project } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/test.js';
 
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
+import { looseRules } from '../rules/looseRules.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
 const defaultFiles = Project.extensionsToTestGlob(Project.sourceExtensions());
 
 export async function test(options: test.Options = {}) {
-  const [vitestPlugin, tsPlugin] = await Promise.all([
+  const [vitestPlugin] = await Promise.all(([
     interopDefault(import('@vitest/eslint-plugin')),
-    interopDefault(import('@typescript-eslint/eslint-plugin')),
-  ] as const);
+  ]) as const);
   const { files, recommended = true, rules = {}, stylistic = true } = options;
   const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 
@@ -31,28 +31,11 @@ export async function test(options: test.Options = {}) {
               ...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, {
                 vitest: 'test',
               }),
-              // Loose rules
-              'e18e/prefer-static-regex': 'off',
+              ...looseRules(),
+
               // Improve some rules
               'test/expect-expect': ['error', { assertFunctionNames: ['expect*', 'assert*'] }],
               'test/valid-title': ESLintConfig.fixme(undefined),
-              // Loose typing
-              // eslint-disable-next-line ts/no-non-null-assertion
-              ...ESLintConfig.renameRules(tsPlugin.configs['disable-type-checked']!.rules as any, {
-                '@typescript-eslint': 'ts',
-              }),
-
-              'ts/explicit-module-boundary-types': 'off',
-              'ts/no-empty-function': 'off',
-              'ts/no-explicit-any': 'off',
-              'ts/no-non-null-assertion': 'off',
-              'ts/no-unsafe-argument': 'off',
-              'ts/no-unsafe-assignment': 'off',
-              'ts/no-unsafe-call': 'off',
-              'ts/no-unsafe-member-access': 'off',
-              'ts/no-unsafe-return': 'off',
-              'ts/require-await': 'off',
-              'ts/unbound-method': 'off',
             }
           : {}),
         ...(stylisticEnabled

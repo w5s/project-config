@@ -4,6 +4,7 @@ import eslintConfig from "@eslint/js";
 import globals from "globals";
 import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
 //#region src/glob.ts
 const sourceGlob = `**/${Project.extensionsToGlob(Project.sourceExtensions())}`;
 const esSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`;
@@ -90,6 +91,19 @@ async function e18e(options = {}) {
 			...rules
 		}
 	}];
+}
+//#endregion
+//#region src/internal/lazy.ts
+function lazy(fn) {
+	let isSet = false;
+	let value;
+	return () => {
+		if (!isSet) {
+			value = fn();
+			isSet = true;
+		}
+		return value;
+	};
 }
 //#endregion
 //#region src/rules/esRules/bestPractices.ts
@@ -418,14 +432,14 @@ const variables = () => ({
 });
 //#endregion
 //#region src/rules/esRules.ts
-const esRules = () => ({
+const esRules = lazy(() => ({
 	...bestPractices(),
 	...errors(),
 	...es6(),
 	...strict(),
 	...variables(),
 	...overrides()
-});
+}));
 //#endregion
 //#region src/config/es.ts
 const defaultFiles$10 = [esSourceGlob];
@@ -835,10 +849,31 @@ async function jsx(options = {}) {
 	}];
 }
 //#endregion
+//#region src/rules/looseRules.ts
+const looseRules = lazy(() => {
+	return Object.assign(ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" }), {
+		"e18e/prefer-static-regex": "off",
+		"ts/explicit-function-return-type": "off",
+		"ts/explicit-module-boundary-types": "off",
+		"ts/no-empty-function": "off",
+		"ts/no-explicit-any": "off",
+		"ts/no-namespace": "off",
+		"ts/no-non-null-assertion": "off",
+		"ts/no-unsafe-argument": "off",
+		"ts/no-unsafe-assignment": "off",
+		"ts/no-unsafe-call": "off",
+		"ts/no-unsafe-member-access": "off",
+		"ts/no-unsafe-return": "off",
+		"ts/no-use-before-define": "off",
+		"ts/require-await": "off",
+		"ts/unbound-method": "off"
+	});
+});
+//#endregion
 //#region src/config/markdown.ts
 const defaultFiles$7 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
 async function markdown(options = {}) {
-	const [markdownPlugin, tsPlugin] = await Promise.all([interopDefault(import("@eslint/markdown")), interopDefault(import("@typescript-eslint/eslint-plugin"))]);
+	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
 	const { files, language = "markdown/gfm", languageOptions, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const resolvedFiles = withDefaultFiles(files, defaultFiles$7);
@@ -869,8 +904,8 @@ async function markdown(options = {}) {
 				projectService: false
 			} },
 			name: "w5s/markdown/embed-code",
-			rules: Object.assign(ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" }), {
-				"e18e/prefer-static-regex": "off",
+			rules: {
+				...looseRules(),
 				"no-alert": "off",
 				"no-console": "off",
 				"no-labels": "off",
@@ -883,17 +918,14 @@ async function markdown(options = {}) {
 				"node/prefer-global/process": "off",
 				"style/eol-last": "off",
 				"ts/consistent-type-imports": "off",
-				"ts/explicit-function-return-type": "off",
-				"ts/no-namespace": "off",
 				"ts/no-redeclare": "off",
 				"ts/no-require-imports": "off",
 				"ts/no-unused-expressions": "off",
 				"ts/no-unused-vars": "off",
-				"ts/no-use-before-define": "off",
 				"unicode-bom": "off",
 				"unused-imports/no-unused-imports": "off",
 				"unused-imports/no-unused-vars": "off"
-			})
+			}
 		}
 	];
 }
@@ -1039,7 +1071,7 @@ async function stylistic(options = {}) {
 //#region src/config/test.ts
 const defaultFiles$3 = Project.extensionsToTestGlob(Project.sourceExtensions());
 async function test(options = {}) {
-	const [vitestPlugin, tsPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin")), interopDefault(import("@typescript-eslint/eslint-plugin"))]);
+	const [vitestPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin"))]);
 	const { files, recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	return [{
@@ -1051,21 +1083,9 @@ async function test(options = {}) {
 		rules: {
 			...recommended ? {
 				...ESLintConfig.renameRules(vitestPlugin.configs.recommended.rules, { vitest: "test" }),
-				"e18e/prefer-static-regex": "off",
+				...looseRules(),
 				"test/expect-expect": ["error", { assertFunctionNames: ["expect*", "assert*"] }],
-				"test/valid-title": ESLintConfig.fixme(void 0),
-				...ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" }),
-				"ts/explicit-module-boundary-types": "off",
-				"ts/no-empty-function": "off",
-				"ts/no-explicit-any": "off",
-				"ts/no-non-null-assertion": "off",
-				"ts/no-unsafe-argument": "off",
-				"ts/no-unsafe-assignment": "off",
-				"ts/no-unsafe-call": "off",
-				"ts/no-unsafe-member-access": "off",
-				"ts/no-unsafe-return": "off",
-				"ts/require-await": "off",
-				"ts/unbound-method": "off"
+				"test/valid-title": ESLintConfig.fixme(void 0)
 			} : {},
 			...stylisticEnabled ? {} : {},
 			...rules
@@ -1074,7 +1094,7 @@ async function test(options = {}) {
 }
 //#endregion
 //#region src/rules/tsRules.ts
-const tsRules = () => {
+const tsRules = lazy(() => {
 	const baseRules = esRules();
 	return ESLintConfig.renameRules({
 		"@typescript-eslint/ban-ts-comment": ["warn", {
@@ -1111,7 +1131,7 @@ const tsRules = () => {
 		"@typescript-eslint/require-await": baseRules["require-await"],
 		"@typescript-eslint/triple-slash-reference": "error"
 	}, { "@typescript-eslint": "ts" });
-};
+});
 //#endregion
 //#region src/config/ts.ts
 const tsRenameMap = { "@typescript-eslint": "ts" };

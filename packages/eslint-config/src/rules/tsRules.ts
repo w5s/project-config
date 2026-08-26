@@ -1,8 +1,9 @@
 import { ESLintConfig } from '@w5s/dev';
 
+import { lazy } from '../internal/lazy.js';
 import { esRules } from './esRules.js';
 
-export const tsRules = () => {
+export const tsRules = lazy(() => {
   const baseRules = esRules();
 
   return ESLintConfig.renameRules(
@@ -68,4 +69,4 @@ export const tsRules = () => {
       '@typescript-eslint': 'ts',
     },
   );
-};
+});
