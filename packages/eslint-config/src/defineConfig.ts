@@ -78,6 +78,8 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     ...includeEnabled(e18e, toOption(plugins.e18e)),
     ...includeEnabled(es, toOption(plugins.es)),
     ...includeEnabled(ts, toOption(plugins.ts)),
+    // Unused imports plugin is a special case because it needs to be included in the config even if it's disabled, to ensure that the rules are applied correctly.
+    ...includeEnabled(unusedImports, toOption(plugins['unused-imports'])),
     ...includeEnabled(ignores, toOption(options)),
     ...includeEnabled(jsonc, toOption(plugins.jsonc)),
     ...includeEnabled(jsdoc, toOption(plugins.jsdoc)),
@@ -92,8 +94,6 @@ export async function defineConfig(options: DefineConfigOptions = {}) {
     ...includeEnabled(unicorn, toOption(plugins.unicorn)),
     ...includeEnabled(yml, toOption(plugins.yml)),
     ...includeEnabled(test, toOption(plugins.test)),
-    // Unused imports plugin is a special case because it needs to be included in the config even if it's disabled, to ensure that the rules are applied correctly.
-    ...includeEnabled(unusedImports, toOption(plugins['unused-imports'])),
     ...(rules ? [{ rules }] : []),
   );
 }
