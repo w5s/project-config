@@ -490,22 +490,42 @@ async function ignores(options = {}) {
 	return [await eslintIgnores(options)];
 }
 //#endregion
+//#region src/restrictedImportPaths.ts
+/**
+* This file contains the list of restricted import paths used in the ESLint configuration.
+*/
+const restrictedImportsPaths = Object.freeze([]);
+//#endregion
 //#region src/config/imports.ts
 async function imports(options = {}) {
-	const { recommended = true, rules = {}, stylistic = true } = options;
+	const { recommended = true, restrictedPaths, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const [importPlugin] = await Promise.all([interopDefault(import("eslint-plugin-import"))]);
-	return [{
-		name: "w5s/import/setup",
-		plugins: { import: importPlugin }
-	}, {
-		name: "w5s/import/rules",
-		rules: {
-			...recommended ? imports["recommended"] : {},
-			...stylisticEnabled ? imports["stylistic"] : {},
-			...rules
-		}
-	}];
+	return [
+		{
+			name: "w5s/import/setup",
+			plugins: { import: importPlugin }
+		},
+		{
+			name: "w5s/import/rules",
+			rules: {
+				...recommended ? imports["recommended"] : {},
+				...stylisticEnabled ? imports["stylistic"] : {},
+				...rules
+			}
+		},
+		restrictedImportsConfig("es", restrictedPaths),
+		restrictedImportsConfig("ts", restrictedPaths)
+	];
+}
+function restrictedImportsConfig(lang, paths) {
+	const ruleName = lang === "es" ? "no-restricted-imports" : "ts/no-restricted-imports";
+	const resolvedPaths = typeof paths === "function" ? paths(restrictedImportsPaths) : paths ?? restrictedImportsPaths;
+	return {
+		files: lang === "es" ? [esSourceGlob] : [tsSourceGlob],
+		name: `w5s/import/${lang}-restriction`,
+		rules: { [ruleName]: ["error", { paths: resolvedPaths }] }
+	};
 }
 /**
 * Recommended rules
@@ -1337,6 +1357,6 @@ const meta = Object.freeze({
 	version: "3.31.0"
 });
 //#endregion
-export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, unusedImports, yml };
+export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
 
 //# sourceMappingURL=index.js.map

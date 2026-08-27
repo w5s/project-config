@@ -1,6 +1,7 @@
 import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
 import eslint, { Linter } from "eslint";
 import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
+import { ESLintRules } from "eslint/rules";
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
@@ -192,6 +193,14 @@ interface PluginOptionsBase<Rules> {
    */
   stylistic?: boolean | StylisticParameters;
 }
+//#endregion
+//#region src/type/RestrictedImportPaths.d.ts
+/**
+ * This file contains the type definition for restricted import paths used in the ESLint configuration.
+ */
+type RestrictedImportPaths = NonNullable<Extract<ESLintRules['no-restricted-imports'] extends Linter.RuleEntry<infer O> ? O[number] : never, {
+  paths?: unknown;
+}>['paths']>;
 //#endregion
 //#region src/config/e18e.d.ts
 /**
@@ -1506,7 +1515,7 @@ type ImportPreferDefaultExport = [] | [{
 }];
 //#endregion
 //#region src/config/imports.d.ts
-declare function imports(options?: imports.Options): Promise<[Config, Config]>;
+declare function imports(options?: imports.Options): Promise<[Config, Config, Config, Config]>;
 declare namespace imports {
   var recommended: {
     'import/first': string;
@@ -1521,7 +1530,12 @@ declare namespace imports {
   };
 }
 declare namespace imports {
-  interface Options extends PluginOptionsBase<Rules> {}
+  interface Options extends PluginOptionsBase<Rules> {
+    /**
+     * An array of restricted import paths to override the default restricted import paths.
+     */
+    restrictedPaths?: ((currentPaths: Readonly<RestrictedImportPaths>) => RestrictedImportPaths) | RestrictedImportPaths;
+  }
   type Rules = RuleOptions$13;
 }
 //#endregion
@@ -14077,5 +14091,11 @@ declare const meta: Readonly<{
   version: string;
 }>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, unusedImports, yml };
+//#region src/restrictedImportPaths.d.ts
+/**
+ * This file contains the list of restricted import paths used in the ESLint configuration.
+ */
+declare const restrictedImportsPaths: Readonly<RestrictedImportPaths>;
+//#endregion
+export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedImportPaths, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
 //# sourceMappingURL=index.d.ts.map
