@@ -49,8 +49,20 @@ $NODEJS_INSTALL
 $NODEJS_RUN build
 
 # Step 4: Amend previous commit with built files
+# lerna's tags point at the pre-amend commit, so capture them before amending
+# and re-point them at the amended commit, otherwise --follow-tags silently
+# drops them (they're unreachable from HEAD) and future releases can't find
+# the last released version, causing wrong version bumps.
+TAGS_ON_HEAD=$(git tag --points-at HEAD)
+
 git add .
 git commit --amend --no-edit --no-verify
+
+if [ -n "$TAGS_ON_HEAD" ]; then
+  echo "$TAGS_ON_HEAD" | while IFS= read -r tag; do
+    git tag -f "$tag" HEAD >/dev/null
+  done
+fi
 
 # Step 5: Push changes with tags
 git push origin HEAD --follow-tags --no-verify
