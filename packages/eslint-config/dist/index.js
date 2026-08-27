@@ -106,7 +106,7 @@ function lazy(fn) {
 	};
 }
 //#endregion
-//#region src/rules/esRules/bestPractices.ts
+//#region src/rules/airbnb-base/bestPractices.ts
 const bestPractices = () => ({
 	"accessor-pairs": "off",
 	"array-callback-return": ["error", { allowImplicit: true }],
@@ -293,7 +293,7 @@ const bestPractices = () => ({
 	"yoda": "error"
 });
 //#endregion
-//#region src/rules/esRules/errors.ts
+//#region src/rules/airbnb-base/errors.ts
 const errors = () => ({
 	"for-direction": "error",
 	"getter-return": ["error", { allowImplicit: true }],
@@ -345,7 +345,7 @@ const errors = () => ({
 	"valid-typeof": ["error", { requireStringLiterals: true }]
 });
 //#endregion
-//#region src/rules/esRules/es6.ts
+//#region src/rules/airbnb-base/es6.ts
 const es6 = () => ({
 	"constructor-super": "error",
 	"no-class-assign": "error",
@@ -381,7 +381,7 @@ const es6 = () => ({
 	"symbol-description": "error"
 });
 //#endregion
-//#region src/rules/esRules/overrides.ts
+//#region src/rules/airbnb-base/overrides.ts
 const overrides = () => ({
 	"class-methods-use-this": "off",
 	"default-case": "off",
@@ -394,10 +394,10 @@ const overrides = () => ({
 	"no-void": ["error", { allowAsStatement: true }]
 });
 //#endregion
-//#region src/rules/esRules/strict.ts
+//#region src/rules/airbnb-base/strict.ts
 const strict = () => ({ strict: ["error", "never"] });
 //#endregion
-//#region src/rules/esRules/variables.ts
+//#region src/rules/airbnb-base/variables.ts
 const variables = () => ({
 	"init-declarations": "off",
 	"no-catch-shadow": "off",
