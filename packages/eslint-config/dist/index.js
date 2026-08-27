@@ -1116,6 +1116,7 @@ const tsRules = lazy(() => {
 		"@typescript-eslint/no-loss-of-precision": baseRules["no-loss-of-precision"],
 		"@typescript-eslint/no-magic-numbers": baseRules["no-magic-numbers"],
 		"@typescript-eslint/no-misused-new": "error",
+		"@typescript-eslint/no-misused-promises": ["error", { checksVoidReturn: false }],
 		"@typescript-eslint/no-namespace": "off",
 		"@typescript-eslint/no-non-null-assertion": "error",
 		"@typescript-eslint/no-redeclare": ESLintConfig.fixme(baseRules["no-redeclare"]),
