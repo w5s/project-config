@@ -64,8 +64,8 @@ export async function ts(options: ts.Options = {}) {
       rules: {
         ...(recommended ? ESLintConfig.renameRules(tsRecommendedRules, tsRenameMap) : {}),
         ...(recommended ? ESLintConfig.renameRules(tsStrictRules, tsRenameMap) : {}),
-        ...(recommended ? tsCustomRules : {}),
         ...(recommended && typeChecked ? ESLintConfig.renameRules(tsTypeCheckedRules, tsRenameMap) : {}),
+        ...(recommended ? tsCustomRules : {}),
         ...(stylisticEnabled
           ? {
               // eslint-disable-next-line ts/no-non-null-asserted-optional-chain

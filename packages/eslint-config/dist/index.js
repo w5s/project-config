@@ -1169,8 +1169,8 @@ async function ts(options = {}) {
 		rules: {
 			...recommended ? ESLintConfig.renameRules(tsRecommendedRules, tsRenameMap) : {},
 			...recommended ? ESLintConfig.renameRules(tsStrictRules, tsRenameMap) : {},
-			...recommended ? tsCustomRules : {},
 			...recommended && typeChecked ? ESLintConfig.renameRules(tsTypeCheckedRules, tsRenameMap) : {},
+			...recommended ? tsCustomRules : {},
 			...stylisticEnabled ? {
 				...ESLintConfig.renameRules(tsPlugin.configs["stylistic"]?.rules, tsRenameMap),
 				"ts/array-type": ["error", { default: "generic" }],
