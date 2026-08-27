@@ -1,6 +1,7 @@
 browserslist
 commitlint
 esbuild
+luxon
 pinia
 stylelint
 stylelintrc
