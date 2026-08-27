@@ -94,5 +94,3 @@ export const esStylistic = () => ({
   // https://eslint.org/docs/rules/yield-star-spacing
   'yield-star-spacing': ['error', 'after'],
 } satisfies Linter.RulesRecord);
-
-export default esStylistic;
