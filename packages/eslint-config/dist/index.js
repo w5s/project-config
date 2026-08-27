@@ -1334,7 +1334,7 @@ async function defineConfig(options = {}) {
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/eslint-config",
-	version: "3.30.0"
+	version: "3.31.0"
 });
 //#endregion
 export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, stylistic, test, ts, unicorn, unusedImports, yml };

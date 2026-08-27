@@ -1,6 +1,6 @@
 {
   "name": "@w5s/eslint-config-ignore",
-  "version": "1.20.0",
+  "version": "1.21.0",
   "description": "Shared ESLint ignore configuration generator",
   "keywords": [
     "eslint",
