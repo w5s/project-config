@@ -1042,7 +1042,7 @@ declare namespace es {
      *
      * @internal
      */
-    defaultRestrictedGlobals?: RestrictedGlobals | undefined;
+    defaultRestrictedGlobals?: Readonly<RestrictedGlobals> | undefined;
     /**
      * The default restricted import paths (used by restrictedImportPaths).
      *
@@ -1052,7 +1052,7 @@ declare namespace es {
      *
      * @internal
      */
-    defaultRestrictedImportPaths?: RestrictedImportPaths | undefined;
+    defaultRestrictedImportPaths?: Readonly<RestrictedImportPaths> | undefined;
     /**
      * An array of restricted globals to override the default restricted globals.
      *
