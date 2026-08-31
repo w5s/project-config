@@ -747,7 +747,7 @@ type JsoncSpaceUnaryOps = [] | [{
 }];
 //#endregion
 //#region src/config/es.d.ts
-declare function es(options: es.Options): Promise<[Config, Config]>;
+declare function es(options: es.Options): Promise<[Config, Config, Config]>;
 declare namespace es {
   var recommended: {
     'class-methods-use-this': "off";
@@ -1036,7 +1036,40 @@ declare namespace es {
   };
 }
 declare namespace es {
-  interface Options extends PluginOptionsBase<Rules> {}
+  interface Options extends PluginOptionsBase<Rules> {
+    /**
+     * The default restricted import paths (used by restrictedImportsPaths).
+     *
+     * WARNING: prefer using restrictedImportsPaths
+     *
+     * You should use defaultRestrictedImportsPaths only for eslint shared configuration and should rarely be used in project configuration.
+     *
+     * @internal
+     */
+    defaultRestrictedImportsPaths?: RestrictedImportPaths | undefined;
+    /**
+     * An array of restricted import paths to override the default restricted import paths.
+     *
+     * @example
+     * ```ts
+     * // As object
+     * {
+     *   restrictedImportsPaths: [
+     *     { name: 'lodash', message: 'Please use the w5s/lodash wrapper instead.' },
+     *     { name: 'moment', message: 'Please use the w5s/moment wrapper instead.' },
+     *   ], // Will totally override the default restricted import paths
+     * }
+     * // as function
+     * {
+     *  restrictedImportsPaths: (currentPaths) => [
+     *     ...currentPaths.filter((path) => path.name !== 'lodash'),
+     *     { name: 'moment', message: 'Please use the w5s/moment wrapper instead.' },
+     *   ], // Allow fine grained control over the default restricted import paths, you can filter or add new paths.
+     * }
+     * ```
+     */
+    restrictedImportsPaths?: ((currentPaths: Readonly<RestrictedImportPaths>) => RestrictedImportPaths) | RestrictedImportPaths | undefined;
+  }
   type Rules = RuleOptions$14;
 }
 //#endregion
@@ -1525,7 +1558,7 @@ type ImportPreferDefaultExport = [] | [{
 }];
 //#endregion
 //#region src/config/imports.d.ts
-declare function imports(options?: imports.Options): Promise<[Config, Config, Config, Config]>;
+declare function imports(options?: imports.Options): Promise<[Config, Config]>;
 declare namespace imports {
   var recommended: {
     'import/first': string;
@@ -1540,12 +1573,7 @@ declare namespace imports {
   };
 }
 declare namespace imports {
-  interface Options extends PluginOptionsBase<Rules> {
-    /**
-     * An array of restricted import paths to override the default restricted import paths.
-     */
-    restrictedPaths?: ((currentPaths: Readonly<RestrictedImportPaths>) => RestrictedImportPaths) | RestrictedImportPaths;
-  }
+  interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$13;
 }
 //#endregion
@@ -11378,7 +11406,7 @@ type TsUnifiedSignatures = [] | [{
 }];
 //#endregion
 //#region src/config/ts.d.ts
-declare function ts(options?: ts.Options): Promise<[Config, Config] | [Config, Config, Config]>;
+declare function ts(options?: ts.Options): Promise<[Config, Config, Config] | [Config, Config]>;
 declare namespace ts {
   interface Options extends PluginOptionsBase<Rules> {
     /**

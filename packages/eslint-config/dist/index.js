@@ -93,6 +93,53 @@ async function e18e(options = {}) {
 	}];
 }
 //#endregion
+//#region src/restrictedImportPaths.ts
+/**
+* This file contains the list of restricted import paths used in the ESLint configuration.
+*/
+const restrictedImportsPaths = Object.freeze([
+	{
+		name: "moment",
+		message: "Use Temporal, date-fns, or luxon."
+	},
+	{
+		name: "jquery",
+		message: "Use native DOM APIs."
+	},
+	{
+		name: "underscore",
+		message: "Use native APIs or es-toolkit."
+	},
+	{
+		name: "bluebird",
+		message: "Use native Promise."
+	},
+	{
+		name: "request",
+		message: "Use fetch or undici."
+	},
+	{
+		name: "request-promise",
+		message: "Use fetch or undici."
+	},
+	{
+		name: "node-fetch",
+		message: "Use global fetch (Node 18+)."
+	},
+	{
+		name: "isomorphic-fetch",
+		message: "Use global fetch."
+	},
+	{
+		name: "whatwg-fetch",
+		message: "Use global fetch."
+	},
+	{
+		name: "rxjs/Rx",
+		message: "Import from \"rxjs\" or \"rxjs/operators\"."
+	}
+]);
+//#endregion
 //#region src/internal/lazy.ts
 function lazy(fn) {
 	let isSet = false;
@@ -454,38 +501,47 @@ const esRules = lazy(() => ({
 //#region src/config/es.ts
 const defaultFiles$10 = [esSourceGlob];
 async function es(options) {
-	const { recommended = true, rules = {} } = options;
-	return [{
-		languageOptions: {
-			ecmaVersion: Project.ecmaVersion(),
-			globals: {
-				...globals.browser,
-				...globals[`es${Project.ecmaVersion()}`],
-				...globals.node,
-				__DEV__: "readonly",
-				__PROD__: "readonly",
-				__TEST__: "readonly",
-				document: "readonly",
-				navigator: "readonly",
-				window: "readonly"
-			},
-			parserOptions: {
-				ecmaFeatures: { jsx: true },
+	const { defaultRestrictedImportsPaths = restrictedImportsPaths, recommended = true, restrictedImportsPaths: paths, rules = {} } = options;
+	const resolvedPaths = typeof paths === "function" ? paths(defaultRestrictedImportsPaths) : paths ?? defaultRestrictedImportsPaths;
+	return [
+		{
+			languageOptions: {
 				ecmaVersion: Project.ecmaVersion(),
+				globals: {
+					...globals.browser,
+					...globals[`es${Project.ecmaVersion()}`],
+					...globals.node,
+					__DEV__: "readonly",
+					__PROD__: "readonly",
+					__TEST__: "readonly",
+					document: "readonly",
+					navigator: "readonly",
+					window: "readonly"
+				},
+				parserOptions: {
+					ecmaFeatures: { jsx: true },
+					ecmaVersion: Project.ecmaVersion(),
+					sourceType: "module"
+				},
 				sourceType: "module"
 			},
-			sourceType: "module"
+			linterOptions: { reportUnusedDisableDirectives: true },
+			name: "w5s/es/setup"
 		},
-		linterOptions: { reportUnusedDisableDirectives: true },
-		name: "w5s/es/setup"
-	}, {
-		files: defaultFiles$10,
-		name: "w5s/es/rules",
-		rules: {
-			...recommended ? es["recommended"] : {},
-			...rules
+		{
+			files: [sourceGlob],
+			name: `w5s/source/restricted-imports-paths`,
+			rules: { "no-restricted-imports": ["error", { paths: resolvedPaths }] }
+		},
+		{
+			files: defaultFiles$10,
+			name: "w5s/es/rules",
+			rules: {
+				...recommended ? es["recommended"] : {},
+				...rules
+			}
 		}
-	}];
+	];
 }
 /**
 * Recommended rules
@@ -500,83 +556,22 @@ async function ignores(options = {}) {
 	return [await eslintIgnores(options)];
 }
 //#endregion
-//#region src/restrictedImportPaths.ts
-/**
-* This file contains the list of restricted import paths used in the ESLint configuration.
-*/
-const restrictedImportsPaths = Object.freeze([
-	{
-		name: "moment",
-		message: "Use Temporal, date-fns, or luxon."
-	},
-	{
-		name: "jquery",
-		message: "Use native DOM APIs."
-	},
-	{
-		name: "underscore",
-		message: "Use native APIs or es-toolkit."
-	},
-	{
-		name: "bluebird",
-		message: "Use native Promise."
-	},
-	{
-		name: "request",
-		message: "Use fetch or undici."
-	},
-	{
-		name: "request-promise",
-		message: "Use fetch or undici."
-	},
-	{
-		name: "node-fetch",
-		message: "Use global fetch (Node 18+)."
-	},
-	{
-		name: "isomorphic-fetch",
-		message: "Use global fetch."
-	},
-	{
-		name: "whatwg-fetch",
-		message: "Use global fetch."
-	},
-	{
-		name: "rxjs/Rx",
-		message: "Import from \"rxjs\" or \"rxjs/operators\"."
-	}
-]);
-//#endregion
 //#region src/config/imports.ts
 async function imports(options = {}) {
-	const { recommended = true, restrictedPaths, rules = {}, stylistic = true } = options;
+	const { recommended = true, rules = {}, stylistic = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const [importPlugin] = await Promise.all([interopDefault(import("eslint-plugin-import"))]);
-	return [
-		{
-			name: "w5s/import/setup",
-			plugins: { import: importPlugin }
-		},
-		{
-			name: "w5s/import/rules",
-			rules: {
-				...recommended ? imports["recommended"] : {},
-				...stylisticEnabled ? imports["stylistic"] : {},
-				...rules
-			}
-		},
-		restrictedImportsConfig("es", restrictedPaths),
-		restrictedImportsConfig("ts", restrictedPaths)
-	];
-}
-function restrictedImportsConfig(lang, paths) {
-	const ruleName = lang === "es" ? "no-restricted-imports" : "ts/no-restricted-imports";
-	const resolvedPaths = typeof paths === "function" ? paths(restrictedImportsPaths) : paths ?? restrictedImportsPaths;
-	return {
-		files: lang === "es" ? [esSourceGlob] : [tsSourceGlob],
-		name: `w5s/import/${lang}-restriction`,
-		rules: { [ruleName]: ["error", { paths: resolvedPaths }] }
-	};
+	return [{
+		name: "w5s/import/setup",
+		plugins: { import: importPlugin }
+	}, {
+		name: "w5s/import/rules",
+		rules: {
+			...recommended ? imports["recommended"] : {},
+			...stylisticEnabled ? imports["stylistic"] : {},
+			...rules
+		}
+	}];
 }
 /**
 * Recommended rules
