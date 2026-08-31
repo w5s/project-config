@@ -42,6 +42,36 @@ export default defineConfig({
 });
 ```
 
+### Restricted globals & import paths
+
+```ts
+import defineConfig from '@w5s/eslint-config';
+
+export default defineConfig({
+  es: {
+    // Override/extends restricted globals
+    restrictedGlobals: (defaultGlobals) => [
+      ...defaultGlobals, // use defaultGlobals.filter(...), to filter
+      {
+        message: 'This is a custom global',
+        name: 'customGlobal',
+      },
+    ],
+    // -OR- restrictedGlobals: { ... }, to simply override
+
+    // Override/extends restricted globals
+    restrictedRestrictedImports: (defaultImports) => [
+      ...defaultImports, // use defaultImports.filter(...) to filter
+      {
+        message: '@acme/my-library should never be used, use @acme/my-new-library instead',
+        name: '@acme/my-library',
+      },
+    ],
+    // -OR- restrictedGlobals: { ... }, to simply override
+  },
+});
+```
+
 ### Features
 
 - Supported languages : `JS`, `TS`, `JSX`, `JSON`, `YAML`, `MARKDOWN`
