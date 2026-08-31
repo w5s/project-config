@@ -20,7 +20,7 @@ describe('index', () => {
       perfectionist: expect.any(Function),
       react: expect.any(Function),
       restrictedGlobals: expect.any(Array),
-      restrictedImportsPaths: expect.any(Array),
+      restrictedImportPaths: expect.any(Array),
       stylistic: expect.any(Function),
       StylisticConfig: expect.any(Object),
       test: expect.any(Function),

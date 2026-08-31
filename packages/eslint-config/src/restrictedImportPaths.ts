@@ -4,7 +4,7 @@ import type { RestrictedImportPaths } from './type.js';
 /**
  * This file contains the list of restricted import paths used in the ESLint configuration.
  */
-export const restrictedImportsPaths: Readonly<RestrictedImportPaths> = Object.freeze([
+export const restrictedImportPaths: Readonly<RestrictedImportPaths> = Object.freeze([
   // List of restricted import
   { name: 'moment', message: 'Use Temporal, date-fns, or luxon.' },
   { name: 'jquery', message: 'Use native DOM APIs.' },

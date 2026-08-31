@@ -106,7 +106,7 @@ const restrictedGlobals = Object.freeze([{
 /**
 * This file contains the list of restricted import paths used in the ESLint configuration.
 */
-const restrictedImportsPaths = Object.freeze([
+const restrictedImportPaths = Object.freeze([
 	{
 		name: "moment",
 		message: "Use Temporal, date-fns, or luxon."
@@ -500,9 +500,9 @@ const esRules = lazy(() => ({
 //#region src/config/es.ts
 const defaultFiles$10 = [esSourceGlob];
 async function es(options) {
-	const { defaultRestrictedGlobals = restrictedGlobals, defaultRestrictedImportsPaths = restrictedImportsPaths, recommended = true, restrictedImportsPaths: paths, rules = {} } = options;
+	const { defaultRestrictedGlobals = restrictedGlobals, defaultRestrictedImportPaths = restrictedImportPaths, recommended = true, restrictedImportPaths: paths, rules = {} } = options;
 	const resolvedGlobals = typeof options.restrictedGlobals === "function" ? options.restrictedGlobals(defaultRestrictedGlobals) : options.restrictedGlobals ?? defaultRestrictedGlobals;
-	const resolvedPaths = typeof paths === "function" ? paths(defaultRestrictedImportsPaths) : paths ?? defaultRestrictedImportsPaths;
+	const resolvedPaths = typeof paths === "function" ? paths(defaultRestrictedImportPaths) : paths ?? defaultRestrictedImportPaths;
 	return [
 		{
 			languageOptions: {
@@ -1406,6 +1406,6 @@ const meta = Object.freeze({
 	version: "3.31.0"
 });
 //#endregion
-export { StylisticConfig, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
+export { StylisticConfig, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, stylistic, test, ts, unicorn, unusedImports, yml };
 
 //# sourceMappingURL=index.js.map

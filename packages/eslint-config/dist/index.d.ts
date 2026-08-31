@@ -1044,15 +1044,15 @@ declare namespace es {
      */
     defaultRestrictedGlobals?: RestrictedGlobals | undefined;
     /**
-     * The default restricted import paths (used by restrictedImportsPaths).
+     * The default restricted import paths (used by restrictedImportPaths).
      *
-     * WARNING: prefer using restrictedImportsPaths
+     * WARNING: prefer using restrictedImportPaths
      *
-     * You should use defaultRestrictedImportsPaths only for eslint shared configuration and should rarely be used in project configuration.
+     * You should use defaultRestrictedImportPaths only for eslint shared configuration and should rarely be used in project configuration.
      *
      * @internal
      */
-    defaultRestrictedImportsPaths?: RestrictedImportPaths | undefined;
+    defaultRestrictedImportPaths?: RestrictedImportPaths | undefined;
     /**
      * An array of restricted globals to override the default restricted globals.
      *
@@ -1082,14 +1082,14 @@ declare namespace es {
      * ```ts
      * // As object
      * {
-     *   restrictedImportsPaths: [
+     *   restrictedImportPaths: [
      *     { name: 'lodash', message: 'Please use the w5s/lodash wrapper instead.' },
      *     { name: 'moment', message: 'Please use the w5s/moment wrapper instead.' },
      *   ], // Will totally override the default restricted import paths
      * }
      * // as function
      * {
-     *  restrictedImportsPaths: (currentPaths) => [
+     *  restrictedImportPaths: (currentPaths) => [
      *     ...currentPaths.filter((path) => path.name !== 'lodash'),
      *     { name: 'moment', message: 'Please use the w5s/moment wrapper instead.' },
      *   ], // Allow fine grained control over the default restricted import paths, you can filter or add new paths.
@@ -1097,7 +1097,7 @@ declare namespace es {
      * @see https://eslint.org/docs/latest/rules/no-restricted-imports
      * ```
      */
-    restrictedImportsPaths?: ((currentPaths: Readonly<RestrictedImportPaths>) => RestrictedImportPaths) | RestrictedImportPaths | undefined;
+    restrictedImportPaths?: ((currentPaths: Readonly<RestrictedImportPaths>) => RestrictedImportPaths) | RestrictedImportPaths | undefined;
   }
   type Rules = RuleOptions$14;
 }
@@ -14165,7 +14165,7 @@ declare const restrictedGlobals: Readonly<RestrictedGlobals>;
 /**
  * This file contains the list of restricted import paths used in the ESLint configuration.
  */
-declare const restrictedImportsPaths: Readonly<RestrictedImportPaths>;
+declare const restrictedImportPaths: Readonly<RestrictedImportPaths>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedGlobals, RestrictedImportPaths, StylisticConfig, StylisticParameters, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
+export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedGlobals, RestrictedImportPaths, StylisticConfig, StylisticParameters, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, stylistic, test, ts, unicorn, unusedImports, yml };
 //# sourceMappingURL=index.d.ts.map
