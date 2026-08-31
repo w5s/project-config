@@ -1,4 +1,4 @@
-import baseConfig from '../../dist/index.js';
+import { defineConfig } from '../../dist/index.js';
 import testConfig from '../testRules.js';
 
-export default [...(await baseConfig()), testConfig];
+export default [...(await defineConfig()), testConfig];

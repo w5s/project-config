@@ -1398,6 +1398,15 @@ const meta = Object.freeze({
 	version: "3.31.0"
 });
 //#endregion
-export { StylisticConfig, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
+//#region src/restrictedGlobals.ts
+const restrictedGlobals = Object.freeze([{
+	message: "Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite",
+	name: "isFinite"
+}, {
+	message: "Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan",
+	name: "isNaN"
+}]);
+//#endregion
+export { StylisticConfig, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
 
 //# sourceMappingURL=index.js.map

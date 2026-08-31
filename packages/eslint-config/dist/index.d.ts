@@ -14097,11 +14097,14 @@ declare const meta: Readonly<{
   version: string;
 }>;
 //#endregion
+//#region src/restrictedGlobals.d.ts
+declare const restrictedGlobals: Readonly<RestrictedGlobals>;
+//#endregion
 //#region src/restrictedImportPaths.d.ts
 /**
  * This file contains the list of restricted import paths used in the ESLint configuration.
  */
 declare const restrictedImportsPaths: Readonly<RestrictedImportPaths>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedGlobals, RestrictedImportPaths, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
+export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedGlobals, RestrictedImportPaths, StylisticConfig, StylisticParameters, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
 //# sourceMappingURL=index.d.ts.map

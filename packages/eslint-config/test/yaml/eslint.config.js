@@ -1,3 +1,3 @@
-import baseConfig from '../../dist/index.js';
+import { defineConfig } from '../../dist/index.js';
 
-export default [...(await baseConfig())];
+export default [...(await defineConfig())];
