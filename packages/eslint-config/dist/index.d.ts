@@ -757,17 +757,6 @@ declare namespace es {
     'no-param-reassign': ["error", {
       props: boolean;
     }];
-    'no-restricted-globals': ["error", readonly NonNullable<string | {
-      name: string;
-      message?: string | undefined;
-    } | {
-      globals: Array<string | {
-        name: string;
-        message?: string | undefined;
-      }>;
-      checkGlobalObject?: boolean;
-      globalObjects?: string[];
-    }>[]];
     'no-underscore-dangle': "off";
     'no-unused-vars': ["error", {
       argsIgnorePattern: string;
@@ -780,6 +769,13 @@ declare namespace es {
     'no-catch-shadow': "off";
     'no-delete-var': "error";
     'no-label-var': "error";
+    'no-restricted-globals': ["error", {
+      message: string;
+      name: string;
+    }, {
+      message: string;
+      name: string;
+    }];
     'no-shadow': "error";
     'no-shadow-restricted-names': "error";
     'no-undef': "error";
@@ -1038,6 +1034,16 @@ declare namespace es {
 declare namespace es {
   interface Options extends PluginOptionsBase<Rules> {
     /**
+     * The default restricted globals (used by restrictedGlobals).
+     *
+     * WARNING: prefer using restrictedGlobals
+     *
+     * You should use defaultRestrictedGlobals only for eslint shared configuration and should rarely be used in project configuration.
+     *
+     * @internal
+     */
+    defaultRestrictedGlobals?: RestrictedGlobals | undefined;
+    /**
      * The default restricted import paths (used by restrictedImportsPaths).
      *
      * WARNING: prefer using restrictedImportsPaths
@@ -1047,6 +1053,28 @@ declare namespace es {
      * @internal
      */
     defaultRestrictedImportsPaths?: RestrictedImportPaths | undefined;
+    /**
+     * An array of restricted globals to override the default restricted globals.
+     *
+     * @example
+     * ```ts
+     * // As object
+     * {
+     *   restrictedGlobals: {
+     *     'event': 'Please use the event parameter instead of the global event.',
+     *   }, // Will totally override the default restricted globals
+     * }
+     * // as function
+     * {
+     *  restrictedGlobals: (currentGlobals) => ({
+     *    ...currentGlobals,
+     *    'event': 'Please use the event parameter instead of the global event.',
+     *  }), // Allow fine grained control over the default restricted globals, you can filter or add new globals.
+     * }
+     * ```
+     * @see https://eslint.org/docs/latest/rules/no-restricted-globals
+     */
+    restrictedGlobals?: ((currentGlobals: Readonly<RestrictedGlobals>) => RestrictedGlobals) | RestrictedGlobals | undefined;
     /**
      * An array of restricted import paths to override the default restricted import paths.
      *
@@ -1066,6 +1094,7 @@ declare namespace es {
      *     { name: 'moment', message: 'Please use the w5s/moment wrapper instead.' },
      *   ], // Allow fine grained control over the default restricted import paths, you can filter or add new paths.
      * }
+     * @see https://eslint.org/docs/latest/rules/no-restricted-imports
      * ```
      */
     restrictedImportsPaths?: ((currentPaths: Readonly<RestrictedImportPaths>) => RestrictedImportPaths) | RestrictedImportPaths | undefined;

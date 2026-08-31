@@ -93,6 +93,15 @@ async function e18e(options = {}) {
 	}];
 }
 //#endregion
+//#region src/restrictedGlobals.ts
+const restrictedGlobals = Object.freeze([{
+	message: "Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite",
+	name: "isFinite"
+}, {
+	message: "Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan",
+	name: "isNaN"
+}]);
+//#endregion
 //#region src/restrictedImportPaths.ts
 /**
 * This file contains the list of restricted import paths used in the ESLint configuration.
@@ -428,15 +437,6 @@ const es6 = () => ({
 	"symbol-description": "error"
 });
 //#endregion
-//#region src/restrictedGlobals.ts
-const restrictedGlobals = Object.freeze([{
-	message: "Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite",
-	name: "isFinite"
-}, {
-	message: "Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan",
-	name: "isNaN"
-}]);
-//#endregion
 //#region src/rules/airbnb-base/overrides.ts
 const overrides = () => ({
 	"class-methods-use-this": "off",
@@ -444,7 +444,6 @@ const overrides = () => ({
 	"no-console": "error",
 	"no-nested-ternary": "off",
 	"no-param-reassign": ["error", { props: false }],
-	"no-restricted-globals": ["error", restrictedGlobals],
 	"no-underscore-dangle": "off",
 	"no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
 	"no-use-before-define": ["error", "nofunc"],
@@ -501,7 +500,8 @@ const esRules = lazy(() => ({
 //#region src/config/es.ts
 const defaultFiles$10 = [esSourceGlob];
 async function es(options) {
-	const { defaultRestrictedImportsPaths = restrictedImportsPaths, recommended = true, restrictedImportsPaths: paths, rules = {} } = options;
+	const { defaultRestrictedGlobals = restrictedGlobals, defaultRestrictedImportsPaths = restrictedImportsPaths, recommended = true, restrictedImportsPaths: paths, rules = {} } = options;
+	const resolvedGlobals = typeof options.restrictedGlobals === "function" ? options.restrictedGlobals(defaultRestrictedGlobals) : options.restrictedGlobals ?? defaultRestrictedGlobals;
 	const resolvedPaths = typeof paths === "function" ? paths(defaultRestrictedImportsPaths) : paths ?? defaultRestrictedImportsPaths;
 	return [
 		{
@@ -530,8 +530,11 @@ async function es(options) {
 		},
 		{
 			files: [sourceGlob],
-			name: `w5s/source/restricted-imports-paths`,
-			rules: { "no-restricted-imports": ["error", { paths: resolvedPaths }] }
+			name: "w5s/source/restricted-rules",
+			rules: {
+				"no-restricted-globals": ["error", ...resolvedGlobals],
+				"no-restricted-imports": ["error", { paths: resolvedPaths }]
+			}
 		},
 		{
 			files: defaultFiles$10,

@@ -5,19 +5,25 @@ import globals from 'globals';
 import type { RuleOptions } from '../typegen/jsonc.js';
 
 import { esSourceGlob, sourceGlob } from '../glob.js';
+import { restrictedGlobals as defaultGlobalRestrictedGlobals } from '../restrictedGlobals.js';
 import { restrictedImportsPaths as defaultGlobalRestrictedImportsPaths } from '../restrictedImportPaths.js';
 import { esRules } from '../rules/esRules.js';
-import { type Config, type PluginOptionsBase, type RestrictedImportPaths } from '../type.js';
+import { type Config, type PluginOptionsBase, type RestrictedGlobals, type RestrictedImportPaths } from '../type.js';
 
 const defaultFiles = [esSourceGlob];
 
 export async function es(options: es.Options) {
   const {
+    defaultRestrictedGlobals = defaultGlobalRestrictedGlobals,
     defaultRestrictedImportsPaths = defaultGlobalRestrictedImportsPaths,
     recommended = true,
     restrictedImportsPaths: paths,
     rules = {},
   } = options;
+  const resolvedGlobals =
+    typeof options.restrictedGlobals === 'function'
+      ? options.restrictedGlobals(defaultRestrictedGlobals)
+      : options.restrictedGlobals ?? defaultRestrictedGlobals;
   const resolvedPaths =
     typeof paths === 'function' ? paths(defaultRestrictedImportsPaths) : paths ?? defaultRestrictedImportsPaths;
 
@@ -52,8 +58,12 @@ export async function es(options: es.Options) {
     },
     {
       files: [sourceGlob],
-      name: `w5s/source/restricted-imports-paths`,
+      name: 'w5s/source/restricted-rules',
       rules: {
+        'no-restricted-globals': [
+          'error',
+          ...resolvedGlobals,
+        ],
         'no-restricted-imports': [
           'error',
           {
@@ -84,6 +94,17 @@ es['recommended'] = {
 export namespace es {
   export interface Options extends PluginOptionsBase<Rules> {
     /**
+     * The default restricted globals (used by restrictedGlobals).
+     *
+     * WARNING: prefer using restrictedGlobals
+     *
+     * You should use defaultRestrictedGlobals only for eslint shared configuration and should rarely be used in project configuration.
+     *
+     * @internal
+     */
+    defaultRestrictedGlobals?: RestrictedGlobals | undefined;
+
+    /**
      * The default restricted import paths (used by restrictedImportsPaths).
      *
      * WARNING: prefer using restrictedImportsPaths
@@ -93,6 +114,29 @@ export namespace es {
      * @internal
      */
     defaultRestrictedImportsPaths?: RestrictedImportPaths | undefined;
+
+    /**
+     * An array of restricted globals to override the default restricted globals.
+     *
+     * @example
+     * ```ts
+     * // As object
+     * {
+     *   restrictedGlobals: {
+     *     'event': 'Please use the event parameter instead of the global event.',
+     *   }, // Will totally override the default restricted globals
+     * }
+     * // as function
+     * {
+     *  restrictedGlobals: (currentGlobals) => ({
+     *    ...currentGlobals,
+     *    'event': 'Please use the event parameter instead of the global event.',
+     *  }), // Allow fine grained control over the default restricted globals, you can filter or add new globals.
+     * }
+     * ```
+     * @see https://eslint.org/docs/latest/rules/no-restricted-globals
+     */
+    restrictedGlobals?: ((currentGlobals: Readonly<RestrictedGlobals>) => RestrictedGlobals) | RestrictedGlobals | undefined;
 
     /**
      * An array of restricted import paths to override the default restricted import paths.
@@ -113,6 +157,7 @@ export namespace es {
      *     { name: 'moment', message: 'Please use the w5s/moment wrapper instead.' },
      *   ], // Allow fine grained control over the default restricted import paths, you can filter or add new paths.
      * }
+     * @see https://eslint.org/docs/latest/rules/no-restricted-imports
      * ```
      */
     restrictedImportsPaths?: ((currentPaths: Readonly<RestrictedImportPaths>) => RestrictedImportPaths) | RestrictedImportPaths | undefined;

@@ -1,7 +1,5 @@
 import type { Linter } from 'eslint';
 
-import { restrictedGlobals } from '../../restrictedGlobals.js';
-
 export const overrides = () => ({
   // Too many errors in components
   'class-methods-use-this': 'off',
@@ -13,10 +11,7 @@ export const overrides = () => ({
   'no-nested-ternary': 'off',
   // Too strict, for pure code prefer the functional plugin
   'no-param-reassign': ['error', { props: false }],
-  'no-restricted-globals': [
-    'error',
-    restrictedGlobals,
-  ],
+
   // Allow for-of syntax
   // 'no-restricted-syntax': baseConfig.rules['no-restricted-syntax'].filter(
   //   // @ts-ignore No typing available
