@@ -64,6 +64,7 @@ export async function defineConfig(options: DefineConfigOptions = {}): Promise<A
     ...includeEnabled(config.ts, toOption(plugins.ts)),
     // js and ts extensions
     ...includeEnabled(config.e18e, toOption(plugins.e18e)),
+    ...includeEnabled(config.jsx, toOption(plugins.jsx)),
     ...includeEnabled(config.unusedImports, toOption(plugins['unused-imports'])),
     ...includeEnabled(config.imports, toOption(plugins.import)),
     ...includeEnabled(config.perfectionist, toOption(plugins.perfectionist)),
