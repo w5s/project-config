@@ -1396,7 +1396,7 @@ async function defineConfig(options = {}) {
 		...optionsOrBoolean
 	});
 	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
-	return ESLintConfig.concat(...includeEnabled(ignores, toOption(options)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(unusedImports, toOption(plugins["unused-imports"])), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(test, toOption(plugins.test)), ...rules ? [{ rules }] : []);
+	return ESLintConfig.concat(...includeEnabled(ignores, toOption(options)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(jsx, toOption(plugins.jsx)), ...includeEnabled(unusedImports, toOption(plugins["unused-imports"])), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(test, toOption(plugins.test)), ...rules ? [{ rules }] : []);
 }
 //#endregion
 //#region src/meta.ts
