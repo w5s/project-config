@@ -318,7 +318,7 @@ async function createPreset() {
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/conventional-changelog",
-	version: "3.21.0"
+	version: "3.22.0"
 });
 //#endregion
 export { Emoji, GitmojiCode, createPreset as default, meta };
