@@ -381,6 +381,15 @@ const es6 = () => ({
 	"symbol-description": "error"
 });
 //#endregion
+//#region src/restrictedGlobals.ts
+const restrictedGlobals = Object.freeze([{
+	message: "Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite",
+	name: "isFinite"
+}, {
+	message: "Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan",
+	name: "isNaN"
+}]);
+//#endregion
 //#region src/rules/airbnb-base/overrides.ts
 const overrides = () => ({
 	"class-methods-use-this": "off",
@@ -388,6 +397,7 @@ const overrides = () => ({
 	"no-console": "error",
 	"no-nested-ternary": "off",
 	"no-param-reassign": ["error", { props: false }],
+	"no-restricted-globals": ["error", restrictedGlobals],
 	"no-underscore-dangle": "off",
 	"no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
 	"no-use-before-define": ["error", "nofunc"],
@@ -1397,15 +1407,6 @@ const meta = Object.freeze({
 	name: "@w5s/eslint-config",
 	version: "3.31.0"
 });
-//#endregion
-//#region src/restrictedGlobals.ts
-const restrictedGlobals = Object.freeze([{
-	message: "Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite",
-	name: "isFinite"
-}, {
-	message: "Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan",
-	name: "isNaN"
-}]);
 //#endregion
 export { StylisticConfig, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
 

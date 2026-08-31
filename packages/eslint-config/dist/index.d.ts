@@ -757,6 +757,17 @@ declare namespace es {
     'no-param-reassign': ["error", {
       props: boolean;
     }];
+    'no-restricted-globals': ["error", readonly NonNullable<string | {
+      name: string;
+      message?: string | undefined;
+    } | {
+      globals: Array<string | {
+        name: string;
+        message?: string | undefined;
+      }>;
+      checkGlobalObject?: boolean;
+      globalObjects?: string[];
+    }>[]];
     'no-underscore-dangle': "off";
     'no-unused-vars': ["error", {
       argsIgnorePattern: string;
@@ -769,13 +780,6 @@ declare namespace es {
     'no-catch-shadow': "off";
     'no-delete-var': "error";
     'no-label-var': "error";
-    'no-restricted-globals': ["error", {
-      message: string;
-      name: string;
-    }, {
-      message: string;
-      name: string;
-    }];
     'no-shadow': "error";
     'no-shadow-restricted-names': "error";
     'no-undef': "error";
