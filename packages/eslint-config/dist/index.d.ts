@@ -11435,7 +11435,7 @@ type TsUnifiedSignatures = [] | [{
 }];
 //#endregion
 //#region src/config/ts.d.ts
-declare function ts(options?: ts.Options): Promise<[Config, Config, Config] | [Config, Config]>;
+declare function ts(options?: ts.Options): Promise<[Config, Config] | [Config, Config, Config]>;
 declare namespace ts {
   interface Options extends PluginOptionsBase<Rules> {
     /**
