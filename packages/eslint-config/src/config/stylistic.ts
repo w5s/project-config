@@ -35,6 +35,7 @@ export async function stylistic(options: stylistic.Options = {}) {
               ...config.rules,
               'style/arrow-parens': ['error', 'always'],
               'style/brace-style': ['error', '1tbs'],
+              'style/jsx-one-expression-per-line': ['error', { allow: 'single-line' }], // Allow single-line JSX expressions to be on the same line
               'style/operator-linebreak': ['error', 'after', { overrides: { ':': 'before', '?': 'before', '|': 'before', '|>': 'before' } }],
               'style/quotes': ['error', quotes ?? StylisticConfig.default.quotes, { allowTemplateLiterals: 'always', avoidEscape: true }],
             }
