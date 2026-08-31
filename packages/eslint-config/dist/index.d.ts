@@ -14059,30 +14059,30 @@ interface DefineConfigOptions extends ignores.Options {
    * Plugins configuration
    */
   plugins?: {
-    'e18e'?: boolean | e18e.Options;
-    'es'?: boolean | es.Options;
-    'import'?: boolean | imports.Options;
-    'jsdoc'?: boolean | jsdoc.Options;
-    'jsonc'?: boolean | jsonc.Options;
-    'jsx'?: boolean | jsx.Options;
-    'markdown'?: boolean | markdown.Options;
-    'next'?: boolean | next.Options;
-    'node'?: boolean | node.Options;
-    'perfectionist'?: boolean | perfectionist.Options;
-    'react'?: boolean | react.Options;
-    'stylistic'?: boolean | stylistic.Options;
-    'test'?: boolean | test.Options;
-    'ts'?: boolean | ts.Options;
-    'unicorn'?: boolean | unicorn.Options;
-    'unused-imports'?: boolean | unusedImports.Options;
-    'yml'?: boolean | yml.Options;
+    'e18e'?: boolean | e18e.Options | undefined;
+    'es'?: boolean | es.Options | undefined;
+    'import'?: boolean | imports.Options | undefined;
+    'jsdoc'?: boolean | jsdoc.Options | undefined;
+    'jsonc'?: boolean | jsonc.Options | undefined;
+    'jsx'?: boolean | jsx.Options | undefined;
+    'markdown'?: boolean | markdown.Options | undefined;
+    'next'?: boolean | next.Options | undefined;
+    'node'?: boolean | node.Options | undefined;
+    'perfectionist'?: boolean | perfectionist.Options | undefined;
+    'react'?: boolean | react.Options | undefined;
+    'stylistic'?: boolean | stylistic.Options | undefined;
+    'test'?: boolean | test.Options | undefined;
+    'ts'?: boolean | ts.Options | undefined;
+    'unicorn'?: boolean | unicorn.Options | undefined;
+    'unused-imports'?: boolean | unusedImports.Options | undefined;
+    'yml'?: boolean | yml.Options | undefined;
   };
   /**
    * Override rules
    */
   rules?: eslint.Linter.RulesRecord;
 }
-declare function defineConfig(options?: DefineConfigOptions): Promise<Config[]>;
+declare function defineConfig(options?: DefineConfigOptions): Promise<Array<Config>>;
 //#endregion
 //#region src/meta.d.ts
 declare const meta: Readonly<{
