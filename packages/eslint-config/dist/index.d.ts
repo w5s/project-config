@@ -194,6 +194,12 @@ interface PluginOptionsBase<Rules> {
   stylistic?: boolean | StylisticParameters;
 }
 //#endregion
+//#region src/type/RestrictedGlobals.d.ts
+/**
+ * This file contains the type definition for restricted globals used in the ESLint configuration.
+ */
+type RestrictedGlobals = Array<NonNullable<ESLintRules['no-restricted-globals'] extends Linter.RuleEntry<infer O> ? O[number] : never>>;
+//#endregion
 //#region src/type/RestrictedImportPaths.d.ts
 /**
  * This file contains the type definition for restricted import paths used in the ESLint configuration.
@@ -14097,5 +14103,5 @@ declare const meta: Readonly<{
  */
 declare const restrictedImportsPaths: Readonly<RestrictedImportPaths>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedImportPaths, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
+export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedGlobals, RestrictedImportPaths, StylisticConfig, StylisticParameters, defineConfig as default, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedImportsPaths, stylistic, test, ts, unicorn, unusedImports, yml };
 //# sourceMappingURL=index.d.ts.map
