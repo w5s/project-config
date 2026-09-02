@@ -224,8 +224,8 @@ importers:
         specifier: ~18.3.0
         version: 18.3.0(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
       eslint-plugin-perfectionist:
-        specifier: ~5.10.0
-        version: 5.10.0(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
+        specifier: ~5.11.0
+        version: 5.11.0(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
       eslint-plugin-unicorn:
         specifier: ~73.0.0
         version: 73.0.0(eslint@10.8.0(jiti@2.6.1))
@@ -2975,8 +2975,8 @@ packages:
       typescript:
         optional: true
 
-  eslint-plugin-perfectionist@5.10.0:
-    resolution: {integrity: sha512-HiqpDrUDbGrMC6iHQbemgDyHJ0366Vyz/qRWmxQcSAkmG25cXr8BdRgx8yAhOKhEfBXn8Rnf/mTCsV4EqUJSxg==}
+  eslint-plugin-perfectionist@5.11.0:
+    resolution: {integrity: sha512-kZV1otBcu4xT5R1p+0x1N1wRv4pS+OIbxrA47n5a1fTnN3MWbexOx5eQgbQhGyCNbpvF/rqrbnpkGjumHF+Y0Q==}
     engines: {node: ^20.0.0 || >=22.0.0}
     peerDependencies:
       eslint: ^8.45.0 || ^9.0.0 || ^10.0.0
@@ -6703,7 +6703,7 @@ snapshots:
       '@eslint-react/shared': 5.18.6(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
       '@eslint-react/var': 5.18.6(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
       '@typescript-eslint/scope-manager': 8.68.0
-      '@typescript-eslint/types': 8.67.0
+      '@typescript-eslint/types': 8.68.0
       '@typescript-eslint/utils': 8.68.0(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
       eslint: 10.8.0(jiti@2.6.1)
       ts-pattern: 5.9.0
@@ -6763,7 +6763,7 @@ snapshots:
       '@eslint-react/ast': 5.18.6(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
       '@eslint-react/eslint': 5.18.6(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
       '@typescript-eslint/scope-manager': 8.68.0
-      '@typescript-eslint/types': 8.67.0
+      '@typescript-eslint/types': 8.68.0
       '@typescript-eslint/utils': 8.68.0(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
       eslint: 10.8.0(jiti@2.6.1)
       ts-pattern: 5.9.0
@@ -9187,9 +9187,9 @@ snapshots:
     optionalDependencies:
       typescript: 6.0.3
 
-  eslint-plugin-perfectionist@5.10.0(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3):
+  eslint-plugin-perfectionist@5.11.0(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3):
     dependencies:
-      '@typescript-eslint/utils': 8.65.0(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.68.0(eslint@10.8.0(jiti@2.6.1))(typescript@6.0.3)
       eslint: 10.8.0(jiti@2.6.1)
       natural-orderby: 5.0.0
     transitivePeerDependencies:
