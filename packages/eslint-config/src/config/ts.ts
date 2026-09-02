@@ -105,7 +105,7 @@ export async function ts(options: ts.Options = {}) {
         ...rules,
       },
     },
-  ] as [Config, Config, Config] | [Config, Config] satisfies Array<Config>;
+  ] as [Config, Config] satisfies Array<Config>;
 }
 export namespace ts {
   export interface Options extends PluginOptionsBase<Rules> {
