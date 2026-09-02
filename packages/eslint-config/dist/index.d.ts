@@ -5153,10 +5153,6 @@ type PerfectionistSortImports = {
     sortBy?: ("specifier" | "path");
   })[];
   newlinesBetween?: ("ignore" | number);
-  tsconfig?: {
-    rootDir: string;
-    filename?: string;
-  };
   maxLineLength?: number;
   sortSideEffects?: boolean;
   environment?: ("node" | "bun");
@@ -5191,6 +5187,10 @@ type PerfectionistSortImports = {
     pattern: string;
     flags?: string;
   } | string));
+  tsconfig?: {
+    rootDir: string;
+    filename?: string;
+  };
 }[];
 // ----- perfectionist/sort-interfaces -----
 type PerfectionistSortInterfaces = {
@@ -5775,6 +5775,7 @@ type PerfectionistSortModules = [] | [{
     order?: ("asc" | "desc");
   })[];
   newlinesBetween?: ("ignore" | number);
+  additionalModuleBlockTypes?: string[];
   useExperimentalDependencyDetection?: boolean;
   newlinesBetweenOverloadSignatures?: ("ignore" | number);
   partitionByComment?: (boolean | (({
@@ -5800,6 +5801,10 @@ type PerfectionistSortModules = [] | [{
     } | string)));
   });
   partitionByNewLine?: boolean;
+  tsconfig?: {
+    rootDir: string;
+    filename?: string;
+  };
 }];
 // ----- perfectionist/sort-named-exports -----
 type PerfectionistSortNamedExports = {
@@ -6328,6 +6333,13 @@ type PerfectionistSortObjects = {
   partitionByComputedKey?: boolean;
   styledComponents?: boolean;
   useExperimentalDependencyDetection?: boolean;
+  ignoreCallbackDependenciesPatterns?: (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string));
   partitionByComment?: (boolean | (({
     pattern: string;
     flags?: string;
@@ -6663,6 +6675,13 @@ type PerfectionistSortVariableDeclarations = {
     matchesAstSelector?: string;
   };
   useExperimentalDependencyDetection?: boolean;
+  ignoreCallbackDependenciesPatterns?: (({
+    pattern: string;
+    flags?: string;
+  } | string)[] | ({
+    pattern: string;
+    flags?: string;
+  } | string));
   partitionByComment?: (boolean | (({
     pattern: string;
     flags?: string;
