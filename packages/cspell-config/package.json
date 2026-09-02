@@ -59,9 +59,9 @@
     "@cspell/cspell-bundled-dicts": "^10.0.0"
   },
   "devDependencies": {
-    "@cspell/cspell-bundled-dicts": "10.0.1",
-    "@cspell/cspell-tools": "10.0.1",
-    "@cspell/cspell-types": "10.0.1",
+    "@cspell/cspell-bundled-dicts": "10.1.1",
+    "@cspell/cspell-tools": "10.1.1",
+    "@cspell/cspell-types": "10.1.1",
     "@w5s/tsdown-config": "workspace:*"
   },
   "peerDependencies": {
