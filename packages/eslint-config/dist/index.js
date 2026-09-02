@@ -540,7 +540,7 @@ async function es(options) {
 			files: defaultFiles$10,
 			name: "w5s/es/rules",
 			rules: {
-				...recommended ? es["recommended"] : {},
+				...recommended ? es.recommended : {},
 				...rules
 			}
 		}
@@ -549,7 +549,7 @@ async function es(options) {
 /**
 * Recommended rules
 */
-es["recommended"] = {
+es.recommended = {
 	...eslintConfig.configs.recommended.rules,
 	...esRules()
 };
@@ -570,8 +570,8 @@ async function imports(options = {}) {
 	}, {
 		name: "w5s/import/rules",
 		rules: {
-			...recommended ? imports["recommended"] : {},
-			...stylisticEnabled ? imports["stylistic"] : {},
+			...recommended ? imports.recommended : {},
+			...stylisticEnabled ? imports.stylistic : {},
 			...rules
 		}
 	}];
@@ -579,7 +579,7 @@ async function imports(options = {}) {
 /**
 * Recommended rules
 */
-imports["recommended"] = {
+imports.recommended = {
 	"import/first": "error",
 	"import/no-duplicates": "error",
 	"import/no-mutable-exports": "error",
@@ -588,7 +588,7 @@ imports["recommended"] = {
 /**
 * Stylistic rules
 */
-imports["stylistic"] = { "import/newline-after-import": ["error", { count: 1 }] };
+imports.stylistic = { "import/newline-after-import": ["error", { count: 1 }] };
 //#endregion
 //#region src/config/jsdoc.ts
 const defaultJsFiles = [esSourceGlob];
@@ -912,7 +912,7 @@ async function jsx(options = {}) {
 		files: withDefaultFiles(files, defaultFiles$8),
 		name: "w5s/jsx/rules",
 		rules: {
-			...recommended && jsxA11yPlugin != null ? jsxA11yPlugin.configs["recommended"].rules : {},
+			...recommended && jsxA11yPlugin != null ? jsxA11yPlugin.configs.recommended.rules : {},
 			...rules
 		}
 	}];
@@ -1085,7 +1085,7 @@ async function react(options = {}) {
 		},
 		name: "w5s/react/rules",
 		rules: {
-			...recommended ? ESLintConfig.renameRules(reactPlugin.configs["recommended"].rules, { "@eslint-react": "react" }) : {},
+			...recommended ? ESLintConfig.renameRules(reactPlugin.configs.recommended.rules, { "@eslint-react": "react" }) : {},
 			...rules
 		}
 	}];
@@ -1240,6 +1240,7 @@ async function ts(options = {}) {
 			...recommended ? tsCustomRules : {},
 			...stylisticEnabled ? {
 				...ESLintConfig.renameRules(tsPlugin.configs["stylistic"]?.rules, tsRenameMap),
+				...typeChecked ? ESLintConfig.renameRules(tsPlugin.configs["stylistic-type-checked-only"].rules, tsRenameMap) : {},
 				"ts/array-type": ["error", { default: "generic" }],
 				"ts/consistent-type-assertions": ["error", {
 					assertionStyle: "as",
@@ -1284,7 +1285,7 @@ async function unicorn(options = {}) {
 			files: withDefaultFiles(files, defaultFiles$1),
 			name: "w5s/unicorn/rules",
 			rules: {
-				...recommended && unicornPlugin.configs["unopinionated"].rules,
+				...recommended && unicornPlugin.configs.unopinionated.rules,
 				"unicorn/new-for-builtins": "off",
 				"unicorn/no-array-method-this-argument": "off",
 				"unicorn/no-console-spaces": "off",
@@ -1349,7 +1350,7 @@ async function yml(options = {}) {
 		language: "yml/yaml",
 		name: "w5s/yml/rules",
 		rules: {
-			...recommended ? ymlPlugin.configs["recommended"].reduce((acc, config) => ({
+			...recommended ? ymlPlugin.configs.recommended.reduce((acc, config) => ({
 				...acc,
 				...config.rules
 			}), {}) : {},

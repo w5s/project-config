@@ -76,7 +76,7 @@ export async function es(options: es.Options) {
       files: defaultFiles,
       name: 'w5s/es/rules',
       rules: {
-        ...(recommended ? es['recommended'] : {}),
+        ...(recommended ? es.recommended : {}),
         ...rules,
       },
     },
@@ -86,7 +86,7 @@ export async function es(options: es.Options) {
 /**
  * Recommended rules
  */
-es['recommended'] = {
+es.recommended = {
   ...eslintConfig.configs.recommended.rules,
   ...esRules(),
 };

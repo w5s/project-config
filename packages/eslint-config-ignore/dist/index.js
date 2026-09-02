@@ -215,12 +215,10 @@ async function ignoreFileFind(rootDir, options) {
 		while (true) {
 			const gi = nodePath.join(dir, GITIGNORE_FILE);
 			try {
-				const stat = await fs$1.stat(gi).catch(() => null);
-				if (stat && stat.isFile()) files.push(gi);
+				if ((await fs$1.stat(gi).catch(() => null))?.isFile()) files.push(gi);
 			} catch {}
 			if (stopAtGitRoot) try {
-				const gitStat = await fs$1.stat(nodePath.join(dir, ".git")).catch(() => null);
-				if (gitStat && gitStat.isDirectory()) break;
+				if ((await fs$1.stat(nodePath.join(dir, ".git")).catch(() => null))?.isDirectory()) break;
 			} catch {}
 			const parent = nodePath.dirname(dir);
 			if (parent === dir) break;

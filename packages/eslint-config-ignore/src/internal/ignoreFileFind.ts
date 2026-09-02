@@ -93,7 +93,7 @@ export async function ignoreFileFind(
       const gi = nodePath.join(dir, GITIGNORE_FILE);
       try {
         const stat = await fs.stat(gi).catch(() => null);
-        if (stat && stat.isFile()) files.push(gi);
+        if (stat?.isFile()) files.push(gi);
       } catch {
         // ignore
       }
@@ -101,7 +101,7 @@ export async function ignoreFileFind(
       if (stopAtGitRoot) {
         try {
           const gitStat = await fs.stat(nodePath.join(dir, '.git')).catch(() => null);
-          if (gitStat && gitStat.isDirectory()) break;
+          if (gitStat?.isDirectory()) break;
         } catch {
           // ignore
         }

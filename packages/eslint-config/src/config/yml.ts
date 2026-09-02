@@ -26,7 +26,7 @@ export async function yml(options: yml.Options = {}) {
       name: 'w5s/yml/rules',
       rules: {
         ...(recommended
-          ? ymlPlugin.configs['recommended'].reduce(
+          ? ymlPlugin.configs.recommended.reduce(
               (acc, config) => ({ ...acc, ...config.rules }),
 
               {} as RuleOptions,

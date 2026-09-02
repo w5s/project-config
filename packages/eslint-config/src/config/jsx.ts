@@ -33,7 +33,7 @@ export async function jsx(options: jsx.Options = {}) {
       files: withDefaultFiles(files, defaultFiles),
       name: 'w5s/jsx/rules',
       rules: {
-        ...(recommended && jsxA11yPlugin != null ? jsxA11yPlugin.configs['recommended'].rules : {}),
+        ...(recommended && jsxA11yPlugin != null ? jsxA11yPlugin.configs.recommended.rules : {}),
         ...rules,
       },
     },

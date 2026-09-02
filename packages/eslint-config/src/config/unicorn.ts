@@ -24,7 +24,7 @@ export async function unicorn(options: unicorn.Options = {}) {
       files: withDefaultFiles(files, defaultFiles),
       name: 'w5s/unicorn/rules',
       rules: {
-        ...(recommended && unicornPlugin.configs['unopinionated'].rules),
+        ...(recommended && unicornPlugin.configs.unopinionated.rules),
         // Disabled for safety
         'unicorn/new-for-builtins': 'off', // error, @see https://github.com/sindresorhus/eslint-plugin-unicorn/issues/122
         'unicorn/no-array-method-this-argument': 'off', // Many false positive reported

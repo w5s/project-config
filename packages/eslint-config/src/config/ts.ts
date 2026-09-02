@@ -67,6 +67,7 @@ export async function ts(options: ts.Options = {}) {
           ? {
               // eslint-disable-next-line ts/no-non-null-asserted-optional-chain
               ...ESLintConfig.renameRules(tsPlugin.configs['stylistic']?.rules!, tsRenameMap),
+              ...(typeChecked ? ESLintConfig.renameRules(tsPlugin.configs['stylistic-type-checked-only']!.rules!, tsRenameMap) : {}),
               'ts/array-type': ['error', { default: 'generic' }],
               'ts/consistent-type-assertions': [
                 'error',

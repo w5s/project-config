@@ -18,9 +18,9 @@ export async function imports(options: imports.Options = {}) {
     {
       name: 'w5s/import/rules',
       rules: {
-        ...(recommended ? imports['recommended'] : {}),
+        ...(recommended ? imports.recommended : {}),
         ...(stylisticEnabled
-          ? imports['stylistic']
+          ? imports.stylistic
           : {}),
         ...rules,
       },
@@ -31,7 +31,7 @@ export async function imports(options: imports.Options = {}) {
 /**
  * Recommended rules
  */
-imports['recommended'] = {
+imports.recommended = {
   // 'import/consistent-type-specifier-style': ['error', 'prefer-inline'],
   'import/first': 'error',
   'import/no-duplicates': 'error',
@@ -42,7 +42,7 @@ imports['recommended'] = {
 /**
  * Stylistic rules
  */
-imports['stylistic'] = {
+imports.stylistic = {
   'import/newline-after-import': ['error', { count: 1 }],
 };
 

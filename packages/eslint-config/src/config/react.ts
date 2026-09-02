@@ -33,7 +33,7 @@ export async function react(options: react.Options = {}) {
       name: 'w5s/react/rules',
       rules: {
         // eslint-disable-next-line ts/no-non-null-assertion
-        ...(recommended ? ESLintConfig.renameRules(reactPlugin.configs['recommended'].rules!, { '@eslint-react': 'react' }) : {}),
+        ...(recommended ? ESLintConfig.renameRules(reactPlugin.configs.recommended.rules!, { '@eslint-react': 'react' }) : {}),
         ...rules,
       },
     },
