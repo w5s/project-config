@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","names":[],"sources":["../src/defaultConfig.ts","../src/defineConfig.ts","../src/defineConfigWith.ts"],"mappings":";;cAEa,eAAe;;;;;;;;;iBCWZ,aAAa,aAAa,aAAa;iBACvC,aAAa,aAAa,eAAe;;;;;;;;;;;;;;;;;iBCOzC,iBAAiB,YAAY;GAC1C,aAAa,aAAa;GAC1B,aAAa,eAAe"}
+{"version":3,"file":"index.d.ts","names":[],"sources":["../src/defaultConfig.ts","../src/defineConfig.ts","../src/defineConfigWith.ts"],"mappings":";;qBAEa,eAAe;;;;;;;;;wBCWZ,aAAa,aAAa,aAAa;wBACvC,aAAa,aAAa,eAAe;;;;;;;;;;;;;;;;;wBCOzC,iBAAiB,YAAY;GAC1C,aAAa,aAAa;GAC1B,aAAa,eAAe"}

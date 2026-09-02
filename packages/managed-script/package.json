@@ -1,0 +1,72 @@
+{
+  "name": "@w5s/managed-script",
+  "version": "1.0.0-alpha.0",
+  "description": "CLI tool to run project scripts from a shared configuration",
+  "keywords": [
+    "cli",
+    "config",
+    "scripts"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/managed-script#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:w5s/project-config.git",
+    "directory": "packages/managed-script"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./dist/index.js",
+    "./internal/*": null
+  },
+  "bin": {
+    "managed-script": "dist/cli.js"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "index.js",
+    "index.d.ts",
+    "!**/*.spec.*",
+    "!**/__tests__/**"
+  ],
+  "scripts": {
+    "build": "pnpm run \"/^build:.*/\"",
+    "build:tsc": "pnpm exec tsdown",
+    "clean": "pnpm run \"/^clean:.*/\"",
+    "clean:tsc": "rm -rf dist",
+    "docs": "node ../../markdown.mjs",
+    "format": "pnpm run \"/^format:.*/\"",
+    "format:src": "pnpm exec eslint . --fix",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:src": "pnpm exec eslint .",
+    "postpack": "clean-package restore",
+    "prepack": "clean-package",
+    "prepublishOnly": "pnpm run clean;pnpm run build",
+    "spellcheck": "pnpm exec cspell --no-progress '**'",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:src": "pnpm exec vitest run",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "pnpm exec tsc --noEmit"
+  },
+  "dependencies": {
+    "c12": "^3.2.0",
+    "clipanion": "^4.0.0-rc.4"
+  },
+  "devDependencies": {
+    "@w5s/tsdown-config": "workspace:*"
+  },
+  "clean-package": "../../clean-package.config.cjs",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
