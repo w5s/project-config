@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.0.1/node_modules/@cspell/cspell-types/dist/index-ufqGDeKQ.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.1.1/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -157,7 +157,7 @@ interface ScopeChain {
 type ScopeString = string;
 type Scope = ScopeChain | ScopeString;
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.0.1/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.1.1/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
@@ -1124,6 +1124,10 @@ interface FileSettings extends ExtendableSettings, CommandLineSettings {
    * Glob patterns of files to be ignored.
    *
    * Glob patterns are relative to the {@link globRoot} of the configuration file that defines them.
+   *
+   * The default is `["node_modules/"]`.
+   *
+   * Warning: if you ignore `".git/"` then it will also ignore `".git/COMMIT_EDITMSG"` which is needed for the `commit-msg` git hook; in that case, rather use `[".git/{info,lfs,logs,refs,objects}/**", ".git/{index,*refs,*HEAD}"]`.
    */
   ignorePaths?: Glob[];
   /**

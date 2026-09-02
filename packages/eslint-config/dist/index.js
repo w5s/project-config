@@ -1209,9 +1209,6 @@ const tsRenameMap = { "@typescript-eslint": "ts" };
 const defaultFiles$2 = [tsSourceGlob];
 async function ts(options = {}) {
 	const [tsPlugin, tsParser] = await Promise.all([interopDefault(import("@typescript-eslint/eslint-plugin")), interopDefault(import("@typescript-eslint/parser"))]);
-	const tsRecommendedRules = tsPlugin.configs["eslint-recommended"].overrides[0].rules;
-	const tsStrictRules = tsPlugin.configs["strict"].rules;
-	const tsTypeCheckedRules = tsPlugin.configs["recommended-type-checked-only"].rules;
 	const { files, parserOptions = {}, recommended = true, rules = {}, stylistic = true, tsconfigPath = "./tsconfig.json", typeChecked = true } = options;
 	const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
 	const tsCustomRules = tsRules();
@@ -1237,9 +1234,9 @@ async function ts(options = {}) {
 		},
 		name: "w5s/ts/rules",
 		rules: {
-			...recommended ? ESLintConfig.renameRules(tsRecommendedRules, tsRenameMap) : {},
-			...recommended ? ESLintConfig.renameRules(tsStrictRules, tsRenameMap) : {},
-			...recommended && typeChecked ? ESLintConfig.renameRules(tsTypeCheckedRules, tsRenameMap) : {},
+			...recommended ? ESLintConfig.renameRules(tsPlugin.configs["eslint-recommended"].overrides[0].rules, tsRenameMap) : {},
+			...recommended ? ESLintConfig.renameRules(tsPlugin.configs["strict"].rules, tsRenameMap) : {},
+			...recommended && typeChecked ? ESLintConfig.renameRules(tsPlugin.configs["recommended-type-checked-only"].rules, tsRenameMap) : {},
 			...recommended ? tsCustomRules : {},
 			...stylisticEnabled ? {
 				...ESLintConfig.renameRules(tsPlugin.configs["stylistic"]?.rules, tsRenameMap),

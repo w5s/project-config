@@ -18,9 +18,6 @@ export async function ts(options: ts.Options = {}) {
     interopDefault(import('@typescript-eslint/eslint-plugin')),
     interopDefault(import('@typescript-eslint/parser')),
   ] as const);
-  const tsRecommendedRules = tsPlugin.configs['eslint-recommended']!.overrides![0]!.rules!;
-  const tsStrictRules = tsPlugin.configs['strict']!.rules!;
-  const tsTypeCheckedRules = tsPlugin.configs['recommended-type-checked-only']!.rules!;
   const {
     files,
     parserOptions = {},
@@ -62,9 +59,9 @@ export async function ts(options: ts.Options = {}) {
       },
       name: 'w5s/ts/rules',
       rules: {
-        ...(recommended ? ESLintConfig.renameRules(tsRecommendedRules, tsRenameMap) : {}),
-        ...(recommended ? ESLintConfig.renameRules(tsStrictRules, tsRenameMap) : {}),
-        ...(recommended && typeChecked ? ESLintConfig.renameRules(tsTypeCheckedRules, tsRenameMap) : {}),
+        ...(recommended ? ESLintConfig.renameRules(tsPlugin.configs['eslint-recommended']!.overrides![0]!.rules!, tsRenameMap) : {}),
+        ...(recommended ? ESLintConfig.renameRules(tsPlugin.configs['strict']!.rules!, tsRenameMap) : {}),
+        ...(recommended && typeChecked ? ESLintConfig.renameRules(tsPlugin.configs['recommended-type-checked-only']!.rules!, tsRenameMap) : {}),
         ...(recommended ? tsCustomRules : {}),
         ...(stylisticEnabled
           ? {
