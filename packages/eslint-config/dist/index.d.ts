@@ -1807,6 +1807,10 @@ interface RuleOptions$12 {
    */
   'jsdoc/no-undefined-types'?: Linter.RuleEntry<JsdocNoUndefinedTypes>;
   /**
+   * Reports redundant @type tags that match or broaden the naturally inferred TypeScript type.
+   */
+  'jsdoc/no-unnecessary-type-assertion'?: Linter.RuleEntry<JsdocNoUnnecessaryTypeAssertion>;
+  /**
    * Normalizes labeled links in `@see` tags to a canonical `{@link}` form.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/normalize-see-links.md#repos-sticky-header
    */
@@ -2081,12 +2085,16 @@ type JsdocCheckLineAlignment = [] | [("always" | "never" | "any")] | [("always" 
 // ----- jsdoc/check-param-names -----
 type JsdocCheckParamNames = [] | [{
   allowExtraTrailingParamDocs?: boolean;
+  badParamNames?: boolean;
+  badParamOrder?: boolean;
   checkDestructured?: boolean;
   checkRestProperty?: boolean;
   checkTypesPattern?: string;
   disableExtraPropertyReporting?: boolean;
   disableMissingParamChecks?: boolean;
+  duplicateParams?: boolean;
   enableFixer?: boolean;
+  extraParams?: boolean;
   useDefaultObjectProperties?: boolean;
 }];
 // ----- jsdoc/check-property-names -----
@@ -2266,6 +2274,13 @@ type JsdocNoUndefinedTypes = [] | [{
   definedTypes?: string[];
   disableReporting?: boolean;
   markVariablesAsUsed?: boolean;
+}];
+// ----- jsdoc/no-unnecessary-type-assertion -----
+type JsdocNoUnnecessaryTypeAssertion = [] | [{
+  checkLiteralConstAssertions?: boolean;
+  enableFixer?: boolean;
+  treatAnyAsRedundant?: boolean;
+  typesToIgnore?: string[];
 }];
 // ----- jsdoc/normalize-see-links -----
 type JsdocNormalizeSeeLinks = [] | [{
