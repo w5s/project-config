@@ -40,6 +40,26 @@ declare function concat<T extends Linter.Config = Linter.Config>(...configs: Arr
  */
 declare function fixme(_status: [number | string, ...Array<any>] | number | string | undefined): "off";
 /**
+ * Maps rule names and values using the provided mapping function.
+ *
+ * @example
+ * ```ts
+ * ESLintConfig.mapRules(
+ *   {
+ *     'rule-name': 'error',
+ *     'rule-to-drop': 'error',
+ *   },
+ *   (rule, value) => {
+ *     if (rule === 'rule-name') return ['new-rule-name', value];
+ *     return undefined;
+ *   }
+ * ); // { 'new-rule-name': 'error' }
+ * ```
+ * @param rules
+ * @param mapFn
+ */
+declare function mapRules(rules: Record<string, any>, mapFn: (rule: string, value: any) => [string, any] | undefined): Record<string, any>;
+/**
  * Return a new merged flat configuration
  *
  * @param configs
@@ -62,6 +82,7 @@ declare function renameRules(rules: Record<string, any>, map: Record<string, str
 declare const ESLintConfig: Readonly<{
   concat: typeof concat;
   fixme: typeof fixme;
+  mapRules: typeof mapRules;
   merge: typeof merge;
   renameRules: typeof renameRules;
 }>;

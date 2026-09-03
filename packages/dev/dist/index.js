@@ -43,6 +43,36 @@ function fixme(_status) {
 	return "off";
 }
 /**
+* Maps rule names and values using the provided mapping function.
+*
+* @example
+* ```ts
+* ESLintConfig.mapRules(
+*   {
+*     'rule-name': 'error',
+*     'rule-to-drop': 'error',
+*   },
+*   (rule, value) => {
+*     if (rule === 'rule-name') return ['new-rule-name', value];
+*     return undefined;
+*   }
+* ); // { 'new-rule-name': 'error' }
+* ```
+* @param rules
+* @param mapFn
+*/
+function mapRules(rules, mapFn) {
+	const mappedRules = Object.create(null);
+	for (let index = 0, keys = Object.keys(rules); index < keys.length; index++) {
+		const key = keys[index];
+		const mapped = mapFn(key, rules[key]);
+		if (mapped == null) continue;
+		mappedRules[mapped[0]] = mapped[1];
+	}
+	Object.setPrototypeOf(mappedRules, Object.getPrototypeOf(rules));
+	return mappedRules;
+}
+/**
 * Return a new merged flat configuration
 *
 * @param configs
@@ -87,11 +117,16 @@ function merge(...configs) {
 * @param map The object containing the rename map.
 */
 function renameRules(rules, map) {
-	return Object.fromEntries(Object.entries(rules).map(([key, value]) => {
-		for (const [from, to] of Object.entries(map)) if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
-		else if (from === "" && !key.includes("/") && to !== "") return [to + key, value];
+	const mapKeys = Object.keys(map);
+	return mapRules(rules, (key, value) => {
+		for (let index = 0; index < mapKeys.length; index++) {
+			const from = mapKeys[index];
+			const to = map[from];
+			if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
+			else if (from === "" && !key.includes("/") && to !== "") return [to + key, value];
+		}
 		return [key, value];
-	}));
+	});
 }
 /**
 * @namespace
@@ -99,6 +134,7 @@ function renameRules(rules, map) {
 const ESLintConfig = Object.freeze({
 	concat,
 	fixme,
+	mapRules,
 	merge,
 	renameRules
 });

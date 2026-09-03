@@ -5,6 +5,39 @@ import { describe, expect, it } from 'vitest';
 import { ESLintConfig } from './ESLintConfig.js';
 
 describe('ESLintConfig', () => {
+  describe(ESLintConfig.mapRules, () => {
+    it('should map rule names and values', () => {
+      const rules = {
+        'old-prefix/rule-one': 'error',
+        'old-prefix/rule-two': ['warn', { option: true }],
+      };
+
+      expect(
+        ESLintConfig.mapRules(rules, (rule, value) => [rule.replace('old-prefix/', 'new-prefix/'), value]),
+      ).toEqual({
+        'new-prefix/rule-one': 'error',
+        'new-prefix/rule-two': ['warn', { option: true }],
+      });
+    });
+
+    it('should only map own enumerable properties and keep the last mapped value', () => {
+      const inheritedRules = { inherited: 'off' };
+      const rules = Object.create(inheritedRules) as Record<string, string>;
+      rules['first'] = 'error';
+      rules['second'] = 'warn';
+
+      expect(ESLintConfig.mapRules(rules, () => ['mapped', 'off'])).toEqual({ mapped: 'off' });
+    });
+
+    it('should preserve __proto__ as a rule name', () => {
+      const result = ESLintConfig.mapRules({ rule: 'error' }, () => ['__proto__', 'warn']);
+
+      expect(Object.hasOwn(result, '__proto__')).toBe(true);
+      expect(result['__proto__']).toBe('warn');
+      expect(Object.getPrototypeOf(result)).toBe(Object.prototype);
+    });
+  });
+
   describe(ESLintConfig.merge, () => {
     it('should return a new configuration', () => {
       expect(

@@ -50,6 +50,40 @@ function fixme(_status: [number | string, ...Array<any>] | number | string | und
 }
 
 /**
+ * Maps rule names and values using the provided mapping function.
+ *
+ * @example
+ * ```ts
+ * ESLintConfig.mapRules(
+ *   {
+ *     'rule-name': 'error',
+ *     'rule-to-drop': 'error',
+ *   },
+ *   (rule, value) => {
+ *     if (rule === 'rule-name') return ['new-rule-name', value];
+ *     return undefined;
+ *   }
+ * ); // { 'new-rule-name': 'error' }
+ * ```
+ * @param rules
+ * @param mapFn
+ */
+function mapRules(rules: Record<string, any>, mapFn: (rule: string, value: any) => [string, any] | undefined): Record<string, any> {
+  const mappedRules = Object.create(null) as Record<string, any>;
+  for (let index = 0, keys = Object.keys(rules); index < keys.length; index++) {
+    // eslint-disable-next-line ts/no-non-null-assertion
+    const key = keys[index]!;
+    const mapped = mapFn(key, rules[key]);
+    if (mapped == null) continue;
+    // eslint-disable-next-line ts/no-unsafe-assignment
+    mappedRules[mapped[0]] = mapped[1];
+  }
+  // eslint-disable-next-line ts/no-unsafe-argument
+  Object.setPrototypeOf(mappedRules, Object.getPrototypeOf(rules));
+  return mappedRules;
+}
+
+/**
  * Return a new merged flat configuration
  *
  * @param configs
@@ -108,15 +142,19 @@ function merge<T extends Linter.Config = Linter.Config>(...configs: Array<T>): T
  * @param map The object containing the rename map.
  */
 function renameRules(rules: Record<string, any>, map: Record<string, string>): Record<string, any> {
-  return Object.fromEntries(
-    Object.entries(rules).map(([key, value]) => {
-      for (const [from, to] of Object.entries(map)) {
-        if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
-        else if (from === '' && !key.includes('/') && to !== '') return [to + key, value];
-      }
-      return [key, value];
-    }),
-  );
+  const mapKeys = Object.keys(map);
+  return mapRules(rules, (key, value) => {
+    // eslint-disable-next-line ts/prefer-for-of
+    for (let index = 0; index < mapKeys.length; index++) {
+      // eslint-disable-next-line ts/no-non-null-assertion
+      const from = mapKeys[index]!;
+      // eslint-disable-next-line ts/no-non-null-assertion
+      const to = map[from]!;
+      if (key.startsWith(`${from}/`)) return [to + key.slice(from.length), value];
+      else if (from === '' && !key.includes('/') && to !== '') return [to + key, value];
+    }
+    return [key, value];
+  });
 }
 
 /**
@@ -125,6 +163,7 @@ function renameRules(rules: Record<string, any>, map: Record<string, string>): R
 export const ESLintConfig = Object.freeze({
   concat,
   fixme,
+  mapRules,
   merge,
   renameRules,
 });
