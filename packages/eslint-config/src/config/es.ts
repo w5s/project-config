@@ -28,7 +28,7 @@ export async function es(options: es.Options) {
       : options.restrictedGlobals ?? defaultRestrictedGlobals;
   const resolvedPaths =
     typeof paths === 'function' ? paths(defaultRestrictedImportPaths) : paths ?? defaultRestrictedImportPaths;
-const resolvedSyntax =
+  const resolvedSyntax =
     typeof options.restrictedSyntax === 'function'
       ? options.restrictedSyntax(defaultRestrictedSyntax)
       : options.restrictedSyntax ?? defaultRestrictedSyntax;
