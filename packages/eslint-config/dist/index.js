@@ -94,6 +94,11 @@ async function e18e(options = {}) {
 }
 //#endregion
 //#region src/restrictedGlobals.ts
+/**
+* Default restricted globals used by the ESLint rule no-restricted-globals.
+*
+* @see https://eslint.org/docs/latest/rules/no-restricted-globals
+*/
 const restrictedGlobals = Object.freeze([{
 	message: "Use Number.isFinite instead https://github.com/airbnb/javascript#standard-library--isfinite",
 	name: "isFinite"
@@ -105,6 +110,8 @@ const restrictedGlobals = Object.freeze([{
 //#region src/restrictedImportPaths.ts
 /**
 * This file contains the list of restricted import paths used in the ESLint configuration.
+*
+* @see https://eslint.org/docs/latest/rules/no-restricted-imports
 */
 const restrictedImportPaths = Object.freeze([
 	{
@@ -148,6 +155,14 @@ const restrictedImportPaths = Object.freeze([
 		message: "Import from \"rxjs\" or \"rxjs/operators\"."
 	}
 ]);
+//#endregion
+//#region src/restrictedSyntax.ts
+/**
+* Default restricted syntax used by the ESLint rule no-restricted-syntax.
+*
+* @see https://eslint.org/docs/latest/rules/no-restricted-syntax
+*/
+const restrictedSyntax = Object.freeze([]);
 //#endregion
 //#region src/internal/lazy.ts
 function lazy(fn) {
@@ -500,9 +515,10 @@ const esRules = lazy(() => ({
 //#region src/config/es.ts
 const defaultFiles$10 = [esSourceGlob];
 async function es(options) {
-	const { defaultRestrictedGlobals = restrictedGlobals, defaultRestrictedImportPaths = restrictedImportPaths, recommended = true, restrictedImportPaths: paths, rules = {} } = options;
+	const { defaultRestrictedGlobals = restrictedGlobals, defaultRestrictedImportPaths = restrictedImportPaths, defaultRestrictedSyntax = restrictedSyntax, recommended = true, restrictedImportPaths: paths, rules = {} } = options;
 	const resolvedGlobals = typeof options.restrictedGlobals === "function" ? options.restrictedGlobals(defaultRestrictedGlobals) : options.restrictedGlobals ?? defaultRestrictedGlobals;
 	const resolvedPaths = typeof paths === "function" ? paths(defaultRestrictedImportPaths) : paths ?? defaultRestrictedImportPaths;
+	const resolvedSyntax = typeof options.restrictedSyntax === "function" ? options.restrictedSyntax(defaultRestrictedSyntax) : options.restrictedSyntax ?? defaultRestrictedSyntax;
 	return [
 		{
 			languageOptions: {
@@ -533,7 +549,8 @@ async function es(options) {
 			name: "w5s/source/restricted-rules",
 			rules: {
 				"no-restricted-globals": ["error", ...resolvedGlobals],
-				"no-restricted-imports": ["error", { paths: resolvedPaths }]
+				"no-restricted-imports": ["error", { paths: resolvedPaths }],
+				"no-restricted-syntax": ["error", ...resolvedSyntax]
 			}
 		},
 		{
@@ -1405,6 +1422,6 @@ const meta = Object.freeze({
 	version: "3.35.0"
 });
 //#endregion
-export { StylisticConfig, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, stylistic, test, ts, unicorn, unusedImports, yml };
+export { StylisticConfig, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, restrictedSyntax, stylistic, test, ts, unicorn, unusedImports, yml };
 
 //# sourceMappingURL=index.js.map

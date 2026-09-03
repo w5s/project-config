@@ -11,12 +11,6 @@ export const overrides = () => ({
   'no-nested-ternary': 'off',
   // Too strict, for pure code prefer the functional plugin
   'no-param-reassign': ['error', { props: false }],
-
-  // Allow for-of syntax
-  // 'no-restricted-syntax': baseConfig.rules['no-restricted-syntax'].filter(
-  //   // @ts-ignore No typing available
-  //   ({ selector }) => selector !== 'ForOfStatement',
-  // ),
   // underscore is often used (mongodb, etc)
   'no-underscore-dangle': 'off',
   // Ignore underscore case arguments

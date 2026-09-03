@@ -21,6 +21,7 @@ describe('index', () => {
       react: expect.any(Function),
       restrictedGlobals: expect.any(Array),
       restrictedImportPaths: expect.any(Array),
+      restrictedSyntax: expect.any(Array),
       stylistic: expect.any(Function),
       StylisticConfig: expect.any(Object),
       test: expect.any(Function),

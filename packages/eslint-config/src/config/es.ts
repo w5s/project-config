@@ -7,8 +7,9 @@ import type { RuleOptions } from '../typegen/jsonc.js';
 import { esSourceGlob, sourceGlob } from '../glob.js';
 import { restrictedGlobals as defaultGlobalRestrictedGlobals } from '../restrictedGlobals.js';
 import { restrictedImportPaths as defaultGlobalRestrictedImportPaths } from '../restrictedImportPaths.js';
+import { restrictedSyntax as defaultGlobalRestrictedSyntax } from '../restrictedSyntax.js';
 import { esRules } from '../rules/esRules.js';
-import { type Config, type PluginOptionsBase, type RestrictedGlobals, type RestrictedImportPaths } from '../type.js';
+import { type Config, type PluginOptionsBase, type RestrictedGlobals, type RestrictedImportPaths, type RestrictedSyntax } from '../type.js';
 
 const defaultFiles = [esSourceGlob];
 
@@ -16,6 +17,7 @@ export async function es(options: es.Options) {
   const {
     defaultRestrictedGlobals = defaultGlobalRestrictedGlobals,
     defaultRestrictedImportPaths = defaultGlobalRestrictedImportPaths,
+    defaultRestrictedSyntax = defaultGlobalRestrictedSyntax,
     recommended = true,
     restrictedImportPaths: paths,
     rules = {},
@@ -26,7 +28,10 @@ export async function es(options: es.Options) {
       : options.restrictedGlobals ?? defaultRestrictedGlobals;
   const resolvedPaths =
     typeof paths === 'function' ? paths(defaultRestrictedImportPaths) : paths ?? defaultRestrictedImportPaths;
-
+const resolvedSyntax =
+    typeof options.restrictedSyntax === 'function'
+      ? options.restrictedSyntax(defaultRestrictedSyntax)
+      : options.restrictedSyntax ?? defaultRestrictedSyntax;
   return [
     {
       languageOptions: {
@@ -69,6 +74,10 @@ export async function es(options: es.Options) {
           {
             paths: resolvedPaths,
           },
+        ],
+        'no-restricted-syntax': [
+          'error',
+          ...resolvedSyntax,
         ],
       },
     },
@@ -116,6 +125,17 @@ export namespace es {
     defaultRestrictedImportPaths?: Readonly<RestrictedImportPaths> | undefined;
 
     /**
+     * The default restricted syntax (used by restrictedSyntax).
+     *
+     * WARNING: prefer using restrictedSyntax
+     *
+     * You should use defaultRestrictedSyntax only for eslint shared configuration and should rarely be used in project configuration.
+     *
+     * @internal
+     */
+    defaultRestrictedSyntax?: Readonly<RestrictedSyntax> | undefined;
+
+    /**
      * An array of restricted globals to override the default restricted globals.
      *
      * @example
@@ -161,6 +181,29 @@ export namespace es {
      * ```
      */
     restrictedImportPaths?: ((currentPaths: Readonly<RestrictedImportPaths>) => RestrictedImportPaths) | RestrictedImportPaths | undefined;
+
+    /**
+     * An array of restricted syntax to override the default restricted syntax.
+     *
+     * @example
+     * ```ts
+     * // As object
+     * {
+     *   restrictedSyntax: [
+     *     { selector: 'ForInStatement', message: 'Please use for-of instead of for-in.' },
+     *   ], // Will totally override the default restricted syntax
+     * }
+     * // as function
+     * {
+     *  restrictedSyntax: (currentSyntax) => [
+     *     ...currentSyntax.filter((syntax) => syntax.selector !== 'ForInStatement'),
+     *     { selector: 'ForInStatement', message: 'Please use for-of instead of for-in.' },
+     *   ], // Allow fine grained control over the default restricted syntax, you can filter or add new syntax rules.
+     * }
+     * @see https://eslint.org/docs/latest/rules/no-restricted-syntax
+     * ```
+     */
+    restrictedSyntax?: ((currentSyntax: Readonly<RestrictedSyntax>) => RestrictedSyntax) | RestrictedSyntax | undefined;
   }
 
   export type Rules = RuleOptions;

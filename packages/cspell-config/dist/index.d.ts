@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.1.1/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.2.0/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -157,7 +157,7 @@ interface ScopeChain {
 type ScopeString = string;
 type Scope = ScopeChain | ScopeString;
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.1.1/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.2.0/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
@@ -1573,6 +1573,13 @@ interface BaseSetting extends InlineDictionary, ExperimentalBaseSettings, Unknow
    * @since 9.7.0
    */
   substitutions?: Substitutions;
+  /**
+   * Enables enables locale-sensitive text segmentation to support languages like Japanese, Chinese, Thai, Lao, Khmer, Myanmar, etc.
+   * The locale used for the segmentation is based on the {@link language} setting.
+   *
+   * @since 10.2.0
+   */
+  useIntlWordSegmentation?: boolean;
 }
 interface LanguageSetting extends LanguageSettingFilterFields, BaseSetting {}
 interface LanguageSettingFilterFields extends LanguageSettingFilterFieldsPreferred, LanguageSettingFilterFieldsDeprecated {}

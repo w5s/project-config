@@ -3,6 +3,8 @@ import type { RestrictedImportPaths } from './type.js';
 
 /**
  * This file contains the list of restricted import paths used in the ESLint configuration.
+ *
+ * @see https://eslint.org/docs/latest/rules/no-restricted-imports
  */
 export const restrictedImportPaths: Readonly<RestrictedImportPaths> = Object.freeze([
   // List of restricted import

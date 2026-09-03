@@ -208,6 +208,12 @@ type RestrictedImportPaths = NonNullable<Extract<ESLintRules['no-restricted-impo
   paths?: unknown;
 }>['paths']>;
 //#endregion
+//#region src/type/RestrictedSyntax.d.ts
+/**
+ * This file contains the type definition for restricted globals used in the ESLint configuration.
+ */
+type RestrictedSyntax = Array<NonNullable<ESLintRules['no-restricted-syntax'] extends Linter.RuleEntry<infer O> ? O[number] : never>>;
+//#endregion
 //#region src/config/e18e.d.ts
 /**
  * @see https://e18e.dev
@@ -1054,6 +1060,16 @@ declare namespace es {
      */
     defaultRestrictedImportPaths?: Readonly<RestrictedImportPaths> | undefined;
     /**
+     * The default restricted syntax (used by restrictedSyntax).
+     *
+     * WARNING: prefer using restrictedSyntax
+     *
+     * You should use defaultRestrictedSyntax only for eslint shared configuration and should rarely be used in project configuration.
+     *
+     * @internal
+     */
+    defaultRestrictedSyntax?: Readonly<RestrictedSyntax> | undefined;
+    /**
      * An array of restricted globals to override the default restricted globals.
      *
      * @example
@@ -1098,6 +1114,28 @@ declare namespace es {
      * ```
      */
     restrictedImportPaths?: ((currentPaths: Readonly<RestrictedImportPaths>) => RestrictedImportPaths) | RestrictedImportPaths | undefined;
+    /**
+     * An array of restricted syntax to override the default restricted syntax.
+     *
+     * @example
+     * ```ts
+     * // As object
+     * {
+     *   restrictedSyntax: [
+     *     { selector: 'ForInStatement', message: 'Please use for-of instead of for-in.' },
+     *   ], // Will totally override the default restricted syntax
+     * }
+     * // as function
+     * {
+     *  restrictedSyntax: (currentSyntax) => [
+     *     ...currentSyntax.filter((syntax) => syntax.selector !== 'ForInStatement'),
+     *     { selector: 'ForInStatement', message: 'Please use for-of instead of for-in.' },
+     *   ], // Allow fine grained control over the default restricted syntax, you can filter or add new syntax rules.
+     * }
+     * @see https://eslint.org/docs/latest/rules/no-restricted-syntax
+     * ```
+     */
+    restrictedSyntax?: ((currentSyntax: Readonly<RestrictedSyntax>) => RestrictedSyntax) | RestrictedSyntax | undefined;
   }
   type Rules = RuleOptions$14;
 }
@@ -14178,13 +14216,28 @@ declare const meta: Readonly<{
 }>;
 //#endregion
 //#region src/restrictedGlobals.d.ts
+/**
+ * Default restricted globals used by the ESLint rule no-restricted-globals.
+ *
+ * @see https://eslint.org/docs/latest/rules/no-restricted-globals
+ */
 declare const restrictedGlobals: Readonly<RestrictedGlobals>;
 //#endregion
 //#region src/restrictedImportPaths.d.ts
 /**
  * This file contains the list of restricted import paths used in the ESLint configuration.
+ *
+ * @see https://eslint.org/docs/latest/rules/no-restricted-imports
  */
 declare const restrictedImportPaths: Readonly<RestrictedImportPaths>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedGlobals, RestrictedImportPaths, StylisticConfig, StylisticParameters, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, stylistic, test, ts, unicorn, unusedImports, yml };
+//#region src/restrictedSyntax.d.ts
+/**
+ * Default restricted syntax used by the ESLint rule no-restricted-syntax.
+ *
+ * @see https://eslint.org/docs/latest/rules/no-restricted-syntax
+ */
+declare const restrictedSyntax: Readonly<RestrictedSyntax>;
+//#endregion
+export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedGlobals, RestrictedImportPaths, RestrictedSyntax, StylisticConfig, StylisticParameters, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, restrictedSyntax, stylistic, test, ts, unicorn, unusedImports, yml };
 //# sourceMappingURL=index.d.ts.map
