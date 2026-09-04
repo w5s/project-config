@@ -34,4 +34,9 @@ describe(defineConfig, () => {
     expect(result).toBeInstanceOf(Promise);
     await expect(result).resolves.toEqual(expect.any(Array));
   });
+
+  it('matches the snapshot of config names in default mode', async () => {
+    const config = await defineConfig();
+    expect(config.map((entry) => entry.name)).toMatchSnapshot();
+  });
 });

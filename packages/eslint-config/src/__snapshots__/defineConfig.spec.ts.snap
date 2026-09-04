@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`defineConfig > matches the snapshot of config names in default mode 1`] = `
+[
+  "w5s/eslint-ignore",
+  "w5s/es/setup",
+  "w5s/source/restricted-rules",
+  "w5s/es/rules",
+  "w5s/ts/setup",
+  "w5s/ts/rules",
+  "w5s/e18e/setup",
+  "w5s/e18e/rules",
+  "w5s/jsx/setup",
+  "w5s/jsx/rules",
+  "w5s/unused-imports/setup",
+  "w5s/unused-imports/rules",
+  "w5s/import/setup",
+  "w5s/import/rules",
+  "w5s/perfectionist/setup",
+  "w5s/perfectionist/rules",
+  "w5s/node/setup",
+  "w5s/node/rules",
+  "w5s/react/setup",
+  "w5s/react/rules",
+  "w5s/unicorn/setup",
+  "w5s/unicorn/rules",
+  "w5s/unicorn/overrides",
+  "w5s/test/setup",
+  "w5s/test/rules",
+  "w5s/style/setup",
+  "w5s/style/rules",
+]
+`;
