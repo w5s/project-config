@@ -73,6 +73,8 @@ export async function defineConfig(options: DefineConfigOptions = {}): Promise<A
     ...includeEnabled(config.react, toOption(plugins.react)),
     ...includeEnabled(config.unicorn, toOption(plugins.unicorn)),
     ...includeEnabled(config.test, toOption(plugins.test)),
+    // Stylistic
+    ...includeEnabled(config.stylistic, stylisticOptions),
     ...(rules ? [{ rules }] : []),
   );
 }
