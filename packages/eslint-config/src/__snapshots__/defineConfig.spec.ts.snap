@@ -29,5 +29,17 @@ exports[`defineConfig > matches the snapshot of config names in default mode 1`]
   "w5s/test/rules",
   "w5s/style/setup",
   "w5s/style/rules",
+  "w5s/jsonc/setup",
+  "w5s/jsonc/rules",
+  undefined,
+  undefined,
+  "w5s/jsdoc/setup",
+  "w5s/jsdoc/rules-js",
+  "w5s/jsdoc/rules-ts",
+  "w5s/markdown/setup",
+  "w5s/markdown/rules",
+  "w5s/markdown/embed-code",
+  "w5s/yml/setup",
+  "w5s/yml/rules",
 ]
 `;

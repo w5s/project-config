@@ -75,6 +75,12 @@ export async function defineConfig(options: DefineConfigOptions = {}): Promise<A
     ...includeEnabled(config.test, toOption(plugins.test)),
     // Stylistic
     ...includeEnabled(config.stylistic, stylisticOptions),
+
+    // other languages
+    ...includeEnabled(config.jsonc, toOption(plugins.jsonc)),
+    ...includeEnabled(config.jsdoc, toOption(plugins.jsdoc)),
+    ...includeEnabled(config.markdown, toOption(plugins.markdown)),
+    ...includeEnabled(config.yml, toOption(plugins.yml)),
     ...(rules ? [{ rules }] : []),
   );
 }
