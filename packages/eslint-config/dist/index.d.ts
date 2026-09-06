@@ -2,6 +2,7 @@ import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
 import eslint, { Linter } from "eslint";
 import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 import { ESLintRules } from "eslint/rules";
+//#endregion
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
@@ -139,23 +140,23 @@ type E18EBanDependencies = [] | [{
 }];
 //#endregion
 //#region src/type/Config.d.ts
-interface Config extends Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> {
+export interface Config extends Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> {
   plugins?: Record<string, any>;
 }
 //#endregion
 //#region src/type/StylisticConfig.d.ts
-interface StylisticConfig {
+export interface StylisticConfig {
   enabled: boolean;
   indent: NonNullable<StylisticCustomizeOptions['indent']>;
   jsx: NonNullable<StylisticCustomizeOptions['jsx']>;
   quotes: NonNullable<StylisticCustomizeOptions['quotes']>;
   semi: NonNullable<StylisticCustomizeOptions['semi']>;
 }
-interface StylisticParameters extends Partial<StylisticConfig> {}
+export interface StylisticParameters extends Partial<StylisticConfig> {}
 /**
  * @namespace
  */
-declare const StylisticConfig: {
+export declare const StylisticConfig: {
   /**
    * Default config
    */
@@ -175,7 +176,7 @@ declare const StylisticConfig: {
 };
 //#endregion
 //#region src/type/PluginOptionsBase.d.ts
-interface PluginOptionsBase<Rules> {
+export interface PluginOptionsBase<Rules> {
   /**
    * Files to apply
    */
@@ -198,13 +199,13 @@ interface PluginOptionsBase<Rules> {
 /**
  * This file contains the type definition for restricted globals used in the ESLint configuration.
  */
-type RestrictedGlobals = Array<NonNullable<ESLintRules['no-restricted-globals'] extends Linter.RuleEntry<infer O> ? O[number] : never>>;
+export type RestrictedGlobals = Array<NonNullable<ESLintRules['no-restricted-globals'] extends Linter.RuleEntry<infer O> ? O[number] : never>>;
 //#endregion
 //#region src/type/RestrictedImportPaths.d.ts
 /**
  * This file contains the type definition for restricted import paths used in the ESLint configuration.
  */
-type RestrictedImportPaths = NonNullable<Extract<ESLintRules['no-restricted-imports'] extends Linter.RuleEntry<infer O> ? O[number] : never, {
+export type RestrictedImportPaths = NonNullable<Extract<ESLintRules['no-restricted-imports'] extends Linter.RuleEntry<infer O> ? O[number] : never, {
   paths?: unknown;
 }>['paths']>;
 //#endregion
@@ -212,15 +213,15 @@ type RestrictedImportPaths = NonNullable<Extract<ESLintRules['no-restricted-impo
 /**
  * This file contains the type definition for restricted globals used in the ESLint configuration.
  */
-type RestrictedSyntax = Array<NonNullable<ESLintRules['no-restricted-syntax'] extends Linter.RuleEntry<infer O> ? O[number] : never>>;
+export type RestrictedSyntax = Array<NonNullable<ESLintRules['no-restricted-syntax'] extends Linter.RuleEntry<infer O> ? O[number] : never>>;
 //#endregion
 //#region src/config/e18e.d.ts
 /**
  * @see https://e18e.dev
  * @param options
  */
-declare function e18e(options?: e18e.Options): Promise<[Config, Config]>;
-declare namespace e18e {
+export declare function e18e(options?: e18e.Options): Promise<[Config, Config]>;
+export declare namespace e18e {
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * Include modernization default configuration
@@ -753,8 +754,8 @@ type JsoncSpaceUnaryOps = [] | [{
 }];
 //#endregion
 //#region src/config/es.d.ts
-declare function es(options: es.Options): Promise<[Config, Config, Config]>;
-declare namespace es {
+export declare function es(options: es.Options): Promise<[Config, Config, Config]>;
+export declare namespace es {
   var recommended: {
     'class-methods-use-this': "off";
     'default-case': "off";
@@ -1037,7 +1038,7 @@ declare namespace es {
     yoda: "error";
   };
 }
-declare namespace es {
+export declare namespace es {
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * The default restricted globals (used by restrictedGlobals).
@@ -1141,8 +1142,8 @@ declare namespace es {
 }
 //#endregion
 //#region src/config/ignores.d.ts
-declare function ignores(options?: ignores.Options): Promise<import("@w5s/eslint-config-ignore").ESLintIgnoreConfig[]>;
-declare namespace ignores {
+export declare function ignores(options?: ignores.Options): Promise<import("@w5s/eslint-config-ignore").ESLintIgnoreConfig[]>;
+export declare namespace ignores {
   type Options = ESLintIgnoreOptions;
 }
 //#endregion
@@ -1625,8 +1626,8 @@ type ImportPreferDefaultExport = [] | [{
 }];
 //#endregion
 //#region src/config/imports.d.ts
-declare function imports(options?: imports.Options): Promise<[Config, Config]>;
-declare namespace imports {
+export declare function imports(options?: imports.Options): Promise<[Config, Config]>;
+export declare namespace imports {
   var recommended: {
     'import/first': string;
     'import/no-duplicates': string;
@@ -1639,7 +1640,7 @@ declare namespace imports {
     })[];
   };
 }
-declare namespace imports {
+export declare namespace imports {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$13;
 }
@@ -2606,15 +2607,15 @@ type JsdocValidTypes = [] | [{
 }];
 //#endregion
 //#region src/config/jsdoc.d.ts
-declare function jsdoc(options?: jsdoc.Options): Promise<ReadonlyArray<Config>>;
-declare namespace jsdoc {
+export declare function jsdoc(options?: jsdoc.Options): Promise<ReadonlyArray<Config>>;
+export declare namespace jsdoc {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$12;
 }
 //#endregion
 //#region src/config/jsonc.d.ts
-declare function jsonc(options?: jsonc.Options): Promise<ReadonlyArray<Config>>;
-declare namespace jsonc {
+export declare function jsonc(options?: jsonc.Options): Promise<ReadonlyArray<Config>>;
+export declare namespace jsonc {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$14;
 }
@@ -3031,8 +3032,8 @@ type JsxA11YTabindexNoPositive = [] | [{
 }];
 //#endregion
 //#region src/config/jsx.d.ts
-declare function jsx(options?: jsx.Options): Promise<[Config, Config]>;
-declare namespace jsx {
+export declare function jsx(options?: jsx.Options): Promise<[Config, Config]>;
+export declare namespace jsx {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {
     /**
      * Enable jsx-a11y plugin. Defaults to false.
@@ -3220,8 +3221,8 @@ type MarkdownTableColumnCount = [] | [{
 }];
 //#endregion
 //#region src/config/markdown.d.ts
-declare function markdown(options?: markdown.Options): Promise<[Config, Config, Config]>;
-declare namespace markdown {
+export declare function markdown(options?: markdown.Options): Promise<[Config, Config, Config]>;
+export declare namespace markdown {
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * Default to 'markdown/gfm' (Github Flavored Markdown)
@@ -3356,8 +3357,8 @@ interface RuleOptions$9 {
 type NextNoHtmlLinkForPages = [] | [(string | string[])];
 //#endregion
 //#region src/config/next.d.ts
-declare function next(options?: next.Options): Promise<[Config, Config]>;
-declare namespace next {
+export declare function next(options?: next.Options): Promise<[Config, Config]>;
+export declare namespace next {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
   type Rules = RuleOptions$9;
 }
@@ -3874,8 +3875,8 @@ type NodeShebang = [] | [{
 }];
 //#endregion
 //#region src/config/node.d.ts
-declare function node(options?: node.Options): Promise<[Config, Config]>;
-declare namespace node {
+export declare function node(options?: node.Options): Promise<[Config, Config]>;
+export declare namespace node {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {}
   type Rules = RuleOptions$8;
 }
@@ -6761,8 +6762,8 @@ type PerfectionistSortVariableDeclarations = {
 }[];
 //#endregion
 //#region src/config/perfectionist.d.ts
-declare function perfectionist(options?: perfectionist.Options): Promise<[Config, Config]>;
-declare namespace perfectionist {
+export declare function perfectionist(options?: perfectionist.Options): Promise<[Config, Config]>;
+export declare namespace perfectionist {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$7;
 }
@@ -7530,8 +7531,8 @@ type ReactXUseState = [] | [{
 }];
 //#endregion
 //#region src/config/react.d.ts
-declare function react(options?: react.Options): Promise<[Config, Config]>;
-declare namespace react {
+export declare function react(options?: react.Options): Promise<[Config, Config]>;
+export declare namespace react {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
   type Rules = RuleOptions$6;
 }
@@ -9293,8 +9294,8 @@ type StyleYieldStarSpacing = [] | [(("before" | "after" | "both" | "neither") | 
 })];
 //#endregion
 //#region src/config/stylistic.d.ts
-declare function stylistic(options?: stylistic.Options): Promise<[Config, Config]>;
-declare namespace stylistic {
+export declare function stylistic(options?: stylistic.Options): Promise<[Config, Config]>;
+export declare namespace stylistic {
   interface Options extends Pick<PluginOptionsBase<Rules>, 'rules'>, StylisticParameters {}
   type Rules = RuleOptions$5;
 }
@@ -9839,8 +9840,8 @@ type TestValidTitle = [] | [{
 }];
 //#endregion
 //#region src/config/test.d.ts
-declare function test(options?: test.Options): Promise<[Config, Config]>;
-declare namespace test {
+export declare function test(options?: test.Options): Promise<[Config, Config]>;
+export declare namespace test {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$4;
 }
@@ -11507,8 +11508,8 @@ type TsUnifiedSignatures = [] | [{
 }];
 //#endregion
 //#region src/config/ts.d.ts
-declare function ts(options?: ts.Options): Promise<[Config, Config]>;
-declare namespace ts {
+export declare function ts(options?: ts.Options): Promise<[Config, Config]>;
+export declare namespace ts {
   interface Options extends PluginOptionsBase<Rules> {
     /**
      * Parser options for TypeScript ESLint parser
@@ -13732,8 +13733,8 @@ type UnicornTryComplexity = [] | [{
 }];
 //#endregion
 //#region src/config/unicorn.d.ts
-declare function unicorn(options?: unicorn.Options): Promise<[Config, Config, Config]>;
-declare namespace unicorn {
+export declare function unicorn(options?: unicorn.Options): Promise<[Config, Config, Config]>;
+export declare namespace unicorn {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$2;
 }
@@ -13793,8 +13794,8 @@ type UnusedImportsNoUnusedVars = [] | [(("all" | "local") | {
 })];
 //#endregion
 //#region src/config/unused-imports.d.ts
-declare function unusedImports(options?: unusedImports.Options): Promise<[Config, Config]>;
-declare namespace unusedImports {
+export declare function unusedImports(options?: unusedImports.Options): Promise<[Config, Config]>;
+export declare namespace unusedImports {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$1;
 }
@@ -14186,14 +14187,17 @@ type YmlSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
 }];
 //#endregion
 //#region src/config/yml.d.ts
-declare function yml(options?: yml.Options): Promise<[Config, Config]>;
-declare namespace yml {
+export declare function yml(options?: yml.Options): Promise<[Config, Config]>;
+export declare namespace yml {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions;
 }
+declare namespace config_d_exports {
+  export { e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, next, node, perfectionist, react, stylistic, test, ts, unicorn, unusedImports, yml };
+}
 //#endregion
 //#region src/defineConfig.d.ts
-interface DefineConfigOptions extends ignores.Options {
+export interface DefineConfigOptions extends ignores.Options {
   /**
    * Plugins configuration
    */
@@ -14221,10 +14225,10 @@ interface DefineConfigOptions extends ignores.Options {
    */
   rules?: eslint.Linter.RulesRecord;
 }
-declare function defineConfig(options?: DefineConfigOptions): Promise<Array<Config>>;
+export declare function defineConfig(options?: DefineConfigOptions): Promise<Array<Config>>;
 //#endregion
 //#region src/meta.d.ts
-declare const meta: Readonly<{
+export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
@@ -14236,7 +14240,7 @@ declare const meta: Readonly<{
  *
  * @see https://eslint.org/docs/latest/rules/no-restricted-globals
  */
-declare const restrictedGlobals: Readonly<RestrictedGlobals>;
+export declare const restrictedGlobals: Readonly<RestrictedGlobals>;
 //#endregion
 //#region src/restrictedImportPaths.d.ts
 /**
@@ -14244,7 +14248,7 @@ declare const restrictedGlobals: Readonly<RestrictedGlobals>;
  *
  * @see https://eslint.org/docs/latest/rules/no-restricted-imports
  */
-declare const restrictedImportPaths: Readonly<RestrictedImportPaths>;
+export declare const restrictedImportPaths: Readonly<RestrictedImportPaths>;
 //#endregion
 //#region src/restrictedSyntax.d.ts
 /**
@@ -14252,7 +14256,6 @@ declare const restrictedImportPaths: Readonly<RestrictedImportPaths>;
  *
  * @see https://eslint.org/docs/latest/rules/no-restricted-syntax
  */
-declare const restrictedSyntax: Readonly<RestrictedSyntax>;
+export declare const restrictedSyntax: Readonly<RestrictedSyntax>;
 //#endregion
-export { Config, DefineConfigOptions, PluginOptionsBase, RestrictedGlobals, RestrictedImportPaths, RestrictedSyntax, StylisticConfig, StylisticParameters, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, restrictedSyntax, stylistic, test, ts, unicorn, unusedImports, yml };
 //# sourceMappingURL=index.d.ts.map
