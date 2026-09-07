@@ -17,6 +17,7 @@ exports[`defaultConfig > should match snapshot 1`] = `
     "sharp": true,
   },
   "blockExoticSubdeps": true,
+  "enableGlobalVirtualStore": false,
   "enablePrePostScripts": false,
   "ignorePatchFailures": false,
   "minimumReleaseAge": 1440,
@@ -28,6 +29,6 @@ exports[`defaultConfig > should match snapshot 1`] = `
   "resolutionMode": "lowest-direct",
   "trustPolicy": "no-downgrade",
   "trustPolicyIgnoreAfter": 10080,
-  "verifyDepsBeforeRun": "install",
+  "verifyDepsBeforeRun": false,
 }
 `;

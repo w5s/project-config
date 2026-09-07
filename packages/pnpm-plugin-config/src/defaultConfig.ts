@@ -22,4 +22,5 @@ export const defaultConfig = Object.freeze({
   enableGlobalVirtualStore: false, // FIXME: this does not work
   minimumReleaseAgeExclude: ['@w5s/*'],
   overrides: {},
+  verifyDepsBeforeRun: false, // FIXME: Causes infinite loop with prepare and pnpm run inside prepare/postinstall
 } satisfies PnpmUserConfig);

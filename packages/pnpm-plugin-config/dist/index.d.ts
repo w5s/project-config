@@ -18,6 +18,7 @@ export declare const defaultConfig: Readonly<{
   enableGlobalVirtualStore: false;
   minimumReleaseAgeExclude: string[];
   overrides: {};
+  verifyDepsBeforeRun: false;
   blockExoticSubdeps: true;
   enablePrePostScripts: false;
   ignorePatchFailures: false;
@@ -26,7 +27,6 @@ export declare const defaultConfig: Readonly<{
   resolutionMode: "lowest-direct";
   trustPolicy: "no-downgrade";
   trustPolicyIgnoreAfter: number;
-  verifyDepsBeforeRun: "install";
 }>;
 //#endregion
 //#region ../../node_modules/.pnpm/@pnpm+catalogs.types@1000.0.0/node_modules/@pnpm/catalogs.types/lib/index.d.ts
