@@ -415,6 +415,16 @@ importers:
         specifier: workspace:*
         version: link:../tsdown-config
 
+  packages/managed-script-config:
+    dependencies:
+      '@w5s/managed-script':
+        specifier: workspace:^
+        version: link:../managed-script
+    devDependencies:
+      '@w5s/tsdown-config':
+        specifier: workspace:*
+        version: link:../tsdown-config
+
   packages/mrm-preset:
     dependencies:
       '@w5s/configurator-core':
