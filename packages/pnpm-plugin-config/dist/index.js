@@ -32,7 +32,8 @@ const defaultConfig = Object.freeze({
 		"nx": true,
 		"protobufjs": true,
 		"re2": true,
-		"sharp": true
+		"sharp": true,
+		"sqlite3": true
 	},
 	enableGlobalVirtualStore: false,
 	minimumReleaseAgeExclude: ["@w5s/*"],

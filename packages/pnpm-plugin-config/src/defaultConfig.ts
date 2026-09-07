@@ -18,6 +18,7 @@ export const defaultConfig = Object.freeze({
     'protobufjs': true,
     're2': true,
     'sharp': true,
+    'sqlite3': true,
   },
   enableGlobalVirtualStore: false, // FIXME: this does not work
   minimumReleaseAgeExclude: ['@w5s/*'],

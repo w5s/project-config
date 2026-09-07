@@ -14,6 +14,7 @@ export declare const defaultConfig: Readonly<{
     protobufjs: true;
     re2: true;
     sharp: true;
+    sqlite3: true;
   };
   enableGlobalVirtualStore: false;
   minimumReleaseAgeExclude: string[];
