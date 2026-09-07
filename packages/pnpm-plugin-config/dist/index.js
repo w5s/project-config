@@ -37,7 +37,7 @@ const defaultConfig = Object.freeze({
 	enableGlobalVirtualStore: false,
 	minimumReleaseAgeExclude: ["@w5s/*"],
 	overrides: {},
-	verifyDepsBeforeRun: false
+	verifyDepsBeforeRun: "warn"
 });
 //#endregion
 //#region src/PnpmUserConfig.ts

@@ -18,7 +18,7 @@ export declare const defaultConfig: Readonly<{
   enableGlobalVirtualStore: false;
   minimumReleaseAgeExclude: string[];
   overrides: {};
-  verifyDepsBeforeRun: false;
+  verifyDepsBeforeRun: "warn";
   blockExoticSubdeps: true;
   enablePrePostScripts: false;
   ignorePatchFailures: false;
