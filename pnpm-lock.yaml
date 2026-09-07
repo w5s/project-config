@@ -136,6 +136,9 @@ importers:
       '@w5s/managed-script':
         specifier: workspace:*
         version: link:packages/managed-script
+      '@w5s/managed-script-config':
+        specifier: workspace:*
+        version: link:packages/managed-script-config
       '@w5s/mrm-preset':
         specifier: workspace:*
         version: link:packages/mrm-preset
