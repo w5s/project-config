@@ -79,7 +79,7 @@ declare function renameRules(rules: Record<string, any>, map: Record<string, str
 /**
  * @namespace
  */
-declare const ESLintConfig: Readonly<{
+export declare const ESLintConfig: Readonly<{
   concat: typeof concat;
   fixme: typeof fixme;
   mapRules: typeof mapRules;
@@ -108,10 +108,10 @@ declare const ESLintConfig: Readonly<{
  * @template T - The type of the module or promise-like object.
  * @param m The module or promise-like object to resolve.
  */
-declare function interopDefault<T>(m: PromiseLike<T>): Promise<T extends {
+export declare function interopDefault<T>(m: PromiseLike<T>): Promise<T extends {
   default: infer U;
 } ? U : T>;
-declare function interopDefault<T>(m: T): T extends {
+export declare function interopDefault<T>(m: T): T extends {
   default: infer U;
 } ? U : T;
 //#endregion
@@ -119,8 +119,8 @@ declare function interopDefault<T>(m: T): T extends {
 /**
  * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
  */
-type LanguageId = keyof LanguageIdMap;
-interface LanguageIdMap {
+export type LanguageId = keyof LanguageIdMap;
+export interface LanguageIdMap {
   css: true;
   graphql: true;
   javascript: true;
@@ -139,7 +139,7 @@ interface LanguageIdMap {
 }
 //#endregion
 //#region src/meta.d.ts
-declare const meta: Readonly<{
+export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
@@ -149,11 +149,11 @@ declare const meta: Readonly<{
 /**
  * A type of a file extension
  */
-type Extension = `.${string}`;
+export type Extension = `.${string}`;
 /**
  * Object hash of all well-known file extension category to file extensions mapping
  */
-type ExtensionRegistry = Record<LanguageId, ReadonlyArray<Extension>>;
+export type ExtensionRegistry = Record<LanguageId, ReadonlyArray<Extension>>;
 /**
  * Supported ECMA version
  *
@@ -243,7 +243,7 @@ declare function extensionsToTestGlob(extensions: ReadonlyArray<Extension>, opti
   testExtensions?: ReadonlyArray<string>;
   testFolders?: ReadonlyArray<string>;
 }): Array<string>;
-declare const Project: Readonly<{
+export declare const Project: Readonly<{
   ecmaVersion: typeof ecmaVersion;
   extensionsToGlob: typeof extensionsToGlob;
   extensionsToMatcher: typeof extensionsToMatcher;
@@ -258,7 +258,7 @@ declare const Project: Readonly<{
 /**
  * Project common scripts
  */
-declare const ProjectScript: {
+export declare const ProjectScript: {
   readonly Build: "build";
   readonly Clean: "clean";
   readonly CodeAnalysis: "code-analysis";
@@ -276,7 +276,6 @@ declare const ProjectScript: {
   readonly Typecheck: "typecheck";
   readonly Validate: "validate";
 };
-type ProjectScript = (typeof ProjectScript)[keyof typeof ProjectScript];
+export type ProjectScript = (typeof ProjectScript)[keyof typeof ProjectScript];
 //#endregion
-export { ESLintConfig, Extension, ExtensionRegistry, LanguageId, LanguageIdMap, Project, ProjectScript, interopDefault, meta };
 //# sourceMappingURL=index.d.cts.map

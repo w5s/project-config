@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.2.0/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.2.2/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -157,7 +157,7 @@ interface ScopeChain {
 type ScopeString = string;
 type Scope = ScopeChain | ScopeString;
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.2.0/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.2.2/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
@@ -613,6 +613,15 @@ interface InlineDictionary {
    *   "cancelled->canceled"
    * ]
    * ```
+   *
+   * Case Sensitivity:
+   *
+   * A word is flagged if it exactly matches an entry, or if its lowercased form exactly matches an entry.
+   * In practice this means:
+   * - An entry written in **all lowercase** (e.g. `avocado`) flags that word in any casing found in the
+   *   document — `avocado`, `Avocado`, and `AVOCADO` are all flagged.
+   * - An entry containing **any uppercase letter** (e.g. `Avocado`) only flags that exact casing —
+   *   `avocado` and `AVOCADO` are not flagged.
    */
   flagWords?: string[];
   /**
@@ -1793,11 +1802,11 @@ interface CompatibleEngineVersions {
 declare const config: AdvancedCSpellSettings;
 //#endregion
 //#region src/meta.d.ts
-declare const meta: Readonly<{
+export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
 //#endregion
-export { config as default, meta };
+export { config as default };
 //# sourceMappingURL=index.d.ts.map

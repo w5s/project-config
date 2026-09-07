@@ -91,8 +91,8 @@ interface WriterOptions {
 }
 //#endregion
 //#region src/gitmoji.d.ts
-type Emoji = Emoji.Text | Emoji.Unicode;
-declare namespace Emoji {
+export type Emoji = Emoji.Text | Emoji.Unicode;
+export declare namespace Emoji {
   type Text = string & {
     '@@EmojiStyle': 'text';
   };
@@ -106,17 +106,17 @@ declare function isUnicode(anyValue: string): anyValue is Emoji.Unicode;
 /**
  * @namespace
  */
-declare const Emoji: Readonly<{
+export declare const Emoji: Readonly<{
   hasInstance: typeof hasInstance;
   isText: typeof isText;
   isUnicode: typeof isUnicode;
   reEmojiText: RegExp;
   reEmojiUnicode: RegExp;
 }>;
-type GitmojiCode = Emoji & {
+export type GitmojiCode = Emoji & {
   '@@Gitmoji': true;
 };
-declare namespace GitmojiCode {
+export declare namespace GitmojiCode {
   type Emoji = Emoji.Text & {
     '@@Gitmoji': true;
   };
@@ -129,7 +129,7 @@ declare function toConventionalCommitType(gitmoji: GitmojiCode): CommitConventio
 /**
  * @namespace
  */
-declare const GitmojiCode: Readonly<{
+export declare const GitmojiCode: Readonly<{
   isValid: typeof isValid;
   toConventionalCommitType: typeof toConventionalCommitType;
 }>;
@@ -148,11 +148,11 @@ declare function createPreset(): Promise<{
 }>;
 //#endregion
 //#region src/meta.d.ts
-declare const meta: Readonly<{
+export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
 //#endregion
-export { Emoji, GitmojiCode, createPreset as default, meta };
+export { createPreset as default };
 //# sourceMappingURL=index.d.ts.map

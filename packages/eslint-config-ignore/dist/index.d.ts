@@ -1,5 +1,5 @@
 //#region src/eslintIgnores.d.ts
-interface ESLintIgnoreConfig {
+export interface ESLintIgnoreConfig {
   /**
    * The file globs to ignore
    */
@@ -9,7 +9,7 @@ interface ESLintIgnoreConfig {
    */
   name: string;
 }
-interface ESLintIgnoreOptions {
+export interface ESLintIgnoreOptions {
   /**
    * Override current working directory
    */
@@ -50,14 +50,14 @@ interface ESLintIgnoreOptions {
  *
  * @param options
  */
-declare function eslintIgnores(options?: ESLintIgnoreOptions): Promise<ESLintIgnoreConfig>;
+export declare function eslintIgnores(options?: ESLintIgnoreOptions): Promise<ESLintIgnoreConfig>;
 //#endregion
 //#region src/meta.d.ts
-declare const meta: Readonly<{
+export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
 //#endregion
-export { ESLintIgnoreConfig, ESLintIgnoreOptions, type ESLintIgnoreOptions as Options, eslintIgnores as default, eslintIgnores, meta };
+export { type ESLintIgnoreOptions as Options, eslintIgnores as default };
 //# sourceMappingURL=index.d.ts.map

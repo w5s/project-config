@@ -8,11 +8,11 @@ declare const config: {
 };
 //#endregion
 //#region src/meta.d.ts
-declare const meta: Readonly<{
+export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
 //#endregion
-export { config as default, meta };
+export { config as default };
 //# sourceMappingURL=index.d.ts.map
