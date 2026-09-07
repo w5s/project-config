@@ -66,6 +66,7 @@ export async function defineConfig(options: DefineConfigOptions = {}): Promise<A
     ...includeEnabled(config.e18e, toOption(plugins.e18e)),
     ...includeEnabled(config.jsx, toOption(plugins.jsx)),
     ...includeEnabled(config.unusedImports, toOption(plugins['unused-imports'])),
+    ...includeEnabled(config.jsdoc, toOption(plugins.jsdoc)),
     ...includeEnabled(config.imports, toOption(plugins.import)),
     ...includeEnabled(config.perfectionist, toOption(plugins.perfectionist)),
     ...includeEnabled(config.node, toOption(plugins.node)),
@@ -78,7 +79,6 @@ export async function defineConfig(options: DefineConfigOptions = {}): Promise<A
 
     // other languages
     ...includeEnabled(config.jsonc, toOption(plugins.jsonc)),
-    ...includeEnabled(config.jsdoc, toOption(plugins.jsdoc)),
     ...includeEnabled(config.markdown, toOption(plugins.markdown)),
     ...includeEnabled(config.yml, toOption(plugins.yml)),
     ...(rules ? [{ rules }] : []),
