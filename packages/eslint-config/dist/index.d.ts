@@ -3318,6 +3318,11 @@ interface RuleOptions$9 {
    */
   'next/no-img-element'?: Linter.RuleEntry<[]>;
   /**
+   * Prevent usage of `location.assign` or `location.href` assignment to navigate to internal Next.js pages.
+   * @see https://nextjs.org/docs/messages/no-location-assign-relative-destination
+   */
+  'next/no-location-assign-relative-destination'?: Linter.RuleEntry<[]>;
+  /**
    * Prevent page-only custom fonts.
    * @see https://nextjs.org/docs/messages/no-page-custom-font
    */
