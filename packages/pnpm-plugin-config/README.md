@@ -39,7 +39,7 @@ Inspired by [@pnpm/plugin-better-defaults](https://github.com/pnpm/pnpm/tree/mai
 - `resolutionMode: 'lowest-direct'`
 - `trustPolicy: 'no-downgrade'`
 - `trustPolicyIgnoreAfter: 10080` (7 days)
-- `verifyDepsBeforeRun: 'install'`
+- `verifyDepsBeforeRun: 'warn'`
 - Resets `hoistPattern` from `['*']` to `[]` when that is the only pattern
 
 ## Usage
@@ -72,7 +72,7 @@ pnpm: >=10.8.0 (`updateConfig` hook)
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[${license}][license-url] © ${author}) -->
 
-[UNLICENSED][license-url] © w5s
+[MIT][license-url] © w5s
 
 <!-- AUTO-GENERATED-CONTENT:END -->
 
