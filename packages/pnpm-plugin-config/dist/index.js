@@ -1,5 +1,25 @@
+//#region src/internal/betterDefaultConfig.ts
+/**
+* Curated defaults from [@pnpm/plugin-better-defaults](https://github.com/pnpm/plugin-better-defaults).
+*
+* @see https://github.com/pnpm/plugin-better-defaults
+*/
+const betterDefaultConfig = Object.freeze({
+	blockExoticSubdeps: true,
+	enableGlobalVirtualStore: true,
+	enablePrePostScripts: false,
+	ignorePatchFailures: false,
+	minimumReleaseAge: 1440,
+	optimisticRepeatInstall: true,
+	resolutionMode: "lowest-direct",
+	trustPolicy: "no-downgrade",
+	trustPolicyIgnoreAfter: 10080,
+	verifyDepsBeforeRun: "install"
+});
+//#endregion
 //#region src/defaultConfig.ts
 const defaultConfig = Object.freeze({
+	...betterDefaultConfig,
 	allowBuilds: {
 		"@parcel/watcher": true,
 		"@swc/core": true,
@@ -14,17 +34,9 @@ const defaultConfig = Object.freeze({
 		"re2": true,
 		"sharp": true
 	},
-	blockExoticSubdeps: true,
-	enablePrePostScripts: false,
-	ignorePatchFailures: false,
-	minimumReleaseAge: 1440,
+	enableGlobalVirtualStore: false,
 	minimumReleaseAgeExclude: ["@w5s/*"],
-	optimisticRepeatInstall: true,
-	overrides: {},
-	resolutionMode: "lowest-direct",
-	trustPolicy: "no-downgrade",
-	trustPolicyIgnoreAfter: 10080,
-	verifyDepsBeforeRun: "install"
+	overrides: {}
 });
 //#endregion
 //#region src/PnpmUserConfig.ts

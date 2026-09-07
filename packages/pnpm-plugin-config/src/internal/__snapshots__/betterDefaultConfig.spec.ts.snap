@@ -1,0 +1,16 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`betterDefaultConfig > should match snapshot 1`] = `
+{
+  "blockExoticSubdeps": true,
+  "enableGlobalVirtualStore": true,
+  "enablePrePostScripts": false,
+  "ignorePatchFailures": false,
+  "minimumReleaseAge": 1440,
+  "optimisticRepeatInstall": true,
+  "resolutionMode": "lowest-direct",
+  "trustPolicy": "no-downgrade",
+  "trustPolicyIgnoreAfter": 10080,
+  "verifyDepsBeforeRun": "install",
+}
+`;

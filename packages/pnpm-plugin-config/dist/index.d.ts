@@ -1,6 +1,6 @@
 import { Cafs, ResolvedFrom } from "@pnpm/cafs-types";
 //#region src/defaultConfig.d.ts
-declare const defaultConfig: Readonly<{
+export declare const defaultConfig: Readonly<{
   allowBuilds: {
     '@parcel/watcher': true;
     '@swc/core': true;
@@ -15,13 +15,14 @@ declare const defaultConfig: Readonly<{
     re2: true;
     sharp: true;
   };
+  enableGlobalVirtualStore: false;
+  minimumReleaseAgeExclude: string[];
+  overrides: {};
   blockExoticSubdeps: true;
   enablePrePostScripts: false;
   ignorePatchFailures: false;
   minimumReleaseAge: number;
-  minimumReleaseAgeExclude: string[];
   optimisticRepeatInstall: true;
-  overrides: {};
   resolutionMode: "lowest-direct";
   trustPolicy: "no-downgrade";
   trustPolicyIgnoreAfter: number;
@@ -1235,26 +1236,26 @@ interface Config extends OptionsFromRootManifest {
 }
 //#endregion
 //#region src/hooks.d.ts
-declare const hooks: {
+export declare const hooks: {
   updateConfig(config: Partial<Config>): Partial<Config>;
 };
 //#endregion
 //#region src/meta.d.ts
-declare const meta: Readonly<{
+export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
 //#endregion
 //#region src/PnpmConfig.d.ts
-type PnpmConfig = Config;
+export type PnpmConfig = Config;
 //#endregion
 //#region src/PnpmUserConfig.d.ts
-type PnpmUserConfig = Partial<PnpmConfig>;
+export type PnpmUserConfig = Partial<PnpmConfig>;
 /**
  * @namespace
  */
-declare const PnpmUserConfig: Readonly<{
+export declare const PnpmUserConfig: Readonly<{
   /**
    * Merge two configs immutably. `extension` values win; `base` fills in
    * undefined slots. `allowBuilds` and `overrides` are deep-merged (extension
@@ -1271,9 +1272,8 @@ declare const PnpmUserConfig: Readonly<{
 //#endregion
 //#region src/PnpmHooks.d.ts
 /** Hooks exported by this plugin's pnpmfile. */
-interface PnpmHooks extends Omit<Hooks, 'updateConfig'> {
+export interface PnpmHooks extends Omit<Hooks, 'updateConfig'> {
   updateConfig?: (config: PnpmUserConfig) => PnpmUserConfig | Promise<PnpmUserConfig>;
 }
 //#endregion
-export { PnpmConfig, PnpmHooks, PnpmUserConfig, defaultConfig, hooks, meta };
 //# sourceMappingURL=index.d.ts.map

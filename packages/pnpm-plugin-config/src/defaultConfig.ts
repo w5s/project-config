@@ -1,7 +1,10 @@
 import type { PnpmUserConfig } from './PnpmUserConfig.js';
 
+import { betterDefaultConfig } from './internal/betterDefaultConfig.js';
+
 // Opinionated defaults inspired by @pnpm/plugin-better-defaults, extended with org-specific settings.
 export const defaultConfig = Object.freeze({
+  ...betterDefaultConfig,
   allowBuilds: {
     '@parcel/watcher': true,
     '@swc/core': true,
@@ -16,16 +19,7 @@ export const defaultConfig = Object.freeze({
     're2': true,
     'sharp': true,
   },
-  blockExoticSubdeps: true,
-  // enableGlobalVirtualStore: true, FIXME: this does not work
-  enablePrePostScripts: false,
-  ignorePatchFailures: false,
-  minimumReleaseAge: 1 * 24 * 60,
+  enableGlobalVirtualStore: false, // FIXME: this does not work
   minimumReleaseAgeExclude: ['@w5s/*'],
-  optimisticRepeatInstall: true,
   overrides: {},
-  resolutionMode: 'lowest-direct',
-  trustPolicy: 'no-downgrade',
-  trustPolicyIgnoreAfter: 7 * 24 * 60,
-  verifyDepsBeforeRun: 'install',
 } satisfies PnpmUserConfig);
