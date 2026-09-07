@@ -1,9 +1,9 @@
 import type { CommandContext } from './CommandContext.js';
 
-export type Command =
-  | Command.RunScript;
+export type ManagedScriptCommand =
+  | ManagedScriptCommand.RunScript;
 
-export namespace Command {
+export namespace ManagedScriptCommand {
   export interface Base<TName extends string, TParameters extends object> {
     /**
      * Name of the command.
@@ -28,8 +28,8 @@ export namespace Command {
   }> {}
 }
 
-export const Command = Object.freeze({
-  RunScript: (args: Command.Parameters<Command.RunScript>): Command.RunScript => ({
+export const ManagedScriptCommand = Object.freeze({
+  RunScript: (args: ManagedScriptCommand.Parameters<ManagedScriptCommand.RunScript>): ManagedScriptCommand.RunScript => ({
     _: 'RunScript' as const,
     ...args,
   }),
