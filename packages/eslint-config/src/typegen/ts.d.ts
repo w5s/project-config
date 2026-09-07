@@ -1356,7 +1356,10 @@ type TsNoMeaninglessVoidOperator = []|[{
 // ----- ts/no-misused-promises -----
 type TsNoMisusedPromises = []|[{
   
-  checksConditionals?: boolean
+  checksConditionals?: (boolean | {
+    
+    flagUnions?: ("all" | "strict" | "none")
+  })
   
   checksSpreads?: boolean
   
