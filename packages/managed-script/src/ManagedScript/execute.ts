@@ -1,13 +1,14 @@
-import type { Command } from '../type.js';
+import type { ManagedScriptCommand } from '../type.js';
 
 import { ConfigLoader } from '../infrastructure/ConfigLoader.js';
 import { Executor } from '../infrastructure/Executor.js';
 import { ScriptNameResolver } from '../infrastructure/ScriptNameResolver.js';
+import { ManagedScriptEnv } from '../ManagedScriptEnv.js';
 import { defaultContext } from './defaultContext.js';
 import { resolveScripts } from './resolveScripts.js';
 
 const handlers = {
-  RunScript: async (command: Command.RunScript): Promise<number> => {
+  RunScript: async (command: ManagedScriptCommand.RunScript): Promise<number> => {
     const { context: { cwd, env }, parameters: { scriptName } } = command;
     const loaded = await ConfigLoader.load({ cwd });
     const resolved = resolveScripts(loaded);
@@ -32,9 +33,9 @@ const handlers = {
 
     // Prepare the environment variables for the script execution.
     const scriptEnv = {
-      MANAGED_SCRIPT_CONFIG_DIR: script.configDir,
-      MANAGED_SCRIPT_CONFIG_FILE: script.configFile,
-      MANAGED_SCRIPT_NAME: name,
+      [ManagedScriptEnv.ConfigDir]: script.configDir,
+      [ManagedScriptEnv.ConfigFile]: script.configFile,
+      [ManagedScriptEnv.Name]: name,
     };
 
     const exitCode = await Executor.run(script.command, { cwd, env: scriptEnv });
@@ -46,27 +47,27 @@ const handlers = {
     return exitCode;
   },
 } satisfies {
-  [K in Command['_']]: (command: Extract<Command, { _: K }>) => Promise<any>;
+  [K in ManagedScriptCommand['_']]: (command: Extract<ManagedScriptCommand, { _: K }>) => Promise<any>;
 };
 
-export type ExecuteCommand<T extends Command> = Omit<T, 'context'> & {
+export type ExecuteCommand<T extends ManagedScriptCommand> = Omit<T, 'context'> & {
   /**
    * Context is optional
    */
-  context?: Partial<Command['context']>;
+  context?: Partial<ManagedScriptCommand['context']>;
 };
 
 /**
  * Extract command parameter from execute handler
  */
-export type ExecuteCommandParameters<T extends Command> = Omit<Parameters<typeof execute<T>>[0], '_'>;
+export type ExecuteCommandParameters<T extends ManagedScriptCommand> = Omit<Parameters<typeof execute<T>>[0], '_'>;
 
 /**
  * Dispatch the command to the appropriate handler based on its type.
  *
  * @param command
  */
-export async function execute<T extends Command>(command: ExecuteCommand<T>): Promise<Awaited<ReturnType<typeof handlers[T['_']]>>> {
+export async function execute<T extends ManagedScriptCommand>(command: ExecuteCommand<T>): Promise<Awaited<ReturnType<typeof handlers[T['_']]>>> {
   const context = defaultContext(command.context);
   // @ts-ignore we know this works
   return handlers[command._]({

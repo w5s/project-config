@@ -4,6 +4,6 @@ import * as Module from './index.js';
 
 describe('index', () => {
   it('exports', () => {
-    expect(new Set(Object.keys(Module))).toEqual(new Set(['Command', 'ManagedScript', 'meta']));
+    expect(new Set(Object.keys(Module))).toEqual(new Set(['ManagedScript', 'ManagedScriptCommand', 'ManagedScriptEnv', 'meta']));
   });
 });
