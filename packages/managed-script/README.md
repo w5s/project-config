@@ -33,12 +33,19 @@ Use `--cwd` to choose the directory used to resolve configuration and run the se
 
 Use `--dry-run,-n` to print the resolved command instead of executing it. This is a CLI-only flag; it is not part of the configuration.
 
+### Logging
+
+Use `--loglevel <level>` to control status messages, with `silent`, `error`, `warn`, `info` (default) and `debug` levels. `--silent,-s` and `--verbose,-v` are shortcuts for `--loglevel silent` and `--loglevel debug`; `--silent` takes precedence if both are passed. Status messages are written to stderr, keeping stdout free for `--dry-run` output.
+
+The equivalent environment variable is `MANAGED_SCRIPT_LOGLEVEL`; the CLI option takes precedence over the environment variable. This is a CLI-only flag; it is not part of the configuration.
+
 Scripts receive these environment variables:
 
 - `MANAGED_SCRIPT_NAME`: the resolved script name.
 - `MANAGED_SCRIPT_CWD`: the invocation directory used to resolve configuration and spawn the script.
 - `MANAGED_SCRIPT_CONFIG_FILE`: the root configuration file, when one was found.
 - `MANAGED_SCRIPT_CONFIG_DIR`: the directory of the configuration layer that declared the selected script.
+- `MANAGED_SCRIPT_LOGLEVEL`: the resolved log level, so the invoked script can match its own verbosity.
 
 The spawn directory always remains `MANAGED_SCRIPT_CWD`. This lets a shared configuration package ship scripts and locate files beside its config without changing the project's execution context:
 
