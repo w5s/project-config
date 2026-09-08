@@ -1,3 +1,5 @@
+import { ManagedScriptEnv } from '../ManagedScriptEnv.js';
+
 export interface ScriptNameResolverOptions {
   readonly env: NodeJS.ProcessEnv;
   readonly scriptName: string | undefined;
@@ -10,6 +12,6 @@ export interface ScriptNameResolverOptions {
  */
 export const ScriptNameResolver = {
   resolve({ env, scriptName }: ScriptNameResolverOptions): string | undefined {
-    return scriptName ?? env['MANAGED_SCRIPT_NAME'] ?? env['npm_lifecycle_event'];
+    return scriptName ?? env[ManagedScriptEnv.Name] ?? env['npm_lifecycle_event'];
   },
 };
