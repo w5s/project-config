@@ -38,6 +38,44 @@ describe(RootCommand, () => {
     expect(exitCode).toBe(0);
   });
 
+  it('passes the --dry-run option to runScript and returns its exit code', async () => {
+    vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
+
+    const exitCode = await createCli().run(['--name', 'build', '--dry-run'], {
+      stderr: process.stderr,
+      stdin: process.stdin,
+      stdout: process.stdout,
+    });
+
+    expect(ManagedScript.runScript).toHaveBeenCalledWith(
+      expect.objectContaining({
+        context: expect.objectContaining({
+          cli: expect.objectContaining({ dryRun: true }),
+        }),
+      }),
+    );
+    expect(exitCode).toBe(0);
+  });
+
+  it('passes the -n option as an alias for --dry-run', async () => {
+    vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
+
+    const exitCode = await createCli().run(['--name', 'build', '-n'], {
+      stderr: process.stderr,
+      stdin: process.stdin,
+      stdout: process.stdout,
+    });
+
+    expect(ManagedScript.runScript).toHaveBeenCalledWith(
+      expect.objectContaining({
+        context: expect.objectContaining({
+          cli: expect.objectContaining({ dryRun: true }),
+        }),
+      }),
+    );
+    expect(exitCode).toBe(0);
+  });
+
   it('writes the error message to stderr and returns 1 on failure', async () => {
     vi.mocked(ManagedScript.runScript).mockRejectedValue(new Error('boom'));
     const chunks: Array<string> = [];
