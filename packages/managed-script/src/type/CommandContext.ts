@@ -1,3 +1,5 @@
+import type { LogLevel } from '../infrastructure/Logger.js';
+
 export interface CommandContext {
   /**
    * Command-line arguments passed to the script.
@@ -5,6 +7,7 @@ export interface CommandContext {
   readonly cli: {
     cwd?: string | undefined;
     dryRun?: boolean | undefined;
+    logLevel?: LogLevel | undefined;
   };
 
   /**
@@ -21,4 +24,14 @@ export interface CommandContext {
    * Environment variables available to the script.
    */
   readonly env: NodeJS.ProcessEnv;
+
+  /**
+   * Resolved log level used to filter status messages.
+   */
+  readonly logLevel: LogLevel;
+
+  /**
+   * Stream used to write log messages.
+   */
+  readonly stderr: NodeJS.WritableStream;
 }
