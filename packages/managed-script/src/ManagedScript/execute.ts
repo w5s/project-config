@@ -2,6 +2,7 @@ import type { ManagedScriptCommand } from '../type.js';
 
 import { ConfigLoader } from '../infrastructure/ConfigLoader.js';
 import { Executor } from '../infrastructure/Executor.js';
+import { Logger } from '../infrastructure/Logger.js';
 import { ScriptNameResolver } from '../infrastructure/ScriptNameResolver.js';
 import { ManagedScriptEnv } from '../ManagedScriptEnv.js';
 import { defaultContext } from './defaultContext.js';
@@ -9,8 +10,10 @@ import { resolveScripts } from './resolveScripts.js';
 
 const handlers = {
   RunScript: async (command: ManagedScriptCommand.RunScript): Promise<number> => {
-    const { context: { cwd, dryRun, env }, parameters: { scriptName } } = command;
+    const { context: { cwd, dryRun, env, logLevel, stderr }, parameters: { scriptName } } = command;
+    const logger = Logger.create({ level: logLevel, stream: stderr });
     const loaded = await ConfigLoader.load({ cwd });
+    logger.debug(`Resolved configuration from ${loaded.configFile ?? 'defaults (no config file found)'}.`);
     const resolved = resolveScripts(loaded);
     const { scripts } = resolved;
 
@@ -36,10 +39,13 @@ const handlers = {
       return 0;
     }
 
+    logger.info(`Running script "${name}": ${script.command}`);
+
     // Prepare the environment variables for the script execution.
     const scriptEnv = {
       [ManagedScriptEnv.ConfigDir]: script.configDir,
       [ManagedScriptEnv.ConfigFile]: script.configFile,
+      [ManagedScriptEnv.LogLevel]: logLevel,
       [ManagedScriptEnv.Name]: name,
     };
 

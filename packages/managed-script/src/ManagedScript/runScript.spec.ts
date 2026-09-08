@@ -1,3 +1,4 @@
+import { Writable } from 'node:stream';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ConfigLoader } from '../infrastructure/ConfigLoader.js';
@@ -34,6 +35,7 @@ describe(runScript, () => {
       env: {
         MANAGED_SCRIPT_CONFIG_DIR: '/cwd/config',
         MANAGED_SCRIPT_CONFIG_FILE: '/cwd/config/managed-script.config',
+        MANAGED_SCRIPT_LOGLEVEL: 'info',
         MANAGED_SCRIPT_NAME: 'build',
       },
     });
@@ -58,6 +60,72 @@ describe(runScript, () => {
     expect(exitCode).toBe(0);
 
     logSpy.mockRestore();
+  });
+
+  it('forwards the resolved log level to the executed script', async () => {
+    vi.mocked(ConfigLoader.load).mockResolvedValue({
+      config: { scripts: { build: 'my-command' } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: 'my-command' } } }],
+    });
+    vi.mocked(Executor.run).mockResolvedValue(0);
+
+    await runScript({
+      context: { cwd: '/cwd', env: {}, logLevel: 'debug' },
+      parameters: { scriptName: 'build' },
+    });
+
+    expect(Executor.run).toHaveBeenCalledWith('my-command', expect.objectContaining({
+      env: expect.objectContaining({ MANAGED_SCRIPT_LOGLEVEL: 'debug' }),
+    }));
+  });
+
+  it('writes info and debug messages to the provided stderr stream', async () => {
+    vi.mocked(ConfigLoader.load).mockResolvedValue({
+      config: { scripts: { build: 'my-command' } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: 'my-command' } } }],
+    });
+    vi.mocked(Executor.run).mockResolvedValue(0);
+    const chunks: Array<string> = [];
+    const stderr = new Writable({
+      write(chunk: Buffer, _encoding, callback) {
+        chunks.push(chunk.toString());
+        callback();
+      },
+    });
+
+    await runScript({
+      context: { cwd: '/cwd', env: {}, logLevel: 'debug', stderr },
+      parameters: { scriptName: 'build' },
+    });
+
+    const output = chunks.join('');
+    expect(output).toContain('Running script "build": my-command');
+    expect(output).toContain('Resolved configuration from /cwd/config/managed-script.config');
+  });
+
+  it('writes nothing to stderr at the silent log level', async () => {
+    vi.mocked(ConfigLoader.load).mockResolvedValue({
+      config: { scripts: { build: 'my-command' } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: 'my-command' } } }],
+    });
+    vi.mocked(Executor.run).mockResolvedValue(0);
+    const chunks: Array<string> = [];
+    const stderr = new Writable({
+      write(chunk: Buffer, _encoding, callback) {
+        chunks.push(chunk.toString());
+        callback();
+      },
+    });
+
+    await runScript({
+      context: { cwd: '/cwd', env: {}, logLevel: 'silent', stderr },
+      parameters: { scriptName: 'build' },
+    });
+
+    expect(chunks).toEqual([]);
   });
 
   it('throws when the script name cannot be resolved', async () => {

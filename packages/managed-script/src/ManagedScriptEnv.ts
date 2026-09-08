@@ -15,6 +15,11 @@ export const ManagedScriptEnv = Object.freeze({
   ConfigFile: 'MANAGED_SCRIPT_CONFIG_FILE',
 
   /**
+   * The resolved log level.
+   */
+  LogLevel: 'MANAGED_SCRIPT_LOGLEVEL',
+
+  /**
    * The name of the managed script.
    */
   Name: 'MANAGED_SCRIPT_NAME',
