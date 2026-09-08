@@ -1,9 +1,9 @@
 import type { ManagedScriptCommand } from '../type.js';
 
-import { ConfigLoader } from '../infrastructure/ConfigLoader.js';
-import { Executor } from '../infrastructure/Executor.js';
-import { Logger } from '../infrastructure/Logger.js';
-import { ScriptNameResolver } from '../infrastructure/ScriptNameResolver.js';
+import { ConfigLoader } from '../internal/ConfigLoader.js';
+import { Executor } from '../internal/Executor.js';
+import { Logger } from '../internal/Logger.js';
+import { ScriptNameResolver } from '../internal/ScriptNameResolver.js';
 import { ManagedScriptEnv } from '../ManagedScriptEnv.js';
 import { defaultContext } from './defaultContext.js';
 import { resolveScripts } from './resolveScripts.js';
