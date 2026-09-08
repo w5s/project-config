@@ -1,9 +1,11 @@
 import type { LogLevel } from '../internal/Logger.js';
 import type { CommandContext } from '../type.js';
 
+import { ManagedScriptEnv } from '../ManagedScriptEnv.js';
+
 export function defaultContext(context: Partial<CommandContext> | undefined): CommandContext {
   const { cli = {}, cwd, dryRun, env = process.env, logLevel, stderr = process.stderr } = context ?? {};
-  const envLogLevel = env['MANAGED_SCRIPT_LOGLEVEL'];
+  const envLogLevel = env[ManagedScriptEnv.LogLevel];
   return {
     cli,
     cwd: cwd ?? cli.cwd ?? env['MANAGED_SCRIPT_CWD'] ?? process.cwd(),
