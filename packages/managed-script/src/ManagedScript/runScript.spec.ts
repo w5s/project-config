@@ -1,8 +1,8 @@
 import { Writable } from 'node:stream';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { ConfigLoader } from '../infrastructure/ConfigLoader.js';
-import { Executor } from '../infrastructure/Executor.js';
+import { ConfigLoader } from '../internal/ConfigLoader.js';
+import { Executor } from '../internal/Executor.js';
 import { runScript } from './runScript.js';
 
 vi.mock('../infrastructure/ConfigLoader.js', () => ({

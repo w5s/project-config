@@ -1,4 +1,4 @@
-import type { LogLevel } from '../infrastructure/Logger.js';
+import type { LogLevel } from '../internal/Logger.js';
 import type { CommandContext } from '../type.js';
 
 export function defaultContext(context: Partial<CommandContext> | undefined): CommandContext {

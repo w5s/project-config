@@ -1,6 +1,6 @@
 import { Command, Option } from 'clipanion';
 
-import type { LogLevel } from '../infrastructure/Logger.js';
+import type { LogLevel } from '../internal/Logger.js';
 
 import { ManagedScript } from '../ManagedScript.js';
 
