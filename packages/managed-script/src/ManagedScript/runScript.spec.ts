@@ -35,6 +35,7 @@ describe(runScript, () => {
       env: {
         MANAGED_SCRIPT_CONFIG_DIR: '/cwd/config',
         MANAGED_SCRIPT_CONFIG_FILE: '/cwd/config/managed-script.config',
+        MANAGED_SCRIPT_CWD: '/cwd',
         MANAGED_SCRIPT_LOGLEVEL: 'info',
         MANAGED_SCRIPT_NAME: 'build',
       },
@@ -80,7 +81,7 @@ describe(runScript, () => {
     }));
   });
 
-  it('writes info and debug messages to the provided stderr stream', async () => {
+  it('writes info and debug messages to the provided stdout stream', async () => {
     vi.mocked(ConfigLoader.load).mockResolvedValue({
       config: { scripts: { build: 'my-command' } },
       configFile: '/cwd/config/managed-script.config',
@@ -88,7 +89,7 @@ describe(runScript, () => {
     });
     vi.mocked(Executor.run).mockResolvedValue(0);
     const chunks: Array<string> = [];
-    const stderr = new Writable({
+    const stdout = new Writable({
       write(chunk: Buffer, _encoding, callback) {
         chunks.push(chunk.toString());
         callback();
@@ -96,7 +97,7 @@ describe(runScript, () => {
     });
 
     await runScript({
-      context: { cwd: '/cwd', env: {}, logLevel: 'debug', stderr },
+      context: { cwd: '/cwd', env: {}, logLevel: 'debug', stdout },
       parameters: { scriptName: 'build' },
     });
 
@@ -105,7 +106,7 @@ describe(runScript, () => {
     expect(output).toContain('Resolved configuration from /cwd/config/managed-script.config');
   });
 
-  it('writes nothing to stderr at the silent log level', async () => {
+  it('writes nothing to stdout or stderr at the silent log level', async () => {
     vi.mocked(ConfigLoader.load).mockResolvedValue({
       config: { scripts: { build: 'my-command' } },
       configFile: '/cwd/config/managed-script.config',
@@ -113,6 +114,12 @@ describe(runScript, () => {
     });
     vi.mocked(Executor.run).mockResolvedValue(0);
     const chunks: Array<string> = [];
+    const stdout = new Writable({
+      write(chunk: Buffer, _encoding, callback) {
+        chunks.push(chunk.toString());
+        callback();
+      },
+    });
     const stderr = new Writable({
       write(chunk: Buffer, _encoding, callback) {
         chunks.push(chunk.toString());
@@ -121,7 +128,7 @@ describe(runScript, () => {
     });
 
     await runScript({
-      context: { cwd: '/cwd', env: {}, logLevel: 'silent', stderr },
+      context: { cwd: '/cwd', env: {}, logLevel: 'silent', stderr, stdout },
       parameters: { scriptName: 'build' },
     });
 
