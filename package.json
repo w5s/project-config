@@ -42,6 +42,9 @@
     "typecheck": "turbo run typecheck typecheck:root",
     "validate": "turbo run build lint test typecheck spellcheck"
   },
+  "managed-script": {
+    "extends": ["@w5s/managed-script-config"]
+  },
   "commitlint": {
     "extends": [
       "@w5s/commitlint-config"
