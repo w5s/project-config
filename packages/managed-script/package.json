@@ -56,11 +56,11 @@
     "typecheck:src": "pnpm exec tsc --noEmit"
   },
   "dependencies": {
-    "c12": "^3.2.0",
-    "clipanion": "^4.0.0-rc.4"
+    "c12": "^3.2.0"
   },
   "devDependencies": {
-    "@w5s/tsdown-config": "workspace:*"
+    "@w5s/tsdown-config": "workspace:*",
+    "clipanion": "^4.0.0-rc.4"
   },
   "clean-package": "../../clean-package.config.cjs",
   "engines": {

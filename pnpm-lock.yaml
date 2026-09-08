@@ -410,13 +410,13 @@ importers:
       c12:
         specifier: ^3.2.0
         version: 3.3.4
-      clipanion:
-        specifier: ^4.0.0-rc.4
-        version: 4.0.0-rc.4(typanion@3.14.0)
     devDependencies:
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
+      clipanion:
+        specifier: ^4.0.0-rc.4
+        version: 4.0.0-rc.4(typanion@3.14.0)
 
   packages/managed-script-config:
     dependencies:
