@@ -6,7 +6,7 @@
 [![License][license-image]][license-url]
 
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=> ${description}&unknownTxt= ) -->
-> CLI tool to manage project scripts
+> CLI tool to manage project scripts. Standardize, remove duplication.
 <!-- AUTO-GENERATED-CONTENT:END -->
 
 ## Installation
@@ -19,11 +19,50 @@ npm install --save-dev @w5s/managed-script
 
 ## Usage
 
-<!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=```json\n"${name}"\n```) -->
-```json
-"@w5s/managed-script"
+### Simple example
+
+#### 1. Setup a global configuration
+
+```jsonc
+// package.json
+{
+  "managed-script": {
+    "scripts": {
+      "my-script": "echo 'Hello world!'"
+    }
+  }
+}
 ```
-<!-- AUTO-GENERATED-CONTENT:END -->
+
+#### 2. Forward execution to managed-script
+
+When you want to use the managed-script configuration simply execute the cli to forward to the configured command.
+`managed-script`
+
+```jsonc
+// package.json, **/packages.json, etc.
+{
+  "scripts": {
+    "my-script": "managed-script" // > 'Hello world'
+  }
+}
+```
+
+### Global shared configuration (npm)
+
+```jsonc
+// package.json
+{
+  "managed-script": {
+    "extends": ["@acme/managed-script-config"], // Extend one or more configuration installed as node package
+    "scripts": {
+      "my-script": "echo 'Hello world!'" // Configuration can still be overridden
+    }
+  }
+}
+```
+
+## Miscellaneous
 
 ### Working directory and config origins
 
@@ -49,14 +88,7 @@ Scripts receive these environment variables:
 
 The spawn directory always remains `MANAGED_SCRIPT_CWD`. This lets a shared configuration package ship scripts and locate files beside its config without changing the project's execution context:
 
-```json
-{
-  "extends": ["@acme/managed-script-config"],
-  "scripts": {
-    "build": "node \"$MANAGED_SCRIPT_CONFIG_DIR/scripts/build.js\""
-  }
-}
-```
+
 
 ## License
 <!-- AUTO-GENERATED-CONTENT:START (PKG_JSON:template=[${license}][license-url] © ${author}) -->
