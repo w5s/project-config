@@ -15,6 +15,11 @@ export const ManagedScriptEnv = Object.freeze({
   ConfigFile: 'MANAGED_SCRIPT_CONFIG_FILE',
 
   /**
+   * The invocation directory used to resolve configuration and spawn the script.
+   */
+  Cwd: 'MANAGED_SCRIPT_CWD',
+
+  /**
    * The resolved log level.
    */
   LogLevel: 'MANAGED_SCRIPT_LOGLEVEL',

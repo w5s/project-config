@@ -31,7 +31,12 @@ export interface CommandContext {
   readonly logLevel: LogLevel;
 
   /**
-   * Stream used to write log messages.
+   * Stream used to write error log messages.
    */
   readonly stderr: NodeJS.WritableStream;
+
+  /**
+   * Stream used to write standard log messages.
+   */
+  readonly stdout: NodeJS.WritableStream;
 }
