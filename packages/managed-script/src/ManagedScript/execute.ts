@@ -45,6 +45,7 @@ const handlers = {
     const scriptEnv = {
       [ManagedScriptEnv.ConfigDir]: script.configDir,
       [ManagedScriptEnv.ConfigFile]: script.configFile,
+      [ManagedScriptEnv.Cwd]: cwd,
       [ManagedScriptEnv.LogLevel]: logLevel,
       [ManagedScriptEnv.Name]: name,
     };

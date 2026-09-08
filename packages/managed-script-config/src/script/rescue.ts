@@ -1,17 +1,7 @@
-import { execSync } from 'node:child_process';
+import { $ } from '@w5s/managed-script/zx';
 
-/**
- * Runs `command`, ignoring a non-zero exit code so the next command still runs (mimics shell `;`).
- *
- * @param command
- */
-function run(command: string): void {
-  try {
-    execSync(command, { stdio: 'inherit' });
-  } catch {
-    // ignored: continue to the next command regardless of the outcome
-  }
-}
+/* cspell:ignore nothrow */
+const $noThrow = $({ nothrow: true });
 
-run('git clean -fdx');
-run('pnpm install');
+await $noThrow`git clean -fdx`;
+await $noThrow`pnpm install`;

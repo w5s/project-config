@@ -4,5 +4,5 @@ export default defineConfig({
   deps: {
     alwaysBundle: ['clipanion'],
   },
-  entry: ['src/index.ts', 'src/cli.ts'],
+  entry: ['src/index.ts', 'src/cli.ts', 'src/zx.ts'],
 });

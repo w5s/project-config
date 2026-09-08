@@ -8,7 +8,7 @@ export function defaultContext(context: Partial<CommandContext> | undefined): Co
   const envLogLevel = env[ManagedScriptEnv.LogLevel];
   return {
     cli,
-    cwd: cwd ?? cli.cwd ?? env['MANAGED_SCRIPT_CWD'] ?? process.cwd(),
+    cwd: cwd ?? cli.cwd ?? env[ManagedScriptEnv.Cwd] ?? process.cwd(),
     dryRun: dryRun ?? cli.dryRun ?? false,
     env,
     logLevel: logLevel ?? cli.logLevel ?? (isLogLevel(envLogLevel) ? envLogLevel : 'info'),

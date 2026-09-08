@@ -410,6 +410,9 @@ importers:
       c12:
         specifier: ^3.2.0
         version: 3.3.4
+      zx:
+        specifier: 8.8.5-lite
+        version: 8.8.5-lite
     devDependencies:
       '@w5s/tsdown-config':
         specifier: workspace:*
@@ -6106,6 +6109,10 @@ packages:
 
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
+
+  zx@8.8.5-lite:
+    resolution: {integrity: sha512-A/u82oc3sd9SZ46hig3NZKh5V1u0tXOwev5AK+3yH0zdqhiJmhd7NcWS0lq19RLOofagpDBS8K77aXLNAkBESQ==}
+    engines: {node: '>= 12.17.0'}
 
 snapshots:
 
@@ -12508,3 +12515,5 @@ snapshots:
   zod@4.5.4: {}
 
   zwitch@2.0.4: {}
+
+  zx@8.8.5-lite: {}

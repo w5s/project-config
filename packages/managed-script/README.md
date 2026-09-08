@@ -86,7 +86,19 @@ Scripts receive these environment variables:
 - `MANAGED_SCRIPT_CONFIG_DIR`: the directory of the configuration layer that declared the selected script.
 - `MANAGED_SCRIPT_LOGLEVEL`: the resolved log level, so the invoked script can match its own verbosity.
 
-The spawn directory always remains `MANAGED_SCRIPT_CWD`. This lets a shared configuration package ship scripts and locate files beside its config without changing the project's execution context:
+The spawn directory always remains `MANAGED_SCRIPT_CWD`. This lets a shared configuration package ship scripts and locate files beside its config without changing the project's execution context.
+
+### Writing scripts with zx
+
+Scripts launched by managed-script can import a `$` preset that applies those environment variables as zx defaults (`cwd`, `env`, `verbose` / `quiet`, inherited stdio, and command logging):
+
+```ts
+import { $ } from '@w5s/managed-script/zx';
+
+await $`pnpm test`;
+```
+
+Use `create$()` when you need an explicit context (tests, nested runners) instead of the process environment.
 
 
 

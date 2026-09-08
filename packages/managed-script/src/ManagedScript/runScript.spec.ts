@@ -35,6 +35,7 @@ describe(runScript, () => {
       env: {
         MANAGED_SCRIPT_CONFIG_DIR: '/cwd/config',
         MANAGED_SCRIPT_CONFIG_FILE: '/cwd/config/managed-script.config',
+        MANAGED_SCRIPT_CWD: '/cwd',
         MANAGED_SCRIPT_LOGLEVEL: 'info',
         MANAGED_SCRIPT_NAME: 'build',
       },
