@@ -4,46 +4,53 @@ import { describe, expect, it } from 'vitest';
 import { Logger } from './Logger.js';
 
 function createStream() {
-  const stream = new PassThrough();
-  const chunks: Array<string> = [];
-  stream.on('data', (chunk: Buffer) => chunks.push(chunk.toString()));
-  return { chunks, stream };
+  const stderr = new PassThrough();
+  const chunksErr: Array<string> = [];
+  stderr.on('data', (chunk: Buffer) => chunksErr.push(chunk.toString()));
+
+  const stdout = new PassThrough();
+  const chunksOut: Array<string> = [];
+  stdout.on('data', (chunk: Buffer) => chunksOut.push(chunk.toString()));
+  return { chunksErr, chunksOut, stderr, stdout };
 }
 
 describe(Logger.create, () => {
-  it('writes messages at or below the configured level', () => {
-    const { chunks, stream } = createStream();
-    const logger = Logger.create({ level: 'warn', stream });
+  it('writes messages at or below the configured level, errors and warnings to stderr, others to stdout', () => {
+    const { chunksErr, chunksOut, ...streams } = createStream();
+    const logger = Logger.create({ level: 'warn', ...streams });
 
     logger.error('an error');
     logger.warn('a warning');
     logger.info('an info');
     logger.debug('a debug');
 
-    expect(chunks).toEqual(['an error\n', 'a warning\n']);
+    expect(chunksErr).toEqual(['an error\n', 'a warning\n']);
+    expect(chunksOut).toEqual([]);
   });
 
   it('writes nothing at the silent level', () => {
-    const { chunks, stream } = createStream();
-    const logger = Logger.create({ level: 'silent', stream });
+    const { chunksErr, chunksOut, ...streams } = createStream();
+    const logger = Logger.create({ level: 'silent', ...streams });
 
     logger.error('an error');
     logger.warn('a warning');
     logger.info('an info');
     logger.debug('a debug');
 
-    expect(chunks).toEqual([]);
+    expect(chunksErr).toEqual([]);
+    expect(chunksOut).toEqual([]);
   });
 
-  it('writes everything at the debug level', () => {
-    const { chunks, stream } = createStream();
-    const logger = Logger.create({ level: 'debug', stream });
+  it('writes everything at the debug level, errors and warnings to stderr, info and debug to stdout', () => {
+    const { chunksErr, chunksOut, ...streams } = createStream();
+    const logger = Logger.create({ level: 'debug', ...streams });
 
     logger.error('an error');
     logger.warn('a warning');
     logger.info('an info');
     logger.debug('a debug');
 
-    expect(chunks).toEqual(['an error\n', 'a warning\n', 'an info\n', 'a debug\n']);
+    expect(chunksErr).toEqual(['an error\n', 'a warning\n']);
+    expect(chunksOut).toEqual(['an info\n', 'a debug\n']);
   });
 });
