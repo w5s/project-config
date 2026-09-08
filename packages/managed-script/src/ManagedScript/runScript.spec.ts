@@ -40,6 +40,26 @@ describe(runScript, () => {
     expect(exitCode).toBe(0);
   });
 
+  it('prints the resolved command and skips execution when dryRun is set', async () => {
+    vi.mocked(ConfigLoader.load).mockResolvedValue({
+      config: { scripts: { build: 'my-command' } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: 'my-command' } } }],
+    });
+    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+
+    const exitCode = await runScript({
+      context: { cwd: '/cwd', dryRun: true, env: {} },
+      parameters: { scriptName: 'build' },
+    });
+
+    expect(logSpy).toHaveBeenCalledWith('my-command');
+    expect(Executor.run).not.toHaveBeenCalled();
+    expect(exitCode).toBe(0);
+
+    logSpy.mockRestore();
+  });
+
   it('throws when the script name cannot be resolved', async () => {
     vi.mocked(ConfigLoader.load).mockResolvedValue({
       config: { scripts: {} },
