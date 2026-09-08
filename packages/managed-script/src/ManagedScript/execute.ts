@@ -9,7 +9,7 @@ import { resolveScripts } from './resolveScripts.js';
 
 const handlers = {
   RunScript: async (command: ManagedScriptCommand.RunScript): Promise<number> => {
-    const { context: { cwd, env }, parameters: { scriptName } } = command;
+    const { context: { cwd, dryRun, env }, parameters: { scriptName } } = command;
     const loaded = await ConfigLoader.load({ cwd });
     const resolved = resolveScripts(loaded);
     const { scripts } = resolved;
@@ -17,7 +17,7 @@ const handlers = {
     const name = ScriptNameResolver.resolve({ env, scriptName: scriptName });
     if (name == null) {
       throw new Error(
-        'Unable to resolve the script name. Set it with --name,-n, the MANAGED_SCRIPT_NAME environment variable, or run through an npm/pnpm script (npm_lifecycle_event).',
+        'Unable to resolve the script name. Set it with --name, the MANAGED_SCRIPT_NAME environment variable, or run through an npm/pnpm script (npm_lifecycle_event).',
       );
     }
 
@@ -29,6 +29,11 @@ const handlers = {
           available.length > 0 ? ` Available scripts: ${available.join(', ')}.` : ' No scripts are configured.'
         }`,
       );
+    }
+
+    if (dryRun) {
+      console.log(script.command);
+      return 0;
     }
 
     // Prepare the environment variables for the script execution.
