@@ -29,6 +29,10 @@ npm install --save-dev @w5s/managed-script
 
 Use `--cwd` to choose the directory used to resolve configuration and run the selected script. The equivalent environment variable is `MANAGED_SCRIPT_CWD`; the CLI option takes precedence over the environment variable, which takes precedence over the current process directory.
 
+### Dry run
+
+Use `--dry-run,-n` to print the resolved command instead of executing it. This is a CLI-only flag; it is not part of the configuration.
+
 Scripts receive these environment variables:
 
 - `MANAGED_SCRIPT_NAME`: the resolved script name.
