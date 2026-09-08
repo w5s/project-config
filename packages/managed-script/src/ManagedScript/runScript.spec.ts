@@ -5,10 +5,10 @@ import { ConfigLoader } from '../internal/ConfigLoader.js';
 import { Executor } from '../internal/Executor.js';
 import { runScript } from './runScript.js';
 
-vi.mock('../infrastructure/ConfigLoader.js', () => ({
+vi.mock('../internal/ConfigLoader.js', () => ({
   ConfigLoader: { load: vi.fn() },
 }));
-vi.mock('../infrastructure/Executor.js', () => ({
+vi.mock('../internal/Executor.js', () => ({
   Executor: { run: vi.fn() },
 }));
 
