@@ -1,8 +1,10 @@
 import { defineConfig } from '@w5s/managed-script';
+import path from 'node:path';
+
+const configDir = new URL('.', import.meta.url).pathname;
 
 export const config = defineConfig({
   scripts: {
-    // implementation lives in `rescue.ts`, resolved through `MANAGED_SCRIPT_CONFIG_DIR` so it works regardless of the consuming project's cwd
-    rescue: 'node "$MANAGED_SCRIPT_CONFIG_DIR/rescue.js"',
+    rescue: `node "${path.join(configDir, 'script', 'rescue.js')}"`,
   },
 });
