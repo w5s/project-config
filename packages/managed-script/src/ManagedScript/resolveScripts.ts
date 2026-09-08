@@ -1,6 +1,6 @@
 import path from 'node:path/win32';
 
-import type { ConfigLoaderResult } from '../infrastructure/ConfigLoader.js';
+import type { ConfigLoaderResult } from '../internal/ConfigLoader.js';
 import type { ResolvedConfig } from '../type/ResolvedConfig.js';
 
 export function resolveScripts(loaded: ConfigLoaderResult): ResolvedConfig {
