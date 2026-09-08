@@ -10,8 +10,8 @@ import { resolveScripts } from './resolveScripts.js';
 
 const handlers = {
   RunScript: async (command: ManagedScriptCommand.RunScript): Promise<number> => {
-    const { context: { cwd, dryRun, env, logLevel, stderr }, parameters: { scriptName } } = command;
-    const logger = Logger.create({ level: logLevel, stream: stderr });
+    const { context: { cwd, dryRun, env, logLevel, stderr, stdout }, parameters: { scriptName } } = command;
+    const logger = Logger.create({ level: logLevel, stderr, stdout });
     const loaded = await ConfigLoader.load({ cwd });
     logger.debug(`Resolved configuration from ${loaded.configFile ?? 'defaults (no config file found)'}.`);
     const resolved = resolveScripts(loaded);
@@ -45,6 +45,7 @@ const handlers = {
     const scriptEnv = {
       [ManagedScriptEnv.ConfigDir]: script.configDir,
       [ManagedScriptEnv.ConfigFile]: script.configFile,
+      [ManagedScriptEnv.Cwd]: cwd,
       [ManagedScriptEnv.LogLevel]: logLevel,
       [ManagedScriptEnv.Name]: name,
     };

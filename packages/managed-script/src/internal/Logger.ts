@@ -13,7 +13,8 @@ const logLevelRank: Record<LogLevel, number> = {
 
 export interface CreateLoggerOptions {
   readonly level: LogLevel;
-  readonly stream: NodeJS.WritableStream;
+  readonly stderr: NodeJS.WritableStream;
+  readonly stdout: NodeJS.WritableStream;
 }
 
 export interface Logger {
@@ -27,11 +28,14 @@ export interface Logger {
  * Creates a logger writing to `stream`, filtering out messages above the configured `level`.
  */
 export const Logger = {
-  create({ level, stream }: CreateLoggerOptions): Logger {
+  create({ level, stderr, stdout }: CreateLoggerOptions): Logger {
     const write = (messageLevel: LogLevel, message: string) => {
-      if (logLevelRank[messageLevel] <= logLevelRank[level]) {
-        stream.write(`${message}\n`);
+      if (!(logLevelRank[messageLevel] <= logLevelRank[level])) {
+        return;
       }
+      // write to stderr for warnings and errors
+      const outputStream = logLevelRank[messageLevel] <= logLevelRank.warn ? stderr : stdout;
+      outputStream.write(`${message}\n`);
     };
 
     return {
