@@ -1,4 +1,4 @@
-import type { LogLevel } from '../infrastructure/Logger.js';
+import type { LogLevel } from '../internal/Logger.js';
 
 export interface CommandContext {
   /**
