@@ -2,7 +2,7 @@ import type { ConfigLayer } from 'c12';
 
 import { loadConfig } from 'c12';
 
-import type { UserConfig } from '../config/UserConfig.js';
+import type { UserConfig } from '../type/UserConfig.js';
 
 import { meta } from '../meta.js';
 
