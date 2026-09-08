@@ -34,4 +34,16 @@ describe(defaultContext, () => {
       env: {},
     }).cwd).toBe(process.cwd());
   });
+
+  it('defaults dryRun to false', () => {
+    expect(defaultContext({ cli: {}, env: {} }).dryRun).toBe(false);
+  });
+
+  it('prefers the explicit context dryRun over the CLI option', () => {
+    expect(defaultContext({ cli: { dryRun: false }, dryRun: true, env: {} }).dryRun).toBe(true);
+  });
+
+  it('falls back to the CLI option dryRun', () => {
+    expect(defaultContext({ cli: { dryRun: true }, env: {} }).dryRun).toBe(true);
+  });
 });
