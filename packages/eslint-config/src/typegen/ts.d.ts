@@ -221,6 +221,11 @@ export interface RuleOptions {
    */
   'ts/no-for-in-array'?: Linter.RuleEntry<[]>
   /**
+   * Disallow type operations that resolve to the "empty object" type
+   * @see https://typescript-eslint.io/rules/no-generated-empty-object-type
+   */
+  'ts/no-generated-empty-object-type'?: Linter.RuleEntry<[]>
+  /**
    * Disallow the use of `eval()`-like functions
    * @see https://typescript-eslint.io/rules/no-implied-eval
    */
