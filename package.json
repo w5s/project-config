@@ -35,12 +35,15 @@
     "prepare:githooks": "if [ -z \"${CI:-}\" ]; then git config core.hooksPath .githooks; fi",
     "prepare:packages": "turbo run prepare",
     "release": ":",
-    "rescue": "git clean -fdx;pnpm install",
+    "rescue": "managed-script",
     "spellcheck": "turbo run spellcheck spellcheck:root",
     "spellcheck:root": "cspell --no-progress '**' --exclude='packages/*/**'",
     "test": "turbo run test test:root",
     "typecheck": "turbo run typecheck typecheck:root",
     "validate": "turbo run build lint test typecheck spellcheck"
+  },
+  "managed-script": {
+    "extends": ["@w5s/managed-script-config"]
   },
   "commitlint": {
     "extends": [
@@ -76,6 +79,8 @@
     "@w5s/conventional-changelog": "workspace:*",
     "@w5s/cspell-config": "workspace:*",
     "@w5s/eslint-config": "workspace:*",
+    "@w5s/managed-script": "workspace:*",
+    "@w5s/managed-script-config": "workspace:*",
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/prettier-config": "workspace:*",
     "@w5s/tsconfig": "workspace:*",

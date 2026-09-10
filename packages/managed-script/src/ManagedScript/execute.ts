@@ -1,0 +1,89 @@
+import type { ManagedScriptCommand } from '../type.js';
+
+import { ConfigLoader } from '../internal/ConfigLoader.js';
+import { Executor } from '../internal/Executor.js';
+import { Logger } from '../internal/Logger.js';
+import { ScriptNameResolver } from '../internal/ScriptNameResolver.js';
+import { ManagedScriptEnv } from '../ManagedScriptEnv.js';
+import { defaultContext } from './defaultContext.js';
+import { resolveScripts } from './resolveScripts.js';
+
+const handlers = {
+  RunScript: async (command: ManagedScriptCommand.RunScript): Promise<number> => {
+    const { context: { cwd, dryRun, env, logLevel, stderr }, parameters: { scriptName } } = command;
+    const logger = Logger.create({ level: logLevel, stream: stderr });
+    const loaded = await ConfigLoader.load({ cwd });
+    logger.debug(`Resolved configuration from ${loaded.configFile ?? 'defaults (no config file found)'}.`);
+    const resolved = resolveScripts(loaded);
+    const { scripts } = resolved;
+
+    const name = ScriptNameResolver.resolve({ env, scriptName: scriptName });
+    if (name == null) {
+      throw new Error(
+        'Unable to resolve the script name. Set it with --name, the MANAGED_SCRIPT_NAME environment variable, or run through an npm/pnpm script (npm_lifecycle_event).',
+      );
+    }
+
+    const script = scripts[name];
+    if (script == null) {
+      const available = Object.keys(scripts);
+      throw new Error(
+        `No script named "${name}" found in the configuration.${
+          available.length > 0 ? ` Available scripts: ${available.join(', ')}.` : ' No scripts are configured.'
+        }`,
+      );
+    }
+
+    if (dryRun) {
+      console.log(script.command);
+      return 0;
+    }
+
+    logger.info(`Running script "${name}": ${script.command}`);
+
+    // Prepare the environment variables for the script execution.
+    const scriptEnv = {
+      [ManagedScriptEnv.ConfigDir]: script.configDir,
+      [ManagedScriptEnv.ConfigFile]: script.configFile,
+      [ManagedScriptEnv.Cwd]: cwd,
+      [ManagedScriptEnv.LogLevel]: logLevel,
+      [ManagedScriptEnv.Name]: name,
+    };
+
+    const exitCode = await Executor.run(script.command, { cwd, env: scriptEnv });
+
+    if (exitCode !== 0) {
+      throw new Error(`Script "${name}" exited with code ${exitCode}.`);
+    }
+
+    return exitCode;
+  },
+} satisfies {
+  [K in ManagedScriptCommand['_']]: (command: Extract<ManagedScriptCommand, { _: K }>) => Promise<any>;
+};
+
+export type ExecuteCommand<T extends ManagedScriptCommand> = Omit<T, 'context'> & {
+  /**
+   * Context is optional
+   */
+  context?: Partial<ManagedScriptCommand['context']>;
+};
+
+/**
+ * Extract command parameter from execute handler
+ */
+export type ExecuteCommandParameters<T extends ManagedScriptCommand> = Omit<Parameters<typeof execute<T>>[0], '_'>;
+
+/**
+ * Dispatch the command to the appropriate handler based on its type.
+ *
+ * @param command
+ */
+export async function execute<T extends ManagedScriptCommand>(command: ExecuteCommand<T>): Promise<Awaited<ReturnType<typeof handlers[T['_']]>>> {
+  const context = defaultContext(command.context);
+  // @ts-ignore we know this works
+  return handlers[command._]({
+    ...command,
+    context,
+  });
+}
