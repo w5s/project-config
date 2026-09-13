@@ -776,7 +776,6 @@ function sortPackageJson() {
 					"simple-git-hooks",
 					"pre-commit",
 					"commitlint",
-					"lint-staged",
 					"config",
 					"nodemonConfig",
 					"browserify",
