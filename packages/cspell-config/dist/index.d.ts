@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.2.2/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.0/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -157,7 +157,7 @@ interface ScopeChain {
 type ScopeString = string;
 type Scope = ScopeChain | ScopeString;
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.2.2/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.0/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
@@ -679,6 +679,18 @@ interface DictionaryDefinitionBase {
    */
   noSuggest?: boolean | undefined;
   /**
+   * Used to specify the type of dictionary being referenced.
+   * Values:
+   * - `words` - (default) A dictionary containing words.
+   * - `flag-words` - A dictionary containing flag words. Words found in the dictionary will be treated like `flagWords`.
+   * - `ignore-words` - A dictionary containing words to ignore.
+   *    This is the same as setting `noSuggest` to `true`.
+   * - `suggest-words` - A dictionary containing suggested word corrections. Words found in the
+   *    dictionary will be treated like `suggestWords`.
+   * @since 10.3.0
+   */
+  kind?: DictionaryKind | undefined;
+  /**
    * Some dictionaries may contain forbidden words to prevent compounding from generating
    * words that are not valid in the language. These are often
    * words that are used in other languages or might be generated through compounding.
@@ -766,6 +778,10 @@ interface DictionaryDefinitionSimple extends DictionaryDefinitionBaseWithPathsHi
   /**
    * @hide
    */
+  kind?: DictionaryKind | undefined;
+  /**
+   * @hide
+   */
   ignoreForbiddenWords?: boolean | undefined;
   /**
    * @hide
@@ -804,6 +820,10 @@ interface HiddenFields {
    * @hide
    */
   noSuggest?: undefined;
+  /**
+   * @hide
+   */
+  kind?: DictionaryKind | undefined;
   /**
    * Not used
    * @hide
@@ -981,6 +1001,22 @@ type DictionaryRef = DictionaryId;
  * @pattern ^(?=!+[^!*,;{}[\]~\n]+$)(?=(.*\w)).+$
  */
 type DictionaryNegRef = string;
+type DictionaryKindWords = "words";
+type DictionaryKindFlagWords = "flag-words";
+type DictionaryKindIgnoreWords = "ignore-words";
+type DictionaryKindSuggestWords = "suggest-words";
+/**
+ * The kind of dictionary.
+ *
+ * Used to specify the type of dictionary being referenced.
+ *
+ * Values:
+ * - `words` - A dictionary containing words.
+ * - `flag-words` - A dictionary containing flag words.
+ * - `ignore-words` - A dictionary containing words to ignore.
+ * - `suggest-words` - A dictionary containing suggested word corrections.
+ */
+type DictionaryKind = DictionaryKindWords | DictionaryKindFlagWords | DictionaryKindIgnoreWords | DictionaryKindSuggestWords;
 //#endregion
 //#region src/features.d.ts
 /**
