@@ -1,0 +1,7 @@
+extends:
+  - node_modules/@w5s/lefthook-config/default.yml
+
+pre-push:
+  commands:
+    validate:
+      run: pnpm run validate

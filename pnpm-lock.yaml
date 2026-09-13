@@ -136,6 +136,9 @@ importers:
       '@w5s/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint-config
+      '@w5s/lefthook-config':
+        specifier: workspace:*
+        version: link:packages/lefthook-config
       '@w5s/mrm-preset':
         specifier: workspace:*
         version: link:packages/mrm-preset
@@ -154,6 +157,9 @@ importers:
       eslint:
         specifier: 10.10.0
         version: 10.10.0(jiti@2.6.1)(supports-color@7.2.0)
+      lefthook:
+        specifier: 2.1.12
+        version: 2.1.12
       markdown-magic:
         specifier: 4.11.0
         version: 4.11.0
@@ -397,6 +403,25 @@ importers:
       typescript:
         specifier: 4.x || 5.x || 6.x
         version: 6.0.3
+    devDependencies:
+      '@w5s/tsdown-config':
+        specifier: workspace:*
+        version: link:../tsdown-config
+
+  packages/lefthook-config:
+    dependencies:
+      '@commitlint/cli':
+        specifier: ^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0
+        version: 21.2.1(@types/node@20.19.43)(conventional-commits-filter@6.0.1)(conventional-commits-parser@7.1.2)(typescript@6.0.3)
+      eslint:
+        specifier: '>=8.0.0'
+        version: 10.10.0(jiti@2.6.1)(supports-color@7.2.0)
+      lefthook:
+        specifier: ^2.0.0
+        version: 2.1.12
+      prettier:
+        specifier: 2.x || 3.x
+        version: 3.9.6
     devDependencies:
       '@w5s/tsdown-config':
         specifier: workspace:*
@@ -4599,6 +4624,60 @@ packages:
   latest-version@5.1.0:
     resolution: {integrity: sha512-weT+r0kTkRQdCdYCNtkMwWXQTMEswKrFBkm4ckQOMVhhqhIMI1UT2hMj+1iigIhgSZm5gTmrRXBNoGUgaTY1xA==}
     engines: {node: '>=8'}
+
+  lefthook-darwin-arm64@2.1.12:
+    resolution: {integrity: sha512-GSUjqaCuxAYlPOovbjXEWE3HAIa/xOQkTTmZ937zieQldjPLTaC7+s5FHoxKywn+D9riBlofkDqG7Z4f5zzmPA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  lefthook-darwin-x64@2.1.12:
+    resolution: {integrity: sha512-qAUHSSw/7Afi5wxkoLkxORxSicCeTBXyVLnRgD6YZra6udviozpK3Aok9Z6FIWeKc5FBijRMSNDxGPTREhsjcQ==}
+    cpu: [x64]
+    os: [darwin]
+
+  lefthook-freebsd-arm64@2.1.12:
+    resolution: {integrity: sha512-FHZRfKliFNbyz54zsoGdVe9muq67cNjBTZ6jrPPUjI7xUuyCwSpzA+1OpiwJT00L9pP5ZGONBqnGZKnrpC+7Uw==}
+    cpu: [arm64]
+    os: [freebsd]
+
+  lefthook-freebsd-x64@2.1.12:
+    resolution: {integrity: sha512-HYQZPGy2DDEx7dbuotusJpujY5q9igOLgx36qeeQcNQuvvdGHPj2ZGSIsGKhoJ0dw5Qa4knKJoPAHEZQWdV/og==}
+    cpu: [x64]
+    os: [freebsd]
+
+  lefthook-linux-arm64@2.1.12:
+    resolution: {integrity: sha512-ipjOri2PB/sk4noPrHQuM5fcpNBjmlKo4qMtXyLnxeOxGYHWZzf0Xi0OtrXHQ//tOprcv40ADvhUuSdcGqigLw==}
+    cpu: [arm64]
+    os: [linux]
+
+  lefthook-linux-x64@2.1.12:
+    resolution: {integrity: sha512-DmU6xfvqVoFdW+STyc70YI4Ry8vkHGKHx+IJ1Js/Gacq5dv+fiwNzwle3bi28EkL6P8xY67B/CfQfRj4SRU4tg==}
+    cpu: [x64]
+    os: [linux]
+
+  lefthook-openbsd-arm64@2.1.12:
+    resolution: {integrity: sha512-vb0J7bElLvoaCWQmna3HntsvoNqMsGAhfjjC99ss1OdCteufZKM3RxCVoMBEbD50Itv2c1Ua2AFVToltVFTy1Q==}
+    cpu: [arm64]
+    os: [openbsd]
+
+  lefthook-openbsd-x64@2.1.12:
+    resolution: {integrity: sha512-QOmhDWqPPK4+99scanfEmbJjUR+JYC93qhr/0bp5Dj3LaR3kVFNWc6zOQUsOTPy/LC6PG759Lej/mr/BtjUL2Q==}
+    cpu: [x64]
+    os: [openbsd]
+
+  lefthook-windows-arm64@2.1.12:
+    resolution: {integrity: sha512-eErEyr9AHkRFj6TxpCQeKGd0s6IrtL/VEIZ/ssg8dNfG+ycR4jAW/IAlrJSw6/ZQXb3WtWLaQ6QA5c+TLh7vmg==}
+    cpu: [arm64]
+    os: [win32]
+
+  lefthook-windows-x64@2.1.12:
+    resolution: {integrity: sha512-0h+WmDVdDriTjloD/UbjPq/ZtqaaJlPAdGcVwMCEdAxfbF0FTgDbKX3igui9g2U/qG2y6QpVhtz1jeiRe7ctaw==}
+    cpu: [x64]
+    os: [win32]
+
+  lefthook@2.1.12:
+    resolution: {integrity: sha512-2uOexfsrrRhCiTUWdGyDySxVHHhOFJ8MQejs27dM3hugrQB48/z1ZVlaNoxpZ1SnzQ1GaDIbO5rAvicwyiknYQ==}
+    hasBin: true
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -11321,6 +11400,49 @@ snapshots:
   latest-version@5.1.0:
     dependencies:
       package-json: 6.5.0
+
+  lefthook-darwin-arm64@2.1.12:
+    optional: true
+
+  lefthook-darwin-x64@2.1.12:
+    optional: true
+
+  lefthook-freebsd-arm64@2.1.12:
+    optional: true
+
+  lefthook-freebsd-x64@2.1.12:
+    optional: true
+
+  lefthook-linux-arm64@2.1.12:
+    optional: true
+
+  lefthook-linux-x64@2.1.12:
+    optional: true
+
+  lefthook-openbsd-arm64@2.1.12:
+    optional: true
+
+  lefthook-openbsd-x64@2.1.12:
+    optional: true
+
+  lefthook-windows-arm64@2.1.12:
+    optional: true
+
+  lefthook-windows-x64@2.1.12:
+    optional: true
+
+  lefthook@2.1.12:
+    optionalDependencies:
+      lefthook-darwin-arm64: 2.1.12
+      lefthook-darwin-x64: 2.1.12
+      lefthook-freebsd-arm64: 2.1.12
+      lefthook-freebsd-x64: 2.1.12
+      lefthook-linux-arm64: 2.1.12
+      lefthook-linux-x64: 2.1.12
+      lefthook-openbsd-arm64: 2.1.12
+      lefthook-openbsd-x64: 2.1.12
+      lefthook-windows-arm64: 2.1.12
+      lefthook-windows-x64: 2.1.12
 
   levn@0.4.1:
     dependencies:

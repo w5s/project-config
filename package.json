@@ -32,7 +32,7 @@
     "mrm": "pnpm dlx --package=mrm -- mrm --dir ./packages/mrm-preset",
     "postbuild": "pnpm run docs",
     "prepare": "pnpm run \"/^prepare:.*/\"",
-    "prepare:githooks": "if [ -z \"${CI:-}\" ]; then git config core.hooksPath .githooks; fi",
+    "prepare:lefthook": "if [ -z \"${CI:-}\" ] && [ -d .git ]; then lefthook install; fi",
     "prepare:packages": "turbo run prepare",
     "release": ":",
     "rescue": "git clean -fdx;pnpm install",
@@ -47,26 +47,6 @@
       "@w5s/commitlint-config"
     ]
   },
-  "lint-staged": {
-    "!(**/dist/**)*.js?(x)": [
-      "eslint"
-    ],
-    "!(**/dist/**)*.ts?(x)": [
-      "eslint"
-    ],
-    "*.{json,jsonc,json5}": [
-      "eslint"
-    ],
-    "*.{yml,yaml}": [
-      "eslint"
-    ],
-    "*.js?(x)": [
-      "eslint"
-    ],
-    "*.ts?(x)": [
-      "eslint"
-    ]
-  },
   "devDependencies": {
     "@commitlint/cli": "21.2.2",
     "@lerna-lite/cli": "5.6.1",
@@ -77,12 +57,14 @@
     "@w5s/conventional-changelog": "workspace:*",
     "@w5s/cspell-config": "workspace:*",
     "@w5s/eslint-config": "workspace:*",
+    "@w5s/lefthook-config": "workspace:*",
     "@w5s/mrm-preset": "workspace:*",
     "@w5s/prettier-config": "workspace:*",
     "@w5s/tsconfig": "workspace:*",
     "clean-package": "2.2.0",
     "cspell": "10.3.0",
     "eslint": "10.10.0",
+    "lefthook": "2.1.12",
     "markdown-magic": "4.11.0",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "2.1.0",

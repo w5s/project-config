@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-# BEGIN MANAGED BLOCK
-pnpm run validate
-# END MANAGED BLOCK

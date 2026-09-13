@@ -1,0 +1,41 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`yaml presets > default.yml matches snapshot 1`] = `
+"# @w5s/lefthook-config — recommended preset
+#
+# Extend this file as-is, or cherry-pick individual fragments under hook/.
+# Do not extend both this preset and a fragment it already includes.
+extends:
+  - node_modules/@w5s/lefthook-config/hook/commit-msg/commitlint.yml
+  - node_modules/@w5s/lefthook-config/hook/pre-commit/eslint.yml
+  - node_modules/@w5s/lefthook-config/hook/pre-commit/prettier.yml
+"
+`;
+
+exports[`yaml presets > hook/commit-msg/commitlint.yml matches snapshot 1`] = `
+"commit-msg:
+  commands:
+    commitlint:
+      run: bash node_modules/@w5s/lefthook-config/script/commit-msg/commitlint.sh "{1}"
+"
+`;
+
+exports[`yaml presets > hook/pre-commit/eslint.yml matches snapshot 1`] = `
+"pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: '**/*.{ts,tsx,js,jsx,mts,mtsx,cts,ctsx,cjs,mjs,json,md,yml,yaml,html}'
+      run: bash node_modules/@w5s/lefthook-config/script/pre-commit/eslint.sh {staged_files}
+"
+`;
+
+exports[`yaml presets > hook/pre-commit/prettier.yml matches snapshot 1`] = `
+"pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: '**/*.{ts,tsx,js,jsx,mts,mtsx,cts,ctsx,cjs,mjs,json,json5,md,mdx,yml,yaml,html,css,scss,less,vue,graphql}'
+      run: bash node_modules/@w5s/lefthook-config/script/pre-commit/prettier.sh {staged_files}
+"
+`;

@@ -1,0 +1,6 @@
+pre-commit:
+  parallel: true
+  commands:
+    eslint:
+      glob: '**/*.{ts,tsx,js,jsx,mts,mtsx,cts,ctsx,cjs,mjs,json,md,yml,yaml,html}'
+      run: bash node_modules/@w5s/lefthook-config/script/pre-commit/eslint.sh {staged_files}

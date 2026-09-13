@@ -1,0 +1,8 @@
+# @w5s/lefthook-config — recommended preset
+#
+# Extend this file as-is, or cherry-pick individual fragments under hook/.
+# Do not extend both this preset and a fragment it already includes.
+extends:
+  - node_modules/@w5s/lefthook-config/hook/commit-msg/commitlint.yml
+  - node_modules/@w5s/lefthook-config/hook/pre-commit/eslint.yml
+  - node_modules/@w5s/lefthook-config/hook/pre-commit/prettier.yml
