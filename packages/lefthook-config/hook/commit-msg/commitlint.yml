@@ -1,0 +1,4 @@
+commit-msg:
+  commands:
+    commitlint:
+      run: bash node_modules/@w5s/lefthook-config/script/commit-msg/commitlint.sh "{1}"

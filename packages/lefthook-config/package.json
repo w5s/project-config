@@ -1,0 +1,85 @@
+{
+  "name": "@w5s/lefthook-config",
+  "version": "0.1.0",
+  "description": "Lefthook shared configuration",
+  "keywords": [
+    "lefthook",
+    "config",
+    "git-hooks"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/lefthook-config#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w5s/project-config.git",
+    "directory": "packages/lefthook-config"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./default.yml"
+  },
+  "files": [
+    "hook/",
+    "script/",
+    "default.yml",
+    "README.md",
+    "!**/*.spec.*",
+    "!**/*.ts",
+    "!**/__snapshots__/**"
+  ],
+  "scripts": {
+    "build": "pnpm run \"/^build:.*/\"",
+    "build:empty": ":",
+    "clean": "pnpm run \"/^clean:.*/\"",
+    "clean:empty": ":",
+    "docs": "node ../../markdown.mjs",
+    "format": "pnpm run \"/^format:.*/\"",
+    "format:src": "pnpm exec eslint . --fix",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:src": "pnpm exec eslint .",
+    "postpack": "clean-package restore",
+    "prepack": "clean-package",
+    "prepublishOnly": "pnpm run clean;pnpm run build",
+    "spellcheck": "pnpm exec cspell --no-progress '**'",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:src": "pnpm exec vitest run",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "pnpm exec tsc --noEmit"
+  },
+  "devDependencies": {
+    "@w5s/tsdown-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "@commitlint/cli": "^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0 || ^20.0.0 || ^21.0.0",
+    "eslint": ">=8.0.0",
+    "lefthook": "^2.0.0",
+    "prettier": "2.x || 3.x"
+  },
+  "peerDependenciesMeta": {
+    "@commitlint/cli": {
+      "optional": true
+    },
+    "eslint": {
+      "optional": true
+    },
+    "lefthook": {
+      "optional": true
+    },
+    "prettier": {
+      "optional": true
+    }
+  },
+  "clean-package": "../../clean-package.config.cjs",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

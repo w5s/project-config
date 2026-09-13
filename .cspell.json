@@ -16,6 +16,8 @@
     "packages/mrm-preset/ci/_autodevops/**"
   ],
   "words": [
+    "commitlintrc",
+    "cosmiconfig",
     "dtinth",
     "monkeyc",
     "nonconstructor",

@@ -15,7 +15,7 @@
       "cspell",
       "vitest",
       "renovate",
-      "githooks",
+      "lefthook",
       "post-configure"
     ]
   }

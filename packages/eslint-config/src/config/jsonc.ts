@@ -120,7 +120,6 @@ function sortPackageJson() {
             'simple-git-hooks', // Key sort using git hook sort
             'pre-commit',
             'commitlint',
-            'lint-staged',
             'config',
             'nodemonConfig',
             'browserify',
