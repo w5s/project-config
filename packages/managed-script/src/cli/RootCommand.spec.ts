@@ -42,6 +42,23 @@ describe(RootCommand, () => {
     expect(exitCode).toBe(0);
   });
 
+  it('passes arguments after -- to runScript', async () => {
+    vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
+
+    const exitCode = await createCli().run(['build', '--', '--watch', 'value'], {
+      stderr: process.stderr,
+      stdin: process.stdin,
+      stdout: process.stdout,
+    });
+
+    expect(ManagedScript.runScript).toHaveBeenCalledWith(
+      expect.objectContaining({
+        parameters: expect.objectContaining({ scriptArgs: ['--watch', 'value'], scriptName: 'build' }),
+      }),
+    );
+    expect(exitCode).toBe(0);
+  });
+
   it('passes the --dry-run option to runScript and returns its exit code', async () => {
     vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
 

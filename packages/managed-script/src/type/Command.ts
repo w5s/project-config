@@ -25,6 +25,7 @@ export namespace ManagedScriptCommand {
 
   export interface RunScript extends Base<'RunScript', {
     scriptName: string | undefined;
+    scriptArgs?: readonly string[];
   }> {}
 }
 
