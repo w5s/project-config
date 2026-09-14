@@ -10,7 +10,10 @@ import { resolveScripts } from './resolveScripts.js';
 
 const handlers = {
   RunScript: async (command: ManagedScriptCommand.RunScript): Promise<number> => {
-    const { context: { cwd, dryRun, env, logLevel, stderr, stdout }, parameters: { scriptName } } = command;
+    const {
+      context: { cwd, dryRun, env, logLevel, stderr, stdout },
+      parameters: { scriptArgs = [], scriptName },
+    } = command;
     const logger = Logger.create({ level: logLevel, stderr, stdout });
     const loaded = await ConfigLoader.load({ cwd });
     logger.debug(`Resolved configuration from ${loaded.configFile ?? 'defaults (no config file found)'}.`);
@@ -34,12 +37,17 @@ const handlers = {
       );
     }
 
+    const commandLine = [
+      script.command,
+      ...scriptArgs.map((argument) => `'${argument.replaceAll("'", String.raw`'\''`)}'`),
+    ].join(' ');
+
     if (dryRun) {
-      console.log(script.command);
+      console.log(commandLine);
       return 0;
     }
 
-    logger.info(`Running script "${name}": ${script.command}`);
+    logger.info(`Running script "${name}": ${commandLine}`);
 
     // Prepare the environment variables for the script execution.
     const scriptEnv = {
@@ -50,7 +58,7 @@ const handlers = {
       [ManagedScriptEnv.Name]: name,
     };
 
-    const exitCode = await Executor.run(script.command, { cwd, env: scriptEnv });
+    const exitCode = await Executor.run(commandLine, { cwd, env: scriptEnv });
 
     if (exitCode !== 0) {
       throw new Error(`Script "${name}" exited with code ${exitCode}.`);

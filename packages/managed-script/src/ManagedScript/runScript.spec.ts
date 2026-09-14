@@ -43,6 +43,22 @@ describe(runScript, () => {
     expect(exitCode).toBe(0);
   });
 
+  it('appends shell-escaped script arguments to the resolved command', async () => {
+    vi.mocked(ConfigLoader.load).mockResolvedValue({
+      config: { scripts: { build: 'my-command' } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: 'my-command' } } }],
+    });
+    vi.mocked(Executor.run).mockResolvedValue(0);
+
+    await runScript({
+      context: { cwd: '/cwd', env: {} },
+      parameters: { scriptName: 'build', scriptArgs: ['--watch', 'hello world', "it's"] },
+    });
+
+    expect(Executor.run).toHaveBeenCalledWith("my-command '--watch' 'hello world' 'it'\\''s'", expect.any(Object));
+  });
+
   it('prints the resolved command and skips execution when dryRun is set', async () => {
     vi.mocked(ConfigLoader.load).mockResolvedValue({
       config: { scripts: { build: 'my-command' } },
