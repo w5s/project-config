@@ -10,6 +10,7 @@
 * [@w5s/cspell-config](packages/cspell-config) - CSpell configuration presets
 * [@w5s/dev](packages/dev) - Shared development constants and functions
 * [@w5s/eslint-config](packages/eslint-config) - ESLint configuration presets
+* [@w5s/lefthook-config](packages/lefthook-config) - Lefthook shared configuration
 * [@w5s/mrm-preset](packages/mrm-preset) - Mrm configuration presets
 * [@w5s/prettier-config](packages/prettier-config) - Prettier shared configuration
 * [@w5s/tsconfig](packages/tsconfig) - Typescript compiler configuration presets
