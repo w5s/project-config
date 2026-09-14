@@ -5,6 +5,11 @@
  */
 export const ManagedScriptEnv = Object.freeze({
   /**
+   * The color mode used for messages.
+   */
+  Color: 'MANAGED_SCRIPT_COLOR',
+
+  /**
    * The directory where the managed script configuration is located.
    */
   ConfigDir: 'MANAGED_SCRIPT_CONFIG_DIR',

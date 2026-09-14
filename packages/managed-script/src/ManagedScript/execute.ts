@@ -50,6 +50,7 @@ const handlers = {
 
     // Prepare the environment variables for the script execution.
     const scriptEnv = {
+      [ManagedScriptEnv.Color]: color,
       [ManagedScriptEnv.ConfigDir]: script.configDir,
       [ManagedScriptEnv.ConfigFile]: script.configFile,
       [ManagedScriptEnv.Cwd]: cwd,

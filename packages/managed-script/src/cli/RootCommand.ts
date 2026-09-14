@@ -80,6 +80,7 @@ export class RootCommand extends Command {
         context: {
           cli: { color, cwd: this.cwd, dryRun: this.dryRun, logLevel },
           stderr: this.context.stderr,
+          stdout: this.context.stdout,
         },
         parameters: {
           scriptArgs,
