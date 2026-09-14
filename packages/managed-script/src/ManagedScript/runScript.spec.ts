@@ -53,10 +53,10 @@ describe(runScript, () => {
 
     await runScript({
       context: { cwd: '/cwd', env: {} },
-      parameters: { scriptName: 'build', scriptArgs: ['--watch', 'hello world', "it's"] },
+      parameters: { scriptArgs: ['--watch', 'hello world', "it's"], scriptName: 'build' },
     });
 
-    expect(Executor.run).toHaveBeenCalledWith("my-command '--watch' 'hello world' 'it'\\''s'", expect.any(Object));
+    expect(Executor.run).toHaveBeenCalledWith(String.raw`my-command '--watch' 'hello world' 'it'\''s'`, expect.any(Object));
   });
 
   it('prints the resolved command and skips execution when dryRun is set', async () => {

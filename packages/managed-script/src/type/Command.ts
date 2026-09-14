@@ -24,8 +24,8 @@ export namespace ManagedScriptCommand {
   export type Parameters<T extends Base<string, object>> = Omit<T, '_'>;
 
   export interface RunScript extends Base<'RunScript', {
+    scriptArgs?: ReadonlyArray<string>;
     scriptName: string | undefined;
-    scriptArgs?: readonly string[];
   }> {}
 }
 

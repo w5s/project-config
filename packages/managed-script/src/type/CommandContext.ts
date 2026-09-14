@@ -5,21 +5,21 @@ export interface CommandContext {
    * Command-line arguments passed to the script.
    */
   readonly cli: {
-    cwd?: string | undefined;
     color?: ColorMode | undefined;
+    cwd?: string | undefined;
     dryRun?: boolean | undefined;
     logLevel?: LogLevel | undefined;
   };
 
   /**
-   * Current working directory of the script.
-   */
-  readonly cwd: string;
-
-  /**
    * Color mode used for status messages.
    */
   readonly color: ColorMode;
+
+  /**
+   * Current working directory of the script.
+   */
+  readonly cwd: string;
 
   /**
    * When `true`, the resolved command is printed instead of being executed.
