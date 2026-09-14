@@ -16,7 +16,7 @@ export function defaultZXOptions(options: Partial<ZXOptions> & { logLevel?: LogL
     ...(optionsStderr == null ? {} : { stderr: optionsStderr }),
     ...(optionsStdout == null ? {} : { stdout: optionsStdout }),
   });
-  const logger = Logger.create({ level: context.logLevel, stderr: context.stderr, stdout: context.stdout });
+  const logger = Logger.create({ color: context.color, level: context.logLevel, stderr: context.stderr, stdout: context.stdout });
 
   return {
     cwd: context.cwd,

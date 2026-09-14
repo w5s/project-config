@@ -1,4 +1,4 @@
-import type { LogLevel } from '../internal/Logger.js';
+import type { ColorMode, LogLevel } from '../internal/Logger.js';
 
 export interface CommandContext {
   /**
@@ -6,6 +6,7 @@ export interface CommandContext {
    */
   readonly cli: {
     cwd?: string | undefined;
+    color?: ColorMode | undefined;
     dryRun?: boolean | undefined;
     logLevel?: LogLevel | undefined;
   };
@@ -14,6 +15,11 @@ export interface CommandContext {
    * Current working directory of the script.
    */
   readonly cwd: string;
+
+  /**
+   * Color mode used for status messages.
+   */
+  readonly color: ColorMode;
 
   /**
    * When `true`, the resolved command is printed instead of being executed.
