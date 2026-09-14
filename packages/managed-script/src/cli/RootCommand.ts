@@ -27,9 +27,7 @@ export class RootCommand extends Command {
     required: false,
   });
 
-  readonly name = Option.String({
-    required: false,
-  });
+  readonly scriptArgs = Option.Rest();
 
   readonly silent = Option.Boolean('--silent,-s', false, {
     description: 'Alias for --loglevel silent.',
@@ -40,6 +38,7 @@ export class RootCommand extends Command {
   });
 
   async execute(): Promise<number> {
+    const [scriptName, ...scriptArgs] = this.scriptArgs;
     let logLevel: LogLevel | undefined;
     if (this.silent) {
       logLevel = 'silent';
@@ -62,7 +61,8 @@ export class RootCommand extends Command {
           stderr: this.context.stderr,
         },
         parameters: {
-          scriptName: this.name,
+          scriptArgs,
+          scriptName,
         },
       });
       return 0;
