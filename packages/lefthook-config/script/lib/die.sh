@@ -14,6 +14,6 @@ die() {
   local message="${1:?message is required}"
   local status="${2:-1}"
 
-  log_error "$message"
+  log error "$message"
   exit "$status"
 }
