@@ -8,7 +8,7 @@ export interface ScriptNameResolverOptions {
 /**
  * Resolves the script name to run.
  *
- * Priority: `--name,-n` CLI argument > `MANAGED_SCRIPT_NAME` env var > `npm_lifecycle_event` env var.
+ * Priority: first positional CLI argument > `MANAGED_SCRIPT_NAME` env var > `npm_lifecycle_event` env var.
  */
 export const ScriptNameResolver = {
   resolve({ env, scriptName }: ScriptNameResolverOptions): string | undefined {

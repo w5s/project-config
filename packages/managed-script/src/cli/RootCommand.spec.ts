@@ -22,10 +22,10 @@ describe(RootCommand, () => {
     vi.clearAllMocks();
   });
 
-  it('passes the --name option to runScript and returns its exit code', async () => {
+  it('passes the positional name to runScript and returns its exit code', async () => {
     vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
 
-    const exitCode = await createCli().run(['--name', 'build'], {
+    const exitCode = await createCli().run(['build'], {
       stderr: process.stderr,
       stdin: process.stdin,
       stdout: process.stdout,
@@ -45,7 +45,7 @@ describe(RootCommand, () => {
   it('passes the --dry-run option to runScript and returns its exit code', async () => {
     vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
 
-    const exitCode = await createCli().run(['--name', 'build', '--dry-run'], {
+    const exitCode = await createCli().run(['build', '--dry-run'], {
       stderr: process.stderr,
       stdin: process.stdin,
       stdout: process.stdout,
@@ -64,7 +64,7 @@ describe(RootCommand, () => {
   it('passes the -n option as an alias for --dry-run', async () => {
     vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
 
-    const exitCode = await createCli().run(['--name', 'build', '-n'], {
+    const exitCode = await createCli().run(['build', '-n'], {
       stderr: process.stderr,
       stdin: process.stdin,
       stdout: process.stdout,
@@ -103,7 +103,7 @@ describe(RootCommand, () => {
   it('passes the --loglevel option to runScript', async () => {
     vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
 
-    const exitCode = await createCli().run(['--name', 'build', '--loglevel', 'debug'], {
+    const exitCode = await createCli().run(['build', '--loglevel', 'debug'], {
       stderr: process.stderr,
       stdin: process.stdin,
       stdout: process.stdout,
@@ -128,7 +128,7 @@ describe(RootCommand, () => {
       },
     });
 
-    const exitCode = await createCli().run(['--name', 'build', '--loglevel', 'nope'], {
+    const exitCode = await createCli().run(['build', '--loglevel', 'nope'], {
       stderr,
       stdin: process.stdin,
       stdout: process.stdout,
@@ -142,7 +142,7 @@ describe(RootCommand, () => {
   it('passes -s as an alias for --loglevel silent', async () => {
     vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
 
-    const exitCode = await createCli().run(['--name', 'build', '-s'], {
+    const exitCode = await createCli().run(['build', '-s'], {
       stderr: process.stderr,
       stdin: process.stdin,
       stdout: process.stdout,
@@ -161,7 +161,7 @@ describe(RootCommand, () => {
   it('passes -v as an alias for --loglevel debug', async () => {
     vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
 
-    const exitCode = await createCli().run(['--name', 'build', '-v'], {
+    const exitCode = await createCli().run(['build', '-v'], {
       stderr: process.stderr,
       stdin: process.stdin,
       stdout: process.stdout,
@@ -180,7 +180,7 @@ describe(RootCommand, () => {
   it('prefers --silent over --verbose when both are passed', async () => {
     vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
 
-    const exitCode = await createCli().run(['--name', 'build', '-s', '-v'], {
+    const exitCode = await createCli().run(['build', '-s', '-v'], {
       stderr: process.stderr,
       stdin: process.stdin,
       stdout: process.stdout,

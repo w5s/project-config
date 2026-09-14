@@ -10,7 +10,7 @@ export class RootCommand extends Command {
   static override paths = [Command.Default];
   static override usage = Command.Usage({
     description: 'Run a script from the managed-script configuration.',
-    details: 'Resolves the script name from --name, MANAGED_SCRIPT_NAME or npm_lifecycle_event, then executes it. Use --dry-run,-n to print the resolved command without executing it. Use --loglevel, --silent,-s or --verbose,-v to control status messages, forwarded to the script as MANAGED_SCRIPT_LOGLEVEL.',
+    details: 'Resolves the script name from the first positional argument, MANAGED_SCRIPT_NAME or npm_lifecycle_event, then executes it. Use --dry-run,-n to print the resolved command without executing it. Use --loglevel, --silent,-s or --verbose,-v to control status messages, forwarded to the script as MANAGED_SCRIPT_LOGLEVEL.',
   });
 
   readonly cwd = Option.String('--cwd', {
@@ -27,8 +27,7 @@ export class RootCommand extends Command {
     required: false,
   });
 
-  readonly name = Option.String('--name', {
-    description: 'Script name to run (overrides MANAGED_SCRIPT_NAME / npm_lifecycle_event).',
+  readonly name = Option.String({
     required: false,
   });
 
