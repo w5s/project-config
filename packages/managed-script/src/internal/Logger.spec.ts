@@ -66,7 +66,7 @@ describe(Logger.create, () => {
 
     logger.info('an info');
 
-    expect(chunksOut).toEqual(['\u001b[32man info\u001b[0m\n']);
+    expect(chunksOut).toEqual(['\u{1B}[32man info\u{1B}[0m\n']);
     expect(chunksErr).toEqual([]);
   });
 
@@ -88,6 +88,6 @@ describe(Logger.create, () => {
 
     logger.info('an info');
 
-    expect(chunksOut).toEqual(['\u001b[32man info\u001b[0m\n']);
+    expect(chunksOut).toEqual(['\u{1B}[32man info\u{1B}[0m\n']);
   });
 });
