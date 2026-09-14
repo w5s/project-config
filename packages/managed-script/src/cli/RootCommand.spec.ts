@@ -42,6 +42,51 @@ describe(RootCommand, () => {
     expect(exitCode).toBe(0);
   });
 
+  it.each([
+    ['--color', 'always'],
+    ['--no-color', 'never'],
+    ['--color=auto', 'auto'],
+    ['--color=always', 'always'],
+    ['--color=never', 'never'],
+  ])('normalizes %s to color mode %s', async (option, color) => {
+    vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
+
+    const exitCode = await createCli().run(['build', option], {
+      stderr: process.stderr,
+      stdin: process.stdin,
+      stdout: process.stdout,
+    });
+
+    expect(ManagedScript.runScript).toHaveBeenCalledWith(
+      expect.objectContaining({
+        context: expect.objectContaining({
+          cli: expect.objectContaining({ color }),
+        }),
+      }),
+    );
+    expect(exitCode).toBe(0);
+  });
+
+  it('rejects an unrecognized --color value', async () => {
+    const chunks: Array<string> = [];
+    const stderr = new Writable({
+      write(chunk: Buffer, _encoding, callback) {
+        chunks.push(chunk.toString());
+        callback();
+      },
+    });
+
+    const exitCode = await createCli().run(['build', '--color=nope'], {
+      stderr,
+      stdin: process.stdin,
+      stdout: process.stdout,
+    });
+
+    expect(exitCode).toBe(1);
+    expect(chunks.join('')).toContain('Invalid --color value "nope"');
+    expect(ManagedScript.runScript).not.toHaveBeenCalled();
+  });
+
   it('passes arguments after -- to runScript', async () => {
     vi.mocked(ManagedScript.runScript).mockResolvedValue(0);
 

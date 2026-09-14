@@ -11,10 +11,10 @@ import { resolveScripts } from './resolveScripts.js';
 const handlers = {
   RunScript: async (command: ManagedScriptCommand.RunScript): Promise<number> => {
     const {
-      context: { cwd, dryRun, env, logLevel, stderr, stdout },
+      context: { color, cwd, dryRun, env, logLevel, stderr, stdout },
       parameters: { scriptArgs = [], scriptName },
     } = command;
-    const logger = Logger.create({ level: logLevel, stderr, stdout });
+    const logger = Logger.create({ color, level: logLevel, stderr, stdout });
     const loaded = await ConfigLoader.load({ cwd });
     logger.debug(`Resolved configuration from ${loaded.configFile ?? 'defaults (no config file found)'}.`);
     const resolved = resolveScripts(loaded);
@@ -41,13 +41,12 @@ const handlers = {
       script.command,
       ...scriptArgs.map((argument) => `'${argument.replaceAll("'", String.raw`'\''`)}'`),
     ].join(' ');
+    logger.info(`Running script "${name}": ${commandLine}`);
 
     if (dryRun) {
       console.log(commandLine);
       return 0;
     }
-
-    logger.info(`Running script "${name}": ${commandLine}`);
 
     // Prepare the environment variables for the script execution.
     const scriptEnv = {
