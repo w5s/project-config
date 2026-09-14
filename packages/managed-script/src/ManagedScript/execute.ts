@@ -20,7 +20,7 @@ const handlers = {
     const name = ScriptNameResolver.resolve({ env, scriptName: scriptName });
     if (name == null) {
       throw new Error(
-        'Unable to resolve the script name. Set it with --name, the MANAGED_SCRIPT_NAME environment variable, or run through an npm/pnpm script (npm_lifecycle_event).',
+        'Unable to resolve the script name. Pass it as the first argument, set the MANAGED_SCRIPT_NAME environment variable, or run through an npm/pnpm script (npm_lifecycle_event).',
       );
     }
 
