@@ -8,9 +8,17 @@ import * as config from './config.js';
 
 export interface DefineConfigOptions extends config.ignores.Options {
   /**
+   * Additional override config entries appended last.
+   *
+   * Overrides are always applied at the end of the final config array so they
+   * win over the base preset and any todo layers.
+   */
+  overrides?: Array<Config> | undefined;
+
+  /**
    * Plugins configuration
    */
-  plugins?: {
+  plugins?: undefined | {
     'e18e'?: boolean | config.e18e.Options | undefined;
     'es'?: boolean | config.es.Options | undefined;
     'import'?: boolean | config.imports.Options | undefined;
@@ -33,11 +41,18 @@ export interface DefineConfigOptions extends config.ignores.Options {
   /**
    * Override rules
    */
-  rules?: eslint.Linter.RulesRecord;
+  rules?: eslint.Linter.RulesRecord | undefined;
+
+  /**
+   * Additional config entries appended after the base configuration.
+   *
+   * They are meant to be temporary rules overrides that need a fix
+   */
+  todo?: Array<Config> | undefined;
 }
 
 export async function defineConfig(options: DefineConfigOptions = {}): Promise<Array<Config>> {
-  const { plugins = {}, rules } = options;
+  const { overrides = [], plugins = {}, rules, todo = [] } = options;
   const stylisticOptions =
     typeof plugins.stylistic === 'boolean' ? { enabled: plugins.stylistic } : { enabled: true, ...plugins.stylistic };
   const withDefaultStylistic = <T>(_options: T) => ({ stylistic: stylisticOptions, ..._options });
@@ -82,5 +97,7 @@ export async function defineConfig(options: DefineConfigOptions = {}): Promise<A
     ...includeEnabled(config.markdown, toOption(plugins.markdown)),
     ...includeEnabled(config.yml, toOption(plugins.yml)),
     ...(rules ? [{ rules }] : []),
+    ...todo,
+    ...overrides,
   );
 }

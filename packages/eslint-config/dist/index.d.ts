@@ -14212,9 +14212,16 @@ declare namespace config_d_exports {
 //#region src/defineConfig.d.ts
 export interface DefineConfigOptions extends ignores.Options {
   /**
+   * Additional override config entries appended last.
+   *
+   * Overrides are always applied at the end of the final config array so they
+   * win over the base preset and any todo layers.
+   */
+  overrides?: Array<Config> | undefined;
+  /**
    * Plugins configuration
    */
-  plugins?: {
+  plugins?: undefined | {
     'e18e'?: boolean | e18e.Options | undefined;
     'es'?: boolean | es.Options | undefined;
     'import'?: boolean | imports.Options | undefined;
@@ -14236,7 +14243,13 @@ export interface DefineConfigOptions extends ignores.Options {
   /**
    * Override rules
    */
-  rules?: eslint.Linter.RulesRecord;
+  rules?: eslint.Linter.RulesRecord | undefined;
+  /**
+   * Additional config entries appended after the base configuration.
+   *
+   * They are meant to be temporary rules overrides that need a fix
+   */
+  todo?: Array<Config> | undefined;
 }
 export declare function defineConfig(options?: DefineConfigOptions): Promise<Array<Config>>;
 //#endregion
