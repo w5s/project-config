@@ -41,12 +41,13 @@ const handlers = {
       script.command,
       ...scriptArgs.map((argument) => `'${argument.replaceAll("'", String.raw`'\''`)}'`),
     ].join(' ');
-    logger.info(`Running script "${name}": ${commandLine}`);
 
     if (dryRun) {
-      console.log(commandLine);
+      stdout.write(`${commandLine}\n`);
       return 0;
     }
+
+    logger.info(`Running script "${name}": ${commandLine}`);
 
     // Prepare the environment variables for the script execution.
     const scriptEnv = {
