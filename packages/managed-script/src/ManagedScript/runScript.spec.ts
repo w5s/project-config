@@ -33,6 +33,7 @@ describe(runScript, () => {
     expect(Executor.run).toHaveBeenCalledWith('my-command', {
       cwd: '/cwd',
       env: {
+        MANAGED_SCRIPT_COLOR: 'auto',
         MANAGED_SCRIPT_CONFIG_DIR: '/cwd/config',
         MANAGED_SCRIPT_CONFIG_FILE: '/cwd/config/managed-script.config',
         MANAGED_SCRIPT_CWD: '/cwd',
@@ -65,18 +66,42 @@ describe(runScript, () => {
       configFile: '/cwd/config/managed-script.config',
       layers: [{ config: { scripts: { build: 'my-command' } } }],
     });
-    const logSpy = vi.spyOn(console, 'log').mockImplementation(() => undefined);
+    const writeSpy = vi.spyOn(process.stdout, 'write').mockImplementation(() => true);
 
     const exitCode = await runScript({
       context: { cwd: '/cwd', dryRun: true, env: {} },
       parameters: { scriptName: 'build' },
     });
 
-    expect(logSpy).toHaveBeenCalledWith('my-command');
+    expect(writeSpy).toHaveBeenCalledWith('my-command\n');
     expect(Executor.run).not.toHaveBeenCalled();
     expect(exitCode).toBe(0);
 
-    logSpy.mockRestore();
+    writeSpy.mockRestore();
+  });
+
+  it('writes only the resolved command to stdout during dry run', async () => {
+    vi.mocked(ConfigLoader.load).mockResolvedValue({
+      config: { scripts: { build: 'my-command' } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: 'my-command' } } }],
+    });
+    const chunks: Array<string> = [];
+    const stdout = new Writable({
+      write(chunk: Buffer, _encoding, callback) {
+        chunks.push(chunk.toString());
+        callback();
+      },
+    });
+
+    const exitCode = await runScript({
+      context: { cwd: '/cwd', dryRun: true, env: {}, stdout },
+      parameters: { scriptName: 'build' },
+    });
+
+    expect(chunks.join('')).toBe('my-command\n');
+    expect(Executor.run).not.toHaveBeenCalled();
+    expect(exitCode).toBe(0);
   });
 
   it('forwards the resolved log level to the executed script', async () => {
