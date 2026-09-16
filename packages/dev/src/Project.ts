@@ -140,13 +140,35 @@ const reExtension = /^\./;
  * Return a glob matcher that will match any list of extensions
  *
  * @param extensions
+ * @param options
+ * @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
  * @example
  * ```ts
- * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
+ * Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
+ * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
+ * // '*.@(stories|story).@(ts|tsx)'
  * ```
  */
-function extensionsToGlob(extensions: ReadonlyArray<Extension>): string {
-  return `*.+(${extensions.map((_) => _.replace(reExtension, '')).join('|')})`;
+function extensionsToGlob(
+  extensions: ReadonlyArray<Extension>,
+  options: extensionToGlob.Options = {},
+): string {
+  const language = extGlob(extensions);
+  const compounds = options.compoundExtensions ?? [];
+  const compoundGlob = compounds.length === 0 ? `*.${language}` : `*.${extGlob(compounds)}.${language}`;
+  return compoundGlob;
+}
+export namespace extensionToGlob {
+  /**
+   * Options for the `extensionsToGlob` function.
+   */
+  export interface Options {
+    /**
+     * Optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
+     * Compound extensions are used to match files like `Component.stories.ts` where `.stories` is a compound extension.
+     */
+    compoundExtensions?: ReadonlyArray<Extension> | undefined;
+  }
 }
 
 /**
@@ -155,34 +177,48 @@ function extensionsToGlob(extensions: ReadonlyArray<Extension>): string {
  *
  * @param extensions
  * @param options
- * @param options.testExtensions
+ * @param options.testExtensions dotted compound extensions (e.g. `.spec`, `.test`)
  * @param options.testFolders
  * @example
  * ```ts
  * Project.extensionsToTestGlob(['.js', '.ts']);
  * // ['<tests-folder-glob>', '<test-suffix-glob>']
  *
- * Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['unit'] });
+ * Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['.unit'] });
  * // ['<tests-folder-glob>', '<custom-test-suffix-glob>']
  * ```
  */
 function extensionsToTestGlob(
   extensions: ReadonlyArray<Extension>,
   options: {
-    testExtensions?: ReadonlyArray<string>;
+    testExtensions?: ReadonlyArray<Extension>;
     testFolders?: ReadonlyArray<string>;
   } = {},
 ): Array<string> {
   const {
-    testExtensions = ['spec', 'test'],
+    testExtensions = ['.spec', '.test'],
     testFolders = ['__tests__'],
   } = options;
-  const extensionPattern = extensions.map((_) => _.replace(reExtension, '')).join('|');
 
   return [
-    ...testFolders.map((folder) => `**/${folder}/**/*.+(${extensionPattern})`),
-    `**/*.+(${testExtensions.join('|')}).+(${extensionPattern})`,
+    ...testFolders.map((folder) => `**/${folder}/**/${extensionsToGlob(extensions)}`),
+    ...(testExtensions.length === 0
+      ? []
+      : [`**/${extensionsToGlob(extensions, { compoundExtensions: testExtensions })}`]),
   ];
+}
+
+/**
+ * Build an extGlob fragment that matches exactly one of the given extensions.
+ *
+ * @param extensions
+ * @example
+ * ```ts
+ * extGlob(['.js', '.ts']) // '@(js|ts)'
+ * ```
+ */
+function extGlob(extensions: ReadonlyArray<Extension>): string {
+  return `@(${extensions.map((_) => _.replace(reExtension, '')).join('|')})`;
 }
 
 export const Project = Object.freeze({

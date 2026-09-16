@@ -216,31 +216,47 @@ declare function ignored(): readonly string[];
  * Return a glob matcher that will match any list of extensions
  *
  * @param extensions
+ * @param options
+ * @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
  * @example
  * ```ts
- * Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
+ * Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
+ * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
+ * // '*.@(stories|story).@(ts|tsx)'
  * ```
  */
-declare function extensionsToGlob(extensions: ReadonlyArray<Extension>): string;
+declare function extensionsToGlob(extensions: ReadonlyArray<Extension>, options?: extensionToGlob.Options): string;
+export declare namespace extensionToGlob {
+  /**
+   * Options for the `extensionsToGlob` function.
+   */
+  interface Options {
+    /**
+     * Optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
+     * Compound extensions are used to match files like `Component.stories.ts` where `.stories` is a compound extension.
+     */
+    compoundExtensions?: ReadonlyArray<Extension> | undefined;
+  }
+}
 /**
  * Return a list of test glob matchers for a list of extensions.
  * This is useful to generate globs for vitest/jest matchers
  *
  * @param extensions
  * @param options
- * @param options.testExtensions
+ * @param options.testExtensions dotted compound extensions (e.g. `.spec`, `.test`)
  * @param options.testFolders
  * @example
  * ```ts
  * Project.extensionsToTestGlob(['.js', '.ts']);
  * // ['<tests-folder-glob>', '<test-suffix-glob>']
  *
- * Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['unit'] });
+ * Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['.unit'] });
  * // ['<tests-folder-glob>', '<custom-test-suffix-glob>']
  * ```
  */
 declare function extensionsToTestGlob(extensions: ReadonlyArray<Extension>, options?: {
-  testExtensions?: ReadonlyArray<string>;
+  testExtensions?: ReadonlyArray<Extension>;
   testFolders?: ReadonlyArray<string>;
 }): Array<string>;
 export declare const Project: Readonly<{

@@ -293,13 +293,19 @@ const reExtension = /^\./;
 * Return a glob matcher that will match any list of extensions
 *
 * @param extensions
+* @param options
+* @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
 * @example
 * ```ts
-* Project.extensionsToGlob(['.js', '.ts']) // '*.+(js|ts)'
+* Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
+* Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
+* // '*.@(stories|story).@(ts|tsx)'
 * ```
 */
-function extensionsToGlob(extensions) {
-	return `*.+(${extensions.map((_) => _.replace(reExtension, "")).join("|")})`;
+function extensionsToGlob(extensions, options = {}) {
+	const language = extGlob(extensions);
+	const compounds = options.compoundExtensions ?? [];
+	return compounds.length === 0 ? `*.${language}` : `*.${extGlob(compounds)}.${language}`;
 }
 /**
 * Return a list of test glob matchers for a list of extensions.
@@ -307,21 +313,32 @@ function extensionsToGlob(extensions) {
 *
 * @param extensions
 * @param options
-* @param options.testExtensions
+* @param options.testExtensions dotted compound extensions (e.g. `.spec`, `.test`)
 * @param options.testFolders
 * @example
 * ```ts
 * Project.extensionsToTestGlob(['.js', '.ts']);
 * // ['<tests-folder-glob>', '<test-suffix-glob>']
 *
-* Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['unit'] });
+* Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['.unit'] });
 * // ['<tests-folder-glob>', '<custom-test-suffix-glob>']
 * ```
 */
 function extensionsToTestGlob(extensions, options = {}) {
-	const { testExtensions = ["spec", "test"], testFolders = ["__tests__"] } = options;
-	const extensionPattern = extensions.map((_) => _.replace(reExtension, "")).join("|");
-	return [...testFolders.map((folder) => `**/${folder}/**/*.+(${extensionPattern})`), `**/*.+(${testExtensions.join("|")}).+(${extensionPattern})`];
+	const { testExtensions = [".spec", ".test"], testFolders = ["__tests__"] } = options;
+	return [...testFolders.map((folder) => `**/${folder}/**/${extensionsToGlob(extensions)}`), ...testExtensions.length === 0 ? [] : [`**/${extensionsToGlob(extensions, { compoundExtensions: testExtensions })}`]];
+}
+/**
+* Build an extGlob fragment that matches exactly one of the given extensions.
+*
+* @param extensions
+* @example
+* ```ts
+* extGlob(['.js', '.ts']) // '@(js|ts)'
+* ```
+*/
+function extGlob(extensions) {
+	return `@(${extensions.map((_) => _.replace(reExtension, "")).join("|")})`;
 }
 const Project = Object.freeze({
 	ecmaVersion,
