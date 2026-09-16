@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.0/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.1/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -157,7 +157,7 @@ interface ScopeChain {
 type ScopeString = string;
 type Scope = ScopeChain | ScopeString;
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.0/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.1/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
@@ -1112,6 +1112,128 @@ type Substitutions = (SubstitutionEntry | SubstitutionID)[];
 //#endregion
 //#region src/types.d.ts
 type Serializable = number | string | boolean | null | object;
+//#endregion
+//#region src/WordSegmentation.d.ts
+interface WordSegmentationSettings {
+  /**
+   * Enables locale-sensitive text segmentation to support languages like Japanese, Chinese, Thai, Lao, Khmer, Myanmar, etc.
+   * The locale used for the segmentation is based on the {@link language} setting.
+   *
+   * @since 10.2.0
+   */
+  useIntlWordSegmentation?: boolean;
+  /**
+   * Defines a set of word break rules that can be used for text segmentation.
+   *
+   * Soft word breaks are done through injecting soft-hyphens at the appropriate positions in the text before spell checking.
+   *
+   * This allows for word breaks that might not be captured by the camel case detection.
+   *
+   * Note: soft-hyphens are removed before checking the word against the dictionaries.
+   *
+   * For example, if there is a soft-hyphen (represented by a `|`) injected between `error` and `code`
+   * `error|code`, the following words would be checked against
+   * the dictionaries: `errorcode`, `error`, and `code`.
+   *
+   * @since 10.3.1
+   */
+  softWordBreakDefinitions?: SoftWordBreakDefinitions;
+  /**
+   * Allows enabling or disabling soft word break rules by name.
+   *
+   * @since 10.3.1
+   */
+  softWordBreaks?: SoftWordBreaks;
+}
+/**
+ * Represents a regular expression used for word break rules.
+ *
+ * The matching string will be prefixed and suffixed with a soft-hyphen.
+ * If the matching string is zero length, only a single soft-hyphen will be inserted.
+ * It is best to use lookahead and lookbehind assertions to ensure correct word break positions.
+ *
+ * Examples:
+ * - `/(?<=\bptr)/` -- The break would occur after the `ptr`, helping with pointer definitions starting with `ptr`, such as `ptrvalue`.
+ * - `/(?<=\bI)(?=[A-Z])/` -- The break would occur before an uppercase letter following an `I` at a word boundary, helping with interface definitions like `IError`.
+ *
+ * @since 10.3.1
+ * @note Hidden to prevent it from being exposed in the json-schema.
+ * @hidden
+ */
+type SoftWordBreakRegExp = RegExp;
+/**
+ * Represents a regular expression used for word break rules.
+ *
+ * The matching string will be prefixed and suffixed with a soft-hyphen.
+ * If the matching string is zero length, only a single soft-hyphen will be inserted.
+ * It is best to use lookahead and lookbehind assertions to ensure correct word break positions.
+ *
+ * Examples:
+ * - `"/(?<=\\bptr)/"` -- The break would occur after the `ptr`, helping with pointer definitions starting with `ptr`, such as `ptrvalue`.
+ * - `"/(?<=\\bI)(?=[A-Z])/"` -- The break would occur before an uppercase letter following an `I` at a word boundary, helping with interface definitions like `IError`.
+ *
+ * @since 10.3.1
+ */
+type SoftWordBreakRegExpString = string;
+/**
+ * Defines a word break rule based on a string.
+ *
+ * Format:
+ * - `"before|after"` -- Matches a word break between `before` and `after`
+ * - `"before|after$"` -- Matches a word break between `before` and `after` at the end of a word
+ * - `"^before|after"` -- Matches a word break between `before` at the start of a word and `after`
+ * - `"^before|after$"` -- Matches a word break between `before` at the start of a word and `after` at the end of a word
+ * - `"before|"` -- Matches a word break after `before`
+ * - `"^before|"` -- Matches a word break after `before` at the start of a word
+ * - `"|after"` -- Matches a word break before `after`
+ * - `"|after$"` -- Matches a word break before `after` at the end of a word
+ *
+ *
+ * Where `before` is the text before the word break and `after` is the text after the word break.
+ *
+ * Special characters like `|`, `^`, and `$` have specific meanings.
+ * - `|` -- Represents the position of the word break
+ * - `^` -- Indicates the start of a word
+ * - `$` -- Indicates the end of a word
+ *
+ * For more complicated word break rules, consider using regular expressions with the {@link SoftWordBreakRegExp} type.
+ *
+ * Examples:
+ * - `"^ptr|"` -- Would help with pointer definitions starting with `ptr`, such as `ptrvalue`.
+ * - `"^I|"` -- Would help with interface definitions starting with `I`, such as `IERROR`.
+ *
+ * @since 10.3.1
+ */
+type SoftWordBreakPattern = string;
+type SoftWordBreakRule = SoftWordBreak | SoftWordBreak[];
+type SoftWordBreak = SoftWordBreakRegExpString | SoftWordBreakPattern | SoftWordBreakRegExp;
+/**
+ * Defines a set of word break rules that can be used for text segmentation.
+ *
+ * Soft word breaks are done through injecting soft-hyphens at the appropriate positions in the text before spell checking.
+ *
+ * This allows for word breaks that might not be captured by the camel case detection.
+ *
+ * Note: soft-hyphens are removed before checking the word against the dictionaries.
+ *
+ * For example, if there is a soft-hyphen (represented by a `|`) injected between `error` and `code`
+ * `error|code`, the following words would be checked against
+ * the dictionaries: `errorcode`, `error`, and `code`.
+ *
+ * @since 10.3.1
+ */
+interface SoftWordBreakDefinitions {
+  /**
+   * A named set of soft word break rules.
+   */
+  [name: string]: SoftWordBreakRule;
+}
+/**
+ * Allows enabling or disabling soft word break rules by name.
+ */
+interface SoftWordBreaks {
+  [name: string]: boolean;
+}
 interface CSpellSettings extends FileSettings, LegacySettings {}
 interface FileSettings extends ExtendableSettings, CommandLineSettings {
   /**
@@ -1138,12 +1260,12 @@ interface FileSettings extends ExtendableSettings, CommandLineSettings {
   /**
    * The root to use for glob patterns found in this configuration.
    * Default: location of the configuration file.
-   *   For compatibility reasons, config files with version 0.1, the glob root will
+   *   For compatibility reasons, for config files with version 0.1, the glob root will
    *   default to be `${cwd}`.
    *
    * Use `globRoot` to define a different location.
    * `globRoot` can be relative to the location of this configuration file.
-   * Defining globRoot, does not impact imported configurations.
+   * Defining globRoot does not impact imported configurations.
    *
    * Special Values:
    * - `${cwd}` - will be replaced with the current working directory.
@@ -1284,8 +1406,8 @@ interface SpellCheckerExtensionSettings {
   /**
    * Enable / Disable checking file types (languageIds).
    *
-   * These are in additional to the file types specified by {@link Settings.enabledLanguageIds}.
-   * To disable a language, prefix with `!` as in `!json`,
+   * These are in addition to the file types specified by {@link Settings.enabledLanguageIds}.
+   * To disable a language, prefix with `!` as in `!json`.
    *
    *
    * **Example: individual file types**
@@ -1350,7 +1472,7 @@ interface Settings extends ReportingConfiguration, BaseSetting, PnPSettings, Spe
    *
    */
   languageSettings?: LanguageSetting[];
-  /** Forces the spell checker to assume a give language id. Used mainly as an Override. */
+  /** Forces the spell checker to assume a given language id. Used mainly as an Override. */
   languageId?: MatchingFileType;
   /**
    * By default, the bundled dictionary configurations are loaded. Explicitly setting this to `false`
@@ -1428,8 +1550,8 @@ interface CacheSettings {
    */
   cacheLocation?: FSPathResolvable;
   /**
-   * Strategy to use for detecting changed files, default: metadata
-   * @default 'metadata'
+   * Strategy to use for detecting changed files, default: content
+   * @default 'content'
    */
   cacheStrategy?: CacheStrategy;
   /**
@@ -1481,7 +1603,7 @@ interface OverrideFilterFields {
   /** Glob pattern or patterns to match against. */
   filename: Glob | Glob[];
 }
-interface BaseSetting extends InlineDictionary, ExperimentalBaseSettings, UnknownWordsConfiguration {
+interface BaseSetting extends InlineDictionary, ExperimentalBaseSettings, UnknownWordsConfiguration, WordSegmentationSettings {
   /** Optional identifier. */
   id?: string;
   /** Optional name of configuration. */
@@ -1618,13 +1740,6 @@ interface BaseSetting extends InlineDictionary, ExperimentalBaseSettings, Unknow
    * @since 9.7.0
    */
   substitutions?: Substitutions;
-  /**
-   * Enables enables locale-sensitive text segmentation to support languages like Japanese, Chinese, Thai, Lao, Khmer, Myanmar, etc.
-   * The locale used for the segmentation is based on the {@link language} setting.
-   *
-   * @since 10.2.0
-   */
-  useIntlWordSegmentation?: boolean;
 }
 interface LanguageSetting extends LanguageSettingFilterFields, BaseSetting {}
 interface LanguageSettingFilterFields extends LanguageSettingFilterFieldsPreferred, LanguageSettingFilterFieldsDeprecated {}
