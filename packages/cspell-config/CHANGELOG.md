@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.27.0](https://github.com/w5s/project-config/compare/@w5s/cspell-config@3.1.9...@w5s/cspell-config@3.27.0) (2026-09-17)
+
+### ✨ Features
+
+- Add ignoreGitModules option (default to true) ([1a3385f](https://github.com/w5s/project-config/commit/1a3385f)) 
+- Add lefthook-config ([d8b837c](https://github.com/w5s/project-config/commit/d8b837c)) 
+- Add support for restricted syntax in ESLint configuration ([34d8e37](https://github.com/w5s/project-config/commit/34d8e37)) 
+- Update TypeScript rules and add consistent-type-assertions rule ([71b0eb1](https://github.com/w5s/project-config/commit/71b0eb1)) 
+
+### 🐛 Bug Fixes
+
+- Update @cspell/cspell-bundled-dicts to version 10.1.1 in package.json and pnpm-lock.yaml ([1f5fa29](https://github.com/w5s/project-config/commit/1f5fa29))
+
+**Note:** Version bump only for package @w5s/cspell-config
+
 # [3.26.0](https://github.com/w5s/project-config/compare/@w5s/cspell-config@3.1.9...@w5s/cspell-config@3.26.0) (2026-09-16)
 
 ### ✨ Features

@@ -105,7 +105,7 @@ const hooks = { updateConfig(config) {
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/pnpm-plugin-config",
-	version: "1.15.0"
+	version: "1.16.0"
 });
 //#endregion
 export { PnpmUserConfig, defaultConfig, hooks, meta };

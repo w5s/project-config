@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.30.0](https://github.com/w5s/project-config/compare/@w5s/dev@3.4.1...@w5s/dev@3.30.0) (2026-09-17)
+
+### ✨ Features
+
+- Add eslint type aware rules ([#4494](https://github.com/w5s/project-config/issues/4494)) ([c3fa944](https://github.com/w5s/project-config/commit/c3fa944)) 
+- Add ESLintConfig.mapRules ([014f7ef](https://github.com/w5s/project-config/commit/014f7ef)) 
+- Add extensionsToTestGlob function for generating test glob matchers ([783b2af](https://github.com/w5s/project-config/commit/783b2af)) 
+- Add ignoreGitModules option (default to true) ([1a3385f](https://github.com/w5s/project-config/commit/1a3385f)) 
+- Add nested option for extensionsToGlob ([50150b4](https://github.com/w5s/project-config/commit/50150b4)) 
+- Improve extensionsToGlob to handle compountExtensions ([aed4563](https://github.com/w5s/project-config/commit/aed4563)) 
+- Update TypeScript rules and add consistent-type-assertions rule ([71b0eb1](https://github.com/w5s/project-config/commit/71b0eb1))
+
+**Note:** Version bump only for package @w5s/dev
+
 # [3.29.0](https://github.com/w5s/project-config/compare/@w5s/dev@3.4.1...@w5s/dev@3.29.0) (2026-09-16)
 
 ### ✨ Features
