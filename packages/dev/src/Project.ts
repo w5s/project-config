@@ -155,9 +155,8 @@ function extensionsToGlob(
   extensions: ReadonlyArray<Extension>,
   options: extensionToGlob.Options = {},
 ): string {
-  const language = extGlob(extensions);
-  const compounds = options.compoundExtensions ?? [];
-  const compoundGlob = compounds.length === 0 ? `*.${language}` : `*.${extGlob(compounds)}.${language}`;
+  const language = globExt(extensions);
+  const compoundGlob = `*${globExt(options.compoundExtensions ?? [])}${language}`;
   return `${options.nested === true ? '**/' : ''}${compoundGlob}`;
 }
 export namespace extensionToGlob {
@@ -210,7 +209,7 @@ function extensionsToTestGlob(
   } = options;
 
   return [
-    ...testFolders.map((folder) => `**/${folder}/${extensionsToGlob(extensions, { nested: true })}`),
+    ...(testFolders.length === 0 ? [] : [`**/${globOr(testFolders)}/${extensionsToGlob(extensions, { nested: true })}`]),
     ...(testExtensions.length === 0
       ? []
       : [extensionsToGlob(extensions, { compoundExtensions: testExtensions, nested: true })]),
@@ -218,16 +217,34 @@ function extensionsToTestGlob(
 }
 
 /**
- * Build an extGlob fragment that matches exactly one of the given extensions.
+ * Build an globExt fragment that matches exactly one of the given extensions.
  *
  * @param extensions
  * @example
  * ```ts
- * extGlob(['.js', '.ts']) // '@(js|ts)'
+ * globExt([]) // ''
+ * globExt(['.js']) // '.js'
+ * globExt(['.js', '.ts']) // '.@(js|ts)'
  * ```
  */
-function extGlob(extensions: ReadonlyArray<Extension>): string {
-  return `@(${extensions.map((_) => _.replace(reExtension, '')).join('|')})`;
+function globExt(extensions: ReadonlyArray<Extension>): string {
+  const ext = globOr(extensions.map((_) => _.replace(reExtension, '')));
+  return ext === '' ? '' : `.${ext}`;
+}
+
+/**
+ * Build an globExt alternation group matching any of the given values.
+ *
+ * @param values
+ * @example
+ * ```ts
+ * globOr(['js']) // 'js'
+ * globOr(['js', 'ts']) // '@(js|ts)'
+ * ```
+ */
+function globOr(values: ReadonlyArray<string>): string {
+  // eslint-disable-next-line ts/no-non-null-assertion
+  return values.length === 0 ? '' : values.length === 1 ? values[0]! : `@(${values.join('|')})`;
 }
 
 export const Project = Object.freeze({

@@ -61,13 +61,18 @@ describe('Project', () => {
     it('should support custom test suffixes', () => {
       expect(Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['.unit'] })).toEqual([
         '**/__tests__/**/*.@(js|ts)',
-        '**/*.@(unit).@(js|ts)',
+        '**/*.unit.@(js|ts)',
       ]);
     });
     it('should support custom test folders', () => {
       expect(
         Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['.unit'], testFolders: ['custom_tests'] }),
-      ).toEqual(['**/custom_tests/**/*.@(js|ts)', '**/*.@(unit).@(js|ts)']);
+      ).toEqual(['**/custom_tests/**/*.@(js|ts)', '**/*.unit.@(js|ts)']);
+    });
+    it('should combine multiple test folders into a single glob entry', () => {
+      expect(
+        Project.extensionsToTestGlob(['.js', '.ts'], { testFolders: ['__tests__', 'custom_tests'] }),
+      ).toEqual(['**/@(__tests__|custom_tests)/**/*.@(js|ts)', '**/*.@(spec|test).@(js|ts)']);
     });
     it('should omit folder globs when testFolders is empty', () => {
       expect(Project.extensionsToTestGlob(['.js', '.ts'], { testFolders: [] })).toEqual([

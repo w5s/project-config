@@ -305,9 +305,8 @@ const reExtension = /^\./;
 * ```
 */
 function extensionsToGlob(extensions, options = {}) {
-	const language = extGlob(extensions);
-	const compounds = options.compoundExtensions ?? [];
-	const compoundGlob = compounds.length === 0 ? `*.${language}` : `*.${extGlob(compounds)}.${language}`;
+	const language = globExt(extensions);
+	const compoundGlob = `*${globExt(options.compoundExtensions ?? [])}${language}`;
 	return `${options.nested === true ? "**/" : ""}${compoundGlob}`;
 }
 /**
@@ -329,22 +328,38 @@ function extensionsToGlob(extensions, options = {}) {
 */
 function extensionsToTestGlob(extensions, options = {}) {
 	const { testExtensions = [".spec", ".test"], testFolders = ["__tests__"] } = options;
-	return [...testFolders.map((folder) => `**/${folder}/${extensionsToGlob(extensions, { nested: true })}`), ...testExtensions.length === 0 ? [] : [extensionsToGlob(extensions, {
+	return [...testFolders.length === 0 ? [] : [`**/${globOr(testFolders)}/${extensionsToGlob(extensions, { nested: true })}`], ...testExtensions.length === 0 ? [] : [extensionsToGlob(extensions, {
 		compoundExtensions: testExtensions,
 		nested: true
 	})]];
 }
 /**
-* Build an extGlob fragment that matches exactly one of the given extensions.
+* Build an globExt fragment that matches exactly one of the given extensions.
 *
 * @param extensions
 * @example
 * ```ts
-* extGlob(['.js', '.ts']) // '@(js|ts)'
+* globExt([]) // ''
+* globExt(['.js']) // '.js'
+* globExt(['.js', '.ts']) // '.@(js|ts)'
 * ```
 */
-function extGlob(extensions) {
-	return `@(${extensions.map((_) => _.replace(reExtension, "")).join("|")})`;
+function globExt(extensions) {
+	const ext = globOr(extensions.map((_) => _.replace(reExtension, "")));
+	return ext === "" ? "" : `.${ext}`;
+}
+/**
+* Build an globExt alternation group matching any of the given values.
+*
+* @param values
+* @example
+* ```ts
+* globOr(['js']) // 'js'
+* globOr(['js', 'ts']) // '@(js|ts)'
+* ```
+*/
+function globOr(values) {
+	return values.length === 0 ? "" : values.length === 1 ? values[0] : `@(${values.join("|")})`;
 }
 const Project = Object.freeze({
 	ecmaVersion,
