@@ -4,9 +4,10 @@ import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
 import type { RuleOptions } from '../typegen/markdown.js';
 
 import { sourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { looseRules } from '../rules/looseRules.js';
-import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [Project.extensionsToGlob(Project.queryExtensions(['markdown']), { nested: true })];
 
@@ -18,16 +19,16 @@ export async function markdown(options: markdown.Options = {}) {
     files,
     language = 'markdown/gfm',
     languageOptions,
-    recommended = true,
+    namespace,
+    recommended,
     rules = {},
-    stylistic = true,
-  } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+    stylistic,
+  } = defaultPluginOptions(options);
 
   const resolvedFiles = withDefaultFiles(files, defaultFiles);
   return [
     {
-      name: 'w5s/markdown/setup',
+      name: `${namespace}/markdown/setup`,
       plugins: {
         markdown: markdownPlugin,
       },
@@ -39,12 +40,12 @@ export async function markdown(options: markdown.Options = {}) {
         frontmatter: 'yaml',
         ...languageOptions,
       },
-      name: 'w5s/markdown/rules',
+      name: `${namespace}/markdown/rules`,
 
       processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
       rules: {
         ...(recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {}),
-        ...(stylisticEnabled ? {} : {}),
+        ...(stylistic.enabled ? {} : {}),
         ...rules,
       },
     },
@@ -56,7 +57,7 @@ export async function markdown(options: markdown.Options = {}) {
           projectService: false,
         },
       },
-      name: 'w5s/markdown/embed-code',
+      name: `${namespace}/markdown/embed-code`,
       rules: {
         ...looseRules(),
         'no-alert': 'off',

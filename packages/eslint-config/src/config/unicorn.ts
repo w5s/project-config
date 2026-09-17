@@ -3,26 +3,26 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/unicorn.js';
 
 import { sourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
-import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [sourceGlob];
 
 export async function unicorn(options: unicorn.Options = {}) {
   const [unicornPlugin] = await Promise.all([interopDefault(import('eslint-plugin-unicorn'))] as const);
-  const { files, recommended = true, rules = {}, stylistic = true } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
 
   return [
     {
-      name: 'w5s/unicorn/setup',
+      name: `${namespace}/unicorn/setup`,
       plugins: {
         unicorn: unicornPlugin,
       },
     },
     {
       files: withDefaultFiles(files, defaultFiles),
-      name: 'w5s/unicorn/rules',
+      name: `${namespace}/unicorn/rules`,
       rules: {
         ...(recommended && unicornPlugin.configs.unopinionated.rules),
         // Disabled for safety
@@ -37,14 +37,14 @@ export async function unicorn(options: unicorn.Options = {}) {
         'unicorn/prefer-default-parameters': 'off',
         'unicorn/prefer-set-has': 'off',
         'unicorn/throw-new-error': 'off', // Creating errors with call signature is OK
-        ...(stylisticEnabled ? {} : {}),
+        ...(stylistic.enabled ? {} : {}),
         ...rules,
       },
     },
     // TODO: move to another file ?
     {
       files: ['**/*.config.cjs', '**/*.config.js'],
-      name: 'w5s/unicorn/overrides',
+      name: `${namespace}/unicorn/overrides`,
       rules: {
         'unicorn/prefer-module': 'off',
       },

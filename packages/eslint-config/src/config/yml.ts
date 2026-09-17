@@ -3,19 +3,20 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/yml.js';
 
 import { ymlSourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
-import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [ymlSourceGlob];
 
 export async function yml(options: yml.Options = {}) {
   const [ymlPlugin] = await Promise.all([interopDefault(import('eslint-plugin-yml'))] as const);
-  const { files, recommended = true, rules = {}, stylistic = true } = options;
-  const { enabled: stylisticEnabled, indent, quotes } = StylisticConfig.from(stylistic);
+  const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
+  const { enabled: stylisticEnabled, indent, quotes } = stylistic;
 
   return [
     {
-      name: 'w5s/yml/setup',
+      name: `${namespace}/yml/setup`,
       plugins: {
         yml: ymlPlugin,
       },
@@ -23,7 +24,7 @@ export async function yml(options: yml.Options = {}) {
     {
       files: withDefaultFiles(files, defaultFiles),
       language: 'yml/yaml',
-      name: 'w5s/yml/rules',
+      name: `${namespace}/yml/rules`,
       rules: {
         ...(recommended
           ? ymlPlugin.configs.recommended.reduce(

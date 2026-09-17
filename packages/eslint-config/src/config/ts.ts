@@ -4,9 +4,10 @@ import { ESLintConfig, interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/ts.js';
 
 import { tsSourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { tsRules } from '../rules/tsRules.js';
-import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const tsRenameMap = {
   '@typescript-eslint': 'ts',
@@ -20,20 +21,20 @@ export async function ts(options: ts.Options = {}) {
   ] as const);
   const {
     files,
+    namespace,
     parserOptions = {},
-    recommended = true,
+    recommended,
     rules = {},
-    stylistic = true,
+    stylistic,
     tsconfigPath = './tsconfig.json',
     typeChecked = true,
-  } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  } = defaultPluginOptions(options);
   const tsCustomRules = tsRules();
   const resolvedFiles = withDefaultFiles(files, defaultFiles);
 
   return [
     {
-      name: 'w5s/ts/setup',
+      name: `${namespace}/ts/setup`,
       plugins: {
         ts: tsPlugin,
       },
@@ -57,13 +58,13 @@ export async function ts(options: ts.Options = {}) {
           ...parserOptions,
         },
       },
-      name: 'w5s/ts/rules',
+      name: `${namespace}/ts/rules`,
       rules: {
         ...(recommended ? ESLintConfig.renameRules(tsPlugin.configs['eslint-recommended']!.overrides![0]!.rules!, tsRenameMap) : {}),
         ...(recommended ? ESLintConfig.renameRules(tsPlugin.configs['strict']!.rules!, tsRenameMap) : {}),
         ...(recommended && typeChecked ? ESLintConfig.renameRules(tsPlugin.configs['recommended-type-checked-only']!.rules!, tsRenameMap) : {}),
         ...(recommended ? tsCustomRules : {}),
-        ...(stylisticEnabled
+        ...(stylistic.enabled
           ? {
               // eslint-disable-next-line ts/no-non-null-asserted-optional-chain
               ...ESLintConfig.renameRules(tsPlugin.configs['stylistic']?.rules!, tsRenameMap),

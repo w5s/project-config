@@ -9,6 +9,14 @@ export interface PluginOptionsBase<Rules> {
   files?: ((currentFiles: Array<string>) => Array<string>) | Linter.Config['files'];
 
   /**
+   * Namespace of configurations.
+   * Useful for tier configuration and rebranding
+   *
+   * @default 'w5s'
+   */
+  namespace?: string | undefined;
+
+  /**
    * Include recommended settings
    */
   recommended?: boolean;

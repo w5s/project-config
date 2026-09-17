@@ -2,9 +2,10 @@ import { ESLintConfig, interopDefault, Project } from '@w5s/dev';
 
 import type { RuleOptions } from '../typegen/test.js';
 
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { looseRules } from '../rules/looseRules.js';
-import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = Project.extensionsToTestGlob(Project.sourceExtensions());
 
@@ -12,19 +13,18 @@ export async function test(options: test.Options = {}) {
   const [vitestPlugin] = await Promise.all(([
     interopDefault(import('@vitest/eslint-plugin')),
   ]) as const);
-  const { files, recommended = true, rules = {}, stylistic = true } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
 
   return [
     {
-      name: 'w5s/test/setup',
+      name: `${namespace}/test/setup`,
       plugins: {
         test: vitestPlugin,
       },
     },
     {
       files: withDefaultFiles(files, defaultFiles),
-      name: 'w5s/test/rules',
+      name: `${namespace}/test/rules`,
       rules: {
         ...(recommended
           ? {
@@ -38,7 +38,7 @@ export async function test(options: test.Options = {}) {
               'test/valid-title': ESLintConfig.fixme(undefined),
             }
           : {}),
-        ...(stylisticEnabled
+        ...(stylistic.enabled
           ? {}
           : {}),
         ...rules,

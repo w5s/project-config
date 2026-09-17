@@ -5,6 +5,7 @@ import globals from 'globals';
 import type { RuleOptions } from '../typegen/jsonc.js';
 
 import { esSourceGlob, sourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { restrictedGlobals as defaultGlobalRestrictedGlobals } from '../restrictedGlobals.js';
 import { restrictedImportPaths as defaultGlobalRestrictedImportPaths } from '../restrictedImportPaths.js';
 import { restrictedSyntax as defaultGlobalRestrictedSyntax } from '../restrictedSyntax.js';
@@ -18,10 +19,11 @@ export async function es(options: es.Options) {
     defaultRestrictedGlobals = defaultGlobalRestrictedGlobals,
     defaultRestrictedImportPaths = defaultGlobalRestrictedImportPaths,
     defaultRestrictedSyntax = defaultGlobalRestrictedSyntax,
-    recommended = true,
+    namespace,
+    recommended,
     restrictedImportPaths: paths,
     rules = {},
-  } = options;
+  } = defaultPluginOptions(options);
   const resolvedGlobals =
     typeof options.restrictedGlobals === 'function'
       ? options.restrictedGlobals(defaultRestrictedGlobals)
@@ -59,11 +61,11 @@ export async function es(options: es.Options) {
       linterOptions: {
         reportUnusedDisableDirectives: true,
       },
-      name: 'w5s/es/setup',
+      name: `${namespace}/es/setup`,
     },
     {
       files: [sourceGlob],
-      name: 'w5s/source/restricted-rules',
+      name: `${namespace}/source/restricted-rules`,
       rules: {
         'no-restricted-globals': [
           'error',
@@ -83,7 +85,7 @@ export async function es(options: es.Options) {
     },
     {
       files: defaultFiles,
-      name: 'w5s/es/rules',
+      name: `${namespace}/es/rules`,
       rules: {
         ...(recommended ? es.recommended : {}),
         ...rules,

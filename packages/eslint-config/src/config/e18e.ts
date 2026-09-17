@@ -3,8 +3,9 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/e18e.js';
 
 import { sourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
-import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [sourceGlob];
 
@@ -14,19 +15,26 @@ const defaultFiles = [sourceGlob];
  */
 export async function e18e(options: e18e.Options = {}) {
   const [e18ePlugin] = await Promise.all([interopDefault(import('@e18e/eslint-plugin'))] as const);
-  const { files, modernization = true, moduleReplacements = false, performanceImprovements = true, rules = {}, stylistic = true } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+  const {
+    files,
+    modernization = true,
+    moduleReplacements = false,
+    namespace,
+    performanceImprovements = true,
+    rules = {},
+    stylistic,
+  } = defaultPluginOptions(options);
 
   return [
     {
-      name: 'w5s/e18e/setup',
+      name: `${namespace}/e18e/setup`,
       plugins: {
         e18e: e18ePlugin,
       },
     },
     {
       files: withDefaultFiles(files, defaultFiles),
-      name: 'w5s/e18e/rules',
+      name: `${namespace}/e18e/rules`,
       rules: {
         ...modernization ? e18ePlugin.configs.modernization.rules : {},
         ...moduleReplacements ? e18ePlugin.configs.moduleReplacements.rules : {},
@@ -40,7 +48,7 @@ export async function e18e(options: e18e.Options = {}) {
         'e18e/prefer-array-to-spliced': 'off',
         'e18e/prefer-spread-syntax': 'off',
 
-        ...(stylisticEnabled ? {} : {}),
+        ...(stylistic.enabled ? {} : {}),
         ...rules,
       },
     },

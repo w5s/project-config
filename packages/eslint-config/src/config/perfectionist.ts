@@ -3,8 +3,9 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/perfectionist.js';
 
 import { sourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
-import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [sourceGlob];
 
@@ -12,25 +13,25 @@ export async function perfectionist(options: perfectionist.Options = {}) {
   const [perfectionistPlugin] = await Promise.all([interopDefault(import('eslint-plugin-perfectionist'))] as const);
   const {
     files,
-    recommended = true,
+    namespace,
+    recommended,
     rules = {},
-    stylistic = true,
-  } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+    stylistic,
+  } = defaultPluginOptions(options);
 
   return [
     {
-      name: 'w5s/perfectionist/setup',
+      name: `${namespace}/perfectionist/setup`,
       plugins: {
         perfectionist: perfectionistPlugin,
       },
     },
     {
       files: withDefaultFiles(files, defaultFiles),
-      name: 'w5s/perfectionist/rules',
+      name: `${namespace}/perfectionist/rules`,
       rules: {
         ...(recommended ? perfectionistPlugin.configs['recommended-natural'].rules : {}),
-        ...(stylisticEnabled ? {} : {}),
+        ...(stylistic.enabled ? {} : {}),
         ...rules,
       },
     },

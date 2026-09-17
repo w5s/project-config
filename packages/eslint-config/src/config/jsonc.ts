@@ -4,8 +4,9 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/jsonc.js';
 
 import { jsonSourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
-import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [jsonSourceGlob];
 
@@ -16,15 +17,15 @@ export async function jsonc(options: jsonc.Options = {}): Promise<ReadonlyArray<
   ] as const);
   const {
     files,
-    recommended = true,
+    namespace,
+    recommended,
     rules = {},
-    stylistic = true,
-  } = options;
-  const { enabled: stylisticEnabled, indent } = StylisticConfig.from(stylistic);
+    stylistic,
+  } = defaultPluginOptions(options);
 
   return [
     {
-      name: 'w5s/jsonc/setup',
+      name: `${namespace}/jsonc/setup`,
       plugins: {
         jsonc: jsoncPlugin,
       },
@@ -34,15 +35,15 @@ export async function jsonc(options: jsonc.Options = {}): Promise<ReadonlyArray<
       languageOptions: {
         parser: jsoncParser,
       },
-      name: 'w5s/jsonc/rules',
+      name: `${namespace}/jsonc/rules`,
       rules: {
         ...(recommended ? jsoncPlugin.configs['flat/recommended-with-json'][0]?.rules : {}),
-        ...(stylisticEnabled
+        ...(stylistic.enabled
           ? {
               'jsonc/array-bracket-spacing': ['error', 'never'],
               'jsonc/comma-dangle': ['error', 'never'],
               'jsonc/comma-style': ['error', 'last'],
-              'jsonc/indent': ['error', indent],
+              'jsonc/indent': ['error', stylistic.indent],
               'jsonc/key-spacing': ['error', { afterColon: true, beforeColon: false }],
               'jsonc/object-curly-newline': ['error', { consistent: true, multiline: true }],
               'jsonc/object-curly-spacing': ['error', 'always'],
@@ -54,8 +55,8 @@ export async function jsonc(options: jsonc.Options = {}): Promise<ReadonlyArray<
         ...rules,
       },
     },
-    stylisticEnabled ? sortPackageJson() : {},
-    stylisticEnabled ? sortTsconfigJson() : {},
+    stylistic.enabled ? sortPackageJson() : {},
+    stylistic.enabled ? sortTsconfigJson() : {},
   ] as [Config, Config, Config, Config] satisfies Array<Config>;
 }
 

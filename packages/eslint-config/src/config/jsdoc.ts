@@ -3,8 +3,9 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/jsdoc.js';
 
 import { esSourceGlob, tsSourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
-import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
+import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultJsFiles = [esSourceGlob];
 const defaultTsFiles = [tsSourceGlob];
@@ -13,16 +14,16 @@ export async function jsdoc(options: jsdoc.Options = {}): Promise<ReadonlyArray<
   const [jsdocPlugin] = await Promise.all([interopDefault(import('eslint-plugin-jsdoc'))] as const);
   const {
     files,
-    recommended = true,
+    namespace,
+    recommended,
     rules = {},
-    stylistic = true,
-  } = options;
-  const { enabled: stylisticEnabled } = StylisticConfig.from(stylistic);
+    stylistic,
+  } = defaultPluginOptions(options);
 
   const recommendedRules = recommended
     ? jsdocPlugin.configs['flat/recommended-typescript-flavor'].rules
     : {};
-  const stylisticRules = stylisticEnabled
+  const stylisticRules = stylistic.enabled
     ? {
         ...jsdocPlugin.configs['flat/stylistic-typescript-flavor'].rules,
         'jsdoc/check-alignment': 'warn',
@@ -33,14 +34,14 @@ export async function jsdoc(options: jsdoc.Options = {}): Promise<ReadonlyArray<
 
   return [
     {
-      name: 'w5s/jsdoc/setup',
+      name: `${namespace}/jsdoc/setup`,
       plugins: {
         jsdoc: jsdocPlugin,
       },
     },
     {
       files: withDefaultFiles(files, defaultJsFiles),
-      name: 'w5s/jsdoc/rules-js',
+      name: `${namespace}/jsdoc/rules-js`,
       rules: {
         ...recommendedRules,
 
@@ -68,7 +69,7 @@ export async function jsdoc(options: jsdoc.Options = {}): Promise<ReadonlyArray<
     },
     {
       files: withDefaultFiles(files, defaultTsFiles),
-      name: 'w5s/jsdoc/rules-ts',
+      name: `${namespace}/jsdoc/rules-ts`,
       rules: {
         ...recommendedRules,
 

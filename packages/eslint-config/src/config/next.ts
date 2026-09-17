@@ -12,7 +12,7 @@ export async function next(options: next.Options = {}) {
   const [nextPlugin] = await Promise.all([
     interopDefault(import('@next/eslint-plugin-next')),
   ] as const);
-  const { files, recommended = true, rules = {} } = options;
+  const { files, recommended, rules = {} } = options;
 
   return [
     {

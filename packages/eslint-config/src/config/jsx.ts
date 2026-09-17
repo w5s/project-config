@@ -3,17 +3,19 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/jsx-a11y.js';
 
 import { jsxSourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase } from '../type.js';
 
 const defaultFiles = [jsxSourceGlob];
 
 export async function jsx(options: jsx.Options = {}) {
-  const { files, jsxA11y = false, recommended = true, rules = {} } = options;
+  const { files, jsxA11y = false, namespace, recommended, rules = {} } = defaultPluginOptions(options);
   // eslint-disable-next-line ts/await-thenable
   const [jsxA11yPlugin] = await Promise.all([
     jsxA11y ? interopDefault(import('eslint-plugin-jsx-a11y')) : undefined,
   ] as const);
+
   return [
     {
       languageOptions: {
@@ -24,14 +26,14 @@ export async function jsx(options: jsx.Options = {}) {
         },
         sourceType: 'module',
       },
-      name: 'w5s/jsx/setup',
+      name: `${namespace}/jsx/setup`,
       plugins: {
         ...(jsxA11yPlugin ? { 'jsx-a11y': jsxA11yPlugin } : {}),
       },
     },
     {
       files: withDefaultFiles(files, defaultFiles),
-      name: 'w5s/jsx/rules',
+      name: `${namespace}/jsx/rules`,
       rules: {
         ...(recommended && jsxA11yPlugin != null ? jsxA11yPlugin.configs.recommended.rules : {}),
         ...rules,

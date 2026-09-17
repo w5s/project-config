@@ -3,13 +3,14 @@ import { interopDefault } from '@w5s/dev';
 import type { RuleOptions } from '../typegen/unused-imports.js';
 
 import { sourceGlob } from '../glob.js';
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { type Config, type PluginOptionsBase } from '../type.js';
 
 export async function unusedImports(options: unusedImports.Options = {}) {
   const [unusedImportPlugin] = await Promise.all([
     interopDefault(import('eslint-plugin-unused-imports')),
   ] as const);
-  const { files = [sourceGlob], recommended = true, rules = {} } = options;
+  const { files = [sourceGlob], recommended, rules = {} } = defaultPluginOptions(options);
 
   return [
     {
