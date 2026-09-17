@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.9.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@3.5.1...@w5s/mrm-preset@3.9.0) (2026-09-17)
+
+### ✨ Features
+
+- Add lefthook-config ([d8b837c](https://github.com/w5s/project-config/commit/d8b837c)) 
+
+### 🐛 Bug Fixes
+
+- Fix ignored changelog files ([104fada](https://github.com/w5s/project-config/commit/104fada))
+
+**Note:** Version bump only for package @w5s/mrm-preset
+
 # [3.8.0](https://github.com/w5s/project-config/compare/@w5s/mrm-preset@3.5.1...@w5s/mrm-preset@3.8.0) (2026-09-17)
 
 ### ✨ Features
