@@ -295,9 +295,11 @@ const reExtension = /^\./;
 * @param extensions
 * @param options
 * @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
+* @param options.nested whether to match files in nested folders
 * @example
 * ```ts
 * Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
+* Project.extensionsToGlob(['.js', '.ts'], { nested: true }) // Matches nested JavaScript and TypeScript files
 * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
 * // '*.@(stories|story).@(ts|tsx)'
 * ```
@@ -305,7 +307,8 @@ const reExtension = /^\./;
 function extensionsToGlob(extensions, options = {}) {
 	const language = extGlob(extensions);
 	const compounds = options.compoundExtensions ?? [];
-	return compounds.length === 0 ? `*.${language}` : `*.${extGlob(compounds)}.${language}`;
+	const compoundGlob = compounds.length === 0 ? `*.${language}` : `*.${extGlob(compounds)}.${language}`;
+	return `${options.nested === true ? "**/" : ""}${compoundGlob}`;
 }
 /**
 * Return a list of test glob matchers for a list of extensions.
@@ -326,7 +329,10 @@ function extensionsToGlob(extensions, options = {}) {
 */
 function extensionsToTestGlob(extensions, options = {}) {
 	const { testExtensions = [".spec", ".test"], testFolders = ["__tests__"] } = options;
-	return [...testFolders.map((folder) => `**/${folder}/**/${extensionsToGlob(extensions)}`), ...testExtensions.length === 0 ? [] : [`**/${extensionsToGlob(extensions, { compoundExtensions: testExtensions })}`]];
+	return [...testFolders.map((folder) => `**/${folder}/${extensionsToGlob(extensions, { nested: true })}`), ...testExtensions.length === 0 ? [] : [extensionsToGlob(extensions, {
+		compoundExtensions: testExtensions,
+		nested: true
+	})]];
 }
 /**
 * Build an extGlob fragment that matches exactly one of the given extensions.

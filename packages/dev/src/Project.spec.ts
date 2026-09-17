@@ -38,6 +38,9 @@ describe('Project', () => {
     it('should return a glob string', () => {
       expect(Project.extensionsToGlob(['.js', '.ts'])).toEqual('*.@(js|ts)');
     });
+    it('should support nested folders', () => {
+      expect(Project.extensionsToGlob(['.js', '.ts'], { nested: true })).toEqual('**/*.@(js|ts)');
+    });
     it('should support compound extensions', () => {
       expect(Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })).toEqual(
         '*.@(stories|story).@(ts|tsx)',

@@ -6,16 +6,16 @@ import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 //#region src/glob.ts
-const sourceGlob = `**/${Project.extensionsToGlob(Project.sourceExtensions())}`;
-const esSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]))}`;
-const jsxSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["javascriptreact", "typescriptreact"]))}`;
-const jsonSourceGlob = `**/${Project.extensionsToGlob([
+const sourceGlob = Project.extensionsToGlob(Project.sourceExtensions(), { nested: true });
+const esSourceGlob = Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]), { nested: true });
+const jsxSourceGlob = Project.extensionsToGlob(Project.queryExtensions(["javascriptreact", "typescriptreact"]), { nested: true });
+const jsonSourceGlob = Project.extensionsToGlob([
 	".json",
 	".json5",
 	".jsonc"
-])}`;
-const tsSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]))}`;
-const ymlSourceGlob = `**/${Project.extensionsToGlob(Project.queryExtensions(["yaml"]))}`;
+], { nested: true });
+const tsSourceGlob = Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]), { nested: true });
+const ymlSourceGlob = Project.extensionsToGlob(Project.queryExtensions(["yaml"]), { nested: true });
 //#endregion
 //#region src/internal/withDefaultFiles.ts
 /**
@@ -956,7 +956,7 @@ const looseRules = lazy(() => {
 });
 //#endregion
 //#region src/config/markdown.ts
-const defaultFiles$7 = [`**/${Project.extensionsToGlob(Project.queryExtensions(["markdown"]))}`];
+const defaultFiles$7 = [Project.extensionsToGlob(Project.queryExtensions(["markdown"]), { nested: true })];
 async function markdown(options = {}) {
 	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
 	const { files, language = "markdown/gfm", languageOptions, recommended = true, rules = {}, stylistic = true } = options;

@@ -142,9 +142,11 @@ const reExtension = /^\./;
  * @param extensions
  * @param options
  * @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
+ * @param options.nested whether to match files in nested folders
  * @example
  * ```ts
  * Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
+ * Project.extensionsToGlob(['.js', '.ts'], { nested: true }) // Matches nested JavaScript and TypeScript files
  * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
  * // '*.@(stories|story).@(ts|tsx)'
  * ```
@@ -156,7 +158,7 @@ function extensionsToGlob(
   const language = extGlob(extensions);
   const compounds = options.compoundExtensions ?? [];
   const compoundGlob = compounds.length === 0 ? `*.${language}` : `*.${extGlob(compounds)}.${language}`;
-  return compoundGlob;
+  return `${options.nested === true ? '**/' : ''}${compoundGlob}`;
 }
 export namespace extensionToGlob {
   /**
@@ -168,6 +170,13 @@ export namespace extensionToGlob {
      * Compound extensions are used to match files like `Component.stories.ts` where `.stories` is a compound extension.
      */
     compoundExtensions?: ReadonlyArray<Extension> | undefined;
+
+    /**
+     * Whether to match files in nested folders.
+     *
+     * @default false
+     */
+    nested?: boolean | undefined;
   }
 }
 
@@ -201,10 +210,10 @@ function extensionsToTestGlob(
   } = options;
 
   return [
-    ...testFolders.map((folder) => `**/${folder}/**/${extensionsToGlob(extensions)}`),
+    ...testFolders.map((folder) => `**/${folder}/${extensionsToGlob(extensions, { nested: true })}`),
     ...(testExtensions.length === 0
       ? []
-      : [`**/${extensionsToGlob(extensions, { compoundExtensions: testExtensions })}`]),
+      : [extensionsToGlob(extensions, { compoundExtensions: testExtensions, nested: true })]),
   ];
 }
 

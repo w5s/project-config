@@ -218,9 +218,11 @@ declare function ignored(): readonly string[];
  * @param extensions
  * @param options
  * @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
+ * @param options.nested whether to match files in nested folders
  * @example
  * ```ts
  * Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
+ * Project.extensionsToGlob(['.js', '.ts'], { nested: true }) // Matches nested JavaScript and TypeScript files
  * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
  * // '*.@(stories|story).@(ts|tsx)'
  * ```
@@ -236,6 +238,12 @@ export declare namespace extensionToGlob {
      * Compound extensions are used to match files like `Component.stories.ts` where `.stories` is a compound extension.
      */
     compoundExtensions?: ReadonlyArray<Extension> | undefined;
+    /**
+     * Whether to match files in nested folders.
+     *
+     * @default false
+     */
+    nested?: boolean | undefined;
   }
 }
 /**

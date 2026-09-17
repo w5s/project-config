@@ -8,7 +8,7 @@ import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { looseRules } from '../rules/looseRules.js';
 import { type Config, type PluginOptionsBase, StylisticConfig } from '../type.js';
 
-const defaultFiles = [`**/${Project.extensionsToGlob(Project.queryExtensions(['markdown']))}`];
+const defaultFiles = [Project.extensionsToGlob(Project.queryExtensions(['markdown']), { nested: true })];
 
 export async function markdown(options: markdown.Options = {}) {
   const [markdownPlugin] = await Promise.all([
