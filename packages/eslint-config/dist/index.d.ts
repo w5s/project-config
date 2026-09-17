@@ -2014,6 +2014,11 @@ interface RuleOptions$12 {
    */
   'jsdoc/text-escaping'?: Linter.RuleEntry<JsdocTextEscaping>;
   /**
+   * Disallows (or requires descriptions for) `@ts-<directive>` comments, mirroring `@typescript-eslint/ban-ts-comment`.
+   * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/ts-ban-ts-comment.md#repos-sticky-header
+   */
+  'jsdoc/ts-ban-ts-comment'?: Linter.RuleEntry<JsdocTsBanTsComment>;
+  /**
    * Prefers either function properties or method signatures
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/ts-method-signature-style.md#repos-sticky-header
    */
@@ -2563,6 +2568,22 @@ type JsdocTagLines = [] | [("always" | "any" | "never")] | [("always" | "any" | 
 type JsdocTextEscaping = [] | [{
   escapeHTML?: boolean;
   escapeMarkdown?: boolean;
+}];
+// ----- jsdoc/ts-ban-ts-comment -----
+type JsdocTsBanTsComment = [] | [{
+  minimumDescriptionLength?: number;
+  "ts-check"?: (boolean | "allow-with-description" | {
+    descriptionFormat?: string;
+  });
+  "ts-expect-error"?: (boolean | "allow-with-description" | {
+    descriptionFormat?: string;
+  });
+  "ts-ignore"?: (boolean | "allow-with-description" | {
+    descriptionFormat?: string;
+  });
+  "ts-nocheck"?: (boolean | "allow-with-description" | {
+    descriptionFormat?: string;
+  });
 }];
 // ----- jsdoc/ts-method-signature-style -----
 type JsdocTsMethodSignatureStyle = [] | [("method" | "property")] | [("method" | "property"), {
