@@ -118,7 +118,7 @@ const IGNORED = Object.freeze([
  * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
  * ```
  */
-function extensionsToMatcher(extensions: ReadonlyArray<Extension>): RegExp {
+function extensionsToRegExp(extensions: ReadonlyArray<Extension>): RegExp {
   return new RegExp(`(${extensions.map(escapeRegExp).join('|')})$`);
 }
 
@@ -250,7 +250,7 @@ function globOr(values: ReadonlyArray<string>): string {
 export const Project = Object.freeze({
   ecmaVersion,
   extensionsToGlob,
-  extensionsToMatcher,
+  extensionsToMatcher: extensionsToRegExp,
   extensionsToTestGlob,
   ignored,
   queryExtensions,
