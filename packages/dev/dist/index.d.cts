@@ -194,24 +194,6 @@ declare function sourceExtensions(): readonly `.${string}`[];
  */
 declare function resourceExtensions(): readonly `.${string}`[];
 /**
- * Return a glob matcher that will match any list of extensions
- *
- * @param extensions
- * @param options
- * @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
- * @param options.nested whether to match files in nested folders
- * @example
- * ```ts
- * Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
- * Project.extensionsToGlob(['.js', '.ts'], { nested: true }) // Matches nested JavaScript and TypeScript files
- * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
- * // '*.@(stories|story).@(ts|tsx)'
- * ```
- *
- * @deprecated Use `Project.glob` instead.
- */
-declare function extensionsToGlob(extensions: ReadonlyArray<Extension>, options?: extensionToGlob.Options): string;
-/**
  * Return a RegExp that will match any list of extensions
  *
  * @param extensions
@@ -221,45 +203,6 @@ declare function extensionsToGlob(extensions: ReadonlyArray<Extension>, options?
  * ```
  */
 declare function extensionsToRegExp(extensions: ReadonlyArray<Extension>): RegExp;
-/**
- * Create a new glob pattern based on the provided options.
- *
- * @param options The glob options to use when generating the glob pattern.
- *
- * @example
- * ```ts
- * Project.glob({ fileExtensions: ['.js', '.ts'] }); // '*.@(js|ts)'
- * Project.glob({ fileExtensions: '.js', nested: true }); // '** /*.js'
- * ```
- */
-declare function glob(options: Project.glob.Options): string;
-/**
- * Files and folders to always ignore
- *
- * @example
- * ```ts
- * IGNORED // ['node_modules/', 'build/', ...]
- * ```
- */
-declare function ignored(): readonly string[];
-export declare namespace extensionToGlob {
-  /**
-   * Options for the `extensionsToGlob` function.
-   */
-  interface Options {
-    /**
-     * Optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
-     * Compound extensions are used to match files like `Component.stories.ts` where `.stories` is a compound extension.
-     */
-    compoundExtensions?: ReadonlyArray<Extension> | undefined;
-    /**
-     * Whether to match files in nested folders.
-     *
-     * @default false
-     */
-    nested?: boolean | undefined;
-  }
-}
 /**
  * Return a list of test glob matchers for a list of extensions.
  * This is useful to generate globs for vitest/jest matchers
@@ -281,9 +224,29 @@ declare function extensionsToTestGlob(extensions: ReadonlyArray<Extension>, opti
   testExtensions?: ReadonlyArray<Extension>;
   testFolders?: ReadonlyArray<string>;
 }): Array<string>;
+/**
+ * Create a new glob pattern based on the provided options.
+ *
+ * @param options The glob options to use when generating the glob pattern.
+ *
+ * @example
+ * ```ts
+ * Project.glob({ fileExtensions: [['.js', '.ts']] }); // '*.@(js|ts)'
+ * Project.glob({ fileExtensions: [['.js']], nested: true }); // '**\/*.js'
+ * ```
+ */
+declare function glob(options: Project.glob.Options): string;
+/**
+ * Files and folders to always ignore
+ *
+ * @example
+ * ```ts
+ * IGNORED // ['node_modules/', 'build/', ...]
+ * ```
+ */
+declare function ignored(): readonly string[];
 export declare const Project: Readonly<{
   ecmaVersion: typeof ecmaVersion;
-  extensionsToGlob: typeof extensionsToGlob;
   extensionsToRegExp: typeof extensionsToRegExp;
   extensionsToTestGlob: typeof extensionsToTestGlob;
   glob: typeof glob;

@@ -267,28 +267,6 @@ const IGNORED = Object.freeze([
 	"umd/"
 ]);
 /**
-* Return a glob matcher that will match any list of extensions
-*
-* @param extensions
-* @param options
-* @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
-* @param options.nested whether to match files in nested folders
-* @example
-* ```ts
-* Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
-* Project.extensionsToGlob(['.js', '.ts'], { nested: true }) // Matches nested JavaScript and TypeScript files
-* Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
-* // '*.@(stories|story).@(ts|tsx)'
-* ```
-*
-* @deprecated Use `Project.glob` instead.
-*/
-function extensionsToGlob(extensions, options = {}) {
-	const language = globExt(extensions);
-	const compoundGlob = `*${globExt(options.compoundExtensions ?? [])}${language}`;
-	return `${options.nested === true ? "**/" : ""}${compoundGlob}`;
-}
-/**
 * Return a RegExp that will match any list of extensions
 *
 * @param extensions
@@ -301,14 +279,42 @@ function extensionsToRegExp(extensions) {
 	return new RegExp(`(${extensions.map(escapeRegExp).join("|")})$`);
 }
 /**
+* Return a list of test glob matchers for a list of extensions.
+* This is useful to generate globs for vitest/jest matchers
+*
+* @param extensions
+* @param options
+* @param options.testExtensions dotted compound extensions (e.g. `.spec`, `.test`)
+* @param options.testFolders
+* @example
+* ```ts
+* Project.extensionsToTestGlob(['.js', '.ts']);
+* // ['<tests-folder-glob>', '<test-suffix-glob>']
+*
+* Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['.unit'] });
+* // ['<tests-folder-glob>', '<custom-test-suffix-glob>']
+* ```
+*/
+function extensionsToTestGlob(extensions, options = {}) {
+	const { testExtensions = [".spec", ".test"], testFolders = ["__tests__"] } = options;
+	return [...testFolders.length === 0 ? [] : [glob({
+		fileExtensions: [extensions],
+		folderAncestors: testFolders,
+		nested: true
+	})], ...testExtensions.length === 0 ? [] : [glob({
+		fileExtensions: [testExtensions, extensions],
+		nested: true
+	})]];
+}
+/**
 * Create a new glob pattern based on the provided options.
 *
 * @param options The glob options to use when generating the glob pattern.
 *
 * @example
 * ```ts
-* Project.glob({ fileExtensions: ['.js', '.ts'] }); // '*.@(js|ts)'
-* Project.glob({ fileExtensions: '.js', nested: true }); // '** /*.js'
+* Project.glob({ fileExtensions: [['.js', '.ts']] }); // '*.@(js|ts)'
+* Project.glob({ fileExtensions: [['.js']], nested: true }); // '**\/*.js'
 * ```
 */
 function glob(options) {
@@ -348,37 +354,8 @@ function globOr(values) {
 function ignored() {
 	return IGNORED;
 }
-/**
-* Return a list of test glob matchers for a list of extensions.
-* This is useful to generate globs for vitest/jest matchers
-*
-* @param extensions
-* @param options
-* @param options.testExtensions dotted compound extensions (e.g. `.spec`, `.test`)
-* @param options.testFolders
-* @example
-* ```ts
-* Project.extensionsToTestGlob(['.js', '.ts']);
-* // ['<tests-folder-glob>', '<test-suffix-glob>']
-*
-* Project.extensionsToTestGlob(['.js', '.ts'], { testExtensions: ['.unit'] });
-* // ['<tests-folder-glob>', '<custom-test-suffix-glob>']
-* ```
-*/
-function extensionsToTestGlob(extensions, options = {}) {
-	const { testExtensions = [".spec", ".test"], testFolders = ["__tests__"] } = options;
-	return [...testFolders.length === 0 ? [] : [glob({
-		fileExtensions: [extensions],
-		folderAncestors: testFolders,
-		nested: true
-	})], ...testExtensions.length === 0 ? [] : [glob({
-		fileExtensions: [testExtensions, extensions],
-		nested: true
-	})]];
-}
 const Project = Object.freeze({
 	ecmaVersion,
-	extensionsToGlob,
 	extensionsToRegExp,
 	extensionsToTestGlob,
 	glob,

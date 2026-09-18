@@ -53,23 +53,6 @@ describe('Project', () => {
       expect(Project.glob({ fileExtensions: [['.js']], folderParents: ['src'], nested: true })).toEqual('**/src/*.js');
     });
   });
-  describe(Project.extensionsToGlob, () => {
-    it('should return a glob string', () => {
-      expect(Project.extensionsToGlob(['.js', '.ts'])).toEqual('*.@(js|ts)');
-    });
-    it('should support nested folders', () => {
-      expect(Project.extensionsToGlob(['.js', '.ts'], { nested: true })).toEqual('**/*.@(js|ts)');
-    });
-    it('should support compound extensions', () => {
-      expect(Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })).toEqual(
-        '*.@(stories|story).@(ts|tsx)',
-      );
-    });
-    it('should treat omitted and empty compoundExtensions the same', () => {
-      expect(Project.extensionsToGlob(['.js', '.ts'])).toEqual('*.@(js|ts)');
-      expect(Project.extensionsToGlob(['.js', '.ts'], { compoundExtensions: [] })).toEqual('*.@(js|ts)');
-    });
-  });
   describe(Project.extensionsToTestGlob, () => {
     it('should return default test globs', () => {
       expect(Project.extensionsToTestGlob(['.js', '.ts'])).toEqual([

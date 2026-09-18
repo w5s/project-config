@@ -6,16 +6,34 @@ import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 //#region src/glob.ts
-const sourceGlob = Project.extensionsToGlob(Project.sourceExtensions(), { nested: true });
-const esSourceGlob = Project.extensionsToGlob(Project.queryExtensions(["javascript", "javascriptreact"]), { nested: true });
-const jsxSourceGlob = Project.extensionsToGlob(Project.queryExtensions(["javascriptreact", "typescriptreact"]), { nested: true });
-const jsonSourceGlob = Project.extensionsToGlob([
-	".json",
-	".json5",
-	".jsonc"
-], { nested: true });
-const tsSourceGlob = Project.extensionsToGlob(Project.queryExtensions(["typescript", "typescriptreact"]), { nested: true });
-const ymlSourceGlob = Project.extensionsToGlob(Project.queryExtensions(["yaml"]), { nested: true });
+const sourceGlob = Project.glob({
+	fileExtensions: [Project.sourceExtensions()],
+	nested: true
+});
+const esSourceGlob = Project.glob({
+	fileExtensions: [Project.queryExtensions(["javascript", "javascriptreact"])],
+	nested: true
+});
+const jsxSourceGlob = Project.glob({
+	fileExtensions: [Project.queryExtensions(["javascriptreact", "typescriptreact"])],
+	nested: true
+});
+const jsonSourceGlob = Project.glob({
+	fileExtensions: [[
+		".json",
+		".json5",
+		".jsonc"
+	]],
+	nested: true
+});
+const tsSourceGlob = Project.glob({
+	fileExtensions: [Project.queryExtensions(["typescript", "typescriptreact"])],
+	nested: true
+});
+const ymlSourceGlob = Project.glob({
+	fileExtensions: [Project.queryExtensions(["yaml"])],
+	nested: true
+});
 //#endregion
 //#region src/type/StylisticConfig.ts
 const defaultConfig = {
