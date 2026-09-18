@@ -194,25 +194,6 @@ declare function sourceExtensions(): readonly `.${string}`[];
  */
 declare function resourceExtensions(): readonly `.${string}`[];
 /**
- * Return a RegExp that will match any list of extensions
- *
- * @param extensions
- * @example
- * ```ts
- * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
- * ```
- */
-declare function extensionsToMatcher(extensions: ReadonlyArray<Extension>): RegExp;
-/**
- * Files and folders to always ignore
- *
- * @example
- * ```ts
- * IGNORED // ['node_modules/', 'build/', ...]
- * ```
- */
-declare function ignored(): readonly string[];
-/**
  * Return a glob matcher that will match any list of extensions
  *
  * @param extensions
@@ -226,8 +207,41 @@ declare function ignored(): readonly string[];
  * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
  * // '*.@(stories|story).@(ts|tsx)'
  * ```
+ *
+ * @deprecated Use `Project.glob` instead.
  */
 declare function extensionsToGlob(extensions: ReadonlyArray<Extension>, options?: extensionToGlob.Options): string;
+/**
+ * Return a RegExp that will match any list of extensions
+ *
+ * @param extensions
+ * @example
+ * ```ts
+ * Project.extensionsToRegExp(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
+ * ```
+ */
+declare function extensionsToRegExp(extensions: ReadonlyArray<Extension>): RegExp;
+/**
+ * Create a new glob pattern based on the provided options.
+ *
+ * @param options The glob options to use when generating the glob pattern.
+ *
+ * @example
+ * ```ts
+ * Project.glob({ fileExtensions: ['.js', '.ts'] }); // '*.@(js|ts)'
+ * Project.glob({ fileExtensions: '.js', nested: true }); // '** /*.js'
+ * ```
+ */
+declare function glob(options: Project.glob.Options): string;
+/**
+ * Files and folders to always ignore
+ *
+ * @example
+ * ```ts
+ * IGNORED // ['node_modules/', 'build/', ...]
+ * ```
+ */
+declare function ignored(): readonly string[];
 export declare namespace extensionToGlob {
   /**
    * Options for the `extensionsToGlob` function.
@@ -270,13 +284,71 @@ declare function extensionsToTestGlob(extensions: ReadonlyArray<Extension>, opti
 export declare const Project: Readonly<{
   ecmaVersion: typeof ecmaVersion;
   extensionsToGlob: typeof extensionsToGlob;
-  extensionsToMatcher: typeof extensionsToMatcher;
+  extensionsToRegExp: typeof extensionsToRegExp;
   extensionsToTestGlob: typeof extensionsToTestGlob;
+  glob: typeof glob;
   ignored: typeof ignored;
   queryExtensions: typeof queryExtensions;
   resourceExtensions: typeof resourceExtensions;
   sourceExtensions: typeof sourceExtensions;
 }>;
+export declare namespace Project {
+  namespace glob {
+    interface Options {
+      /**
+       * An extension stack
+       *
+       * @example
+       * ```ts
+       * Project.glob({ fileExtensions: [['.js']] }); // '*.js'
+       * Project.glob({ fileExtensions: ['.@(js|ts)'] }); // '*.@(js|ts)'
+       * Project.glob({ fileExtensions: [['.js', '.ts']] }); // '*.@(js|ts)'
+       * Project.glob({ fileExtensions: [['.spec', '.test'], ['.js', '.ts', '.tsx']] }); // '*.@(spec|test).@(js|ts|tsx)'
+       * Project.glob({ fileExtensions: [] }); // '*'
+       * ```
+       */
+      fileExtensions?: ReadonlyArray<ReadonlyArray<Extension> | string> | undefined;
+      /**
+       * The stem (basename without extension) of the file to match.
+       *
+       * @example
+       * ```ts
+       * Project.glob({ fileStem: 'index', fileExtensions: ['.*'] }); // 'index.*'
+       * ```
+       */
+      fileStem?: ReadonlyArray<string> | string | undefined;
+      /**
+       * Ancestor folders to include in the glob pattern.
+       *
+       * @example
+       * ```ts
+       * Project.glob({ ancestorFolders: ['src'] }); // 'src/**​/*'
+       * ```
+       */
+      folderAncestors?: ReadonlyArray<string> | string | undefined;
+      /**
+       * Parent folders to include in the glob pattern (immediate parent folders).
+       *
+       * @example
+       * ```ts
+       * Project.glob({ folderParents: ['src'] }); // 'src/*'
+       * ```
+       */
+      folderParents?: ReadonlyArray<string> | string | undefined;
+      /**
+       * Whether to match files in nested folders.
+       *
+       * @default false
+       * @example
+       * ```ts
+       * Project.glob({ nested: true }); // '* /*'
+       * Project.glob({ nested: true, fileExtensions: [['.js']] }); // '**\/*.js'
+       * ```
+       */
+      nested?: boolean | undefined;
+    }
+  }
+}
 //#endregion
 //#region src/ProjectScript.d.ts
 /**

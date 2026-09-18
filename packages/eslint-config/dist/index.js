@@ -967,7 +967,10 @@ const looseRules = lazy(() => {
 });
 //#endregion
 //#region src/config/markdown.ts
-const defaultFiles$7 = [Project.extensionsToGlob(Project.queryExtensions(["markdown"]), { nested: true })];
+const defaultFiles$7 = [Project.glob({
+	fileExtensions: [Project.queryExtensions(["markdown"])],
+	nested: true
+})];
 async function markdown(options = {}) {
 	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
 	const { files, language = "markdown/gfm", languageOptions, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);

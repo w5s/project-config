@@ -154,6 +154,7 @@ const meta = Object.freeze({
 });
 //#endregion
 //#region src/Project.ts
+const reExtension = /^\./;
 /**
 * Supported ECMA version
 *
@@ -266,30 +267,6 @@ const IGNORED = Object.freeze([
 	"umd/"
 ]);
 /**
-* Return a RegExp that will match any list of extensions
-*
-* @param extensions
-* @example
-* ```ts
-* Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
-* ```
-*/
-function extensionsToMatcher(extensions) {
-	return new RegExp(`(${extensions.map(escapeRegExp).join("|")})$`);
-}
-/**
-* Files and folders to always ignore
-*
-* @example
-* ```ts
-* IGNORED // ['node_modules/', 'build/', ...]
-* ```
-*/
-function ignored() {
-	return IGNORED;
-}
-const reExtension = /^\./;
-/**
 * Return a glob matcher that will match any list of extensions
 *
 * @param extensions
@@ -303,11 +280,73 @@ const reExtension = /^\./;
 * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
 * // '*.@(stories|story).@(ts|tsx)'
 * ```
+*
+* @deprecated Use `Project.glob` instead.
 */
 function extensionsToGlob(extensions, options = {}) {
 	const language = globExt(extensions);
 	const compoundGlob = `*${globExt(options.compoundExtensions ?? [])}${language}`;
 	return `${options.nested === true ? "**/" : ""}${compoundGlob}`;
+}
+/**
+* Return a RegExp that will match any list of extensions
+*
+* @param extensions
+* @example
+* ```ts
+* Project.extensionsToRegExp(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
+* ```
+*/
+function extensionsToRegExp(extensions) {
+	return new RegExp(`(${extensions.map(escapeRegExp).join("|")})$`);
+}
+/**
+* Create a new glob pattern based on the provided options.
+*
+* @param options The glob options to use when generating the glob pattern.
+*
+* @example
+* ```ts
+* Project.glob({ fileExtensions: ['.js', '.ts'] }); // '*.@(js|ts)'
+* Project.glob({ fileExtensions: '.js', nested: true }); // '** /*.js'
+* ```
+*/
+function glob(options) {
+	const { fileExtensions = [], fileStem = "*", folderAncestors = [], folderParents = [], nested = false } = options;
+	const nestedGlob = nested === true ? "**/" : "";
+	const ancestorGlob = globAppendIfNotEmpty(globFrom(folderAncestors), "/**/");
+	const parentGlob = globAppendIfNotEmpty(globFrom(folderParents), "/");
+	const stemGlob = typeof fileStem === "string" ? fileStem : fileStem.length === 0 ? "*" : globOr(fileStem);
+	let extensionsGlob = "";
+	for (const extensionExpression of fileExtensions) {
+		const extensionGlob = typeof extensionExpression === "string" ? extensionExpression : globExt(extensionExpression);
+		extensionsGlob += extensionGlob;
+	}
+	return `${nestedGlob}${ancestorGlob}${parentGlob}${stemGlob}${extensionsGlob}`;
+}
+function globAppendIfNotEmpty(base, append) {
+	return base.length === 0 ? base : `${base}${append}`;
+}
+function globExt(extensions) {
+	const ext = globOr(extensions.map((_) => _.replace(reExtension, "")));
+	return ext === "" ? "" : `.${ext}`;
+}
+function globFrom(expression) {
+	return typeof expression === "string" ? expression : globOr(expression);
+}
+function globOr(values) {
+	return values.length === 0 ? "" : values.length === 1 ? values[0] : `@(${values.join("|")})`;
+}
+/**
+* Files and folders to always ignore
+*
+* @example
+* ```ts
+* IGNORED // ['node_modules/', 'build/', ...]
+* ```
+*/
+function ignored() {
+	return IGNORED;
 }
 /**
 * Return a list of test glob matchers for a list of extensions.
@@ -328,44 +367,21 @@ function extensionsToGlob(extensions, options = {}) {
 */
 function extensionsToTestGlob(extensions, options = {}) {
 	const { testExtensions = [".spec", ".test"], testFolders = ["__tests__"] } = options;
-	return [...testFolders.length === 0 ? [] : [`**/${globOr(testFolders)}/${extensionsToGlob(extensions, { nested: true })}`], ...testExtensions.length === 0 ? [] : [extensionsToGlob(extensions, {
-		compoundExtensions: testExtensions,
+	return [...testFolders.length === 0 ? [] : [glob({
+		fileExtensions: [extensions],
+		folderAncestors: testFolders,
+		nested: true
+	})], ...testExtensions.length === 0 ? [] : [glob({
+		fileExtensions: [testExtensions, extensions],
 		nested: true
 	})]];
-}
-/**
-* Build an globExt fragment that matches exactly one of the given extensions.
-*
-* @param extensions
-* @example
-* ```ts
-* globExt([]) // ''
-* globExt(['.js']) // '.js'
-* globExt(['.js', '.ts']) // '.@(js|ts)'
-* ```
-*/
-function globExt(extensions) {
-	const ext = globOr(extensions.map((_) => _.replace(reExtension, "")));
-	return ext === "" ? "" : `.${ext}`;
-}
-/**
-* Build an globExt alternation group matching any of the given values.
-*
-* @param values
-* @example
-* ```ts
-* globOr(['js']) // 'js'
-* globOr(['js', 'ts']) // '@(js|ts)'
-* ```
-*/
-function globOr(values) {
-	return values.length === 0 ? "" : values.length === 1 ? values[0] : `@(${values.join("|")})`;
 }
 const Project = Object.freeze({
 	ecmaVersion,
 	extensionsToGlob,
-	extensionsToMatcher,
+	extensionsToRegExp,
 	extensionsToTestGlob,
+	glob,
 	ignored,
 	queryExtensions,
 	resourceExtensions,

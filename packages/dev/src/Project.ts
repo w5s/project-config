@@ -1,5 +1,7 @@
 import type { LanguageId } from './LanguageId.js';
 
+const reExtension = /^\./;
+
 /**
  * A type of a file extension
  */
@@ -110,16 +112,86 @@ const IGNORED = Object.freeze([
 ]);
 
 /**
+ * Return a glob matcher that will match any list of extensions
+ *
+ * @param extensions
+ * @param options
+ * @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
+ * @param options.nested whether to match files in nested folders
+ * @example
+ * ```ts
+ * Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
+ * Project.extensionsToGlob(['.js', '.ts'], { nested: true }) // Matches nested JavaScript and TypeScript files
+ * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
+ * // '*.@(stories|story).@(ts|tsx)'
+ * ```
+ *
+ * @deprecated Use `Project.glob` instead.
+ */
+function extensionsToGlob(
+  extensions: ReadonlyArray<Extension>,
+  options: extensionToGlob.Options = {},
+): string {
+  const language = globExt(extensions);
+  const compoundGlob = `*${globExt(options.compoundExtensions ?? [])}${language}`;
+  return `${options.nested === true ? '**/' : ''}${compoundGlob}`;
+}
+
+/**
  * Return a RegExp that will match any list of extensions
  *
  * @param extensions
  * @example
  * ```ts
- * Project.extensionsToMatcher(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
+ * Project.extensionsToRegExp(['.js', '.ts']) // RegExp = /(\.js|\.ts)$/
  * ```
  */
 function extensionsToRegExp(extensions: ReadonlyArray<Extension>): RegExp {
   return new RegExp(`(${extensions.map(escapeRegExp).join('|')})$`);
+}
+
+/**
+ * Create a new glob pattern based on the provided options.
+ *
+ * @param options The glob options to use when generating the glob pattern.
+ *
+ * @example
+ * ```ts
+ * Project.glob({ fileExtensions: ['.js', '.ts'] }); // '*.@(js|ts)'
+ * Project.glob({ fileExtensions: '.js', nested: true }); // '** /*.js'
+ * ```
+ */
+function glob(options: Project.glob.Options) {
+  const { fileExtensions = [], fileStem = '*', folderAncestors = [], folderParents = [], nested = false } = options;
+  const nestedGlob = nested === true ? '**/' : '';
+  const ancestorGlob = globAppendIfNotEmpty(globFrom(folderAncestors), '/**/');
+  const parentGlob = globAppendIfNotEmpty(globFrom(folderParents), '/');
+  const stemGlob = typeof fileStem === 'string' ? fileStem : fileStem.length === 0 ? '*' : globOr(fileStem);
+  let extensionsGlob = '';
+  for (const extensionExpression of fileExtensions) {
+    const extensionGlob = typeof extensionExpression === 'string' ? extensionExpression : globExt(extensionExpression);
+    extensionsGlob += extensionGlob;
+  }
+
+  return `${nestedGlob}${ancestorGlob}${parentGlob}${stemGlob}${extensionsGlob}`;
+}
+
+function globAppendIfNotEmpty(base: string, append: string): string {
+  return base.length === 0 ? base : `${base}${append}`;
+}
+
+function globExt(extensions: ReadonlyArray<Extension>): string {
+  const ext = globOr(extensions.map((_) => _.replace(reExtension, '')));
+  return ext === '' ? '' : `.${ext}`;
+}
+
+function globFrom(expression: ReadonlyArray<string> | string): string {
+  return typeof expression === 'string' ? expression : globOr(expression);
+}
+
+function globOr(values: ReadonlyArray<string>): string {
+  // eslint-disable-next-line ts/no-non-null-assertion
+  return values.length === 0 ? '' : values.length === 1 ? values[0]! : `@(${values.join('|')})`;
 }
 
 /**
@@ -134,31 +206,6 @@ function ignored() {
   return IGNORED;
 }
 
-const reExtension = /^\./;
-
-/**
- * Return a glob matcher that will match any list of extensions
- *
- * @param extensions
- * @param options
- * @param options.compoundExtensions optional dotted segments before the language extension (e.g. `.stories`, `.spec`)
- * @param options.nested whether to match files in nested folders
- * @example
- * ```ts
- * Project.extensionsToGlob(['.js', '.ts']) // '*.@(js|ts)'
- * Project.extensionsToGlob(['.js', '.ts'], { nested: true }) // Matches nested JavaScript and TypeScript files
- * Project.extensionsToGlob(['.ts', '.tsx'], { compoundExtensions: ['.stories', '.story'] })
- * // '*.@(stories|story).@(ts|tsx)'
- * ```
- */
-function extensionsToGlob(
-  extensions: ReadonlyArray<Extension>,
-  options: extensionToGlob.Options = {},
-): string {
-  const language = globExt(extensions);
-  const compoundGlob = `*${globExt(options.compoundExtensions ?? [])}${language}`;
-  return `${options.nested === true ? '**/' : ''}${compoundGlob}`;
-}
 export namespace extensionToGlob {
   /**
    * Options for the `extensionsToGlob` function.
@@ -209,51 +256,84 @@ function extensionsToTestGlob(
   } = options;
 
   return [
-    ...(testFolders.length === 0 ? [] : [`**/${globOr(testFolders)}/${extensionsToGlob(extensions, { nested: true })}`]),
+    ...(testFolders.length === 0 ? [] : [glob({ fileExtensions: [extensions], folderAncestors: testFolders, nested: true })]),
     ...(testExtensions.length === 0
       ? []
-      : [extensionsToGlob(extensions, { compoundExtensions: testExtensions, nested: true })]),
+      : [glob({ fileExtensions: [testExtensions, extensions], nested: true })]),
   ];
-}
-
-/**
- * Build an globExt fragment that matches exactly one of the given extensions.
- *
- * @param extensions
- * @example
- * ```ts
- * globExt([]) // ''
- * globExt(['.js']) // '.js'
- * globExt(['.js', '.ts']) // '.@(js|ts)'
- * ```
- */
-function globExt(extensions: ReadonlyArray<Extension>): string {
-  const ext = globOr(extensions.map((_) => _.replace(reExtension, '')));
-  return ext === '' ? '' : `.${ext}`;
-}
-
-/**
- * Build an globExt alternation group matching any of the given values.
- *
- * @param values
- * @example
- * ```ts
- * globOr(['js']) // 'js'
- * globOr(['js', 'ts']) // '@(js|ts)'
- * ```
- */
-function globOr(values: ReadonlyArray<string>): string {
-  // eslint-disable-next-line ts/no-non-null-assertion
-  return values.length === 0 ? '' : values.length === 1 ? values[0]! : `@(${values.join('|')})`;
 }
 
 export const Project = Object.freeze({
   ecmaVersion,
   extensionsToGlob,
-  extensionsToMatcher: extensionsToRegExp,
+  extensionsToRegExp,
   extensionsToTestGlob,
+  glob,
   ignored,
   queryExtensions,
   resourceExtensions,
   sourceExtensions,
 });
+export namespace Project {
+  // eslint-disable-next-line ts/no-shadow
+  export namespace glob {
+    export interface Options {
+
+      /**
+       * An extension stack
+       *
+       * @example
+       * ```ts
+       * Project.glob({ fileExtensions: [['.js']] }); // '*.js'
+       * Project.glob({ fileExtensions: ['.@(js|ts)'] }); // '*.@(js|ts)'
+       * Project.glob({ fileExtensions: [['.js', '.ts']] }); // '*.@(js|ts)'
+       * Project.glob({ fileExtensions: [['.spec', '.test'], ['.js', '.ts', '.tsx']] }); // '*.@(spec|test).@(js|ts|tsx)'
+       * Project.glob({ fileExtensions: [] }); // '*'
+       * ```
+       */
+      fileExtensions?: ReadonlyArray<ReadonlyArray<Extension> | string> | undefined;
+
+      /**
+       * The stem (basename without extension) of the file to match.
+       *
+       * @example
+       * ```ts
+       * Project.glob({ fileStem: 'index', fileExtensions: ['.*'] }); // 'index.*'
+       * ```
+       */
+      fileStem?: ReadonlyArray<string> | string | undefined;
+
+      /**
+       * Ancestor folders to include in the glob pattern.
+       *
+       * @example
+       * ```ts
+       * Project.glob({ ancestorFolders: ['src'] }); // 'src/**​/*'
+       * ```
+       */
+      folderAncestors?: ReadonlyArray<string> | string | undefined;
+
+      /**
+       * Parent folders to include in the glob pattern (immediate parent folders).
+       *
+       * @example
+       * ```ts
+       * Project.glob({ folderParents: ['src'] }); // 'src/*'
+       * ```
+       */
+      folderParents?: ReadonlyArray<string> | string | undefined;
+
+      /**
+       * Whether to match files in nested folders.
+       *
+       * @default false
+       * @example
+       * ```ts
+       * Project.glob({ nested: true }); // '* /*'
+       * Project.glob({ nested: true, fileExtensions: [['.js']] }); // '**\/*.js'
+       * ```
+       */
+      nested?: boolean | undefined;
+    }
+  }
+}

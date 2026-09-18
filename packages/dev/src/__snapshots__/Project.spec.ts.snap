@@ -17,3 +17,21 @@ exports[`Project > .resourceExtensions() > should equals values 1`] = `
   ".yml",
 ]
 `;
+
+exports[`Project > resourceExtensions > should equals values 1`] = `
+[
+  ".gif",
+  ".png",
+  ".svg",
+  ".css",
+  ".gql",
+  ".graphql",
+  ".jpeg",
+  ".jpg",
+  ".less",
+  ".sass",
+  ".sass",
+  ".yaml",
+  ".yml",
+]
+`;

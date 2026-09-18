@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.1/node_modules/@cspell/cspell-types/dist/index-BXiGhX2J.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.2/node_modules/@cspell/cspell-types/dist/index-DDztg9U8.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -50,6 +50,22 @@ type SourceMap = number[];
  * The range is inclusive of the start and exclusive of the end.
  */
 type Range = readonly [start: number, end: number];
+/**
+ * Interface used to pass documents to the parser.
+ * @since 10.4.0
+ */
+interface TextDocument {
+  /**
+   * The associated URL for this document. Most documents have the `file:` protocol, indicating that they
+   * represent files on disk. However, some documents may have other protocols indicating that they are not
+   * available on disk.
+   */
+  readonly url: URL | string;
+  /**
+   * the raw Document Text
+   */
+  readonly text: string;
+}
 //#endregion
 //#region src/Parser/Mapped.d.ts
 interface Mapped {
@@ -83,9 +99,28 @@ interface Parser {
    */
   parse(content: string, filename: string): ParseResult;
 }
+type ParseDocument = (document: TextDocument) => ParseResult;
+interface DocumentParser {
+  /** Name of parser */
+  readonly name: ParserName;
+  /**
+   * Parse Method
+   * @param document - the text document to parse
+   */
+  parseDocument: ParseDocument;
+}
 interface ParseResult {
-  readonly content: string;
-  readonly filename: string;
+  /**
+   * The full content of the file being parsed.
+   * Optionally returned by the parser.
+   * For performance reasons, the parser may choose not to return the full content.
+   */
+  readonly content?: string | undefined;
+  /**
+   * The name of the file being parsed.
+   * Optionally returned by the parser.
+   */
+  readonly filename?: string | undefined;
   readonly parsedTexts: Iterable<ParsedText>;
 }
 interface ParsedText extends Readonly<Mapped> {
@@ -103,6 +138,10 @@ interface ParsedText extends Readonly<Mapped> {
    * based upon the value of the scope.
    */
   readonly scope?: Scope | undefined;
+  /**
+   * The tags associated with this segment of text.
+   */
+  readonly tags?: ParsedTags | undefined;
   /**
    * Used to delegate parsing the contents of `text` to another parser.
    *
@@ -156,8 +195,19 @@ interface ScopeChain {
  */
 type ScopeString = string;
 type Scope = ScopeChain | ScopeString;
+type ParsedTag = boolean | string | undefined;
+/**
+ * ParsedTags represents a collection of tags associated with a segment of text. Each tag can have a boolean, string, or undefined value.
+ *
+ * - `undefined` represents a tag that is not set.
+ * - `boolean` represents a tag that is either true or false.
+ * - `string` represents a tag with a string value.
+ */
+interface ParsedTags {
+  readonly [tag: string]: ParsedTag;
+}
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.1/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.2/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
@@ -288,6 +338,66 @@ interface UnknownWordsConfiguration {
    * @since 9.1.0
    */
   unknownWords?: UnknownWordsChoices | undefined;
+}
+//#endregion
+//#region src/CSpellValidation.d.ts
+interface CSpellSettingsValidation {
+  /**
+   * Control which segments of text emitted by a parser are spell checked, based upon
+   * the `tags` assigned to each segment (see `ParsedText.tags`).
+   *
+   * By default, all text emitted by a parser is validated.
+   *
+   * Tags are matched hierarchically by dot-separated segments -- a key like `comment.block`
+   * also matches the more specific tag `comment.block.doc`, unless overridden by a more
+   * specific key.
+   *
+   * The special key `*` sets the default for any tag not otherwise matched.
+   *
+   * A value of:
+   * - `true` - validate (spell check) text with the matching tag.
+   * - `false` - do not validate text with the matching tag.
+   *
+   * **Example: only validate string content**
+   *
+   * ```
+   * { "*": false, "string": true }
+   * ```
+   *
+   * **Example: only validate doc-block comments**
+   *
+   * ```
+   * { "*": false, "comment.block.doc": true }
+   * ```
+   *
+   * @default { "*": true }
+   * @experimental
+   * @since 10.4.0
+   */
+  validate?: ValidationTags;
+}
+/**
+ * A pattern used to match validation tags.
+ * This can be a specific tag like `comment.block.doc` or a wildcard pattern like `*`.
+ * Examples:
+ * - `comment.block.doc` - matches only the `comment.block.doc` tag.
+ * - `comment.block.*` - matches any tag starting with `comment.block.`.
+ * - `*` - matches any tag.
+ * - `comment*` - matches any tag starting with `comment`.
+ */
+type TagPattern = string;
+interface ValidationTags {
+  /**
+   * The default validation setting for any tag not otherwise matched.
+   * @default true
+   */
+  "*"?: boolean;
+  /**
+   * Validation setting for the specific tag.
+   *
+   * If not specified, the default (`'*'`) will be used.
+   */
+  [tag: TagPattern]: boolean;
 }
 //#endregion
 //#region src/suggestionCostsDef.d.ts
@@ -1052,6 +1162,35 @@ interface FeaturesDeprecated {
  */
 interface Features extends Partial<FeaturesActive>, Partial<FeaturesDeprecated>, Partial<FeaturesExperimental> {}
 type FeatureEnableOnly = boolean;
+/**
+ * @since 10.4.0
+ */
+type Parsers = (DocumentParser | Parser)[];
+/**
+ * Plugin API
+ * @experimental
+ * @since 6.2.0
+ */
+interface CSpellPlugin {
+  /**
+   * This is the name of the plugin.
+   */
+  name?: string;
+  /**
+   * List of parsers provided by the plugin.
+   * Each entry can be either a `DocumentParser` instance or a `Parser` definition.
+   * @since 6.2.0
+   */
+  parsers?: Parsers;
+}
+interface CSpellSettingsPlugins {
+  /**
+   * Future Plugin support
+   * @experimental
+   * @since 6.2.0
+   */
+  plugins?: CSpellPlugin[];
+}
 //#endregion
 //#region src/Substitutions.d.ts
 /**
@@ -1881,14 +2020,7 @@ type ReporterSettings = ReporterModuleName | [name: ReporterModuleName] | [name:
  * @experimental
  * @hidden
  */
-interface ExperimentalFileSettings {
-  /**
-   * Future Plugin support
-   * @experimental
-   * @since 6.2.0
-   */
-  plugins?: Plugin[];
-}
+interface ExperimentalFileSettings extends CSpellSettingsPlugins, CSpellSettingsValidation {}
 /**
  * Extends CSpellSettings with {@link ExperimentalFileSettings}
  * @experimental
@@ -1909,14 +2041,6 @@ interface ExperimentalBaseSettings {
    * @since 6.2.0
    */
   parser?: ParserName;
-}
-/**
- * Plugin API
- * @experimental
- * @since 6.2.0
- */
-interface Plugin {
-  parsers?: Parser[];
 }
 /**
  * Semantic Version Predicate

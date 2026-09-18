@@ -3,17 +3,17 @@ import { describe, expect, it } from 'vitest';
 import { Project } from './Project.js';
 
 describe('Project', () => {
-  describe('.ecmaVersion()', () => {
+  describe(Project.ecmaVersion, () => {
     it('should be default constant value', () => {
       expect(Project.ecmaVersion()).toBe(2022);
     });
   });
-  describe('.sourceExtensions()', () => {
+  describe(Project.sourceExtensions, () => {
     it('should equals values', () => {
       expect(Project.sourceExtensions()).toEqual(['.cjs', '.cts', '.js', '.jsx', '.mjs', '.mts', '.ts', '.tsx']);
     });
   });
-  describe('.resourceExtensions()', () => {
+  describe(Project.resourceExtensions, () => {
     it('should equals values', () => {
       expect(Project.resourceExtensions()).toMatchSnapshot();
     });
@@ -21,7 +21,7 @@ describe('Project', () => {
       expect(Object.isFrozen(Project.resourceExtensions())).toBe(true);
     });
   });
-  describe('.queryExtensions()', () => {
+  describe(Project.queryExtensions, () => {
     it('should equals values', () => {
       expect(Project.queryExtensions(['javascript'])).toEqual(['.cjs', '.js', '.mjs']);
     });
@@ -29,12 +29,31 @@ describe('Project', () => {
       expect(Project.queryExtensions(['javascript', 'javascriptreact'])).toEqual(['.cjs', '.js', '.jsx', '.mjs']);
     });
   });
-  describe('.extensionsToMatcher()', () => {
+  describe(Project.extensionsToRegExp, () => {
     it('should return a RegExp', () => {
-      expect(Project.extensionsToMatcher(['.js', '.ts'])).toEqual(/(\.js|\.ts)$/);
+      expect(Project.extensionsToRegExp(['.js', '.ts'])).toEqual(/(\.js|\.ts)$/);
     });
   });
-  describe('.extensionsToGlob()', () => {
+  describe(Project.glob, () => {
+    it('should return a glob string', () => {
+      expect(Project.glob({ fileExtensions: [['.js', '.ts']] })).toEqual('*.@(js|ts)');
+      expect(Project.glob({ fileExtensions: [['.test', '.spec'], ['.js', '.ts']] })).toEqual('*.@(test|spec).@(js|ts)');
+      expect(Project.glob({ fileExtensions: [['.js', '.ts']], nested: true })).toEqual('**/*.@(js|ts)');
+    });
+    it('should support ancestor folders', () => {
+      expect(Project.glob({ fileExtensions: [['.js']], folderAncestors: '@(src|test)' })).toEqual('@(src|test)/**/*.js');
+      expect(Project.glob({ fileExtensions: [['.js']], folderAncestors: '@(src|test)', folderParents: 'parent' })).toEqual('@(src|test)/**/parent/*.js');
+      expect(Project.glob({ fileExtensions: [['.js']], folderAncestors: ['src'] })).toEqual('src/**/*.js');
+      expect(Project.glob({ fileExtensions: [['.js']], folderAncestors: ['src', 'test'] })).toEqual('@(src|test)/**/*.js');
+    });
+    it('should support parent folders', () => {
+      expect(Project.glob({ fileExtensions: [['.js']], folderParents: '@(src|test)' })).toEqual('@(src|test)/*.js');
+      expect(Project.glob({ fileExtensions: [['.js']], folderParents: ['src'] })).toEqual('src/*.js');
+      expect(Project.glob({ fileExtensions: [['.js']], folderParents: ['src', 'test'] })).toEqual('@(src|test)/*.js');
+      expect(Project.glob({ fileExtensions: [['.js']], folderParents: ['src'], nested: true })).toEqual('**/src/*.js');
+    });
+  });
+  describe(Project.extensionsToGlob, () => {
     it('should return a glob string', () => {
       expect(Project.extensionsToGlob(['.js', '.ts'])).toEqual('*.@(js|ts)');
     });
@@ -51,7 +70,7 @@ describe('Project', () => {
       expect(Project.extensionsToGlob(['.js', '.ts'], { compoundExtensions: [] })).toEqual('*.@(js|ts)');
     });
   });
-  describe('.extensionsToTestGlob()', () => {
+  describe(Project.extensionsToTestGlob, () => {
     it('should return default test globs', () => {
       expect(Project.extensionsToTestGlob(['.js', '.ts'])).toEqual([
         '**/__tests__/**/*.@(js|ts)',
