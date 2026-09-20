@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@w5s/tsdown-config": "workspace:*",
-    "prettier": "3.9.6"
+    "prettier": "3.9.8"
   },
   "peerDependencies": {
     "prettier": "2.x || 3.x"
