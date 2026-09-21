@@ -48,7 +48,7 @@
     ]
   },
   "devDependencies": {
-    "@commitlint/cli": "21.2.2",
+    "@commitlint/cli": "21.2.3",
     "@lerna-lite/cli": "5.6.1",
     "@lerna-lite/publish": "5.6.1",
     "@types/node": "20.19.43",
