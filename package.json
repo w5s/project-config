@@ -63,7 +63,7 @@
     "@w5s/tsconfig": "workspace:*",
     "clean-package": "2.2.0",
     "cspell": "10.3.3",
-    "eslint": "10.10.0",
+    "eslint": "10.11.0",
     "lefthook": "2.1.14",
     "markdown-magic": "4.11.0",
     "markdown-magic-package-json": "2.0.2",
