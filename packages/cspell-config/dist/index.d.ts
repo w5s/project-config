@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.2/node_modules/@cspell/cspell-types/dist/index-DDztg9U8.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.3/node_modules/@cspell/cspell-types/dist/index-ClTvqr3-.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -94,6 +94,11 @@ interface Parser {
   readonly name: ParserName;
   /**
    * Parse Method
+   * @param document - the text document to parse
+   */
+  parseDocument?: ParseDocument;
+  /**
+   * Parse Method
    * @param content - full content of the file
    * @param filename - filename
    */
@@ -108,6 +113,12 @@ interface DocumentParser {
    * @param document - the text document to parse
    */
   parseDocument: ParseDocument;
+  /**
+   * Parse Method
+   * @param content - full content of the file
+   * @param filename - filename
+   */
+  parse?: (content: string, filename: string) => ParseResult;
 }
 interface ParseResult {
   /**
@@ -141,7 +152,7 @@ interface ParsedText extends Readonly<Mapped> {
   /**
    * The tags associated with this segment of text.
    */
-  readonly tags?: ParsedTags | undefined;
+  readonly tags?: Readonly<ParsedTags> | undefined;
   /**
    * Used to delegate parsing the contents of `text` to another parser.
    *
@@ -207,7 +218,7 @@ interface ParsedTags {
   readonly [tag: string]: ParsedTag;
 }
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.2/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.3/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
