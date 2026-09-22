@@ -2,22 +2,23 @@ import { interopDefault } from '@w5s/dev';
 
 import type { RuleOptions } from '../typegen/node.js';
 
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { type Config, type PluginOptionsBase } from '../type.js';
 
 export async function node(options: node.Options = {}) {
   const [nodePlugin] = await Promise.all([
     interopDefault(import('eslint-plugin-n')),
   ] as const);
-  const { recommended, rules = {} } = options;
+  const { namespace, recommended, rules = {} } = defaultPluginOptions(options);
   return [
     {
-      name: 'w5s/node/setup',
+      name: `${namespace}/node/setup`,
       plugins: {
         node: nodePlugin,
       },
     },
     {
-      name: 'w5s/node/rules',
+      name: `${namespace}/node/rules`,
       rules: {
         ...(recommended
           ? {

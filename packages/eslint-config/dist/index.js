@@ -1073,12 +1073,12 @@ async function next(options = {}) {
 //#region src/config/node.ts
 async function node(options = {}) {
 	const [nodePlugin] = await Promise.all([interopDefault(import("eslint-plugin-n"))]);
-	const { recommended, rules = {} } = options;
+	const { namespace, recommended, rules = {} } = defaultPluginOptions(options);
 	return [{
-		name: "w5s/node/setup",
+		name: `${namespace}/node/setup`,
 		plugins: { node: nodePlugin }
 	}, {
-		name: "w5s/node/rules",
+		name: `${namespace}/node/rules`,
 		rules: {
 			...recommended ? {
 				"node/no-deprecated-api": "error",
@@ -1140,7 +1140,7 @@ async function react(options = {}) {
 //#region src/config/stylistic.ts
 async function stylistic(options = {}) {
 	const [stylisticPlugin] = await Promise.all([interopDefault(import("@stylistic/eslint-plugin"))]);
-	const { rules = {} } = options;
+	const { namespace, rules = {} } = defaultPluginOptions(options);
 	const { enabled: stylisticEnabled, indent, jsx, quotes, semi } = StylisticConfig.from(options);
 	const config = stylisticEnabled ? stylisticPlugin.configs.customize({
 		indent,
@@ -1150,10 +1150,10 @@ async function stylistic(options = {}) {
 		semi
 	}) : { rules: {} };
 	return [{
-		name: "w5s/style/setup",
+		name: `${namespace}/style/setup`,
 		plugins: { style: stylisticPlugin }
 	}, {
-		name: "w5s/style/rules",
+		name: `${namespace}/style/rules`,
 		rules: {
 			...stylisticEnabled ? {
 				...config.rules,
@@ -1355,13 +1355,13 @@ async function unicorn(options = {}) {
 //#region src/config/unused-imports.ts
 async function unusedImports(options = {}) {
 	const [unusedImportPlugin] = await Promise.all([interopDefault(import("eslint-plugin-unused-imports"))]);
-	const { files = [sourceGlob], recommended, rules = {} } = defaultPluginOptions(options);
+	const { files = [sourceGlob], namespace, recommended, rules = {} } = defaultPluginOptions(options);
 	return [{
-		name: "w5s/unused-imports/setup",
+		name: `${namespace}/unused-imports/setup`,
 		plugins: { "unused-imports": unusedImportPlugin }
 	}, {
 		files,
-		name: "w5s/unused-imports/rules",
+		name: `${namespace}/unused-imports/rules`,
 		rules: {
 			...recommended ? {
 				"no-unused-vars": "off",

@@ -10,18 +10,18 @@ export async function unusedImports(options: unusedImports.Options = {}) {
   const [unusedImportPlugin] = await Promise.all([
     interopDefault(import('eslint-plugin-unused-imports')),
   ] as const);
-  const { files = [sourceGlob], recommended, rules = {} } = defaultPluginOptions(options);
+  const { files = [sourceGlob], namespace, recommended, rules = {} } = defaultPluginOptions(options);
 
   return [
     {
-      name: 'w5s/unused-imports/setup',
+      name: `${namespace}/unused-imports/setup`,
       plugins: {
         'unused-imports': unusedImportPlugin,
       },
     },
     {
       files,
-      name: 'w5s/unused-imports/rules',
+      name: `${namespace}/unused-imports/rules`,
       rules: {
         ...(recommended
           ? {

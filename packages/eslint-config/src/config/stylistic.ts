@@ -2,13 +2,14 @@ import { interopDefault } from '@w5s/dev';
 
 import type { RuleOptions } from '../typegen/style.js';
 
+import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { type Config, type PluginOptionsBase, StylisticConfig, type StylisticParameters } from '../type.js';
 
 export async function stylistic(options: stylistic.Options = {}) {
   const [stylisticPlugin] = await Promise.all([
     interopDefault(import('@stylistic/eslint-plugin')),
   ] as const);
-  const { rules = {} } = options;
+  const { namespace, rules = {} } = defaultPluginOptions(options);
   const { enabled: stylisticEnabled, indent, jsx, quotes, semi } = StylisticConfig.from(options);
   const config = stylisticEnabled
     ? stylisticPlugin.configs.customize({
@@ -22,13 +23,13 @@ export async function stylistic(options: stylistic.Options = {}) {
 
   return [
     {
-      name: 'w5s/style/setup',
+      name: `${namespace}/style/setup`,
       plugins: {
         style: stylisticPlugin,
       },
     },
     {
-      name: 'w5s/style/rules',
+      name: `${namespace}/style/rules`,
       rules: {
         ...(stylisticEnabled
           ? {
