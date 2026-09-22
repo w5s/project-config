@@ -1,6 +1,6 @@
 {
   "name": "@w5s/configurator-core",
-  "version": "1.18.0",
+  "version": "1.19.0",
   "description": "Core library for @w5s/configurator-core",
   "keywords": [
     "config",
