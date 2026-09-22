@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { eslintIgnores } from './eslintIgnores.js';
 
-describe('eslintIgnores', () => {
+describe(eslintIgnores, () => {
   let testDir: string;
   let cwdSpy: ReturnType<typeof vi.spyOn>;
 
@@ -60,9 +60,9 @@ describe('eslintIgnores', () => {
   });
 
   it('allows overriding the configuration name', async () => {
-    const result = await eslintIgnores({ name: 'custom-name' });
+    const result = await eslintIgnores({ namespace: 'custom-name' });
 
-    expect(result.name).toBe('custom-name');
+    expect(result.name).toBe('custom-name/eslint-ignore');
   });
 
   it('allows adding ignores with a fixed array', async () => {

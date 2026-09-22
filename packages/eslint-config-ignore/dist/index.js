@@ -285,7 +285,8 @@ async function ignoreFileFind(rootDir, options) {
 *   await eslintIgnores({
 *     ignores: [
 *       // Add custom paths here
-*     ]
+*     ],
+*     // namespace: 'custom-name', // Optional namespace override
 *   })
 * ];
 * ```
@@ -294,6 +295,7 @@ async function ignoreFileFind(rootDir, options) {
 */
 async function eslintIgnores(options = {}) {
 	const cwd = options.cwd ?? process.cwd();
+	const namespace = options.namespace ?? "w5s";
 	const recommended = options.recommended ?? true;
 	const ignoreFilePaths = await ignoreFileFind(cwd);
 	const ignoreGlobs = await Promise.all(ignoreFilePaths.map(async (ignoreFilePathRelative) => {
@@ -306,7 +308,7 @@ async function eslintIgnores(options = {}) {
 	if (options.ignoreGitModules ?? true) mergedIgnores.push(...await gitModulesIgnore(cwd));
 	return {
 		ignores: typeof options.ignores === "function" ? options.ignores(mergedIgnores) : options.ignores ? [...mergedIgnores, ...options.ignores] : mergedIgnores,
-		name: options.name ?? "w5s/eslint-ignore"
+		name: `${namespace}/eslint-ignore`
 	};
 }
 //#endregion

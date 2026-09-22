@@ -25,9 +25,14 @@ export interface ESLintIgnoreOptions {
    */
   ignores?: ((ignores: ESLintIgnoreConfig['ignores']) => ESLintIgnoreConfig['ignores']) | ESLintIgnoreConfig['ignores'];
   /**
-   * Override configuration name
+   * Override the namespace used in the configuration name (default: 'w5s')
+   *
+   * @example
+   * ```ts
+   * await eslintIgnores({ namespace: 'custom-name' });// { name: 'custom-name/eslint-ignore', ignores: [...] }
+   * ```
    */
-  name?: ESLintIgnoreConfig['name'];
+  namespace?: string | undefined;
   /**
    * Include recommended settings and default ignored files
    */
@@ -43,7 +48,8 @@ export interface ESLintIgnoreOptions {
  *   await eslintIgnores({
  *     ignores: [
  *       // Add custom paths here
- *     ]
+ *     ],
+ *     // namespace: 'custom-name', // Optional namespace override
  *   })
  * ];
  * ```
