@@ -1,3 +1,5 @@
+import type { Buffer } from 'node:buffer';
+
 import { Cli } from 'clipanion';
 import { Writable } from 'node:stream';
 import { beforeEach, describe, expect, it, vi } from 'vitest';

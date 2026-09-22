@@ -1,3 +1,5 @@
+import type { Buffer } from 'node:buffer';
+
 import { mkdtemp, realpath } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import path from 'node:path';

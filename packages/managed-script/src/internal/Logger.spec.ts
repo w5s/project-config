@@ -1,3 +1,5 @@
+import type { Buffer } from 'node:buffer';
+
 import { PassThrough } from 'node:stream';
 import { describe, expect, it } from 'vitest';
 

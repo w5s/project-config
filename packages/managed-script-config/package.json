@@ -1,6 +1,7 @@
 {
   "name": "@w5s/managed-script-config",
   "version": "1.0.0-alpha.0",
+  "private": true,
   "description": "Managed script shared configuration",
   "keywords": [
     "config",
