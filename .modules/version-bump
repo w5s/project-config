@@ -67,7 +67,7 @@ git commit --amend --no-edit --no-verify
 
 if [ -n "$TAGS_ON_HEAD" ]; then
   echo "$TAGS_ON_HEAD" | while IFS= read -r tag; do
-    git tag -f "$tag" HEAD >/dev/null
+    git tag -f -a "$tag" HEAD -m "$tag" >/dev/null
   done
 fi
 
