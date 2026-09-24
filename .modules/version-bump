@@ -6,7 +6,7 @@ set -eu -o pipefail
 # ./.modules/version-dump [stable|alpha|next]
 # In CI, lerna version runs with --yes (non-interactive).
 #
-# Flow: version → build (meta.ts) → amend version commit → publish from-package
+# Flow: version → build (meta.ts) → commit build artifacts → publish from-package
 CI=${CI:-${GITHUB_ACTIONS:-}}
 CI_RELEASE_TYPE="${1:-${CI_RELEASE_TYPE:-next}}"
 [ $# -gt 0 ] && shift
@@ -55,21 +55,22 @@ $NODEJS_INSTALL
 # Step 3: Rebuild (meta.ts injects version into dist)
 $NODEJS_RUN build
 
-# Step 4: Amend previous commit with built files
-# lerna's tags point at the pre-amend commit, so capture them before amending
-# and re-point them at the amended commit, otherwise --follow-tags silently
-# drops them (they're unreachable from HEAD) and future releases can't find
-# the last released version, causing wrong version bumps.
-TAGS_ON_HEAD=$(git tag --points-at HEAD)
-
+# Step 4: Commit built files separately, then move only the release tags to
+# the final commit so generated artifacts are inside the release boundary.
+VERSION_TAGS=$(git tag --points-at HEAD)
 git add .
-git commit --amend --no-edit --no-verify
-
-if [ -n "$TAGS_ON_HEAD" ]; then
-  echo "$TAGS_ON_HEAD" | while IFS= read -r tag; do
-    git tag -f -a "$tag" HEAD -m "$tag" >/dev/null
-  done
+if ! git diff --cached --quiet; then
+  git commit --no-verify -m "chore(release): build artifacts"
 fi
 
-# Step 5: Push changes with tags
-git push origin HEAD --follow-tags --no-verify
+# Recreate tags as annotated tags so their type is explicit and predictable.
+PUSH_REFS=(HEAD)
+if [ -n "$VERSION_TAGS" ]; then
+  while IFS= read -r tag; do
+    git tag -f -a "$tag" HEAD -m "$tag" >/dev/null
+    PUSH_REFS+=("refs/tags/$tag")
+  done <<< "$VERSION_TAGS"
+fi
+
+# Step 5: Atomically push the branch and exactly the release tags.
+git push --atomic --no-verify origin "${PUSH_REFS[@]}"
