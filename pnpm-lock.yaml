@@ -496,7 +496,7 @@ importers:
         specifier: ^3.2.0
         version: 3.3.4
       zx:
-        specifier: 8.8.5-lite
+        specifier: 8.8.5
         version: 8.8.5-lite
     devDependencies:
       '@w5s/tsdown-config':
