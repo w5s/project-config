@@ -7,11 +7,7 @@
  * @param {undefined | string | string[]} path
  */
 function getValue(jsonFile, path) {
-  if (path == null) {
-    return jsonFile.get();
-  }
-
-  return jsonFile.get(path);
+  return path == null ? jsonFile.get() : jsonFile.get(path);
 }
 
 /**

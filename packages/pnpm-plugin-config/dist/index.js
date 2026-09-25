@@ -45,8 +45,7 @@ const defaultConfig = Object.freeze({
 function arrayMerge(base, extension) {
 	const baseArray = base == null ? [] : Array.isArray(base) ? base : [base];
 	const extensionArray = extension == null ? [] : Array.isArray(extension) ? extension : [extension];
-	if (baseArray.length === 0 && extensionArray.length === 0) return void 0;
-	return [.../* @__PURE__ */ new Set([...baseArray, ...extensionArray])];
+	return baseArray.length === 0 && extensionArray.length === 0 ? void 0 : [.../* @__PURE__ */ new Set([...baseArray, ...extensionArray])];
 }
 function objectMergeDefault(base, extension, property) {
 	return {

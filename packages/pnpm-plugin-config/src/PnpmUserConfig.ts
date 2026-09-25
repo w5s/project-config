@@ -8,8 +8,7 @@ function arrayMerge<T>(
 ): Array<T> | undefined {
   const baseArray = base == null ? [] : Array.isArray(base) ? base : [base];
   const extensionArray = extension == null ? [] : Array.isArray(extension) ? extension : [extension];
-  if (baseArray.length === 0 && extensionArray.length === 0) return undefined;
-  return [...new Set([...baseArray, ...extensionArray])];
+  return baseArray.length === 0 && extensionArray.length === 0 ? undefined : [...new Set([...baseArray, ...extensionArray])];
 }
 
 function objectMergeDefault<P extends string, V extends object>(

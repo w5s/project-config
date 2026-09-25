@@ -82,8 +82,7 @@ export async function ignoreFileFind(
 
   function isIgnored(patterns: Array<string>, candidateRel: string): boolean {
     const m = lastMatchWins(patterns, candidateRel);
-    if (!m) return false;
-    return !m.startsWith('!');
+    return m ? !m.startsWith('!') : false;
   }
 
   async function collectAncestorGitignores(startDir: string): Promise<Array<string>> {

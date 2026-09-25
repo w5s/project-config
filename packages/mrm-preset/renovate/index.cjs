@@ -19,27 +19,26 @@ function createRenovate({ renovatePresetApplication, renovatePresetLibrary }) {
    */
   function task({ renovatePreset }) {
     const gitSupported = hasGit();
+    if (!gitSupported) return;
 
-    if (gitSupported) {
-      const packageFile = packageJson();
-      const packageArchetype = pkg.archetype(packageFile);
-      const renovatePresetResolved =
-        renovatePreset || (packageArchetype === 'application' ? renovatePresetApplication : renovatePresetLibrary);
-      const renovateFile = json('renovate.json');
-      renovateFile.merge({
-        $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-      });
-      renovateFile.set(
-        'extends',
-        [renovatePresetResolved, ...renovateFile.get('extends', []).filter(
-          /**
-           * @param {string} extension
-           */
-          (extension) => extension !== renovatePresetApplication && extension !== renovatePresetLibrary,
-        )],
-      );
-      renovateFile.save();
-    }
+    const packageFile = packageJson();
+    const packageArchetype = pkg.archetype(packageFile);
+    const renovatePresetResolved =
+      renovatePreset || (packageArchetype === 'application' ? renovatePresetApplication : renovatePresetLibrary);
+    const renovateFile = json('renovate.json');
+    renovateFile.merge({
+      $schema: 'https://docs.renovatebot.com/renovate-schema.json',
+    });
+    renovateFile.set(
+      'extends',
+      [renovatePresetResolved, ...renovateFile.get('extends', []).filter(
+        /**
+         * @param {string} extension
+         */
+        (extension) => extension !== renovatePresetApplication && extension !== renovatePresetLibrary,
+      )],
+    );
+    renovateFile.save();
   }
 
   task.description = 'Setup Renovate';
