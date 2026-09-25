@@ -106,10 +106,7 @@ function detectPackageManager() {
   if (isUsingYarn()) {
     return 'yarn';
   }
-  if (isUsingPnpm()) {
-    return 'pnpm';
-  }
-  return 'npm';
+  return isUsingPnpm() ? 'pnpm' : 'npm';
 }
 
 /**
@@ -175,6 +172,7 @@ function getUnsatisfiedDeps(deps, versions, options) {
     }
 
     // No required version specified
+    // eslint-disable-next-line unicorn/prefer-ternary
     if (!required) {
       // Install if the pacakge isn’t installed
       return !installed;
@@ -196,11 +194,7 @@ function getVersionedDep(dep, versions) {
   if (!validateNpmPackageName(dep).validForNewPackages) {
     // If we were explicitly passed a version, attempt to
     // load it via the `#semver:<semver>` syntax.
-    if (versions[dep]) {
-      return `${dep}#semver:${versions[dep]}`;
-    }
-
-    return dep;
+    return versions[dep] ? `${dep}#semver:${versions[dep]}` : dep;
   }
   const version = versions[dep] || 'latest';
 

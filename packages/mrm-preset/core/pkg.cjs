@@ -26,11 +26,7 @@ function archetype(packageFile) {
   if (hasWorkspaces(packageFile)) {
     return 'workspace';
   }
-  if (packageFile.get('private') === true || (packageFile.get('main') == null && packageFile.get('exports'))) {
-    return 'application';
-  }
-
-  return 'library';
+  return packageFile.get('private') === true || (packageFile.get('main') == null && packageFile.get('exports')) ? 'application' : 'library';
 }
 
 /**
@@ -164,11 +160,7 @@ function manager(packageFile) {
   if (file('package-lock.json').exists()) {
     return 'npm';
   }
-  if (file('pnpm-lock.yaml').exists()) {
-    return 'pnpm';
-  }
-
-  return defaultManager;
+  return file('pnpm-lock.yaml').exists() ? 'pnpm' : defaultManager;
 }
 
 module.exports = {
