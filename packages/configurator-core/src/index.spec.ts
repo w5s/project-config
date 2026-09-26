@@ -15,6 +15,8 @@ describe('index', () => {
         'fileSync',
         'ignoreFile',
         'ignoreFileSync',
+        'isConfigPresent',
+        'isConfigPresentSync',
         'json',
         'jsonSync',
         'meta',
