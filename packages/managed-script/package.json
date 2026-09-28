@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "c12": "^3.2.0",
-    "zx": "8.8.5-lite"
+    "zx": "8.8.5"
   },
   "devDependencies": {
     "@w5s/tsdown-config": "workspace:*",
