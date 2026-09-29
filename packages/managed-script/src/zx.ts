@@ -9,5 +9,11 @@ export type * from './zx/ZXShell.js';
 /**
  * Default `$` preset for scripts launched by managed-script.
  * Reads `MANAGED_SCRIPT_*` from the process environment at import time.
+ *
+ * @example
+ * ```ts
+ * import { $ } from '@w5s/managed-script/zx';
+ * await $`echo Hello, world!`;
+ * ```
  */
 export const $: ZXShell = zx();
