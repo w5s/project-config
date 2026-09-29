@@ -71,7 +71,7 @@ describe(RootCommand, () => {
 
   it('rejects an unrecognized --color value', async () => {
     const chunks: Array<string> = [];
-    const stderr = new Writable({
+    const stdout = new Writable({
       write(chunk: Buffer, _encoding, callback) {
         chunks.push(chunk.toString());
         callback();
@@ -79,13 +79,13 @@ describe(RootCommand, () => {
     });
 
     const exitCode = await createCli().run(['build', '--color=nope'], {
-      stderr,
+      stderr: process.stderr,
       stdin: process.stdin,
-      stdout: process.stdout,
+      stdout: stdout,
     });
 
     expect(exitCode).toBe(1);
-    expect(chunks.join('')).toContain('Invalid --color value "nope"');
+    expect(chunks.join('')).toContain('Invalid value for --color');
     expect(ManagedScript.runScript).not.toHaveBeenCalled();
   });
 
@@ -185,7 +185,7 @@ describe(RootCommand, () => {
 
   it('rejects an unrecognized --loglevel value', async () => {
     const chunks: Array<string> = [];
-    const stderr = new Writable({
+    const stdout = new Writable({
       write(chunk: Buffer, _encoding, callback) {
         chunks.push(chunk.toString());
         callback();
@@ -193,13 +193,13 @@ describe(RootCommand, () => {
     });
 
     const exitCode = await createCli().run(['build', '--loglevel', 'nope'], {
-      stderr,
+      stderr: process.stderr,
       stdin: process.stdin,
-      stdout: process.stdout,
+      stdout,
     });
 
     expect(exitCode).toBe(1);
-    expect(chunks.join('')).toContain('Invalid --loglevel value "nope"');
+    expect(chunks.join('')).toContain('Invalid value for --loglevel');
     expect(ManagedScript.runScript).not.toHaveBeenCalled();
   });
 
