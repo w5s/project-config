@@ -23,6 +23,7 @@
     "nonconstructor",
     "nonoctal",
     "pipefail",
-    "rharkor"
+    "rharkor",
+    "typanion"
   ]
 }

@@ -63,7 +63,8 @@
   },
   "devDependencies": {
     "@w5s/tsdown-config": "workspace:*",
-    "clipanion": "4.0.0-rc.4"
+    "clipanion": "4.0.0-rc.4",
+    "typanion": "3.14.0"
   },
   "clean-package": "../../clean-package.config.cjs",
   "engines": {

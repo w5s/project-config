@@ -1,11 +1,13 @@
 import { Command, Option } from 'clipanion';
+import { isEnum } from 'typanion';
 
 import type { ColorMode, LogLevel } from '../internal/Logger.js';
 
 import { ManagedScript } from '../ManagedScript.js';
 
-const knownLogLevels = new Set<LogLevel>(['debug', 'error', 'info', 'silent', 'warn']);
-const knownColorModes = new Set<ColorMode>(['always', 'auto', 'never']);
+const isLogLevel = isEnum(['debug', 'error', 'info', 'silent', 'warn'] as const);
+
+const isColorModes = isEnum(['always', 'auto', 'never'] as const);
 
 export class RootCommand extends Command {
   static override paths = [Command.Default];
@@ -18,6 +20,7 @@ export class RootCommand extends Command {
     description: 'Control ANSI colors (auto, always, never). Bare --color means always.',
     required: false,
     tolerateBoolean: true,
+    validator: isColorModes,
   });
 
   readonly cwd = Option.String('--cwd', {
@@ -32,6 +35,7 @@ export class RootCommand extends Command {
   readonly loglevel = Option.String('--loglevel', {
     description: 'Set the log level (silent, error, warn, info, debug). Default: info.',
     required: false,
+    validator: isLogLevel,
   });
 
   readonly scriptArgs = Option.Rest();
@@ -52,13 +56,7 @@ export class RootCommand extends Command {
     } else if (this.color === false) {
       color = 'never';
     } else if (this.color != null) {
-      if (!knownColorModes.has(this.color as ColorMode)) {
-        this.context.stderr.write(
-          `Invalid --color value "${this.color}". Expected one of: ${[...knownColorModes].join(', ')}.\n`,
-        );
-        return 1;
-      }
-      color = this.color as ColorMode;
+      color = this.color;
     }
     let logLevel: LogLevel | undefined;
     if (this.silent) {
@@ -66,13 +64,7 @@ export class RootCommand extends Command {
     } else if (this.verbose) {
       logLevel = 'debug';
     } else if (this.loglevel != null) {
-      if (!knownLogLevels.has(this.loglevel as LogLevel)) {
-        this.context.stderr.write(
-          `Invalid --loglevel value "${this.loglevel}". Expected one of: ${[...knownLogLevels].join(', ')}.\n`,
-        );
-        return 1;
-      }
-      logLevel = this.loglevel as LogLevel;
+      logLevel = this.loglevel;
     }
 
     try {
