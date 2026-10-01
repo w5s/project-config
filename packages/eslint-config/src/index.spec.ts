@@ -8,6 +8,7 @@ describe('index', () => {
       defineConfig: expect.any(Function),
       e18e: expect.any(Function),
       es: expect.any(Function),
+      githubActions: expect.any(Function),
       ignores: expect.any(Function),
       imports: expect.any(Function),
       jsdoc: expect.any(Function),

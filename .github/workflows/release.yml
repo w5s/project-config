@@ -7,7 +7,7 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
-      release_type:
+      release-type:
         description: 'Release type'
         required: true
         default: 'next'
@@ -60,4 +60,4 @@ jobs:
 
           # Not required we use trusted publishing
           # NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          CI_RELEASE_TYPE: ${{ github.event.inputs.release_type || 'next' }}
+          CI_RELEASE_TYPE: ${{ inputs.release-type || 'next' }}

@@ -1,5 +1,6 @@
 export * from './config/e18e.js';
 export * from './config/es.js';
+export * from './config/github-actions.js';
 export * from './config/ignores.js';
 export * from './config/imports.js';
 export * from './config/jsdoc.js';
