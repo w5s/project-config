@@ -49,7 +49,7 @@ export function createTransform(config: TransformConfig): CommitTransformFunctio
   const displayTypes = new Set(config.displayTypes ?? CommitConventionalType.values());
   const shouldIgnoreType = (type: string | undefined) => type == null || !displayTypes.has(type as CommitConventionalType);
   const shouldIgnoreScope = (scope: null | string | undefined) =>
-    config.displayScopes == null ? false : scope != null && !config.displayScopes.includes(scope);
+    config.displayScopes != null && scope != null && !config.displayScopes.includes(scope);
 
   const transform = (commit: Commit, { host, owner, repository, repoUrl }: WriterContext): Commit | false => {
     const isDiscard = commit.notes.length === 0;
