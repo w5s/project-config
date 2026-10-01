@@ -55,14 +55,15 @@ export async function jsonc(options: jsonc.Options = {}): Promise<ReadonlyArray<
         ...rules,
       },
     },
-    stylistic.enabled ? sortPackageJson() : {},
-    stylistic.enabled ? sortTsconfigJson() : {},
+    stylistic.enabled ? sortPackageJson(namespace) : {},
+    stylistic.enabled ? sortTsconfigJson(namespace) : {},
   ] as [Config, Config, Config, Config] satisfies Array<Config>;
 }
 
-function sortPackageJson() {
+function sortPackageJson(namespace: string) {
   return {
     files: ['**/package.json'],
+    name: `${namespace}/jsonc/sort-package-json`,
     rules: {
       'jsonc/sort-keys': [
         'error',
@@ -219,9 +220,10 @@ function sortPackageJson() {
   };
 }
 
-function sortTsconfigJson() {
+function sortTsconfigJson(namespace: string) {
   return {
     files: ['**/tsconfig*.json'],
+    name: `${namespace}/jsonc/sort-tsconfig`,
     rules: {
       'jsonc/sort-keys': [
         'error',
