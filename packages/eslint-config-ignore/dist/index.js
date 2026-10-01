@@ -124,7 +124,7 @@ function convertIgnorePatternToMinimatch(pattern) {
 	for (const char of patternWithoutLeadingSlash) {
 		if (!isEscaped && (char === "{" || char === "(")) escapedPatternWithoutLeadingSlash += "\\";
 		escapedPatternWithoutLeadingSlash += char;
-		isEscaped = char === "\\" ? !isEscaped : false;
+		isEscaped = char === "\\" && !isEscaped;
 	}
 	const matchInsideSuffix = patternToTest.endsWith("/**") ? "/*" : "";
 	return `${negatedPrefix}${matchEverywherePrefix}${escapedPatternWithoutLeadingSlash}${matchInsideSuffix}`;

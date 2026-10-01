@@ -171,15 +171,9 @@ function getUnsatisfiedDeps(deps, versions, options) {
       return true;
     }
 
-    // No required version specified
-    // eslint-disable-next-line unicorn/prefer-ternary
-    if (!required) {
-      // Install if the pacakge isn’t installed
-      return !installed;
-    }
-
-    // Install if installed version doesn't satisfy range
-    return !semver.satisfies(installed, required);
+    // Keep the installed package when no version is required.
+    // Otherwise reinstall when the installed version does not satisfy the range.
+    return required ? !semver.satisfies(installed, required) : !installed;
   });
 }
 

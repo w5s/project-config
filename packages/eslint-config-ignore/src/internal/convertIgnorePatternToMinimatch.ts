@@ -38,7 +38,7 @@ export function convertIgnorePatternToMinimatch(pattern: string): string {
 
     escapedPatternWithoutLeadingSlash += char;
 
-    isEscaped = char === '\\' ? !isEscaped : false;
+    isEscaped = char === '\\' && !isEscaped;
   }
 
   const matchInsideSuffix = patternToTest.endsWith('/**') ? '/*' : '';

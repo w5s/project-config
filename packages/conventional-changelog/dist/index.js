@@ -229,7 +229,7 @@ function displayType(type, options = {}) {
 function createTransform(config) {
 	const displayTypes = new Set(config.displayTypes ?? CommitConventionalType.values());
 	const shouldIgnoreType = (type) => type == null || !displayTypes.has(type);
-	const shouldIgnoreScope = (scope) => config.displayScopes == null ? false : scope != null && !config.displayScopes.includes(scope);
+	const shouldIgnoreScope = (scope) => config.displayScopes != null && scope != null && !config.displayScopes.includes(scope);
 	const transform = (commit, { host, owner, repository, repoUrl }) => {
 		const isDiscard = commit.notes.length === 0;
 		const issues = /* @__PURE__ */ new Set();
