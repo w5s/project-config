@@ -768,13 +768,14 @@ async function jsonc(options = {}) {
 				...rules
 			}
 		},
-		stylistic.enabled ? sortPackageJson() : {},
-		stylistic.enabled ? sortTsconfigJson() : {}
+		stylistic.enabled ? sortPackageJson(namespace) : {},
+		stylistic.enabled ? sortTsconfigJson(namespace) : {}
 	];
 }
-function sortPackageJson() {
+function sortPackageJson(namespace) {
 	return {
 		files: ["**/package.json"],
+		name: `${namespace}/jsonc/sort-package-json`,
 		rules: { "jsonc/sort-keys": [
 			"error",
 			{
@@ -942,9 +943,10 @@ function sortPackageJson() {
 		] }
 	};
 }
-function sortTsconfigJson() {
+function sortTsconfigJson(namespace) {
 	return {
 		files: ["**/tsconfig*.json"],
+		name: `${namespace}/jsonc/sort-tsconfig`,
 		rules: { "jsonc/sort-keys": [
 			"error",
 			{
