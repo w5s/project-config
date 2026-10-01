@@ -41,5 +41,7 @@ exports[`defineConfig > matches the snapshot of config names in default mode 1`]
   "w5s/markdown/embed-code",
   "w5s/yml/setup",
   "w5s/yml/rules",
+  "w5s/github-actions/setup",
+  "w5s/github-actions/rules",
 ]
 `;

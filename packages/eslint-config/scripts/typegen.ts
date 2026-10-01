@@ -6,6 +6,7 @@ import nextPlugin from '@next/eslint-plugin-next';
 import stylisticPlugin from '@stylistic/eslint-plugin';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import vitestPlugin from '@vitest/eslint-plugin';
+import githubActionsPlugin from 'eslint-plugin-github-actions-2';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
 import jsoncPlugin from 'eslint-plugin-jsonc';
@@ -25,6 +26,7 @@ await Promise.all(
     [
       // [pluginName, plugin]
       ['e18e', e18ePlugin],
+      ['github-actions', githubActionsPlugin],
       ['import', importPlugin],
       ['jsdoc', jsdocPlugin],
       ['jsonc', jsoncPlugin],

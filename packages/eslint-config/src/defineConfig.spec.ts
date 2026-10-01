@@ -7,6 +7,7 @@ import { defineConfig } from './defineConfig.js';
 const disabledPlugins = {
   'e18e': false,
   'es': false,
+  'github-actions': false,
   'import': false,
   'jsdoc': false,
   'jsonc': false,

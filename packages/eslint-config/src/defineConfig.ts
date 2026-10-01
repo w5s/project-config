@@ -21,6 +21,7 @@ export interface DefineConfigOptions extends config.ignores.Options {
   plugins?: undefined | {
     'e18e'?: boolean | config.e18e.Options | undefined;
     'es'?: boolean | config.es.Options | undefined;
+    'github-actions'?: boolean | config.githubActions.Options | undefined;
     'import'?: boolean | config.imports.Options | undefined;
     'jsdoc'?: boolean | config.jsdoc.Options | undefined;
     'jsonc'?: boolean | config.jsonc.Options | undefined;
@@ -96,6 +97,7 @@ export async function defineConfig(options: DefineConfigOptions = {}): Promise<A
     ...includeEnabled(config.jsonc, toOption(plugins.jsonc)),
     ...includeEnabled(config.markdown, toOption(plugins.markdown)),
     ...includeEnabled(config.yml, toOption(plugins.yml)),
+    ...includeEnabled(config.githubActions, toOption(plugins['github-actions'])),
     ...(rules ? [{ rules }] : []),
     ...todo,
     ...overrides,

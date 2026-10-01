@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.4/node_modules/@cspell/cspell-types/dist/index-KJUXVo8e.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.5/node_modules/@cspell/cspell-types/dist/index-KJUXVo8e.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -218,7 +218,7 @@ interface ParsedTags {
   readonly [tag: string]: ParsedTag;
 }
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.4/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.5/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.

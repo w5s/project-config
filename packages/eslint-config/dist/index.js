@@ -603,6 +603,33 @@ es.recommended = {
 	...esRules()
 };
 //#endregion
+//#region src/config/github-actions.ts
+const fallbackFiles = [
+	".github/workflows/*.{yml,yaml}",
+	"**/action.{yml,yaml}",
+	".github/dependabot.{yml,yaml}"
+];
+async function githubActions(options = {}) {
+	const [githubActionsPlugin] = await Promise.all([interopDefault(import("eslint-plugin-github-actions-2"))]);
+	const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
+	const recommendedConfig = githubActionsPlugin.configs.recommended;
+	const stylisticConfig = githubActionsPlugin.configs.stylistic;
+	const defaultFiles = (recommendedConfig.files ?? fallbackFiles).flat();
+	return [{
+		name: `${namespace}/github-actions/setup`,
+		plugins: { "github-actions": githubActionsPlugin }
+	}, {
+		files: withDefaultFiles(files, defaultFiles),
+		languageOptions: recommendedConfig.languageOptions,
+		name: `${namespace}/github-actions/rules`,
+		rules: {
+			...recommended ? recommendedConfig.rules : {},
+			...stylistic.enabled ? stylisticConfig.rules : {},
+			...rules
+		}
+	}];
+}
+//#endregion
 //#region src/config/ignores.ts
 async function ignores(options = {}) {
 	return [await eslintIgnores(options)];
@@ -1438,7 +1465,7 @@ async function defineConfig(options = {}) {
 		...optionsOrBoolean
 	});
 	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
-	return ESLintConfig.concat(...includeEnabled(ignores, toOption(options)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(jsx, toOption(plugins.jsx)), ...includeEnabled(unusedImports, toOption(plugins["unused-imports"])), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(test, toOption(plugins.test)), ...includeEnabled(stylistic, stylisticOptions), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(yml, toOption(plugins.yml)), ...rules ? [{ rules }] : [], ...todo, ...overrides);
+	return ESLintConfig.concat(...includeEnabled(ignores, toOption(options)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(jsx, toOption(plugins.jsx)), ...includeEnabled(unusedImports, toOption(plugins["unused-imports"])), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(test, toOption(plugins.test)), ...includeEnabled(stylistic, stylisticOptions), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(githubActions, toOption(plugins["github-actions"])), ...rules ? [{ rules }] : [], ...todo, ...overrides);
 }
 //#endregion
 //#region src/meta.ts
@@ -1448,6 +1475,6 @@ const meta = Object.freeze({
 	version: "5.0.0"
 });
 //#endregion
-export { StylisticConfig, defineConfig, e18e, es, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, restrictedSyntax, stylistic, test, ts, unicorn, unusedImports, yml };
+export { StylisticConfig, defineConfig, e18e, es, githubActions, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, restrictedSyntax, stylistic, test, ts, unicorn, unusedImports, yml };
 
 //# sourceMappingURL=index.js.map
