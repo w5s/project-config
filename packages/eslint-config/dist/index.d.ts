@@ -10974,6 +10974,11 @@ interface RuleOptions$3 {
    */
   'ts/no-unsafe-declaration-merging'?: Linter.RuleEntry<[]>;
   /**
+   * Disallow assigning non-enum values to enum typed locations
+   * @see https://typescript-eslint.io/rules/no-unsafe-enum-assignment
+   */
+  'ts/no-unsafe-enum-assignment'?: Linter.RuleEntry<[]>;
+  /**
    * Disallow comparing an enum value with a non-enum value
    * @see https://typescript-eslint.io/rules/no-unsafe-enum-comparison
    */
