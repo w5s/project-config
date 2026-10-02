@@ -34,7 +34,12 @@ export async function githubActions(options: githubActions.Options = {}) {
       name: `${namespace}/github-actions/rules`,
       rules: {
         ...(recommended ? recommendedConfig.rules : {}),
-        ...(stylistic.enabled ? stylisticConfig.rules : {}),
+        ...(stylistic.enabled
+          ? {
+              ...stylisticConfig.rules,
+              'github-actions/action-name-casing': 'off', // TODO: We use kebab-case for action names
+            }
+          : {}),
         ...rules,
       },
     },

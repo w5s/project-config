@@ -624,7 +624,10 @@ async function githubActions(options = {}) {
 		name: `${namespace}/github-actions/rules`,
 		rules: {
 			...recommended ? recommendedConfig.rules : {},
-			...stylistic.enabled ? stylisticConfig.rules : {},
+			...stylistic.enabled ? {
+				...stylisticConfig.rules,
+				"github-actions/action-name-casing": "off"
+			} : {},
 			...rules
 		}
 	}];

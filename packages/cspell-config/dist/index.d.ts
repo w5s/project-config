@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.5/node_modules/@cspell/cspell-types/dist/index-KJUXVo8e.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.6/node_modules/@cspell/cspell-types/dist/index-eOBgsj8d.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -52,7 +52,7 @@ type SourceMap = number[];
 type Range = readonly [start: number, end: number];
 /**
  * Interface used to pass documents to the parser.
- * @since 10.4.0
+ * @since 10.5.0
  */
 interface TextDocument {
   /**
@@ -218,7 +218,7 @@ interface ParsedTags {
   readonly [tag: string]: ParsedTag;
 }
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.5/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.6/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
@@ -383,7 +383,7 @@ interface CSpellSettingsValidation {
    *
    * @default { "*": true }
    * @experimental
-   * @since 10.4.0
+   * @since 10.5.0
    */
   validate?: ValidationTags;
 }
@@ -1174,7 +1174,7 @@ interface FeaturesDeprecated {
 interface Features extends Partial<FeaturesActive>, Partial<FeaturesDeprecated>, Partial<FeaturesExperimental> {}
 type FeatureEnableOnly = boolean;
 /**
- * @since 10.4.0
+ * @since 10.5.0
  */
 type Parsers = (DocumentParser | Parser)[];
 /**
