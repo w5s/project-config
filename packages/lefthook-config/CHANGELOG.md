@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.7.0 (2026-10-02)
+
+### ✨ Features
+
+- Add lefthook-config ([d8b837c](https://github.com/w5s/project-config/commit/d8b837c))
+
+**Note:** Version bump only for package @w5s/lefthook-config
+
 # 1.6.0 (2026-10-01)
 
 ### ✨ Features

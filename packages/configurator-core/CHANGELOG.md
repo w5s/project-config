@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.21.0](https://github.com/w5s/project-config/compare/@w5s/configurator-core@1.0.0-alpha.4...@w5s/configurator-core@1.21.0) (2026-10-02)
+
+### ✨ Features
+
+- Add eslint type aware rules ([#4494](https://github.com/w5s/project-config/issues/4494)) ([c3fa944](https://github.com/w5s/project-config/commit/c3fa944)) 
+- Add isConfigPresent ([df2ada0](https://github.com/w5s/project-config/commit/df2ada0)) 
+- Add YAML support ([9f773a5](https://github.com/w5s/project-config/commit/9f773a5)) 
+- Update TypeScript rules and add consistent-type-assertions rule ([71b0eb1](https://github.com/w5s/project-config/commit/71b0eb1))
+
+**Note:** Version bump only for package @w5s/configurator-core
+
 # [1.20.0](https://github.com/w5s/project-config/compare/@w5s/configurator-core@1.0.0-alpha.4...@w5s/configurator-core@1.20.0) (2026-10-01)
 
 ### ✨ Features
