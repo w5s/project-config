@@ -3,6 +3,15 @@
   "extends": ["github>w5s/renovate-config:default"],
   "assigneesSampleSize": 1,
   "assignees": ["team:maintainers"],
+  "packageRules": [
+    {
+      "description": "Automerge minor and patch updates of dependencies. This is safe because all these dependencies are used as dev dependencies.",
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ],
   "postUpgradeTasks": {
     "commands": [
       "pnpm install --frozen-lockfile",
