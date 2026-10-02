@@ -33,6 +33,8 @@ fi
 # Step 0: Reset working tree (build/validate steps may leave uncommitted artifacts)
 git checkout -- .
 
+HEAD_BEFORE=$(git rev-parse HEAD)
+
 # Step 1: Version (bump versions, create commit)
 # pnpm exec uses only the local lerna from node_modules (no download)
 if [ "$CI_RELEASE_TYPE" = "next" ]; then
@@ -48,6 +50,21 @@ else
   exit 1
 fi
 
+# Lerna exits 0 with no version commit when nothing changed. Skip install, artifact
+# build, and push so the caller can skip publish for the current commit.
+if [ "$(git rev-parse HEAD)" = "$HEAD_BEFORE" ]; then
+  echo "No packages versioned; skipping build artifacts and push."
+  exit 0
+fi
+
+# Capture tags before build. A build step can commit (for example browserslist docs)
+# and move HEAD, which would hide the tags Lerna just created.
+VERSION_TAGS=$(git tag --points-at HEAD)
+if [ -z "$VERSION_TAGS" ]; then
+  echo "Version commit has no package tags; refusing to continue." >&2
+  exit 1
+fi
+
 # Step 2: Update lockfile after version bump
 # Avoid empty "${arr[@]}" with set -u (unbound variable in bash).
 $NODEJS_INSTALL
@@ -57,7 +74,6 @@ $NODEJS_RUN build
 
 # Step 4: Commit built files separately, then move only the release tags to
 # the final commit so generated artifacts are inside the release boundary.
-VERSION_TAGS=$(git tag --points-at HEAD)
 git add .
 if ! git diff --cached --quiet; then
   git commit --no-verify -m "chore(release): build artifacts"
@@ -65,12 +81,11 @@ fi
 
 # Recreate tags as annotated tags so their type is explicit and predictable.
 PUSH_REFS=(HEAD)
-if [ -n "$VERSION_TAGS" ]; then
-  while IFS= read -r tag; do
-    git tag -f -a "$tag" HEAD -m "$tag" >/dev/null
-    PUSH_REFS+=("refs/tags/$tag")
-  done <<< "$VERSION_TAGS"
-fi
+while IFS= read -r tag; do
+  [ -z "$tag" ] && continue
+  git tag -f -a "$tag" HEAD -m "$tag" >/dev/null
+  PUSH_REFS+=("refs/tags/$tag")
+done <<< "$VERSION_TAGS"
 
 # Step 5: Atomically push the branch and exactly the release tags.
 git push --atomic --no-verify origin "${PUSH_REFS[@]}"

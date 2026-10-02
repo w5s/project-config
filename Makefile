@@ -17,4 +17,13 @@ version-bump:
 publish:
 	$(Q)$(MODULES_PATH)/publish
 
-release: build version-bump publish
+# Publish only when version-bump moved HEAD. An unchanged tree exits 0 from
+# version-bump; chaining publish as a prerequisite would still publish.
+release: build
+	$(Q)head_before=$$(git rev-parse HEAD); \
+		$(MODULES_PATH)/version-bump; \
+		if [ "$$(git rev-parse HEAD)" = "$$head_before" ]; then \
+			echo "No packages versioned; skipping publish."; \
+		else \
+			$(MODULES_PATH)/publish; \
+		fi
