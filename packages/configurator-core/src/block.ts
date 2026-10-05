@@ -1,4 +1,24 @@
 import { file, type FileOptions, fileSync } from './file.js';
+import { resolveCommentStyle, type ResolvedCommentStyle } from './internal/resolveCommentStyle.js';
+
+export type BlockCommentStyle = '#' | '/*' | '//' | '<!--' | 'auto';
+
+export interface BlockMarkerOptions {
+  /**
+   * Comment opener used for the marker lines: `'auto'` (from file name),
+   * `'#'`, `'//'`, slash-star, or `'<!--'`.
+   *
+   * @default 'auto'
+   */
+  commentStyle?: BlockCommentStyle;
+
+  /**
+   * Identity after `BEGIN:` / `END:`, so multiple blocks in one file do not collide.
+   *
+   * @default 'managed-block'
+   */
+  topic?: string;
+}
 
 export interface BlockOptions {
   /**
@@ -12,11 +32,11 @@ export interface BlockOptions {
   insertPosition?: ['after', 'EndOfFile' | RegExp] | ['before', 'BeginningOfFile' | RegExp];
 
   /**
-   * The marker builder function that will take either `markerBegin` or `markerEnd`
+   * Marker configuration, or a function that returns the full marker line.
    *
-   * @default '# ${mark} MANAGED BLOCK'
+   * @default `{ commentStyle: 'auto', topic: 'managed-block' }`
    */
-  marker?: (mark: 'Begin' | 'End') => string;
+  marker?: ((mark: 'Begin' | 'End') => string) | BlockMarkerOptions;
 
   /**
    * File path
@@ -31,6 +51,8 @@ export interface BlockOptions {
 
 const EOF = 'EndOfFile';
 const BOF = 'BeginningOfFile';
+const DEFAULT_TOPIC = 'managed-block';
+
 const insertAt = (str: string, index: number, toInsert: string) => str.slice(0, index) + toInsert + str.slice(index);
 const matchLast = (string: string, regexp: RegExp) => {
   const matcher = new RegExp(regexp.source, `${regexp.flags}g`);
@@ -75,18 +97,34 @@ export function blockSync(options: BlockOptions) {
   return fileSync(toFileOptions(options));
 }
 
+function formatMarker(style: ResolvedCommentStyle, mark: 'Begin' | 'End', topic: string): string {
+  const inner = `${mark.toUpperCase()}:${topic}`;
+  switch (style) {
+    case '#': {
+      return `# ${inner}`;
+    }
+    case '/*': {
+      return `/* ${inner} */`;
+    }
+    case '//': {
+      return `// ${inner}`;
+    }
+    case '<!--': {
+      return `<!-- ${inner} -->`;
+    }
+    default: {
+      throw new Error(`Unsupported comment style ${String(style)}`);
+    }
+  }
+}
+
 function toFileOptions(options: BlockOptions): FileOptions {
-  const {
-    block: blockName,
-    insertPosition = ['after', EOF],
-    marker = (mark) => `# ${mark.toUpperCase()} MANAGED BLOCK`,
-    path,
-    state = 'present',
-  } = options;
+  const { block: blockName, insertPosition = ['after', EOF], marker, path, state = 'present' } = options;
 
   const EOL = '\n';
-  const beginBlock = marker('Begin');
-  const endBlock = marker('End');
+  const markerFn = toMarkerFn(marker, path);
+  const beginBlock = markerFn('Begin');
+  const endBlock = markerFn('End');
 
   /**
    * @param content
@@ -150,4 +188,16 @@ function toFileOptions(options: BlockOptions): FileOptions {
     state: 'present',
     update: (sourceContent) => apply(sourceContent, blockName),
   };
+}
+
+function toMarkerFn(marker: BlockOptions['marker'], path: string): (mark: 'Begin' | 'End') => string {
+  if (typeof marker === 'function') {
+    return marker;
+  }
+
+  const commentStyle = marker?.commentStyle ?? 'auto';
+  const topic = marker?.topic ?? DEFAULT_TOPIC;
+  const resolvedStyle = commentStyle === 'auto' ? resolveCommentStyle(path) : commentStyle;
+
+  return (mark) => formatMarker(resolvedStyle, mark, topic);
 }
