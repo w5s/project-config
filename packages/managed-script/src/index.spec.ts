@@ -9,6 +9,7 @@ describe('index', () => {
       'ManagedScript',
       'ManagedScriptCommand',
       'ManagedScriptEnv',
+      'mergeConfig',
       'meta',
     ]));
   });
