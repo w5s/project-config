@@ -15,7 +15,8 @@ describe('index', () => {
   it('should export configuration scripts', () => {
     expect(Module.default).toMatchObject({
       scripts: {
-        rescue: expect.any(String),
+        'prepare:lefthook': expect.any(String),
+        'rescue': expect.any(String),
       },
     });
   });

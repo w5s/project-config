@@ -5,6 +5,7 @@ const configDir = new URL('.', import.meta.url).pathname;
 
 export const config = defineConfig({
   scripts: {
-    rescue: `node "${path.join(configDir, 'script', 'rescue.js')}"`,
+    'prepare:lefthook': `node "${path.join(configDir, 'script', 'prepare', 'lefthook.js')}"`,
+    'rescue': `node "${path.join(configDir, 'script', 'rescue.js')}"`,
   },
 });
