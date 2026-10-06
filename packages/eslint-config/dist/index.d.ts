@@ -2750,6 +2750,7 @@ type JsdocCheckExamples = [] | [{
 // ----- jsdoc/check-indentation -----
 type JsdocCheckIndentation = [] | [{
   allowIndentedSections?: boolean;
+  allowNoSpaceAfterAsterisk?: boolean;
   excludeTags?: string[];
 }];
 // ----- jsdoc/check-line-alignment -----
@@ -3169,7 +3170,6 @@ type JsdocRequireTags = [] | [{
   tags?: (string | {
     context?: string;
     tag?: string;
-    [k: string]: unknown | undefined;
   })[];
 }];
 // ----- jsdoc/require-template -----
