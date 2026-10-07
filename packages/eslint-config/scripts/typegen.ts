@@ -9,6 +9,7 @@ import vitestPlugin from '@vitest/eslint-plugin';
 import githubActionsPlugin from 'eslint-plugin-github-actions-2';
 import importPlugin from 'eslint-plugin-import';
 import jsdocPlugin from 'eslint-plugin-jsdoc';
+import schemaPlugin from 'eslint-plugin-json-schema-validator-2';
 import jsoncPlugin from 'eslint-plugin-jsonc';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import nodePlugin from 'eslint-plugin-n';
@@ -36,6 +37,7 @@ await Promise.all(
       ['node', nodePlugin],
       ['perfectionist', perfectionistPlugin],
       ['react', reactPlugin],
+      ['schema', schemaPlugin],
       ['style', stylisticPlugin],
       ['ts', tsPlugin],
       ['unicorn', unicornPlugin],
