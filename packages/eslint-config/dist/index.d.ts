@@ -6,10 +6,10 @@ import { ESLintRules } from "eslint/rules";
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$17 {}
+    interface RulesRecord extends RuleOptions$18 {}
   }
 }
-interface RuleOptions$17 {
+interface RuleOptions$18 {
   /**
    * Disallow dependencies in favor of more performant or secure alternatives
    */
@@ -267,16 +267,16 @@ export declare namespace e18e {
      */
     performanceImprovements?: boolean;
   }
-  type Rules = RuleOptions$17;
+  type Rules = RuleOptions$18;
 }
 //#endregion
 //#region src/typegen/jsonc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$16 {}
+    interface RulesRecord extends RuleOptions$17 {}
   }
 }
-interface RuleOptions$16 {
+interface RuleOptions$17 {
   /**
    * enforce line breaks after opening and before closing array brackets
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-newline.html
@@ -1163,16 +1163,16 @@ export declare namespace es {
      */
     restrictedSyntax?: ((currentSyntax: Readonly<RestrictedSyntax>) => RestrictedSyntax) | RestrictedSyntax | undefined;
   }
-  type Rules = RuleOptions$16;
+  type Rules = RuleOptions$17;
 }
 //#endregion
 //#region src/typegen/github-actions.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$15 {}
+    interface RulesRecord extends RuleOptions$16 {}
   }
 }
-interface RuleOptions$15 {
+interface RuleOptions$16 {
   /**
    * enforce a consistent casing convention for workflow `name` values.
    * @see https://nick2bad4u.github.io/eslint-plugin-github-actions-2/docs/rules/action-name-casing
@@ -1834,7 +1834,7 @@ type GithubActionsValidTimeoutMinutes = [] | [(number | {
 export declare function githubActions(options?: githubActions.Options): Promise<[Config, Config]>;
 export declare namespace githubActions {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$15;
+  type Rules = RuleOptions$16;
 }
 //#endregion
 //#region src/config/ignores.d.ts
@@ -1846,10 +1846,10 @@ export declare namespace ignores {
 //#region src/typegen/import.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$14 {}
+    interface RulesRecord extends RuleOptions$15 {}
   }
 }
-interface RuleOptions$14 {
+interface RuleOptions$15 {
   /**
    * Enforce or ban the use of inline type-only markers for named imports.
    * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/consistent-type-specifier-style.md
@@ -2338,16 +2338,16 @@ export declare namespace imports {
 }
 export declare namespace imports {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$14;
+  type Rules = RuleOptions$15;
 }
 //#endregion
 //#region src/typegen/jsdoc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$13 {}
+    interface RulesRecord extends RuleOptions$14 {}
   }
 }
-interface RuleOptions$13 {
+interface RuleOptions$14 {
   /**
    * Checks that `@access` tags have a valid value.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-access.md#repos-sticky-header
@@ -3332,16 +3332,16 @@ type JsdocValidTypes = [] | [{
 export declare function jsdoc(options?: jsdoc.Options): Promise<ReadonlyArray<Config>>;
 export declare namespace jsdoc {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$13;
+  type Rules = RuleOptions$14;
 }
 //#endregion
 //#region src/typegen/schema.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$12 {}
+    interface RulesRecord extends RuleOptions$13 {}
   }
 }
-interface RuleOptions$12 {
+interface RuleOptions$13 {
   /**
    * validate object with JSON Schema.
    * @see https://nick2bad4u.github.io/eslint-plugin-json-schema-validator-2/docs/rules/no-invalid
@@ -3369,16 +3369,16 @@ type SchemaNoInvalid = [] | [(string | {
 export declare function jsonc(options?: jsonc.Options): Promise<ReadonlyArray<Config>>;
 export declare namespace jsonc {
   interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
-  type Rules = RuleOptions$16 & RuleOptions$12;
+  type Rules = RuleOptions$17 & RuleOptions$13;
 }
 //#endregion
 //#region src/typegen/jsx-a11y.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$11 {}
+    interface RulesRecord extends RuleOptions$12 {}
   }
 }
-interface RuleOptions$11 {
+interface RuleOptions$12 {
   /**
    * Enforce emojis are wrapped in `<span>` and provide screen reader access.
    * @see https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/tree/HEAD/docs/rules/accessible-emoji.md
@@ -3792,16 +3792,16 @@ export declare namespace jsx {
      */
     jsxA11y?: boolean;
   }
-  type Rules = RuleOptions$11;
+  type Rules = RuleOptions$12;
 }
 //#endregion
 //#region src/typegen/markdown.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$10 {}
+    interface RulesRecord extends RuleOptions$11 {}
   }
 }
-interface RuleOptions$10 {
+interface RuleOptions$11 {
   /**
    * Require languages for fenced code blocks
    * @see https://github.com/eslint/markdown/blob/main/docs/rules/fenced-code-language.md
@@ -3989,16 +3989,16 @@ export declare namespace markdown {
       frontmatter?: 'toml' | 'yaml';
     };
   }
-  type Rules = RuleOptions$10;
+  type Rules = RuleOptions$11;
 }
 //#endregion
 //#region src/typegen/next.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$9 {}
+    interface RulesRecord extends RuleOptions$10 {}
   }
 }
-interface RuleOptions$9 {
+interface RuleOptions$10 {
   /**
    * Enforce font-display behavior with Google Fonts.
    * @see https://nextjs.org/docs/messages/google-font-display
@@ -4117,16 +4117,16 @@ type NextNoHtmlLinkForPages = [] | [(string | string[])];
 export declare function next(options?: next.Options): Promise<[Config, Config]>;
 export declare namespace next {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
-  type Rules = RuleOptions$9;
+  type Rules = RuleOptions$10;
 }
 //#endregion
 //#region src/typegen/node.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$8 {}
+    interface RulesRecord extends RuleOptions$9 {}
   }
 }
-interface RuleOptions$8 {
+interface RuleOptions$9 {
   /**
    * require `return` statements after callbacks
    * @see https://github.com/eslint-community/eslint-plugin-n/blob/HEAD/docs/rules/callback-return.md
@@ -4635,16 +4635,16 @@ type NodeShebang = [] | [{
 export declare function node(options?: node.Options): Promise<[Config, Config]>;
 export declare namespace node {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {}
-  type Rules = RuleOptions$8;
+  type Rules = RuleOptions$9;
 }
 //#endregion
 //#region src/typegen/perfectionist.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$7 {}
+    interface RulesRecord extends RuleOptions$8 {}
   }
 }
-interface RuleOptions$7 {
+interface RuleOptions$8 {
   /**
    * Enforce sorted arrays before include method.
    * @see https://perfectionist.dev/rules/sort-array-includes
@@ -7522,16 +7522,16 @@ type PerfectionistSortVariableDeclarations = {
 export declare function perfectionist(options?: perfectionist.Options): Promise<[Config, Config]>;
 export declare namespace perfectionist {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$7;
+  type Rules = RuleOptions$8;
 }
 //#endregion
 //#region src/typegen/react.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$6 {}
+    interface RulesRecord extends RuleOptions$7 {}
   }
 }
-interface RuleOptions$6 {
+interface RuleOptions$7 {
   /**
    * Disallows DOM elements from using 'dangerouslySetInnerHTML'.
    * @see https://eslint-react.xyz/docs/rules/dom-no-dangerously-set-innerhtml
@@ -8291,16 +8291,16 @@ type ReactXUseState = [] | [{
 export declare function react(options?: react.Options): Promise<[Config, Config]>;
 export declare namespace react {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
-  type Rules = RuleOptions$6;
+  type Rules = RuleOptions$7;
 }
 //#endregion
 //#region src/typegen/style.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$5 {}
+    interface RulesRecord extends RuleOptions$6 {}
   }
 }
-interface RuleOptions$5 {
+interface RuleOptions$6 {
   /**
    * Enforce linebreaks after opening and before closing array brackets
    * @see https://eslint.style/rules/array-bracket-newline
@@ -10054,16 +10054,16 @@ type StyleYieldStarSpacing = [] | [(("before" | "after" | "both" | "neither") | 
 export declare function stylistic(options?: stylistic.Options): Promise<[Config, Config]>;
 export declare namespace stylistic {
   interface Options extends Pick<PluginOptionsBase<Rules>, 'rules'>, StylisticParameters {}
-  type Rules = RuleOptions$5;
+  type Rules = RuleOptions$6;
 }
 //#endregion
 //#region src/typegen/test.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$4 {}
+    interface RulesRecord extends RuleOptions$5 {}
   }
 }
-interface RuleOptions$4 {
+interface RuleOptions$5 {
   /**
    * enforce using `.each` or `.for` consistently
    * @see https://github.com/vitest-dev/eslint-plugin-vitest/blob/main/docs/rules/consistent-each-for.md
@@ -10599,6 +10599,279 @@ type TestValidTitle = [] | [{
 //#region src/config/test.d.ts
 export declare function test(options?: test.Options): Promise<[Config, Config]>;
 export declare namespace test {
+  interface Options extends PluginOptionsBase<Rules> {}
+  type Rules = RuleOptions$5;
+}
+//#endregion
+//#region src/typegen/toml.d.ts
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$4 {}
+  }
+}
+interface RuleOptions$4 {
+  /**
+   * enforce linebreaks after opening and before closing array brackets
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/array-bracket-newline.html
+   */
+  'toml/array-bracket-newline'?: Linter.RuleEntry<TomlArrayBracketNewline>;
+  /**
+   * enforce consistent spacing inside array brackets
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/array-bracket-spacing.html
+   */
+  'toml/array-bracket-spacing'?: Linter.RuleEntry<TomlArrayBracketSpacing>;
+  /**
+   * enforce line breaks between array elements
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/array-element-newline.html
+   */
+  'toml/array-element-newline'?: Linter.RuleEntry<TomlArrayElementNewline>;
+  /**
+   * enforce consistent comma style in array
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/comma-style.html
+   */
+  'toml/comma-style'?: Linter.RuleEntry<TomlCommaStyle>;
+  /**
+   * enforce consistent indentation
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/indent.html
+   */
+  'toml/indent'?: Linter.RuleEntry<TomlIndent>;
+  /**
+   * enforce linebreaks after opening and before closing braces
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/inline-table-curly-newline.html
+   */
+  'toml/inline-table-curly-newline'?: Linter.RuleEntry<TomlInlineTableCurlyNewline>;
+  /**
+   * enforce consistent spacing inside braces
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/inline-table-curly-spacing.html
+   */
+  'toml/inline-table-curly-spacing'?: Linter.RuleEntry<TomlInlineTableCurlySpacing>;
+  /**
+   * enforce placing inline table key-value pairs on separate lines
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/inline-table-key-value-newline.html
+   */
+  'toml/inline-table-key-value-newline'?: Linter.RuleEntry<TomlInlineTableKeyValueNewline>;
+  /**
+   * enforce consistent spacing between keys and values in key/value pairs
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/key-spacing.html
+   */
+  'toml/key-spacing'?: Linter.RuleEntry<TomlKeySpacing>;
+  /**
+   * disallow defining pair keys out-of-order
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/keys-order.html
+   */
+  'toml/keys-order'?: Linter.RuleEntry<[]>;
+  /**
+   * disallow mixed data types in array
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/no-mixed-type-in-array.html
+   */
+  'toml/no-mixed-type-in-array'?: Linter.RuleEntry<TomlNoMixedTypeInArray>;
+  /**
+   * disallow hexadecimal, octal and binary integer
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/no-non-decimal-integer.html
+   */
+  'toml/no-non-decimal-integer'?: Linter.RuleEntry<TomlNoNonDecimalInteger>;
+  /**
+   * disallow spacing around infix operators
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/no-space-dots.html
+   */
+  'toml/no-space-dots'?: Linter.RuleEntry<[]>;
+  /**
+   * disallow number separators that to not enhance readability.
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/no-unreadable-number-separator.html
+   */
+  'toml/no-unreadable-number-separator'?: Linter.RuleEntry<[]>;
+  /**
+   * require or disallow padding lines between pairs
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/padding-line-between-pairs.html
+   */
+  'toml/padding-line-between-pairs'?: Linter.RuleEntry<[]>;
+  /**
+   * require or disallow padding lines between tables
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/padding-line-between-tables.html
+   */
+  'toml/padding-line-between-tables'?: Linter.RuleEntry<[]>;
+  /**
+   * disallow precision of fractional seconds greater than the specified value.
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/precision-of-fractional-seconds.html
+   */
+  'toml/precision-of-fractional-seconds'?: Linter.RuleEntry<TomlPrecisionOfFractionalSeconds>;
+  /**
+   * disallow precision of integer greater than the specified value.
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/precision-of-integer.html
+   */
+  'toml/precision-of-integer'?: Linter.RuleEntry<TomlPrecisionOfInteger>;
+  /**
+   * require or disallow quotes around keys
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/quoted-keys.html
+   */
+  'toml/quoted-keys'?: Linter.RuleEntry<TomlQuotedKeys>;
+  /**
+   * require spacing around equals sign
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/space-eq-sign.html
+   * @deprecated
+   */
+  'toml/space-eq-sign'?: Linter.RuleEntry<[]>;
+  /**
+   * enforce consistent spacing after the `#` in a comment
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/spaced-comment.html
+   */
+  'toml/spaced-comment'?: Linter.RuleEntry<TomlSpacedComment>;
+  /**
+   * enforce consistent spacing inside table brackets
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/table-bracket-spacing.html
+   */
+  'toml/table-bracket-spacing'?: Linter.RuleEntry<TomlTableBracketSpacing>;
+  /**
+   * disallow defining tables out-of-order
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/tables-order.html
+   */
+  'toml/tables-order'?: Linter.RuleEntry<[]>;
+  /**
+   * disallow parsing errors in Vue custom blocks
+   * @see https://ota-meshi.github.io/eslint-plugin-toml/rules/vue-custom-block/no-parsing-error.html
+   */
+  'toml/vue-custom-block/no-parsing-error'?: Linter.RuleEntry<[]>;
+}
+/* ======= Declarations ======= */
+// ----- toml/array-bracket-newline -----
+type TomlArrayBracketNewline = [] | [(("always" | "never" | "consistent") | {
+  multiline?: boolean;
+  minItems?: (number | null);
+})];
+// ----- toml/array-bracket-spacing -----
+type TomlArrayBracketSpacing = [] | [("always" | "never")] | [("always" | "never"), {
+  singleValue?: boolean;
+  objectsInArrays?: boolean;
+  arraysInArrays?: boolean;
+}];
+// ----- toml/array-element-newline -----
+type TomlArrayElementNewline = [] | [(_TomlArrayElementNewlineBasicConfig | {
+  ArrayExpression?: _TomlArrayElementNewlineBasicConfig;
+  ArrayPattern?: _TomlArrayElementNewlineBasicConfig;
+  TOMLArray?: _TomlArrayElementNewlineBasicConfig;
+})];
+type _TomlArrayElementNewlineBasicConfig = (("always" | "never" | "consistent") | {
+  multiline?: boolean;
+  minItems?: (number | null);
+});
+// ----- toml/comma-style -----
+type TomlCommaStyle = [] | [("first" | "last")] | [("first" | "last"), {
+  exceptions?: {
+    [k: string]: boolean | undefined;
+  };
+}];
+// ----- toml/indent -----
+type TomlIndent = [] | [("tab" | number)] | [("tab" | number), {
+  subTables?: number;
+  keyValuePairs?: number;
+}];
+// ----- toml/inline-table-curly-newline -----
+type TomlInlineTableCurlyNewline = [] | [(("always" | "never") | {
+  multiline?: boolean;
+  minProperties?: number;
+  consistent?: boolean;
+})];
+// ----- toml/inline-table-curly-spacing -----
+type TomlInlineTableCurlySpacing = [] | [("always" | "never")] | [("always" | "never"), {
+  arraysInObjects?: boolean;
+  objectsInObjects?: boolean;
+  emptyObjects?: ("ignore" | "always" | "never");
+}];
+// ----- toml/inline-table-key-value-newline -----
+type TomlInlineTableKeyValueNewline = [] | [{
+  allowAllPropertiesOnSameLine?: boolean;
+}];
+// ----- toml/key-spacing -----
+type TomlKeySpacing = [] | [({
+  align?: (("equal" | "value") | {
+    on?: ("equal" | "value");
+    mode?: ("strict" | "minimum");
+    beforeEqual?: boolean;
+    afterEqual?: boolean;
+  });
+  mode?: ("strict" | "minimum");
+  beforeEqual?: boolean;
+  afterEqual?: boolean;
+} | {
+  singleLine?: {
+    mode?: ("strict" | "minimum");
+    beforeEqual?: boolean;
+    afterEqual?: boolean;
+  };
+  multiLine?: {
+    align?: (("equal" | "value") | {
+      on?: ("equal" | "value");
+      mode?: ("strict" | "minimum");
+      beforeEqual?: boolean;
+      afterEqual?: boolean;
+    });
+    mode?: ("strict" | "minimum");
+    beforeEqual?: boolean;
+    afterEqual?: boolean;
+  };
+} | {
+  singleLine?: {
+    mode?: ("strict" | "minimum");
+    beforeEqual?: boolean;
+    afterEqual?: boolean;
+  };
+  multiLine?: {
+    mode?: ("strict" | "minimum");
+    beforeEqual?: boolean;
+    afterEqual?: boolean;
+  };
+  align?: {
+    on?: ("equal" | "value");
+    mode?: ("strict" | "minimum");
+    beforeEqual?: boolean;
+    afterEqual?: boolean;
+  };
+})];
+// ----- toml/no-mixed-type-in-array -----
+type TomlNoMixedTypeInArray = [] | [{
+  typeMap?: {
+    string?: string;
+    boolean?: string;
+    integer?: string;
+    float?: string;
+    offsetDateTime?: string;
+    localDateTime?: string;
+    localDate?: string;
+    localTime?: string;
+    array?: string;
+    inlineTable?: string;
+  };
+}];
+// ----- toml/no-non-decimal-integer -----
+type TomlNoNonDecimalInteger = [] | [{
+  allowHexadecimal?: boolean;
+  allowOctal?: boolean;
+  allowBinary?: boolean;
+}];
+// ----- toml/precision-of-fractional-seconds -----
+type TomlPrecisionOfFractionalSeconds = [] | [{
+  max?: number;
+}];
+// ----- toml/precision-of-integer -----
+type TomlPrecisionOfInteger = [] | [{
+  maxBit?: number;
+}];
+// ----- toml/quoted-keys -----
+type TomlQuotedKeys = [] | [{
+  prefer?: ("as-needed" | "always");
+  numbers?: boolean;
+}];
+// ----- toml/spaced-comment -----
+type TomlSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
+  exceptions?: string[];
+  markers?: string[];
+}];
+// ----- toml/table-bracket-spacing -----
+type TomlTableBracketSpacing = [] | [("always" | "never")];
+//#endregion
+//#region src/config/toml.d.ts
+export declare function toml(options?: toml.Options): Promise<[Config, Config]>;
+export declare namespace toml {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$4;
 }
@@ -15092,10 +15365,10 @@ type YmlSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
 export declare function yml(options?: yml.Options): Promise<[Config, Config]>;
 export declare namespace yml {
   interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
-  type Rules = RuleOptions & RuleOptions$12;
+  type Rules = RuleOptions & RuleOptions$13;
 }
 declare namespace config_d_exports {
-  export { e18e, es, githubActions, ignores, imports, jsdoc, jsonc, jsx, markdown, next, node, perfectionist, react, stylistic, test, ts, unicorn, unusedImports, yml };
+  export { e18e, es, githubActions, ignores, imports, jsdoc, jsonc, jsx, markdown, next, node, perfectionist, react, stylistic, test, toml, ts, unicorn, unusedImports, yml };
 }
 //#endregion
 //#region src/defineConfig.d.ts
@@ -15125,6 +15398,7 @@ export interface DefineConfigOptions extends ignores.Options {
     'react'?: boolean | react.Options | undefined;
     'stylistic'?: boolean | stylistic.Options | undefined;
     'test'?: boolean | test.Options | undefined;
+    'toml'?: boolean | toml.Options | undefined;
     'ts'?: boolean | ts.Options | undefined;
     'unicorn'?: boolean | unicorn.Options | undefined;
     'unused-imports'?: boolean | unusedImports.Options | undefined;

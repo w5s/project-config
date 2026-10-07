@@ -405,6 +405,9 @@ importers:
       eslint-plugin-perfectionist:
         specifier: ~5.12.0
         version: 5.12.1(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      eslint-plugin-toml:
+        specifier: ~1.5.0
+        version: 1.5.0(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)
       eslint-plugin-unicorn:
         specifier: ~76.0.0
         version: 76.0.0(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))
@@ -3216,6 +3219,12 @@ packages:
     peerDependenciesMeta:
       eslint:
         optional: true
+
+  eslint-plugin-toml@1.5.0:
+    resolution: {integrity: sha512-qBjRywEkKxO2uYOjus//6GVF1r+Hg5QDkRO8RTY6XcaXgWfBU0DhwpFmJa2Ljf0Sz49r7DdZlpKwwHmJ4nmH1Q==}
+    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+    peerDependencies:
+      eslint: '>=9.38.0'
 
   eslint-plugin-unicorn@76.0.0:
     resolution: {integrity: sha512-3ywJrCMHKYhcBP5yFzGaOOX3dY7+iR3hvpuoS/0EnhRFgVWLejly+t4fOdJvWQxJdHZl1C+QBW7hybXPDld4Pw==}
@@ -9373,6 +9382,17 @@ snapshots:
       typescript: 6.0.3
     optionalDependencies:
       eslint: 10.12.0(jiti@2.7.0)(supports-color@7.2.0)
+    transitivePeerDependencies:
+      - supports-color
+
+  eslint-plugin-toml@1.5.0(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0):
+    dependencies:
+      '@eslint/core': 1.2.1
+      '@eslint/plugin-kit': 0.7.3
+      '@ota-meshi/ast-token-store': 0.3.0
+      debug: 4.4.3(supports-color@7.2.0)
+      eslint: 10.12.0(jiti@2.7.0)(supports-color@7.2.0)
+      toml-eslint-parser: 1.0.3
     transitivePeerDependencies:
       - supports-color
 

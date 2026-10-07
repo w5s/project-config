@@ -33,6 +33,7 @@ export interface DefineConfigOptions extends config.ignores.Options {
     'react'?: boolean | config.react.Options | undefined;
     'stylistic'?: boolean | config.stylistic.Options | undefined;
     'test'?: boolean | config.test.Options | undefined;
+    'toml'?: boolean | config.toml.Options | undefined;
     'ts'?: boolean | config.ts.Options | undefined;
     'unicorn'?: boolean | config.unicorn.Options | undefined;
     'unused-imports'?: boolean | config.unusedImports.Options | undefined;
@@ -95,6 +96,7 @@ export async function defineConfig(options: DefineConfigOptions = {}): Promise<A
 
     // other languages
     ...includeEnabled(config.jsonc, toOption(plugins.jsonc)),
+    ...includeEnabled(config.toml, toOption(plugins.toml)),
     ...includeEnabled(config.markdown, toOption(plugins.markdown)),
     ...includeEnabled(config.yml, toOption(plugins.yml)),
     ...includeEnabled(config.githubActions, toOption(plugins['github-actions'])),

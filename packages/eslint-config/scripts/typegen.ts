@@ -14,6 +14,7 @@ import jsoncPlugin from 'eslint-plugin-jsonc';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import nodePlugin from 'eslint-plugin-n';
 import perfectionistPlugin from 'eslint-plugin-perfectionist';
+import tomlPlugin from 'eslint-plugin-toml';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
 import ymlPlugin from 'eslint-plugin-yml';
@@ -43,6 +44,7 @@ await Promise.all(
       ['unicorn', unicornPlugin],
       ['unused-imports', unusedImportsPlugin],
       ['test', vitestPlugin],
+      ['toml', tomlPlugin],
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {

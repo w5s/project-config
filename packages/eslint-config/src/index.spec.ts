@@ -26,6 +26,7 @@ describe('index', () => {
       stylistic: expect.any(Function),
       StylisticConfig: expect.any(Object),
       test: expect.any(Function),
+      toml: expect.any(Function),
       ts: expect.any(Function),
       unicorn: expect.any(Function),
       unusedImports: expect.any(Function),

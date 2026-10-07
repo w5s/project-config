@@ -10,4 +10,6 @@ export const jsonSourceGlob = Project.glob({ fileExtensions: [['.json', '.json5'
 
 export const tsSourceGlob = Project.glob({ fileExtensions: [Project.queryExtensions(['typescript', 'typescriptreact'])], nested: true });
 
+export const tomlSourceGlob = Project.glob({ fileExtensions: [['.toml']], nested: true });
+
 export const ymlSourceGlob = Project.glob({ fileExtensions: [Project.queryExtensions(['yaml'])], nested: true });

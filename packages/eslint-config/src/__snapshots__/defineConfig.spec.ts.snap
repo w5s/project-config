@@ -36,6 +36,8 @@ exports[`defineConfig > matches the snapshot of config names in default mode 1`]
   "w5s/jsonc/rules",
   "w5s/jsonc/sort-package-json",
   "w5s/jsonc/sort-tsconfig",
+  "w5s/toml/setup",
+  "w5s/toml/rules",
   "w5s/markdown/setup",
   "w5s/markdown/rules",
   "w5s/markdown/embed-code",

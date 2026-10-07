@@ -38,6 +38,7 @@ import defineConfig from '@w5s/eslint-config';
 
 export default defineConfig({
   stylistic: { indent: 2 },
+  toml: true,
   yml: true,
 });
 ```
@@ -74,7 +75,7 @@ export default defineConfig({
 
 ### Features
 
-- Supported languages : `JS`, `TS`, `JSX`, `JSON`, `YAML`, `MARKDOWN`
+- Supported languages : `JS`, `TS`, `JSX`, `JSON`, `TOML`, `YAML`, `MARKDOWN`
 - GitHub Actions workflows covered via `eslint-plugin-github-actions-2`
 - Standalone formatting : no prettier cli/configuration required (uses stylistic plugin)
 - Enforce best practices : Airbnb base as default

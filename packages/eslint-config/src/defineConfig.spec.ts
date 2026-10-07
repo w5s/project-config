@@ -19,6 +19,7 @@ const disabledPlugins = {
   'react': false,
   'stylistic': false,
   'test': false,
+  'toml': false,
   'ts': false,
   'unicorn': false,
   'unused-imports': false,
@@ -36,6 +37,19 @@ describe(defineConfig, () => {
     const result = defineConfig({ plugins: disabledPlugins });
     expect(result).toBeInstanceOf(Promise);
     await expect(result).resolves.toEqual(expect.any(Array));
+  });
+
+  it('configures TOML files with the TOML language and rules', async () => {
+    const config = await defineConfig({ plugins: { ...disabledPlugins, stylistic: true, toml: true } });
+    expect(config.find((entry) => entry.name === 'w5s/toml/rules')).toMatchObject({
+      language: 'toml/toml',
+      rules: {
+        'no-irregular-whitespace': 'off',
+        'spaced-comment': 'off',
+        'toml/indent': 'error',
+        'toml/precision-of-integer': 'error',
+      },
+    });
   });
 
   it('appends todo configs before final overrides', async () => {

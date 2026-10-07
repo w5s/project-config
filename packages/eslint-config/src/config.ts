@@ -13,6 +13,7 @@ export * from './config/perfectionist.js';
 export * from './config/react.js';
 export * from './config/stylistic.js';
 export * from './config/test.js';
+export * from './config/toml.js';
 export * from './config/ts.js';
 export * from './config/unicorn.js';
 export * from './config/unused-imports.js';

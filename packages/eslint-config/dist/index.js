@@ -30,6 +30,10 @@ const tsSourceGlob = Project.glob({
 	fileExtensions: [Project.queryExtensions(["typescript", "typescriptreact"])],
 	nested: true
 });
+const tomlSourceGlob = Project.glob({
+	fileExtensions: [[".toml"]],
+	nested: true
+});
 const ymlSourceGlob = Project.glob({
 	fileExtensions: [Project.queryExtensions(["yaml"])],
 	nested: true
@@ -95,7 +99,7 @@ function withDefaultFiles(options, defaultFiles) {
 }
 //#endregion
 //#region src/config/e18e.ts
-const defaultFiles$11 = [sourceGlob];
+const defaultFiles$12 = [sourceGlob];
 /**
 * @see https://e18e.dev
 * @param options
@@ -107,7 +111,7 @@ async function e18e(options = {}) {
 		name: `${namespace}/e18e/setup`,
 		plugins: { e18e: e18ePlugin }
 	}, {
-		files: withDefaultFiles(files, defaultFiles$11),
+		files: withDefaultFiles(files, defaultFiles$12),
 		name: `${namespace}/e18e/rules`,
 		rules: {
 			...modernization ? e18ePlugin.configs.modernization.rules : {},
@@ -545,7 +549,7 @@ const esRules = lazy(() => ({
 }));
 //#endregion
 //#region src/config/es.ts
-const defaultFiles$10 = [esSourceGlob];
+const defaultFiles$11 = [esSourceGlob];
 async function es(options) {
 	const { defaultRestrictedGlobals = restrictedGlobals, defaultRestrictedImportPaths = restrictedImportPaths, defaultRestrictedSyntax = restrictedSyntax, namespace, recommended, restrictedImportPaths: paths, rules = {} } = defaultPluginOptions(options);
 	const resolvedGlobals = typeof options.restrictedGlobals === "function" ? options.restrictedGlobals(defaultRestrictedGlobals) : options.restrictedGlobals ?? defaultRestrictedGlobals;
@@ -586,7 +590,7 @@ async function es(options) {
 			}
 		},
 		{
-			files: defaultFiles$10,
+			files: defaultFiles$11,
 			name: `${namespace}/es/rules`,
 			rules: {
 				...recommended ? es.recommended : {},
@@ -744,7 +748,7 @@ async function withSchema(options) {
 }
 //#endregion
 //#region src/config/jsonc.ts
-const defaultFiles$9 = [jsonSourceGlob];
+const defaultFiles$10 = [jsonSourceGlob];
 async function jsonc(options = {}) {
 	const [jsoncPlugin, jsoncParser] = await Promise.all([interopDefault(import("eslint-plugin-jsonc")), interopDefault(import("jsonc-eslint-parser"))]);
 	const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
@@ -758,7 +762,7 @@ async function jsonc(options = {}) {
 			}
 		},
 		{
-			files: withDefaultFiles(files, defaultFiles$9),
+			files: withDefaultFiles(files, defaultFiles$10),
 			languageOptions: { parser: jsoncParser },
 			name: `${namespace}/jsonc/rules`,
 			rules: {
@@ -988,7 +992,7 @@ function sortTsconfigJson(namespace) {
 }
 //#endregion
 //#region src/config/jsx.ts
-const defaultFiles$8 = [jsxSourceGlob];
+const defaultFiles$9 = [jsxSourceGlob];
 async function jsx(options = {}) {
 	const { files, jsxA11y = false, namespace, recommended, rules = {} } = defaultPluginOptions(options);
 	const [jsxA11yPlugin] = await Promise.all([jsxA11y ? interopDefault(import("eslint-plugin-jsx-a11y")) : void 0]);
@@ -1000,7 +1004,7 @@ async function jsx(options = {}) {
 		name: `${namespace}/jsx/setup`,
 		plugins: { ...jsxA11yPlugin ? { "jsx-a11y": jsxA11yPlugin } : {} }
 	}, {
-		files: withDefaultFiles(files, defaultFiles$8),
+		files: withDefaultFiles(files, defaultFiles$9),
 		name: `${namespace}/jsx/rules`,
 		rules: {
 			...recommended && jsxA11yPlugin != null ? jsxA11yPlugin.configs.recommended.rules : {},
@@ -1031,14 +1035,14 @@ const looseRules = lazy(() => {
 });
 //#endregion
 //#region src/config/markdown.ts
-const defaultFiles$7 = [Project.glob({
+const defaultFiles$8 = [Project.glob({
 	fileExtensions: [Project.queryExtensions(["markdown"])],
 	nested: true
 })];
 async function markdown(options = {}) {
 	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
 	const { files, language = "markdown/gfm", languageOptions, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
-	const resolvedFiles = withDefaultFiles(files, defaultFiles$7);
+	const resolvedFiles = withDefaultFiles(files, defaultFiles$8);
 	return [
 		{
 			name: `${namespace}/markdown/setup`,
@@ -1093,7 +1097,7 @@ async function markdown(options = {}) {
 }
 //#endregion
 //#region src/config/next.ts
-const defaultFiles$6 = [sourceGlob];
+const defaultFiles$7 = [sourceGlob];
 async function next(options = {}) {
 	const [nextPlugin] = await Promise.all([interopDefault(import("@next/eslint-plugin-next"))]);
 	const { files, recommended, rules = {} } = options;
@@ -1101,7 +1105,7 @@ async function next(options = {}) {
 		name: "w5s/next/setup",
 		plugins: { next: nextPlugin }
 	}, {
-		files: withDefaultFiles(files, defaultFiles$6),
+		files: withDefaultFiles(files, defaultFiles$7),
 		languageOptions: {
 			parserOptions: { ecmaFeatures: { jsx: true } },
 			sourceType: "module"
@@ -1143,7 +1147,7 @@ async function node(options = {}) {
 }
 //#endregion
 //#region src/config/perfectionist.ts
-const defaultFiles$5 = [sourceGlob];
+const defaultFiles$6 = [sourceGlob];
 async function perfectionist(options = {}) {
 	const [perfectionistPlugin] = await Promise.all([interopDefault(import("eslint-plugin-perfectionist"))]);
 	const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
@@ -1151,7 +1155,7 @@ async function perfectionist(options = {}) {
 		name: `${namespace}/perfectionist/setup`,
 		plugins: { perfectionist: perfectionistPlugin }
 	}, {
-		files: withDefaultFiles(files, defaultFiles$5),
+		files: withDefaultFiles(files, defaultFiles$6),
 		name: `${namespace}/perfectionist/rules`,
 		rules: {
 			...recommended ? perfectionistPlugin.configs["recommended-natural"].rules : {},
@@ -1162,7 +1166,7 @@ async function perfectionist(options = {}) {
 }
 //#endregion
 //#region src/config/react.ts
-const defaultFiles$4 = [sourceGlob];
+const defaultFiles$5 = [sourceGlob];
 async function react(options = {}) {
 	const [reactPlugin] = await Promise.all([interopDefault(import("@eslint-react/eslint-plugin"))]);
 	const { files, namespace, recommended, rules = {} } = defaultPluginOptions(options);
@@ -1170,7 +1174,7 @@ async function react(options = {}) {
 		name: `${namespace}/react/setup`,
 		plugins: { react: reactPlugin }
 	}, {
-		files: withDefaultFiles(files, defaultFiles$4),
+		files: withDefaultFiles(files, defaultFiles$5),
 		languageOptions: {
 			parserOptions: { ecmaFeatures: { jsx: true } },
 			sourceType: "module"
@@ -1231,7 +1235,7 @@ async function stylistic(options = {}) {
 }
 //#endregion
 //#region src/config/test.ts
-const defaultFiles$3 = Project.extensionsToTestGlob(Project.sourceExtensions());
+const defaultFiles$4 = Project.extensionsToTestGlob(Project.sourceExtensions());
 async function test(options = {}) {
 	const [vitestPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin"))]);
 	const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
@@ -1239,7 +1243,7 @@ async function test(options = {}) {
 		name: `${namespace}/test/setup`,
 		plugins: { test: vitestPlugin }
 	}, {
-		files: withDefaultFiles(files, defaultFiles$3),
+		files: withDefaultFiles(files, defaultFiles$4),
 		name: `${namespace}/test/rules`,
 		rules: {
 			...recommended ? {
@@ -1249,6 +1253,36 @@ async function test(options = {}) {
 				"test/valid-title": ESLintConfig.fixme(void 0)
 			} : {},
 			...stylistic.enabled ? {} : {},
+			...rules
+		}
+	}];
+}
+//#endregion
+//#region src/config/toml.ts
+const defaultFiles$3 = [tomlSourceGlob];
+async function toml(options = {}) {
+	const tomlPlugin = await interopDefault(import("eslint-plugin-toml"));
+	const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
+	const recommendedRules = tomlPlugin.configs.recommended.at(-1)?.rules;
+	const standardRules = tomlPlugin.configs.standard.at(-1)?.rules;
+	return [{
+		name: `${namespace}/toml/setup`,
+		plugins: { toml: tomlPlugin }
+	}, {
+		files: withDefaultFiles(files, defaultFiles$3),
+		language: "toml/toml",
+		name: `${namespace}/toml/rules`,
+		rules: {
+			"no-irregular-whitespace": "off",
+			"spaced-comment": "off",
+			...recommended ? recommendedRules : {},
+			...stylistic.enabled ? standardRules : {},
+			...!recommended && stylistic.enabled ? {
+				"toml/no-unreadable-number-separator": "off",
+				"toml/precision-of-fractional-seconds": "off",
+				"toml/precision-of-integer": "off",
+				"toml/vue-custom-block/no-parsing-error": "off"
+			} : {},
 			...rules
 		}
 	}];
@@ -1489,7 +1523,7 @@ async function defineConfig(options = {}) {
 		...optionsOrBoolean
 	});
 	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
-	return ESLintConfig.concat(...includeEnabled(ignores, toOption(options)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(jsx, toOption(plugins.jsx)), ...includeEnabled(unusedImports, toOption(plugins["unused-imports"])), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(test, toOption(plugins.test)), ...includeEnabled(stylistic, stylisticOptions), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(githubActions, toOption(plugins["github-actions"])), ...rules ? [{ rules }] : [], ...todo, ...overrides);
+	return ESLintConfig.concat(...includeEnabled(ignores, toOption(options)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(jsx, toOption(plugins.jsx)), ...includeEnabled(unusedImports, toOption(plugins["unused-imports"])), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(test, toOption(plugins.test)), ...includeEnabled(stylistic, stylisticOptions), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(toml, toOption(plugins.toml)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(githubActions, toOption(plugins["github-actions"])), ...rules ? [{ rules }] : [], ...todo, ...overrides);
 }
 //#endregion
 //#region src/meta.ts
@@ -1499,6 +1533,6 @@ const meta = Object.freeze({
 	version: "7.0.0"
 });
 //#endregion
-export { StylisticConfig, defineConfig, e18e, es, githubActions, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, restrictedSyntax, stylistic, test, ts, unicorn, unusedImports, yml };
+export { StylisticConfig, defineConfig, e18e, es, githubActions, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, restrictedSyntax, stylistic, test, toml, ts, unicorn, unusedImports, yml };
 
 //# sourceMappingURL=index.js.map
