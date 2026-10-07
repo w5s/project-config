@@ -48,7 +48,7 @@ export interface RuleOptions {
    * Reports against syntax not valid for the mode (e.g., Google Closure Compiler in non-Closure mode).
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-syntax.md#repos-sticky-header
    */
-  'jsdoc/check-syntax'?: Linter.RuleEntry<[]>
+  'jsdoc/check-syntax'?: Linter.RuleEntry<JsdocCheckSyntax>
   /**
    * Reports invalid block tag names.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-tag-names.md#repos-sticky-header
@@ -490,6 +490,11 @@ type JsdocCheckParamNames = []|[{
 }]
 // ----- jsdoc/check-property-names -----
 type JsdocCheckPropertyNames = []|[{
+  
+  enableFixer?: boolean
+}]
+// ----- jsdoc/check-syntax -----
+type JsdocCheckSyntax = []|[{
   
   enableFixer?: boolean
 }]
