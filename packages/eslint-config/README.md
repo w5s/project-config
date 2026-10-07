@@ -76,6 +76,7 @@ export default defineConfig({
 ### Features
 
 - Supported languages : `JS`, `TS`, `JSX`, `JSON`, `TOML`, `YAML`, `MARKDOWN`
+- JSON Schema validation for JSON, TOML, and YAML files
 - GitHub Actions workflows covered via `eslint-plugin-github-actions-2`
 - Standalone formatting : no prettier cli/configuration required (uses stylistic plugin)
 - Enforce best practices : Airbnb base as default

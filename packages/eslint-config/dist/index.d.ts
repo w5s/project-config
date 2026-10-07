@@ -10872,8 +10872,8 @@ type TomlTableBracketSpacing = [] | [("always" | "never")];
 //#region src/config/toml.d.ts
 export declare function toml(options?: toml.Options): Promise<[Config, Config]>;
 export declare namespace toml {
-  interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$4;
+  interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
+  type Rules = RuleOptions$4 & RuleOptions$13;
 }
 //#endregion
 //#region src/typegen/ts.d.ts

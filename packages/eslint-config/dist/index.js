@@ -1265,9 +1265,13 @@ async function toml(options = {}) {
 	const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
 	const recommendedRules = tomlPlugin.configs.recommended.at(-1)?.rules;
 	const standardRules = tomlPlugin.configs.standard.at(-1)?.rules;
+	const schemaConfig = await withSchema(options.schema);
 	return [{
 		name: `${namespace}/toml/setup`,
-		plugins: { toml: tomlPlugin }
+		plugins: {
+			toml: tomlPlugin,
+			...schemaConfig.plugins
+		}
 	}, {
 		files: withDefaultFiles(files, defaultFiles$3),
 		language: "toml/toml",
@@ -1276,6 +1280,7 @@ async function toml(options = {}) {
 			"no-irregular-whitespace": "off",
 			"spaced-comment": "off",
 			...recommended ? recommendedRules : {},
+			...schemaConfig.rules,
 			...stylistic.enabled ? standardRules : {},
 			...!recommended && stylistic.enabled ? {
 				"toml/no-unreadable-number-separator": "off",
