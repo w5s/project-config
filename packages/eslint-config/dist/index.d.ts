@@ -6,10 +6,10 @@ import { ESLintRules } from "eslint/rules";
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$16 {}
+    interface RulesRecord extends RuleOptions$17 {}
   }
 }
-interface RuleOptions$16 {
+interface RuleOptions$17 {
   /**
    * Disallow dependencies in favor of more performant or secure alternatives
    */
@@ -202,6 +202,24 @@ export interface PluginOptionsBase<Rules> {
   stylistic?: boolean | StylisticParameters;
 }
 //#endregion
+//#region src/internal/withSchema.d.ts
+interface WithSchemaOptions {
+  /**
+   * Enable the schema validation
+   */
+  enabled?: boolean;
+}
+//#endregion
+//#region src/type/PluginOptionsSchema.d.ts
+export interface PluginOptionsSchema {
+  /**
+   * Enable or configure the JSON schema validator plugin.
+   *
+   * @default true
+   */
+  schema?: boolean | WithSchemaOptions;
+}
+//#endregion
 //#region src/type/RestrictedGlobals.d.ts
 /**
  * This file contains the type definition for restricted globals used in the ESLint configuration.
@@ -249,16 +267,16 @@ export declare namespace e18e {
      */
     performanceImprovements?: boolean;
   }
-  type Rules = RuleOptions$16;
+  type Rules = RuleOptions$17;
 }
 //#endregion
 //#region src/typegen/jsonc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$15 {}
+    interface RulesRecord extends RuleOptions$16 {}
   }
 }
-interface RuleOptions$15 {
+interface RuleOptions$16 {
   /**
    * enforce line breaks after opening and before closing array brackets
    * @see https://ota-meshi.github.io/eslint-plugin-jsonc/rules/array-bracket-newline.html
@@ -1145,16 +1163,16 @@ export declare namespace es {
      */
     restrictedSyntax?: ((currentSyntax: Readonly<RestrictedSyntax>) => RestrictedSyntax) | RestrictedSyntax | undefined;
   }
-  type Rules = RuleOptions$15;
+  type Rules = RuleOptions$16;
 }
 //#endregion
 //#region src/typegen/github-actions.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$14 {}
+    interface RulesRecord extends RuleOptions$15 {}
   }
 }
-interface RuleOptions$14 {
+interface RuleOptions$15 {
   /**
    * enforce a consistent casing convention for workflow `name` values.
    * @see https://nick2bad4u.github.io/eslint-plugin-github-actions-2/docs/rules/action-name-casing
@@ -1816,7 +1834,7 @@ type GithubActionsValidTimeoutMinutes = [] | [(number | {
 export declare function githubActions(options?: githubActions.Options): Promise<[Config, Config]>;
 export declare namespace githubActions {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$14;
+  type Rules = RuleOptions$15;
 }
 //#endregion
 //#region src/config/ignores.d.ts
@@ -1828,10 +1846,10 @@ export declare namespace ignores {
 //#region src/typegen/import.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$13 {}
+    interface RulesRecord extends RuleOptions$14 {}
   }
 }
-interface RuleOptions$13 {
+interface RuleOptions$14 {
   /**
    * Enforce or ban the use of inline type-only markers for named imports.
    * @see https://github.com/import-js/eslint-plugin-import/blob/v2.32.0/docs/rules/consistent-type-specifier-style.md
@@ -2320,16 +2338,16 @@ export declare namespace imports {
 }
 export declare namespace imports {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$13;
+  type Rules = RuleOptions$14;
 }
 //#endregion
 //#region src/typegen/jsdoc.d.ts
 declare module 'eslint' {
   namespace Linter {
-    interface RulesRecord extends RuleOptions$12 {}
+    interface RulesRecord extends RuleOptions$13 {}
   }
 }
-interface RuleOptions$12 {
+interface RuleOptions$13 {
   /**
    * Checks that `@access` tags have a valid value.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/check-access.md#repos-sticky-header
@@ -3314,14 +3332,44 @@ type JsdocValidTypes = [] | [{
 export declare function jsdoc(options?: jsdoc.Options): Promise<ReadonlyArray<Config>>;
 export declare namespace jsdoc {
   interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$12;
+  type Rules = RuleOptions$13;
 }
+//#endregion
+//#region src/typegen/schema.d.ts
+declare module 'eslint' {
+  namespace Linter {
+    interface RulesRecord extends RuleOptions$12 {}
+  }
+}
+interface RuleOptions$12 {
+  /**
+   * validate object with JSON Schema.
+   * @see https://nick2bad4u.github.io/eslint-plugin-json-schema-validator-2/docs/rules/no-invalid
+   */
+  'schema/no-invalid'?: Linter.RuleEntry<SchemaNoInvalid>;
+}
+/* ======= Declarations ======= */
+// ----- schema/no-invalid -----
+type SchemaNoInvalid = [] | [(string | {
+  mergeSchemas?: (boolean | [("$schema" | "catalog" | "options"), ("$schema" | "catalog" | "options"), ...(("$schema" | "catalog" | "options"))[]]);
+  reportMode?: ("all" | "most-specific");
+  schemas?: {
+    description?: string;
+    fileMatch: [string, ...(string)[]];
+    name?: string;
+    schema: ({
+      [k: string]: unknown | undefined;
+    } | string);
+    [k: string]: unknown | undefined;
+  }[];
+  useSchemastoreCatalog?: boolean;
+})];
 //#endregion
 //#region src/config/jsonc.d.ts
 export declare function jsonc(options?: jsonc.Options): Promise<ReadonlyArray<Config>>;
 export declare namespace jsonc {
-  interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions$15;
+  interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
+  type Rules = RuleOptions$16 & RuleOptions$12;
 }
 //#endregion
 //#region src/typegen/jsx-a11y.d.ts
@@ -15043,8 +15091,8 @@ type YmlSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
 //#region src/config/yml.d.ts
 export declare function yml(options?: yml.Options): Promise<[Config, Config]>;
 export declare namespace yml {
-  interface Options extends PluginOptionsBase<Rules> {}
-  type Rules = RuleOptions;
+  interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
+  type Rules = RuleOptions & RuleOptions$12;
 }
 declare namespace config_d_exports {
   export { e18e, es, githubActions, ignores, imports, jsdoc, jsonc, jsx, markdown, next, node, perfectionist, react, stylistic, test, ts, unicorn, unusedImports, yml };

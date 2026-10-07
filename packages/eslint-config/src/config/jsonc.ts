@@ -1,12 +1,14 @@
 /* cSpell:disable */
 import { interopDefault } from '@w5s/dev';
 
-import type { RuleOptions } from '../typegen/jsonc.js';
+import type { RuleOptions as JsoncRuleOptions } from '../typegen/jsonc.js';
+import type { RuleOptions as SchemaRuleOptions } from '../typegen/schema.js';
 
 import { jsonSourceGlob } from '../glob.js';
 import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
-import { type Config, type PluginOptionsBase } from '../type.js';
+import { withSchema } from '../internal/withSchema.js';
+import { type Config, type PluginOptionsBase, type PluginOptionsSchema } from '../type.js';
 
 const defaultFiles = [jsonSourceGlob];
 
@@ -22,12 +24,14 @@ export async function jsonc(options: jsonc.Options = {}): Promise<ReadonlyArray<
     rules = {},
     stylistic,
   } = defaultPluginOptions(options);
+  const schemaConfig = await withSchema(options.schema);
 
   return [
     {
       name: `${namespace}/jsonc/setup`,
       plugins: {
         jsonc: jsoncPlugin,
+        ...schemaConfig.plugins,
       },
     },
     {
@@ -38,6 +42,7 @@ export async function jsonc(options: jsonc.Options = {}): Promise<ReadonlyArray<
       name: `${namespace}/jsonc/rules`,
       rules: {
         ...(recommended ? jsoncPlugin.configs['flat/recommended-with-json'][0]?.rules : {}),
+        ...schemaConfig.rules,
         ...(stylistic.enabled
           ? {
               'jsonc/array-bracket-spacing': ['error', 'never'],
@@ -241,7 +246,7 @@ function sortTsconfigJson(namespace: string) {
 }
 
 export namespace jsonc {
-  export interface Options extends PluginOptionsBase<Rules> {}
+  export interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
 
-  export type Rules = RuleOptions;
+  export type Rules = JsoncRuleOptions & SchemaRuleOptions;
 }

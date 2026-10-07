@@ -1,11 +1,13 @@
 import { interopDefault } from '@w5s/dev';
 
+import type { RuleOptions as SchemaRuleOptions } from '../typegen/schema.js';
 import type { RuleOptions } from '../typegen/yml.js';
 
 import { ymlSourceGlob } from '../glob.js';
 import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
-import { type Config, type PluginOptionsBase } from '../type.js';
+import { withSchema } from '../internal/withSchema.js';
+import { type Config, type PluginOptionsBase, type PluginOptionsSchema } from '../type.js';
 
 const defaultFiles = [ymlSourceGlob];
 
@@ -13,12 +15,14 @@ export async function yml(options: yml.Options = {}) {
   const [ymlPlugin] = await Promise.all([interopDefault(import('eslint-plugin-yml'))] as const);
   const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
   const { enabled: stylisticEnabled, indent, quotes } = stylistic;
+  const schemaConfig = await withSchema(options.schema);
 
   return [
     {
       name: `${namespace}/yml/setup`,
       plugins: {
         yml: ymlPlugin,
+        ...schemaConfig.plugins,
       },
     },
     {
@@ -33,6 +37,7 @@ export async function yml(options: yml.Options = {}) {
               {} as RuleOptions,
             )
           : {}),
+        ...schemaConfig.rules,
         ...(stylisticEnabled
           ? {
               'style/spaced-comment': 'off', // Fix
@@ -60,7 +65,7 @@ export async function yml(options: yml.Options = {}) {
 }
 
 export namespace yml {
-  export interface Options extends PluginOptionsBase<Rules> {}
+  export interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
 
-  export type Rules = RuleOptions;
+  export type Rules = RuleOptions & SchemaRuleOptions;
 }

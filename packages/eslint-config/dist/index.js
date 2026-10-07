@@ -734,15 +734,28 @@ async function jsdoc(options = {}) {
 	];
 }
 //#endregion
+//#region src/internal/withSchema.ts
+async function withSchema(options) {
+	const enabled = typeof options === "boolean" ? options : options?.enabled ?? true;
+	return {
+		plugins: { schema: await interopDefault(import("eslint-plugin-json-schema-validator-2")) },
+		rules: enabled ? { "schema/no-invalid": "error" } : {}
+	};
+}
+//#endregion
 //#region src/config/jsonc.ts
 const defaultFiles$9 = [jsonSourceGlob];
 async function jsonc(options = {}) {
 	const [jsoncPlugin, jsoncParser] = await Promise.all([interopDefault(import("eslint-plugin-jsonc")), interopDefault(import("jsonc-eslint-parser"))]);
 	const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
+	const schemaConfig = await withSchema(options.schema);
 	return [
 		{
 			name: `${namespace}/jsonc/setup`,
-			plugins: { jsonc: jsoncPlugin }
+			plugins: {
+				jsonc: jsoncPlugin,
+				...schemaConfig.plugins
+			}
 		},
 		{
 			files: withDefaultFiles(files, defaultFiles$9),
@@ -750,6 +763,7 @@ async function jsonc(options = {}) {
 			name: `${namespace}/jsonc/rules`,
 			rules: {
 				...recommended ? jsoncPlugin.configs["flat/recommended-with-json"][0]?.rules : {},
+				...schemaConfig.rules,
 				...stylistic.enabled ? {
 					"jsonc/array-bracket-spacing": ["error", "never"],
 					"jsonc/comma-dangle": ["error", "never"],
@@ -1417,9 +1431,13 @@ async function yml(options = {}) {
 	const [ymlPlugin] = await Promise.all([interopDefault(import("eslint-plugin-yml"))]);
 	const { files, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
 	const { enabled: stylisticEnabled, indent, quotes } = stylistic;
+	const schemaConfig = await withSchema(options.schema);
 	return [{
 		name: `${namespace}/yml/setup`,
-		plugins: { yml: ymlPlugin }
+		plugins: {
+			yml: ymlPlugin,
+			...schemaConfig.plugins
+		}
 	}, {
 		files: withDefaultFiles(files, defaultFiles),
 		language: "yml/yaml",
@@ -1429,6 +1447,7 @@ async function yml(options = {}) {
 				...acc,
 				...config.rules
 			}), {}) : {},
+			...schemaConfig.rules,
 			...stylisticEnabled ? {
 				"style/spaced-comment": "off",
 				"yml/block-mapping-question-indicator-newline": "error",

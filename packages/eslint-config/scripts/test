@@ -1,4 +1,5 @@
 #!/bin/sh
+# cspell:ignore esac
 cd $(dirname $(dirname "$0"))
 ROOT=$(pwd)
 
@@ -16,7 +17,20 @@ test_project ()
   cd "test/$PROJECT_NAME";
 
   shift;
-  eslint . "$@";
+  case "$PROJECT_NAME" in
+    *-schema)
+      # Fixture is invalid on purpose : eslint must report schema/no-invalid
+      if eslint . --format json "$@" | grep -q '"ruleId":"schema/no-invalid"'; then
+        :
+      else
+        echo "Expected schema/no-invalid to be reported" >&2
+        exit 1
+      fi
+      ;;
+    *)
+      eslint . "$@";
+      ;;
+  esac
   cd "$ROOT";
 }
 
