@@ -4,7 +4,7 @@ import globals from 'globals';
 
 import type { RuleOptions } from '../typegen/jsonc.js';
 
-import { esSourceGlob, sourceGlob } from '../glob.js';
+import { jsSourceGlob, sourceGlob } from '../glob.js';
 import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { restrictedGlobals as defaultGlobalRestrictedGlobals } from '../restrictedGlobals.js';
 import { restrictedImportPaths as defaultGlobalRestrictedImportPaths } from '../restrictedImportPaths.js';
@@ -12,7 +12,7 @@ import { restrictedSyntax as defaultGlobalRestrictedSyntax } from '../restricted
 import { esRules } from '../rules/esRules.js';
 import { type Config, type PluginOptionsBase, type RestrictedGlobals, type RestrictedImportPaths, type RestrictedSyntax } from '../type.js';
 
-const defaultFiles = [esSourceGlob];
+const defaultFiles = [jsSourceGlob];
 
 export async function es(options: es.Options) {
   const {

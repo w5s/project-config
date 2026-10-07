@@ -2,12 +2,12 @@ import { interopDefault } from '@w5s/dev';
 
 import type { RuleOptions } from '../typegen/jsdoc.js';
 
-import { esSourceGlob, tsSourceGlob } from '../glob.js';
+import { jsSourceGlob, tsSourceGlob } from '../glob.js';
 import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
 import { type Config, type PluginOptionsBase } from '../type.js';
 
-const defaultJsFiles = [esSourceGlob];
+const defaultJsFiles = [jsSourceGlob];
 const defaultTsFiles = [tsSourceGlob];
 
 export async function jsdoc(options: jsdoc.Options = {}): Promise<ReadonlyArray<Config>> {

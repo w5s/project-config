@@ -10,7 +10,7 @@ const sourceGlob = Project.glob({
 	fileExtensions: [Project.sourceExtensions()],
 	nested: true
 });
-const esSourceGlob = Project.glob({
+const jsSourceGlob = Project.glob({
 	fileExtensions: [Project.queryExtensions(["javascript", "javascriptreact"])],
 	nested: true
 });
@@ -549,7 +549,7 @@ const esRules = lazy(() => ({
 }));
 //#endregion
 //#region src/config/es.ts
-const defaultFiles$11 = [esSourceGlob];
+const defaultFiles$11 = [jsSourceGlob];
 async function es(options) {
 	const { defaultRestrictedGlobals = restrictedGlobals, defaultRestrictedImportPaths = restrictedImportPaths, defaultRestrictedSyntax = restrictedSyntax, namespace, recommended, restrictedImportPaths: paths, rules = {} } = defaultPluginOptions(options);
 	const resolvedGlobals = typeof options.restrictedGlobals === "function" ? options.restrictedGlobals(defaultRestrictedGlobals) : options.restrictedGlobals ?? defaultRestrictedGlobals;
@@ -673,7 +673,7 @@ imports.recommended = {
 imports.stylistic = { "import/newline-after-import": ["error", { count: 1 }] };
 //#endregion
 //#region src/config/jsdoc.ts
-const defaultJsFiles = [esSourceGlob];
+const defaultJsFiles = [jsSourceGlob];
 const defaultTsFiles = [tsSourceGlob];
 async function jsdoc(options = {}) {
 	const [jsdocPlugin] = await Promise.all([interopDefault(import("eslint-plugin-jsdoc"))]);
