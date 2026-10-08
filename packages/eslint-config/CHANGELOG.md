@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.1.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@7.0.0...@w5s/eslint-config@7.1.0) (2026-10-08)
+
+### ✨ Features
+
+- Add eslint-plugin-json-schema-validator-2 for JSON Schema validation support ([65d169a](https://github.com/w5s/project-config/commit/65d169a)) 
+- Add JSON and YAML schema validation support ([2f50ebe](https://github.com/w5s/project-config/commit/2f50ebe)) 
+- Add support for TOML files in ESLint configuration ([429b49b](https://github.com/w5s/project-config/commit/429b49b)) 
+- Add TOML schema validation support ([95af16f](https://github.com/w5s/project-config/commit/95af16f))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 # [7.0.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@3.7.1...@w5s/eslint-config@7.0.0) (2026-10-02)
 
 ### ♻ Code Refactoring
