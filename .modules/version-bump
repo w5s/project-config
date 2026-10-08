@@ -76,7 +76,7 @@ $NODEJS_RUN build
 # the final commit so generated artifacts are inside the release boundary.
 git add .
 if ! git diff --cached --quiet; then
-  git commit --no-verify -m "chore(release): build artifacts"
+  git commit --no-verify -m "🔨 Build artifacts"
 fi
 
 # Recreate tags as annotated tags so their type is explicit and predictable.
