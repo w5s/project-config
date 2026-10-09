@@ -59,6 +59,7 @@ export async function markdown(options: markdown.Options = {}) {
       },
       name: `${namespace}/markdown/embed-code`,
       rules: {
+        'markdown/no-multiple-h1': ['error', { frontmatterTitle: '' }], // Enforce a single H1, ignoring the frontmatter title
         ...looseRules(),
         'no-alert': 'off',
         'no-console': 'off',

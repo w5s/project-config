@@ -1071,6 +1071,7 @@ async function markdown(options = {}) {
 			} },
 			name: `${namespace}/markdown/embed-code`,
 			rules: {
+				"markdown/no-multiple-h1": ["error", { frontmatterTitle: "" }],
 				...looseRules(),
 				"no-alert": "off",
 				"no-console": "off",
