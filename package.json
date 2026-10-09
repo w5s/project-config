@@ -32,7 +32,7 @@
     "mrm": "pnpm dlx --package=mrm -- mrm --dir ./packages/mrm-preset",
     "postbuild": "pnpm run docs",
     "prepare": "pnpm run \"/^prepare:.*/\"",
-    "prepare:lefthook": "if [ -z \"${CI:-}\" ] && [ -d .git ]; then lefthook install; fi",
+    "prepare:lefthook": "managed-script",
     "prepare:packages": "turbo run prepare",
     "release": ":",
     "rescue": "managed-script",
