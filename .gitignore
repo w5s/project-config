@@ -151,6 +151,7 @@ dist
 !packages/eslint-config/dist/
 !packages/eslint-config-ignore/dist/
 !packages/managed-script/dist/
+!packages/managed-script-config/dist/
 !packages/pnpm-plugin-config/dist/
 !packages/prettier-config/dist/
 !packages/tsdown-config/dist/

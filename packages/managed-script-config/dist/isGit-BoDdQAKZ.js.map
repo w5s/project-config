@@ -1,0 +1,1 @@
+{"version":3,"file":"isGit-BoDdQAKZ.js","names":[],"sources":["../src/internal/isGit.ts"],"sourcesContent":["import { existsSync, statSync } from 'node:fs';\n\nexport const isGit = existsSync('.git') && statSync('.git').isDirectory();\n"],"mappings":";;AAEA,MAAa,QAAQ,WAAW,MAAM,KAAK,SAAS,MAAM,CAAC,CAAC,YAAY"}
