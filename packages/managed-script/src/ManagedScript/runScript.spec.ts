@@ -75,7 +75,7 @@ describe(runScript, () => {
       parameters: { scriptName: 'build' },
     });
 
-    expect(writeSpy).toHaveBeenCalledWith('my-command\n');
+    expect(writeSpy).toHaveBeenCalledWith('$ my-command\n');
     expect(Executor.run).not.toHaveBeenCalled();
     expect(exitCode).toBe(0);
 
@@ -101,7 +101,7 @@ describe(runScript, () => {
       parameters: { scriptName: 'build' },
     });
 
-    expect(chunks.join('')).toBe('my-command\n');
+    expect(chunks.join('')).toBe('$ my-command\n');
     expect(Executor.run).not.toHaveBeenCalled();
     expect(exitCode).toBe(0);
   });
@@ -124,48 +124,56 @@ describe(runScript, () => {
     }));
   });
 
-  it('writes info and debug messages to the provided stdout stream', async () => {
+  it('writes info and debug messages to stderr, leaving stdout for command output', async () => {
     vi.mocked(ConfigLoader.load).mockResolvedValue({
       config: { scripts: { build: 'my-command' } },
       configFile: '/cwd/config/managed-script.config',
       layers: [{ config: { scripts: { build: 'my-command' } } }],
     });
     vi.mocked(Executor.run).mockResolvedValue(0);
-    const chunks: Array<string> = [];
+    const stderrChunks: Array<string> = [];
+    const stdoutChunks: Array<string> = [];
     const stdout = new Writable({
       write(chunk: Buffer, _encoding, callback) {
-        chunks.push(chunk.toString());
-        callback();
-      },
-    });
-
-    await runScript({
-      context: { cwd: '/cwd', env: {}, logLevel: 'debug', stdout },
-      parameters: { scriptName: 'build' },
-    });
-
-    const output = chunks.join('');
-    expect(output).toContain('Running script "build": my-command');
-    expect(output).toContain('Resolved configuration from /cwd/config/managed-script.config');
-  });
-
-  it('writes nothing to stdout or stderr at the silent log level', async () => {
-    vi.mocked(ConfigLoader.load).mockResolvedValue({
-      config: { scripts: { build: 'my-command' } },
-      configFile: '/cwd/config/managed-script.config',
-      layers: [{ config: { scripts: { build: 'my-command' } } }],
-    });
-    vi.mocked(Executor.run).mockResolvedValue(0);
-    const chunks: Array<string> = [];
-    const stdout = new Writable({
-      write(chunk: Buffer, _encoding, callback) {
-        chunks.push(chunk.toString());
+        stdoutChunks.push(chunk.toString());
         callback();
       },
     });
     const stderr = new Writable({
       write(chunk: Buffer, _encoding, callback) {
-        chunks.push(chunk.toString());
+        stderrChunks.push(chunk.toString());
+        callback();
+      },
+    });
+
+    await runScript({
+      context: { cwd: '/cwd', env: {}, logLevel: 'debug', stderr, stdout },
+      parameters: { scriptName: 'build' },
+    });
+
+    const output = stderrChunks.join('');
+    expect(output).toContain('Resolved configuration from /cwd/config/managed-script.config');
+    expect(stdoutChunks).toEqual(['$ my-command\n']);
+  });
+
+  it('writes the resolved command to stdout but nothing to stderr at the silent log level', async () => {
+    vi.mocked(ConfigLoader.load).mockResolvedValue({
+      config: { scripts: { build: 'my-command' } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: 'my-command' } } }],
+    });
+    vi.mocked(Executor.run).mockResolvedValue(0);
+    const stdoutChunks: Array<string> = [];
+    const stderrChunks: Array<string> = [];
+    const stdout = new Writable({
+      write(chunk: Buffer, _encoding, callback) {
+        stdoutChunks.push(chunk.toString());
+        callback();
+      },
+    });
+    const stderr = new Writable({
+      write(chunk: Buffer, _encoding, callback) {
+        stderrChunks.push(chunk.toString());
         callback();
       },
     });
@@ -175,7 +183,8 @@ describe(runScript, () => {
       parameters: { scriptName: 'build' },
     });
 
-    expect(chunks).toEqual([]);
+    expect(stdoutChunks).toEqual(['$ my-command\n']);
+    expect(stderrChunks).toEqual([]);
   });
 
   it('throws when the script name cannot be resolved', async () => {

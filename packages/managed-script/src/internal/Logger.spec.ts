@@ -1,3 +1,4 @@
+/* cSpell: disable */
 import type { Buffer } from 'node:buffer';
 
 import { PassThrough } from 'node:stream';
@@ -23,7 +24,7 @@ function createTTYStream() {
 }
 
 describe(Logger.create, () => {
-  it('writes messages at or below the configured level, errors and warnings to stderr, others to stdout', () => {
+  it('writes all messages at or below the configured level to stderr', () => {
     const { chunksErr, chunksOut, ...streams } = createStream();
     const logger = Logger.create({ level: 'warn', ...streams });
 
@@ -32,7 +33,7 @@ describe(Logger.create, () => {
     logger.info('an info');
     logger.debug('a debug');
 
-    expect(chunksErr).toEqual(['an error\n', 'a warning\n']);
+    expect(chunksErr).toEqual(['managed-script: error: an error\n', 'managed-script: warning: a warning\n']);
     expect(chunksOut).toEqual([]);
   });
 
@@ -49,7 +50,7 @@ describe(Logger.create, () => {
     expect(chunksOut).toEqual([]);
   });
 
-  it('writes everything at the debug level, errors and warnings to stderr, info and debug to stdout', () => {
+  it('writes every message to stderr at the debug level', () => {
     const { chunksErr, chunksOut, ...streams } = createStream();
     const logger = Logger.create({ level: 'debug', ...streams });
 
@@ -58,18 +59,23 @@ describe(Logger.create, () => {
     logger.info('an info');
     logger.debug('a debug');
 
-    expect(chunksErr).toEqual(['an error\n', 'a warning\n']);
-    expect(chunksOut).toEqual(['an info\n', 'a debug\n']);
+    expect(chunksErr).toEqual([
+      'managed-script: error: an error\n',
+      'managed-script: warning: a warning\n',
+      'managed-script: an info\n',
+      'managed-script: debug: a debug\n',
+    ]);
+    expect(chunksOut).toEqual([]);
   });
 
   it('colors messages when color is always', () => {
     const { chunksErr, chunksOut, ...streams } = createStream();
     const logger = Logger.create({ color: 'always', level: 'info', ...streams });
 
-    logger.info('an info');
+    logger.warn('a warning');
 
-    expect(chunksOut).toEqual(['\u{1B}[32man info\u{1B}[0m\n']);
-    expect(chunksErr).toEqual([]);
+    expect(chunksOut).toEqual([]);
+    expect(chunksErr).toEqual([`managed-script: \u{1B}[33mwarning\u{1B}[0m: a warning\n`]);
   });
 
   it('does not color messages when color is never', () => {
@@ -78,18 +84,18 @@ describe(Logger.create, () => {
 
     logger.info('an info');
 
-    expect(chunksOut).toEqual(['an info\n']);
-    expect(chunksErr).toEqual([]);
+    expect(chunksOut).toEqual([]);
+    expect(chunksErr).toEqual(['managed-script: an info\n']);
   });
 
   it('colors auto output only for TTY streams', () => {
-    const stdout = createTTYStream();
-    const chunksOut: Array<string> = [];
-    stdout.on('data', (chunk: Buffer) => chunksOut.push(chunk.toString()));
-    const logger = Logger.create({ color: 'auto', level: 'info', stderr: new PassThrough(), stdout });
+    const stderr = createTTYStream();
+    const chunksErr: Array<string> = [];
+    stderr.on('data', (chunk: Buffer) => chunksErr.push(chunk.toString()));
+    const logger = Logger.create({ color: 'auto', level: 'info', stderr });
 
-    logger.info('an info');
+    logger.error('an error');
 
-    expect(chunksOut).toEqual(['\u{1B}[32man info\u{1B}[0m\n']);
+    expect(chunksErr).toEqual(['managed-script: \u{1B}[31merror\u{1B}[0m: an error\n']);
   });
 });

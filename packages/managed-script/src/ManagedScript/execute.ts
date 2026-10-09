@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 import type { ManagedScriptCommand } from '../type.js';
 
 import { ConfigLoader } from '../internal/ConfigLoader.js';
@@ -16,7 +18,7 @@ const handlers = {
     } = command;
     const logger = Logger.create({ color, level: logLevel, stderr, stdout });
     const loaded = await ConfigLoader.load({ cwd });
-    logger.debug(`Resolved configuration from ${loaded.configFile ?? 'defaults (no config file found)'}.`);
+    logger.debug(`Resolved configuration from ${loaded.configFile ?? 'defaults (no config file found)'}`);
     const resolved = resolveScripts(loaded);
     const { scripts } = resolved;
 
@@ -42,12 +44,13 @@ const handlers = {
       ...scriptArgs.map((argument) => `'${argument.replaceAll("'", String.raw`'\''`)}'`),
     ].join(' ');
 
+    // relative to cwd
+    // eslint-disable-next-line ts/no-non-null-assertion
+    logger.debug(`Script found in configuration: ${path.relative(cwd, script.configFile!)}`);
+    stdout.write(`$ ${commandLine}\n`);
     if (dryRun) {
-      stdout.write(`${commandLine}\n`);
       return 0;
     }
-
-    logger.info(`Running script "${name}": ${commandLine}`);
 
     // Prepare the environment variables for the script execution.
     const scriptEnv = {
@@ -58,7 +61,6 @@ const handlers = {
       [ManagedScriptEnv.LogLevel]: logLevel,
       [ManagedScriptEnv.Name]: name,
     };
-
     const exitCode = await Executor.run(commandLine, { cwd, env: scriptEnv });
 
     if (exitCode !== 0) {

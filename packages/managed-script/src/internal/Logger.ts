@@ -1,3 +1,5 @@
+import { meta } from '../meta.js';
+
 export type ColorMode = 'always' | 'auto' | 'never';
 export type LogLevel = 'debug' | 'error' | 'info' | 'silent' | 'warn';
 
@@ -15,8 +17,13 @@ const logLevelRank: Record<LogLevel, number> = {
 export interface CreateLoggerOptions {
   readonly color?: ColorMode;
   readonly level: LogLevel;
+
+  /**
+   * Program name used as message prefix (default: binary name)
+   */
+  readonly name?: string;
   readonly stderr: NodeJS.WritableStream;
-  readonly stdout: NodeJS.WritableStream;
+  readonly stdout?: NodeJS.WritableStream | undefined;
 }
 
 export interface Logger {
@@ -30,22 +37,26 @@ export interface Logger {
  * Creates a logger writing to `stream`, filtering out messages above the configured `level`.
  */
 export const Logger = {
-  create({ color = 'auto', level, stderr, stdout }: CreateLoggerOptions): Logger {
+  create({ color = 'auto', level, name = meta.binaryName, stderr }: CreateLoggerOptions): Logger {
     const write = (messageLevel: LogLevel, message: string) => {
       if (!(logLevelRank[messageLevel] <= logLevelRank[level])) {
         return;
       }
-      // write to stderr for warnings and errors
-      const outputStream = logLevelRank[messageLevel] <= logLevelRank.warn ? stderr : stdout;
+      // Keep stdout free for command output that may be consumed by another process.
+      const outputStream = stderr;
       const shouldColor = color === 'always' || (color === 'auto' && 'isTTY' in outputStream && outputStream.isTTY === true);
       const colorCode = {
         debug: '\u{1B}[36m',
         error: '\u{1B}[31m',
-        info: '\u{1B}[32m',
+        info: '',
         silent: '',
         warn: '\u{1B}[33m',
       }[messageLevel];
-      outputStream.write(`${shouldColor ? `${colorCode}${message}\u{1B}[0m` : message}\n`);
+      // Unix convention: `program: [level: ]message`, info has no level label
+      const label = { debug: 'debug', error: 'error', info: '', silent: '', warn: 'warning' }[messageLevel];
+      const coloredLabel = shouldColor && colorCode !== '' ? `${colorCode}${label}\u{1B}[0m` : label;
+      const prefix = label === '' ? `${name}: ` : `${name}: ${coloredLabel}: `;
+      outputStream.write(`${prefix}${message}\n`);
     };
 
     return {
