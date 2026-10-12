@@ -31,6 +31,7 @@ export async function unicorn(options: unicorn.Options = {}) {
         'unicorn/no-console-spaces': 'off',
         'unicorn/no-object-as-default-parameter': 'off',
         'unicorn/no-process-exit': 'off',
+        'unicorn/no-top-level-side-effects': 'off', // Too many errors from config files
         'unicorn/no-unreadable-array-destructuring': 'off',
         'unicorn/no-useless-undefined': 'off',
         'unicorn/prefer-add-event-listener': 'off',
