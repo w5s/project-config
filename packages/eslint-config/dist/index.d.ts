@@ -2741,6 +2741,7 @@ interface RuleOptions$14 {
 /* ======= Declarations ======= */
 // ----- jsdoc/check-alignment -----
 type JsdocCheckAlignment = [] | [{
+  ignoreEmptyLines?: boolean;
   innerIndent?: number;
 }];
 // ----- jsdoc/check-examples -----
