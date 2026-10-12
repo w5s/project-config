@@ -404,6 +404,8 @@ export interface RuleOptions {
 // ----- jsdoc/check-alignment -----
 type JsdocCheckAlignment = []|[{
   
+  ignoreEmptyLines?: boolean
+  
   innerIndent?: number
 }]
 // ----- jsdoc/check-examples -----
