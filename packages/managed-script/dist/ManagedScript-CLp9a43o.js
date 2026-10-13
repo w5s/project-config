@@ -7,10 +7,10 @@ import path$1 from "node:path/win32";
 const meta = Object.freeze({
 	binaryLabel: "W5S Managed Script",
 	binaryName: "managed-script",
-	binaryVersion: "1.0.0-alpha.3",
+	binaryVersion: "1.0.0-alpha.4",
 	buildNumber: 1,
 	name: "@w5s/managed-script",
-	version: "1.0.0-alpha.3"
+	version: "1.0.0-alpha.4"
 });
 //#endregion
 //#region src/internal/ConfigLoader.ts
@@ -190,4 +190,4 @@ const ManagedScript = Object.freeze({ runScript });
 //#endregion
 export { meta as n, ManagedScript as t };
 
-//# sourceMappingURL=ManagedScript-CuIvyQ2n.js.map
+//# sourceMappingURL=ManagedScript-CLp9a43o.js.map

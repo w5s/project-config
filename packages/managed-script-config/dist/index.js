@@ -11,7 +11,7 @@ const config = defineConfig({ scripts: {
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/managed-script-config",
-	version: "1.0.0-alpha.3"
+	version: "1.0.0-alpha.4"
 });
 //#endregion
 export { config as default, meta };

@@ -337,4 +337,5 @@ export declare const ProjectScript: {
 };
 export type ProjectScript = (typeof ProjectScript)[keyof typeof ProjectScript];
 //#endregion
+export {};
 //# sourceMappingURL=index.d.ts.map

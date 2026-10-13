@@ -1277,4 +1277,5 @@ export interface PnpmHooks extends Omit<Hooks, 'updateConfig'> {
   updateConfig?: (config: PnpmUserConfig) => PnpmUserConfig | Promise<PnpmUserConfig>;
 }
 //#endregion
+export {};
 //# sourceMappingURL=index.d.ts.map

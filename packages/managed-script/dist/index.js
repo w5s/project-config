@@ -1,4 +1,4 @@
-import { n as meta, t as ManagedScript } from "./ManagedScript-CuIvyQ2n.js";
+import { n as meta, t as ManagedScript } from "./ManagedScript-CLp9a43o.js";
 import { n as ManagedScriptEnv } from "./defaultContext-BthxLDX3.js";
 import { createDefineConfig } from "c12";
 //#region src/defineConfig.ts
@@ -14,12 +14,6 @@ import { createDefineConfig } from "c12";
 * ```
 */
 const defineConfig = createDefineConfig();
-//#endregion
-//#region src/type/Command.ts
-const ManagedScriptCommand = Object.freeze({ RunScript: (args) => ({
-	_: "RunScript",
-	...args
-}) });
 //#endregion
 //#region src/mergeConfig.ts
 const DANGEROUS_KEYS = /* @__PURE__ */ new Set([
@@ -73,6 +67,12 @@ function mergeConfigRecursively(defaults, overrides) {
 function toArray(target) {
 	return Array.isArray(target) ? target : [target];
 }
+//#endregion
+//#region src/type/Command.ts
+const ManagedScriptCommand = Object.freeze({ RunScript: (args) => ({
+	_: "RunScript",
+	...args
+}) });
 //#endregion
 export { ManagedScript, ManagedScriptCommand, ManagedScriptEnv, defineConfig, mergeConfig, meta };
 
