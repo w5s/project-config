@@ -45,6 +45,11 @@ export async function markdown(options: markdown.Options = {}) {
       processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
       rules: {
         ...(recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {}),
+        ...(recommended
+          ? {
+              'markdown/no-multiple-h1': ['error', { frontmatterTitle: '' }], // Enforce a single H1, ignoring the frontmatter title
+            }
+          : {}),
         ...(stylistic.enabled ? {} : {}),
         ...rules,
       },
@@ -59,7 +64,6 @@ export async function markdown(options: markdown.Options = {}) {
       },
       name: `${namespace}/markdown/embed-code`,
       rules: {
-        'markdown/no-multiple-h1': ['error', { frontmatterTitle: '' }], // Enforce a single H1, ignoring the frontmatter title
         ...looseRules(),
         'no-alert': 'off',
         'no-console': 'off',

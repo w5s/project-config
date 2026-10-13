@@ -1059,6 +1059,7 @@ async function markdown(options = {}) {
 			processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
 			rules: {
 				...recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {},
+				...recommended ? { "markdown/no-multiple-h1": ["error", { frontmatterTitle: "" }] } : {},
 				...stylistic.enabled ? {} : {},
 				...rules
 			}
@@ -1071,7 +1072,6 @@ async function markdown(options = {}) {
 			} },
 			name: `${namespace}/markdown/embed-code`,
 			rules: {
-				"markdown/no-multiple-h1": ["error", { frontmatterTitle: "" }],
 				...looseRules(),
 				"no-alert": "off",
 				"no-console": "off",
