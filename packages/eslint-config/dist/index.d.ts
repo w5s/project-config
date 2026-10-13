@@ -2,7 +2,6 @@ import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
 import eslint, { Linter } from "eslint";
 import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 import { ESLintRules } from "eslint/rules";
-//#endregion
 //#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
@@ -15526,9 +15525,6 @@ export declare namespace yml {
   interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
   type Rules = RuleOptions & RuleOptions$13;
 }
-declare namespace config_d_exports {
-  export { e18e, es, githubActions, ignores, imports, jsdoc, jsonc, jsx, markdown, next, node, perfectionist, react, stylistic, test, toml, ts, unicorn, unusedImports, yml };
-}
 //#endregion
 //#region src/defineConfig.d.ts
 export interface DefineConfigOptions extends ignores.Options {
@@ -15607,4 +15603,5 @@ export declare const restrictedImportPaths: Readonly<RestrictedImportPaths>;
  */
 export declare const restrictedSyntax: Readonly<RestrictedSyntax>;
 //#endregion
+export {};
 //# sourceMappingURL=index.d.ts.map
