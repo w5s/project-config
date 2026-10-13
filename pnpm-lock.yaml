@@ -493,7 +493,7 @@ importers:
         version: 2.2.1
       prettier:
         specifier: 2.x || 3.x
-        version: 3.9.9
+        version: 3.9.10
     devDependencies:
       '@w5s/tsdown-config':
         specifier: workspace:*
@@ -580,8 +580,8 @@ importers:
         specifier: workspace:*
         version: link:../tsdown-config
       prettier:
-        specifier: 3.9.9
-        version: 3.9.9
+        specifier: 3.9.10
+        version: 3.9.10
 
   packages/tsconfig:
     dependencies:
@@ -5245,8 +5245,8 @@ packages:
     resolution: {integrity: sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==}
     engines: {node: '>=4'}
 
-  prettier@3.9.9:
-    resolution: {integrity: sha512-Z/CJHIkdujO/OtN7nXUii0Rf3VT5SRuhjBA82Xvu2XhBUgX3nhP67T0LHceBdQLex7OOFGTox+Q5Yg8Jk2Qivg==}
+  prettier@3.9.10:
+    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -11785,7 +11785,7 @@ snapshots:
 
   prepend-http@2.0.0: {}
 
-  prettier@3.9.9: {}
+  prettier@3.9.10: {}
 
   proc-log@6.1.0: {}
 
