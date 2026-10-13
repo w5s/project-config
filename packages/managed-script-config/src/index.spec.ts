@@ -1,3 +1,4 @@
+import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import * as Module from './index.js';
@@ -12,11 +13,17 @@ describe('index', () => {
     });
     expect(new Set(Object.keys(Module))).toEqual(new Set(['default', 'meta']));
   });
-  it('should export configuration scripts', () => {
+  it('should export direct node runners', () => {
     expect(Module.default).toMatchObject({
       scripts: {
-        'prepare:lefthook': expect.any(String),
-        'rescue': expect.any(String),
+        'prepare:lefthook': {
+          args: [expect.stringContaining(path.join('script', 'prepare', 'lefthook.js'))],
+          runner: 'node',
+        },
+        'rescue': {
+          args: [expect.stringContaining(path.join('script', 'rescue.js'))],
+          runner: 'node',
+        },
       },
     });
   });

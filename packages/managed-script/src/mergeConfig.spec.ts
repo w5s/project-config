@@ -14,6 +14,18 @@ describe(mergeConfig, () => {
     });
   });
 
+  it('replaces a runner script instead of concatenating its args', () => {
+    expect(mergeConfig(
+      { scripts: { build: { args: ['base.js'], runner: 'node' }, test: 'echo test' } },
+      { scripts: { build: { args: ['override.js', '--watch'], runner: 'node' } } },
+    )).toEqual({
+      scripts: {
+        build: { args: ['override.js', '--watch'], runner: 'node' },
+        test: 'echo test',
+      },
+    });
+  });
+
   it('concatenates arrays, wrapping a scalar when only one side is an array', () => {
     expect(mergeConfig(
       { extends: './base' } as UserConfig,

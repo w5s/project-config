@@ -1,4 +1,4 @@
-import { n as meta, t as ManagedScript } from "./ManagedScript-CLp9a43o.js";
+import { n as meta, t as ManagedScript } from "./ManagedScript-Bdix4nEf.js";
 import { n as ManagedScriptEnv } from "./defaultContext-BthxLDX3.js";
 import { createDefineConfig } from "c12";
 //#region src/defineConfig.ts
@@ -52,6 +52,10 @@ function mergeConfigRecursively(defaults, overrides) {
 			merged[key] = value;
 			continue;
 		}
+		if (key === "scripts" && isObject(existing) && isObject(value)) {
+			merged[key] = replaceEntries(existing, value);
+			continue;
+		}
 		if (Array.isArray(existing) || Array.isArray(value)) {
 			merged[key] = [...toArray(existing), ...toArray(value)];
 			continue;
@@ -60,6 +64,20 @@ function mergeConfigRecursively(defaults, overrides) {
 			merged[key] = mergeConfigRecursively(existing, value);
 			continue;
 		}
+		merged[key] = value;
+	}
+	return merged;
+}
+/**
+* Script definitions replace each other. A runner's `args` array is not concatenated with the previous one.
+*
+* @param defaults
+* @param overrides
+*/
+function replaceEntries(defaults, overrides) {
+	const merged = { ...defaults };
+	for (const [key, value] of Object.entries(overrides)) {
+		if (DANGEROUS_KEYS.has(key) || value == null) continue;
 		merged[key] = value;
 	}
 	return merged;

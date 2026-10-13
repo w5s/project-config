@@ -5,6 +5,7 @@ import type { ManagedScriptCommand } from '../type.js';
 import { ConfigLoader } from '../internal/ConfigLoader.js';
 import { Executor } from '../internal/Executor.js';
 import { Logger } from '../internal/Logger.js';
+import { ScriptInvocation } from '../internal/ScriptInvocation.js';
 import { ScriptNameResolver } from '../internal/ScriptNameResolver.js';
 import { ManagedScriptEnv } from '../ManagedScriptEnv.js';
 import { defaultContext } from './defaultContext.js';
@@ -39,15 +40,12 @@ const handlers = {
       );
     }
 
-    const commandLine = [
-      script.command,
-      ...scriptArgs.map((argument) => `'${argument.replaceAll("'", String.raw`'\''`)}'`),
-    ].join(' ');
+    const invocation = ScriptInvocation.create(script, scriptArgs);
 
     // relative to cwd
     // eslint-disable-next-line ts/no-non-null-assertion
     logger.debug(`Script found in configuration: ${path.relative(cwd, script.configFile!)}`);
-    stdout.write(`$ ${commandLine}\n`);
+    stdout.write(`$ ${ScriptInvocation.format(invocation)}\n`);
     if (dryRun) {
       return 0;
     }
@@ -61,7 +59,7 @@ const handlers = {
       [ManagedScriptEnv.LogLevel]: logLevel,
       [ManagedScriptEnv.Name]: name,
     };
-    const exitCode = await Executor.run(commandLine, { cwd, env: scriptEnv });
+    const exitCode = await Executor.run({ ...invocation.target, cwd, env: scriptEnv });
 
     if (exitCode !== 0) {
       throw new Error(`Script "${name}" exited with code ${exitCode}.`);

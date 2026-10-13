@@ -48,6 +48,28 @@ When you want to use the managed-script configuration simply execute the cli to 
 }
 ```
 
+### Direct runner
+
+A string script is a shell command (shorthand for `{ "run": "..." }`, like a lefthook `run`). To run a program directly, set `runner` and `args`, the same idea as a lefthook script runner. Arguments passed on the CLI are appended after `args`.
+
+```jsonc
+// package.json
+{
+  "managed-script": {
+    "scripts": {
+      "lint": {
+        "runner": "node",
+        "args": ["./scripts/lint.js"]
+      }
+    }
+  }
+}
+```
+
+`managed-script lint --fix` runs `node ./scripts/lint.js --fix`.
+
+Keep a shell command string when the script uses pipes, `&&`, or other shell syntax. A program name that contains spaces is still one `runner`; put the remaining words in `args`, for example `{ "runner": "go", "args": ["run", "main.go"] }`.
+
 ### Global shared configuration (npm)
 
 ```jsonc

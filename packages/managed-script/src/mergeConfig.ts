@@ -49,6 +49,11 @@ function mergeConfigRecursively(
       continue;
     }
 
+    if (key === 'scripts' && isObject(existing) && isObject(value)) {
+      merged[key] = replaceEntries(existing, value);
+      continue;
+    }
+
     if (Array.isArray(existing) || Array.isArray(value)) {
       merged[key] = [...toArray(existing), ...toArray(value)];
       continue;
@@ -56,6 +61,29 @@ function mergeConfigRecursively(
 
     if (isObject(existing) && isObject(value)) {
       merged[key] = mergeConfigRecursively(existing, value);
+      continue;
+    }
+
+    merged[key] = value;
+  }
+
+  return merged;
+}
+
+/**
+ * Script definitions replace each other. A runner's `args` array is not concatenated with the previous one.
+ *
+ * @param defaults
+ * @param overrides
+ */
+function replaceEntries(
+  defaults: Record<string, unknown>,
+  overrides: Record<string, unknown>,
+): Record<string, unknown> {
+  const merged: Record<string, unknown> = { ...defaults };
+
+  for (const [key, value] of Object.entries(overrides)) {
+    if (DANGEROUS_KEYS.has(key) || value == null) {
       continue;
     }
 

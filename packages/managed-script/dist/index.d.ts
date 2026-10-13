@@ -1,4 +1,4 @@
-import { n as UserConfig, t as CommandContext } from "./type-DQiyX1q_.js";
+import { a as UserConfig, i as ShellScript$1, n as RunnerScript$1, r as ScriptDefinition, t as CommandContext } from "./type-Bqn2z_hA.js";
 //#region src/defineConfig.d.ts
 /**
  * Define the configuration for the managed script.
@@ -42,20 +42,37 @@ export declare const ManagedScriptCommand: Readonly<{
 //#endregion
 //#region src/type/ResolvedConfig.d.ts
 export interface ResolvedConfig {
-  readonly scripts: Record<string, {
+  readonly scripts: Record<string, ResolvedConfig.Script>;
+}
+export declare namespace ResolvedConfig {
+  /**
+   * Direct executable invocation. Extra CLI arguments are appended to {@link args}.
+   */
+  export interface RunnerScript extends Origin {
+    readonly args: ReadonlyArray<string>;
+    readonly run?: undefined;
+    readonly runner: string;
+  }
+  export type Script = RunnerScript | ShellScript;
+  /**
+   * Shell command. Extra CLI arguments are appended to the command string.
+   */
+  export interface ShellScript extends Origin {
+    readonly args?: undefined;
+    readonly run: string;
+    readonly runner?: undefined;
+  }
+  interface Origin {
     /**
-     * Command to execute
-     */
-    readonly command: string;
-    /**
-     * File path of the configuration file that defined this script
+     * Directory of the configuration file that defined this script.
      */
     readonly configDir: string | undefined;
     /**
-     * Directory of the configuration file that defined this script
+     * File path of the configuration file that defined this script.
      */
     readonly configFile: string | undefined;
-  }>;
+  }
+  export {};
 }
 //#endregion
 //#region src/ManagedScript/execute.d.ts
@@ -151,5 +168,5 @@ export declare const meta: Readonly<{
   version: string;
 }>;
 //#endregion
-export { CommandContext, UserConfig };
+export { CommandContext, RunnerScript$1 as RunnerScript, ScriptDefinition, ShellScript$1 as ShellScript, UserConfig };
 //# sourceMappingURL=index.d.ts.map

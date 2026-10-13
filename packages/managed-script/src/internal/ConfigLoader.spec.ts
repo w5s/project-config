@@ -6,13 +6,20 @@ import { ConfigLoader } from './ConfigLoader.js';
 
 describe('ConfigLoader', () => {
   const TEST_PATH = '.cache/managed-script-config';
+  const RUNNER_TEST_PATH = '.cache/managed-script-config-runner';
   const EXTENDS_TEST_PATH = '.cache/managed-script-config-extends';
 
   beforeEach(async () => {
     await rm(TEST_PATH, { force: true, recursive: true });
     await mkdir(TEST_PATH, { recursive: true });
+    await rm(RUNNER_TEST_PATH, { force: true, recursive: true });
+    await mkdir(RUNNER_TEST_PATH, { recursive: true });
     await rm(EXTENDS_TEST_PATH, { force: true, recursive: true });
     await mkdir(EXTENDS_TEST_PATH, { recursive: true });
+    // A local package.json stops c12 from inheriting the repository root config.
+    await writeFile(nodePath.join(TEST_PATH, 'package.json'), JSON.stringify({ name: 'fixture' }, null, 2));
+    await writeFile(nodePath.join(RUNNER_TEST_PATH, 'package.json'), JSON.stringify({ name: 'fixture-runner' }, null, 2));
+    await writeFile(nodePath.join(EXTENDS_TEST_PATH, 'package.json'), JSON.stringify({ name: 'fixture-extends' }, null, 2));
   });
 
   describe(ConfigLoader.load, () => {
@@ -25,6 +32,20 @@ describe('ConfigLoader', () => {
       expect(loaded.config.scripts).toEqual({ build: 'from-file' });
       expect(loaded.configFile).toContain('managed-script.config.json');
       expect(loaded.layers).not.toHaveLength(0);
+    });
+
+    it('preserves a runner script from managed-script.config.json', async () => {
+      const configPath = nodePath.join(RUNNER_TEST_PATH, 'managed-script.config.json');
+      await writeFile(
+        configPath,
+        JSON.stringify({ scripts: { build: { args: ['script.js', '--fix'], runner: 'node' } } }, null, 2),
+      );
+
+      const loaded = await ConfigLoader.load({ cwd: RUNNER_TEST_PATH });
+
+      expect(loaded.config.scripts).toEqual({
+        build: { args: ['script.js', '--fix'], runner: 'node' },
+      });
     });
 
     it('loads config from package.json "managed-script" field', async () => {

@@ -32,7 +32,7 @@ describe(runScript, () => {
       parameters: { scriptName: 'build' },
     });
 
-    expect(Executor.run).toHaveBeenCalledWith('my-command', {
+    expect(Executor.run).toHaveBeenCalledWith({
       cwd: '/cwd',
       env: {
         MANAGED_SCRIPT_COLOR: 'auto',
@@ -42,6 +42,7 @@ describe(runScript, () => {
         MANAGED_SCRIPT_LOGLEVEL: 'info',
         MANAGED_SCRIPT_NAME: 'build',
       },
+      run: 'my-command',
     });
     expect(exitCode).toBe(0);
   });
@@ -59,7 +60,50 @@ describe(runScript, () => {
       parameters: { scriptArgs: ['--watch', 'hello world', "it's"], scriptName: 'build' },
     });
 
-    expect(Executor.run).toHaveBeenCalledWith(String.raw`my-command '--watch' 'hello world' 'it'\''s'`, expect.any(Object));
+    expect(Executor.run).toHaveBeenCalledWith(expect.objectContaining({ run: String.raw`my-command '--watch' 'hello world' 'it'\''s'` }));
+  });
+
+  it('executes a runner with configured args and appends CLI args', async () => {
+    vi.mocked(ConfigLoader.load).mockResolvedValue({
+      config: { scripts: { build: { args: ['script.js'], runner: 'node' } } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: { args: ['script.js'], runner: 'node' } } } }],
+    });
+    vi.mocked(Executor.run).mockResolvedValue(0);
+
+    await runScript({
+      context: { cwd: '/cwd', env: {} },
+      parameters: { scriptArgs: ['--watch', 'hello world'], scriptName: 'build' },
+    });
+
+    expect(Executor.run).toHaveBeenCalledWith({
+      args: ['script.js', '--watch', 'hello world'],
+      cwd: '/cwd',
+      env: expect.objectContaining({
+        MANAGED_SCRIPT_NAME: 'build',
+      }),
+      runner: 'node',
+    });
+  });
+
+  it('prints a runner command and skips execution when dryRun is set', async () => {
+    vi.mocked(ConfigLoader.load).mockResolvedValue({
+      config: { scripts: { build: { args: ['script.js'], runner: 'node' } } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: { args: ['script.js'], runner: 'node' } } } }],
+    });
+    const writeSpy = vi.spyOn(process.stdout, 'write').mockImplementation(() => true);
+
+    const exitCode = await runScript({
+      context: { cwd: '/cwd', dryRun: true, env: {} },
+      parameters: { scriptArgs: ['hello world'], scriptName: 'build' },
+    });
+
+    expect(writeSpy).toHaveBeenCalledWith("$ node script.js 'hello world'\n");
+    expect(Executor.run).not.toHaveBeenCalled();
+    expect(exitCode).toBe(0);
+
+    writeSpy.mockRestore();
   });
 
   it('prints the resolved command and skips execution when dryRun is set', async () => {
@@ -119,8 +163,9 @@ describe(runScript, () => {
       parameters: { scriptName: 'build' },
     });
 
-    expect(Executor.run).toHaveBeenCalledWith('my-command', expect.objectContaining({
+    expect(Executor.run).toHaveBeenCalledWith(expect.objectContaining({
       env: expect.objectContaining({ MANAGED_SCRIPT_LOGLEVEL: 'debug' }),
+      run: 'my-command',
     }));
   });
 

@@ -1,4 +1,4 @@
-import { t as CommandContext } from "./type-DQiyX1q_.js";
+import { t as CommandContext } from "./type-Bqn2z_hA.js";
 import { Options as ZXOptions, Shell as ZXShell } from "zx";
 //#region src/zx/zx.d.ts
 export interface CreateZXOptions {
