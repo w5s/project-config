@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [7.1.2](https://github.com/w5s/project-config/compare/@w5s/eslint-config@7.1.1...@w5s/eslint-config@7.1.2) (2026-10-13)
+
+### 🐛 Bug Fixes
+
+- Fix markdown/no-multiple-h1 not resolved in recommended preset ([dd1ee98](https://github.com/w5s/project-config/commit/dd1ee98))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 ## [7.1.1](https://github.com/w5s/project-config/compare/@w5s/eslint-config@7.1.0...@w5s/eslint-config@7.1.1) (2026-10-13)
 
 ### 🐛 Bug Fixes
