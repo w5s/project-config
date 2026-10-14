@@ -2986,6 +2986,7 @@ type JsdocNoUndefinedTypes = [] | [{
 type JsdocNoUnnecessaryTypeAssertion = [] | [{
   checkLiteralConstAssertions?: boolean;
   enableFixer?: boolean;
+  fixTypeChangingCasts?: boolean;
   preferConstToLiteralTuples?: boolean;
   treatAnyAsRedundant?: boolean;
   typesToIgnore?: string[];
