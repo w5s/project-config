@@ -753,6 +753,8 @@ type JsdocNoUnnecessaryTypeAssertion = []|[{
   
   enableFixer?: boolean
   
+  fixTypeChangingCasts?: boolean
+  
   preferConstToLiteralTuples?: boolean
   
   treatAnyAsRedundant?: boolean
