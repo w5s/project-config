@@ -71,8 +71,7 @@ export class RootCommand extends Command {
       await ManagedScript.runScript({
         context: {
           cli: { color, cwd: this.cwd, dryRun: this.dryRun, logLevel },
-          stderr: this.context.stderr,
-          stdout: this.context.stdout,
+          stdio: ['inherit', this.context.stdout, this.context.stderr],
         },
         parameters: {
           scriptArgs,

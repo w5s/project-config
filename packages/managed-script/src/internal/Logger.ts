@@ -1,4 +1,7 @@
+import type { StdioOptions } from '../type.js';
+
 import { meta } from '../meta.js';
+import { Stdio } from './Stdio.js';
 
 export type ColorMode = 'always' | 'auto' | 'never';
 export type LogLevel = 'debug' | 'error' | 'info' | 'silent' | 'warn';
@@ -22,8 +25,11 @@ export interface CreateLoggerOptions {
    * Program name used as message prefix (default: binary name)
    */
   readonly name?: string;
-  readonly stderr: NodeJS.WritableStream;
-  readonly stdout?: NodeJS.WritableStream | undefined;
+
+  /**
+   * Standard I/O, messages are written to index `2` (stderr)
+   */
+  readonly stdio: StdioOptions;
 }
 
 export interface Logger {
@@ -37,7 +43,8 @@ export interface Logger {
  * Creates a logger writing to `stream`, filtering out messages above the configured `level`.
  */
 export const Logger = {
-  create({ color = 'auto', level, name = meta.binaryName, stderr }: CreateLoggerOptions): Logger {
+  create({ color = 'auto', level, name = meta.binaryName, stdio }: CreateLoggerOptions): Logger {
+    const { stderr } = Stdio.resolve(stdio);
     const write = (messageLevel: LogLevel, message: string) => {
       if (!(logLevelRank[messageLevel] <= logLevelRank[level])) {
         return;

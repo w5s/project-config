@@ -7,6 +7,7 @@ import { Executor } from '../internal/Executor.js';
 import { Logger } from '../internal/Logger.js';
 import { ScriptInvocation } from '../internal/ScriptInvocation.js';
 import { ScriptNameResolver } from '../internal/ScriptNameResolver.js';
+import { Stdio } from '../internal/Stdio.js';
 import { ManagedScriptEnv } from '../ManagedScriptEnv.js';
 import { defaultContext } from './defaultContext.js';
 import { resolveScripts } from './resolveScripts.js';
@@ -14,10 +15,11 @@ import { resolveScripts } from './resolveScripts.js';
 const handlers = {
   RunScript: async (command: ManagedScriptCommand.RunScript): Promise<number> => {
     const {
-      context: { color, cwd, dryRun, env, logLevel, stderr, stdout },
+      context: { color, cwd, dryRun, env, logLevel, stdio },
       parameters: { scriptArgs = [], scriptName },
     } = command;
-    const logger = Logger.create({ color, level: logLevel, stderr, stdout });
+    const { stdout } = Stdio.resolve(stdio);
+    const logger = Logger.create({ color, level: logLevel, stdio });
     const loaded = await ConfigLoader.load({ cwd });
     logger.debug(`Resolved configuration from ${loaded.configFile ?? 'defaults (no config file found)'}`);
     const resolved = resolveScripts(loaded);

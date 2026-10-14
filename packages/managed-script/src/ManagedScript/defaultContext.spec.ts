@@ -74,7 +74,7 @@ describe(defaultContext, () => {
     expect(defaultContext({ cli: {}, env: { MANAGED_SCRIPT_LOGLEVEL: 'invalid' } }).logLevel).toBe('info');
   });
 
-  it('defaults stderr to process.stderr', () => {
-    expect(defaultContext({ cli: {}, env: {} }).stderr).toBe(process.stderr);
+  it('defaults stdio to inherit', () => {
+    expect(defaultContext({ cli: {}, env: {} }).stdio).toBe('inherit');
   });
 });

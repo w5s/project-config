@@ -1,4 +1,5 @@
 import { InputConfig } from "c12";
+import { StdioOptions } from "node:child_process";
 //#region src/type/UserConfig.d.ts
 /**
  * Run an executable directly, in the same way a lefthook script uses `runner` and `args`.
@@ -72,14 +73,40 @@ interface CommandContext {
    */
   readonly logLevel: LogLevel;
   /**
-   * Stream used to write error log messages.
+   * Standard I/O configuration. Index `1` is used to write standard output (resolved command)
+   * and index `2` to write status messages (stderr).
+   *
+   * @default 'inherit'
    */
-  readonly stderr: NodeJS.WritableStream;
-  /**
-   * Stream used to write standard log messages.
-   */
-  readonly stdout: NodeJS.WritableStream;
+  readonly stdio: StdioOptions;
 }
 //#endregion
-export { UserConfig as a, ShellScript as i, RunnerScript as n, ScriptDefinition as r, CommandContext as t };
-//# sourceMappingURL=type-Bqn2z_hA.d.ts.map
+//#region src/type/Command.d.ts
+type ManagedScriptCommand = ManagedScriptCommand.RunScript;
+declare namespace ManagedScriptCommand {
+  interface Base<TName extends string, TParameters extends object> {
+    /**
+     * Name of the command.
+     */
+    readonly _: TName;
+    /**
+     * Context in which the command is executed.
+     */
+    readonly context: CommandContext;
+    /**
+     * Parameters provided to the command.
+     */
+    readonly parameters: Readonly<TParameters>;
+  }
+  type Parameters<T extends Base<string, object>> = Omit<T, '_'>;
+  interface RunScript extends Base<'RunScript', {
+    scriptArgs?: ReadonlyArray<string>;
+    scriptName: string | undefined;
+  }> {}
+}
+declare const ManagedScriptCommand: Readonly<{
+  RunScript: (args: ManagedScriptCommand.Parameters<ManagedScriptCommand.RunScript>) => ManagedScriptCommand.RunScript;
+}>;
+//#endregion
+export { RunnerScript as a, UserConfig as c, LogLevel as i, CommandContext as n, ScriptDefinition as o, StdioOptions as r, ShellScript as s, ManagedScriptCommand as t };
+//# sourceMappingURL=type-C2YifKOA.d.ts.map

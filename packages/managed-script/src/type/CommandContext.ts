@@ -1,4 +1,5 @@
 import type { ColorMode, LogLevel } from '../internal/Logger.js';
+import type { StdioOptions } from './StdOptions.js';
 
 export interface CommandContext {
   /**
@@ -37,12 +38,10 @@ export interface CommandContext {
   readonly logLevel: LogLevel;
 
   /**
-   * Stream used to write error log messages.
+   * Standard I/O configuration. Index `1` is used to write standard output (resolved command)
+   * and index `2` to write status messages (stderr).
+   *
+   * @default 'inherit'
    */
-  readonly stderr: NodeJS.WritableStream;
-
-  /**
-   * Stream used to write standard log messages.
-   */
-  readonly stdout: NodeJS.WritableStream;
+  readonly stdio: StdioOptions;
 }

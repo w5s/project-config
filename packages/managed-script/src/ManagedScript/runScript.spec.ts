@@ -141,7 +141,7 @@ describe(runScript, () => {
     });
 
     const exitCode = await runScript({
-      context: { cwd: '/cwd', dryRun: true, env: {}, stdout },
+      context: { cwd: '/cwd', dryRun: true, env: {}, stdio: ['inherit', stdout, 'inherit'] },
       parameters: { scriptName: 'build' },
     });
 
@@ -192,7 +192,7 @@ describe(runScript, () => {
     });
 
     await runScript({
-      context: { cwd: '/cwd', env: {}, logLevel: 'debug', stderr, stdout },
+      context: { cwd: '/cwd', env: {}, logLevel: 'debug', stdio: ['inherit', stdout, stderr] },
       parameters: { scriptName: 'build' },
     });
 
@@ -224,7 +224,7 @@ describe(runScript, () => {
     });
 
     await runScript({
-      context: { cwd: '/cwd', env: {}, logLevel: 'silent', stderr, stdout },
+      context: { cwd: '/cwd', env: {}, logLevel: 'silent', stdio: ['inherit', stdout, stderr] },
       parameters: { scriptName: 'build' },
     });
 

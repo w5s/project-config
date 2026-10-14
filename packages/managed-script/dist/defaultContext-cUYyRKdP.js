@@ -1,3 +1,37 @@
+import { Writable } from "node:stream";
+//#region src/internal/Stdio.ts
+function createSink() {
+	return new Writable({ write(_chunk, _encoding, callback) {
+		callback();
+	} });
+}
+function resolveEntry(entry, fd) {
+	const parent = fd === 1 ? process.stdout : process.stderr;
+	if (entry === "inherit" || entry === fd) return parent;
+	if (typeof entry === "object" && entry != null && "write" in entry && typeof entry.write === "function") return entry;
+	return createSink();
+}
+/**
+* Helpers for Node.js {@link StdioOptions}
+*
+* @namespace
+*/
+const Stdio = { 
+/**
+* Resolve the writable streams (stdout is index 1, stderr is index 2) described by `stdio`.
+*
+* @param stdio
+*/
+resolve(stdio) {
+	return typeof stdio === "string" ? {
+		stderr: resolveEntry(stdio, 2),
+		stdout: resolveEntry(stdio, 1)
+	} : {
+		stderr: resolveEntry(stdio[2], 2),
+		stdout: resolveEntry(stdio[1], 1)
+	};
+} };
+//#endregion
 //#region src/ManagedScriptEnv.ts
 /**
 * Enum for managed script environment variables.
@@ -33,7 +67,7 @@ const ManagedScriptEnv = Object.freeze({
 //#endregion
 //#region src/ManagedScript/defaultContext.ts
 function defaultContext(context) {
-	const { cli = {}, color, cwd, dryRun, env = process.env, logLevel, stderr = process.stderr, stdout = process.stdout } = context ?? {};
+	const { cli = {}, color, cwd, dryRun, env = process.env, logLevel, stdio = "inherit" } = context ?? {};
 	const envLogLevel = env[ManagedScriptEnv.LogLevel];
 	return {
 		cli,
@@ -42,8 +76,7 @@ function defaultContext(context) {
 		dryRun: dryRun ?? cli.dryRun ?? false,
 		env,
 		logLevel: logLevel ?? cli.logLevel ?? (isLogLevel(envLogLevel) ? envLogLevel : "info"),
-		stderr,
-		stdout
+		stdio
 	};
 }
 const knownLogLevels = /* @__PURE__ */ new Set([
@@ -57,6 +90,6 @@ function isLogLevel(value) {
 	return knownLogLevels.has(value);
 }
 //#endregion
-export { ManagedScriptEnv as n, defaultContext as t };
+export { ManagedScriptEnv as n, Stdio as r, defaultContext as t };
 
-//# sourceMappingURL=defaultContext-BthxLDX3.js.map
+//# sourceMappingURL=defaultContext-cUYyRKdP.js.map

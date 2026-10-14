@@ -1,4 +1,4 @@
-import { a as UserConfig, i as ShellScript$1, n as RunnerScript$1, r as ScriptDefinition, t as CommandContext } from "./type-Bqn2z_hA.js";
+import { a as RunnerScript$1, c as UserConfig, n as CommandContext, o as ScriptDefinition, r as StdioOptions, s as ShellScript$1, t as ManagedScriptCommand } from "./type-C2YifKOA.js";
 //#region src/defineConfig.d.ts
 /**
  * Define the configuration for the managed script.
@@ -12,33 +12,6 @@ import { a as UserConfig, i as ShellScript$1, n as RunnerScript$1, r as ScriptDe
  * ```
  */
 export declare const defineConfig: import("c12").DefineConfig<UserConfig, import("c12").ConfigLayerMeta>;
-//#endregion
-//#region src/type/Command.d.ts
-export type ManagedScriptCommand = ManagedScriptCommand.RunScript;
-export declare namespace ManagedScriptCommand {
-  interface Base<TName extends string, TParameters extends object> {
-    /**
-     * Name of the command.
-     */
-    readonly _: TName;
-    /**
-     * Context in which the command is executed.
-     */
-    readonly context: CommandContext;
-    /**
-     * Parameters provided to the command.
-     */
-    readonly parameters: Readonly<TParameters>;
-  }
-  type Parameters<T extends Base<string, object>> = Omit<T, '_'>;
-  interface RunScript extends Base<'RunScript', {
-    scriptArgs?: ReadonlyArray<string>;
-    scriptName: string | undefined;
-  }> {}
-}
-export declare const ManagedScriptCommand: Readonly<{
-  RunScript: (args: ManagedScriptCommand.Parameters<ManagedScriptCommand.RunScript>) => ManagedScriptCommand.RunScript;
-}>;
 //#endregion
 //#region src/type/ResolvedConfig.d.ts
 export interface ResolvedConfig {
@@ -168,5 +141,5 @@ export declare const meta: Readonly<{
   version: string;
 }>;
 //#endregion
-export { CommandContext, RunnerScript$1 as RunnerScript, ScriptDefinition, ShellScript$1 as ShellScript, UserConfig };
+export { CommandContext, ManagedScriptCommand, RunnerScript$1 as RunnerScript, ScriptDefinition, ShellScript$1 as ShellScript, type StdioOptions, UserConfig };
 //# sourceMappingURL=index.d.ts.map

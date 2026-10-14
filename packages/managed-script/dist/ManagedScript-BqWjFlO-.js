@@ -1,4 +1,4 @@
-import { n as ManagedScriptEnv, t as defaultContext } from "./defaultContext-BthxLDX3.js";
+import { n as ManagedScriptEnv, r as Stdio, t as defaultContext } from "./defaultContext-cUYyRKdP.js";
 import { loadConfig } from "c12";
 import path from "node:path";
 import { spawn } from "node:child_process";
@@ -71,7 +71,8 @@ const logLevelRank = {
 /**
 * Creates a logger writing to `stream`, filtering out messages above the configured `level`.
 */
-const Logger = { create({ color = "auto", level, name = meta.binaryName, stderr }) {
+const Logger = { create({ color = "auto", level, name = meta.binaryName, stdio }) {
+	const { stderr } = Stdio.resolve(stdio);
 	const write = (messageLevel, message) => {
 		if (!(logLevelRank[messageLevel] <= logLevelRank[level])) return;
 		const outputStream = stderr;
@@ -199,12 +200,12 @@ function requireRun(name, run) {
 //#endregion
 //#region src/ManagedScript/execute.ts
 const handlers = { RunScript: async (command) => {
-	const { context: { color, cwd, dryRun, env, logLevel, stderr, stdout }, parameters: { scriptArgs = [], scriptName } } = command;
+	const { context: { color, cwd, dryRun, env, logLevel, stdio }, parameters: { scriptArgs = [], scriptName } } = command;
+	const { stdout } = Stdio.resolve(stdio);
 	const logger = Logger.create({
 		color,
 		level: logLevel,
-		stderr,
-		stdout
+		stdio
 	});
 	const loaded = await ConfigLoader.load({ cwd });
 	logger.debug(`Resolved configuration from ${loaded.configFile ?? "defaults (no config file found)"}`);
@@ -268,4 +269,4 @@ const ManagedScript = Object.freeze({ runScript });
 //#endregion
 export { meta as n, ManagedScript as t };
 
-//# sourceMappingURL=ManagedScript-Bdix4nEf.js.map
+//# sourceMappingURL=ManagedScript-BqWjFlO-.js.map

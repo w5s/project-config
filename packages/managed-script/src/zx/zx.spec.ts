@@ -52,7 +52,7 @@ describe(zx, () => {
 
   it('logs the resolved command at info level', async () => {
     const { chunks, stream } = createStream();
-    const shell = zx({ logLevel: 'info', stdout: stream });
+    const shell = zx({ logLevel: 'info', stdio: ['inherit', stream, 'inherit'] });
 
     await shell`${process.execPath} -e ${'process.exit(0)'}`;
 
@@ -61,7 +61,7 @@ describe(zx, () => {
 
   it('does not log commands at the silent log level', async () => {
     const { chunks, stream } = createStream();
-    const shell = zx({ logLevel: 'silent', stderr: stream });
+    const shell = zx({ logLevel: 'silent', stdio: ['inherit', 'inherit', stream] });
 
     await shell`${process.execPath} -e ${'process.exit(0)'}`;
 
@@ -72,7 +72,7 @@ describe(zx, () => {
     const { chunks, stream } = createStream();
     const shell = zx({
       env: { [ManagedScriptEnv.LogLevel]: 'silent' },
-      stderr: stream,
+      stdio: ['inherit', 'inherit', stream],
     });
 
     await shell`${process.execPath} -e ${'process.exit(0)'}`;

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { n as meta, t as ManagedScript } from "./ManagedScript-Bdix4nEf.js";
+import { n as meta, t as ManagedScript } from "./ManagedScript-BqWjFlO-.js";
 import { createRequire } from "node:module";
 import tty from "tty";
 //#region \0rolldown/runtime.js
@@ -2762,8 +2762,11 @@ var RootCommand = class extends Command {
 						dryRun: this.dryRun,
 						logLevel
 					},
-					stderr: this.context.stderr,
-					stdout: this.context.stdout
+					stdio: [
+						"inherit",
+						this.context.stdout,
+						this.context.stderr
+					]
 				},
 				parameters: {
 					scriptArgs,

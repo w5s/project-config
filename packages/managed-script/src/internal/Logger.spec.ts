@@ -1,5 +1,6 @@
 /* cSpell: disable */
 import type { Buffer } from 'node:buffer';
+import type { StdioOptions } from 'node:child_process';
 
 import { PassThrough } from 'node:stream';
 import { describe, expect, it } from 'vitest';
@@ -14,7 +15,7 @@ function createStream() {
   const stdout = new PassThrough();
   const chunksOut: Array<string> = [];
   stdout.on('data', (chunk: Buffer) => chunksOut.push(chunk.toString()));
-  return { chunksErr, chunksOut, stderr, stdout };
+  return { chunksErr, chunksOut, stderr, stdio: ['inherit', stdout, stderr] as StdioOptions, stdout };
 }
 
 function createTTYStream() {
@@ -92,7 +93,7 @@ describe(Logger.create, () => {
     const stderr = createTTYStream();
     const chunksErr: Array<string> = [];
     stderr.on('data', (chunk: Buffer) => chunksErr.push(chunk.toString()));
-    const logger = Logger.create({ color: 'auto', level: 'info', stderr });
+    const logger = Logger.create({ color: 'auto', level: 'info', stdio: ['inherit', 'inherit', stderr] });
 
     logger.error('an error');
 

@@ -11,8 +11,7 @@ export function defaultContext(context: Partial<CommandContext> | undefined): Co
     dryRun,
     env = process.env,
     logLevel,
-    stderr = process.stderr,
-    stdout = process.stdout,
+    stdio = 'inherit',
   } = context ?? {};
   const envLogLevel = env[ManagedScriptEnv.LogLevel];
   return {
@@ -22,8 +21,7 @@ export function defaultContext(context: Partial<CommandContext> | undefined): Co
     dryRun: dryRun ?? cli.dryRun ?? false,
     env,
     logLevel: logLevel ?? cli.logLevel ?? (isLogLevel(envLogLevel) ? envLogLevel : 'info'),
-    stderr,
-    stdout,
+    stdio,
   };
 }
 

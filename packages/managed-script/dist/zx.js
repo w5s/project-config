@@ -1,9 +1,12 @@
-import { t as defaultContext } from "./defaultContext-BthxLDX3.js";
+import { r as Stdio, t as defaultContext } from "./defaultContext-cUYyRKdP.js";
 import { $ as $$1, chalk, log } from "zx";
 import { stripVTControlCharacters } from "node:util";
-//#region src/zx/defaultZXOptions.ts
-function defaultZXOptions(options) {
-	const { cwd: optionsCwd, env: optionsEnv, logLevel: optionsLogLevel, stderr: optionsStderr, stdout: optionsStdout, ...optionsRest } = options;
+//#region src/zx/ZXOptions.ts
+/**
+* @namespace
+*/
+const ZXOptions = { create(options) {
+	const { cwd: optionsCwd, env: optionsEnv, logLevel: optionsLogLevel, stdio: optionsStdio, ...optionsRest } = options;
 	const env = optionsEnv == null ? process.env : {
 		...process.env,
 		...optionsEnv
@@ -12,14 +15,14 @@ function defaultZXOptions(options) {
 		env,
 		...optionsCwd == null ? {} : { cwd: optionsCwd },
 		...optionsLogLevel == null ? {} : { logLevel: optionsLogLevel },
-		...optionsStderr == null ? {} : { stderr: optionsStderr },
-		...optionsStdout == null ? {} : { stdout: optionsStdout }
+		...optionsStdio == null ? {} : { stdio: optionsStdio }
 	});
+	const { stderr, stdout } = Stdio.resolve(context.stdio);
 	return {
 		cwd: context.cwd,
 		env: context.env,
 		log: (entry) => {
-			const target = entry.kind === "cmd" || entry.kind === "stdout" ? context.stdout : context.stderr;
+			const target = entry.kind === "cmd" || entry.kind === "stdout" ? stdout : stderr;
 			const colorEnabled = context.color === "always" || context.color === "auto" && autoColor(context.env, target);
 			const previousOutput = log.output;
 			const previousLevel = chalk.level;
@@ -42,7 +45,7 @@ function defaultZXOptions(options) {
 		verbose: context.logLevel === "debug",
 		...optionsRest
 	};
-}
+} };
 function autoColor(env, stream) {
 	if (env["NO_COLOR"] != null && env["NO_COLOR"] !== "") return false;
 	const force = env["FORCE_COLOR"];
@@ -60,14 +63,19 @@ function zx(options = {}) {
 		...process.env,
 		...options.env
 	};
-	return $$1(defaultZXOptions({
+	return $$1(ZXOptions.create({
 		env,
 		...options.cwd == null ? {} : { cwd: options.cwd },
 		...options.logLevel == null ? {} : { logLevel: options.logLevel },
-		...options.stderr == null ? {} : { stderr: options.stderr },
-		...options.stdout == null ? {} : { stdout: options.stdout }
+		...options.stdio == null ? {} : { stdio: options.stdio }
 	}));
 }
+//#endregion
+//#region src/zx/defaults.ts
+/**
+* Default ZX options for the managed script environment.
+*/
+const defaults = ZXOptions.create({});
 //#endregion
 //#region src/zx.ts
 /**
@@ -82,6 +90,6 @@ function zx(options = {}) {
 */
 const $ = zx();
 //#endregion
-export { $, zx };
+export { $, defaults, zx };
 
 //# sourceMappingURL=zx.js.map

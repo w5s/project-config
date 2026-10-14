@@ -1,9 +1,9 @@
-import { $ as zxDefault } from 'zx';
+import { $ as zxFn } from 'zx';
 
-import type { CommandContext } from '../type.js';
+import type { CommandContext, StdioOptions } from '../type.js';
 import type { ZXShell } from './ZXShell.js';
 
-import { defaultZXOptions } from './defaultZXOptions.js';
+import { ZXOptions } from './ZXOptions.js';
 
 export interface CreateZXOptions {
   /**
@@ -23,14 +23,9 @@ export interface CreateZXOptions {
   readonly logLevel?: CommandContext['logLevel'] | undefined;
 
   /**
-   * Stream used to write instrumented command logs at the error and warn levels.
+   * Standard I/O used to write instrumented command logs (index `1` for command lines and output, index `2` for the rest).
    */
-  readonly stderr?: NodeJS.WritableStream | undefined;
-
-  /**
-   * Stream used to write instrumented command logs at the info and debug levels.
-   */
-  readonly stdout?: NodeJS.WritableStream | undefined;
+  readonly stdio?: StdioOptions | undefined;
 }
 
 /**
@@ -41,11 +36,10 @@ export interface CreateZXOptions {
 export function zx(options: CreateZXOptions = {}): ZXShell {
   const env = options.env == null ? process.env : { ...process.env, ...options.env };
 
-  return zxDefault(defaultZXOptions({
+  return zxFn(ZXOptions.create({
     env,
     ...(options.cwd == null ? {} : { cwd: options.cwd }),
     ...(options.logLevel == null ? {} : { logLevel: options.logLevel }),
-    ...(options.stderr == null ? {} : { stderr: options.stderr }),
-    ...(options.stdout == null ? {} : { stdout: options.stdout }),
+    ...(options.stdio == null ? {} : { stdio: options.stdio }),
   }));
 }
