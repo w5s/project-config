@@ -392,7 +392,7 @@ importers:
         version: 2.32.0(@typescript-eslint/parser@8.71.2(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)
       eslint-plugin-jsdoc:
         specifier: ~65.3.0
-        version: 65.3.6(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+        version: 65.3.11(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
       eslint-plugin-json-schema-validator-2:
         specifier: ~7.0.11
         version: 7.0.11(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)
@@ -2815,8 +2815,8 @@ packages:
     resolution: {integrity: sha512-M9wIMFx96vq0R4F+gRpY3o2exzb8hEj/n9S8unZtHSvYjibBp/iMufSzvmOcV/laG0ZtuTVGtiJggPOSW2r93g==}
     hasBin: true
 
-  electron-to-chromium@1.5.457:
-    resolution: {integrity: sha512-RNKsgErRmkzRgC8nOV1wzFhSbfGlYJ6k4LT/aE7oFrDYaQgHhTh5oTp0ZgSbRRybKR8HlZIdCWc38Y+CDTk1Jw==}
+  electron-to-chromium@1.5.459:
+    resolution: {integrity: sha512-4SC9HHSFjO/liAhifpdOL5hG9b4BP7/5G3y3UPZVO8trlAXr1CaUEEJL0gWK3kOcYcZrOA5rkwG45Gra/lTIgg==}
 
   emoji-regex@10.6.0:
     resolution: {integrity: sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A==}
@@ -3014,8 +3014,8 @@ packages:
       '@typescript-eslint/parser':
         optional: true
 
-  eslint-plugin-jsdoc@65.3.6:
-    resolution: {integrity: sha512-XN1JIoVqJIgHqHjoe0y7Pj97Z7+3UKhW1/J3E7+1ZyK+rL8lHATT3mgdS6peI84Kcr7DwxOv54Z5hdiqVheSew==}
+  eslint-plugin-jsdoc@65.3.11:
+    resolution: {integrity: sha512-gBHU5ansRN+aQTVuLbpXaLlSKChRfBtfDDEeVHDdjSfbUAhVxMNAI/gESSnOCuUlpYlfPUIdIFWDVCNka95mRw==}
     engines: {node: ^22.22.2 || >=24.15.0}
     peerDependencies:
       eslint: ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0
@@ -4330,8 +4330,8 @@ packages:
     resolution: {integrity: sha512-WkUDrojuJs0xkgGf2udWxa3yGBRxPtxUkB79i6aCZLRgc7PM8fZe9TosfPDcvEpQZbuFASnHYmRLBLUbmLOIIA==}
     engines: {node: '>= 12.0.0'}
 
-  lilconfig@3.1.3:
-    resolution: {integrity: sha512-/vlFKAoH5Cgt3Ie+JLhRbwOsCQePABiU3tJ1egGvyQ+33R/vcwM2Zl2QR/LzjsBeItPt3oSVXapn+m4nQDvpzw==}
+  lilconfig@3.1.4:
+    resolution: {integrity: sha512-zJZyBmQhArDRefuWTypZxwDpFDIYmrj8ypSBvwGD5P13Y95s6DjzKgu4DVdGbeQa5PDEsAOCAPNk4X+QOR006w==}
     engines: {node: '>=14'}
 
   lines-and-columns@1.2.4:
@@ -7042,7 +7042,7 @@ snapshots:
       '@npmcli/run-script': 10.0.4
       ci-info: 4.4.0
       json5: 2.2.3
-      lilconfig: 3.1.3
+      lilconfig: 3.1.4
       npm-package-arg: 13.0.2
       tinyexec: 1.3.1
       verkit: 0.5.0
@@ -8141,7 +8141,7 @@ snapshots:
     dependencies:
       baseline-browser-mapping: 2.11.29
       caniuse-lite: 1.0.30001816
-      electron-to-chromium: 1.5.457
+      electron-to-chromium: 1.5.459
       node-releases: 2.0.59
       update-browserslist-db: 1.3.4(browserslist@4.29.3)
 
@@ -8782,7 +8782,7 @@ snapshots:
       semver: 5.7.2
       sigmund: 1.0.1
 
-  electron-to-chromium@1.5.457: {}
+  electron-to-chromium@1.5.459: {}
 
   emoji-regex@10.6.0: {}
 
@@ -9047,7 +9047,7 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jsdoc@65.3.6(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3):
+  eslint-plugin-jsdoc@65.3.11(eslint@10.12.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3):
     dependencies:
       '@es-joy/jsdoccomment': 0.98.0
       '@es-joy/resolve.exports': 1.2.0
@@ -10518,7 +10518,7 @@ snapshots:
       lightningcss-win32-arm64-msvc: 1.33.0
       lightningcss-win32-x64-msvc: 1.33.0
 
-  lilconfig@3.1.3: {}
+  lilconfig@3.1.4: {}
 
   lines-and-columns@1.2.4: {}
 
