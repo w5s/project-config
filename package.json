@@ -52,8 +52,8 @@
   },
   "devDependencies": {
     "@commitlint/cli": "21.2.3",
-    "@lerna-lite/cli": "5.6.2",
-    "@lerna-lite/publish": "5.6.2",
+    "@lerna-lite/cli": "5.6.3",
+    "@lerna-lite/publish": "5.6.3",
     "@types/node": "26.6.5",
     "@types/parse-gitignore": "1.0.2",
     "@w5s/commitlint-config": "workspace:*",
