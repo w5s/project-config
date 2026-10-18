@@ -7620,7 +7620,7 @@ interface RuleOptions$7 {
   'react/error-boundaries'?: Linter.RuleEntry<[]>;
   /**
    * Verifies the list of dependencies for Hooks like 'useEffect' and similar.
-   * @see https://github.com/facebook/react/issues/14920
+   * @see https://github.com/react/react/issues/14920
    */
   'react/exhaustive-deps'?: Linter.RuleEntry<ReactExhaustiveDeps>;
   /**
@@ -7794,7 +7794,7 @@ interface RuleOptions$7 {
    */
   'react/no-leaked-conditional-rendering'?: Linter.RuleEntry<[]>;
   /**
-   * Enforces that all components have a 'displayName' that can be used in DevTools.
+   * Enforces that anonymous components wrapped in 'memo' or 'forwardRef' have a 'displayName' that can be used in DevTools.
    * @see https://eslint-react.xyz/docs/rules/no-missing-component-display-name
    */
   'react/no-missing-component-display-name'?: Linter.RuleEntry<[]>;
@@ -7819,7 +7819,7 @@ interface RuleOptions$7 {
    */
   'react/no-nested-component-definitions'?: Linter.RuleEntry<[]>;
   /**
-   * Disallows nesting lazy component declarations inside other components or hooks.
+   * Disallows declaring lazy components that wrap dynamic imports inside other components or hooks.
    * @see https://eslint-react.xyz/docs/rules/no-nested-lazy-component-declarations
    */
   'react/no-nested-lazy-component-declarations'?: Linter.RuleEntry<[]>;
@@ -7859,7 +7859,7 @@ interface RuleOptions$7 {
    */
   'react/no-unsafe-component-will-update'?: Linter.RuleEntry<[]>;
   /**
-   * Prevents non-stable values (i.e., object literals) from being used as a value for 'Context.Provider'.
+   * Prevents non-stable values (i.e., object literals) from being used as a value for 'Context.Provider' or the '<Context>' shorthand in React 19 and above.
    * @see https://eslint-react.xyz/docs/rules/no-unstable-context-value
    */
   'react/no-unstable-context-value'?: Linter.RuleEntry<[]>;
@@ -7889,7 +7889,7 @@ interface RuleOptions$7 {
    */
   'react/no-use-context'?: Linter.RuleEntry<[]>;
   /**
-   * Validates that components and hooks are pure by checking that they do not call known-impure functions during render.
+   * Validates that components and hooks are pure by checking that they do not call known-impure functions or construct known-impure objects during render.
    * @see https://eslint-react.xyz/docs/rules/purity
    */
   'react/purity'?: Linter.RuleEntry<[]>;
@@ -7929,7 +7929,7 @@ interface RuleOptions$7 {
    */
   'react/unsupported-syntax'?: Linter.RuleEntry<[]>;
   /**
-   * Validates that 'useMemo' is called with a callback that returns a value.
+   * Validates 'useMemo' usage: the result must be used and the callback must take no parameters, not be async or a generator, not reassign outer variables, and return a value.
    * @see https://eslint-react.xyz/docs/rules/use-memo
    */
   'react/use-memo'?: Linter.RuleEntry<[]>;
@@ -7975,7 +7975,7 @@ interface RuleOptions$7 {
   'react/x-error-boundaries'?: Linter.RuleEntry<[]>;
   /**
    * Verifies the list of dependencies for Hooks like 'useEffect' and similar.
-   * @see https://github.com/facebook/react/issues/14920
+   * @see https://github.com/react/react/issues/14920
    */
   'react/x-exhaustive-deps'?: Linter.RuleEntry<ReactXExhaustiveDeps>;
   /**
@@ -8094,7 +8094,7 @@ interface RuleOptions$7 {
    */
   'react/x-no-leaked-conditional-rendering'?: Linter.RuleEntry<[]>;
   /**
-   * Enforces that all components have a 'displayName' that can be used in DevTools.
+   * Enforces that anonymous components wrapped in 'memo' or 'forwardRef' have a 'displayName' that can be used in DevTools.
    * @see https://eslint-react.xyz/docs/rules/no-missing-component-display-name
    */
   'react/x-no-missing-component-display-name'?: Linter.RuleEntry<[]>;
@@ -8119,7 +8119,7 @@ interface RuleOptions$7 {
    */
   'react/x-no-nested-component-definitions'?: Linter.RuleEntry<[]>;
   /**
-   * Disallows nesting lazy component declarations inside other components or hooks.
+   * Disallows declaring lazy components that wrap dynamic imports inside other components or hooks.
    * @see https://eslint-react.xyz/docs/rules/no-nested-lazy-component-declarations
    */
   'react/x-no-nested-lazy-component-declarations'?: Linter.RuleEntry<[]>;
@@ -8159,7 +8159,7 @@ interface RuleOptions$7 {
    */
   'react/x-no-unsafe-component-will-update'?: Linter.RuleEntry<[]>;
   /**
-   * Prevents non-stable values (i.e., object literals) from being used as a value for 'Context.Provider'.
+   * Prevents non-stable values (i.e., object literals) from being used as a value for 'Context.Provider' or the '<Context>' shorthand in React 19 and above.
    * @see https://eslint-react.xyz/docs/rules/no-unstable-context-value
    */
   'react/x-no-unstable-context-value'?: Linter.RuleEntry<[]>;
@@ -8189,7 +8189,7 @@ interface RuleOptions$7 {
    */
   'react/x-no-use-context'?: Linter.RuleEntry<[]>;
   /**
-   * Validates that components and hooks are pure by checking that they do not call known-impure functions during render.
+   * Validates that components and hooks are pure by checking that they do not call known-impure functions or construct known-impure objects during render.
    * @see https://eslint-react.xyz/docs/rules/purity
    */
   'react/x-purity'?: Linter.RuleEntry<[]>;
@@ -8224,7 +8224,7 @@ interface RuleOptions$7 {
    */
   'react/x-unsupported-syntax'?: Linter.RuleEntry<[]>;
   /**
-   * Validates that 'useMemo' is called with a callback that returns a value.
+   * Validates 'useMemo' usage: the result must be used and the callback must take no parameters, not be async or a generator, not reassign outer variables, and return a value.
    * @see https://eslint-react.xyz/docs/rules/use-memo
    */
   'react/x-use-memo'?: Linter.RuleEntry<[]>;
