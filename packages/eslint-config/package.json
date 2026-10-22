@@ -74,7 +74,7 @@
     "eslint-plugin-json-schema-validator-2": "~7.0.11",
     "eslint-plugin-jsonc": "~3.4.0",
     "eslint-plugin-n": "~18.5.0",
-    "eslint-plugin-perfectionist": "~5.12.0",
+    "eslint-plugin-perfectionist": "~5.13.0",
     "eslint-plugin-toml": "~1.5.0",
     "eslint-plugin-unicorn": "~77.0.0",
     "eslint-plugin-unused-imports": "~4.4.1",
