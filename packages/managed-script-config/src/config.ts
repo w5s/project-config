@@ -1,9 +1,9 @@
-import { defineConfig } from '@w5s/managed-script';
+import { defineConfig, type UserConfig } from '@w5s/managed-script';
 import path from 'node:path';
 
 const configDir = new URL('.', import.meta.url).pathname;
 
-export const config = defineConfig({
+export const config: UserConfig = defineConfig({
   scripts: {
     'prepare:lefthook': {
       args: [path.join(configDir, 'script', 'prepare', 'lefthook.js')],
