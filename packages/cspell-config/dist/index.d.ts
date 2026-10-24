@@ -1,4 +1,4 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.6/node_modules/@cspell/cspell-types/dist/index-eOBgsj8d.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.4.0/node_modules/@cspell/cspell-types/dist/index-eOBgsj8d.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -218,7 +218,7 @@ interface ParsedTags {
   readonly [tag: string]: ParsedTag;
 }
 //#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.3.6/node_modules/@cspell/cspell-types/dist/index.d.mts
+//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.4.0/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
@@ -402,13 +402,13 @@ interface ValidationTags {
    * The default validation setting for any tag not otherwise matched.
    * @default true
    */
-  "*"?: boolean;
+  "*"?: boolean | undefined;
   /**
    * Validation setting for the specific tag.
    *
    * If not specified, the default (`'*'`) will be used.
    */
-  [tag: TagPattern]: boolean;
+  [tag: TagPattern]: boolean | undefined;
 }
 //#endregion
 //#region src/suggestionCostsDef.d.ts
@@ -501,15 +501,23 @@ interface CostMapDefSwap extends CostMapDefBase {
 //#endregion
 //#region src/DictionaryInformation.d.ts
 /**
- * Use by dictionary authors to help improve the quality of suggestions
- * given from the dictionary.
+ * Provides extra information about the dictionary.
+ *
+ * It is used to improve suggestions and casing rules.
  *
  * Added with `v5.16.0`.
  */
 interface DictionaryInformation {
   /**
    * The locale of the dictionary.
-   * Example: `nl,nl-be`
+   *
+   * The locale should follow the IETF BCP 47 standard.
+   * If more than one locale is specified, the first valid locale will be used for casing rules.
+   *
+   * Avoid mixing different locales in the same dictionary.
+   *
+   * Example: `nl` or `nl-BE`
+   *
    */
   locale?: string;
   /**
