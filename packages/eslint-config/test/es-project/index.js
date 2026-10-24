@@ -14,11 +14,7 @@ export function test() {
   const parts = [];
 
   for (let index = 0; index < 10; index += 1) {
-    if (index % 2 === 0) {
-      returnValue.push(['odd', index]);
-    } else {
-      returnValue.push(['even', index]);
-    }
+    returnValue.push([index % 2 === 0 ? 'odd' : 'even', index]);
 
     switch (index) {
       case 0: {

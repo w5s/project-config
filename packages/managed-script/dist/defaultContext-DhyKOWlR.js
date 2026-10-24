@@ -8,8 +8,7 @@ function createSink() {
 function resolveEntry(entry, fd) {
 	const parent = fd === 1 ? process.stdout : process.stderr;
 	if (entry === "inherit" || entry === fd) return parent;
-	if (typeof entry === "object" && entry != null && "write" in entry && typeof entry.write === "function") return entry;
-	return createSink();
+	return typeof entry === "object" && entry != null && "write" in entry && typeof entry.write === "function" ? entry : createSink();
 }
 /**
 * Helpers for Node.js {@link StdioOptions}
@@ -92,4 +91,4 @@ function isLogLevel(value) {
 //#endregion
 export { ManagedScriptEnv as n, Stdio as r, defaultContext as t };
 
-//# sourceMappingURL=defaultContext-cUYyRKdP.js.map
+//# sourceMappingURL=defaultContext-DhyKOWlR.js.map

@@ -206,7 +206,7 @@ async function ignoreFileFind(rootDir, options) {
 	}
 	function isIgnored(patterns, candidateRel) {
 		const m = lastMatchWins(patterns, candidateRel);
-		return m ? !m.startsWith("!") : false;
+		return m !== null && !m.startsWith("!");
 	}
 	async function collectAncestorGitignores(startDir) {
 		const files = [];

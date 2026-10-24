@@ -47,6 +47,7 @@ export function resolveCommentStyle(path: string): ResolvedCommentStyle {
   if (LINE_EXTENSIONS.has(extension)) {
     return '//';
   }
+  // eslint-disable-next-line unicorn/prefer-ternary
   if (BLOCK_EXTENSIONS.has(extension)) {
     return '/*';
   }

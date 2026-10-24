@@ -20,11 +20,8 @@ function resolveEntry(entry: StdioOptions[number] | undefined, fd: 1 | 2): NodeJ
   if (entry === 'inherit' || entry === fd) {
     return parent;
   }
-  if (typeof entry === 'object' && entry != null && 'write' in entry && typeof entry.write === 'function') {
-    return entry as unknown as NodeJS.WritableStream;
-  }
   // `ignore`, `pipe`, `ipc`, other file descriptors and unset entries have no stream to write to
-  return createSink();
+  return (typeof entry === 'object' && entry != null && 'write' in entry && typeof entry.write === 'function') ? entry as unknown as NodeJS.WritableStream : createSink();
 }
 
 /**
