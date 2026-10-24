@@ -56,7 +56,7 @@ describe(defineConfig, () => {
     const todo: DefineConfigOptions['todo'] = [{ name: 'w5s/todo', rules: { 'no-undef': 'error' } }];
     const overrides: DefineConfigOptions['overrides'] = [{ files: ['**/*.ts'], rules: { semi: 'error' } }];
 
-    const config = await defineConfig({ overrides, todo });
+    const config = await defineConfig({ overrides, plugins: disabledPlugins, todo });
 
     expect(config.at(-2)).toMatchObject(todo[0]!);
     expect(config.at(-1)).toMatchObject(overrides[0]!);

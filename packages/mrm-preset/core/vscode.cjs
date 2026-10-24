@@ -41,14 +41,12 @@ function vscodeTask(newTask) {
    * @type {Array<{ script?: string } & Record<string, unknown>>}
    */
   const tasks = vscodeTaskFile.get('tasks', []);
-  if (tasks.some((task) => task.script === newTask.script)) {
-    vscodeTaskFile.set(
-      'tasks',
-      tasks.map((task) => (task.script === newTask.script ? newTask : task)),
-    );
-  } else {
-    vscodeTaskFile.set('tasks', [newTask, ...tasks]);
-  }
+  vscodeTaskFile.set(
+    'tasks',
+    tasks.some((task) => task.script === newTask.script)
+      ? tasks.map((task) => (task.script === newTask.script ? newTask : task))
+      : [newTask, ...tasks],
+  );
   vscodeTaskFile.save();
 }
 exports.vscodeTask = vscodeTask;

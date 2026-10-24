@@ -30,7 +30,7 @@
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },
     "lint": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build", "@w5s/eslint-config#build"]
     },
     "//#lint:root": {
       "dependsOn": ["^build"],
@@ -45,7 +45,9 @@
     "//#docs:root": {
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },
-    "spellcheck": {},
+    "spellcheck": {
+      "dependsOn": ["@w5s/cspell-config#build"]
+    },
     "//#spellcheck:root": {
       "inputs": ["$TURBO_DEFAULT$", ".env*", "!packages/**"]
     },

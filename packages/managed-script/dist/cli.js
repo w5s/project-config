@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { n as meta, t as ManagedScript } from "./ManagedScript-BqWjFlO-.js";
+import { n as meta, t as ManagedScript } from "./ManagedScript-BWVXZG-S.js";
 import { createRequire } from "node:module";
 import tty from "tty";
 //#region \0rolldown/runtime.js
