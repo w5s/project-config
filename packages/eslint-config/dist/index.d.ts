@@ -2,7 +2,6 @@ import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
 import eslint, { Linter } from "eslint";
 import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 import { ESLintRules } from "eslint/rules";
-//#region src/typegen/e18e.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$18 {}
@@ -137,13 +136,9 @@ type E18EBanDependencies = [] | [{
   modules?: string[];
   allowed?: string[];
 }];
-//#endregion
-//#region src/type/Config.d.ts
 export interface Config extends Omit<Linter.Config<Linter.RulesRecord>, 'plugins'> {
   plugins?: Record<string, any>;
 }
-//#endregion
-//#region src/type/StylisticConfig.d.ts
 export interface StylisticConfig {
   enabled: boolean;
   indent: NonNullable<StylisticCustomizeOptions['indent']>;
@@ -173,8 +168,6 @@ export declare const StylisticConfig: {
    */
   from(input: boolean | StylisticParameters): StylisticConfig;
 };
-//#endregion
-//#region src/type/PluginOptionsBase.d.ts
 export interface PluginOptionsBase<Rules> {
   /**
    * Files to apply
@@ -200,16 +193,12 @@ export interface PluginOptionsBase<Rules> {
    */
   stylistic?: boolean | StylisticParameters;
 }
-//#endregion
-//#region src/internal/withSchema.d.ts
 interface WithSchemaOptions {
   /**
    * Enable the schema validation
    */
   enabled?: boolean;
 }
-//#endregion
-//#region src/type/PluginOptionsSchema.d.ts
 export interface PluginOptionsSchema {
   /**
    * Enable or configure the JSON schema validator plugin.
@@ -218,28 +207,20 @@ export interface PluginOptionsSchema {
    */
   schema?: boolean | WithSchemaOptions;
 }
-//#endregion
-//#region src/type/RestrictedGlobals.d.ts
 /**
  * This file contains the type definition for restricted globals used in the ESLint configuration.
  */
 export type RestrictedGlobals = Array<NonNullable<ESLintRules['no-restricted-globals'] extends Linter.RuleEntry<infer O> ? O[number] : never>>;
-//#endregion
-//#region src/type/RestrictedImportPaths.d.ts
 /**
  * This file contains the type definition for restricted import paths used in the ESLint configuration.
  */
 export type RestrictedImportPaths = NonNullable<Extract<ESLintRules['no-restricted-imports'] extends Linter.RuleEntry<infer O> ? O[number] : never, {
   paths?: unknown;
 }>['paths']>;
-//#endregion
-//#region src/type/RestrictedSyntax.d.ts
 /**
  * This file contains the type definition for restricted globals used in the ESLint configuration.
  */
 export type RestrictedSyntax = Array<NonNullable<ESLintRules['no-restricted-syntax'] extends Linter.RuleEntry<infer O> ? O[number] : never>>;
-//#endregion
-//#region src/config/e18e.d.ts
 /**
  * @see https://e18e.dev
  * @param options
@@ -268,8 +249,6 @@ export declare namespace e18e {
   }
   type Rules = RuleOptions$18;
 }
-//#endregion
-//#region src/typegen/jsonc.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$17 {}
@@ -776,8 +755,6 @@ type JsoncSpaceUnaryOps = [] | [{
     [k: string]: boolean | undefined;
   };
 }];
-//#endregion
-//#region src/config/es.d.ts
 export declare function es(options: es.Options): Promise<[Config, Config, Config]>;
 export declare namespace es {
   var recommended: {
@@ -1164,8 +1141,6 @@ export declare namespace es {
   }
   type Rules = RuleOptions$17;
 }
-//#endregion
-//#region src/typegen/github-actions.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$16 {}
@@ -1828,21 +1803,15 @@ type GithubActionsValidTimeoutMinutes = [] | [(number | {
     min?: number;
   });
 })];
-//#endregion
-//#region src/config/github-actions.d.ts
 export declare function githubActions(options?: githubActions.Options): Promise<[Config, Config]>;
 export declare namespace githubActions {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$16;
 }
-//#endregion
-//#region src/config/ignores.d.ts
 export declare function ignores(options?: ignores.Options): Promise<import("@w5s/eslint-config-ignore").ESLintIgnoreConfig[]>;
 export declare namespace ignores {
   type Options = ESLintIgnoreOptions;
 }
-//#endregion
-//#region src/typegen/import.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$15 {}
@@ -2319,8 +2288,6 @@ type ImportOrder = [] | [{
 type ImportPreferDefaultExport = [] | [{
   target?: ("single" | "any");
 }];
-//#endregion
-//#region src/config/imports.d.ts
 export declare function imports(options?: imports.Options): Promise<[Config, Config]>;
 export declare namespace imports {
   var recommended: {
@@ -2339,8 +2306,6 @@ export declare namespace imports {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$15;
 }
-//#endregion
-//#region src/typegen/jsdoc.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$14 {}
@@ -3328,15 +3293,11 @@ type JsdocTypeFormatting = [] | [{
 type JsdocValidTypes = [] | [{
   allowEmptyNamepaths?: boolean;
 }];
-//#endregion
-//#region src/config/jsdoc.d.ts
 export declare function jsdoc(options?: jsdoc.Options): Promise<ReadonlyArray<Config>>;
 export declare namespace jsdoc {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$14;
 }
-//#endregion
-//#region src/typegen/schema.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$13 {}
@@ -3365,15 +3326,11 @@ type SchemaNoInvalid = [] | [(string | {
   }[];
   useSchemastoreCatalog?: boolean;
 })];
-//#endregion
-//#region src/config/jsonc.d.ts
 export declare function jsonc(options?: jsonc.Options): Promise<ReadonlyArray<Config>>;
 export declare namespace jsonc {
   interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
   type Rules = RuleOptions$17 & RuleOptions$13;
 }
-//#endregion
-//#region src/typegen/jsx-a11y.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$12 {}
@@ -3783,8 +3740,6 @@ type JsxA11YScope = [] | [{
 type JsxA11YTabindexNoPositive = [] | [{
   [k: string]: unknown | undefined;
 }];
-//#endregion
-//#region src/config/jsx.d.ts
 export declare function jsx(options?: jsx.Options): Promise<[Config, Config]>;
 export declare namespace jsx {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {
@@ -3795,8 +3750,6 @@ export declare namespace jsx {
   }
   type Rules = RuleOptions$12;
 }
-//#endregion
-//#region src/typegen/markdown.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$11 {}
@@ -3972,8 +3925,6 @@ type MarkdownNoUnusedDefinitions = [] | [{
 type MarkdownTableColumnCount = [] | [{
   checkMissingCells?: boolean;
 }];
-//#endregion
-//#region src/config/markdown.d.ts
 export declare function markdown(options?: markdown.Options): Promise<[Config, Config, Config]>;
 export declare namespace markdown {
   interface Options extends PluginOptionsBase<Rules> {
@@ -3992,8 +3943,6 @@ export declare namespace markdown {
   }
   type Rules = RuleOptions$11;
 }
-//#endregion
-//#region src/typegen/next.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$10 {}
@@ -4113,15 +4062,11 @@ interface RuleOptions$10 {
 /* ======= Declarations ======= */
 // ----- next/no-html-link-for-pages -----
 type NextNoHtmlLinkForPages = [] | [(string | string[])];
-//#endregion
-//#region src/config/next.d.ts
 export declare function next(options?: next.Options): Promise<[Config, Config]>;
 export declare namespace next {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
   type Rules = RuleOptions$10;
 }
-//#endregion
-//#region src/typegen/node.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$9 {}
@@ -4631,15 +4576,11 @@ type NodeShebang = [] | [{
     [k: string]: string;
   };
 }];
-//#endregion
-//#region src/config/node.d.ts
 export declare function node(options?: node.Options): Promise<[Config, Config]>;
 export declare namespace node {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'files' | 'stylistic'> {}
   type Rules = RuleOptions$9;
 }
-//#endregion
-//#region src/typegen/perfectionist.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$8 {}
@@ -7783,15 +7724,11 @@ type PerfectionistSortVariableDeclarations = {
   });
   partitionByNewLine?: boolean;
 }[];
-//#endregion
-//#region src/config/perfectionist.d.ts
 export declare function perfectionist(options?: perfectionist.Options): Promise<[Config, Config]>;
 export declare namespace perfectionist {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$8;
 }
-//#endregion
-//#region src/typegen/react.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$7 {}
@@ -8556,15 +8493,11 @@ type ReactXUseState = [] | [{
   enforceLazyInitialization?: boolean;
   enforceSetterName?: boolean;
 }];
-//#endregion
-//#region src/config/react.d.ts
 export declare function react(options?: react.Options): Promise<[Config, Config]>;
 export declare namespace react {
   interface Options extends Omit<PluginOptionsBase<Rules>, 'stylistic'> {}
   type Rules = RuleOptions$7;
 }
-//#endregion
-//#region src/typegen/style.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$6 {}
@@ -10319,15 +10252,11 @@ type StyleYieldStarSpacing = [] | [(("before" | "after" | "both" | "neither") | 
   before?: boolean;
   after?: boolean;
 })];
-//#endregion
-//#region src/config/stylistic.d.ts
 export declare function stylistic(options?: stylistic.Options): Promise<[Config, Config]>;
 export declare namespace stylistic {
   interface Options extends Pick<PluginOptionsBase<Rules>, 'rules'>, StylisticParameters {}
   type Rules = RuleOptions$6;
 }
-//#endregion
-//#region src/typegen/test.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$5 {}
@@ -10865,15 +10794,11 @@ type TestValidTitle = [] | [{
     [k: string]: (string | [string] | [string, string]) | undefined;
   });
 }];
-//#endregion
-//#region src/config/test.d.ts
 export declare function test(options?: test.Options): Promise<[Config, Config]>;
 export declare namespace test {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$5;
 }
-//#endregion
-//#region src/typegen/toml.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$4 {}
@@ -11138,15 +11063,11 @@ type TomlSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
 }];
 // ----- toml/table-bracket-spacing -----
 type TomlTableBracketSpacing = [] | [("always" | "never")];
-//#endregion
-//#region src/config/toml.d.ts
 export declare function toml(options?: toml.Options): Promise<[Config, Config]>;
 export declare namespace toml {
   interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
   type Rules = RuleOptions$4 & RuleOptions$13;
 }
-//#endregion
-//#region src/typegen/ts.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$3 {}
@@ -12822,8 +12743,6 @@ type TsUnifiedSignatures = [] | [{
   ignoreDifferentlyNamedParameters?: boolean;
   ignoreOverloadsWithDifferentJSDoc?: boolean;
 }];
-//#endregion
-//#region src/config/ts.d.ts
 export declare function ts(options?: ts.Options): Promise<[Config, Config]>;
 export declare namespace ts {
   interface Options extends PluginOptionsBase<Rules> {
@@ -12845,8 +12764,6 @@ export declare namespace ts {
   }
   type Rules = RuleOptions$3;
 }
-//#endregion
-//#region src/typegen/unicorn.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$2 {}
@@ -15361,15 +15278,11 @@ type UnicornTextEncodingIdentifierCase = [] | [{
 type UnicornTryComplexity = [] | [{
   max?: number;
 }];
-//#endregion
-//#region src/config/unicorn.d.ts
 export declare function unicorn(options?: unicorn.Options): Promise<[Config, Config, Config]>;
 export declare namespace unicorn {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$2;
 }
-//#endregion
-//#region src/typegen/unused-imports.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$1 {}
@@ -15422,15 +15335,11 @@ type UnusedImportsNoUnusedVars = [] | [(("all" | "local") | {
   vars?: ("all" | "local");
   varsIgnorePattern?: string;
 })];
-//#endregion
-//#region src/config/unused-imports.d.ts
 export declare function unusedImports(options?: unusedImports.Options): Promise<[Config, Config]>;
 export declare namespace unusedImports {
   interface Options extends PluginOptionsBase<Rules> {}
   type Rules = RuleOptions$1;
 }
-//#endregion
-//#region src/typegen/yml.d.ts
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions {}
@@ -15815,15 +15724,11 @@ type YmlSpacedComment = [] | [("always" | "never")] | [("always" | "never"), {
   exceptions?: string[];
   markers?: string[];
 }];
-//#endregion
-//#region src/config/yml.d.ts
 export declare function yml(options?: yml.Options): Promise<[Config, Config]>;
 export declare namespace yml {
   interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {}
   type Rules = RuleOptions & RuleOptions$13;
 }
-//#endregion
-//#region src/defineConfig.d.ts
 export interface DefineConfigOptions extends ignores.Options {
   /**
    * Additional override config entries appended last.
@@ -15868,37 +15773,28 @@ export interface DefineConfigOptions extends ignores.Options {
   todo?: Array<Config> | undefined;
 }
 export declare function defineConfig(options?: DefineConfigOptions): Promise<Array<Config>>;
-//#endregion
-//#region src/meta.d.ts
 export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
-//#endregion
-//#region src/restrictedGlobals.d.ts
 /**
  * Default restricted globals used by the ESLint rule no-restricted-globals.
  *
  * @see https://eslint.org/docs/latest/rules/no-restricted-globals
  */
 export declare const restrictedGlobals: Readonly<RestrictedGlobals>;
-//#endregion
-//#region src/restrictedImportPaths.d.ts
 /**
  * This file contains the list of restricted import paths used in the ESLint configuration.
  *
  * @see https://eslint.org/docs/latest/rules/no-restricted-imports
  */
 export declare const restrictedImportPaths: Readonly<RestrictedImportPaths>;
-//#endregion
-//#region src/restrictedSyntax.d.ts
 /**
  * Default restricted syntax used by the ESLint rule no-restricted-syntax.
  *
  * @see https://eslint.org/docs/latest/rules/no-restricted-syntax
  */
 export declare const restrictedSyntax: Readonly<RestrictedSyntax>;
-//#endregion
 export {};
 //# sourceMappingURL=index.d.ts.map

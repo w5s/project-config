@@ -5,7 +5,7 @@ import globals from "globals";
 import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
-//#region src/glob.ts
+// src/glob.ts
 const sourceGlob = Project.glob({
 	fileExtensions: [Project.sourceExtensions()],
 	nested: true
@@ -38,8 +38,7 @@ const ymlSourceGlob = Project.glob({
 	fileExtensions: [Project.queryExtensions(["yaml"])],
 	nested: true
 });
-//#endregion
-//#region src/type/StylisticConfig.ts
+// src/type/StylisticConfig.ts
 const defaultConfig = {
 	enabled: true,
 	indent: prettierConfig.tabWidth ?? 2,
@@ -70,8 +69,7 @@ const StylisticConfig = {
 		};
 	}
 };
-//#endregion
-//#region src/internal/defaultOptions.ts
+// src/internal/defaultOptions.ts
 /**
 * Return a new plugin option object with default values
 *
@@ -85,8 +83,7 @@ function defaultPluginOptions(options) {
 		stylistic: StylisticConfig.from(options.stylistic ?? true)
 	};
 }
-//#endregion
-//#region src/internal/withDefaultFiles.ts
+// src/internal/withDefaultFiles.ts
 /**
 * withDefaultFiles
 *
@@ -97,8 +94,7 @@ function defaultPluginOptions(options) {
 function withDefaultFiles(options, defaultFiles) {
 	return typeof options === "function" ? options(defaultFiles) : [...options == null ? [] : options.flat(), ...defaultFiles];
 }
-//#endregion
-//#region src/config/e18e.ts
+// src/config/e18e.ts
 const defaultFiles$12 = [sourceGlob];
 /**
 * @see https://e18e.dev
@@ -128,8 +124,7 @@ async function e18e(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/restrictedGlobals.ts
+// src/restrictedGlobals.ts
 /**
 * Default restricted globals used by the ESLint rule no-restricted-globals.
 *
@@ -142,8 +137,7 @@ const restrictedGlobals = Object.freeze([{
 	message: "Use Number.isNaN instead https://github.com/airbnb/javascript#standard-library--isnan",
 	name: "isNaN"
 }]);
-//#endregion
-//#region src/restrictedImportPaths.ts
+// src/restrictedImportPaths.ts
 /**
 * This file contains the list of restricted import paths used in the ESLint configuration.
 *
@@ -191,16 +185,14 @@ const restrictedImportPaths = Object.freeze([
 		message: "Import from \"rxjs\" or \"rxjs/operators\"."
 	}
 ]);
-//#endregion
-//#region src/restrictedSyntax.ts
+// src/restrictedSyntax.ts
 /**
 * Default restricted syntax used by the ESLint rule no-restricted-syntax.
 *
 * @see https://eslint.org/docs/latest/rules/no-restricted-syntax
 */
 const restrictedSyntax = Object.freeze([]);
-//#endregion
-//#region src/internal/lazy.ts
+// src/internal/lazy.ts
 function lazy(fn) {
 	let isSet = false;
 	let value;
@@ -212,8 +204,7 @@ function lazy(fn) {
 		return value;
 	};
 }
-//#endregion
-//#region src/rules/airbnb-base/bestPractices.ts
+// src/rules/airbnb-base/bestPractices.ts
 const bestPractices = () => ({
 	"accessor-pairs": "off",
 	"array-callback-return": ["error", { allowImplicit: true }],
@@ -399,8 +390,7 @@ const bestPractices = () => ({
 	],
 	"yoda": "error"
 });
-//#endregion
-//#region src/rules/airbnb-base/errors.ts
+// src/rules/airbnb-base/errors.ts
 const errors = () => ({
 	"for-direction": "error",
 	"getter-return": ["error", { allowImplicit: true }],
@@ -451,8 +441,7 @@ const errors = () => ({
 	"valid-jsdoc": "off",
 	"valid-typeof": ["error", { requireStringLiterals: true }]
 });
-//#endregion
-//#region src/rules/airbnb-base/es6.ts
+// src/rules/airbnb-base/es6.ts
 const es6 = () => ({
 	"constructor-super": "error",
 	"no-class-assign": "error",
@@ -487,8 +476,7 @@ const es6 = () => ({
 	"require-yield": "error",
 	"symbol-description": "error"
 });
-//#endregion
-//#region src/rules/airbnb-base/overrides.ts
+// src/rules/airbnb-base/overrides.ts
 const overrides = () => ({
 	"class-methods-use-this": "off",
 	"default-case": "off",
@@ -500,11 +488,9 @@ const overrides = () => ({
 	"no-use-before-define": ["error", "nofunc"],
 	"no-void": ["error", { allowAsStatement: true }]
 });
-//#endregion
-//#region src/rules/airbnb-base/strict.ts
+// src/rules/airbnb-base/strict.ts
 const strict = () => ({ strict: ["error", "never"] });
-//#endregion
-//#region src/rules/airbnb-base/variables.ts
+// src/rules/airbnb-base/variables.ts
 const variables = () => ({
 	"init-declarations": "off",
 	"no-catch-shadow": "off",
@@ -537,8 +523,7 @@ const variables = () => ({
 		variables: true
 	}]
 });
-//#endregion
-//#region src/rules/esRules.ts
+// src/rules/esRules.ts
 const esRules = lazy(() => ({
 	...bestPractices(),
 	...errors(),
@@ -547,8 +532,7 @@ const esRules = lazy(() => ({
 	...variables(),
 	...overrides()
 }));
-//#endregion
-//#region src/config/es.ts
+// src/config/es.ts
 const defaultFiles$11 = [jsSourceGlob];
 async function es(options) {
 	const { defaultRestrictedGlobals = restrictedGlobals, defaultRestrictedImportPaths = restrictedImportPaths, defaultRestrictedSyntax = restrictedSyntax, namespace, recommended, restrictedImportPaths: paths, rules = {} } = defaultPluginOptions(options);
@@ -606,8 +590,7 @@ es.recommended = {
 	...eslintConfig.configs.recommended.rules,
 	...esRules()
 };
-//#endregion
-//#region src/config/github-actions.ts
+// src/config/github-actions.ts
 const fallbackFiles = [
 	".github/workflows/*.{yml,yaml}",
 	"**/action.{yml,yaml}",
@@ -636,13 +619,11 @@ async function githubActions(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/config/ignores.ts
+// src/config/ignores.ts
 async function ignores(options = {}) {
 	return [await eslintIgnores(options)];
 }
-//#endregion
-//#region src/config/imports.ts
+// src/config/imports.ts
 async function imports(options = {}) {
 	const { namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
 	const [importPlugin] = await Promise.all([interopDefault(import("eslint-plugin-import"))]);
@@ -671,8 +652,7 @@ imports.recommended = {
 * Stylistic rules
 */
 imports.stylistic = { "import/newline-after-import": ["error", { count: 1 }] };
-//#endregion
-//#region src/config/jsdoc.ts
+// src/config/jsdoc.ts
 const defaultJsFiles = [jsSourceGlob];
 const defaultTsFiles = [tsSourceGlob];
 async function jsdoc(options = {}) {
@@ -737,8 +717,7 @@ async function jsdoc(options = {}) {
 		}
 	];
 }
-//#endregion
-//#region src/internal/withSchema.ts
+// src/internal/withSchema.ts
 async function withSchema(options) {
 	const enabled = typeof options === "boolean" ? options : options?.enabled ?? true;
 	return {
@@ -746,8 +725,7 @@ async function withSchema(options) {
 		rules: enabled ? { "schema/no-invalid": "error" } : {}
 	};
 }
-//#endregion
-//#region src/config/jsonc.ts
+// src/config/jsonc.ts
 const defaultFiles$10 = [jsonSourceGlob];
 async function jsonc(options = {}) {
 	const [jsoncPlugin, jsoncParser] = await Promise.all([interopDefault(import("eslint-plugin-jsonc")), interopDefault(import("jsonc-eslint-parser"))]);
@@ -990,8 +968,7 @@ function sortTsconfigJson(namespace) {
 		] }
 	};
 }
-//#endregion
-//#region src/config/jsx.ts
+// src/config/jsx.ts
 const defaultFiles$9 = [jsxSourceGlob];
 async function jsx(options = {}) {
 	const { files, jsxA11y = false, namespace, recommended, rules = {} } = defaultPluginOptions(options);
@@ -1012,8 +989,7 @@ async function jsx(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/rules/looseRules.ts
+// src/rules/looseRules.ts
 const looseRules = lazy(() => {
 	return Object.assign(ESLintConfig.renameRules(tsPlugin.configs["disable-type-checked"].rules, { "@typescript-eslint": "ts" }), {
 		"e18e/prefer-static-regex": "off",
@@ -1033,8 +1009,7 @@ const looseRules = lazy(() => {
 		"ts/unbound-method": "off"
 	});
 });
-//#endregion
-//#region src/config/markdown.ts
+// src/config/markdown.ts
 const defaultFiles$8 = [Project.glob({
 	fileExtensions: [Project.queryExtensions(["markdown"])],
 	nested: true
@@ -1096,8 +1071,7 @@ async function markdown(options = {}) {
 		}
 	];
 }
-//#endregion
-//#region src/config/next.ts
+// src/config/next.ts
 const defaultFiles$7 = [sourceGlob];
 async function next(options = {}) {
 	const [nextPlugin] = await Promise.all([interopDefault(import("@next/eslint-plugin-next"))]);
@@ -1120,8 +1094,7 @@ async function next(options = {}) {
 		settings: { react: { version: "detect" } }
 	}];
 }
-//#endregion
-//#region src/config/node.ts
+// src/config/node.ts
 async function node(options = {}) {
 	const [nodePlugin] = await Promise.all([interopDefault(import("eslint-plugin-n"))]);
 	const { namespace, recommended, rules = {} } = defaultPluginOptions(options);
@@ -1146,8 +1119,7 @@ async function node(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/config/perfectionist.ts
+// src/config/perfectionist.ts
 const defaultFiles$6 = [sourceGlob];
 async function perfectionist(options = {}) {
 	const [perfectionistPlugin] = await Promise.all([interopDefault(import("eslint-plugin-perfectionist"))]);
@@ -1165,8 +1137,7 @@ async function perfectionist(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/config/react.ts
+// src/config/react.ts
 const defaultFiles$5 = [sourceGlob];
 async function react(options = {}) {
 	const [reactPlugin] = await Promise.all([interopDefault(import("@eslint-react/eslint-plugin"))]);
@@ -1187,8 +1158,7 @@ async function react(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/config/stylistic.ts
+// src/config/stylistic.ts
 async function stylistic(options = {}) {
 	const [stylisticPlugin] = await Promise.all([interopDefault(import("@stylistic/eslint-plugin"))]);
 	const { namespace, rules = {} } = defaultPluginOptions(options);
@@ -1234,8 +1204,7 @@ async function stylistic(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/config/test.ts
+// src/config/test.ts
 const defaultFiles$4 = Project.extensionsToTestGlob(Project.sourceExtensions());
 async function test(options = {}) {
 	const [vitestPlugin] = await Promise.all([interopDefault(import("@vitest/eslint-plugin"))]);
@@ -1258,8 +1227,7 @@ async function test(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/config/toml.ts
+// src/config/toml.ts
 const defaultFiles$3 = [tomlSourceGlob];
 async function toml(options = {}) {
 	const tomlPlugin = await interopDefault(import("eslint-plugin-toml"));
@@ -1293,8 +1261,7 @@ async function toml(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/rules/tsRules.ts
+// src/rules/tsRules.ts
 const tsRules = lazy(() => {
 	const baseRules = esRules();
 	return ESLintConfig.renameRules({
@@ -1334,8 +1301,7 @@ const tsRules = lazy(() => {
 		"@typescript-eslint/triple-slash-reference": "error"
 	}, { "@typescript-eslint": "ts" });
 });
-//#endregion
-//#region src/config/ts.ts
+// src/config/ts.ts
 const tsRenameMap = { "@typescript-eslint": "ts" };
 const defaultFiles$2 = [tsSourceGlob];
 async function ts(options = {}) {
@@ -1399,8 +1365,7 @@ async function ts(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/config/unicorn.ts
+// src/config/unicorn.ts
 const defaultFiles$1 = [sourceGlob];
 async function unicorn(options = {}) {
 	const [unicornPlugin] = await Promise.all([interopDefault(import("eslint-plugin-unicorn"))]);
@@ -1438,8 +1403,7 @@ async function unicorn(options = {}) {
 		}
 	];
 }
-//#endregion
-//#region src/config/unused-imports.ts
+// src/config/unused-imports.ts
 async function unusedImports(options = {}) {
 	const [unusedImportPlugin] = await Promise.all([interopDefault(import("eslint-plugin-unused-imports"))]);
 	const { files = [sourceGlob], namespace, recommended, rules = {} } = defaultPluginOptions(options);
@@ -1465,8 +1429,7 @@ async function unusedImports(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/config/yml.ts
+// src/config/yml.ts
 const defaultFiles = [ymlSourceGlob];
 async function yml(options = {}) {
 	const [ymlPlugin] = await Promise.all([interopDefault(import("eslint-plugin-yml"))]);
@@ -1513,8 +1476,7 @@ async function yml(options = {}) {
 		}
 	}];
 }
-//#endregion
-//#region src/defineConfig.ts
+// src/defineConfig.ts
 async function defineConfig(options = {}) {
 	const { overrides = [], plugins = {}, rules, todo = [] } = options;
 	const stylisticOptions = typeof plugins.stylistic === "boolean" ? { enabled: plugins.stylistic } : {
@@ -1532,14 +1494,12 @@ async function defineConfig(options = {}) {
 	const includeEnabled = (factory, input) => input.enabled ? [factory(input)] : [];
 	return ESLintConfig.concat(...includeEnabled(ignores, toOption(options)), ...includeEnabled(es, toOption(plugins.es)), ...includeEnabled(ts, toOption(plugins.ts)), ...includeEnabled(e18e, toOption(plugins.e18e)), ...includeEnabled(jsx, toOption(plugins.jsx)), ...includeEnabled(unusedImports, toOption(plugins["unused-imports"])), ...includeEnabled(jsdoc, toOption(plugins.jsdoc)), ...includeEnabled(imports, toOption(plugins.import)), ...includeEnabled(perfectionist, toOption(plugins.perfectionist)), ...includeEnabled(node, toOption(plugins.node)), ...includeEnabled(next, toOption(plugins.next, false)), ...includeEnabled(react, toOption(plugins.react)), ...includeEnabled(unicorn, toOption(plugins.unicorn)), ...includeEnabled(test, toOption(plugins.test)), ...includeEnabled(stylistic, stylisticOptions), ...includeEnabled(jsonc, toOption(plugins.jsonc)), ...includeEnabled(toml, toOption(plugins.toml)), ...includeEnabled(markdown, toOption(plugins.markdown)), ...includeEnabled(yml, toOption(plugins.yml)), ...includeEnabled(githubActions, toOption(plugins["github-actions"])), ...rules ? [{ rules }] : [], ...todo, ...overrides);
 }
-//#endregion
-//#region src/meta.ts
+// src/meta.ts
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/eslint-config",
 	version: "7.1.2"
 });
-//#endregion
 export { StylisticConfig, defineConfig, e18e, es, githubActions, ignores, imports, jsdoc, jsonc, jsx, markdown, meta, next, node, perfectionist, react, restrictedGlobals, restrictedImportPaths, restrictedSyntax, stylistic, test, toml, ts, unicorn, unusedImports, yml };
 
 //# sourceMappingURL=index.js.map
