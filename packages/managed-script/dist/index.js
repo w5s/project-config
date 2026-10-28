@@ -1,7 +1,7 @@
-import { n as meta, t as ManagedScript } from "./ManagedScript-BWVXZG-S.js";
-import { n as ManagedScriptEnv } from "./defaultContext-DhyKOWlR.js";
+import { n as meta, t as ManagedScript } from "./ManagedScript-CxUWpNLn.js";
+import { n as ManagedScriptEnv } from "./defaultContext-CSKy4KuS.js";
 import { createDefineConfig } from "c12";
-//#region src/defineConfig.ts
+// src/defineConfig.ts
 /**
 * Define the configuration for the managed script.
 *
@@ -14,8 +14,7 @@ import { createDefineConfig } from "c12";
 * ```
 */
 const defineConfig = createDefineConfig();
-//#endregion
-//#region src/mergeConfig.ts
+// src/mergeConfig.ts
 const DANGEROUS_KEYS = /* @__PURE__ */ new Set([
 	"__proto__",
 	"constructor",
@@ -85,13 +84,11 @@ function replaceEntries(defaults, overrides) {
 function toArray(target) {
 	return Array.isArray(target) ? target : [target];
 }
-//#endregion
-//#region src/type/Command.ts
+// src/type/Command.ts
 const ManagedScriptCommand = Object.freeze({ RunScript: (args) => ({
 	_: "RunScript",
 	...args
 }) });
-//#endregion
 export { ManagedScript, ManagedScriptCommand, ManagedScriptEnv, defineConfig, mergeConfig, meta };
 
 //# sourceMappingURL=index.js.map

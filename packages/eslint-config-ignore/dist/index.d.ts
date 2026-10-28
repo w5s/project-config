@@ -1,4 +1,3 @@
-//#region src/eslintIgnores.d.ts
 export interface ESLintIgnoreConfig {
   /**
    * The file globs to ignore
@@ -57,13 +56,10 @@ export interface ESLintIgnoreOptions {
  * @param options
  */
 export declare function eslintIgnores(options?: ESLintIgnoreOptions): Promise<ESLintIgnoreConfig>;
-//#endregion
-//#region src/meta.d.ts
 export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
-//#endregion
 export { type ESLintIgnoreOptions as Options, eslintIgnores as default };
 //# sourceMappingURL=index.d.ts.map

@@ -1,7 +1,7 @@
 import * as TsDown from "tsdown";
 import { readFileSync } from "node:fs";
 import path from "node:path";
-//#region src/defaultConfig.ts
+// src/defaultConfig.ts
 const defaultConfig = {
 	dts: true,
 	entry: [
@@ -17,8 +17,7 @@ const defaultConfig = {
 	sourcemap: true,
 	tsconfig: "tsconfig.build.json"
 };
-//#endregion
-//#region src/withPackageDefine.ts
+// src/withPackageDefine.ts
 function withPackageDefine(config) {
 	let packageJSON = void 0;
 	const cwd = config.cwd ?? process.cwd();
@@ -50,13 +49,11 @@ function toInt(value) {
 	const parsed = Number.parseInt(value);
 	return Number.isNaN(parsed) ? void 0 : parsed;
 }
-//#endregion
-//#region src/defineConfig.ts
+// src/defineConfig.ts
 function defineConfig(optionsOrFn) {
 	return TsDown.defineConfig(typeof optionsOrFn === "function" ? (config, context) => optionsOrFn(withPackageDefine(TsDown.mergeConfig(defaultConfig, config)), context) : withPackageDefine(TsDown.mergeConfig(defaultConfig, optionsOrFn)));
 }
-//#endregion
-//#region src/defineConfigWith.ts
+// src/defineConfigWith.ts
 /**
 * Returns a `defineConfig`-like function that uses a custom base config instead of the package default.
 * Use this when you have a shared base (e.g. a library preset) and want to reuse it across multiple packages.
@@ -78,7 +75,6 @@ function defineConfigWith(baseConfig) {
 function mergeConfig(base, extension) {
 	return TsDown.mergeConfig(base, extension);
 }
-//#endregion
 export { defaultConfig, defineConfig, defineConfigWith };
 
 //# sourceMappingURL=index.js.map

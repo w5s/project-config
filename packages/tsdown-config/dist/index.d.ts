@@ -1,8 +1,5 @@
 import { DtsOptions, Format, InlineConfig, OutExtensionContext, OutExtensionFactory, OutExtensionObject, Sourcemap, TsdownPlugin, TsdownPluginOption, UserConfig, UserConfig as UserConfig$1, UserConfigExport, UserConfigFn } from "tsdown";
-//#region src/defaultConfig.d.ts
 export declare const defaultConfig: UserConfig$1;
-//#endregion
-//#region src/defineConfig.d.ts
 /**
  * Define a tsdown configuration with the package default (entry, format, dts, package defines, etc.).
  * Accepts either a config object or a function `(config, context) => config`.
@@ -11,8 +8,6 @@ export declare const defaultConfig: UserConfig$1;
  */
 export declare function defineConfig(optionsOrFn: UserConfig): UserConfig;
 export declare function defineConfig(optionsOrFn: UserConfigFn): UserConfigFn;
-//#endregion
-//#region src/defineConfigWith.d.ts
 /**
  * Returns a `defineConfig`-like function that uses a custom base config instead of the package default.
  * Use this when you have a shared base (e.g. a library preset) and want to reuse it across multiple packages.
@@ -31,6 +26,5 @@ export declare function defineConfigWith(baseConfig: UserConfig): {
   (optionsOrFn: UserConfig): UserConfig;
   (optionsOrFn: UserConfigFn): UserConfigFn;
 };
-//#endregion
 export type { DtsOptions, Format, InlineConfig, OutExtensionContext, OutExtensionFactory, OutExtensionObject, Sourcemap, TsdownPlugin, TsdownPluginOption, UserConfig, UserConfigExport, UserConfigFn };
 //# sourceMappingURL=index.d.ts.map

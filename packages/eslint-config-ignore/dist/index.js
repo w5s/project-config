@@ -4,7 +4,7 @@ import process from "node:process";
 import { minimatch } from "minimatch";
 import fs$1 from "node:fs/promises";
 import parseGitignore from "parse-gitignore";
-//#region src/defaultIgnores.ts
+// src/defaultIgnores.ts
 const defaultIgnores = [
 	"**/package-lock.json",
 	"**/yarn.lock",
@@ -40,8 +40,7 @@ const defaultIgnores = [
 	"**/.agents",
 	"**/.*/skills"
 ];
-//#endregion
-//#region src/internal/gitModulesIgnore.ts
+// src/internal/gitModulesIgnore.ts
 const SUBMODULE_PATH_RE = /path\s*=\s*(.+)/g;
 /**
 * Read `cwd/.gitmodules` and return ESLint ignore glob patterns for every
@@ -90,13 +89,11 @@ function gitModulesParse(content) {
 	}
 	return paths;
 }
-//#endregion
-//#region src/internal/ignoreFileParse.ts
+// src/internal/ignoreFileParse.ts
 function ignoreFileParse(input) {
 	return parseGitignore.parse(input).patterns;
 }
-//#endregion
-//#region src/internal/convertIgnorePatternToMinimatch.ts
+// src/internal/convertIgnorePatternToMinimatch.ts
 /**
 * Converts a gitignore-style pattern to an ESLint-compatible minimatch pattern.
 *
@@ -129,8 +126,7 @@ function convertIgnorePatternToMinimatch(pattern) {
 	const matchInsideSuffix = patternToTest.endsWith("/**") ? "/*" : "";
 	return `${negatedPrefix}${matchEverywherePrefix}${escapedPatternWithoutLeadingSlash}${matchInsideSuffix}`;
 }
-//#endregion
-//#region src/internal/ignoreRuleResolve.ts
+// src/internal/ignoreRuleResolve.ts
 const ROOT_PREFIX_PATTERN = /^\.\/?/;
 const normalizePath = (p) => p.replaceAll("\\", "/").replace(ROOT_PREFIX_PATTERN, "");
 /**
@@ -162,8 +158,7 @@ function ignoreRuleResolve(prefix, rule) {
 	else converted = (normalizedPrefix ? `${normalizedPrefix}/` : "") + convertIgnorePatternToMinimatch(raw);
 	return negated ? `!${converted}` : converted;
 }
-//#endregion
-//#region src/internal/ignoreFileFind.ts
+// src/internal/ignoreFileFind.ts
 const GITIGNORE_FILE = ".gitignore";
 /**
 * Find `.gitignore` files relevant to `rootDir`.
@@ -272,8 +267,7 @@ async function ignoreFileFind(rootDir, options) {
 	}
 	return [...found].map((p) => nodePath.relative(rootDir, p));
 }
-//#endregion
-//#region src/eslintIgnores.ts
+// src/eslintIgnores.ts
 /**
 * Create a new eslint configuration object
 *
@@ -310,14 +304,12 @@ async function eslintIgnores(options = {}) {
 		name: `${namespace}/eslint-ignore`
 	};
 }
-//#endregion
-//#region src/meta.ts
+// src/meta.ts
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/eslint-config-ignore",
 	version: "1.34.0"
 });
-//#endregion
 export { eslintIgnores as default, eslintIgnores, meta };
 
 //# sourceMappingURL=index.js.map

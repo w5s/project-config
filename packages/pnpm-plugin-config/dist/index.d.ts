@@ -1,5 +1,4 @@
 import { Cafs, ResolvedFrom } from "@pnpm/cafs-types";
-//#region src/defaultConfig.d.ts
 export declare const defaultConfig: Readonly<{
   allowBuilds: {
     '@parcel/watcher': true;
@@ -29,8 +28,6 @@ export declare const defaultConfig: Readonly<{
   trustPolicy: "no-downgrade";
   trustPolicyIgnoreAfter: number;
 }>;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+catalogs.types@1000.0.0/node_modules/@pnpm/catalogs.types/lib/index.d.ts
 /**
  * Catalogs parsed from the pnpm-workspace.yaml file.
  *
@@ -58,17 +55,11 @@ interface Catalogs {
 interface Catalog {
   readonly [dependencyName: string]: string | undefined;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+types@1001.3.0/node_modules/@pnpm/types/lib/config.d.ts
 type AllowBuild = (pkgName: string, pkgVersion: string) => boolean;
 type TrustPolicy = 'no-downgrade' | 'off';
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+types@1001.3.0/node_modules/@pnpm/types/lib/env.d.ts
 interface ExecutionEnv {
   nodeVersion?: string;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+types@1001.3.0/node_modules/@pnpm/types/lib/misc.d.ts
 interface Registries {
   default: string;
   [scope: string]: string;
@@ -84,8 +75,6 @@ type DepPath = string & {
 type ProjectId = string & {
   __brand: 'ProjectId';
 };
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+types@1001.3.0/node_modules/@pnpm/types/lib/package.d.ts
 type Dependencies = Record<string, string>;
 type PackageBin = string | {
   [commandName: string]: string;
@@ -264,8 +253,6 @@ interface SupportedArchitectures {
   cpu?: string[];
   libc?: string[];
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+types@1001.3.0/node_modules/@pnpm/types/lib/options.d.ts
 interface FinderContext {
   alias: string;
   name: string;
@@ -273,8 +260,6 @@ interface FinderContext {
   readManifest: () => DependencyManifest;
 }
 type Finder = (ctx: FinderContext) => boolean | string;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+types@1001.3.0/node_modules/@pnpm/types/lib/peerDependencyIssues.d.ts
 type ParentPackages = Array<{
   name: string;
   version: string;
@@ -297,8 +282,6 @@ interface PeerDependencyIssues {
   conflicts: string[];
   intersections: Record<string, string>;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+types@1001.3.0/node_modules/@pnpm/types/lib/project.d.ts
 interface Project {
   rootDir: ProjectRootDir;
   rootDirRealPath: ProjectRootDirRealPath;
@@ -316,8 +299,6 @@ type ProjectRootDir = string & {
 type ProjectRootDirRealPath = string & {
   __brand: 'ProjectRootDirRealPath';
 };
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+resolver-base@1005.4.1/node_modules/@pnpm/resolver-base/lib/index.d.ts
 /**
  * tarball hosted remotely
  */
@@ -363,8 +344,6 @@ interface VariationsResolution$1 {
   variants: PlatformAssetResolution$1[];
 }
 type Resolution$1 = AtomicResolution | VariationsResolution$1;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+fetcher-base@1001.2.2/node_modules/@pnpm/fetcher-base/lib/index.d.ts
 interface PkgNameVersion {
   name?: string;
   version?: string;
@@ -431,8 +410,6 @@ interface CustomFetchers {
   directory?: CustomFetcherFactory<DirectoryFetcher>;
   git?: CustomFetcherFactory<GitFetcher>;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+store-controller-types@1004.5.1/node_modules/@pnpm/store-controller-types/lib/index.d.ts
 type FilesMap = Record<string, string>;
 interface ImportOptions {
   disableRelinkLocalDirDeps?: boolean;
@@ -442,14 +419,10 @@ interface ImportOptions {
   keepModulesDir?: boolean;
 }
 type ImportIndexedPackageAsync = (to: string, opts: ImportOptions) => Promise<string | undefined>;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+patching.types@1000.1.0/node_modules/@pnpm/patching.types/lib/index.d.ts
 interface PatchFile {
   path: string;
   hash: string;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+lockfile.types@1002.1.0/node_modules/@pnpm/lockfile.types/lib/index.d.ts
 interface LockfileSettings {
   autoInstallPeers?: boolean;
   dedupePeers?: boolean;
@@ -586,8 +559,6 @@ interface ResolvedCatalogEntry {
    */
   readonly version: string;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+hooks.types@1001.0.20/node_modules/@pnpm/hooks.types/lib/index.d.ts
 interface PreResolutionHookContext {
   wantedLockfile: LockfileObject;
   currentLockfile: LockfileObject;
@@ -602,11 +573,7 @@ interface PreResolutionHookLogger {
   warn: (message: string) => void;
 }
 type PreResolutionHook = (ctx: PreResolutionHookContext, logger: PreResolutionHookLogger) => Promise<void>;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+logger@1001.0.1/node_modules/@pnpm/logger/lib/LogLevel.d.ts
 type LogLevel = 'error' | 'warn' | 'info' | 'debug';
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+logger@1001.0.1/node_modules/@pnpm/logger/lib/LogBase.d.ts
 interface OptionalErrorProperties {
   pkgsStack?: Array<{
     id: string;
@@ -643,8 +610,6 @@ interface LogBaseWarn extends LogBaseTemplate {
   message: string;
 }
 type LogBase = LogBaseDebug | LogBaseError | LogBaseInfo | LogBaseWarn;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/contextLogger.d.ts
 interface ContextMessage {
   currentLockfileExists: boolean;
   storeDir: string;
@@ -653,8 +618,6 @@ interface ContextMessage {
 type ContextLog = {
   name: 'pnpm:context';
 } & LogBase & ContextMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/deprecationLogger.d.ts
 interface DeprecationMessage {
   pkgName: string;
   pkgVersion: string;
@@ -666,8 +629,6 @@ interface DeprecationMessage {
 type DeprecationLog = {
   name: 'pnpm:deprecation';
 } & LogBase & DeprecationMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/fetchingProgressLogger.d.ts
 interface FetchingProgressMessageBase {
   attempt?: number;
   downloaded?: number;
@@ -688,8 +649,6 @@ type FetchingProgressMessage = FetchingProgressMessageStarted | FetchingProgress
 type FetchingProgressLog = {
   name: 'pnpm:fetching-progress';
 } & LogBase & FetchingProgressMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/hookLogger.d.ts
 interface HookMessage {
   from: string;
   hook: string;
@@ -699,8 +658,6 @@ interface HookMessage {
 type HookLog = {
   name: 'pnpm:hook';
 } & LogBase & HookMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/installCheckLogger.d.ts
 interface InstallCheckMessage {
   code: string;
   pkgId: string;
@@ -708,8 +665,6 @@ interface InstallCheckMessage {
 type InstallCheckLog = {
   name: 'pnpm:install-check';
 } & LogBase & InstallCheckMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/installingConfigDeps.d.ts
 interface InstallingConfigDepsMessageBase {
   status?: 'started' | 'done';
 }
@@ -727,16 +682,12 @@ type InstallingConfigDepsMessage = InstallingConfigDepsStartedMessage | Installi
 type InstallingConfigDepsLog = {
   name: 'pnpm:installing-config-deps';
 } & LogBase & InstallingConfigDepsMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/ignoredScriptsLogger.d.ts
 interface IgnoredScriptsMessage {
   packageNames: string[];
 }
 type IgnoredScriptsLog = {
   name: 'pnpm:ignored-scripts';
 } & LogBase & IgnoredScriptsMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/lifecycleLogger.d.ts
 interface LifecycleMessageBase {
   depPath: string;
   stage: string;
@@ -763,8 +714,6 @@ type LifecycleMessage = StdioLifecycleMessage | ExitLifecycleMessage | ScriptLif
 type LifecycleLog = {
   name: 'pnpm:lifecycle';
 } & LogBase & LifecycleMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/linkLogger.d.ts
 interface LinkMessage {
   target: string;
   link: string;
@@ -772,16 +721,12 @@ interface LinkMessage {
 type LinkLog = {
   name: 'pnpm:link';
 } & LogBase & LinkMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/packageImportMethodLogger.d.ts
 interface PackageImportMethodMessage {
   method: 'clone' | 'hardlink' | 'copy';
 }
 type PackageImportMethodLog = {
   name: 'pnpm:package-import-method';
 } & LogBase & PackageImportMethodMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/packageManifestLogger.d.ts
 interface PackageManifestMessageBase {
   prefix: string;
   initial?: ProjectManifest;
@@ -797,16 +742,12 @@ type PackageManifestMessage = PackageManifestMessageInitial | PackageManifestMes
 type PackageManifestLog = {
   name: 'pnpm:package-manifest';
 } & LogBase & PackageManifestMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/peerDependencyIssues.d.ts
 interface PeerDependencyIssuesMessage {
   issuesByProjects: PeerDependencyIssuesByProjects;
 }
 type PeerDependencyIssuesLog = {
   name: 'pnpm:peer-dependency-issues';
 } & LogBase & PeerDependencyIssuesMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/progressLogger.d.ts
 type ProgressMessage = {
   packageId: string;
   requester: string;
@@ -820,15 +761,11 @@ type ProgressMessage = {
 type ProgressLog = {
   name: 'pnpm:progress';
 } & LogBase & ProgressMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/registryLogger.d.ts
 type RegistryLog = {
   name: 'pnpm:registry';
 } & LogBase & {
   message: string;
 };
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/requestRetryLogger.d.ts
 interface RequestRetryError extends Error {
   httpStatusCode?: string;
   status?: string;
@@ -846,8 +783,6 @@ interface RequestRetryMessage {
 type RequestRetryLog = {
   name: 'pnpm:request-retry';
 } & LogBase & RequestRetryMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/rootLogger.d.ts
 type DependencyType = 'prod' | 'dev' | 'optional';
 type RootMessage = {
   prefix: string;
@@ -871,8 +806,6 @@ type RootMessage = {
 type RootLog = {
   name: 'pnpm:root';
 } & LogBase & RootMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/scopeLogger.d.ts
 interface ScopeMessage {
   selected: number;
   total?: number;
@@ -881,8 +814,6 @@ interface ScopeMessage {
 type ScopeLog = {
   name: 'pnpm:scope';
 } & LogBase & ScopeMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/skippedOptionalDependencyLogger.d.ts
 type SkippedOptionalDependencyLog = {
   name: 'pnpm:skipped-optional-dependency';
 } & LogBase & SkippedOptionalDependencyMessage;
@@ -910,8 +841,6 @@ type SkippedOptionalDependencyMessage = {
   };
   reason: 'resolution_failure';
 });
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/stageLogger.d.ts
 interface StageMessage {
   prefix: string;
   stage: 'resolution_started' | 'resolution_done' | 'importing_started' | 'importing_done';
@@ -919,8 +848,6 @@ interface StageMessage {
 type StageLog = {
   name: 'pnpm:stage';
 } & LogBase & StageMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/statsLogger.d.ts
 interface StatsMessageBase {
   prefix: string;
   added?: number;
@@ -938,16 +865,12 @@ type StatsMessage = StatsMessageAdded | StatsMessageRemoved;
 type StatsLog = {
   name: 'pnpm:stats';
 } & LogBase & StatsMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/summaryLogger.d.ts
 interface SummaryMessage {
   prefix: string;
 }
 type SummaryLog = {
   name: 'pnpm:summary';
 } & LogBase & SummaryMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/updateCheckLogger.d.ts
 interface UpdateCheckMessage {
   currentVersion: string;
   latestVersion: string;
@@ -955,8 +878,6 @@ interface UpdateCheckMessage {
 type UpdateCheckLog = {
   name: 'pnpm:update-check';
 } & LogBase & UpdateCheckMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/executionTimeLogger.d.ts
 interface ExecutionTimeMessage {
   startedAt: number;
   endedAt: number;
@@ -964,11 +885,7 @@ interface ExecutionTimeMessage {
 type ExecutionTimeLog = {
   name: 'pnpm:execution-time';
 } & LogBase & ExecutionTimeMessage;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+core-loggers@1001.0.9_@pnpm+logger@1001.0.1/node_modules/@pnpm/core-loggers/lib/index.d.ts
 type Log = ContextLog | DeprecationLog | FetchingProgressLog | ExecutionTimeLog | HookLog | InstallCheckLog | InstallingConfigDepsLog | IgnoredScriptsLog | LifecycleLog | LinkLog | PackageManifestLog | PackageImportMethodLog | PeerDependencyIssuesLog | ProgressLog | RegistryLog | RequestRetryLog | RootLog | ScopeLog | SkippedOptionalDependencyLog | StageLog | StatsLog | SummaryLog | UpdateCheckLog;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+pnpmfile@1002.1.13_@pnpm+logger@1001.0.1/node_modules/@pnpm/pnpmfile/lib/Hooks.d.ts
 interface HookContext {
   log: (message: string) => void;
 }
@@ -982,8 +899,6 @@ interface Hooks$1 {
   fetchers?: CustomFetchers;
   updateConfig?: (config: any) => any;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+pnpmfile@1002.1.13_@pnpm+logger@1001.0.1/node_modules/@pnpm/pnpmfile/lib/requireHooks.d.ts
 type Cook<T extends (...args: any[]) => any> = (arg: Parameters<T>[0], ...otherArgs: any[]) => ReturnType<T>;
 interface CookedHooks {
   readPackage?: Array<Cook<Required<Hooks$1>['readPackage']>>;
@@ -996,11 +911,7 @@ interface CookedHooks {
   fetchers?: CustomFetchers;
   calculatePnpmfileChecksum?: () => Promise<string>;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+pnpmfile@1002.1.13_@pnpm+logger@1001.0.1/node_modules/@pnpm/pnpmfile/lib/index.d.ts
 type Hooks = CookedHooks;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+config@1004.11.0_@pnpm+logger@1001.0.1/node_modules/@pnpm/config/lib/getOptionsFromRootManifest.d.ts
 type OptionsFromRootManifest = {
   allowedDeprecatedVersions?: AllowedDeprecatedVersions;
   allowUnusedPatches?: boolean;
@@ -1018,8 +929,6 @@ type OptionsFromRootManifest = {
   allowBuilds?: Record<string, boolean | string>;
   requiredScripts?: string[];
 } & Pick<PnpmSettings, 'configDependencies' | 'auditConfig' | 'executionEnv' | 'updateConfig'>;
-//#endregion
-//#region ../../node_modules/.pnpm/@pnpm+config@1004.11.0_@pnpm+logger@1001.0.1/node_modules/@pnpm/config/lib/Config.d.ts
 interface WantedPackageManager {
   name: string;
   version?: string;
@@ -1235,23 +1144,15 @@ interface Config extends OptionsFromRootManifest {
   trustPolicyIgnoreAfter?: number;
   auditLevel?: 'low' | 'moderate' | 'high' | 'critical';
 }
-//#endregion
-//#region src/hooks.d.ts
 export declare const hooks: {
   updateConfig(config: Partial<Config>): Partial<Config>;
 };
-//#endregion
-//#region src/meta.d.ts
 export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
-//#endregion
-//#region src/PnpmConfig.d.ts
 export type PnpmConfig = Config;
-//#endregion
-//#region src/PnpmUserConfig.d.ts
 export type PnpmUserConfig = Partial<PnpmConfig>;
 /**
  * @namespace
@@ -1270,12 +1171,9 @@ export declare const PnpmUserConfig: Readonly<{
    */
   merge(base: PnpmUserConfig, extension: PnpmUserConfig): PnpmUserConfig;
 }>;
-//#endregion
-//#region src/PnpmHooks.d.ts
 /** Hooks exported by this plugin's pnpmfile. */
 export interface PnpmHooks extends Omit<Hooks, 'updateConfig'> {
   updateConfig?: (config: PnpmUserConfig) => PnpmUserConfig | Promise<PnpmUserConfig>;
 }
-//#endregion
 export {};
 //# sourceMappingURL=index.d.ts.map

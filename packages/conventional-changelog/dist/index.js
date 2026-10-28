@@ -3,10 +3,9 @@ import { gitmojis } from "gitmojis";
 import { readFileSync } from "node:fs";
 import nodePath from "node:path";
 import { fileURLToPath } from "node:url";
-//#region src/git-raw-commit-opts.ts
+// src/git-raw-commit-opts.ts
 const gitRawCommitOpts = { format: "%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n-authorName-%n%an%n-authorEmail-%n%ae" };
-//#endregion
-//#region src/parser.ts
+// src/parser.ts
 const createParserOpts = () => ({
 	headerCorrespondence: [
 		"type",
@@ -18,8 +17,7 @@ const createParserOpts = () => ({
 	revertCorrespondence: [`header`, `hash`],
 	revertPattern: /^(?:revert|revert:)\s"?([\S\s]+?)"?\s*this reverts commit (\w*)\./i
 });
-//#endregion
-//#region src/data.ts
+// src/data.ts
 const CommitConventionalType = (() => {
 	const enumObject = Object.freeze({
 		Build: "build",
@@ -123,8 +121,7 @@ const CommitConventionalType = (() => {
 		values
 	};
 })();
-//#endregion
-//#region src/gitmoji.ts
+// src/gitmoji.ts
 const reEmojiUnicode = emojiRegexp();
 const reEmojiText = /:\w*:/;
 const reMatchOnly = (input) => new RegExp(`^${input.source}$`, "");
@@ -189,8 +186,7 @@ const GitmojiCode = Object.freeze({
 	isValid,
 	toConventionalCommitType: toConventionalCommitType$1
 });
-//#endregion
-//#region src/whatBump.ts
+// src/whatBump.ts
 function toConventionalCommitType(text) {
 	return GitmojiCode.isValid(text) ? GitmojiCode.toConventionalCommitType(text) : CommitConventionalType.hasInstance(text) ? text : void 0;
 }
@@ -213,8 +209,7 @@ const whatBump = (commits) => {
 		reason: breakings === 1 ? `There is ${breakings} BREAKING CHANGE and ${features} features` : `There are ${breakings} BREAKING CHANGES and ${features} features`
 	};
 };
-//#endregion
-//#region src/transform.ts
+// src/transform.ts
 function displayScope(scope, scopeDisplayNameMap) {
 	return scope == null || scope.length === 0 ? scopeDisplayNameMap["*"] : scopeDisplayNameMap[scope] ?? scope;
 }
@@ -280,8 +275,7 @@ function createTransform(config) {
 	};
 	return transform;
 }
-//#endregion
-//#region src/writer.ts
+// src/writer.ts
 const _dirname = nodePath.dirname(fileURLToPath(import.meta.url));
 const basePath = nodePath.resolve(nodePath.dirname(_dirname), "./template");
 const defaultDisplayTypes = CommitConventionalType.findWhere((_) => _.changelog);
@@ -303,8 +297,7 @@ const createWriterOpts = async () => {
 		transform: createTransform({ displayTypes: defaultDisplayTypes })
 	};
 };
-//#endregion
-//#region src/createPreset.ts
+// src/createPreset.ts
 async function createPreset() {
 	return {
 		gitRawCommitOpts,
@@ -313,14 +306,12 @@ async function createPreset() {
 		writer: await createWriterOpts()
 	};
 }
-//#endregion
-//#region src/meta.ts
+// src/meta.ts
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/conventional-changelog",
 	version: "3.33.0"
 });
-//#endregion
 export { Emoji, GitmojiCode, createPreset as default, meta };
 
 //# sourceMappingURL=index.js.map

@@ -1,5 +1,4 @@
 import { Linter } from "eslint";
-//#region src/ESLintConfig.d.ts
 /**
  * Concat multiple flat configs into a single flat config array.
  *
@@ -86,8 +85,6 @@ export declare const ESLintConfig: Readonly<{
   merge: typeof merge;
   renameRules: typeof renameRules;
 }>;
-//#endregion
-//#region src/interopDefault.d.ts
 /**
  * Resolves a module or promise-like object, returning the default export if available.
  *
@@ -114,8 +111,6 @@ export declare function interopDefault<T>(m: PromiseLike<T>): Promise<T extends 
 export declare function interopDefault<T>(m: T): T extends {
   default: infer U;
 } ? U : T;
-//#endregion
-//#region src/LanguageId.d.ts
 /**
  * A list of "vscode-like" language identifiers (i.e. "javascript", "javascriptreact")
  */
@@ -137,15 +132,11 @@ export interface LanguageIdMap {
   vue: true;
   yaml: true;
 }
-//#endregion
-//#region src/meta.d.ts
 export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
-//#endregion
-//#region src/Project.d.ts
 /**
  * A type of a file extension
  */
@@ -312,8 +303,6 @@ export declare namespace Project {
     }
   }
 }
-//#endregion
-//#region src/ProjectScript.d.ts
 /**
  * Project common scripts
  */
@@ -336,6 +325,5 @@ export declare const ProjectScript: {
   readonly Validate: "validate";
 };
 export type ProjectScript = (typeof ProjectScript)[keyof typeof ProjectScript];
-//#endregion
 export {};
 //# sourceMappingURL=index.d.cts.map

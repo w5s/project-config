@@ -1,6 +1,5 @@
 import { InputConfig } from "c12";
 import { StdioOptions } from "node:child_process";
-//#region src/type/UserConfig.d.ts
 /**
  * Run an executable directly, in the same way a lefthook script uses `runner` and `args`.
  *
@@ -36,12 +35,8 @@ interface ShellScript {
 interface UserConfig extends InputConfig<{
   readonly scripts?: Record<string, ScriptDefinition> | undefined;
 }> {}
-//#endregion
-//#region src/internal/Logger.d.ts
 type ColorMode = 'always' | 'auto' | 'never';
 type LogLevel = 'debug' | 'error' | 'info' | 'silent' | 'warn';
-//#endregion
-//#region src/type/CommandContext.d.ts
 interface CommandContext {
   /**
    * Command-line arguments passed to the script.
@@ -80,8 +75,6 @@ interface CommandContext {
    */
   readonly stdio: StdioOptions;
 }
-//#endregion
-//#region src/type/Command.d.ts
 type ManagedScriptCommand = ManagedScriptCommand.RunScript;
 declare namespace ManagedScriptCommand {
   interface Base<TName extends string, TParameters extends object> {
@@ -107,6 +100,5 @@ declare namespace ManagedScriptCommand {
 declare const ManagedScriptCommand: Readonly<{
   RunScript: (args: ManagedScriptCommand.Parameters<ManagedScriptCommand.RunScript>) => ManagedScriptCommand.RunScript;
 }>;
-//#endregion
 export { RunnerScript as a, UserConfig as c, LogLevel as i, CommandContext as n, ScriptDefinition as o, StdioOptions as r, ShellScript as s, ManagedScriptCommand as t };
-//# sourceMappingURL=type-C2YifKOA.d.ts.map
+//# sourceMappingURL=type-QluLeED6.d.ts.map

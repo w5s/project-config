@@ -1,4 +1,3 @@
-//#region src/parser.d.ts
 interface ParserOptions {
   headerCorrespondence?: Array<string> | null | string;
   headerPattern?: null | RegExp | string;
@@ -6,8 +5,6 @@ interface ParserOptions {
   revertCorrespondence?: Array<string> | null | string;
   revertPattern?: null | RegExp | string;
 }
-//#endregion
-//#region src/data.d.ts
 interface Commit {
   body: Commit.Field;
   footer: Commit.Field;
@@ -67,8 +64,6 @@ interface CommitConventionalTypeData {
   'emoji': string;
   'en-US': string;
 }
-//#endregion
-//#region src/transform.d.ts
 type CommitTransformFunction<TCommit extends Commit = Commit> = (commit: Commit, context: WriterContext, ...args: Array<unknown>) => false | TCommit;
 interface WriterContext {
   host?: string | undefined;
@@ -76,8 +71,6 @@ interface WriterContext {
   repository?: string | undefined;
   repoUrl?: string | undefined;
 }
-//#endregion
-//#region src/writer.d.ts
 interface WriterOptions {
   commitGroupsSort?: false | ReadonlyArray<string> | string | undefined;
   commitPartial?: string | undefined;
@@ -89,8 +82,6 @@ interface WriterOptions {
   noteGroupsSort?: false | ReadonlyArray<string> | string | undefined;
   transform?: CommitTransformFunction<Commit> | undefined;
 }
-//#endregion
-//#region src/gitmoji.d.ts
 export type Emoji = Emoji.Text | Emoji.Unicode;
 export declare namespace Emoji {
   type Text = string & {
@@ -133,8 +124,6 @@ export declare const GitmojiCode: Readonly<{
   isValid: typeof isValid;
   toConventionalCommitType: typeof toConventionalCommitType;
 }>;
-//#endregion
-//#region src/createPreset.d.ts
 declare function createPreset(): Promise<{
   gitRawCommitOpts: {
     format: string;
@@ -146,13 +135,10 @@ declare function createPreset(): Promise<{
   };
   writer: WriterOptions;
 }>;
-//#endregion
-//#region src/meta.d.ts
 export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
-//#endregion
 export { createPreset as default };
 //# sourceMappingURL=index.d.ts.map

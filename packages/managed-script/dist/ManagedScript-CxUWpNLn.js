@@ -1,9 +1,9 @@
-import { n as ManagedScriptEnv, r as Stdio, t as defaultContext } from "./defaultContext-DhyKOWlR.js";
+import { n as ManagedScriptEnv, r as Stdio, t as defaultContext } from "./defaultContext-CSKy4KuS.js";
 import { loadConfig } from "c12";
 import path from "node:path";
 import { spawn } from "node:child_process";
 import path$1 from "node:path/win32";
-//#region src/meta.ts
+// src/meta.ts
 const meta = Object.freeze({
 	binaryLabel: "W5S Managed Script",
 	binaryName: "managed-script",
@@ -12,8 +12,7 @@ const meta = Object.freeze({
 	name: "@w5s/managed-script",
 	version: "1.0.0-alpha.4"
 });
-//#endregion
-//#region src/internal/ConfigLoader.ts
+// src/internal/ConfigLoader.ts
 const ConfigLoader = { async load(options) {
 	const result = await loadConfig({
 		cwd: options.cwd,
@@ -26,8 +25,7 @@ const ConfigLoader = { async load(options) {
 		layers: result.layers ?? []
 	};
 } };
-//#endregion
-//#region src/internal/Executor.ts
+// src/internal/Executor.ts
 /**
 * Runs a shell command (`run`), or a program spawned directly without a shell (`runner`).
 * Stdio is inherited and the exit code is forwarded.
@@ -56,8 +54,7 @@ const Executor = { async run(request) {
 		});
 	});
 } };
-//#endregion
-//#region src/internal/Logger.ts
+// src/internal/Logger.ts
 /**
 * Rank order used to compare log levels, higher means more verbose.
 */
@@ -102,8 +99,7 @@ const Logger = { create({ color = "auto", level, name = meta.binaryName, stdio }
 		warn: (message) => write("warn", message)
 	};
 } };
-//#endregion
-//#region src/internal/ScriptInvocation.ts
+// src/internal/ScriptInvocation.ts
 const shellSafe = /^[\w@%+=:,./-]+$/;
 /**
 * @namespace
@@ -139,8 +135,7 @@ function formatArgv(argv) {
 function quoteShell(value) {
 	return `'${value.replaceAll("'", String.raw`'\''`)}'`;
 }
-//#endregion
-//#region src/internal/ScriptNameResolver.ts
+// src/internal/ScriptNameResolver.ts
 /**
 * Resolves the script name to run.
 *
@@ -149,8 +144,7 @@ function quoteShell(value) {
 const ScriptNameResolver = { resolve({ env, scriptName }) {
 	return scriptName ?? env[ManagedScriptEnv.Name] ?? env["npm_lifecycle_event"];
 } };
-//#endregion
-//#region src/ManagedScript/resolveScripts.ts
+// src/ManagedScript/resolveScripts.ts
 function resolveScripts(loaded) {
 	const scripts = {};
 	const layers = loaded.layers.length > 0 ? loaded.layers : [{ config: loaded.config }];
@@ -197,8 +191,7 @@ function requireRun(name, run) {
 	if (typeof run !== "string" || run.trim().length === 0) throw new TypeError(`Script "${name}" run must be a non-empty string.`);
 	return { run };
 }
-//#endregion
-//#region src/ManagedScript/execute.ts
+// src/ManagedScript/execute.ts
 const handlers = { RunScript: async (command) => {
 	const { context: { color, cwd, dryRun, env, logLevel, stdio }, parameters: { scriptArgs = [], scriptName } } = command;
 	const { stdout } = Stdio.resolve(stdio);
@@ -252,21 +245,18 @@ async function execute(command) {
 		context
 	});
 }
-//#endregion
-//#region src/ManagedScript/runScript.ts
+// src/ManagedScript/runScript.ts
 async function runScript(options) {
 	return execute({
 		_: "RunScript",
 		...options
 	});
 }
-//#endregion
-//#region src/ManagedScript.ts
+// src/ManagedScript.ts
 /**
 * @namespace
 */
 const ManagedScript = Object.freeze({ runScript });
-//#endregion
 export { meta as n, ManagedScript as t };
 
-//# sourceMappingURL=ManagedScript-BWVXZG-S.js.map
+//# sourceMappingURL=ManagedScript-CxUWpNLn.js.map

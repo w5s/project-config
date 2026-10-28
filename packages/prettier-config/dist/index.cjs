@@ -2,7 +2,7 @@ Object.defineProperties(exports, {
 	__esModule: { value: true },
 	[Symbol.toStringTag]: { value: "Module" }
 });
-//#region src/config.ts
+// src/config.ts
 const config = {
 	overrides: [{
 		files: ["*.css", "*.scss"],
@@ -11,14 +11,12 @@ const config = {
 	singleQuote: true,
 	trailingComma: "all"
 };
-//#endregion
-//#region src/meta.ts
+// src/meta.ts
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/prettier-config",
 	version: "3.29.1"
 });
-//#endregion
 exports.default = config;
 exports.meta = meta;
 

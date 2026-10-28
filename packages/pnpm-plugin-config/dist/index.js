@@ -1,4 +1,4 @@
-//#region src/internal/betterDefaultConfig.ts
+// src/internal/betterDefaultConfig.ts
 /**
 * Curated defaults from [@pnpm/plugin-better-defaults](https://github.com/pnpm/plugin-better-defaults).
 *
@@ -16,8 +16,7 @@ const betterDefaultConfig = Object.freeze({
 	trustPolicyIgnoreAfter: 10080,
 	verifyDepsBeforeRun: "install"
 });
-//#endregion
-//#region src/defaultConfig.ts
+// src/defaultConfig.ts
 const defaultConfig = Object.freeze({
 	...betterDefaultConfig,
 	allowBuilds: {
@@ -40,8 +39,7 @@ const defaultConfig = Object.freeze({
 	overrides: {},
 	verifyDepsBeforeRun: "warn"
 });
-//#endregion
-//#region src/PnpmUserConfig.ts
+// src/PnpmUserConfig.ts
 function arrayMerge(base, extension) {
 	const baseArray = base == null ? [] : Array.isArray(base) ? base : [base];
 	const extensionArray = extension == null ? [] : Array.isArray(extension) ? extension : [extension];
@@ -94,19 +92,16 @@ merge(base, extension) {
 		verifyDepsBeforeRun: extension.verifyDepsBeforeRun ?? base.verifyDepsBeforeRun
 	};
 } });
-//#endregion
-//#region src/hooks.ts
+// src/hooks.ts
 const hooks = { updateConfig(config) {
 	return PnpmUserConfig.merge(defaultConfig, config);
 } };
-//#endregion
-//#region src/meta.ts
+// src/meta.ts
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/pnpm-plugin-config",
 	version: "1.21.0"
 });
-//#endregion
 export { PnpmUserConfig, defaultConfig, hooks, meta };
 
 //# sourceMappingURL=index.js.map

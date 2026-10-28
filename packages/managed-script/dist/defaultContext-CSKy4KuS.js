@@ -1,5 +1,5 @@
 import { Writable } from "node:stream";
-//#region src/internal/Stdio.ts
+// src/internal/Stdio.ts
 function createSink() {
 	return new Writable({ write(_chunk, _encoding, callback) {
 		callback();
@@ -30,8 +30,7 @@ resolve(stdio) {
 		stdout: resolveEntry(stdio[1], 1)
 	};
 } };
-//#endregion
-//#region src/ManagedScriptEnv.ts
+// src/ManagedScriptEnv.ts
 /**
 * Enum for managed script environment variables.
 *
@@ -63,8 +62,7 @@ const ManagedScriptEnv = Object.freeze({
 	*/
 	Name: "MANAGED_SCRIPT_NAME"
 });
-//#endregion
-//#region src/ManagedScript/defaultContext.ts
+// src/ManagedScript/defaultContext.ts
 function defaultContext(context) {
 	const { cli = {}, color, cwd, dryRun, env = process.env, logLevel, stdio = "inherit" } = context ?? {};
 	const envLogLevel = env[ManagedScriptEnv.LogLevel];
@@ -88,7 +86,6 @@ const knownLogLevels = /* @__PURE__ */ new Set([
 function isLogLevel(value) {
 	return knownLogLevels.has(value);
 }
-//#endregion
 export { ManagedScriptEnv as n, Stdio as r, defaultContext as t };
 
-//# sourceMappingURL=defaultContext-DhyKOWlR.js.map
+//# sourceMappingURL=defaultContext-CSKy4KuS.js.map

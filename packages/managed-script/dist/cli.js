@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-import { n as meta, t as ManagedScript } from "./ManagedScript-BWVXZG-S.js";
+import { n as meta, t as ManagedScript } from "./ManagedScript-CxUWpNLn.js";
 import { createRequire } from "node:module";
 import tty from "tty";
-//#region \0rolldown/runtime.js
+// \0rolldown/runtime.js
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -25,8 +25,7 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 	enumerable: true
 }) : target, mod));
 var __require = /* #__PURE__ */ (() => createRequire(import.meta.url))();
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/constants.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/constants.mjs
 var SpecialToken;
 (function(SpecialToken) {
 	SpecialToken["StartOfInput"] = "\0";
@@ -45,8 +44,7 @@ const OPTION_REGEX = /^(--[a-z]+(?:-[a-z]+)*|-[a-zA-Z]+)$/;
 const BATCH_REGEX = /^-[a-zA-Z]{2,}$/;
 const BINDING_REGEX = /^([^=]+)=([\s\S]*)$/;
 const IS_DEBUG = process.env.DEBUG_CLI === `1`;
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/errors.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/errors.mjs
 /**
 * A generic usage error with the name `UsageError`.
 *
@@ -97,8 +95,7 @@ const whileRunning = (input) => `While running ${input.filter((token) => {
 	if (token.match(/\s/) || token.length === 0 || json !== `"${token}"`) return json;
 	else return token;
 }).join(` `)}`;
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/options/utils.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/options/utils.mjs
 const isOptionSymbol = Symbol(`clipanion/isOption`);
 function makeCommandOption(spec) {
 	return {
@@ -140,8 +137,7 @@ function applyValidator(name, value, validator) {
 	for (const [, op] of coercions) op();
 	return value;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/Command.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/Command.mjs
 /**
 * Base abstract class for CLI commands. The main thing to remember is to
 * declare an async `execute` member function that will be called when the
@@ -202,8 +198,7 @@ Command.isOption = isOptionSymbol;
 * }
 */
 Command.Default = [];
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/platform/node.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/platform/node.mjs
 function getDefaultColorDepth() {
 	if (tty && `getColorDepth` in tty.WriteStream.prototype) return tty.WriteStream.prototype.getColorDepth();
 	if (process.env.FORCE_COLOR === `0`) return 1;
@@ -235,8 +230,7 @@ function getCaptureActivator(context) {
 		return contextStorage.run(context, fn);
 	};
 }
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/core.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/core.mjs
 function debug(str) {
 	if (IS_DEBUG) console.log(str);
 }
@@ -1060,8 +1054,7 @@ var CliBuilder = class CliBuilder {
 		};
 	}
 };
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/format.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/format.mjs
 const richLine = Array(80).fill(`━`);
 for (let t = 0; t <= 24; ++t) richLine[richLine.length - t] = `\x1b[38;5;${232 + t}m━`;
 const richFormat = {
@@ -1111,8 +1104,7 @@ function formatMarkdownish(text, { format, paragraphs }) {
 	});
 	return text ? `${text}\n` : ``;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/HelpCommand.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/HelpCommand.mjs
 var HelpCommand$1 = class HelpCommand$1 extends Command {
 	static from(state, contexts) {
 		const command = new HelpCommand$1(contexts);
@@ -1145,8 +1137,7 @@ var HelpCommand$1 = class HelpCommand$1 extends Command {
 		}
 	}
 };
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/Cli.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/Cli.mjs
 const errorCommandSymbol = Symbol(`clipanion/errorCommand`);
 /**
 * @template Context The context shared by all commands. Contexts are a set of values, defined when calling the `run`/`runExit` functions from the CLI instance, that will be made available to the commands via `this.context`.
@@ -1506,8 +1497,7 @@ Cli.defaultContext = {
 function noopCaptureActivator(fn) {
 	return fn();
 }
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/builtins/help.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/builtins/help.mjs
 /**
 * A command that prints the usage of all commands.
 *
@@ -1519,8 +1509,7 @@ var HelpCommand = class extends Command {
 	}
 };
 HelpCommand.paths = [[`-h`], [`--help`]];
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/builtins/version.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/builtins/version.mjs
 /**
 * A command that prints the version of the binary (`cli.binaryVersion`).
 *
@@ -1533,8 +1522,7 @@ var VersionCommand = class extends Command {
 	}
 };
 VersionCommand.paths = [[`-v`], [`--version`]];
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/options/Boolean.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/options/Boolean.mjs
 function Boolean(descriptor, initialValueBase, optsBase) {
 	const [initialValue, opts] = rerouteArguments(initialValueBase, optsBase !== null && optsBase !== void 0 ? optsBase : {});
 	const optNames = descriptor.split(`,`);
@@ -1560,8 +1548,7 @@ function Boolean(descriptor, initialValueBase, optsBase) {
 		}
 	});
 }
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/options/Rest.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/options/Rest.mjs
 /**
 * Used to annotate that the command supports any number of positional
 * arguments.
@@ -1597,8 +1584,7 @@ function Rest(opts = {}) {
 		}
 	});
 }
-//#endregion
-//#region ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/options/String.mjs
+// ../../node_modules/.pnpm/clipanion@4.0.0-rc.4_typanion@3.14.0/node_modules/clipanion/lib/advanced/options/String.mjs
 function StringOption(descriptor, initialValueBase, optsBase) {
 	const [initialValue, opts] = rerouteArguments(initialValueBase, optsBase !== null && optsBase !== void 0 ? optsBase : {});
 	const { arity = 1 } = opts;
@@ -1657,8 +1643,7 @@ function String$1(descriptor, ...args) {
 	if (typeof descriptor === `string`) return StringOption(descriptor, ...args);
 	else return StringPositional(descriptor);
 }
-//#endregion
-//#region ../../node_modules/.pnpm/typanion@3.14.0/node_modules/typanion/lib/index.js
+// ../../node_modules/.pnpm/typanion@3.14.0/node_modules/typanion/lib/index.js
 var require_lib = /* @__PURE__ */ __commonJSMin(((exports) => {
 	Object.defineProperty(exports, "__esModule", { value: true });
 	const simpleKeyRegExp = /^[a-zA-Z_][a-zA-Z0-9_]*$/;
@@ -2703,8 +2688,7 @@ var require_lib = /* @__PURE__ */ __commonJSMin(((exports) => {
 	exports.matchesRegExp = matchesRegExp;
 	exports.softAssert = softAssert;
 }));
-//#endregion
-//#region src/cli/RootCommand.ts
+// src/cli/RootCommand.ts
 var import_lib = require_lib();
 const isLogLevel = (0, import_lib.isEnum)([
 	"debug",
@@ -2780,8 +2764,7 @@ var RootCommand = class extends Command {
 		}
 	}
 };
-//#endregion
-//#region src/cli/runCLI.ts
+// src/cli/runCLI.ts
 async function runCLI() {
 	const cli = new Cli({
 		binaryLabel: meta.binaryLabel,
@@ -2802,10 +2785,8 @@ async function runCLI() {
 		process.exitCode = 1;
 	}
 }
-//#endregion
-//#region src/cli.ts
+// src/cli.ts
 runCLI();
-//#endregion
 export {};
 
 //# sourceMappingURL=cli.js.map

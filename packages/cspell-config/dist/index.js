@@ -1,5 +1,5 @@
 import cSpellSettings from "@cspell/cspell-bundled-dicts/cspell-default.config.js";
-//#region src/config.ts
+// src/config.ts
 const toArray = (value) => Array.isArray(value) ? value : value == null ? [] : [value];
 const defaultSettings = cSpellSettings;
 const excludeImport = /* @__PURE__ */ new Set([]);
@@ -88,14 +88,12 @@ const config = {
 	useGitignore: true,
 	words: []
 };
-//#endregion
-//#region src/meta.ts
+// src/meta.ts
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/cspell-config",
 	version: "3.32.0"
 });
-//#endregion
 export { config as default, meta };
 
 //# sourceMappingURL=index.js.map

@@ -1,6 +1,5 @@
-import { i as LogLevel, n as CommandContext, r as StdioOptions } from "./type-C2YifKOA.js";
+import { i as LogLevel, n as CommandContext, r as StdioOptions } from "./type-QluLeED6.js";
 import { Options as ZXDefaultOptions, ProcessOutput, ProcessPromise } from "zx";
-//#region src/zx/ZXOptions.d.ts
 interface ZXOptions extends ZXDefaultOptions {
   /**
    *
@@ -13,8 +12,6 @@ interface ZXOptions extends ZXDefaultOptions {
 declare const ZXOptions: {
   create(options: Partial<ZXOptions>): Partial<ZXOptions>;
 };
-//#endregion
-//#region src/zx/ZXShell.d.ts
 /**
  * Shell interface with some extensions
  */
@@ -28,14 +25,10 @@ interface ZXShell<S = false, R = S extends true ? ProcessOutput : ProcessPromise
     (opts: Partial<Omit<ZXOptions, 'sync'>>): ZXShell<true>;
   };
 }
-//#endregion
-//#region src/zx/defaults.d.ts
 /**
  * Default ZX options for the managed script environment.
  */
 export declare const defaults: Partial<ZXOptions>;
-//#endregion
-//#region src/zx/zx.d.ts
 export interface CreateZXOptions {
   /**
    * Working directory for spawned commands. Defaults to `MANAGED_SCRIPT_CWD`, then `process.cwd()`.
@@ -61,8 +54,6 @@ export interface CreateZXOptions {
  * @param options
  */
 export declare function zx(options?: CreateZXOptions): ZXShell;
-//#endregion
-//#region src/zx.d.ts
 /**
  * Default `$` preset for scripts launched by managed-script.
  * Reads `MANAGED_SCRIPT_*` from the process environment at import time.
@@ -74,6 +65,5 @@ export declare function zx(options?: CreateZXOptions): ZXShell;
  * ```
  */
 export declare const $: ZXShell;
-//#endregion
 export type { ZXDefaultOptions, ZXOptions, ZXShell };
 //# sourceMappingURL=zx.d.ts.map

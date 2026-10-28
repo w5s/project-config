@@ -1,4 +1,3 @@
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.4.0/node_modules/@cspell/cspell-types/dist/index-eOBgsj8d.d.mts
 //#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
@@ -217,8 +216,6 @@ type ParsedTag = boolean | undefined;
 interface ParsedTags {
   readonly [tag: string]: ParsedTag;
 }
-//#endregion
-//#region ../../node_modules/.pnpm/@cspell+cspell-types@10.4.0/node_modules/@cspell/cspell-types/dist/index.d.mts
 //#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
@@ -2091,16 +2088,11 @@ interface CompatibleEngineVersions {
    */
   [engine: string]: SemVersionPredicate | undefined;
 }
-//#endregion
-//#region src/config.d.ts
 declare const config: AdvancedCSpellSettings;
-//#endregion
-//#region src/meta.d.ts
 export declare const meta: Readonly<{
   buildNumber: number;
   name: string;
   version: string;
 }>;
-//#endregion
 export { config as default };
 //# sourceMappingURL=index.d.ts.map

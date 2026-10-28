@@ -1,4 +1,4 @@
-//#region src/ESLintConfig.ts
+// src/ESLintConfig.ts
 /**
 * Concat multiple flat configs into a single flat config array.
 *
@@ -138,21 +138,18 @@ const ESLintConfig = Object.freeze({
 	merge,
 	renameRules
 });
-//#endregion
-//#region src/interopDefault.ts
+// src/interopDefault.ts
 const getDefaultOrElse = (_) => _?.default ?? _;
 function interopDefault(m) {
 	return m != null && typeof m.then === "function" ? Promise.resolve(m).then(getDefaultOrElse) : getDefaultOrElse(m);
 }
-//#endregion
-//#region src/meta.ts
+// src/meta.ts
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/dev",
 	version: "7.0.0"
 });
-//#endregion
-//#region src/Project.ts
+// src/Project.ts
 const reExtension = /^\./;
 /**
 * Supported ECMA version
@@ -363,8 +360,7 @@ const Project = Object.freeze({
 	resourceExtensions,
 	sourceExtensions
 });
-//#endregion
-//#region src/ProjectScript.ts
+// src/ProjectScript.ts
 /**
 * Project common scripts
 */
@@ -386,7 +382,6 @@ const ProjectScript = {
 	Typecheck: "typecheck",
 	Validate: "validate"
 };
-//#endregion
 export { ESLintConfig, Project, ProjectScript, interopDefault, meta };
 
 //# sourceMappingURL=index.js.map

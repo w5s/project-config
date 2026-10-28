@@ -1,13 +1,12 @@
-import { t as isGit } from "../isGit-BoDdQAKZ.js";
+import { t as isGit } from "../isGit-DsCKZw03.js";
 import { $ } from "@w5s/managed-script/zx";
-//#region src/script/rescue.ts
+// src/script/rescue.ts
 const $noThrow = $({ nothrow: true });
 async function main() {
 	if (isGit) await $noThrow`git clean -fdx`;
 	await $noThrow`pnpm install`;
 }
 if (import.meta.main) await main();
-//#endregion
 export { main };
 
 //# sourceMappingURL=rescue.js.map

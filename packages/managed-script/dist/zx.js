@@ -1,7 +1,7 @@
-import { r as Stdio, t as defaultContext } from "./defaultContext-DhyKOWlR.js";
+import { r as Stdio, t as defaultContext } from "./defaultContext-CSKy4KuS.js";
 import { $ as $$1, chalk, log } from "zx";
 import { stripVTControlCharacters } from "node:util";
-//#region src/zx/ZXOptions.ts
+// src/zx/ZXOptions.ts
 /**
 * @namespace
 */
@@ -51,8 +51,7 @@ function autoColor(env, stream) {
 	const force = env["FORCE_COLOR"];
 	return force == null ? stream.isTTY === true : force !== "0" && force !== "false";
 }
-//#endregion
-//#region src/zx/zx.ts
+// src/zx/zx.ts
 /**
 * Creates a zx `$` preset configured from managed-script context and environment variables.
 *
@@ -70,14 +69,12 @@ function zx(options = {}) {
 		...options.stdio == null ? {} : { stdio: options.stdio }
 	}));
 }
-//#endregion
-//#region src/zx/defaults.ts
+// src/zx/defaults.ts
 /**
 * Default ZX options for the managed script environment.
 */
 const defaults = ZXOptions.create({});
-//#endregion
-//#region src/zx.ts
+// src/zx.ts
 /**
 * Default `$` preset for scripts launched by managed-script.
 * Reads `MANAGED_SCRIPT_*` from the process environment at import time.
@@ -89,7 +86,6 @@ const defaults = ZXOptions.create({});
 * ```
 */
 const $ = zx();
-//#endregion
 export { $, defaults, zx };
 
 //# sourceMappingURL=zx.js.map

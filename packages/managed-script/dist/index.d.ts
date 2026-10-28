@@ -1,5 +1,4 @@
-import { a as RunnerScript$1, c as UserConfig, n as CommandContext, o as ScriptDefinition, r as StdioOptions, s as ShellScript$1, t as ManagedScriptCommand } from "./type-C2YifKOA.js";
-//#region src/defineConfig.d.ts
+import { a as RunnerScript$1, c as UserConfig, n as CommandContext, o as ScriptDefinition, r as StdioOptions, s as ShellScript$1, t as ManagedScriptCommand } from "./type-QluLeED6.js";
 /**
  * Define the configuration for the managed script.
  *
@@ -12,8 +11,6 @@ import { a as RunnerScript$1, c as UserConfig, n as CommandContext, o as ScriptD
  * ```
  */
 export declare const defineConfig: import("c12").DefineConfig<UserConfig, import("c12").ConfigLayerMeta>;
-//#endregion
-//#region src/type/ResolvedConfig.d.ts
 export interface ResolvedConfig {
   readonly scripts: Record<string, ResolvedConfig.Script>;
 }
@@ -47,8 +44,6 @@ export declare namespace ResolvedConfig {
   }
   export {};
 }
-//#endregion
-//#region src/ManagedScript/execute.d.ts
 declare const handlers: {
   RunScript: (command: ManagedScriptCommand.RunScript) => Promise<number>;
 };
@@ -68,19 +63,13 @@ type ExecuteCommandParameters<T extends ManagedScriptCommand> = Omit<Parameters<
  * @param command
  */
 declare function execute<T extends ManagedScriptCommand>(command: ExecuteCommand<T>): Promise<Awaited<ReturnType<typeof handlers[T['_']]>>>;
-//#endregion
-//#region src/ManagedScript/runScript.d.ts
 declare function runScript(options: ExecuteCommandParameters<ManagedScriptCommand.RunScript>): Promise<number>;
-//#endregion
-//#region src/ManagedScript.d.ts
 /**
  * @namespace
  */
 export declare const ManagedScript: Readonly<{
   runScript: typeof runScript;
 }>;
-//#endregion
-//#region src/ManagedScriptEnv.d.ts
 /**
  * Enum for managed script environment variables.
  *
@@ -113,8 +102,6 @@ export declare const ManagedScriptEnv: Readonly<{
   Name: "MANAGED_SCRIPT_NAME";
 }>;
 export type ManagedScriptEnv = typeof ManagedScriptEnv[keyof typeof ManagedScriptEnv];
-//#endregion
-//#region src/mergeConfig.d.ts
 /**
  * Merge two managed-script configs using the same heuristic as Vite and Vitest:
  * later values win, plain objects merge recursively, and arrays concatenate.
@@ -130,8 +117,6 @@ export type ManagedScriptEnv = typeof ManagedScriptEnv[keyof typeof ManagedScrip
  * ```
  */
 export declare function mergeConfig(defaults: UserConfig, overrides: UserConfig): UserConfig;
-//#endregion
-//#region src/meta.d.ts
 export declare const meta: Readonly<{
   binaryLabel: "W5S Managed Script";
   binaryName: "managed-script";
@@ -140,6 +125,5 @@ export declare const meta: Readonly<{
   name: string;
   version: string;
 }>;
-//#endregion
 export { CommandContext, ManagedScriptCommand, RunnerScript$1 as RunnerScript, ScriptDefinition, ShellScript$1 as ShellScript, type StdioOptions, UserConfig };
 //# sourceMappingURL=index.d.ts.map
