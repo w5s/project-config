@@ -29,6 +29,17 @@ interface ZXShell<S = false, R = S extends true ? ProcessOutput : ProcessPromise
  * Default ZX options for the managed script environment.
  */
 export declare const defaults: Partial<ZXOptions>;
+/**
+ * Determines if the current environment is a CI (Continuous Integration) environment.
+ * Checks the `CI` and `CONTINUOUS_INTEGRATION` environment variables to determine if the current environment is a CI environment.
+ *
+ * @example
+ * ```ts
+ * const ci = isCI();
+ * ```
+ * @returns `true` if the current environment is a CI environment, otherwise `false`
+ */
+export declare const isCI: () => boolean;
 export interface CreateZXOptions {
   /**
    * Working directory for spawned commands. Defaults to `MANAGED_SCRIPT_CWD`, then `process.cwd()`.

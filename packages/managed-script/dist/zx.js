@@ -1,6 +1,7 @@
 import { r as Stdio, t as defaultContext } from "./defaultContext-CSKy4KuS.js";
 import { $ as $$1, chalk, log } from "zx";
 import { stripVTControlCharacters } from "node:util";
+import { bool, cleanEnv } from "envalid";
 // src/zx/ZXOptions.ts
 /**
 * @namespace
@@ -74,6 +75,31 @@ function zx(options = {}) {
 * Default ZX options for the managed script environment.
 */
 const defaults = ZXOptions.create({});
+// src/internal/lazy.ts
+function lazy(fn) {
+	let cached;
+	return () => {
+		cached ??= fn();
+		return cached;
+	};
+}
+// src/zx/isCI.ts
+const envSchema = {
+	CI: bool({ default: false }),
+	CONTINUOUS_INTEGRATION: bool({ default: false })
+};
+const getEnvClean = lazy(() => cleanEnv(process.env, envSchema, { reporter: null }));
+/**
+* Determines if the current environment is a CI (Continuous Integration) environment.
+* Checks the `CI` and `CONTINUOUS_INTEGRATION` environment variables to determine if the current environment is a CI environment.
+*
+* @example
+* ```ts
+* const ci = isCI();
+* ```
+* @returns `true` if the current environment is a CI environment, otherwise `false`
+*/
+const isCI = lazy(() => getEnvClean().CI || getEnvClean().CONTINUOUS_INTEGRATION);
 // src/zx.ts
 /**
 * Default `$` preset for scripts launched by managed-script.
@@ -86,6 +112,6 @@ const defaults = ZXOptions.create({});
 * ```
 */
 const $ = zx();
-export { $, defaults, zx };
+export { $, defaults, isCI, zx };
 
 //# sourceMappingURL=zx.js.map

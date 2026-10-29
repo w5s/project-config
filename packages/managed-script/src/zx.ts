@@ -3,6 +3,7 @@ import type { ZXShell } from './zx/ZXShell.js';
 import { zx } from './zx/zx.js';
 
 export * from './zx/defaults.js';
+export * from './zx/isCI.js';
 export * from './zx/zx.js';
 export type * from './zx/ZXOptions.js';
 export type * from './zx/ZXShell.js';
