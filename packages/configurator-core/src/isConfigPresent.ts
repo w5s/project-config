@@ -2,8 +2,8 @@ import { readFileSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-import { __exists } from './__exists.js';
-import { __existsSync } from './__existsSync.js';
+import { fileExists } from './internal/fileExists.js';
+import { fileExistsSync } from './internal/fileExistsSync.js';
 
 const defaultExtensions: Array<string> = ['.json', '.yaml', '.yml', '.js', '.cjs', '.mjs', '.ts', '.cts', '.mts'];
 
@@ -52,12 +52,12 @@ export function isConfigPresentSync(options: IsConfigPresentOptions): boolean {
   const { candidatePaths, packageConfig, packageJsonPath } = toCandidates(options);
 
   for (const candidatePath of candidatePaths) {
-    if (__existsSync(candidatePath)) {
+    if (fileExistsSync(candidatePath)) {
       return true;
     }
   }
 
-  if (__existsSync(packageJsonPath)) {
+  if (fileExistsSync(packageJsonPath)) {
     try {
       return hasPackageConfigKey(readFileSync(packageJsonPath, 'utf8'), packageConfig);
     } catch {
@@ -69,13 +69,13 @@ export function isConfigPresentSync(options: IsConfigPresentOptions): boolean {
 }
 
 async function hasAnyFile(paths: Array<string>): Promise<boolean> {
-  const results = await Promise.all(paths.map((candidatePath) => __exists(candidatePath)));
+  const results = await Promise.all(paths.map((candidatePath) => fileExists(candidatePath)));
 
   return results.some(Boolean);
 }
 
 async function hasPackageConfigFile(packageJsonPath: string, packageConfig: string): Promise<boolean> {
-  if (!(await __exists(packageJsonPath))) {
+  if (!(await fileExists(packageJsonPath))) {
     return false;
   }
 

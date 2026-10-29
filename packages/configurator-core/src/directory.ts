@@ -3,9 +3,9 @@ import { chmod, mkdir, rm } from 'node:fs/promises';
 
 import type { FileMode } from './FileMode.js';
 
-import { __exists } from './__exists.js';
-import { __existsSync } from './__existsSync.js';
 import { __toMode } from './__toMode.js';
+import { fileExists } from './internal/fileExists.js';
+import { fileExistsSync } from './internal/fileExistsSync.js';
 
 export interface DirectoryOptions {
   /**
@@ -44,7 +44,7 @@ export interface DirectoryOptions {
  */
 export async function directory(options: DirectoryOptions): Promise<void> {
   const { mode, path, state } = options;
-  const isPresent = await __exists(path);
+  const isPresent = await fileExists(path);
   if (state === 'present') {
     const newMode = __toMode(mode);
     if (!isPresent) {
@@ -78,7 +78,7 @@ export async function directory(options: DirectoryOptions): Promise<void> {
  */
 export function directorySync(options: DirectoryOptions): void {
   const { mode, path, state } = options;
-  const isPresent = __existsSync(path);
+  const isPresent = fileExistsSync(path);
   if (state === 'present') {
     const newMode = __toMode(mode);
     if (!isPresent) {
