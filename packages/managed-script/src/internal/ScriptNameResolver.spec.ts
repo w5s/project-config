@@ -12,22 +12,17 @@ describe(ScriptNameResolver.resolve, () => {
     ).toBe('build');
   });
 
-  it('falls back to MANAGED_SCRIPT_NAME when no CLI argument is given', () => {
+  it('falls back to npm_lifecycle_event when no CLI argument is given, ignoring MANAGED_SCRIPT_NAME', () => {
     expect(
       ScriptNameResolver.resolve({
         env: { MANAGED_SCRIPT_NAME: 'from-env', npm_lifecycle_event: 'from-npm' },
         scriptName: undefined,
       }),
-    ).toBe('from-env');
+    ).toBe('from-npm');
   });
 
-  it('falls back to npm_lifecycle_event when neither CLI argument nor MANAGED_SCRIPT_NAME is set', () => {
-    expect(
-      ScriptNameResolver.resolve({
-        env: { npm_lifecycle_event: 'from-npm' },
-        scriptName: undefined,
-      }),
-    ).toBe('from-npm');
+  it('does not read MANAGED_SCRIPT_NAME', () => {
+    expect(ScriptNameResolver.resolve({ env: { MANAGED_SCRIPT_NAME: 'from-env' }, scriptName: undefined })).toBeUndefined();
   });
 
   it('returns undefined when nothing resolves', () => {

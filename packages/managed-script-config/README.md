@@ -29,6 +29,8 @@ In your `managed-script.config.json` (or the `"managed-script"` field of `packag
 
 This provides the following scripts:
 
+- `prepare:lefthook`: installs the lefthook git hooks (skipped in CI or outside a git repository).
+- `prepare:gitmodules`: runs `git submodule sync --recursive` then `git submodule update --init --recursive`, only when a `.gitmodules` file exists at the repository root.
 - `rescue`: `git clean -fdx` then `pnpm install`. The implementation lives in [`rescue.ts`](./src/rescue.ts), invoked through the `MANAGED_SCRIPT_CONFIG_DIR` environment variable so it resolves regardless of the consuming project's working directory.
 
 ## License

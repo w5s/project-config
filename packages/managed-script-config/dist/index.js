@@ -3,6 +3,14 @@ import path from "node:path";
 // src/config.ts
 const configDir = new URL(".", import.meta.url).pathname;
 const config = defineConfig({ scripts: {
+	"prepare": {
+		args: [path.join(configDir, "script", "prepare.js")],
+		runner: "node"
+	},
+	"prepare:gitmodules": {
+		args: [path.join(configDir, "script", "prepare", "gitmodules.js")],
+		runner: "node"
+	},
 	"prepare:lefthook": {
 		args: [path.join(configDir, "script", "prepare", "lefthook.js")],
 		runner: "node"

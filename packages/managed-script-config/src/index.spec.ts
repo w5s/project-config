@@ -16,6 +16,10 @@ describe('index', () => {
   it('should export direct node runners', () => {
     expect(Module.default).toMatchObject({
       scripts: {
+        'prepare:gitmodules': {
+          args: [expect.stringContaining(path.join('script', 'prepare', 'gitmodules.js'))],
+          runner: 'node',
+        },
         'prepare:lefthook': {
           args: [expect.stringContaining(path.join('script', 'prepare', 'lefthook.js'))],
           runner: 'node',

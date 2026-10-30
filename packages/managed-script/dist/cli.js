@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { n as meta, t as ManagedScript } from "./ManagedScript-CxUWpNLn.js";
+import { n as meta, t as ManagedScript } from "./ManagedScript-BDFJYUTd.js";
 import { createRequire } from "node:module";
 import tty from "tty";
 // \0rolldown/runtime.js
@@ -2706,7 +2706,7 @@ var RootCommand = class extends Command {
 	static paths = [Command.Default];
 	static usage = Command.Usage({
 		description: "Run a script from the managed-script configuration.",
-		details: "Resolves the script name from the first positional argument, MANAGED_SCRIPT_NAME or npm_lifecycle_event, then executes it. Use --dry-run,-n to print the resolved command without executing it. Use --loglevel, --silent,-s or --verbose,-v to control status messages, forwarded to the script as MANAGED_SCRIPT_LOGLEVEL. Use --color[=WHEN] or --no-color to control ANSI colors (WHEN: auto, always, never)."
+		details: "Resolves the script name from the first positional argument or npm_lifecycle_event, then executes it. Use --dry-run,-n to print the resolved command without executing it. Use --loglevel, --silent,-s or --verbose,-v to control status messages, forwarded to the script as MANAGED_SCRIPT_LOGLEVEL. Use --color[=WHEN] or --no-color to control ANSI colors (WHEN: auto, always, never)."
 	});
 	color = String$1("--color", {
 		description: "Control ANSI colors (auto, always, never). Bare --color means always.",

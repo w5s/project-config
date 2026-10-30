@@ -139,10 +139,13 @@ function quoteShell(value) {
 /**
 * Resolves the script name to run.
 *
-* Priority: first positional CLI argument > `MANAGED_SCRIPT_NAME` env var > `npm_lifecycle_event` env var.
+* Priority: first positional CLI argument > `npm_lifecycle_event` env var.
+*
+* `MANAGED_SCRIPT_NAME` is deliberately not read: it is only provided to the spawned script, so that
+* an inherited value can never shadow the name of a nested invocation.
 */
 const ScriptNameResolver = { resolve({ env, scriptName }) {
-	return scriptName ?? env[ManagedScriptEnv.Name] ?? env["npm_lifecycle_event"];
+	return scriptName ?? env["npm_lifecycle_event"];
 } };
 // src/ManagedScript/resolveScripts.ts
 function resolveScripts(loaded) {
@@ -207,7 +210,7 @@ const handlers = { RunScript: async (command) => {
 		env,
 		scriptName
 	});
-	if (name == null) throw new Error("Unable to resolve the script name. Pass it as the first argument, set the MANAGED_SCRIPT_NAME environment variable, or run through an npm/pnpm script (npm_lifecycle_event).");
+	if (name == null) throw new Error("Unable to resolve the script name. Pass it as the first argument or run through an npm/pnpm script (npm_lifecycle_event).");
 	const script = scripts[name];
 	if (script == null) {
 		const available = Object.keys(scripts);
@@ -259,4 +262,4 @@ async function runScript(options) {
 const ManagedScript = Object.freeze({ runScript });
 export { meta as n, ManagedScript as t };
 
-//# sourceMappingURL=ManagedScript-CxUWpNLn.js.map
+//# sourceMappingURL=ManagedScript-BDFJYUTd.js.map

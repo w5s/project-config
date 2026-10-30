@@ -13,7 +13,7 @@ export class RootCommand extends Command {
   static override paths = [Command.Default];
   static override usage = Command.Usage({
     description: 'Run a script from the managed-script configuration.',
-    details: 'Resolves the script name from the first positional argument, MANAGED_SCRIPT_NAME or npm_lifecycle_event, then executes it. Use --dry-run,-n to print the resolved command without executing it. Use --loglevel, --silent,-s or --verbose,-v to control status messages, forwarded to the script as MANAGED_SCRIPT_LOGLEVEL. Use --color[=WHEN] or --no-color to control ANSI colors (WHEN: auto, always, never).',
+    details: 'Resolves the script name from the first positional argument or npm_lifecycle_event, then executes it. Use --dry-run,-n to print the resolved command without executing it. Use --loglevel, --silent,-s or --verbose,-v to control status messages, forwarded to the script as MANAGED_SCRIPT_LOGLEVEL. Use --color[=WHEN] or --no-color to control ANSI colors (WHEN: auto, always, never).',
   });
 
   readonly color = Option.String('--color', {
