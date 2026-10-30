@@ -3925,9 +3925,9 @@ type MarkdownNoUnusedDefinitions = [] | [{
 type MarkdownTableColumnCount = [] | [{
   checkMissingCells?: boolean;
 }];
-export declare function markdown(options?: markdown.Options): Promise<[Config, Config, Config]>;
+export declare function markdown(options?: markdown.Options): Promise<[Config, Config, Config, Config]>;
 export declare namespace markdown {
-  interface Options extends PluginOptionsBase<Rules> {
+  interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {
     /**
      * Default to 'markdown/gfm' (Github Flavored Markdown)
      */
@@ -3941,7 +3941,7 @@ export declare namespace markdown {
       frontmatter?: 'toml' | 'yaml';
     };
   }
-  type Rules = RuleOptions$11;
+  type Rules = RuleOptions$11 & RuleOptions$13;
 }
 declare module 'eslint' {
   namespace Linter {

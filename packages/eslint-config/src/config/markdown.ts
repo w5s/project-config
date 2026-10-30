@@ -78,6 +78,8 @@ export async function markdown(options: markdown.Options = {}) {
             'no-irregular-whitespace': 'off',
             'no-unused-vars': 'off',
             'spaced-comment': 'off',
+            'style/eol-last': 'off',
+            'style/no-multiple-empty-lines': 'off',
             ...schemaConfig.rules,
             ...schemaRules,
           }

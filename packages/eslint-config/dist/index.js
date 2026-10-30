@@ -4,6 +4,7 @@ import eslintConfig from "@eslint/js";
 import globals from "globals";
 import { eslintIgnores } from "@w5s/eslint-config-ignore";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
+import * as yamlParser from "yaml-eslint-parser";
 import tsPlugin from "@typescript-eslint/eslint-plugin";
 // src/glob.ts
 const sourceGlob = Project.glob({
@@ -1016,28 +1017,53 @@ const defaultFiles$8 = [Project.glob({
 })];
 async function markdown(options = {}) {
 	const [markdownPlugin] = await Promise.all([interopDefault(import("@eslint/markdown"))]);
-	const { files, language = "markdown/gfm", languageOptions, namespace, recommended, rules = {}, stylistic } = defaultPluginOptions(options);
+	const { files, language = "markdown/gfm", languageOptions, namespace, recommended, rules: allRules = {}, stylistic } = defaultPluginOptions(options);
+	const { rules, schemaRules } = splitSchemaRules(allRules);
 	const resolvedFiles = withDefaultFiles(files, defaultFiles$8);
+	const schemaConfig = await withSchema(options.schema);
+	const resolvedLanguageOptions = {
+		frontmatter: "yaml",
+		...languageOptions
+	};
+	const frontmatterSchemaEnabled = Object.keys(schemaConfig.rules).length > 0 && resolvedLanguageOptions.frontmatter === "yaml";
 	return [
 		{
 			name: `${namespace}/markdown/setup`,
-			plugins: { markdown: markdownPlugin }
+			plugins: {
+				markdown: markdownPlugin,
+				...schemaConfig.plugins
+			}
 		},
 		{
 			files: resolvedFiles,
 			language,
-			languageOptions: {
-				frontmatter: "yaml",
-				...languageOptions
-			},
+			languageOptions: resolvedLanguageOptions,
 			name: `${namespace}/markdown/rules`,
-			processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
+			processor: mergeProcessors([
+				markdownPlugin.processors.markdown,
+				...frontmatterSchemaEnabled ? [schemaConfig.plugins.schema.processors.frontmatter] : [],
+				processorPassThrough
+			]),
 			rules: {
 				...recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {},
 				...recommended ? { "markdown/no-multiple-h1": ["error", { frontmatterTitle: "" }] } : {},
 				...stylistic.enabled ? {} : {},
 				...rules
 			}
+		},
+		{
+			files: resolvedFiles.map((f) => `${f}/**/*.frontmatter.yaml`),
+			languageOptions: { parser: yamlParser },
+			name: `${namespace}/markdown/frontmatter`,
+			rules: frontmatterSchemaEnabled ? {
+				"no-irregular-whitespace": "off",
+				"no-unused-vars": "off",
+				"spaced-comment": "off",
+				"style/eol-last": "off",
+				"style/no-multiple-empty-lines": "off",
+				...schemaConfig.rules,
+				...schemaRules
+			} : {}
 		},
 		{
 			files: resolvedFiles.map((f) => `${f}/${sourceGlob}`),
@@ -1070,6 +1096,15 @@ async function markdown(options = {}) {
 			}
 		}
 	];
+}
+function splitSchemaRules(allRules) {
+	const rules = {};
+	const schemaRules = {};
+	for (const [name, value] of Object.entries(allRules)) (name.startsWith("schema/") ? schemaRules : rules)[name] = value;
+	return {
+		rules,
+		schemaRules
+	};
 }
 // src/config/next.ts
 const defaultFiles$7 = [sourceGlob];
