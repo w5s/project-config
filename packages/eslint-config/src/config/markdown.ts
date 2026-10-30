@@ -1,13 +1,16 @@
 import { interopDefault, Project } from '@w5s/dev';
 import { mergeProcessors, processorPassThrough } from 'eslint-merge-processors';
+import * as yamlParser from 'yaml-eslint-parser';
 
 import type { RuleOptions } from '../typegen/markdown.js';
+import type { RuleOptions as SchemaRuleOptions } from '../typegen/schema.js';
 
 import { sourceGlob } from '../glob.js';
 import { defaultPluginOptions } from '../internal/defaultOptions.js';
 import { withDefaultFiles } from '../internal/withDefaultFiles.js';
+import { withSchema } from '../internal/withSchema.js';
 import { looseRules } from '../rules/looseRules.js';
-import { type Config, type PluginOptionsBase } from '../type.js';
+import { type Config, type PluginOptionsBase, type PluginOptionsSchema } from '../type.js';
 
 const defaultFiles = [Project.glob({ fileExtensions: [Project.queryExtensions(['markdown'])], nested: true })];
 
@@ -21,28 +24,38 @@ export async function markdown(options: markdown.Options = {}) {
     languageOptions,
     namespace,
     recommended,
-    rules = {},
+    rules: allRules = {},
     stylistic,
   } = defaultPluginOptions(options);
+  // Schema rules target the virtual frontmatter file, not the markdown file
+  const { rules, schemaRules } = splitSchemaRules(allRules);
 
   const resolvedFiles = withDefaultFiles(files, defaultFiles);
+  const schemaConfig = await withSchema(options.schema);
+  const resolvedLanguageOptions = { frontmatter: 'yaml' as 'toml' | 'yaml' | undefined, ...languageOptions };
+  // The schema validator only extracts YAML frontmatter
+  const frontmatterSchemaEnabled =
+    Object.keys(schemaConfig.rules).length > 0 && resolvedLanguageOptions.frontmatter === 'yaml';
+
   return [
     {
       name: `${namespace}/markdown/setup`,
       plugins: {
         markdown: markdownPlugin,
+        ...schemaConfig.plugins,
       },
     },
     {
       files: resolvedFiles,
       language,
-      languageOptions: {
-        frontmatter: 'yaml',
-        ...languageOptions,
-      },
+      languageOptions: resolvedLanguageOptions,
       name: `${namespace}/markdown/rules`,
 
-      processor: mergeProcessors([markdownPlugin.processors.markdown, processorPassThrough]),
+      processor: mergeProcessors([
+        markdownPlugin.processors.markdown,
+        ...(frontmatterSchemaEnabled ? [schemaConfig.plugins.schema.processors.frontmatter] : []),
+        processorPassThrough,
+      ]),
       rules: {
         ...(recommended ? markdownPlugin.configs.recommended.at(0)?.rules : {}),
         ...(recommended
@@ -53,6 +66,22 @@ export async function markdown(options: markdown.Options = {}) {
         ...(stylistic.enabled ? {} : {}),
         ...rules,
       },
+    },
+    {
+      files: resolvedFiles.map((f) => `${f}/**/*.frontmatter.yaml`),
+      languageOptions: {
+        parser: yamlParser,
+      },
+      name: `${namespace}/markdown/frontmatter`,
+      rules: frontmatterSchemaEnabled
+        ? {
+            'no-irregular-whitespace': 'off',
+            'no-unused-vars': 'off',
+            'spaced-comment': 'off',
+            ...schemaConfig.rules,
+            ...schemaRules,
+          }
+        : {},
     },
     {
       files: resolvedFiles.map((f) => `${f}/${sourceGlob}`),
@@ -86,11 +115,22 @@ export async function markdown(options: markdown.Options = {}) {
         'unused-imports/no-unused-vars': 'off',
       },
     },
-  ] as [Config, Config, Config] satisfies Array<Config>;
+  ] as [Config, Config, Config, Config] satisfies Array<Config>;
+}
+
+function splitSchemaRules<R extends object>(allRules: R) {
+  const rules: Record<string, unknown> = {};
+  const schemaRules: Record<string, unknown> = {};
+
+  for (const [name, value] of Object.entries(allRules)) {
+    (name.startsWith('schema/') ? schemaRules : rules)[name] = value;
+  }
+
+  return { rules: rules as Partial<R>, schemaRules: schemaRules as Partial<R> };
 }
 
 export namespace markdown {
-  export interface Options extends PluginOptionsBase<Rules> {
+  export interface Options extends PluginOptionsBase<Rules>, PluginOptionsSchema {
     /**
      * Default to 'markdown/gfm' (Github Flavored Markdown)
      */
@@ -106,5 +146,5 @@ export namespace markdown {
     };
   }
 
-  export type Rules = RuleOptions;
+  export type Rules = RuleOptions & SchemaRuleOptions;
 }

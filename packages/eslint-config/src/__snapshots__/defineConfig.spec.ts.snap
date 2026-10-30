@@ -40,6 +40,7 @@ exports[`defineConfig > matches the snapshot of config names in default mode 1`]
   "w5s/toml/rules",
   "w5s/markdown/setup",
   "w5s/markdown/rules",
+  "w5s/markdown/frontmatter",
   "w5s/markdown/embed-code",
   "w5s/yml/setup",
   "w5s/yml/rules",
