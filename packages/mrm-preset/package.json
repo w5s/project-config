@@ -43,7 +43,7 @@
     "@w5s/configurator-core": "workspace:^",
     "@w5s/dev": "workspace:^",
     "debug": "^4.3.3",
-    "glob": "^13.0.0",
+    "glob": "^14.0.0",
     "mrm-core": "^7.0.0",
     "semver-intersect": "^1.4.0",
     "sync-directory": "^6.0.0"
