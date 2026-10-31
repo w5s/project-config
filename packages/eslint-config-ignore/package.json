@@ -54,7 +54,7 @@
   },
   "dependencies": {
     "find-up": "^8.0.0",
-    "minimatch": "^10.2.0",
+    "minimatch": "^11.0.0",
     "parse-gitignore": "^2.0.0"
   },
   "devDependencies": {
