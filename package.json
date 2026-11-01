@@ -41,7 +41,7 @@
     "spellcheck:root": "cspell --no-progress '**' --exclude='packages/*/**'",
     "test": "turbo run test test:root",
     "typecheck": "turbo run typecheck typecheck:root",
-    "validate": "turbo run build lint test typecheck spellcheck"
+    "validate": "turbo run build build:root lint lint:root test test:root typecheck spellcheck"
   },
   "managed-script": {
     "extends": ["@w5s/managed-script-config"]
