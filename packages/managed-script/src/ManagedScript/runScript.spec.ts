@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ConfigLoader } from '../internal/ConfigLoader.js';
 import { Executor } from '../internal/Executor.js';
+import { PackageScriptOverride } from '../internal/PackageScriptOverride.js';
 import { runScript } from './runScript.js';
 
 vi.mock('../internal/ConfigLoader.js', () => ({
@@ -12,6 +13,10 @@ vi.mock('../internal/ConfigLoader.js', () => ({
 }));
 vi.mock('../internal/Executor.js', () => ({
   Executor: { run: vi.fn() },
+}));
+
+vi.mock('../internal/PackageScriptOverride.js', () => ({
+  PackageScriptOverride: { find: vi.fn() },
 }));
 
 describe(runScript, () => {
@@ -258,5 +263,87 @@ describe(runScript, () => {
     })).rejects.toThrow(
       /No script named "test".*Available scripts: build/,
     );
+  });
+
+  describe('package.json override (name!)', () => {
+    const loaded: Awaited<ReturnType<typeof ConfigLoader.load>> = {
+      config: { scripts: { build: 'my-command' } },
+      configFile: '/cwd/config/managed-script.config',
+      layers: [{ config: { scripts: { build: 'my-command' } } }],
+    };
+
+    it('runs the override through npm instead of the managed script', async () => {
+      vi.mocked(ConfigLoader.load).mockResolvedValue(loaded);
+      vi.mocked(PackageScriptOverride.find).mockResolvedValueOnce('build!');
+      vi.mocked(Executor.run).mockResolvedValue(0);
+
+      const exitCode = await runScript({
+        context: { cwd: '/cwd', env: {} },
+        parameters: { scriptArgs: ['--watch'], scriptName: 'build' },
+      });
+
+      expect(PackageScriptOverride.find).toHaveBeenCalledWith({ cwd: '/cwd', name: 'build' });
+      expect(Executor.run).toHaveBeenCalledWith({
+        args: ['run', 'build!', '--', '--watch'],
+        cwd: '/cwd',
+        env: {
+          MANAGED_SCRIPT_COLOR: 'auto',
+          MANAGED_SCRIPT_CWD: '/cwd',
+          MANAGED_SCRIPT_LOGLEVEL: 'info',
+          MANAGED_SCRIPT_NAME: 'build',
+        },
+        runner: 'npm',
+      });
+      expect(exitCode).toBe(0);
+    });
+
+    it('omits the argument separator without script arguments', async () => {
+      vi.mocked(ConfigLoader.load).mockResolvedValue(loaded);
+      vi.mocked(PackageScriptOverride.find).mockResolvedValueOnce('build!');
+      vi.mocked(Executor.run).mockResolvedValue(0);
+
+      await runScript({ context: { cwd: '/cwd', env: {} }, parameters: { scriptName: 'build' } });
+
+      expect(Executor.run).toHaveBeenCalledWith(expect.objectContaining({ args: ['run', 'build!'], runner: 'npm' }));
+    });
+
+    it('overrides a script that is not in the managed configuration', async () => {
+      vi.mocked(ConfigLoader.load).mockResolvedValue({ config: {}, configFile: undefined, layers: [] });
+      vi.mocked(PackageScriptOverride.find).mockResolvedValueOnce('other!');
+      vi.mocked(Executor.run).mockResolvedValue(0);
+
+      await expect(runScript({ context: { cwd: '/cwd', env: {} }, parameters: { scriptName: 'other' } })).resolves.toBe(0);
+      expect(Executor.run).toHaveBeenCalledWith(expect.objectContaining({ args: ['run', 'other!'], runner: 'npm' }));
+    });
+
+    it('prints the npm command and skips execution when dryRun is set', async () => {
+      vi.mocked(ConfigLoader.load).mockResolvedValue(loaded);
+      vi.mocked(PackageScriptOverride.find).mockResolvedValueOnce('build!');
+      const chunks: Array<string> = [];
+      const stdout = new Writable({
+        write(chunk: Buffer, _encoding, callback) {
+          chunks.push(chunk.toString());
+          callback();
+        },
+      });
+
+      await runScript({
+        context: { cwd: '/cwd', dryRun: true, env: {}, stdio: ['inherit', stdout, 'inherit'] },
+        parameters: { scriptName: 'build' },
+      });
+
+      expect(chunks.join('')).toBe("$ npm run 'build!'\n");
+      expect(Executor.run).not.toHaveBeenCalled();
+    });
+
+    it('throws when the override exits with a non-zero code', async () => {
+      vi.mocked(ConfigLoader.load).mockResolvedValue(loaded);
+      vi.mocked(PackageScriptOverride.find).mockResolvedValueOnce('build!');
+      vi.mocked(Executor.run).mockResolvedValue(2);
+
+      await expect(runScript({ context: { cwd: '/cwd', env: {} }, parameters: { scriptName: 'build' } })).rejects.toThrow(
+        'Script "build!" exited with code 2.',
+      );
+    });
   });
 });

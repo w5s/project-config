@@ -86,6 +86,21 @@ Keep a shell command string when the script uses pipes, `&&`, or other shell syn
 
 ## Miscellaneous
 
+### Overriding a managed script
+
+Define a script named like the managed one with a trailing `!` in the local `package.json` to replace its implementation:
+
+```jsonc
+{
+  "scripts": {
+    "build": "managed-script",
+    "build!": "tsc -p tsconfig.custom.json" // used instead of the managed "build"
+  }
+}
+```
+
+The override is executed with `npm run "build!"` (arguments are forwarded after `--`), so it behaves like any native npm script.
+
 ### Working directory and config origins
 
 Use `--cwd` to choose the directory used to resolve configuration and run the selected script. The equivalent environment variable is `MANAGED_SCRIPT_CWD`; the CLI option takes precedence over the environment variable, which takes precedence over the current process directory.

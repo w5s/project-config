@@ -1,10 +1,12 @@
 import path from 'node:path';
 
 import type { ManagedScriptCommand } from '../type.js';
+import type { ResolvedConfig } from '../type/ResolvedConfig.js';
 
 import { ConfigLoader } from '../internal/ConfigLoader.js';
 import { Executor } from '../internal/Executor.js';
 import { Logger } from '../internal/Logger.js';
+import { PackageScriptOverride } from '../internal/PackageScriptOverride.js';
 import { ScriptInvocation } from '../internal/ScriptInvocation.js';
 import { ScriptNameResolver } from '../internal/ScriptNameResolver.js';
 import { Stdio } from '../internal/Stdio.js';
@@ -32,21 +34,40 @@ const handlers = {
       );
     }
 
-    const script = scripts[name];
-    if (script == null) {
-      const available = Object.keys(scripts);
-      throw new Error(
-        `No script named "${name}" found in the configuration.${
-          available.length > 0 ? ` Available scripts: ${available.join(', ')}.` : ' No scripts are configured.'
-        }`,
-      );
+    const overrideName = await PackageScriptOverride.find({ cwd, name });
+    let invocation: ScriptInvocation;
+    let scriptLabel: string;
+    let origin: ResolvedConfig.Script;
+    if (overrideName == null) {
+      const script = scripts[name];
+      if (script == null) {
+        const available = Object.keys(scripts);
+        throw new Error(
+          `No script named "${name}" found in the configuration.${
+            available.length > 0 ? ` Available scripts: ${available.join(', ')}.` : ' No scripts are configured.'
+          }`,
+        );
+      }
+
+      invocation = ScriptInvocation.create(script, scriptArgs);
+      scriptLabel = name;
+      origin = script;
+      // relative to cwd
+      // eslint-disable-next-line ts/no-non-null-assertion
+      logger.debug(`Script found in configuration: ${path.relative(cwd, script.configFile!)}`);
+    } else {
+      // Run through npm so the override behaves exactly like a regular package.json script
+      origin = {
+        args: ['run', overrideName, ...(scriptArgs.length > 0 ? ['--'] : [])],
+        configDir: undefined,
+        configFile: undefined,
+        runner: 'npm',
+      };
+      invocation = ScriptInvocation.create(origin, scriptArgs);
+      scriptLabel = overrideName;
+      logger.debug(`Script "${name}" overridden by package.json script "${overrideName}"`);
     }
 
-    const invocation = ScriptInvocation.create(script, scriptArgs);
-
-    // relative to cwd
-    // eslint-disable-next-line ts/no-non-null-assertion
-    logger.debug(`Script found in configuration: ${path.relative(cwd, script.configFile!)}`);
     stdout.write(`$ ${ScriptInvocation.format(invocation)}\n`);
     if (dryRun) {
       return 0;
@@ -55,8 +76,8 @@ const handlers = {
     // Prepare the environment variables for the script execution.
     const scriptEnv = {
       [ManagedScriptEnv.Color]: color,
-      [ManagedScriptEnv.ConfigDir]: script.configDir,
-      [ManagedScriptEnv.ConfigFile]: script.configFile,
+      [ManagedScriptEnv.ConfigDir]: origin.configDir,
+      [ManagedScriptEnv.ConfigFile]: origin.configFile,
       [ManagedScriptEnv.Cwd]: cwd,
       [ManagedScriptEnv.LogLevel]: logLevel,
       [ManagedScriptEnv.Name]: name,
@@ -64,7 +85,7 @@ const handlers = {
     const exitCode = await Executor.run({ ...invocation.target, cwd, env: scriptEnv });
 
     if (exitCode !== 0) {
-      throw new Error(`Script "${name}" exited with code ${exitCode}.`);
+      throw new Error(`Script "${scriptLabel}" exited with code ${exitCode}.`);
     }
 
     return exitCode;

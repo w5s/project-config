@@ -2,6 +2,7 @@ import { n as ManagedScriptEnv, r as Stdio, t as defaultContext } from "./defaul
 import { loadConfig } from "c12";
 import path from "node:path";
 import { spawn } from "node:child_process";
+import { readFile } from "node:fs/promises";
 import path$1 from "node:path/win32";
 // src/meta.ts
 const meta = Object.freeze({
@@ -99,6 +100,36 @@ const Logger = { create({ color = "auto", level, name = meta.binaryName, stdio }
 		warn: (message) => write("warn", message)
 	};
 } };
+// src/internal/PackageScriptOverride.ts
+/**
+* Suffix marking a package.json script as an override of the managed script with the same name.
+*/
+const OVERRIDE_MARKER = "!";
+/**
+* @namespace
+*/
+const PackageScriptOverride = {
+	/**
+	* Returns the name of the override script (`<name>!`) if it is defined in `<cwd>/package.json`.
+	*
+	* @param options
+	* @param options.cwd
+	* @param options.name
+	*/
+	async find({ cwd, name }) {
+		const overrideName = `${name}${OVERRIDE_MARKER}`;
+		try {
+			const scripts = JSON.parse(await readFile(path.join(cwd, "package.json"), "utf8"))?.scripts;
+			return scripts != null && typeof scripts === "object" && Object.hasOwn(scripts, overrideName) && typeof scripts[overrideName] === "string" ? overrideName : void 0;
+		} catch {
+			return;
+		}
+	},
+	/**
+	* The marker used to identify override scripts in `package.json`.
+	*/
+	marker: OVERRIDE_MARKER
+};
 // src/internal/ScriptInvocation.ts
 const shellSafe = /^[\w@%+=:,./-]+$/;
 /**
@@ -211,19 +242,44 @@ const handlers = { RunScript: async (command) => {
 		scriptName
 	});
 	if (name == null) throw new Error("Unable to resolve the script name. Pass it as the first argument or run through an npm/pnpm script (npm_lifecycle_event).");
-	const script = scripts[name];
-	if (script == null) {
-		const available = Object.keys(scripts);
-		throw new Error(`No script named "${name}" found in the configuration.${available.length > 0 ? ` Available scripts: ${available.join(", ")}.` : " No scripts are configured."}`);
+	const overrideName = await PackageScriptOverride.find({
+		cwd,
+		name
+	});
+	let invocation;
+	let scriptLabel;
+	let origin;
+	if (overrideName == null) {
+		const script = scripts[name];
+		if (script == null) {
+			const available = Object.keys(scripts);
+			throw new Error(`No script named "${name}" found in the configuration.${available.length > 0 ? ` Available scripts: ${available.join(", ")}.` : " No scripts are configured."}`);
+		}
+		invocation = ScriptInvocation.create(script, scriptArgs);
+		scriptLabel = name;
+		origin = script;
+		logger.debug(`Script found in configuration: ${path.relative(cwd, script.configFile)}`);
+	} else {
+		origin = {
+			args: [
+				"run",
+				overrideName,
+				...scriptArgs.length > 0 ? ["--"] : []
+			],
+			configDir: void 0,
+			configFile: void 0,
+			runner: "npm"
+		};
+		invocation = ScriptInvocation.create(origin, scriptArgs);
+		scriptLabel = overrideName;
+		logger.debug(`Script "${name}" overridden by package.json script "${overrideName}"`);
 	}
-	const invocation = ScriptInvocation.create(script, scriptArgs);
-	logger.debug(`Script found in configuration: ${path.relative(cwd, script.configFile)}`);
 	stdout.write(`$ ${ScriptInvocation.format(invocation)}\n`);
 	if (dryRun) return 0;
 	const scriptEnv = {
 		[ManagedScriptEnv.Color]: color,
-		[ManagedScriptEnv.ConfigDir]: script.configDir,
-		[ManagedScriptEnv.ConfigFile]: script.configFile,
+		[ManagedScriptEnv.ConfigDir]: origin.configDir,
+		[ManagedScriptEnv.ConfigFile]: origin.configFile,
 		[ManagedScriptEnv.Cwd]: cwd,
 		[ManagedScriptEnv.LogLevel]: logLevel,
 		[ManagedScriptEnv.Name]: name
@@ -233,7 +289,7 @@ const handlers = { RunScript: async (command) => {
 		cwd,
 		env: scriptEnv
 	});
-	if (exitCode !== 0) throw new Error(`Script "${name}" exited with code ${exitCode}.`);
+	if (exitCode !== 0) throw new Error(`Script "${scriptLabel}" exited with code ${exitCode}.`);
 	return exitCode;
 } };
 /**
@@ -262,4 +318,4 @@ async function runScript(options) {
 const ManagedScript = Object.freeze({ runScript });
 export { meta as n, ManagedScript as t };
 
-//# sourceMappingURL=ManagedScript-BDFJYUTd.js.map
+//# sourceMappingURL=ManagedScript-Cx4wHszS.js.map
