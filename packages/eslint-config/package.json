@@ -92,7 +92,7 @@
     "@w5s/tsdown-config": "workspace:*",
     "eslint-find-rules": "5.0.0",
     "eslint-plugin-jsx-a11y": "6.10.2",
-    "eslint-typegen": "2.3.1",
+    "eslint-typegen": "2.3.2",
     "react": "19.3.1"
   },
   "peerDependencies": {
