@@ -60,7 +60,7 @@ describe(npmExec, () => {
     vi.mocked(detectAgent).mockResolvedValue('pnpm');
     vi.mocked(resolveCommand).mockReturnValueOnce(null);
 
-    await expect(npmExec($)('lefthook', [])).rejects.toThrow(/Could not resolve "exec" command/);
+    await expect(npmExec($)('lefthook', [])).rejects.toThrow(/Could not resolve "execute-local" command/);
     expect($).not.toHaveBeenCalled();
   });
 });

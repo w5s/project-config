@@ -1,5 +1,20 @@
-import { $ } from '@w5s/managed-script/zx';
+import type { ZXShell } from '@w5s/managed-script/zx';
 
-export async function npmRunAll(scriptPrefix: string) {
-  await $`pnpm run "/^${scriptPrefix}:.*/"`;
+import { detectAgent } from './detectAgent.js';
+
+export function npmRunAll(shell: ZXShell) {
+  return async (scriptPrefix: string): Promise<void> => {
+    const agent = await detectAgent();
+    switch (agent) {
+      case 'bun':
+      case 'npm':
+      case 'yarn':
+        throw new Error(`Unsupported package manager: ${agent}`);
+      case 'pnpm':
+        await shell`pnpm run "/^${scriptPrefix}:.*/"`;
+
+      default:
+        throw new Error(`Unsupported package manager: ${agent}`);
+    }
+  };
 }

@@ -1,8 +1,7 @@
 import type { ZXShell } from '@w5s/managed-script/zx';
 
-import { resolveCommand } from 'package-manager-detector';
-
 import { detectAgent } from './detectAgent.js';
+import { npmCommandOrThrow } from './npmCommandOrThrow.js';
 
 /**
  * Installs the project dependencies using the detected package manager's "install" command
@@ -20,12 +19,10 @@ import { detectAgent } from './detectAgent.js';
  * ```
  */
 export function npmInstall(shell: ZXShell) {
-  return async (args: ReadonlyArray<string>): Promise<void> => {
+  return async (args: ReadonlyArray<string>) => {
     const agent = await detectAgent();
-    const resolved = resolveCommand(agent, 'install', [...args]);
-    if (resolved == null) {
-      throw new Error(`Could not resolve "install" command for package manager "${agent}"`);
-    }
-    await shell`${resolved.command} ${resolved.args}`;
+    const resolved = npmCommandOrThrow(agent, 'install', [...args]);
+
+    return shell`${resolved.command} ${resolved.args}`;
   };
 }

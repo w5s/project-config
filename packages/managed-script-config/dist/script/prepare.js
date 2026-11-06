@@ -1,11 +1,21 @@
+import { t as detectAgent } from "../detectAgent-ZFEmlUNP.js";
 import { $ } from "@w5s/managed-script/zx";
 // src/internal/npmRunAll.ts
-async function npmRunAll(scriptPrefix) {
-	await $`pnpm run "/^${scriptPrefix}:.*/"`;
+function npmRunAll(shell) {
+	return async (scriptPrefix) => {
+		const agent = await detectAgent();
+		switch (agent) {
+			case "bun":
+			case "npm":
+			case "yarn": throw new Error(`Unsupported package manager: ${agent}`);
+			case "pnpm": await shell`pnpm run "/^${scriptPrefix}:.*/"`;
+			default: throw new Error(`Unsupported package manager: ${agent}`);
+		}
+	};
 }
 // src/script/prepare.ts
 async function main() {
-	await npmRunAll("prepare");
+	await npmRunAll($)("prepare");
 }
 if (import.meta.main) await main();
 export { main };

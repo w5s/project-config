@@ -1,7 +1,7 @@
 import { t as isGit } from "../isGit-DsCKZw03.js";
 import { t as detectAgent } from "../detectAgent-ZFEmlUNP.js";
+import { t as npmCommandOrThrow } from "../npmCommandOrThrow-D4o3Sfyh.js";
 import { $ } from "@w5s/managed-script/zx";
-import { resolveCommand } from "package-manager-detector";
 // src/internal/npmInstall.ts
 /**
 * Installs the project dependencies using the detected package manager's "install" command
@@ -21,9 +21,8 @@ import { resolveCommand } from "package-manager-detector";
 function npmInstall(shell) {
 	return async (args) => {
 		const agent = await detectAgent();
-		const resolved = resolveCommand(agent, "install", [...args]);
-		if (resolved == null) throw new Error(`Could not resolve "install" command for package manager "${agent}"`);
-		await shell`${resolved.command} ${resolved.args}`;
+		const resolved = npmCommandOrThrow(agent, "install", [...args]);
+		return shell`${resolved.command} ${resolved.args}`;
 	};
 }
 // src/script/rescue.ts

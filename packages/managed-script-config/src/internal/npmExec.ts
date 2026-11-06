@@ -1,8 +1,7 @@
 import type { ZXShell } from '@w5s/managed-script/zx';
 
-import { resolveCommand } from 'package-manager-detector';
-
 import { detectAgent } from './detectAgent.js';
+import { npmCommandOrThrow } from './npmCommandOrThrow.js';
 
 /**
  * Runs a locally installed binary using the detected package manager "exec" command
@@ -20,12 +19,10 @@ import { detectAgent } from './detectAgent.js';
  * ```
  */
 export function npmExec(shell: ZXShell) {
-  return async (command: string, args: ReadonlyArray<string>): Promise<void> => {
+  return async (command: string, args: ReadonlyArray<string>) => {
     const agent = await detectAgent();
-    const resolved = resolveCommand(agent, 'execute-local', [command, ...args]);
-    if (resolved == null) {
-      throw new Error(`Could not resolve "exec" command for package manager "${agent}"`);
-    }
-    await shell`${resolved.command} ${resolved.args}`;
+    const resolved = npmCommandOrThrow(agent, 'execute-local', [command, ...args]);
+
+    return shell`${resolved.command} ${resolved.args}`;
   };
 }

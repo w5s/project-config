@@ -1,7 +1,7 @@
 import { t as isGit } from "../../isGit-DsCKZw03.js";
 import { t as detectAgent } from "../../detectAgent-ZFEmlUNP.js";
+import { t as npmCommandOrThrow } from "../../npmCommandOrThrow-D4o3Sfyh.js";
 import { $, isCI } from "@w5s/managed-script/zx";
-import { resolveCommand } from "package-manager-detector";
 // src/internal/npmExec.ts
 /**
 * Runs a locally installed binary using the detected package manager "exec" command
@@ -21,9 +21,8 @@ import { resolveCommand } from "package-manager-detector";
 function npmExec(shell) {
 	return async (command, args) => {
 		const agent = await detectAgent();
-		const resolved = resolveCommand(agent, "execute-local", [command, ...args]);
-		if (resolved == null) throw new Error(`Could not resolve "exec" command for package manager "${agent}"`);
-		await shell`${resolved.command} ${resolved.args}`;
+		const resolved = npmCommandOrThrow(agent, "execute-local", [command, ...args]);
+		return shell`${resolved.command} ${resolved.args}`;
 	};
 }
 // src/script/prepare/lefthook.ts
