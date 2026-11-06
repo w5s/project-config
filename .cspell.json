@@ -22,6 +22,7 @@
     "monkeyc",
     "nonconstructor",
     "nonoctal",
+    "nothrow",
     "pipefail",
     "rharkor",
     "typanion"

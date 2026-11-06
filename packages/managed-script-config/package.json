@@ -52,6 +52,9 @@
     "typecheck": "pnpm run \"/^typecheck:.*/\"",
     "typecheck:src": "pnpm exec tsc --noEmit"
   },
+  "dependencies": {
+    "package-manager-detector": "^1.9.0"
+  },
   "devDependencies": {
     "@w5s/tsdown-config": "workspace:*"
   },

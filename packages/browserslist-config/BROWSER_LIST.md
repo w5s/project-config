@@ -1,4 +1,4 @@
-_Generated Automatically at Thu, 29 Oct 2026 13:37:32 GMT_
+_Generated Automatically at Fri, 06 Nov 2026 16:44:59 GMT_
 
 ### Desktop
 
@@ -12,7 +12,7 @@ _Generated Automatically at Thu, 29 Oct 2026 13:37:32 GMT_
 ### Mobile
 
 - Chrome for Android (156)
-- Firefox for Android (158)
+- Firefox for Android (159)
 - UC Browser (15.5)
 - Safari for iOS (27.0, 26.6, 26.5, 26.4, 26.3, 26.2, 18.5-18.7, 16.6-16.7)
 - Opera Mobile (80)

@@ -526,6 +526,9 @@ importers:
       '@w5s/managed-script':
         specifier: workspace:^
         version: link:../managed-script
+      package-manager-detector:
+        specifier: ^1.9.0
+        version: 1.9.0
     devDependencies:
       '@w5s/tsdown-config':
         specifier: workspace:*
@@ -4990,6 +4993,9 @@ packages:
   package-json@6.5.0:
     resolution: {integrity: sha512-k3bdm2n25tkyxcjSKzB5x8kfVxlMdgsbPr0GkZcwHsLpba6cBjqCt1KlcChKEvxHIcTB1FVMuwoijZ26xex5MQ==}
     engines: {node: '>=8'}
+
+  package-manager-detector@1.9.0:
+    resolution: {integrity: sha512-zAMfbta9nPA8AKkA4WdmNAT8R8s6Dk0/xwPsqNnRidMFcLo1YkLuPDTgs2f64XdzS8vbLNnoJ+uUIkgbz7oRHA==}
 
   package-repo-url@1.0.4:
     resolution: {integrity: sha512-k0s6Lav5Cc7UpJNH6hvjmyM06a2EY0Ro5eofp+tVWV9Kmszw9uEn3XIbvSkDIa6vUszpXmyyjpATmgb7fy97tg==}
@@ -11518,6 +11524,8 @@ snapshots:
       registry-auth-token: 4.2.2
       registry-url: 5.1.0
       semver: 6.3.1
+
+  package-manager-detector@1.9.0: {}
 
   package-repo-url@1.0.4:
     dependencies:
