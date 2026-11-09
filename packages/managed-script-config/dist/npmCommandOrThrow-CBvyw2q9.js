@@ -1,4 +1,4 @@
-import { detect, getUserAgent } from "package-manager-detector";
+import { detect, getUserAgent, resolveCommand as npmCommand } from "package-manager-detector";
 // src/internal/detectAgent.ts
 const defaultAgent = "npm";
 /**
@@ -17,6 +17,12 @@ async function detectAgent() {
 	if (userAgent != null) return userAgent;
 	return (await detect())?.agent ?? defaultAgent;
 }
-export { detectAgent as t };
+// src/internal/npmCommandOrThrow.ts
+function npmCommandOrThrow(agent, command, args, options) {
+	const resolved = npmCommand(agent, command, args, options);
+	if (resolved == null) throw new Error(`Could not resolve "${command}" command for package manager "${agent}"`);
+	return resolved;
+}
+export { detectAgent as n, npmCommandOrThrow as t };
 
-//# sourceMappingURL=detectAgent-ZFEmlUNP.js.map
+//# sourceMappingURL=npmCommandOrThrow-CBvyw2q9.js.map

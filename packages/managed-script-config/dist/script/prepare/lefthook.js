@@ -1,6 +1,5 @@
 import { t as isGit } from "../../isGit-DsCKZw03.js";
-import { t as detectAgent } from "../../detectAgent-ZFEmlUNP.js";
-import { t as npmCommandOrThrow } from "../../npmCommandOrThrow-D4o3Sfyh.js";
+import { n as detectAgent, t as npmCommandOrThrow } from "../../npmCommandOrThrow-CBvyw2q9.js";
 import { $, isCI } from "@w5s/managed-script/zx";
 // src/internal/npmExec.ts
 /**
