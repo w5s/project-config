@@ -75,6 +75,11 @@ export interface RuleOptions {
    */
   'yml/key-spacing'?: Linter.RuleEntry<YmlKeySpacing>
   /**
+   * enforce a maximum line length
+   * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/max-len.html
+   */
+  'yml/max-len'?: Linter.RuleEntry<YmlMaxLen>
+  /**
    * disallow boolean mapping keys
    * @see https://ota-meshi.github.io/eslint-plugin-yml/rules/no-boolean-key.html
    */
@@ -270,6 +275,17 @@ type YmlKeySpacing = []|[({
     afterColon?: boolean
   }
 })]
+// ----- yml/max-len -----
+type YmlMaxLen = []|[{
+  code?: number
+  comments?: number
+  tabWidth?: number
+  ignorePattern?: string
+  ignoreComments?: boolean
+  ignoreTrailingComments?: boolean
+  ignoreUrls?: boolean
+  ignoreStrings?: boolean
+}]
 // ----- yml/no-irregular-whitespace -----
 type YmlNoIrregularWhitespace = []|[{
   skipComments?: boolean
