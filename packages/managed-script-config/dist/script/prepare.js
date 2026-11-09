@@ -8,7 +8,9 @@ function npmRunAll(shell) {
 			case "bun":
 			case "npm":
 			case "yarn": throw new Error(`Unsupported package manager: ${agent}`);
-			case "pnpm": await shell`pnpm run "/^${scriptPrefix}:.*/"`;
+			case "pnpm":
+				await shell`pnpm run "/^${scriptPrefix}:.*/"`;
+				break;
 			default: throw new Error(`Unsupported package manager: ${agent}`);
 		}
 	};
