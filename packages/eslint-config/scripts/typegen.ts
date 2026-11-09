@@ -14,6 +14,7 @@ import jsoncPlugin from 'eslint-plugin-jsonc';
 import jsxA11yPlugin from 'eslint-plugin-jsx-a11y';
 import nodePlugin from 'eslint-plugin-n';
 import perfectionistPlugin from 'eslint-plugin-perfectionist';
+import regexpPlugin from 'eslint-plugin-regexp';
 import tomlPlugin from 'eslint-plugin-toml';
 import unicornPlugin from 'eslint-plugin-unicorn';
 import unusedImportsPlugin from 'eslint-plugin-unused-imports';
@@ -38,6 +39,7 @@ await Promise.all(
       ['node', nodePlugin],
       ['perfectionist', perfectionistPlugin],
       ['react', reactPlugin],
+      ['regexp', regexpPlugin],
       ['schema', schemaPlugin],
       ['style', stylisticPlugin],
       ['ts', tsPlugin],
@@ -48,6 +50,7 @@ await Promise.all(
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {
+    // eslint-disable-next-line ts/no-unnecessary-type-assertion
     const content = (await pluginsToRulesDTS({
       [pluginName]: plugin,
     } as any));

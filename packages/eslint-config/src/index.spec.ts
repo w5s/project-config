@@ -20,6 +20,7 @@ describe('index', () => {
       node: expect.any(Function),
       perfectionist: expect.any(Function),
       react: expect.any(Function),
+      regexp: expect.any(Function),
       restrictedGlobals: expect.any(Array),
       restrictedImportPaths: expect.any(Array),
       restrictedSyntax: expect.any(Array),

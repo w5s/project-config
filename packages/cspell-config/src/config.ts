@@ -90,7 +90,7 @@ export const config: AdvancedCSpellSettings = {
       patterns: [],
     },
     {
-      // eslint-disable-next-line unicorn/prefer-string-raw
+
       ignoreRegExpList: ['\\/\\* eslint-disable.+', '\\/\\/ eslint-disable.+'],
       languageId: 'typescript,javascript,typescriptreact,javascriptreact',
       locale: '*',

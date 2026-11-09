@@ -31,6 +31,7 @@ export interface DefineConfigOptions extends config.ignores.Options {
     'node'?: boolean | config.node.Options | undefined;
     'perfectionist'?: boolean | config.perfectionist.Options | undefined;
     'react'?: boolean | config.react.Options | undefined;
+    'regexp'?: boolean | config.regexp.Options | undefined;
     'stylistic'?: boolean | config.stylistic.Options | undefined;
     'test'?: boolean | config.test.Options | undefined;
     'toml'?: boolean | config.toml.Options | undefined;
@@ -89,6 +90,7 @@ export async function defineConfig(options: DefineConfigOptions = {}): Promise<A
     ...includeEnabled(config.node, toOption(plugins.node)),
     ...includeEnabled(config.next, toOption(plugins.next, false)),
     ...includeEnabled(config.react, toOption(plugins.react)),
+    ...includeEnabled(config.regexp, toOption(plugins.regexp, false)),
     ...includeEnabled(config.unicorn, toOption(plugins.unicorn)),
     ...includeEnabled(config.test, toOption(plugins.test)),
     // Stylistic

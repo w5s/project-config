@@ -25,7 +25,6 @@ function ecmaVersion() {
 }
 
 function escapeRegExp(value: string) {
-  // eslint-disable-next-line unicorn/prefer-string-raw
   return value.replaceAll(/[$()*+.?[\\\]^{|}]/g, '\\$&'); // $& means the whole matched string
 }
 
