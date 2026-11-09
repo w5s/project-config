@@ -1,6 +1,6 @@
-import type { FileMode, FilePermissionSet } from './FileMode.js';
+import type { FileMode, FilePermissionSet } from '../FileMode.js';
 
-export function __toMode(mode: FileMode | undefined): number | undefined {
+export function toMode(mode: FileMode | undefined): number | undefined {
   return mode == null
     ? mode
     : (

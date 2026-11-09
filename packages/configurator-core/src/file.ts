@@ -3,9 +3,9 @@ import { chmod, readFile, rm, writeFile } from 'node:fs/promises';
 
 import type { FileMode } from './FileMode.js';
 
-import { __toMode } from './__toMode.js';
 import { fileExists } from './internal/fileExists.js';
 import { fileExistsSync } from './internal/fileExistsSync.js';
+import { toMode } from './internal/toMode.js';
 
 export interface FileOptions {
   /**
@@ -60,7 +60,7 @@ export async function file(options: FileOptions): Promise<void> {
     const isPresent = await fileExists(path);
     const previousContent = isPresent ? await readFile(path, encoding) : '';
     const newContent = update == null ? (isPresent ? undefined : '') : update(previousContent);
-    const newMode = __toMode(mode);
+    const newMode = toMode(mode);
     if (newContent != null) {
       await writeFile(path, newContent, { encoding, mode: newMode });
     }
@@ -97,7 +97,7 @@ export function fileSync(options: FileOptions): void {
     const isPresent = fileExistsSync(path);
     const previousContent = isPresent ? readFileSync(path, encoding) : '';
     const newContent = update == null ? (isPresent ? undefined : '') : update(previousContent);
-    const newMode = __toMode(mode);
+    const newMode = toMode(mode);
     if (newContent != null) {
       writeFileSync(path, newContent, { encoding, mode: newMode });
     }
