@@ -85,7 +85,6 @@
     "yaml-eslint-parser": "^2.0.0"
   },
   "devDependencies": {
-    "@types/eslint": "9.6.1",
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@types/react": "19.3.0",
     "@typescript-eslint/parser": "8.72.1",
