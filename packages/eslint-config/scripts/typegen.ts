@@ -50,7 +50,6 @@ await Promise.all(
       ['yml', ymlPlugin],
     ] as const
   ).map(async ([pluginName, plugin]) => {
-    // eslint-disable-next-line ts/no-unnecessary-type-assertion
     const content = (await pluginsToRulesDTS({
       [pluginName]: plugin,
     } as any));
