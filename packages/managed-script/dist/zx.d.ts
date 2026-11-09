@@ -77,4 +77,3 @@ export declare function zx(options?: CreateZXOptions): ZXShell;
  */
 export declare const $: ZXShell;
 export type { ZXDefaultOptions, ZXOptions, ZXShell };
-//# sourceMappingURL=zx.d.ts.map

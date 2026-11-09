@@ -126,4 +126,3 @@ export declare const meta: Readonly<{
   version: string;
 }>;
 export { CommandContext, ManagedScriptCommand, RunnerScript$1 as RunnerScript, ScriptDefinition, ShellScript$1 as ShellScript, type StdioOptions, UserConfig };
-//# sourceMappingURL=index.d.ts.map

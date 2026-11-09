@@ -141,4 +141,3 @@ export declare const meta: Readonly<{
   version: string;
 }>;
 export { createPreset as default };
-//# sourceMappingURL=index.d.ts.map

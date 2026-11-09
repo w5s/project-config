@@ -62,4 +62,3 @@ export declare const meta: Readonly<{
   version: string;
 }>;
 export { type ESLintIgnoreOptions as Options, eslintIgnores as default };
-//# sourceMappingURL=index.d.ts.map

@@ -11,4 +11,3 @@ export declare const meta: Readonly<{
   version: string;
 }>;
 export { config as default };
-//# sourceMappingURL=index.d.ts.map

@@ -1,4 +1,3 @@
-//#region src/Parser/types.d.ts
 /**
  * A SourceMap is used to map or transform the location of a piece of text back to its original offsets.
  * This is necessary in order to report the correct location of a spelling issue.
@@ -51,7 +50,7 @@ type SourceMap = number[];
 type Range = readonly [start: number, end: number];
 /**
  * Interface used to pass documents to the parser.
- * @since 10.5.0
+ * @since 11.0.0
  */
 interface TextDocument {
   /**
@@ -65,8 +64,6 @@ interface TextDocument {
    */
   readonly text: string;
 }
-//#endregion
-//#region src/Parser/Mapped.d.ts
 interface Mapped {
   /**
    * The absolute start and end offset of the text in the source.
@@ -216,7 +213,6 @@ type ParsedTag = boolean | undefined;
 interface ParsedTags {
   readonly [tag: string]: ParsedTag;
 }
-//#region src/cspell-vfs.d.ts
 /**
  * Binary data for CSpellVFS file.
  * This can be exported by a JavaScript based CSpell Configuration file.
@@ -270,8 +266,6 @@ type CSpellVFSFileUrl = string;
  * @stability experimental
  */
 type CSpellVFS = Record<CSpellVFSFileUrl, CSpellVFSFileEntry>;
-//#endregion
-//#region src/SuggestionsConfiguration.d.ts
 interface SuggestionsConfiguration {
   /**
    * Number of suggestions to make.
@@ -347,8 +341,6 @@ interface UnknownWordsConfiguration {
    */
   unknownWords?: UnknownWordsChoices | undefined;
 }
-//#endregion
-//#region src/CSpellValidation.d.ts
 interface CSpellSettingsValidation {
   /**
    * Control which segments of text emitted by a parser are spell checked, based upon
@@ -380,7 +372,7 @@ interface CSpellSettingsValidation {
    *
    * @default { "*": true }
    * @experimental
-   * @since 10.5.0
+   * @since 11.0.0
    */
   validate?: ValidationTags;
 }
@@ -407,8 +399,6 @@ interface ValidationTags {
    */
   [tag: TagPattern]: boolean | undefined;
 }
-//#endregion
-//#region src/suggestionCostsDef.d.ts
 /**
  * A WeightedMapDef enables setting weights for edits between related characters and substrings.
  *
@@ -495,8 +485,6 @@ interface CostMapDefInsDel extends CostMapDefBase {
 interface CostMapDefSwap extends CostMapDefBase {
   swap: number;
 }
-//#endregion
-//#region src/DictionaryInformation.d.ts
 /**
  * Provides extra information about the dictionary.
  *
@@ -716,8 +704,6 @@ interface PatternAdjustment {
   /** The amount of penalty to apply. */
   penalty: number;
 }
-//#endregion
-//#region src/InlineDictionary.d.ts
 interface InlineDictionary {
   /**
    * List of words to be considered correct.
@@ -770,8 +756,6 @@ interface InlineDictionary {
    */
   suggestWords?: string[];
 }
-//#endregion
-//#region src/DictionaryDefinition.d.ts
 type DictionaryDefinition = DictionaryDefinitionPreferred | DictionaryDefinitionCustom | DictionaryDefinitionAugmented | DictionaryDefinitionInline | DictionaryDefinitionSimple | DictionaryDefinitionAlternate | DictionaryDefinitionLegacy;
 type DictionaryFileTypes = "S" | "W" | "C" | "T";
 interface DictionaryDefinitionBase {
@@ -1143,8 +1127,6 @@ type DictionaryKindSuggestWords = "suggest-words";
  * - `suggest-words` - A dictionary containing suggested word corrections.
  */
 type DictionaryKind = DictionaryKindWords | DictionaryKindFlagWords | DictionaryKindIgnoreWords | DictionaryKindSuggestWords;
-//#endregion
-//#region src/features.d.ts
 /**
  * These are experimental features and are subject to change or removal without notice.
  */
@@ -1179,7 +1161,7 @@ interface FeaturesDeprecated {
 interface Features extends Partial<FeaturesActive>, Partial<FeaturesDeprecated>, Partial<FeaturesExperimental> {}
 type FeatureEnableOnly = boolean;
 /**
- * @since 10.5.0
+ * @since 11.0.0
  */
 type Parsers = (DocumentParser | Parser)[];
 /**
@@ -1207,8 +1189,6 @@ interface CSpellSettingsPlugins {
    */
   plugins?: CSpellPlugin[];
 }
-//#endregion
-//#region src/Substitutions.d.ts
 /**
  * The ID for a substitution definition. This is used to reference the substitution definition in the substitutions array.
  * @since 9.7.0
@@ -1264,11 +1244,7 @@ type SubstitutionDefinitions = SubstitutionDefinition[];
  * This is a collection of substitution entries that can be applied to a document before spell checking.
  */
 type Substitutions = (SubstitutionEntry | SubstitutionID)[];
-//#endregion
-//#region src/types.d.ts
 type Serializable = number | string | boolean | null | object;
-//#endregion
-//#region src/WordSegmentation.d.ts
 interface WordSegmentationSettings {
   /**
    * Enables locale-sensitive text segmentation to support languages like Japanese, Chinese, Thai, Lao, Khmer, Myanmar, etc.
@@ -1350,8 +1326,6 @@ type SoftWordBreakRegExpString = string;
  * - `|` -- Represents the position of the word break
  * - `^` -- Indicates the start of a word
  * - `$` -- Indicates the end of a word
- *
- * For more complicated word break rules, consider using regular expressions with the {@link SoftWordBreakRegExp} type.
  *
  * Examples:
  * - `"^ptr|"` -- Would help with pointer definitions starting with `ptr`, such as `ptrvalue`.
@@ -2095,4 +2069,3 @@ export declare const meta: Readonly<{
   version: string;
 }>;
 export { config as default };
-//# sourceMappingURL=index.d.ts.map
