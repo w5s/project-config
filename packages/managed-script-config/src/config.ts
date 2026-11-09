@@ -17,6 +17,10 @@ export const config: UserConfig = defineConfig({
       args: [path.join(configDir, 'script', 'prepare', 'lefthook.js')],
       runner: 'node',
     },
+    'prepare:skills': {
+      args: [path.join(configDir, 'script', 'prepare', 'skills.js')],
+      runner: 'node',
+    },
     'rescue': {
       args: [path.join(configDir, 'script', 'rescue.js')],
       runner: 'node',
