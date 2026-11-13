@@ -8126,6 +8126,11 @@ interface RuleOptions$8 {
    */
   'react/static-components'?: Linter.RuleEntry<[]>;
   /**
+   * Verifies the list of dependencies for Hooks like 'useEffect' and similar, with support for custom Hooks and stable Hook results.
+   * @see https://eslint-react.xyz/docs/rules/unstable-exhaustive-deps
+   */
+  'react/unstable-exhaustive-deps'?: Linter.RuleEntry<ReactUnstableExhaustiveDeps>;
+  /**
    * Validates against syntax that React Compiler does not support.
    * @see https://eslint-react.xyz/docs/rules/unsupported-syntax
    */
@@ -8465,6 +8470,19 @@ type ReactNoUnstableDefaultProps = [] | [{
 // ----- react/rules-of-hooks -----
 type ReactRulesOfHooks = [] | [{
   additionalHooks?: string;
+}];
+// ----- react/unstable-exhaustive-deps -----
+type ReactUnstableExhaustiveDeps = [] | [{
+  additionalHooks?: string;
+  enableDangerousAutofixThisMayCauseInfiniteLoops?: boolean;
+  experimental_autoDependenciesHooks?: string[];
+  hooks?: {
+    name: string;
+    closureIndex?: number;
+    dependenciesIndex?: number;
+    stableResult?: (boolean | number | [number, ...(number)[]]);
+  }[];
+  requireExplicitEffectDeps?: boolean;
 }];
 // ----- react/use-state -----
 type ReactUseState = [] | [{
