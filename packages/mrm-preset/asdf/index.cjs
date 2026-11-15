@@ -1,10 +1,10 @@
-const { asdfConfig } = require('../core/asdf.cjs');
+const { toolVersionsSync } = require('@w5s/configurator-core');
 
 function task() {
-  asdfConfig({
+  toolVersionsSync({
     state: 'present',
     update: (config) => ({
-      nodejs: '18.17.0',
+      nodejs: '26.13.0',
       ...config,
     }),
   });

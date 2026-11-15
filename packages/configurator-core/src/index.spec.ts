@@ -20,6 +20,8 @@ describe('index', () => {
         'json',
         'jsonSync',
         'meta',
+        'toolVersions',
+        'toolVersionsSync',
         'yaml',
         'yamlSync',
         'yarnConfig',

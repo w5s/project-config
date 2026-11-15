@@ -5,6 +5,7 @@ export * from './ignoreFile.js';
 export * from './isConfigPresent.js';
 export * from './json.js';
 export * from './meta.js';
+export * from './toolVersions.js';
 export * from './yaml.js';
 export * from './yarnConfig.js';
 export * from './yarnVersion.js';
