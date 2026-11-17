@@ -425,10 +425,19 @@ cmd_sync_env() {
 cmd_init() {
   require_repo
   [ ! -e "$CONFIG_FILE" ] || die "configuration file already exists: $CONFIG_FILE"
-  git config --file "$CONFIG_FILE" worktree-manager.parentDir ".."
-  git config --file "$CONFIG_FILE" worktree-manager.envPatterns ".env .env.*"
-  git config --file "$CONFIG_FILE" worktree-manager.envExcludes ".env.template .env.example .env.sample"
-  git config --file "$CONFIG_FILE" worktree-manager.autoFetch "true"
+  cat > "$CONFIG_FILE" <<'EOF'
+# git-worktree-manager configuration.
+# Environment variables (GIT_WORKTREE_MANAGER_*) take precedence over these values.
+[worktree-manager]
+	# Directory where worktrees are created, relative to the main worktree.
+	parentDir = ..
+	# Space-separated patterns of env files copied into new worktrees.
+	envPatterns = .env .env.*
+	# Space-separated patterns of env files that are never copied.
+	envExcludes = .env.template .env.example .env.sample
+	# Run git fetch before add: true or false.
+	autoFetch = true
+EOF
   printf 'Created %s\n' "$CONFIG_FILE"
 }
 
