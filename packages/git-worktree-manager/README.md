@@ -25,6 +25,7 @@ git worktree-manager <command> [options]
 | `rename --old-dir=<dir> --new-dir=<dir>` | Rename a worktree directory. The worktree must be clean and pushed. |
 | `switch --from-dir=<dir> --branch=<branch> [--to-dir=<dir>]` | Check out `<branch>` in an existing worktree and move it to `<to-dir>` (default: `<branch>`). The worktree must be clean and pushed. |
 | `sync-env (--to=<dir> \| --all)` | Copy env files from the main worktree into one or all other worktrees. |
+| `init` | Create `.git-worktree-manager` in the main worktree with the default settings. Refuses to overwrite an existing file. |
 | `help` | Show the usage text. |
 
 Safety rules: the main worktree is never removed, renamed or switched. A worktree with uncommitted changes or unpushed commits is refused by `remove`, `rename` and `switch`. `add` refuses a branch that is already checked out in another worktree.

@@ -43,6 +43,9 @@ Commands:
       (defaults to <branch>). Requires a clean, fully pushed worktree.
   sync-env (--to=<dir> | --all)
       Copy env files from the main worktree into one or all other worktrees.
+  init
+      Create $CONFIG_FILE_NAME in the main worktree with the default settings.
+      Refuses to overwrite an existing file.
   help
       Show this help.
 
@@ -419,6 +422,16 @@ cmd_sync_env() {
   copy_env_files "$MAIN_ROOT" "$target"
 }
 
+cmd_init() {
+  require_repo
+  [ ! -e "$CONFIG_FILE" ] || die "configuration file already exists: $CONFIG_FILE"
+  git config --file "$CONFIG_FILE" worktree-manager.parentDir ".."
+  git config --file "$CONFIG_FILE" worktree-manager.envPatterns ".env .env.*"
+  git config --file "$CONFIG_FILE" worktree-manager.envExcludes ".env.template .env.example .env.sample"
+  git config --file "$CONFIG_FILE" worktree-manager.autoFetch "true"
+  printf 'Created %s\n' "$CONFIG_FILE"
+}
+
 main() {
   local command=${1:-help}
   if [ "$#" -gt 0 ]; then
@@ -432,6 +445,7 @@ main() {
     rename | mv) cmd_rename "$@" ;;
     switch | co | checkout) cmd_switch "$@" ;;
     sync-env | sync) cmd_sync_env "$@" ;;
+    init) cmd_init "$@" ;;
     help | -h | --help) usage ;;
     *)
       usage >&2
