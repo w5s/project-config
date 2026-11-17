@@ -1,0 +1,48 @@
+{
+  "name": "@w5s/git-worktree-manager",
+  "version": "0.1.0",
+  "description": "CLI to manage git worktrees: create, list, rename, switch, remove and sync env files",
+  "keywords": [
+    "git",
+    "worktree",
+    "cli",
+    "bash"
+  ],
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/git-worktree-manager#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w5s/project-config.git",
+    "directory": "packages/git-worktree-manager"
+  },
+  "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "bin": {
+    "git-worktree-manager": "bin/git-worktree-manager"
+  },
+  "files": [
+    "bin/",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "pnpm run \"/^build:.*/\"",
+    "build:empty": ":",
+    "clean": "pnpm run \"/^clean:.*/\"",
+    "clean:empty": ":",
+    "docs": "node ../../markdown.mjs",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:src": "shellcheck bin/git-worktree-manager test/git-worktree-manager.test.sh",
+    "postpack": "clean-package restore",
+    "prepack": "clean-package",
+    "prepublishOnly": "pnpm run clean;pnpm run build",
+    "spellcheck": "pnpm exec cspell --no-progress '**'",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:src": "bash test/git-worktree-manager.test.sh"
+  },
+  "clean-package": "../../clean-package.config.cjs",
+  "publishConfig": {
+    "access": "public"
+  }
+}
