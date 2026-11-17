@@ -33,18 +33,15 @@ Safety rules: the main worktree is never removed, renamed or switched. A worktre
 
 ### Env file copying
 
-`add` and `sync-env` look for project directories (anywhere under the main worktree, skipping `node_modules` and `.git`) that contain one of the `projectMarkers` files. In each project directory, the top-level files matching `envPatterns` are copied to the same relative location in the target worktree, except those listed in `envExcludes`.
+`add` and `sync-env` copy env files from the main worktree. They search every directory under the main worktree (skipping `node_modules` and `.git`). In each directory, the top-level files matching `envPatterns` are copied to the same relative location in the target worktree, except those listed in `envExcludes`.
 
 ## Configuration
 
-Settings are resolved in this order: environment variables, then the `.git-worktree-manager` file, then the defaults.
-
-The `.git-worktree-manager` file lives at the root of the main worktree. It uses git config syntax and is read with `git config --file`, so it accepts the same format as `.gitconfig` and `.gitmodules`:
+The configuration file is `.git-worktree-manager`, at the root of the main worktree (the folder that contains `.git`). It uses git config syntax and is read with `git config --file`, so it accepts the same format as `.gitconfig` and `.gitmodules`. `parentDir` is resolved relative to that same root:
 
 ```ini
 [worktree-manager]
     parentDir = ..
-    projectMarkers = package.json project.json
     envPatterns = .env .env.*
     envExcludes = .env.template .env.example .env.sample
     autoFetch = true
@@ -55,7 +52,6 @@ Multi-value keys can be repeated as in any git config file. Their values are joi
 | Config key | Environment variable | Default | Description |
 | --- | --- | --- | --- |
 | `parentDir` | `GIT_WORKTREE_MANAGER_PARENT_DIR` | `..` | Directory where worktrees are created. Relative paths are resolved from the main worktree. |
-| `projectMarkers` | `GIT_WORKTREE_MANAGER_PROJECT_MARKERS` | `package.json project.json` | Files that identify a project directory. |
 | `envPatterns` | `GIT_WORKTREE_MANAGER_ENV_PATTERNS` | `.env .env.*` | Filename patterns of env files to copy. |
 | `envExcludes` | `GIT_WORKTREE_MANAGER_ENV_EXCLUDES` | `.env.template .env.example .env.sample` | Filenames never copied. |
 | `autoFetch` | `GIT_WORKTREE_MANAGER_AUTO_FETCH` | `true` | Run `git fetch` before `add`. Accepts `true` or `false`. |

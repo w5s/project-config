@@ -51,14 +51,12 @@ The configuration file lives in the main worktree and uses git config syntax:
 
   [worktree-manager]
     parentDir = ..
-    projectMarkers = package.json project.json
     envPatterns = .env .env.*
     envExcludes = .env.template .env.example .env.sample
     autoFetch = true
 
 Environment variables:
   GIT_WORKTREE_MANAGER_PARENT_DIR        parentDir (relative to the main worktree)
-  GIT_WORKTREE_MANAGER_PROJECT_MARKERS   projectMarkers (space-separated)
   GIT_WORKTREE_MANAGER_ENV_PATTERNS      envPatterns (space-separated)
   GIT_WORKTREE_MANAGER_ENV_EXCLUDES      envExcludes (space-separated)
   GIT_WORKTREE_MANAGER_AUTO_FETCH        autoFetch (true or false)
@@ -117,8 +115,6 @@ resolve_setting() {
 load_settings() {
   resolve_setting "${GIT_WORKTREE_MANAGER_PARENT_DIR:-}" parentDir ".."
   PARENT_DIR=$SETTING_VALUE
-  resolve_setting "${GIT_WORKTREE_MANAGER_PROJECT_MARKERS:-}" projectMarkers "package.json project.json"
-  PROJECT_MARKERS=$SETTING_VALUE
   resolve_setting "${GIT_WORKTREE_MANAGER_ENV_PATTERNS:-}" envPatterns ".env .env.*"
   ENV_PATTERNS=$SETTING_VALUE
   resolve_setting "${GIT_WORKTREE_MANAGER_ENV_EXCLUDES:-}" envExcludes ".env.template .env.example .env.sample"
@@ -190,15 +186,11 @@ is_excluded() {
   return 1
 }
 
-# Copies env files from every project directory under <src> to the same relative
-# location under <dst>. Only top-level env files of each project directory are copied.
+# Copies env files from every directory under <src> (skipping node_modules and .git)
+# to the same relative location under <dst>. Only top-level env files of each directory are copied.
 copy_env_files() {
-  local src=$1 dst=$2 project_dirs dir rel pattern file name target_dir
-  project_dirs=$(
-    for marker in $PROJECT_MARKERS; do
-      find "$src" \( -name node_modules -o -name .git \) -prune -o -name "$marker" -type f -print
-    done | sed 's|/[^/]*$||' | sort -u
-  )
+  local src=$1 dst=$2 dirs dir rel pattern file name target_dir
+  dirs=$(find "$src" \( -name node_modules -o -name .git \) -prune -o -type d -print)
   while IFS= read -r dir; do
     [ -n "$dir" ] || continue
     rel=${dir#"$src"}
@@ -215,7 +207,7 @@ copy_env_files() {
         printf '  copied env file %s\n' "${rel:+$rel/}$name"
       done < <(find "$dir" -maxdepth 1 -type f -name "$pattern")
     done
-  done < <(printf '%s\n' "$project_dirs")
+  done < <(printf '%s\n' "$dirs")
 }
 
 cmd_add() {
