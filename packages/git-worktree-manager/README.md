@@ -18,12 +18,12 @@ git worktree-manager <command> [options]
 
 | Command | Description |
 | --- | --- |
-| `add --branchName=<branch> [--dirName=<dir>]` | Create a worktree in `<parentDir>/<dir>` and copy env files. `<dir>` defaults to the branch name and vice versa. |
+| `add --branch=<branch> [--dir=<dir>]` | Create a worktree in `<parentDir>/<dir>` and copy env files. `<dir>` defaults to the branch name and vice versa. |
 | `list [--plain] [--sort]` | List worktrees with markers: `[main]`, `[dirty:N]`, `[unpushed:N]`, `[no-upstream]`, `[missing directory]`. `--plain` prints raw `git worktree list`. `--sort` puts the main worktree first, then clean ones. |
 | `find --search=<text>` | List worktrees whose line contains `<text>` (case-insensitive). |
-| `remove --dirName=<dir>` | Remove a worktree without uncommitted or unpushed changes. The branch is kept. |
-| `rename --oldDirName=<dir> --newDirName=<dir>` | Rename a worktree directory. The worktree must be clean and pushed. |
-| `switch --fromDirName=<dir> --branchName=<branch> [--toDirName=<dir>]` | Check out `<branch>` in an existing worktree and move it to `<toDirName>` (default: `<branch>`). The worktree must be clean and pushed. |
+| `remove --dir=<dir>` | Remove a worktree without uncommitted or unpushed changes. The branch is kept. |
+| `rename --old-dir=<dir> --new-dir=<dir>` | Rename a worktree directory. The worktree must be clean and pushed. |
+| `switch --from-dir=<dir> --branch=<branch> [--to-dir=<dir>]` | Check out `<branch>` in an existing worktree and move it to `<to-dir>` (default: `<branch>`). The worktree must be clean and pushed. |
 | `sync-env (--to=<dir> \| --all)` | Copy env files from the main worktree into one or all other worktrees. |
 | `help` | Show the usage text. |
 
