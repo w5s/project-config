@@ -1,0 +1,451 @@
+#!/usr/bin/env bash
+#
+# git-worktree-manager: create, list, move and remove git worktrees.
+# Port of git-worktree-utils (https://www.npmjs.com/package/git-worktree-utils).
+#
+# Configuration is read from environment variables and from a git-config
+# formatted file named .git-worktree-manager at the root of the main worktree.
+set -eu
+set -f # never let shell globbing expand configured patterns
+
+PROGRAM=git-worktree-manager
+CONFIG_FILE_NAME=.git-worktree-manager
+
+die() {
+  printf '%s: error: %s\n' "$PROGRAM" "$*" >&2
+  exit 1
+}
+
+warn() {
+  printf '%s: warning: %s\n' "$PROGRAM" "$*" >&2
+}
+
+usage() {
+  cat <<EOF
+Usage: $PROGRAM <command> [options]
+
+Commands:
+  add --branchName=<branch> [--dirName=<dir>]
+      Create a worktree for <branch> in <parentDir>/<dir> and copy env files.
+      <dir> defaults to <branch> and <branch> defaults to <dir>.
+  list [--plain] [--sort]
+      List worktrees with status markers: [main], [dirty:N], [unpushed:N],
+      [no-upstream] and [missing directory]. --plain prints git's raw output.
+      --sort lists the main worktree first, then clean worktrees.
+  find --search=<text>
+      List worktrees whose line contains <text> (case-insensitive).
+  remove --dirName=<dir>
+      Remove a worktree that has no uncommitted or unpushed changes.
+  rename --oldDirName=<dir> --newDirName=<dir>
+      Rename a worktree directory. Requires a clean, fully pushed worktree.
+  switch --fromDirName=<dir> --branchName=<branch> [--toDirName=<dir>]
+      Check out <branch> in an existing worktree and move it to <toDirName>
+      (defaults to <branch>). Requires a clean, fully pushed worktree.
+  sync-env (--to=<dir> | --all)
+      Copy env files from the main worktree into one or all other worktrees.
+  help
+      Show this help.
+
+Configuration precedence: environment variables > $CONFIG_FILE_NAME > defaults.
+The configuration file lives in the main worktree and uses git config syntax:
+
+  [worktree-manager]
+    parentDir = ..
+    projectMarkers = package.json project.json
+    envPatterns = .env .env.*
+    envExcludes = .env.template .env.example .env.sample
+    autoFetch = true
+
+Environment variables:
+  GIT_WORKTREE_MANAGER_PARENT_DIR        parentDir (relative to the main worktree)
+  GIT_WORKTREE_MANAGER_PROJECT_MARKERS   projectMarkers (space-separated)
+  GIT_WORKTREE_MANAGER_ENV_PATTERNS      envPatterns (space-separated)
+  GIT_WORKTREE_MANAGER_ENV_EXCLUDES      envExcludes (space-separated)
+  GIT_WORKTREE_MANAGER_AUTO_FETCH        autoFetch (true or false)
+EOF
+}
+
+# Sets OPT_VALUE to the value of --<name>=<value>, or to an empty string.
+opt() {
+  local name=$1 arg
+  shift
+  OPT_VALUE=""
+  for arg in "$@"; do
+    case $arg in
+      "--$name="*) OPT_VALUE=${arg#"--$name="} ;;
+    esac
+  done
+}
+
+# Returns 0 when the bare flag --<name> is present.
+has_flag() {
+  local name=$1 arg
+  shift
+  for arg in "$@"; do
+    if [ "$arg" = "--$name" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+# Sets CFG_VALUE to the values of worktree-manager.<key> (space-separated).
+# Returns 1 when the key is absent. Dies when the configuration file is invalid.
+config_get() {
+  local key=$1 out rc=0
+  CFG_VALUE=""
+  [ -f "$CONFIG_FILE" ] || return 1
+  out=$(git config --file "$CONFIG_FILE" --get-all "worktree-manager.$key") || rc=$?
+  if [ "$rc" -eq 1 ]; then
+    return 1
+  fi
+  [ "$rc" -eq 0 ] || die "invalid configuration file: $CONFIG_FILE"
+  CFG_VALUE=$(printf '%s\n' "$out" | paste -sd ' ' -)
+}
+
+# resolve_setting <env value> <config key> <default>: sets SETTING_VALUE.
+resolve_setting() {
+  if [ -n "$1" ]; then
+    SETTING_VALUE=$1
+  elif config_get "$2"; then
+    SETTING_VALUE=$CFG_VALUE
+  else
+    SETTING_VALUE=$3
+  fi
+}
+
+load_settings() {
+  resolve_setting "${GIT_WORKTREE_MANAGER_PARENT_DIR:-}" parentDir ".."
+  PARENT_DIR=$SETTING_VALUE
+  resolve_setting "${GIT_WORKTREE_MANAGER_PROJECT_MARKERS:-}" projectMarkers "package.json project.json"
+  PROJECT_MARKERS=$SETTING_VALUE
+  resolve_setting "${GIT_WORKTREE_MANAGER_ENV_PATTERNS:-}" envPatterns ".env .env.*"
+  ENV_PATTERNS=$SETTING_VALUE
+  resolve_setting "${GIT_WORKTREE_MANAGER_ENV_EXCLUDES:-}" envExcludes ".env.template .env.example .env.sample"
+  ENV_EXCLUDES=$SETTING_VALUE
+  resolve_setting "${GIT_WORKTREE_MANAGER_AUTO_FETCH:-}" autoFetch "true"
+  AUTO_FETCH=$SETTING_VALUE
+  case $AUTO_FETCH in
+    true | false) ;;
+    *) die "autoFetch must be 'true' or 'false', got '$AUTO_FETCH'" ;;
+  esac
+}
+
+# Prints the absolute physical path of a directory, or nothing if it does not exist.
+abs_path() {
+  (cd "$1" 2>/dev/null && pwd -P) || true
+}
+
+# Sets MAIN_ROOT, CONFIG_FILE and the settings. Must run before any other repository command.
+require_repo() {
+  local first
+  git rev-parse --git-dir >/dev/null 2>&1 || die "not inside a git repository"
+  first=$(git worktree list --porcelain | sed -n '1s/^worktree //p')
+  MAIN_ROOT=$(abs_path "$first")
+  [ -n "$MAIN_ROOT" ] || die "cannot resolve the main worktree"
+  CONFIG_FILE="$MAIN_ROOT/$CONFIG_FILE_NAME"
+  load_settings
+}
+
+# Sets WT_PATH to the absolute path of <parentDir>/<dirName>.
+resolve_worktree_path() {
+  local base parent
+  [ -n "$1" ] || die "a directory name is required"
+  case $PARENT_DIR in
+    /*) base=$PARENT_DIR ;;
+    *) base=$MAIN_ROOT/$PARENT_DIR ;;
+  esac
+  parent=$(abs_path "$base")
+  [ -n "$parent" ] || die "parent directory does not exist: $base"
+  WT_PATH=$parent/$1
+}
+
+ref_exists() {
+  git -C "$MAIN_ROOT" show-ref --verify --quiet "$1"
+}
+
+# Prints the path of the worktree that has <branch> checked out, if any.
+branch_worktree() {
+  git -C "$MAIN_ROOT" worktree list --porcelain | awk -v ref="branch refs/heads/$1" '
+    /^worktree / { path = substr($0, 10) }
+    $0 == ref { print path; exit }
+  '
+}
+
+# Dies unless the worktree at <path> can be removed, renamed or switched safely.
+require_removable() {
+  [ "$1" != "$MAIN_ROOT" ] || die "refusing to modify the main worktree: $1"
+  [ -z "$(git -C "$1" status --porcelain)" ] || die "worktree has uncommitted changes: $1"
+  [ -z "$(git -C "$1" rev-list HEAD --not --remotes)" ] || die "worktree has unpushed commits: $1"
+}
+
+# Returns 0 when <name> matches one of the envExcludes entries.
+is_excluded() {
+  local excluded
+  for excluded in $ENV_EXCLUDES; do
+    if [ "$1" = "$excluded" ]; then
+      return 0
+    fi
+  done
+  return 1
+}
+
+# Copies env files from every project directory under <src> to the same relative
+# location under <dst>. Only top-level env files of each project directory are copied.
+copy_env_files() {
+  local src=$1 dst=$2 project_dirs dir rel pattern file name target_dir
+  project_dirs=$(
+    for marker in $PROJECT_MARKERS; do
+      find "$src" \( -name node_modules -o -name .git \) -prune -o -name "$marker" -type f -print
+    done | sed 's|/[^/]*$||' | sort -u
+  )
+  while IFS= read -r dir; do
+    [ -n "$dir" ] || continue
+    rel=${dir#"$src"}
+    rel=${rel#/}
+    for pattern in $ENV_PATTERNS; do
+      while IFS= read -r file; do
+        name=${file##*/}
+        if is_excluded "$name"; then
+          continue
+        fi
+        target_dir=$dst${rel:+/$rel}
+        mkdir -p "$target_dir"
+        cp "$file" "$target_dir/$name"
+        printf '  copied env file %s\n' "${rel:+$rel/}$name"
+      done < <(find "$dir" -maxdepth 1 -type f -name "$pattern")
+    done
+  done < <(printf '%s\n' "$project_dirs")
+}
+
+cmd_add() {
+  require_repo
+  local branch dir target checked_out new_branch=false
+  opt branchName "$@"
+  branch=$OPT_VALUE
+  opt dirName "$@"
+  dir=$OPT_VALUE
+  [ -n "$branch$dir" ] || die "--branchName or --dirName is required"
+  branch=${branch:-$dir}
+  dir=${dir:-$branch}
+
+  resolve_worktree_path "$dir"
+  target=$WT_PATH
+  [ ! -e "$target" ] || die "path already exists: $target"
+  checked_out=$(branch_worktree "$branch")
+  [ -z "$checked_out" ] || die "branch '$branch' is already checked out at: $checked_out"
+
+  if [ "$AUTO_FETCH" = true ] && ! git -C "$MAIN_ROOT" fetch --quiet; then
+    warn "git fetch failed; continuing with local refs"
+  fi
+
+  if ref_exists "refs/heads/$branch"; then
+    git -C "$MAIN_ROOT" worktree add "$target" "$branch"
+  elif ref_exists "refs/remotes/origin/$branch"; then
+    git -C "$MAIN_ROOT" worktree add --track -b "$branch" "$target" "origin/$branch"
+  else
+    git -C "$MAIN_ROOT" worktree add -b "$branch" "$target"
+    new_branch=true
+  fi
+
+  copy_env_files "$MAIN_ROOT" "$target"
+  printf 'Created worktree %s on branch %s\n' "$target" "$branch"
+  if [ "$new_branch" = true ]; then
+    printf 'Tip: publish the branch with: git -C "%s" push -u origin %s\n' "$target" "$branch"
+  fi
+}
+
+cmd_list() {
+  require_repo
+  if has_flag plain "$@"; then
+    git -C "$MAIN_ROOT" worktree list
+    return 0
+  fi
+  local sort_wanted=false rows="" first_dirty="" first_unpushed=""
+  local path ref branch name issues rank line dirty unpushed
+  if has_flag sort "$@"; then
+    sort_wanted=true
+  fi
+
+  while IFS=$'\t' read -r path ref; do
+    [ -n "$path" ] || continue
+    name=${path##*/}
+    issues=""
+    if [ ! -d "$path" ]; then
+      issues=" [missing directory — run \`$PROGRAM remove --dirName=$name\`]"
+    else
+      dirty=$(git -C "$path" status --porcelain | wc -l | tr -d ' ')
+      unpushed=$(git -C "$path" rev-list HEAD --not --remotes | wc -l | tr -d ' ')
+      if [ "$dirty" -gt 0 ]; then
+        issues="$issues [dirty:$dirty]"
+        [ -n "$first_dirty" ] || first_dirty=$path
+      fi
+      if [ "$unpushed" -gt 0 ]; then
+        issues="$issues [unpushed:$unpushed]"
+        [ -n "$first_unpushed" ] || first_unpushed=$path
+      fi
+      if ! git -C "$path" rev-parse --abbrev-ref --symbolic-full-name '@{u}' >/dev/null 2>&1; then
+        issues="$issues [no-upstream]"
+      fi
+    fi
+
+    branch=${ref#refs/heads/}
+    [ -n "$ref" ] || branch="(detached)"
+    line="$path  $branch"
+    if [ "$path" = "$MAIN_ROOT" ]; then
+      line="$line [main]"
+      rank=0
+    elif [ -z "$issues" ]; then
+      rank=1
+    else
+      rank=2
+    fi
+    [ "$sort_wanted" = true ] || rank=0
+    rows="$rows$rank"$'\t'"$line$issues"$'\n'
+  done < <(git -C "$MAIN_ROOT" worktree list --porcelain | awk '
+    /^worktree / { path = substr($0, 10) }
+    /^branch /   { branch = substr($0, 8) }
+    /^$/         { print path "\t" branch; branch = "" }
+  ')
+
+  printf '%s' "$rows" | sort -s -k1,1n | cut -f2-
+  if [ -n "$first_dirty" ] || [ -n "$first_unpushed" ]; then
+    printf '\nTips:\n'
+    [ -z "$first_dirty" ] || printf '  inspect dirty changes:    git -C "%s" status --short\n' "$first_dirty"
+    [ -z "$first_unpushed" ] || printf '  inspect unpushed commits: git -C "%s" log HEAD --not --remotes --oneline\n' "$first_unpushed"
+  fi
+}
+
+cmd_find() {
+  require_repo
+  local search matches
+  opt search "$@"
+  search=$OPT_VALUE
+  if [ -z "$search" ]; then
+    git -C "$MAIN_ROOT" worktree list
+    return 0
+  fi
+  matches=$(git -C "$MAIN_ROOT" worktree list | grep -i -F -- "$search" || true)
+  [ -n "$matches" ] || die "no worktree found matching: $search"
+  printf '%s\n' "$matches"
+}
+
+cmd_remove() {
+  require_repo
+  local dir
+  opt dirName "$@"
+  dir=$OPT_VALUE
+  [ -n "$dir" ] || die "--dirName is required"
+  resolve_worktree_path "$dir"
+  [ -d "$WT_PATH" ] || die "worktree directory not found: $WT_PATH"
+  require_removable "$WT_PATH"
+  git -C "$MAIN_ROOT" worktree remove "$WT_PATH"
+  printf 'Removed worktree %s\n' "$WT_PATH"
+}
+
+cmd_rename() {
+  require_repo
+  local old new old_path new_path
+  opt oldDirName "$@"
+  old=$OPT_VALUE
+  opt newDirName "$@"
+  new=$OPT_VALUE
+  [ -n "$old" ] && [ -n "$new" ] || die "--oldDirName and --newDirName are required"
+  resolve_worktree_path "$old"
+  old_path=$WT_PATH
+  [ -d "$old_path" ] || die "worktree directory not found: $old_path"
+  require_removable "$old_path"
+  resolve_worktree_path "$new"
+  new_path=$WT_PATH
+  [ ! -e "$new_path" ] || die "path already exists: $new_path"
+  mv "$old_path" "$new_path"
+  git -C "$MAIN_ROOT" worktree repair "$new_path"
+  printf 'Renamed worktree %s -> %s\n' "$old_path" "$new_path"
+}
+
+cmd_switch() {
+  require_repo
+  local from branch to from_path to_path checked_out
+  opt fromDirName "$@"
+  from=$OPT_VALUE
+  opt branchName "$@"
+  branch=$OPT_VALUE
+  opt toDirName "$@"
+  to=$OPT_VALUE
+  [ -n "$from" ] && [ -n "$branch" ] || die "--fromDirName and --branchName are required"
+  to=${to:-$branch}
+
+  resolve_worktree_path "$from"
+  from_path=$WT_PATH
+  [ -d "$from_path" ] || die "worktree directory not found: $from_path"
+  require_removable "$from_path"
+  checked_out=$(branch_worktree "$branch")
+  [ -z "$checked_out" ] || die "branch '$branch' is already checked out at: $checked_out"
+  resolve_worktree_path "$to"
+  to_path=$WT_PATH
+  if [ "$to_path" != "$from_path" ] && [ -e "$to_path" ]; then
+    die "path already exists: $to_path"
+  fi
+
+  if ref_exists "refs/heads/$branch"; then
+    git -C "$from_path" checkout --quiet "$branch"
+  elif ref_exists "refs/remotes/origin/$branch"; then
+    git -C "$from_path" checkout --quiet --track -b "$branch" "origin/$branch"
+  else
+    git -C "$from_path" checkout --quiet -b "$branch"
+  fi
+
+  if [ "$to_path" != "$from_path" ]; then
+    mv "$from_path" "$to_path"
+    git -C "$MAIN_ROOT" worktree repair "$to_path"
+  fi
+  printf 'Switched worktree %s to branch %s at %s\n' "$from_path" "$branch" "$to_path"
+}
+
+cmd_sync_env() {
+  require_repo
+  local target_name target
+  if has_flag all "$@"; then
+    while IFS= read -r target; do
+      [ "$target" != "$MAIN_ROOT" ] || continue
+      if [ ! -d "$target" ]; then
+        warn "skipping missing directory: $target"
+        continue
+      fi
+      printf 'Syncing env files to %s\n' "$target"
+      copy_env_files "$MAIN_ROOT" "$target"
+    done < <(git -C "$MAIN_ROOT" worktree list --porcelain | sed -n 's/^worktree //p')
+    return 0
+  fi
+  opt to "$@"
+  target_name=$OPT_VALUE
+  [ -n "$target_name" ] || die "either --to=<dirName> or --all is required"
+  resolve_worktree_path "$target_name"
+  target=$WT_PATH
+  [ -d "$target" ] || die "worktree directory not found: $target"
+  [ "$target" != "$MAIN_ROOT" ] || die "refusing to sync into the main worktree"
+  copy_env_files "$MAIN_ROOT" "$target"
+}
+
+main() {
+  local command=${1:-help}
+  if [ "$#" -gt 0 ]; then
+    shift
+  fi
+  case $command in
+    add) cmd_add "$@" ;;
+    list | ls) cmd_list "$@" ;;
+    find | search) cmd_find "$@" ;;
+    remove | rm) cmd_remove "$@" ;;
+    rename | mv) cmd_rename "$@" ;;
+    switch | co | checkout) cmd_switch "$@" ;;
+    sync-env | sync) cmd_sync_env "$@" ;;
+    help | -h | --help) usage ;;
+    *)
+      usage >&2
+      die "unknown command: $command"
+      ;;
+  esac
+}
+
+main "$@"
