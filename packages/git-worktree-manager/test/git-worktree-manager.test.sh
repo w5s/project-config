@@ -12,7 +12,7 @@ export GIT_CONFIG_NOSYSTEM=1
 export GIT_AUTHOR_NAME=test GIT_AUTHOR_EMAIL=test@example.com
 export GIT_COMMITTER_NAME=test GIT_COMMITTER_EMAIL=test@example.com
 mkdir -p "$HOME"
-unset GIT_WORKTREE_MANAGER_PARENT_DIR GIT_WORKTREE_MANAGER_ENV_PATTERNS GIT_WORKTREE_MANAGER_ENV_EXCLUDES
+unset GIT_WORKTREE_MANAGER_WORKTREES_ROOT GIT_WORKTREE_MANAGER_ENV_PATTERNS GIT_WORKTREE_MANAGER_ENV_EXCLUDES
 
 FAILURES=0
 CASE_NUMBER=0
@@ -93,13 +93,13 @@ test_config_file_and_env_precedence() {
   new_repo
   local base=$BASE
   mkdir -p "$base/wt"
-  printf '[worktree-manager]\n\tparentDir = %s\n\tenvPatterns = .env.local\n' "$base/wt" > "$REPO/.git-worktree-manager"
+  printf '[worktree-manager]\n\tworktreesRoot = %s\n\tenvPatterns = .env.local\n' "$base/wt" > "$REPO/.git-worktree-manager"
   run_in "$REPO" add --branch=from-config >/dev/null
   assert_file "$base/wt/from-config/.env.local"
   assert_no_file "$base/wt/from-config/.env"
 
   mkdir -p "$base/env"
-  GIT_WORKTREE_MANAGER_ENV_PATTERNS=.env GIT_WORKTREE_MANAGER_PARENT_DIR="$base/env" \
+  GIT_WORKTREE_MANAGER_ENV_PATTERNS=.env GIT_WORKTREE_MANAGER_WORKTREES_ROOT="$base/env" \
     run_in "$REPO" add --branch=from-env >/dev/null
   assert_file "$base/env/from-env/.env"
   assert_no_file "$base/env/from-env/.env.local"
@@ -155,7 +155,7 @@ test_init_creates_default_config() {
   new_repo
   run_in "$REPO" init >/dev/null
   assert_file "$REPO/.git-worktree-manager"
-  assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.parentDir)" ".."
+  assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.worktreesRoot)" ".."
   assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.autoFetch)" "true"
   if run_in "$REPO" init >/dev/null 2>&1; then
     fail "init should refuse to overwrite an existing configuration file"

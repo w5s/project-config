@@ -18,7 +18,7 @@ git worktree-manager <command> [options]
 
 | Command | Description |
 | --- | --- |
-| `add --branch=<branch> [--dir=<dir>]` | Create a worktree in `<parentDir>/<dir>` and copy env files. `<dir>` defaults to the branch name and vice versa. |
+| `add --branch=<branch> [--dir=<dir>]` | Create a worktree in `<worktreesRoot>/<dir>` and copy env files. `<dir>` defaults to the branch name and vice versa. |
 | `list [--plain] [--sort]` | List worktrees with markers: `[main]`, `[dirty:N]`, `[unpushed:N]`, `[no-upstream]`, `[missing directory]`. `--plain` prints raw `git worktree list`. `--sort` puts the main worktree first, then clean ones. |
 | `find --search=<text>` | List worktrees whose line contains `<text>` (case-insensitive). |
 | `remove --dir=<dir>` | Remove a worktree without uncommitted or unpushed changes. The branch is kept. |
@@ -38,11 +38,11 @@ Safety rules: the main worktree is never removed, renamed or switched. A worktre
 
 ## Configuration
 
-The configuration file is `.git-worktree-manager`, at the root of the main worktree (the folder that contains `.git`). It uses git config syntax and is read with `git config --file`, so it accepts the same format as `.gitconfig` and `.gitmodules`. `parentDir` is resolved relative to that same root:
+The configuration file is `.git-worktree-manager`, at the root of the main worktree (the folder that contains `.git`). It uses git config syntax and is read with `git config --file`, so it accepts the same format as `.gitconfig` and `.gitmodules`. `worktreesRoot` is resolved relative to that same root:
 
 ```ini
 [worktree-manager]
-    parentDir = ..
+    worktreesRoot = ..
     envPatterns = .env .env.*
     envExcludes = .env.template .env.example .env.sample
     autoFetch = true
@@ -52,7 +52,7 @@ Multi-value keys can be repeated as in any git config file. Their values are joi
 
 | Config key | Environment variable | Default | Description |
 | --- | --- | --- | --- |
-| `parentDir` | `GIT_WORKTREE_MANAGER_PARENT_DIR` | `..` | Directory where worktrees are created. Relative paths are resolved from the main worktree. |
+| `worktreesRoot` | `GIT_WORKTREE_MANAGER_WORKTREES_ROOT` | `..` | Directory where worktrees are created. Relative paths are resolved from the main worktree. |
 | `envPatterns` | `GIT_WORKTREE_MANAGER_ENV_PATTERNS` | `.env .env.*` | Filename patterns of env files to copy. |
 | `envExcludes` | `GIT_WORKTREE_MANAGER_ENV_EXCLUDES` | `.env.template .env.example .env.sample` | Filenames never copied. |
 | `autoFetch` | `GIT_WORKTREE_MANAGER_AUTO_FETCH` | `true` | Run `git fetch` before `add`. Accepts `true` or `false`. |
