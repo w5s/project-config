@@ -25,7 +25,7 @@ usage() {
 Usage: $PROGRAM <command> [options]
 
 Commands:
-  add --branchName=<branch> [--dirName=<dir>]
+  add --branch=<branch> [--dir=<dir>]
       Create a worktree for <branch> in <parentDir>/<dir> and copy env files.
       <dir> defaults to <branch> and <branch> defaults to <dir>.
   list [--plain] [--sort]
@@ -34,12 +34,12 @@ Commands:
       --sort lists the main worktree first, then clean worktrees.
   find --search=<text>
       List worktrees whose line contains <text> (case-insensitive).
-  remove --dirName=<dir>
+  remove --dir=<dir>
       Remove a worktree that has no uncommitted or unpushed changes.
-  rename --oldDirName=<dir> --newDirName=<dir>
+  rename --old-dir=<dir> --new-dir=<dir>
       Rename a worktree directory. Requires a clean, fully pushed worktree.
-  switch --fromDirName=<dir> --branchName=<branch> [--toDirName=<dir>]
-      Check out <branch> in an existing worktree and move it to <toDirName>
+  switch --from-dir=<dir> --branch=<branch> [--to-dir=<dir>]
+      Check out <branch> in an existing worktree and move it to <to-dir>
       (defaults to <branch>). Requires a clean, fully pushed worktree.
   sync-env (--to=<dir> | --all)
       Copy env files from the main worktree into one or all other worktrees.
@@ -143,7 +143,7 @@ require_repo() {
   load_settings
 }
 
-# Sets WT_PATH to the absolute path of <parentDir>/<dirName>.
+# Sets WT_PATH to the absolute path of <parentDir>/<dir>.
 resolve_worktree_path() {
   local base parent
   [ -n "$1" ] || die "a directory name is required"
@@ -213,11 +213,11 @@ copy_env_files() {
 cmd_add() {
   require_repo
   local branch dir target checked_out new_branch=false
-  opt branchName "$@"
+  opt branch "$@"
   branch=$OPT_VALUE
-  opt dirName "$@"
+  opt dir "$@"
   dir=$OPT_VALUE
-  [ -n "$branch$dir" ] || die "--branchName or --dirName is required"
+  [ -n "$branch$dir" ] || die "--branch or --dir is required"
   branch=${branch:-$dir}
   dir=${dir:-$branch}
 
@@ -264,7 +264,7 @@ cmd_list() {
     name=${path##*/}
     issues=""
     if [ ! -d "$path" ]; then
-      issues=" [missing directory — run \`$PROGRAM remove --dirName=$name\`]"
+      issues=" [missing directory — run \`$PROGRAM remove --dir=$name\`]"
     else
       dirty=$(git -C "$path" status --porcelain | wc -l | tr -d ' ')
       unpushed=$(git -C "$path" rev-list HEAD --not --remotes | wc -l | tr -d ' ')
@@ -325,9 +325,9 @@ cmd_find() {
 cmd_remove() {
   require_repo
   local dir
-  opt dirName "$@"
+  opt dir "$@"
   dir=$OPT_VALUE
-  [ -n "$dir" ] || die "--dirName is required"
+  [ -n "$dir" ] || die "--dir is required"
   resolve_worktree_path "$dir"
   [ -d "$WT_PATH" ] || die "worktree directory not found: $WT_PATH"
   require_removable "$WT_PATH"
@@ -338,11 +338,11 @@ cmd_remove() {
 cmd_rename() {
   require_repo
   local old new old_path new_path
-  opt oldDirName "$@"
+  opt old-dir "$@"
   old=$OPT_VALUE
-  opt newDirName "$@"
+  opt new-dir "$@"
   new=$OPT_VALUE
-  [ -n "$old" ] && [ -n "$new" ] || die "--oldDirName and --newDirName are required"
+  [ -n "$old" ] && [ -n "$new" ] || die "--old-dir and --new-dir are required"
   resolve_worktree_path "$old"
   old_path=$WT_PATH
   [ -d "$old_path" ] || die "worktree directory not found: $old_path"
@@ -358,13 +358,13 @@ cmd_rename() {
 cmd_switch() {
   require_repo
   local from branch to from_path to_path checked_out
-  opt fromDirName "$@"
+  opt from-dir "$@"
   from=$OPT_VALUE
-  opt branchName "$@"
+  opt branch "$@"
   branch=$OPT_VALUE
-  opt toDirName "$@"
+  opt to-dir "$@"
   to=$OPT_VALUE
-  [ -n "$from" ] && [ -n "$branch" ] || die "--fromDirName and --branchName are required"
+  [ -n "$from" ] && [ -n "$branch" ] || die "--from-dir and --branch are required"
   to=${to:-$branch}
 
   resolve_worktree_path "$from"
@@ -411,7 +411,7 @@ cmd_sync_env() {
   fi
   opt to "$@"
   target_name=$OPT_VALUE
-  [ -n "$target_name" ] || die "either --to=<dirName> or --all is required"
+  [ -n "$target_name" ] || die "either --to=<dir> or --all is required"
   resolve_worktree_path "$target_name"
   target=$WT_PATH
   [ -d "$target" ] || die "worktree directory not found: $target"
