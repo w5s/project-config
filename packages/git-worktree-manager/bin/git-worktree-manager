@@ -26,7 +26,7 @@ Usage: $PROGRAM <command> [options]
 
 Commands:
   add --branch=<branch> [--dir=<dir>]
-      Create a worktree for <branch> in <parentDir>/<dir> and copy env files.
+      Create a worktree for <branch> in <worktreesRoot>/<dir> and copy env files.
       <dir> defaults to <branch> and <branch> defaults to <dir>.
   list [--plain] [--sort]
       List worktrees with status markers: [main], [dirty:N], [unpushed:N],
@@ -53,13 +53,13 @@ Configuration precedence: environment variables > $CONFIG_FILE_NAME > defaults.
 The configuration file lives in the main worktree and uses git config syntax:
 
   [worktree-manager]
-    parentDir = ..
+    worktreesRoot = ..
     envPatterns = .env .env.*
     envExcludes = .env.template .env.example .env.sample
     autoFetch = true
 
 Environment variables:
-  GIT_WORKTREE_MANAGER_PARENT_DIR        parentDir (relative to the main worktree)
+  GIT_WORKTREE_MANAGER_WORKTREES_ROOT    worktreesRoot (relative to the main worktree)
   GIT_WORKTREE_MANAGER_ENV_PATTERNS      envPatterns (space-separated)
   GIT_WORKTREE_MANAGER_ENV_EXCLUDES      envExcludes (space-separated)
   GIT_WORKTREE_MANAGER_AUTO_FETCH        autoFetch (true or false)
@@ -116,8 +116,8 @@ resolve_setting() {
 }
 
 load_settings() {
-  resolve_setting "${GIT_WORKTREE_MANAGER_PARENT_DIR:-}" parentDir ".."
-  PARENT_DIR=$SETTING_VALUE
+  resolve_setting "${GIT_WORKTREE_MANAGER_WORKTREES_ROOT:-}" worktreesRoot ".."
+  WORKTREES_ROOT=$SETTING_VALUE
   resolve_setting "${GIT_WORKTREE_MANAGER_ENV_PATTERNS:-}" envPatterns ".env .env.*"
   ENV_PATTERNS=$SETTING_VALUE
   resolve_setting "${GIT_WORKTREE_MANAGER_ENV_EXCLUDES:-}" envExcludes ".env.template .env.example .env.sample"
@@ -146,17 +146,17 @@ require_repo() {
   load_settings
 }
 
-# Sets WT_PATH to the absolute path of <parentDir>/<dir>.
+# Sets WT_PATH to the absolute path of <worktreesRoot>/<dir>.
 resolve_worktree_path() {
-  local base parent
+  local base root
   [ -n "$1" ] || die "a directory name is required"
-  case $PARENT_DIR in
-    /*) base=$PARENT_DIR ;;
-    *) base=$MAIN_ROOT/$PARENT_DIR ;;
+  case $WORKTREES_ROOT in
+    /*) base=$WORKTREES_ROOT ;;
+    *) base=$MAIN_ROOT/$WORKTREES_ROOT ;;
   esac
-  parent=$(abs_path "$base")
-  [ -n "$parent" ] || die "parent directory does not exist: $base"
-  WT_PATH=$parent/$1
+  root=$(abs_path "$base")
+  [ -n "$root" ] || die "worktrees root does not exist: $base"
+  WT_PATH=$root/$1
 }
 
 ref_exists() {
@@ -430,7 +430,7 @@ cmd_init() {
 # Environment variables (GIT_WORKTREE_MANAGER_*) take precedence over these values.
 [worktree-manager]
 	# Directory where worktrees are created, relative to the main worktree.
-	parentDir = ..
+	worktreesRoot = ..
 	# Space-separated patterns of env files copied into new worktrees.
 	envPatterns = .env .env.*
 	# Space-separated patterns of env files that are never copied.
