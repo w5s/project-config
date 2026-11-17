@@ -151,6 +151,17 @@ test_sync_env_all_updates_worktrees() {
   assert_equal "$(cat "$base/feature/.env")" "ROOT=2"
 }
 
+test_init_creates_default_config() {
+  new_repo
+  run_in "$REPO" init >/dev/null
+  assert_file "$REPO/.git-worktree-manager"
+  assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.parentDir)" ".."
+  assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.autoFetch)" "true"
+  if run_in "$REPO" init >/dev/null 2>&1; then
+    fail "init should refuse to overwrite an existing configuration file"
+  fi
+}
+
 test_list_and_find() {
   new_repo
   local base=$BASE
@@ -175,6 +186,7 @@ test_remove_safety_checks
 test_rename_and_switch
 test_sync_env_all_updates_worktrees
 test_list_and_find
+test_init_creates_default_config
 
 if [ "$FAILURES" -gt 0 ]; then
   printf '%s assertion(s) failed\n' "$FAILURES" >&2
