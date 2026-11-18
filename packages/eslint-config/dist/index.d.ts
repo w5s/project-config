@@ -5057,8 +5057,8 @@ type PerfectionistSortClasses = {
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[];
-      selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method");
+      modifiers?: ("static" | "declare" | "abstract" | "decorated" | "override" | "readonly" | "protected" | "private" | "public" | "optional" | "async")[];
+      selector?: ("function-property" | "accessor-property" | "property" | "constructor" | "get-method" | "set-method" | "method" | "index-signature" | "static-block");
       decoratorNamePattern?: (({
         pattern: string;
         flags?: string;
@@ -5081,8 +5081,8 @@ type PerfectionistSortClasses = {
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[];
-      selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method");
+      modifiers?: ("static" | "declare" | "abstract" | "decorated" | "override" | "readonly" | "protected" | "private" | "public" | "optional" | "async")[];
+      selector?: ("function-property" | "accessor-property" | "property" | "constructor" | "get-method" | "set-method" | "method" | "index-signature" | "static-block");
       decoratorNamePattern?: (({
         pattern: string;
         flags?: string;
@@ -5114,8 +5114,8 @@ type PerfectionistSortClasses = {
       pattern: string;
       flags?: string;
     } | string));
-    modifiers?: ("async" | "protected" | "private" | "public" | "static" | "abstract" | "override" | "readonly" | "decorated" | "declare" | "optional")[];
-    selector?: ("accessor-property" | "index-signature" | "constructor" | "static-block" | "get-method" | "set-method" | "function-property" | "property" | "method");
+    modifiers?: ("static" | "declare" | "abstract" | "decorated" | "override" | "readonly" | "protected" | "private" | "public" | "optional" | "async")[];
+    selector?: ("function-property" | "accessor-property" | "property" | "constructor" | "get-method" | "set-method" | "method" | "index-signature" | "static-block");
     decoratorNamePattern?: (({
       pattern: string;
       flags?: string;
@@ -6120,8 +6120,8 @@ type PerfectionistSortImports = {
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("default" | "multiline" | "named" | "require" | "side-effect" | "singleline" | "ts-equals" | "type" | "value" | "wildcard")[];
-      selector?: ("side-effect-style" | "tsconfig-path" | "side-effect" | "external" | "internal" | "builtin" | "sibling" | "subpath" | "import" | "parent" | "index" | "style" | "type");
+      modifiers?: ("side-effect" | "type" | "value" | "ts-equals" | "require" | "default" | "wildcard" | "named" | "multiline" | "singleline")[];
+      selector?: ("type" | "side-effect-style" | "side-effect" | "style" | "tsconfig-path" | "index" | "sibling" | "parent" | "subpath" | "internal" | "builtin" | "external" | "import");
     }, ...({
       elementNamePattern?: (({
         pattern: string;
@@ -6130,8 +6130,8 @@ type PerfectionistSortImports = {
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("default" | "multiline" | "named" | "require" | "side-effect" | "singleline" | "ts-equals" | "type" | "value" | "wildcard")[];
-      selector?: ("side-effect-style" | "tsconfig-path" | "side-effect" | "external" | "internal" | "builtin" | "sibling" | "subpath" | "import" | "parent" | "index" | "style" | "type");
+      modifiers?: ("side-effect" | "type" | "value" | "ts-equals" | "require" | "default" | "wildcard" | "named" | "multiline" | "singleline")[];
+      selector?: ("type" | "side-effect-style" | "side-effect" | "style" | "tsconfig-path" | "index" | "sibling" | "parent" | "subpath" | "internal" | "builtin" | "external" | "import");
     })[]];
   } | {
     fallbackSort?: {
@@ -6151,8 +6151,8 @@ type PerfectionistSortImports = {
       pattern: string;
       flags?: string;
     } | string));
-    modifiers?: ("default" | "multiline" | "named" | "require" | "side-effect" | "singleline" | "ts-equals" | "type" | "value" | "wildcard")[];
-    selector?: ("side-effect-style" | "tsconfig-path" | "side-effect" | "external" | "internal" | "builtin" | "sibling" | "subpath" | "import" | "parent" | "index" | "style" | "type");
+    modifiers?: ("side-effect" | "type" | "value" | "ts-equals" | "require" | "default" | "wildcard" | "named" | "multiline" | "singleline")[];
+    selector?: ("type" | "side-effect-style" | "side-effect" | "style" | "tsconfig-path" | "index" | "sibling" | "parent" | "subpath" | "internal" | "builtin" | "external" | "import");
   })[];
   newlinesInside?: (("ignore" | number) | "newlinesBetween");
   groups?: (string | [string, ...(string)[]] | {
@@ -6243,8 +6243,8 @@ type PerfectionistSortInterfaces = {
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("optional" | "required" | "multiline")[];
-      selector?: ("index-signature" | "member" | "method" | "property");
+      modifiers?: ("multiline" | "optional" | "required")[];
+      selector?: ("index-signature" | "method" | "property" | "member");
       elementValuePattern?: (({
         pattern: string;
         flags?: string;
@@ -6260,8 +6260,8 @@ type PerfectionistSortInterfaces = {
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("optional" | "required" | "multiline")[];
-      selector?: ("index-signature" | "member" | "method" | "property");
+      modifiers?: ("multiline" | "optional" | "required")[];
+      selector?: ("index-signature" | "method" | "property" | "member");
       elementValuePattern?: (({
         pattern: string;
         flags?: string;
@@ -6288,8 +6288,8 @@ type PerfectionistSortInterfaces = {
       pattern: string;
       flags?: string;
     } | string));
-    modifiers?: ("optional" | "required" | "multiline")[];
-    selector?: ("index-signature" | "member" | "method" | "property");
+    modifiers?: ("multiline" | "optional" | "required")[];
+    selector?: ("index-signature" | "method" | "property" | "member");
     elementValuePattern?: (({
       pattern: string;
       flags?: string;
@@ -6725,7 +6725,7 @@ type PerfectionistSortModules = [] | [{
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("async" | "declare" | "decorated" | "default" | "export")[];
+      modifiers?: ("arrow" | "declare" | "default" | "async" | "decorated" | "export")[];
       selector?: ("enum" | "function" | "interface" | "type" | "class");
       decoratorNamePattern?: (({
         pattern: string;
@@ -6742,7 +6742,7 @@ type PerfectionistSortModules = [] | [{
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("async" | "declare" | "decorated" | "default" | "export")[];
+      modifiers?: ("arrow" | "declare" | "default" | "async" | "decorated" | "export")[];
       selector?: ("enum" | "function" | "interface" | "type" | "class");
       decoratorNamePattern?: (({
         pattern: string;
@@ -6768,7 +6768,7 @@ type PerfectionistSortModules = [] | [{
       pattern: string;
       flags?: string;
     } | string));
-    modifiers?: ("async" | "declare" | "decorated" | "default" | "export")[];
+    modifiers?: ("arrow" | "declare" | "default" | "async" | "decorated" | "export")[];
     selector?: ("enum" | "function" | "interface" | "type" | "class");
     decoratorNamePattern?: (({
       pattern: string;
@@ -6794,6 +6794,7 @@ type PerfectionistSortModules = [] | [{
   })[];
   newlinesBetween?: ("ignore" | number);
   additionalModuleBlockTypes?: string[];
+  sortArrowFunctions?: boolean;
   useExperimentalDependencyDetection?: boolean;
   newlinesBetweenOverloadSignatures?: ("ignore" | number);
   partitionByComment?: (boolean | (({
@@ -7079,8 +7080,8 @@ type PerfectionistSortObjectTypes = {
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("optional" | "required" | "multiline")[];
-      selector?: ("index-signature" | "member" | "method" | "property");
+      modifiers?: ("multiline" | "optional" | "required")[];
+      selector?: ("index-signature" | "method" | "property" | "member");
       elementValuePattern?: (({
         pattern: string;
         flags?: string;
@@ -7096,8 +7097,8 @@ type PerfectionistSortObjectTypes = {
         pattern: string;
         flags?: string;
       } | string));
-      modifiers?: ("optional" | "required" | "multiline")[];
-      selector?: ("index-signature" | "member" | "method" | "property");
+      modifiers?: ("multiline" | "optional" | "required")[];
+      selector?: ("index-signature" | "method" | "property" | "member");
       elementValuePattern?: (({
         pattern: string;
         flags?: string;
@@ -7124,8 +7125,8 @@ type PerfectionistSortObjectTypes = {
       pattern: string;
       flags?: string;
     } | string));
-    modifiers?: ("optional" | "required" | "multiline")[];
-    selector?: ("index-signature" | "member" | "method" | "property");
+    modifiers?: ("multiline" | "optional" | "required")[];
+    selector?: ("index-signature" | "method" | "property" | "member");
     elementValuePattern?: (({
       pattern: string;
       flags?: string;
@@ -7238,7 +7239,7 @@ type PerfectionistSortObjects = {
         flags?: string;
       } | string));
       modifiers?: ("multiline")[];
-      selector?: ("member" | "method" | "property");
+      selector?: ("method" | "property" | "member");
       elementValuePattern?: (({
         pattern: string;
         flags?: string;
@@ -7255,7 +7256,7 @@ type PerfectionistSortObjects = {
         flags?: string;
       } | string));
       modifiers?: ("multiline")[];
-      selector?: ("member" | "method" | "property");
+      selector?: ("method" | "property" | "member");
       elementValuePattern?: (({
         pattern: string;
         flags?: string;
@@ -7283,7 +7284,7 @@ type PerfectionistSortObjects = {
       flags?: string;
     } | string));
     modifiers?: ("multiline")[];
-    selector?: ("member" | "method" | "property");
+    selector?: ("method" | "property" | "member");
     elementValuePattern?: (({
       pattern: string;
       flags?: string;
