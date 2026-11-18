@@ -29,6 +29,7 @@
     "oneline",
     "pipefail",
     "rharkor",
+    "gitworktrees",
     "shellcheck",
     "tenv",
     "typanion",

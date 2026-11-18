@@ -53,7 +53,7 @@ Configuration precedence: environment variables > $CONFIG_FILE_NAME > defaults.
 The configuration file lives in the main worktree and uses git config syntax:
 
   [worktree-manager]
-    worktreesRoot = ..
+    worktreesRoot = .gitworktrees
     envPatterns = .env .env.*
     envExcludes = .env.template .env.example .env.sample
     autoFetch = true
@@ -116,7 +116,7 @@ resolve_setting() {
 }
 
 load_settings() {
-  resolve_setting "${GIT_WORKTREE_MANAGER_WORKTREES_ROOT:-}" worktreesRoot ".."
+  resolve_setting "${GIT_WORKTREE_MANAGER_WORKTREES_ROOT:-}" worktreesRoot ".gitworktrees"
   WORKTREES_ROOT=$SETTING_VALUE
   resolve_setting "${GIT_WORKTREE_MANAGER_ENV_PATTERNS:-}" envPatterns ".env .env.*"
   ENV_PATTERNS=$SETTING_VALUE
@@ -146,16 +146,21 @@ require_repo() {
   load_settings
 }
 
-# Sets WT_PATH to the absolute path of <worktreesRoot>/<dir>.
-resolve_worktree_path() {
-  local base root
-  [ -n "$1" ] || die "a directory name is required"
+# Sets WORKTREES_ABS to the worktrees root as an absolute path. The path need not exist.
+worktrees_root_path() {
   case $WORKTREES_ROOT in
-    /*) base=$WORKTREES_ROOT ;;
-    *) base=$MAIN_ROOT/$WORKTREES_ROOT ;;
+    /*) WORKTREES_ABS=$WORKTREES_ROOT ;;
+    *) WORKTREES_ABS=$MAIN_ROOT/$WORKTREES_ROOT ;;
   esac
-  root=$(abs_path "$base")
-  [ -n "$root" ] || die "worktrees root does not exist: $base"
+}
+
+# Sets WT_PATH to the absolute path of <worktreesRoot>/<dir>, creating the root when missing.
+resolve_worktree_path() {
+  local root
+  [ -n "$1" ] || die "a directory name is required"
+  worktrees_root_path
+  mkdir -p "$WORKTREES_ABS" || die "cannot create worktrees root: $WORKTREES_ABS"
+  root=$(abs_path "$WORKTREES_ABS")
   WT_PATH=$root/$1
 }
 
@@ -193,9 +198,13 @@ is_excluded() {
 # to the same relative location under <dst>. Only top-level env files of each directory are copied.
 copy_env_files() {
   local src=$1 dst=$2 dirs dir rel pattern file name target_dir
+  worktrees_root_path
   dirs=$(find "$src" \( -name node_modules -o -name .git \) -prune -o -type d -print)
   while IFS= read -r dir; do
     [ -n "$dir" ] || continue
+    case $dir in
+      "$WORKTREES_ABS" | "$WORKTREES_ABS"/*) continue ;;
+    esac
     rel=${dir#"$src"}
     rel=${rel#/}
     for pattern in $ENV_PATTERNS; do
@@ -430,7 +439,7 @@ cmd_init() {
 # Environment variables (GIT_WORKTREE_MANAGER_*) take precedence over these values.
 [worktree-manager]
 	# Directory where worktrees are created, relative to the main worktree.
-	worktreesRoot = ..
+	worktreesRoot = .gitworktrees
 	# Space-separated patterns of env files copied into new worktrees.
 	envPatterns = .env .env.*
 	# Space-separated patterns of env files that are never copied.
