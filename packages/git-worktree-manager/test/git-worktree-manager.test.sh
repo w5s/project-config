@@ -71,9 +71,12 @@ run_in() {
 
 test_add_copies_env_files() {
   new_repo
-  local base=$BASE
+  local base=$REPO/.gitworktrees
   run_in "$REPO" add --branch=feature >/dev/null
   local wt=$base/feature
+  run_in "$REPO" add --branch=other >/dev/null
+  assert_no_file "$base/other/.gitworktrees"
+  assert_no_file "$base/other/.env.local.bak"
   assert_equal "$(git -C "$wt" branch --show-current)" feature
   assert_file "$wt/.env"
   assert_file "$wt/.env.local"
@@ -108,7 +111,7 @@ test_config_file_and_env_precedence() {
 
 test_remove_safety_checks() {
   new_repo
-  local base=$BASE
+  local base=$REPO/.gitworktrees
   run_in "$REPO" add --branch=gone >/dev/null
   local wt=$base/gone
   printf 'x\n' > "$wt/untracked.txt"
@@ -129,7 +132,7 @@ test_remove_safety_checks() {
 
 test_rename_and_switch() {
   new_repo
-  local base=$BASE
+  local base=$REPO/.gitworktrees
   run_in "$REPO" add --branch=feature >/dev/null
   run_in "$REPO" rename --old-dir=feature --new-dir=renamed >/dev/null
   assert_no_file "$base/feature"
@@ -144,7 +147,7 @@ test_rename_and_switch() {
 
 test_sync_env_all_updates_worktrees() {
   new_repo
-  local base=$BASE
+  local base=$REPO/.gitworktrees
   run_in "$REPO" add --branch=feature >/dev/null
   printf 'ROOT=2\n' > "$REPO/.env"
   run_in "$REPO" sync-env --all >/dev/null
@@ -155,7 +158,7 @@ test_init_creates_default_config() {
   new_repo
   run_in "$REPO" init >/dev/null
   assert_file "$REPO/.git-worktree-manager"
-  assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.worktreesRoot)" ".."
+  assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.worktreesRoot)" ".gitworktrees"
   assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.autoFetch)" "true"
   if run_in "$REPO" init >/dev/null 2>&1; then
     fail "init should refuse to overwrite an existing configuration file"
@@ -164,7 +167,7 @@ test_init_creates_default_config() {
 
 test_list_and_find() {
   new_repo
-  local base=$BASE
+  local base=$REPO/.gitworktrees
   run_in "$REPO" add --branch=other >/dev/null
   printf 'x\n' > "$base/other/untracked.txt"
   local output
