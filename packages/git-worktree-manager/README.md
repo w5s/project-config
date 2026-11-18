@@ -42,7 +42,7 @@ The configuration file is `.git-worktree-manager`, at the root of the main workt
 
 ```ini
 [worktree-manager]
-    worktreesRoot = ..
+    worktreesRoot = .gitworktrees
     envPatterns = .env .env.*
     envExcludes = .env.template .env.example .env.sample
     autoFetch = true
@@ -52,12 +52,18 @@ Multi-value keys can be repeated as in any git config file. Their values are joi
 
 | Config key | Environment variable | Default | Description |
 | --- | --- | --- | --- |
-| `worktreesRoot` | `GIT_WORKTREE_MANAGER_WORKTREES_ROOT` | `..` | Directory where worktrees are created. Relative paths are resolved from the main worktree. |
+| `worktreesRoot` | `GIT_WORKTREE_MANAGER_WORKTREES_ROOT` | `.gitworktrees` | Directory where worktrees are created. Relative paths are resolved from the main worktree. Created on first use. |
 | `envPatterns` | `GIT_WORKTREE_MANAGER_ENV_PATTERNS` | `.env .env.*` | Filename patterns of env files to copy. |
 | `envExcludes` | `GIT_WORKTREE_MANAGER_ENV_EXCLUDES` | `.env.template .env.example .env.sample` | Filenames never copied. |
 | `autoFetch` | `GIT_WORKTREE_MANAGER_AUTO_FETCH` | `true` | Run `git fetch` before `add`. Accepts `true` or `false`. |
 
 Environment variables take a space-separated list for the multi-value settings.
+
+The default `.gitworktrees` folder lives inside the main worktree, so add it to `.gitignore` to keep it out of `git status`:
+
+```gitignore
+.gitworktrees/
+```
 
 ## Development
 
