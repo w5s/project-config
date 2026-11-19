@@ -420,6 +420,11 @@ export interface RuleOptions {
    */
   'ts/no-unsafe-call'?: Linter.RuleEntry<[]>
   /**
+   * Disallow assigning non-instance values to class instance typed locations
+   * @see https://typescript-eslint.io/rules/no-unsafe-class-instance-assignment
+   */
+  'ts/no-unsafe-class-instance-assignment'?: Linter.RuleEntry<[]>
+  /**
    * Disallow unsafe declaration merging
    * @see https://typescript-eslint.io/rules/no-unsafe-declaration-merging
    */
