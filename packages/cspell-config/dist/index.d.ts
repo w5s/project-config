@@ -1144,6 +1144,21 @@ interface FeaturesActive {
    * @hidden
    */
   featureName?: boolean;
+  /**
+   * Make the `filename` globs in `overrides` match only the path they name.
+   *
+   * When disabled, a glob also matches the files inside a folder with that name. For example, `examples.ts`
+   * matches a file named `examples.ts` and every file inside a folder named `examples.ts`. A glob ending in `/**`,
+   * such as `src/**`, also matches a file named `src`.
+   *
+   * When enabled:
+   * - A glob such as `examples.ts` or `/src` matches only a file with that name.
+   * - To apply an override to the files in a folder, end the glob with `/`, for example `src/` or `/src/`.
+   *
+   * @since 10.5.0
+   * @default false
+   */
+  overrideGlobsMatchFilesOnly?: FeatureEnableOnly;
 }
 /**
  * These are feature settings that have been deprecated or moved elsewhere they will have no
@@ -1421,11 +1436,24 @@ interface FileSettings extends ExtendableSettings, CommandLineSettings {
    *
    * Glob patterns are relative to the {@link globRoot} of the configuration file that defines them.
    *
-   * The default is `["node_modules/"]`.
-   *
-   * Warning: if you ignore `".git/"` then it will also ignore `".git/COMMIT_EDITMSG"` which is needed for the `commit-msg` git hook; in that case, rather use `[".git/{info,lfs,logs,refs,objects}/**", ".git/{index,*refs,*HEAD}"]`.
+   * The default is `[]`.
+   * Separately, the `cspell` command line skips `node_modules/**` unless `--exclude` is given.
    */
   ignorePaths?: Glob[];
+  /**
+   * Skip well-known files that are not meant to be spell checked, such as git's own files and nested git worktrees.
+   *
+   * Each preset is enabled with `true` and disabled with `false`. A preset that is not set keeps its default.
+   *
+   * Example: check git's own files again.
+   *
+   * ```json
+   * "ignorePathPresets": { "git": false }
+   * ```
+   *
+   * @since 10.5.0
+   */
+  ignorePathPresets?: IgnorePathPresets;
   /**
    * Prevents searching for local configuration when checking individual documents.
    *
@@ -1493,6 +1521,41 @@ interface FileSettings extends ExtendableSettings, CommandLineSettings {
    * @since 9.6.3
    */
   engines?: CompatibleEngineVersions;
+}
+/**
+ * Presets of files to skip. Each one is enabled or disabled on its own.
+ */
+interface IgnorePathPresets {
+  /**
+   * Skip git's own files inside the root folder:
+   * - a file named `.git`, which git puts in a worktree or a submodule
+   * - everything inside a `.git` folder, except git's message files
+   *
+   * Files outside the root folder are not skipped. For example, a submodule's commit message is in the parent
+   * repository's `.git` folder.
+   *
+   * Git's message files stay checked, so a `commit-msg` hook can spell check the commit message. They are the files
+   * whose names end in `MSG`, such as `COMMIT_EDITMSG`, `MERGE_MSG`, and `TAG_EDITMSG`, and `EDIT_DESCRIPTION`.
+   * They are kept in two places:
+   * - directly inside a `.git` folder
+   * - directly inside a linked worktree's folder in `.git/worktrees`
+   *
+   * @default true
+   */
+  git?: boolean;
+  /**
+   * Skip git worktrees inside the root folder, such as `.worktrees/feature`. A worktree is another checkout of the
+   * same repository, often of another branch.
+   *
+   * The worktrees are found in the repository's own records, in `.git/worktrees`, so finding them does not search
+   * the folders. Only the worktrees of the repository that holds the root folder are skipped. Submodules and other
+   * repositories inside the root folder are still checked.
+   *
+   * When the root folder is inside a worktree, that worktree's files are still checked.
+   *
+   * @default true
+   */
+  nestedWorktrees?: boolean;
 }
 /**
  * In the below JSDoc comment, we helpfully specify an example configuration for the end-user to
