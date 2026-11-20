@@ -193,6 +193,9 @@ importers:
       '@w5s/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint-config
+      '@w5s/git-worktree-manager':
+        specifier: workspace:*
+        version: link:packages/git-worktree-manager
       '@w5s/lefthook-config':
         specifier: workspace:*
         version: link:packages/lefthook-config
@@ -479,6 +482,8 @@ importers:
       '@w5s/tsdown-config':
         specifier: workspace:*
         version: link:../tsdown-config
+
+  packages/git-worktree-manager: {}
 
   packages/lefthook-config:
     dependencies:

@@ -19,12 +19,21 @@
     "commitlintrc",
     "cosmiconfig",
     "dtinth",
+    "elif",
+    "esac",
     "monkeyc",
+    "NOSYSTEM",
     "nonconstructor",
     "nonoctal",
     "nothrow",
+    "oneline",
     "pipefail",
     "rharkor",
-    "typanion"
+    "gitworktrees",
+    "shellcheck",
+    "tenv",
+    "typanion",
+    "unpushed",
+    "worktrees"
   ]
 }
