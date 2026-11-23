@@ -1,6 +1,6 @@
-import { n as detectAgent, t as npmCommandOrThrow } from "../npmCommandOrThrow-CBvyw2q9.js";
 import { $ } from "@w5s/managed-script/zx";
 import npmRunAllTasks from "npm-run-all2";
+import { n as detectAgent, t as npmCommandOrThrow } from "../npmCommandOrThrow-D7r_D9iV.js";
 // src/internal/npmRunAll.ts
 /**
 * Runs every script whose name matches `${scriptPrefix}:*`, in a portable way.

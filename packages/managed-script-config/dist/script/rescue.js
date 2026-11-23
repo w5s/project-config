@@ -1,6 +1,6 @@
-import { t as isGit } from "../isGit-DsCKZw03.js";
-import { n as detectAgent, t as npmCommandOrThrow } from "../npmCommandOrThrow-CBvyw2q9.js";
 import { $ } from "@w5s/managed-script/zx";
+import { t as isGit } from "../isGit-B965siHE.js";
+import { n as detectAgent, t as npmCommandOrThrow } from "../npmCommandOrThrow-D7r_D9iV.js";
 // src/internal/npmInstall.ts
 /**
 * Installs the project dependencies using the detected package manager's "install" command

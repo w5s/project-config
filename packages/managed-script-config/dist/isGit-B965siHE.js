@@ -3,4 +3,4 @@ import { existsSync, statSync } from "node:fs";
 const isGit = existsSync(".git") && statSync(".git").isDirectory();
 export { isGit as t };
 
-//# sourceMappingURL=isGit-DsCKZw03.js.map
+//# sourceMappingURL=isGit-B965siHE.js.map

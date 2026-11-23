@@ -1,7 +1,7 @@
-import { t as npmExec } from "../../npmExec-CsAKP49L.js";
-import path from "node:path";
 import { $, isCI } from "@w5s/managed-script/zx";
 import { existsSync } from "node:fs";
+import { t as npmExec } from "../../npmExec-B2YFcpLE.js";
+import path from "node:path";
 import { access } from "node:fs/promises";
 // src/internal/pathExists.ts
 /**

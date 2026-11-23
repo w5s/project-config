@@ -1,4 +1,4 @@
-import { a as RunnerScript$1, c as UserConfig, n as CommandContext, o as ScriptDefinition, r as StdioOptions, s as ShellScript$1, t as ManagedScriptCommand } from "./type-QluLeED6.js";
+import { a as RunnerScript$1, c as UserConfig, n as CommandContext, o as ScriptDefinition, r as StdioOptions, s as ShellScript$1, t as ManagedScriptCommand } from "./type-hvsy_R0f.js";
 /**
  * Define the configuration for the managed script.
  *

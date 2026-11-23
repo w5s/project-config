@@ -1,6 +1,6 @@
-import { t as isGit } from "../../isGit-DsCKZw03.js";
 import { $ } from "@w5s/managed-script/zx";
 import { existsSync } from "node:fs";
+import { t as isGit } from "../../isGit-B965siHE.js";
 // src/script/prepare/gitmodules.ts
 async function main() {
 	if (!(isGit && existsSync(".gitmodules"))) return;

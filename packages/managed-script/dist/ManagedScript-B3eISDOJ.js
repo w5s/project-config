@@ -1,7 +1,7 @@
-import { n as ManagedScriptEnv, r as Stdio, t as defaultContext } from "./defaultContext-CSKy4KuS.js";
-import { loadConfig } from "c12";
 import path from "node:path";
+import { loadConfig } from "c12";
 import { spawn } from "node:child_process";
+import { n as ManagedScriptEnv, r as Stdio, t as defaultContext } from "./defaultContext-Xl2iA7UM.js";
 import { readFile } from "node:fs/promises";
 import path$1 from "node:path/win32";
 // src/meta.ts
@@ -318,4 +318,4 @@ async function runScript(options) {
 const ManagedScript = Object.freeze({ runScript });
 export { meta as n, ManagedScript as t };
 
-//# sourceMappingURL=ManagedScript-Cx4wHszS.js.map
+//# sourceMappingURL=ManagedScript-B3eISDOJ.js.map

@@ -1,6 +1,6 @@
-import { n as meta, t as ManagedScript } from "./ManagedScript-Cx4wHszS.js";
-import { n as ManagedScriptEnv } from "./defaultContext-CSKy4KuS.js";
 import { createDefineConfig } from "c12";
+import { n as meta, t as ManagedScript } from "./ManagedScript-B3eISDOJ.js";
+import { n as ManagedScriptEnv } from "./defaultContext-Xl2iA7UM.js";
 // src/defineConfig.ts
 /**
 * Define the configuration for the managed script.

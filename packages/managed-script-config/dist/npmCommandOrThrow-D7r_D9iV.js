@@ -25,4 +25,4 @@ function npmCommandOrThrow(agent, command, args, options) {
 }
 export { detectAgent as n, npmCommandOrThrow as t };
 
-//# sourceMappingURL=npmCommandOrThrow-CBvyw2q9.js.map
+//# sourceMappingURL=npmCommandOrThrow-D7r_D9iV.js.map

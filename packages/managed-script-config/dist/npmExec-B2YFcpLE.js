@@ -1,4 +1,4 @@
-import { n as detectAgent, t as npmCommandOrThrow } from "./npmCommandOrThrow-CBvyw2q9.js";
+import { n as detectAgent, t as npmCommandOrThrow } from "./npmCommandOrThrow-D7r_D9iV.js";
 // src/internal/npmExec.ts
 /**
 * Runs a locally installed binary using the detected package manager "exec" command
@@ -24,4 +24,4 @@ function npmExec(shell) {
 }
 export { npmExec as t };
 
-//# sourceMappingURL=npmExec-CsAKP49L.js.map
+//# sourceMappingURL=npmExec-B2YFcpLE.js.map

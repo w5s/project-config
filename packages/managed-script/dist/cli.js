@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import { n as meta, t as ManagedScript } from "./ManagedScript-Cx4wHszS.js";
 import { createRequire } from "node:module";
 import tty from "tty";
+import { n as meta, t as ManagedScript } from "./ManagedScript-B3eISDOJ.js";
 // \0rolldown/runtime.js
 var __create = Object.create;
 var __defProp = Object.defineProperty;
