@@ -3,9 +3,9 @@ import prettierConfig from "@w5s/prettier-config";
 import eslintConfig from "@eslint/js";
 import globals from "globals";
 import { eslintIgnores } from "@w5s/eslint-config-ignore";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
 import { mergeProcessors, processorPassThrough } from "eslint-merge-processors";
 import * as yamlParser from "yaml-eslint-parser";
-import tsPlugin from "@typescript-eslint/eslint-plugin";
 // src/glob.ts
 const sourceGlob = Project.glob({
 	fileExtensions: [Project.sourceExtensions()],
