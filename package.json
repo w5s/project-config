@@ -35,6 +35,7 @@
     "prepare:gitmodules": "managed-script",
     "prepare:lefthook": "managed-script",
     "prepare:packages": "turbo run prepare",
+    "prepare:skills": "managed-script",
     "release": ":",
     "rescue": "managed-script",
     "spellcheck": "turbo run spellcheck spellcheck:root",
