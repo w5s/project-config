@@ -1,7 +1,7 @@
-import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
 import eslint, { Linter } from "eslint";
 import { StylisticCustomizeOptions } from "@stylistic/eslint-plugin";
 import { ESLintRules } from "eslint/rules";
+import { ESLintIgnoreOptions } from "@w5s/eslint-config-ignore";
 declare module 'eslint' {
   namespace Linter {
     interface RulesRecord extends RuleOptions$19 {}
