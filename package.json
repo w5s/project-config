@@ -58,6 +58,7 @@
     "@lerna-lite/publish": "5.9.0",
     "@types/node": "26.6.6",
     "@types/parse-gitignore": "1.0.2",
+    "@w5s/agent-config": "workspace:*",
     "@w5s/commitlint-config": "workspace:*",
     "@w5s/conventional-changelog": "workspace:*",
     "@w5s/cspell-config": "workspace:*",
