@@ -148,7 +148,7 @@ function interopDefault(m) {
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/dev",
-	version: "7.0.0"
+	version: "7.1.0"
 });
 // src/Project.ts
 const reExtension = /^\./;

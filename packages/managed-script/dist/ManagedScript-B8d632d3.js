@@ -8,10 +8,10 @@ import path$1 from "node:path/win32";
 const meta = Object.freeze({
 	binaryLabel: "W5S Managed Script",
 	binaryName: "managed-script",
-	binaryVersion: "1.0.0-alpha.4",
+	binaryVersion: "1.0.0-alpha.5",
 	buildNumber: 1,
 	name: "@w5s/managed-script",
-	version: "1.0.0-alpha.4"
+	version: "1.0.0-alpha.5"
 });
 // src/internal/ConfigLoader.ts
 const ConfigLoader = { async load(options) {
@@ -318,4 +318,4 @@ async function runScript(options) {
 const ManagedScript = Object.freeze({ runScript });
 export { meta as n, ManagedScript as t };
 
-//# sourceMappingURL=ManagedScript-B3eISDOJ.js.map
+//# sourceMappingURL=ManagedScript-B8d632d3.js.map

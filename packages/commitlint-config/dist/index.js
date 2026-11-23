@@ -79,7 +79,7 @@ const config = {
 const meta = Object.freeze({
 	buildNumber: 0,
 	name: "@w5s/commitlint-config",
-	version: "3.32.0"
+	version: "3.32.1"
 });
 export { config as default, meta };
 
