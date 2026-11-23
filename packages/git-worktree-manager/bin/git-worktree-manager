@@ -4,12 +4,18 @@
 # Port of git-worktree-utils (https://www.npmjs.com/package/git-worktree-utils).
 #
 # Configuration is read from environment variables and from a git-config
-# formatted file named .git-worktree-manager at the root of the main worktree.
+# formatted file named .gitworktrees at the root of the main worktree.
 set -eu
 set -f # never let shell globbing expand configured patterns
 
 PROGRAM=git-worktree-manager
-CONFIG_FILE_NAME=.git-worktree-manager
+CONFIG_FILE_NAME=.gitworktrees
+
+# Default settings. Used by load_settings and written (commented out) by init.
+DEFAULT_WORKTREES_ROOT=.worktrees
+DEFAULT_SYNC_INCLUDE=".env .env.*"
+DEFAULT_SYNC_EXCLUDE=".env.template .env.example .env.sample"
+DEFAULT_AUTO_FETCH=true
 
 die() {
   printf '%s: error: %s\n' "$PROGRAM" "$*" >&2
@@ -26,7 +32,7 @@ Usage: $PROGRAM <command> [options]
 
 Commands:
   add --branch=<branch> [--dir=<dir>]
-      Create a worktree for <branch> in <worktreesRoot>/<dir> and copy env files.
+      Create a worktree for <branch> in <worktreesRoot>/<dir> and sync files.
       <dir> defaults to <branch> and <branch> defaults to <dir>.
   list [--plain] [--sort]
       List worktrees with status markers: [main], [dirty:N], [unpushed:N],
@@ -36,16 +42,17 @@ Commands:
       List worktrees whose line contains <text> (case-insensitive).
   remove --dir=<dir>
       Remove a worktree that has no uncommitted or unpushed changes.
-  rename --old-dir=<dir> --new-dir=<dir>
-      Rename a worktree directory. Requires a clean, fully pushed worktree.
-  switch --from-dir=<dir> --branch=<branch> [--to-dir=<dir>]
+  move --old-dir=<dir> --new-dir=<dir>
+      Move a worktree directory. Requires a clean, fully pushed worktree.
+  checkout --from-dir=<dir> --branch=<branch> [--to-dir=<dir>]
       Check out <branch> in an existing worktree and move it to <to-dir>
       (defaults to <branch>). Requires a clean, fully pushed worktree.
-  sync-env (--to=<dir> | --all)
-      Copy env files from the main worktree into one or all other worktrees.
+  sync (--to=<dir> | --all)
+      Copy files matching syncInclude from the main worktree into one or all other worktrees.
   init
-      Create $CONFIG_FILE_NAME in the main worktree with the default settings.
-      Refuses to overwrite an existing file.
+      Create $CONFIG_FILE_NAME in the main worktree with the default settings
+      (commented out) and add the worktrees root to the main worktree .gitignore
+      unless it is already listed. Refuses to overwrite an existing file.
   help
       Show this help.
 
@@ -53,15 +60,15 @@ Configuration precedence: environment variables > $CONFIG_FILE_NAME > defaults.
 The configuration file lives in the main worktree and uses git config syntax:
 
   [worktree-manager]
-    worktreesRoot = .gitworktrees
-    envPatterns = .env .env.*
-    envExcludes = .env.template .env.example .env.sample
+    worktreesRoot = .worktrees
+    syncInclude = .env .env.*
+    syncExclude = .env.template .env.example .env.sample
     autoFetch = true
 
 Environment variables:
   GIT_WORKTREE_MANAGER_WORKTREES_ROOT    worktreesRoot (relative to the main worktree)
-  GIT_WORKTREE_MANAGER_ENV_PATTERNS      envPatterns (space-separated)
-  GIT_WORKTREE_MANAGER_ENV_EXCLUDES      envExcludes (space-separated)
+  GIT_WORKTREE_MANAGER_SYNC_INCLUDE      syncInclude (space-separated)
+  GIT_WORKTREE_MANAGER_SYNC_EXCLUDE      syncExclude (space-separated)
   GIT_WORKTREE_MANAGER_AUTO_FETCH        autoFetch (true or false)
 EOF
 }
@@ -116,13 +123,13 @@ resolve_setting() {
 }
 
 load_settings() {
-  resolve_setting "${GIT_WORKTREE_MANAGER_WORKTREES_ROOT:-}" worktreesRoot ".gitworktrees"
+  resolve_setting "${GIT_WORKTREE_MANAGER_WORKTREES_ROOT:-}" worktreesRoot "$DEFAULT_WORKTREES_ROOT"
   WORKTREES_ROOT=$SETTING_VALUE
-  resolve_setting "${GIT_WORKTREE_MANAGER_ENV_PATTERNS:-}" envPatterns ".env .env.*"
-  ENV_PATTERNS=$SETTING_VALUE
-  resolve_setting "${GIT_WORKTREE_MANAGER_ENV_EXCLUDES:-}" envExcludes ".env.template .env.example .env.sample"
-  ENV_EXCLUDES=$SETTING_VALUE
-  resolve_setting "${GIT_WORKTREE_MANAGER_AUTO_FETCH:-}" autoFetch "true"
+  resolve_setting "${GIT_WORKTREE_MANAGER_SYNC_INCLUDE:-}" syncInclude "$DEFAULT_SYNC_INCLUDE"
+  SYNC_INCLUDE=$SETTING_VALUE
+  resolve_setting "${GIT_WORKTREE_MANAGER_SYNC_EXCLUDE:-}" syncExclude "$DEFAULT_SYNC_EXCLUDE"
+  SYNC_EXCLUDE=$SETTING_VALUE
+  resolve_setting "${GIT_WORKTREE_MANAGER_AUTO_FETCH:-}" autoFetch "$DEFAULT_AUTO_FETCH"
   AUTO_FETCH=$SETTING_VALUE
   case $AUTO_FETCH in
     true | false) ;;
@@ -176,17 +183,17 @@ branch_worktree() {
   '
 }
 
-# Dies unless the worktree at <path> can be removed, renamed or switched safely.
+# Dies unless the worktree at <path> can be removed, moved or checked out safely.
 require_removable() {
   [ "$1" != "$MAIN_ROOT" ] || die "refusing to modify the main worktree: $1"
   [ -z "$(git -C "$1" status --porcelain)" ] || die "worktree has uncommitted changes: $1"
   [ -z "$(git -C "$1" rev-list HEAD --not --remotes)" ] || die "worktree has unpushed commits: $1"
 }
 
-# Returns 0 when <name> matches one of the envExcludes entries.
+# Returns 0 when <name> matches one of the syncExclude entries.
 is_excluded() {
   local excluded
-  for excluded in $ENV_EXCLUDES; do
+  for excluded in $SYNC_EXCLUDE; do
     if [ "$1" = "$excluded" ]; then
       return 0
     fi
@@ -194,9 +201,9 @@ is_excluded() {
   return 1
 }
 
-# Copies env files from every directory under <src> (skipping node_modules and .git)
-# to the same relative location under <dst>. Only top-level env files of each directory are copied.
-copy_env_files() {
+# Copies files from every directory under <src> (skipping node_modules and .git)
+# to the same relative location under <dst>. Only top-level files of each directory are copied.
+sync_files() {
   local src=$1 dst=$2 dirs dir rel pattern file name target_dir
   worktrees_root_path
   dirs=$(find "$src" \( -name node_modules -o -name .git \) -prune -o -type d -print)
@@ -207,7 +214,7 @@ copy_env_files() {
     esac
     rel=${dir#"$src"}
     rel=${rel#/}
-    for pattern in $ENV_PATTERNS; do
+    for pattern in $SYNC_INCLUDE; do
       while IFS= read -r file; do
         name=${file##*/}
         if is_excluded "$name"; then
@@ -216,7 +223,7 @@ copy_env_files() {
         target_dir=$dst${rel:+/$rel}
         mkdir -p "$target_dir"
         cp "$file" "$target_dir/$name"
-        printf '  copied env file %s\n' "${rel:+$rel/}$name"
+        printf '  synced %s\n' "${rel:+$rel/}$name"
       done < <(find "$dir" -maxdepth 1 -type f -name "$pattern")
     done
   done < <(printf '%s\n' "$dirs")
@@ -252,7 +259,7 @@ cmd_add() {
     new_branch=true
   fi
 
-  copy_env_files "$MAIN_ROOT" "$target"
+  sync_files "$MAIN_ROOT" "$target"
   printf 'Created worktree %s on branch %s\n' "$target" "$branch"
   if [ "$new_branch" = true ]; then
     printf 'Tip: publish the branch with: git -C "%s" push -u origin %s\n' "$target" "$branch"
@@ -347,7 +354,7 @@ cmd_remove() {
   printf 'Removed worktree %s\n' "$WT_PATH"
 }
 
-cmd_rename() {
+cmd_move() {
   require_repo
   local old new old_path new_path
   opt old-dir "$@"
@@ -364,10 +371,10 @@ cmd_rename() {
   [ ! -e "$new_path" ] || die "path already exists: $new_path"
   mv "$old_path" "$new_path"
   git -C "$MAIN_ROOT" worktree repair "$new_path"
-  printf 'Renamed worktree %s -> %s\n' "$old_path" "$new_path"
+  printf 'Moved worktree %s -> %s\n' "$old_path" "$new_path"
 }
 
-cmd_switch() {
+cmd_checkout() {
   require_repo
   local from branch to from_path to_path checked_out
   opt from-dir "$@"
@@ -403,10 +410,10 @@ cmd_switch() {
     mv "$from_path" "$to_path"
     git -C "$MAIN_ROOT" worktree repair "$to_path"
   fi
-  printf 'Switched worktree %s to branch %s at %s\n' "$from_path" "$branch" "$to_path"
+  printf 'Checked out worktree %s to branch %s at %s\n' "$from_path" "$branch" "$to_path"
 }
 
-cmd_sync_env() {
+cmd_sync() {
   require_repo
   local target_name target
   if has_flag all "$@"; then
@@ -416,8 +423,8 @@ cmd_sync_env() {
         warn "skipping missing directory: $target"
         continue
       fi
-      printf 'Syncing env files to %s\n' "$target"
-      copy_env_files "$MAIN_ROOT" "$target"
+      printf 'Syncing files to %s\n' "$target"
+      sync_files "$MAIN_ROOT" "$target"
     done < <(git -C "$MAIN_ROOT" worktree list --porcelain | sed -n 's/^worktree //p')
     return 0
   fi
@@ -428,26 +435,87 @@ cmd_sync_env() {
   target=$WT_PATH
   [ -d "$target" ] || die "worktree directory not found: $target"
   [ "$target" != "$MAIN_ROOT" ] || die "refusing to sync into the main worktree"
-  copy_env_files "$MAIN_ROOT" "$target"
+  sync_files "$MAIN_ROOT" "$target"
+}
+
+# Prints the worktrees root relative to the main worktree, normalized (no leading
+# "./", no trailing "/"). Prints nothing when it is not strictly inside the main worktree.
+worktrees_root_relative() {
+  local rel=$WORKTREES_ROOT
+  case $rel in
+    "$MAIN_ROOT"/*) rel=${rel#"$MAIN_ROOT"/} ;;
+    /*) return 0 ;;
+  esac
+  while :; do
+    case $rel in
+      ./*) rel=${rel#./} ;;
+      */) rel=${rel%/} ;;
+      *) break ;;
+    esac
+  done
+  case $rel in
+    "" | . | .. | ../* | */.. | */../*) return 0 ;;
+  esac
+  printf '%s\n' "$rel"
+}
+
+# Appends /<worktreesRoot>/ to the .gitignore of the main worktree. Nothing is
+# changed when the file already has an equivalent entry (with or without a
+# leading or trailing slash).
+ensure_gitignored() {
+  local rel entry line gitignore=$MAIN_ROOT/.gitignore
+  rel=$(worktrees_root_relative)
+  if [ -z "$rel" ]; then
+    printf 'Skipped .gitignore: worktrees root is outside the main worktree (%s)\n' "$WORKTREES_ROOT"
+    return 0
+  fi
+  entry=/$rel/
+  if [ -f "$gitignore" ]; then
+    while IFS= read -r line || [ -n "$line" ]; do
+      line=${line%"${line##*[![:space:]]}"}
+      case $line in
+        "$rel" | "$rel/" | "/$rel" | "/$rel/")
+          printf '%s is already in %s\n' "$line" "$gitignore"
+          return 0
+          ;;
+      esac
+    done < "$gitignore"
+    # Keep the last existing entry on its own line.
+    if [ -s "$gitignore" ] && [ -n "$(tail -c 1 "$gitignore")" ]; then
+      printf '\n' >> "$gitignore"
+    fi
+  fi
+  printf '%s\n' "$entry" >> "$gitignore"
+  printf 'Added %s to %s\n' "$entry" "$gitignore"
 }
 
 cmd_init() {
   require_repo
   [ ! -e "$CONFIG_FILE" ] || die "configuration file already exists: $CONFIG_FILE"
-  cat > "$CONFIG_FILE" <<'EOF'
-# git-worktree-manager configuration.
-# Environment variables (GIT_WORKTREE_MANAGER_*) take precedence over these values.
+  # '##' lines explain a setting. A single '#' disables a setting that is shown
+  # with its default value: remove the '#' to override that default.
+  cat > "$CONFIG_FILE" <<EOF
+## git-worktree-manager configuration.
+## Environment variables (GIT_WORKTREE_MANAGER_*) take precedence over these values.
+##
+## Lines starting with '##' are comments.
+## Lines starting with a single '#' are settings set to their default value:
+## remove the '#' to override the default.
 [worktree-manager]
-	# Directory where worktrees are created, relative to the main worktree.
-	worktreesRoot = .gitworktrees
-	# Space-separated patterns of env files copied into new worktrees.
-	envPatterns = .env .env.*
-	# Space-separated patterns of env files that are never copied.
-	envExcludes = .env.template .env.example .env.sample
-	# Run git fetch before add: true or false.
-	autoFetch = true
+	## Directory where worktrees are created, relative to the main worktree.
+	# worktreesRoot = $DEFAULT_WORKTREES_ROOT
+
+	## Space-separated patterns of files synced into worktrees.
+	# syncInclude = $DEFAULT_SYNC_INCLUDE
+
+	## Space-separated patterns of files that are never synced.
+	# syncExclude = $DEFAULT_SYNC_EXCLUDE
+
+	## Run git fetch before add: true or false.
+	# autoFetch = $DEFAULT_AUTO_FETCH
 EOF
   printf 'Created %s\n' "$CONFIG_FILE"
+  ensure_gitignored
 }
 
 main() {
@@ -457,12 +525,12 @@ main() {
   fi
   case $command in
     add) cmd_add "$@" ;;
-    list | ls) cmd_list "$@" ;;
-    find | search) cmd_find "$@" ;;
-    remove | rm) cmd_remove "$@" ;;
-    rename | mv) cmd_rename "$@" ;;
-    switch | co | checkout) cmd_switch "$@" ;;
-    sync-env | sync) cmd_sync_env "$@" ;;
+    list) cmd_list "$@" ;;
+    find) cmd_find "$@" ;;
+    remove) cmd_remove "$@" ;;
+    move) cmd_move "$@" ;;
+    checkout) cmd_checkout "$@" ;;
+    sync) cmd_sync "$@" ;;
     init) cmd_init "$@" ;;
     help | -h | --help) usage ;;
     *)
