@@ -1,6 +1,6 @@
 {
   "name": "@w5s/git-worktree-manager",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "CLI to manage git worktrees: create, list, move, checkout, remove, clean up and sync env files",
   "keywords": [
     "git",

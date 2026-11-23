@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.23.0](https://github.com/w5s/project-config/compare/@w5s/configurator-core@1.22.0...@w5s/configurator-core@1.23.0) (2026-11-23)
+
+### ✨ Features
+
+- Add eslint-plugin-regex to eslint-config ([2341b0d](https://github.com/w5s/project-config/commit/2341b0d))
+
+**Note:** Version bump only for package @w5s/configurator-core
+
 # [1.22.0](https://github.com/w5s/project-config/compare/@w5s/configurator-core@1.21.0...@w5s/configurator-core@1.22.0) (2026-10-08)
 
 ### ✨ Features

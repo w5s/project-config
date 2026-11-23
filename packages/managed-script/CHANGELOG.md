@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-alpha.5](https://github.com/w5s/project-config/compare/@w5s/managed-script@1.0.0-alpha.4...@w5s/managed-script@1.0.0-alpha.5) (2026-11-23)
+
+### ✨ Features
+
+- Add prepare managed script ([59fd1e7](https://github.com/w5s/project-config/commit/59fd1e7)) 
+- Add runner option ([ad38858](https://github.com/w5s/project-config/commit/ad38858)) 
+- Add support for package.json script overrides ([9408a4e](https://github.com/w5s/project-config/commit/9408a4e))
+
+**Note:** Version bump only for package @w5s/managed-script
+
 # [1.0.0-alpha.4](https://github.com/w5s/project-config/compare/@w5s/managed-script@1.0.0-alpha.3...@w5s/managed-script@1.0.0-alpha.4) (2026-10-13)
 
 ### 🐛 Bug Fixes

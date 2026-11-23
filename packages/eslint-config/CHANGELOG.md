@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [7.2.0](https://github.com/w5s/project-config/compare/@w5s/eslint-config@7.1.2...@w5s/eslint-config@7.2.0) (2026-11-23)
+
+### ✨ Features
+
+- Add eslint-plugin-regex to eslint-config ([2341b0d](https://github.com/w5s/project-config/commit/2341b0d)) 
+- Add markdown schema validation and update ESLint rules ([c7e9f56](https://github.com/w5s/project-config/commit/c7e9f56))
+
+**Note:** Version bump only for package @w5s/eslint-config
+
 ## [7.1.2](https://github.com/w5s/project-config/compare/@w5s/eslint-config@7.1.1...@w5s/eslint-config@7.1.2) (2026-10-13)
 
 ### 🐛 Bug Fixes

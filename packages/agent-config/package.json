@@ -1,6 +1,6 @@
 {
   "name": "@w5s/agent-config",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "private": true,
   "description": "Agent config developed in this repository. Skill directories live in ./skills (symlinked from the repository root ./skills folder).",
   "license": "MIT",
