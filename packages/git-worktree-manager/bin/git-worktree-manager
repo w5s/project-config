@@ -5,6 +5,8 @@
 #
 # Configuration is read from environment variables and from a git-config
 # formatted file named .gitworktrees at the root of the main worktree.
+#
+# bin/git-worktree-manager is generated from src/ by scripts/build.sh: edit src/.
 set -eu
 set -f # never let shell globbing expand configured patterns
 
@@ -255,6 +257,215 @@ sync_files() {
   done < <(printf '%s\n' "$dirs")
 }
 
+# Prints the modification time of <file> in epoch seconds, or 0 when unavailable.
+# GNU stat is tried first: BSD "stat -f" would succeed on Linux with another meaning.
+file_mtime() {
+  stat -c %Y "$1" 2>/dev/null || stat -f %m "$1" 2>/dev/null || printf '0\n'
+}
+
+# Dies unless <value> is empty or a non-negative integer.
+require_integer() {
+  case $2 in
+    *[!0-9]*) die "--$1 must be a non-negative integer, got '$2'" ;;
+  esac
+}
+
+# Sets BASE_REF to the ref worktrees are compared to: <requested>, baseBranch,
+# origin's default branch, then the usual branch names. Dies when none exists.
+resolve_base() {
+  local candidate=${1:-$BASE_BRANCH}
+  if [ -n "$candidate" ]; then
+    git -C "$MAIN_ROOT" rev-parse --verify --quiet "$candidate^{commit}" >/dev/null || die "base ref not found: $candidate"
+    BASE_REF=$candidate
+    return 0
+  fi
+  candidate=$(git -C "$MAIN_ROOT" symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)
+  if [ -z "$candidate" ]; then
+    for candidate in origin/main origin/master main master; do
+      if git -C "$MAIN_ROOT" rev-parse --verify --quiet "$candidate^{commit}" >/dev/null; then
+        break
+      fi
+      candidate=""
+    done
+  fi
+  [ -n "$candidate" ] || die "cannot determine the base branch; use --base=<ref>"
+  BASE_REF=$candidate
+}
+
+# Returns 0 when <branch> is listed in protectedBranches or is the base branch.
+is_protected() {
+  local protected
+  for protected in $PROTECTED_BRANCHES; do
+    if [ "$1" = "$protected" ]; then
+      return 0
+    fi
+  done
+  [ "$1" = "$BASE_REF" ] || [ "origin/$1" = "$BASE_REF" ]
+}
+
+# Returns 0 and sets REASON when the HEAD of the worktree at <path> is already
+# integrated into BASE_REF: merged, squash-merged or rebase-merged.
+integration_reason() {
+  local path=$1 base_tree merged_tree merge_base probe cherry
+  if git -C "$path" merge-base --is-ancestor HEAD "$BASE_REF"; then
+    REASON=merged
+    return 0
+  fi
+  # Rebase merge: every commit of the branch has an equivalent patch in the base.
+  cherry=$(git -C "$path" cherry "$BASE_REF" HEAD 2>/dev/null || true)
+  if [ -n "$cherry" ] && ! printf '%s\n' "$cherry" | grep -q '^+'; then
+    REASON=rebase-merged
+    return 0
+  fi
+  # Squash merge: merging the branch into the base would not change the base tree.
+  # Needs git 2.38; older versions fall through to the patch-id check below.
+  base_tree=$(git -C "$path" rev-parse "$BASE_REF^{tree}")
+  if merged_tree=$(git -C "$path" merge-tree --write-tree "$BASE_REF" HEAD 2>/dev/null) \
+    && [ "$merged_tree" = "$base_tree" ]; then
+    REASON=squash-merged
+    return 0
+  fi
+  # Squash merge when the base touched the same files: the whole branch diff, as a
+  # single commit, has an equivalent patch in the base.
+  if merge_base=$(git -C "$path" merge-base "$BASE_REF" HEAD 2>/dev/null) \
+    && probe=$(GIT_AUTHOR_NAME=probe GIT_AUTHOR_EMAIL=probe@localhost \
+      GIT_COMMITTER_NAME=probe GIT_COMMITTER_EMAIL=probe@localhost \
+      git -C "$path" commit-tree "HEAD^{tree}" -p "$merge_base" -m probe 2>/dev/null); then
+    cherry=$(git -C "$path" cherry "$BASE_REF" "$probe")
+    case $cherry in
+      -*)
+        REASON=squash-merged
+        return 0
+        ;;
+    esac
+  fi
+  return 1
+}
+
+# Decides what to do with the worktree at <path> on <ref> (empty when detached).
+# Sets ACTION (remove or keep), REASON and DELETABLE (true when the branch is proven merged).
+evaluate_worktree() {
+  local path=$1 ref=$2 locked=$3 branch git_dir marker mtime commit_time
+  ACTION=keep
+  DELETABLE=false
+  branch=${ref#refs/heads/}
+  if [ "$locked" = 1 ]; then
+    REASON=locked
+    return 0
+  fi
+  if [ ! -d "$path" ]; then
+    ACTION=remove
+    REASON="missing directory"
+    return 0
+  fi
+  case $CWD in
+    "$path" | "$path"/*)
+      REASON="current directory"
+      return 0
+      ;;
+  esac
+  if [ -z "$ref" ]; then
+    REASON="detached HEAD"
+    return 0
+  fi
+  if is_protected "$branch"; then
+    REASON="protected branch"
+    return 0
+  fi
+  if [ -n "$(git -C "$path" status --porcelain)" ]; then
+    REASON="uncommitted changes"
+    return 0
+  fi
+  git_dir=$(git -C "$path" rev-parse --absolute-git-dir)
+  for marker in rebase-merge rebase-apply MERGE_HEAD CHERRY_PICK_HEAD REVERT_HEAD BISECT_LOG; do
+    if [ -e "$git_dir/$marker" ]; then
+      REASON="operation in progress"
+      return 0
+    fi
+  done
+  # A branch that was just created from the base looks merged: leave it alone for a while.
+  if [ "$MIN_AGE" -gt 0 ]; then
+    mtime=$(file_mtime "$git_dir/gitdir")
+    if [ $((NOW - mtime)) -lt $((MIN_AGE * 86400)) ]; then
+      REASON="younger than $MIN_AGE day(s)"
+      return 0
+    fi
+  fi
+
+  if integration_reason "$path"; then
+    ACTION=remove
+    DELETABLE=true
+    return 0
+  fi
+  if [ "$INCLUDE_GONE" = true ] \
+    && [ "$(git -C "$MAIN_ROOT" for-each-ref --format='%(upstream:track)' "refs/heads/$branch")" = "[gone]" ]; then
+    ACTION=remove
+    REASON="upstream gone"
+    return 0
+  fi
+  if [ -n "$OLDER_THAN" ]; then
+    commit_time=$(git -C "$path" log -1 --format=%ct)
+    if [ $((NOW - commit_time)) -ge $((OLDER_THAN * 86400)) ] \
+      && [ -z "$(git -C "$path" rev-list HEAD --not --remotes)" ]; then
+      ACTION=remove
+      REASON="inactive for $OLDER_THAN day(s)"
+      return 0
+    fi
+  fi
+  REASON="not merged"
+}
+
+# Prints the worktrees root relative to the main worktree, normalized (no leading
+# "./", no trailing "/"). Prints nothing when it is not strictly inside the main worktree.
+worktrees_root_relative() {
+  local rel=$ROOT
+  case $rel in
+    "$MAIN_ROOT"/*) rel=${rel#"$MAIN_ROOT"/} ;;
+    /*) return 0 ;;
+  esac
+  while :; do
+    case $rel in
+      ./*) rel=${rel#./} ;;
+      */) rel=${rel%/} ;;
+      *) break ;;
+    esac
+  done
+  case $rel in
+    "" | . | .. | ../* | */.. | */../*) return 0 ;;
+  esac
+  printf '%s\n' "$rel"
+}
+
+# Appends /<root>/ to the .gitignore of the main worktree. Nothing is
+# changed when the file already has an equivalent entry (with or without a
+# leading or trailing slash).
+ensure_gitignored() {
+  local rel entry line gitignore=$MAIN_ROOT/.gitignore
+  rel=$(worktrees_root_relative)
+  if [ -z "$rel" ]; then
+    printf 'Skipped .gitignore: worktrees root is outside the main worktree (%s)\n' "$ROOT"
+    return 0
+  fi
+  entry=/$rel/
+  if [ -f "$gitignore" ]; then
+    while IFS= read -r line || [ -n "$line" ]; do
+      line=${line%"${line##*[![:space:]]}"}
+      case $line in
+        "$rel" | "$rel/" | "/$rel" | "/$rel/")
+          printf '%s is already in %s\n' "$line" "$gitignore"
+          return 0
+          ;;
+      esac
+    done < "$gitignore"
+    # Keep the last existing entry on its own line.
+    if [ -s "$gitignore" ] && [ -n "$(tail -c 1 "$gitignore")" ]; then
+      printf '\n' >> "$gitignore"
+    fi
+  fi
+  printf '%s\n' "$entry" >> "$gitignore"
+  printf 'Added %s to %s\n' "$entry" "$gitignore"
+}
+
 cmd_add() {
   require_repo
   local branch dir target checked_out new_branch=false
@@ -464,164 +675,6 @@ cmd_sync() {
   sync_files "$MAIN_ROOT" "$target"
 }
 
-# Prints the modification time of <file> in epoch seconds, or 0 when unavailable.
-# GNU stat is tried first: BSD "stat -f" would succeed on Linux with another meaning.
-file_mtime() {
-  stat -c %Y "$1" 2>/dev/null || stat -f %m "$1" 2>/dev/null || printf '0\n'
-}
-
-# Dies unless <value> is empty or a non-negative integer.
-require_integer() {
-  case $2 in
-    *[!0-9]*) die "--$1 must be a non-negative integer, got '$2'" ;;
-  esac
-}
-
-# Sets BASE_REF to the ref worktrees are compared to: <requested>, baseBranch,
-# origin's default branch, then the usual branch names. Dies when none exists.
-resolve_base() {
-  local candidate=${1:-$BASE_BRANCH}
-  if [ -n "$candidate" ]; then
-    git -C "$MAIN_ROOT" rev-parse --verify --quiet "$candidate^{commit}" >/dev/null || die "base ref not found: $candidate"
-    BASE_REF=$candidate
-    return 0
-  fi
-  candidate=$(git -C "$MAIN_ROOT" symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)
-  if [ -z "$candidate" ]; then
-    for candidate in origin/main origin/master main master; do
-      if git -C "$MAIN_ROOT" rev-parse --verify --quiet "$candidate^{commit}" >/dev/null; then
-        break
-      fi
-      candidate=""
-    done
-  fi
-  [ -n "$candidate" ] || die "cannot determine the base branch; use --base=<ref>"
-  BASE_REF=$candidate
-}
-
-# Returns 0 when <branch> is listed in protectedBranches or is the base branch.
-is_protected() {
-  local protected
-  for protected in $PROTECTED_BRANCHES; do
-    if [ "$1" = "$protected" ]; then
-      return 0
-    fi
-  done
-  [ "$1" = "$BASE_REF" ] || [ "origin/$1" = "$BASE_REF" ]
-}
-
-# Returns 0 and sets REASON when the HEAD of the worktree at <path> is already
-# integrated into BASE_REF: merged, squash-merged or rebase-merged.
-integration_reason() {
-  local path=$1 base_tree merged_tree merge_base probe cherry
-  if git -C "$path" merge-base --is-ancestor HEAD "$BASE_REF"; then
-    REASON=merged
-    return 0
-  fi
-  # Rebase merge: every commit of the branch has an equivalent patch in the base.
-  cherry=$(git -C "$path" cherry "$BASE_REF" HEAD 2>/dev/null || true)
-  if [ -n "$cherry" ] && ! printf '%s\n' "$cherry" | grep -q '^+'; then
-    REASON=rebase-merged
-    return 0
-  fi
-  # Squash merge: merging the branch into the base would not change the base tree.
-  # Needs git 2.38; older versions fall through to the patch-id check below.
-  base_tree=$(git -C "$path" rev-parse "$BASE_REF^{tree}")
-  if merged_tree=$(git -C "$path" merge-tree --write-tree "$BASE_REF" HEAD 2>/dev/null) \
-    && [ "$merged_tree" = "$base_tree" ]; then
-    REASON=squash-merged
-    return 0
-  fi
-  # Squash merge when the base touched the same files: the whole branch diff, as a
-  # single commit, has an equivalent patch in the base.
-  if merge_base=$(git -C "$path" merge-base "$BASE_REF" HEAD 2>/dev/null) \
-    && probe=$(GIT_AUTHOR_NAME=probe GIT_AUTHOR_EMAIL=probe@localhost \
-      GIT_COMMITTER_NAME=probe GIT_COMMITTER_EMAIL=probe@localhost \
-      git -C "$path" commit-tree "HEAD^{tree}" -p "$merge_base" -m probe 2>/dev/null); then
-    cherry=$(git -C "$path" cherry "$BASE_REF" "$probe")
-    case $cherry in
-      -*)
-        REASON=squash-merged
-        return 0
-        ;;
-    esac
-  fi
-  return 1
-}
-
-# Decides what to do with the worktree at <path> on <ref> (empty when detached).
-# Sets ACTION (remove or keep), REASON and DELETABLE (true when the branch is proven merged).
-evaluate_worktree() {
-  local path=$1 ref=$2 locked=$3 branch git_dir marker mtime commit_time
-  ACTION=keep
-  DELETABLE=false
-  branch=${ref#refs/heads/}
-  if [ "$locked" = 1 ]; then
-    REASON=locked
-    return 0
-  fi
-  if [ ! -d "$path" ]; then
-    ACTION=remove
-    REASON="missing directory"
-    return 0
-  fi
-  case $CWD in
-    "$path" | "$path"/*)
-      REASON="current directory"
-      return 0
-      ;;
-  esac
-  if [ -z "$ref" ]; then
-    REASON="detached HEAD"
-    return 0
-  fi
-  if is_protected "$branch"; then
-    REASON="protected branch"
-    return 0
-  fi
-  if [ -n "$(git -C "$path" status --porcelain)" ]; then
-    REASON="uncommitted changes"
-    return 0
-  fi
-  git_dir=$(git -C "$path" rev-parse --absolute-git-dir)
-  for marker in rebase-merge rebase-apply MERGE_HEAD CHERRY_PICK_HEAD REVERT_HEAD BISECT_LOG; do
-    if [ -e "$git_dir/$marker" ]; then
-      REASON="operation in progress"
-      return 0
-    fi
-  done
-  # A branch that was just created from the base looks merged: leave it alone for a while.
-  if [ "$MIN_AGE" -gt 0 ]; then
-    mtime=$(file_mtime "$git_dir/gitdir")
-    if [ $((NOW - mtime)) -lt $((MIN_AGE * 86400)) ]; then
-      REASON="younger than $MIN_AGE day(s)"
-      return 0
-    fi
-  fi
-
-  if integration_reason "$path"; then
-    ACTION=remove
-    DELETABLE=true
-    return 0
-  fi
-  if [ "$INCLUDE_GONE" = true ] \
-    && [ "$(git -C "$MAIN_ROOT" for-each-ref --format='%(upstream:track)' "refs/heads/$branch")" = "[gone]" ]; then
-    ACTION=remove
-    REASON="upstream gone"
-    return 0
-  fi
-  if [ -n "$OLDER_THAN" ]; then
-    commit_time=$(git -C "$path" log -1 --format=%ct)
-    if [ $((NOW - commit_time)) -ge $((OLDER_THAN * 86400)) ] \
-      && [ -z "$(git -C "$path" rev-list HEAD --not --remotes)" ]; then
-      ACTION=remove
-      REASON="inactive for $OLDER_THAN day(s)"
-      return 0
-    fi
-  fi
-  REASON="not merged"
-}
-
 cmd_cleanup() {
   require_repo
   local dry_run=false assume_yes=false delete_branch=false fetch_wanted=true
@@ -732,57 +785,6 @@ cmd_cleanup() {
   fi
   printf 'Cleaned up %s worktree(s)\n' "$removed"
   [ "$failures" -eq 0 ]
-}
-
-# Prints the worktrees root relative to the main worktree, normalized (no leading
-# "./", no trailing "/"). Prints nothing when it is not strictly inside the main worktree.
-worktrees_root_relative() {
-  local rel=$ROOT
-  case $rel in
-    "$MAIN_ROOT"/*) rel=${rel#"$MAIN_ROOT"/} ;;
-    /*) return 0 ;;
-  esac
-  while :; do
-    case $rel in
-      ./*) rel=${rel#./} ;;
-      */) rel=${rel%/} ;;
-      *) break ;;
-    esac
-  done
-  case $rel in
-    "" | . | .. | ../* | */.. | */../*) return 0 ;;
-  esac
-  printf '%s\n' "$rel"
-}
-
-# Appends /<root>/ to the .gitignore of the main worktree. Nothing is
-# changed when the file already has an equivalent entry (with or without a
-# leading or trailing slash).
-ensure_gitignored() {
-  local rel entry line gitignore=$MAIN_ROOT/.gitignore
-  rel=$(worktrees_root_relative)
-  if [ -z "$rel" ]; then
-    printf 'Skipped .gitignore: worktrees root is outside the main worktree (%s)\n' "$ROOT"
-    return 0
-  fi
-  entry=/$rel/
-  if [ -f "$gitignore" ]; then
-    while IFS= read -r line || [ -n "$line" ]; do
-      line=${line%"${line##*[![:space:]]}"}
-      case $line in
-        "$rel" | "$rel/" | "/$rel" | "/$rel/")
-          printf '%s is already in %s\n' "$line" "$gitignore"
-          return 0
-          ;;
-      esac
-    done < "$gitignore"
-    # Keep the last existing entry on its own line.
-    if [ -s "$gitignore" ] && [ -n "$(tail -c 1 "$gitignore")" ]; then
-      printf '\n' >> "$gitignore"
-    fi
-  fi
-  printf '%s\n' "$entry" >> "$gitignore"
-  printf 'Added %s to %s\n' "$entry" "$gitignore"
 }
 
 cmd_init() {
