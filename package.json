@@ -74,6 +74,7 @@
     "markdown-magic": "4.11.0",
     "markdown-magic-package-json": "2.0.2",
     "markdown-magic-subpackage-list": "2.1.0",
+    "skills": "1.9.0",
     "tsdown": "0.23.7",
     "turbo": "2.11.13",
     "typescript": "6.0.3",
@@ -85,5 +86,12 @@
     "node": ">=22.0.0",
     "npm": ">=6.0.0",
     "pnpm": ">=10.0.0"
-  }
+  },
+  "skills": [
+    {
+      "source": "anthropics/skills",
+      "ref": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "skills": ["skill-creator"]
+    }
+  ]
 }

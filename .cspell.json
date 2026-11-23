@@ -10,6 +10,7 @@
   ],
   "flagWords": [],
   "ignorePaths": [
+    ".agents/**",
     "packages/cspell-config/dict/**",
     "packages/eslint-config/src/typegen/**",
     "packages/mrm-preset/.temp/**",

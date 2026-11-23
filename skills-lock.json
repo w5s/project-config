@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "skills": {
+    "skill-creator": {
+      "source": "anthropics/skills",
+      "ref": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "commit": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
+      "sourceType": "github",
+      "skillPath": "skills/skill-creator/SKILL.md",
+      "computedHash": "2d7f889e6ae93c6c27d699856942c336b5b8644537496987d5571043d059b1dc",
+      "via": "."
+    },
+    "tsdown": {
+      "source": "tsdown",
+      "sourceType": "node_modules",
+      "skillPath": "skills/tsdown/SKILL.md",
+      "version": "0.23.7",
+      "computedHash": "29c987891882231833eaf9a44804d09647f5087e529bdf3cfce6d0f14a39c09c"
+    }
+  }
+}
