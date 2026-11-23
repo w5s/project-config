@@ -12,7 +12,7 @@ PROGRAM=git-worktree-manager
 CONFIG_FILE_NAME=.gitworktrees
 
 # Default settings. Used by load_settings and written (commented out) by init.
-DEFAULT_WORKTREES_ROOT=.worktrees
+DEFAULT_ROOT=.worktrees
 DEFAULT_SYNC_INCLUDE=".env .env.*"
 DEFAULT_SYNC_EXCLUDE=".env.template .env.example .env.sample"
 DEFAULT_AUTO_FETCH=true
@@ -32,7 +32,7 @@ Usage: $PROGRAM <command> [options]
 
 Commands:
   add --branch=<branch> [--dir=<dir>]
-      Create a worktree for <branch> in <worktreesRoot>/<dir> and sync files.
+      Create a worktree for <branch> in <root>/<dir> and sync files.
       <dir> defaults to <branch> and <branch> defaults to <dir>.
   list [--plain] [--sort]
       List worktrees with status markers: [main], [dirty:N], [unpushed:N],
@@ -60,13 +60,13 @@ Configuration precedence: environment variables > $CONFIG_FILE_NAME > defaults.
 The configuration file lives in the main worktree and uses git config syntax:
 
   [worktree-manager]
-    worktreesRoot = .worktrees
+    root = .worktrees
     syncInclude = .env .env.*
     syncExclude = .env.template .env.example .env.sample
     autoFetch = true
 
 Environment variables:
-  GIT_WORKTREE_MANAGER_WORKTREES_ROOT    worktreesRoot (relative to the main worktree)
+  GIT_WORKTREE_MANAGER_ROOT              root (relative to the main worktree)
   GIT_WORKTREE_MANAGER_SYNC_INCLUDE      syncInclude (space-separated)
   GIT_WORKTREE_MANAGER_SYNC_EXCLUDE      syncExclude (space-separated)
   GIT_WORKTREE_MANAGER_AUTO_FETCH        autoFetch (true or false)
@@ -123,8 +123,8 @@ resolve_setting() {
 }
 
 load_settings() {
-  resolve_setting "${GIT_WORKTREE_MANAGER_WORKTREES_ROOT:-}" worktreesRoot "$DEFAULT_WORKTREES_ROOT"
-  WORKTREES_ROOT=$SETTING_VALUE
+  resolve_setting "${GIT_WORKTREE_MANAGER_ROOT:-}" root "$DEFAULT_ROOT"
+  ROOT=$SETTING_VALUE
   resolve_setting "${GIT_WORKTREE_MANAGER_SYNC_INCLUDE:-}" syncInclude "$DEFAULT_SYNC_INCLUDE"
   SYNC_INCLUDE=$SETTING_VALUE
   resolve_setting "${GIT_WORKTREE_MANAGER_SYNC_EXCLUDE:-}" syncExclude "$DEFAULT_SYNC_EXCLUDE"
@@ -155,13 +155,13 @@ require_repo() {
 
 # Sets WORKTREES_ABS to the worktrees root as an absolute path. The path need not exist.
 worktrees_root_path() {
-  case $WORKTREES_ROOT in
-    /*) WORKTREES_ABS=$WORKTREES_ROOT ;;
-    *) WORKTREES_ABS=$MAIN_ROOT/$WORKTREES_ROOT ;;
+  case $ROOT in
+    /*) WORKTREES_ABS=$ROOT ;;
+    *) WORKTREES_ABS=$MAIN_ROOT/$ROOT ;;
   esac
 }
 
-# Sets WT_PATH to the absolute path of <worktreesRoot>/<dir>, creating the root when missing.
+# Sets WT_PATH to the absolute path of <root>/<dir>, creating the root when missing.
 resolve_worktree_path() {
   local root
   [ -n "$1" ] || die "a directory name is required"
@@ -441,7 +441,7 @@ cmd_sync() {
 # Prints the worktrees root relative to the main worktree, normalized (no leading
 # "./", no trailing "/"). Prints nothing when it is not strictly inside the main worktree.
 worktrees_root_relative() {
-  local rel=$WORKTREES_ROOT
+  local rel=$ROOT
   case $rel in
     "$MAIN_ROOT"/*) rel=${rel#"$MAIN_ROOT"/} ;;
     /*) return 0 ;;
@@ -459,14 +459,14 @@ worktrees_root_relative() {
   printf '%s\n' "$rel"
 }
 
-# Appends /<worktreesRoot>/ to the .gitignore of the main worktree. Nothing is
+# Appends /<root>/ to the .gitignore of the main worktree. Nothing is
 # changed when the file already has an equivalent entry (with or without a
 # leading or trailing slash).
 ensure_gitignored() {
   local rel entry line gitignore=$MAIN_ROOT/.gitignore
   rel=$(worktrees_root_relative)
   if [ -z "$rel" ]; then
-    printf 'Skipped .gitignore: worktrees root is outside the main worktree (%s)\n' "$WORKTREES_ROOT"
+    printf 'Skipped .gitignore: worktrees root is outside the main worktree (%s)\n' "$ROOT"
     return 0
   fi
   entry=/$rel/
@@ -503,7 +503,7 @@ cmd_init() {
 ## remove the '#' to override the default.
 [worktree-manager]
 	## Directory where worktrees are created, relative to the main worktree.
-	# worktreesRoot = $DEFAULT_WORKTREES_ROOT
+	# root = $DEFAULT_ROOT
 
 	## Space-separated patterns of files synced into worktrees.
 	# syncInclude = $DEFAULT_SYNC_INCLUDE

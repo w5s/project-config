@@ -18,7 +18,7 @@ git worktree-manager <command> [options]
 
 | Command | Description |
 | --- | --- |
-| `add --branch=<branch> [--dir=<dir>]` | Create a worktree in `<worktreesRoot>/<dir>` and sync files. `<dir>` defaults to the branch name and vice versa. |
+| `add --branch=<branch> [--dir=<dir>]` | Create a worktree in `<root>/<dir>` and sync files. `<dir>` defaults to the branch name and vice versa. |
 | `list [--plain] [--sort]` | List worktrees with markers: `[main]`, `[dirty:N]`, `[unpushed:N]`, `[no-upstream]`, `[missing directory]`. `--plain` prints raw `git worktree list`. `--sort` puts the main worktree first, then clean ones. |
 | `find --search=<text>` | List worktrees whose line contains `<text>` (case-insensitive). |
 | `remove --dir=<dir>` | Remove a worktree without uncommitted or unpushed changes. The branch is kept. |
@@ -38,11 +38,11 @@ Safety rules: the main worktree is never removed, moved or checked out. A worktr
 
 ## Configuration
 
-The configuration file is `.gitworktrees`, at the root of the main worktree (the folder that contains `.git`). It uses git config syntax and is read with `git config --file`, so it accepts the same format as `.gitconfig` and `.gitmodules`. `worktreesRoot` is resolved relative to that same root:
+The configuration file is `.gitworktrees`, at the root of the main worktree (the folder that contains `.git`). It uses git config syntax and is read with `git config --file`, so it accepts the same format as `.gitconfig` and `.gitmodules`. `root` is resolved relative to that same root:
 
 ```ini
 [worktree-manager]
-    worktreesRoot = .worktrees
+    root = .worktrees
     syncInclude = .env .env.*
     syncExclude = .env.template .env.example .env.sample
     autoFetch = true
@@ -56,14 +56,14 @@ The configuration file is `.gitworktrees`, at the root of the main worktree (the
 ```ini
 [worktree-manager]
     ## Directory where worktrees are created, relative to the main worktree.
-    #worktreesRoot = .worktrees
+    #root = .worktrees
 ```
 
 Multi-value keys can be repeated as in any git config file. Their values are joined with spaces.
 
 | Config key | Environment variable | Default | Description |
 | --- | --- | --- | --- |
-| `worktreesRoot` | `GIT_WORKTREE_MANAGER_WORKTREES_ROOT` | `.worktrees` | Directory where worktrees are created. Relative paths are resolved from the main worktree. Created on first use. |
+| `root` | `GIT_WORKTREE_MANAGER_ROOT` | `.worktrees` | Directory where worktrees are created. Relative paths are resolved from the main worktree. Created on first use. |
 | `syncInclude` | `GIT_WORKTREE_MANAGER_SYNC_INCLUDE` | `.env .env.*` | Filename patterns of files to sync. |
 | `syncExclude` | `GIT_WORKTREE_MANAGER_SYNC_EXCLUDE` | `.env.template .env.example .env.sample` | Filenames never synced. |
 | `autoFetch` | `GIT_WORKTREE_MANAGER_AUTO_FETCH` | `true` | Run `git fetch` before `add`. Accepts `true` or `false`. |
@@ -76,7 +76,7 @@ The default `.worktrees` folder lives inside the main worktree, so it must be ig
 /.worktrees/
 ```
 
-The entry uses the root in effect when `init` runs: `GIT_WORKTREE_MANAGER_WORKTREES_ROOT` if set, otherwise the default. If you later set a different `worktreesRoot` in the configuration file, add that folder to `.gitignore` yourself.
+The entry uses the root in effect when `init` runs: `GIT_WORKTREE_MANAGER_ROOT` if set, otherwise the default. If you later set a different `root` in the configuration file, add that folder to `.gitignore` yourself.
 
 ## Development
 
