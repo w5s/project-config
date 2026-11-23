@@ -6,7 +6,7 @@
 ## remove the '#' to override the default.
 [worktree-manager]
 	## Directory where worktrees are created, relative to the main worktree.
-	# worktreesRoot = .worktrees
+	# root = .worktrees
 
 	## Space-separated patterns of files synced into worktrees.
 	# syncInclude = .env .env.*
