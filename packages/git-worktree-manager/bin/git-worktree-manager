@@ -809,7 +809,7 @@ cmd_init() {
 	## Space-separated patterns of files that are never synced.
 	# syncExclude = $DEFAULT_SYNC_EXCLUDE
 
-	## Run git fetch before add: true or false.
+	## Run git fetch before add and cleanup: true or false.
 	# autoFetch = $DEFAULT_AUTO_FETCH
 
 	## Space-separated branches whose worktrees cleanup never removes.
