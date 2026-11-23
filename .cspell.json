@@ -30,6 +30,7 @@
     "oneline",
     "pipefail",
     "rharkor",
+    "gitdir",
     "gitworktrees",
     "shellcheck",
     "tenv",

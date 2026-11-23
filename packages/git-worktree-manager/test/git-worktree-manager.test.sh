@@ -13,6 +13,7 @@ export GIT_AUTHOR_NAME=test GIT_AUTHOR_EMAIL=test@example.com
 export GIT_COMMITTER_NAME=test GIT_COMMITTER_EMAIL=test@example.com
 mkdir -p "$HOME"
 unset GIT_WORKTREE_MANAGER_ROOT GIT_WORKTREE_MANAGER_SYNC_INCLUDE GIT_WORKTREE_MANAGER_SYNC_EXCLUDE
+unset GIT_WORKTREE_MANAGER_PROTECTED_BRANCHES GIT_WORKTREE_MANAGER_BASE_BRANCH
 
 FAILURES=0
 CASE_NUMBER=0
@@ -160,7 +161,7 @@ test_init_creates_default_config() {
   assert_file "$REPO/.gitworktrees"
   local config=$REPO/.gitworktrees key
   # Every default is documented but disabled: the file defines no active setting.
-  for key in root syncInclude syncExclude autoFetch; do
+  for key in root syncInclude syncExclude autoFetch protectedBranches baseBranch; do
     if git config --file "$config" "worktree-manager.$key" >/dev/null 2>&1; then
       fail "init should leave $key commented out"
     fi
@@ -252,7 +253,204 @@ test_list_and_find() {
   fi
 }
 
+# Commits a new file <name> in the worktree at <dir>.
+commit_file() {
+  printf '%s\n' "$2" > "$1/$2"
+  git -C "$1" add "$2"
+  git -C "$1" commit -q -m "add $2"
+}
+
+# Runs cleanup without a terminal, as in CI, and prints its output.
+cleanup() {
+  run_in "$REPO" cleanup --min-age=0 "$@" </dev/null 2>&1
+}
+
+test_cleanup_removes_integrated_worktrees() {
+  new_repo
+  local base=$REPO/.worktrees output
+  run_in "$REPO" add --branch=ff >/dev/null
+  run_in "$REPO" add --branch=squash >/dev/null
+  run_in "$REPO" add --branch=rebase >/dev/null
+  run_in "$REPO" add --branch=open >/dev/null
+  commit_file "$base/ff" ff.txt
+  commit_file "$base/squash" squash1.txt
+  commit_file "$base/squash" squash2.txt
+  commit_file "$base/rebase" rebase1.txt
+  commit_file "$base/rebase" rebase2.txt
+  commit_file "$base/open" open.txt
+
+  # ff: merged with a merge commit. squash: squashed. rebase: cherry-picked after main moved.
+  git -C "$REPO" merge -q --no-ff ff -m "merge ff"
+  git -C "$REPO" merge -q --squash squash
+  git -C "$REPO" commit -q -m "squash"
+  commit_file "$REPO" moved.txt
+  git -C "$REPO" cherry-pick "rebase~1" "rebase" >/dev/null
+  git -C "$REPO" push -q origin main
+
+  output=$(cleanup --dry-run)
+  assert_contains "$output" "Base: origin/main"
+  assert_contains "$output" "remove  .worktrees/ff  (merged)"
+  assert_contains "$output" "remove  .worktrees/squash  (squash-merged)"
+  assert_contains "$output" "remove  .worktrees/rebase  (rebase-merged)"
+  assert_contains "$output" "keep    .worktrees/open  (not merged)"
+  assert_file "$base/ff/ff.txt"
+
+  cleanup --yes >/dev/null
+  assert_no_file "$base/ff"
+  assert_no_file "$base/squash"
+  assert_no_file "$base/rebase"
+  assert_file "$base/open/open.txt"
+  # Branches are kept by default.
+  ref_exists_in "$REPO" refs/heads/ff || fail "cleanup should keep the branch"
+}
+
+ref_exists_in() {
+  git -C "$1" show-ref --verify --quiet "$2"
+}
+
+test_cleanup_delete_branch_only_when_proven() {
+  new_repo
+  local base=$REPO/.worktrees
+  run_in "$REPO" add --branch=merged >/dev/null
+  run_in "$REPO" add --branch=gone >/dev/null
+  commit_file "$base/merged" merged.txt
+  commit_file "$base/gone" gone.txt
+  git -C "$REPO" merge -q merged
+  git -C "$REPO" push -q origin main
+  git -C "$base/gone" push -q -u origin gone
+  git -C "$REPO" push -q origin --delete gone
+
+  cleanup --yes --delete-branch --include-gone >/dev/null
+  assert_no_file "$base/merged"
+  assert_no_file "$base/gone"
+  ref_exists_in "$REPO" refs/heads/merged && fail "a merged branch should be deleted"
+  ref_exists_in "$REPO" refs/heads/gone || fail "an unproven branch must be kept"
+}
+
+test_cleanup_gone_is_opt_in() {
+  new_repo
+  local base=$REPO/.worktrees output
+  run_in "$REPO" add --branch=gone >/dev/null
+  commit_file "$base/gone" gone.txt
+  git -C "$base/gone" push -q -u origin gone
+  git -C "$REPO" push -q origin --delete gone
+
+  output=$(cleanup --dry-run)
+  assert_contains "$output" "keep    .worktrees/gone  (not merged)"
+  output=$(cleanup --dry-run --include-gone)
+  assert_contains "$output" "remove  .worktrees/gone  (upstream gone)"
+}
+
+test_cleanup_older_than() {
+  new_repo
+  local base=$REPO/.worktrees output
+  run_in "$REPO" add --branch=old >/dev/null
+  run_in "$REPO" add --branch=old-unpushed >/dev/null
+  run_in "$REPO" add --branch=recent >/dev/null
+  GIT_AUTHOR_DATE="2020-01-01T00:00:00" GIT_COMMITTER_DATE="2020-01-01T00:00:00" commit_file "$base/old" old.txt
+  GIT_AUTHOR_DATE="2020-01-01T00:00:00" GIT_COMMITTER_DATE="2020-01-01T00:00:00" commit_file "$base/old-unpushed" unpushed.txt
+  commit_file "$base/recent" recent.txt
+  git -C "$base/old" push -q -u origin old
+  git -C "$base/recent" push -q -u origin recent
+
+  output=$(cleanup --dry-run)
+  assert_contains "$output" "keep    .worktrees/old  (not merged)"
+  output=$(cleanup --dry-run --older-than=30)
+  assert_contains "$output" "remove  .worktrees/old  (inactive for 30 day(s))"
+  assert_contains "$output" "keep    .worktrees/old-unpushed  (not merged)"
+  assert_contains "$output" "keep    .worktrees/recent  (not merged)"
+}
+
+test_cleanup_safety_guards() {
+  new_repo
+  local base=$REPO/.worktrees output
+  run_in "$REPO" add --branch=dirty >/dev/null
+  run_in "$REPO" add --branch=locked >/dev/null
+  run_in "$REPO" add --branch=current >/dev/null
+  run_in "$REPO" add --branch=develop >/dev/null
+  run_in "$REPO" add --branch=fresh >/dev/null
+  printf 'x\n' > "$base/dirty/untracked.txt"
+  git -C "$REPO" worktree lock "$base/locked"
+
+  output=$(cleanup --dry-run)
+  assert_contains "$output" "keep    .worktrees/dirty  (uncommitted changes)"
+  assert_contains "$output" "keep    .worktrees/locked  (locked)"
+  assert_contains "$output" "keep    .worktrees/develop  (protected branch)"
+  assert_contains "$output" "remove  .worktrees/current  (merged)"
+
+  output=$(cd "$base/current" && "$BIN" cleanup --min-age=0 --dry-run </dev/null 2>&1)
+  assert_contains "$output" "keep    .worktrees/current  (current directory)"
+
+  # Without --min-age=0, a worktree that has just been created is kept.
+  output=$(run_in "$REPO" cleanup --dry-run </dev/null 2>&1)
+  assert_contains "$output" "keep    .worktrees/fresh  (younger than 1 day(s))"
+  assert_contains "$output" "Nothing to clean up"
+
+  # The main worktree is never listed, and worktrees outside the root are ignored.
+  git -C "$REPO" worktree add -q -b elsewhere "$BASE/elsewhere"
+  output=$(cleanup --dry-run)
+  case $output in
+    *elsewhere*) fail "worktrees outside the root should be ignored" ;;
+  esac
+}
+
+test_cleanup_confirmation_and_dry_run() {
+  new_repo
+  local base=$REPO/.worktrees
+  run_in "$REPO" add --branch=done >/dev/null
+
+  cleanup --dry-run >/dev/null
+  assert_file "$base/done/.env"
+  if cleanup >/dev/null; then
+    fail "cleanup should refuse to remove worktrees without --yes when not in a terminal"
+  fi
+  assert_file "$base/done/.env"
+  cleanup --yes >/dev/null
+  assert_no_file "$base/done"
+  assert_contains "$(cleanup)" "Nothing to clean up"
+}
+
+test_cleanup_prunes_missing_directories() {
+  new_repo
+  local base=$REPO/.worktrees output
+  run_in "$REPO" add --branch=lost >/dev/null
+  rm -rf "$base/lost"
+  output=$(cleanup --dry-run)
+  assert_contains "$output" "remove  .worktrees/lost  (missing directory)"
+  cleanup --yes >/dev/null
+  git -C "$REPO" worktree list | grep -q "$base/lost" && fail "missing worktree should be pruned"
+  return 0
+}
+
+test_cleanup_base_and_config() {
+  new_repo
+  local base=$REPO/.worktrees output
+  run_in "$REPO" add --branch=feature >/dev/null
+  commit_file "$base/feature" feature.txt
+  git -C "$REPO" branch release main
+  git -C "$REPO" push -q origin release
+  output=$(cleanup --dry-run --base=origin/release)
+  assert_contains "$output" "Base: origin/release"
+  if cleanup --dry-run --base=origin/nope >/dev/null; then
+    fail "cleanup should fail with an unknown base"
+  fi
+
+  printf '[worktree-manager]\n\tbaseBranch = origin/release\n\tprotectedBranches = feature\n' > "$REPO/.gitworktrees"
+  output=$(cleanup --dry-run)
+  assert_contains "$output" "Base: origin/release"
+  assert_contains "$output" "keep    .worktrees/feature  (protected branch)"
+  rm "$REPO/.gitworktrees"
+}
+
 test_add_copies_env_files
+test_cleanup_removes_integrated_worktrees
+test_cleanup_delete_branch_only_when_proven
+test_cleanup_gone_is_opt_in
+test_cleanup_older_than
+test_cleanup_safety_guards
+test_cleanup_confirmation_and_dry_run
+test_cleanup_prunes_missing_directories
+test_cleanup_base_and_config
 test_add_refuses_checked_out_branch
 test_config_file_and_env_precedence
 test_remove_safety_checks
