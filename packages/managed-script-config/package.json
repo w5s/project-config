@@ -53,7 +53,7 @@
     "typecheck:src": "pnpm exec tsc --noEmit"
   },
   "dependencies": {
-    "@w5s/configurator-core": "1.22.0",
+    "@w5s/configurator-core": "workspace:^",
     "npm-run-all2": "^9.0.4",
     "package-manager-detector": "^1.9.0"
   },

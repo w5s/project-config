@@ -546,8 +546,8 @@ importers:
   packages/managed-script-config:
     dependencies:
       '@w5s/configurator-core':
-        specifier: 1.22.0
-        version: 1.22.0
+        specifier: workspace:^
+        version: link:../configurator-core
       '@w5s/managed-script':
         specifier: workspace:^
         version: link:../managed-script
@@ -2112,10 +2112,6 @@ packages:
 
   '@vitest/spy@5.1.1':
     resolution: {integrity: sha512-6K8C6alQG1/Yc8/ZI22iJS7JEsxPdVzqtqDq+/xM4Z0mGVykemMVjLhqMy/q6/IHYG3kKD8hKSwRen/ZdyI9vQ==}
-
-  '@w5s/configurator-core@1.22.0':
-    resolution: {integrity: sha512-kQbVogRVYpWx2ejo9/p2xNsBhjspoCXE3dLpr9XKR28z4YWfKUBvaaSDND5JJgR2lJ3MBI8s+MN3WfyZf4wLvQ==}
-    engines: {node: '>=22.0.0'}
 
   '@yuku-toolchain/darwin-arm64@0.28.1':
     resolution: {integrity: sha512-xMtZUwiGvJH90ogLjRrnG5+YEhinKti8qMPF18bd5z0ahSoaHWyBoe16evT7cSUxid0JEaZvh6H3daDPwDw4+g==}
@@ -8231,10 +8227,6 @@ snapshots:
       vite: 8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1)
 
   '@vitest/spy@5.1.1': {}
-
-  '@w5s/configurator-core@1.22.0':
-    dependencies:
-      yaml: 2.9.1
 
   '@yuku-toolchain/darwin-arm64@0.28.1':
     optional: true
