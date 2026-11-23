@@ -1,0 +1,18 @@
+## git-worktree-manager configuration.
+## Environment variables (GIT_WORKTREE_MANAGER_*) take precedence over these values.
+##
+## Lines starting with '##' are comments.
+## Lines starting with a single '#' are settings set to their default value:
+## remove the '#' to override the default.
+[worktree-manager]
+	## Directory where worktrees are created, relative to the main worktree.
+	# worktreesRoot = .worktrees
+
+	## Space-separated patterns of files synced into worktrees.
+	# syncInclude = .env .env.*
+
+	## Space-separated patterns of files that are never synced.
+	# syncExclude = .env.template .env.example .env.sample
+
+	## Run git fetch before add: true or false.
+	# autoFetch = true

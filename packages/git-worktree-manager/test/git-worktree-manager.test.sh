@@ -12,7 +12,7 @@ export GIT_CONFIG_NOSYSTEM=1
 export GIT_AUTHOR_NAME=test GIT_AUTHOR_EMAIL=test@example.com
 export GIT_COMMITTER_NAME=test GIT_COMMITTER_EMAIL=test@example.com
 mkdir -p "$HOME"
-unset GIT_WORKTREE_MANAGER_WORKTREES_ROOT GIT_WORKTREE_MANAGER_ENV_PATTERNS GIT_WORKTREE_MANAGER_ENV_EXCLUDES
+unset GIT_WORKTREE_MANAGER_WORKTREES_ROOT GIT_WORKTREE_MANAGER_SYNC_INCLUDE GIT_WORKTREE_MANAGER_SYNC_EXCLUDE
 
 FAILURES=0
 CASE_NUMBER=0
@@ -71,11 +71,11 @@ run_in() {
 
 test_add_copies_env_files() {
   new_repo
-  local base=$REPO/.gitworktrees
+  local base=$REPO/.worktrees
   run_in "$REPO" add --branch=feature >/dev/null
   local wt=$base/feature
   run_in "$REPO" add --branch=other >/dev/null
-  assert_no_file "$base/other/.gitworktrees"
+  assert_no_file "$base/other/.worktrees"
   assert_no_file "$base/other/.env.local.bak"
   assert_equal "$(git -C "$wt" branch --show-current)" feature
   assert_file "$wt/.env"
@@ -96,22 +96,22 @@ test_config_file_and_env_precedence() {
   new_repo
   local base=$BASE
   mkdir -p "$base/wt"
-  printf '[worktree-manager]\n\tworktreesRoot = %s\n\tenvPatterns = .env.local\n' "$base/wt" > "$REPO/.git-worktree-manager"
+  printf '[worktree-manager]\n\tworktreesRoot = %s\n\tsyncInclude = .env.local\n' "$base/wt" > "$REPO/.gitworktrees"
   run_in "$REPO" add --branch=from-config >/dev/null
   assert_file "$base/wt/from-config/.env.local"
   assert_no_file "$base/wt/from-config/.env"
 
   mkdir -p "$base/env"
-  GIT_WORKTREE_MANAGER_ENV_PATTERNS=.env GIT_WORKTREE_MANAGER_WORKTREES_ROOT="$base/env" \
+  GIT_WORKTREE_MANAGER_SYNC_INCLUDE=.env GIT_WORKTREE_MANAGER_WORKTREES_ROOT="$base/env" \
     run_in "$REPO" add --branch=from-env >/dev/null
   assert_file "$base/env/from-env/.env"
   assert_no_file "$base/env/from-env/.env.local"
-  rm "$REPO/.git-worktree-manager"
+  rm "$REPO/.gitworktrees"
 }
 
 test_remove_safety_checks() {
   new_repo
-  local base=$REPO/.gitworktrees
+  local base=$REPO/.worktrees
   run_in "$REPO" add --branch=gone >/dev/null
   local wt=$base/gone
   printf 'x\n' > "$wt/untracked.txt"
@@ -130,44 +130,114 @@ test_remove_safety_checks() {
   assert_no_file "$wt"
 }
 
-test_rename_and_switch() {
+test_move_and_checkout() {
   new_repo
-  local base=$REPO/.gitworktrees
+  local base=$REPO/.worktrees
   run_in "$REPO" add --branch=feature >/dev/null
-  run_in "$REPO" rename --old-dir=feature --new-dir=renamed >/dev/null
+  run_in "$REPO" move --old-dir=feature --new-dir=renamed >/dev/null
   assert_no_file "$base/feature"
   assert_equal "$(git -C "$base/renamed" branch --show-current)" feature
   git -C "$base/renamed" status >/dev/null
 
-  run_in "$REPO" switch --from-dir=renamed --branch=other >/dev/null
+  run_in "$REPO" checkout --from-dir=renamed --branch=other >/dev/null
   assert_no_file "$base/renamed"
   assert_equal "$(git -C "$base/other" branch --show-current)" other
-  git -C "$REPO" worktree list | grep -q "$base/other" || fail "switched worktree not registered"
+  git -C "$REPO" worktree list | grep -q "$base/other" || fail "checked out worktree not registered"
 }
 
-test_sync_env_all_updates_worktrees() {
+test_sync_all_updates_worktrees() {
   new_repo
-  local base=$REPO/.gitworktrees
+  local base=$REPO/.worktrees
   run_in "$REPO" add --branch=feature >/dev/null
   printf 'ROOT=2\n' > "$REPO/.env"
-  run_in "$REPO" sync-env --all >/dev/null
+  run_in "$REPO" sync --all >/dev/null
   assert_equal "$(cat "$base/feature/.env")" "ROOT=2"
 }
 
 test_init_creates_default_config() {
   new_repo
   run_in "$REPO" init >/dev/null
-  assert_file "$REPO/.git-worktree-manager"
-  assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.worktreesRoot)" ".gitworktrees"
-  assert_equal "$(git config --file "$REPO/.git-worktree-manager" worktree-manager.autoFetch)" "true"
+  assert_file "$REPO/.gitworktrees"
+  local config=$REPO/.gitworktrees key
+  # Every default is documented but disabled: the file defines no active setting.
+  for key in worktreesRoot syncInclude syncExclude autoFetch; do
+    if git config --file "$config" "worktree-manager.$key" >/dev/null 2>&1; then
+      fail "init should leave $key commented out"
+    fi
+    assert_contains "$(cat "$config")" "# $key = "
+  done
+  assert_contains "$(cat "$config")" "# worktreesRoot = .worktrees"
+  assert_contains "$(cat "$config")" "## Directory where worktrees are created"
   if run_in "$REPO" init >/dev/null 2>&1; then
     fail "init should refuse to overwrite an existing configuration file"
   fi
+
+  # The generated file is valid and the defaults still apply.
+  run_in "$REPO" add --branch=defaults >/dev/null
+  assert_file "$REPO/.worktrees/defaults/.env"
+
+  # Removing the '#' activates the setting.
+  sed 's/^\t# worktreesRoot = .*/\tworktreesRoot = custom/' "$config" > "$config.new" && mv "$config.new" "$config"
+  assert_equal "$(git config --file "$config" worktree-manager.worktreesRoot)" "custom"
+  run_in "$REPO" add --branch=overridden >/dev/null
+  assert_file "$REPO/custom/overridden/.env"
+}
+
+# Counts the lines of a file that are exactly <line>.
+count_lines() {
+  grep -c -x -F -- "$2" "$1" || true
+}
+
+test_init_updates_gitignore() {
+  # The worktrees root is appended to an existing .gitignore, once.
+  new_repo
+  local ignore=$REPO/.gitignore
+  run_in "$REPO" init >/dev/null
+  assert_equal "$(count_lines "$ignore" "/.worktrees/")" 1
+  assert_equal "$(count_lines "$ignore" ".env*")" 1
+  git -C "$REPO" check-ignore -q .worktrees/anything || fail "worktrees root should be ignored by git"
+
+  # An entry that already exists is left untouched, whatever its form.
+  local entry before
+  for entry in .worktrees .worktrees/ /.worktrees /.worktrees/; do
+    new_repo
+    ignore=$REPO/.gitignore
+    printf '.env*\n%s\n' "$entry" > "$ignore"
+    before=$(cat "$ignore")
+    run_in "$REPO" init >/dev/null
+    assert_equal "$(cat "$ignore")" "$before"
+  done
+
+  # A .gitignore without a trailing newline keeps its last entry intact.
+  new_repo
+  ignore=$REPO/.gitignore
+  printf '.env*' > "$ignore"
+  run_in "$REPO" init >/dev/null
+  assert_equal "$(count_lines "$ignore" ".env*")" 1
+  assert_equal "$(count_lines "$ignore" "/.worktrees/")" 1
+
+  # A missing .gitignore is created.
+  new_repo
+  ignore=$REPO/.gitignore
+  git -C "$REPO" rm -q -f .gitignore
+  run_in "$REPO" init >/dev/null
+  assert_equal "$(cat "$ignore")" "/.worktrees/"
+
+  # The configured root is used, and a root outside the main worktree is skipped.
+  new_repo
+  ignore=$REPO/.gitignore
+  GIT_WORKTREE_MANAGER_WORKTREES_ROOT=./custom/wt/ run_in "$REPO" init >/dev/null
+  assert_equal "$(count_lines "$ignore" "/custom/wt/")" 1
+  new_repo
+  ignore=$REPO/.gitignore
+  before=$(cat "$ignore")
+  GIT_WORKTREE_MANAGER_WORKTREES_ROOT="$BASE/elsewhere" run_in "$REPO" init >/dev/null
+  assert_equal "$(cat "$ignore")" "$before"
 }
 
 test_list_and_find() {
   new_repo
-  local base=$REPO/.gitworktrees
+  local base=$REPO/.worktrees
   run_in "$REPO" add --branch=other >/dev/null
   printf 'x\n' > "$base/other/untracked.txt"
   local output
@@ -186,10 +256,11 @@ test_add_copies_env_files
 test_add_refuses_checked_out_branch
 test_config_file_and_env_precedence
 test_remove_safety_checks
-test_rename_and_switch
-test_sync_env_all_updates_worktrees
+test_move_and_checkout
+test_sync_all_updates_worktrees
 test_list_and_find
 test_init_creates_default_config
+test_init_updates_gitignore
 
 if [ "$FAILURES" -gt 0 ]; then
   printf '%s assertion(s) failed\n' "$FAILURES" >&2
