@@ -93,7 +93,7 @@ export interface RuleOptions {
    * Reports if JSDoc `import()` statements point to a package which is not listed in `dependencies` or `devDependencies`
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/imports-as-dependencies.md#repos-sticky-header
    */
-  'jsdoc/imports-as-dependencies'?: Linter.RuleEntry<[]>
+  'jsdoc/imports-as-dependencies'?: Linter.RuleEntry<JsdocImportsAsDependencies>
   /**
    * This rule reports doc comments that only restate their attached name.
    * @see https://github.com/gajus/eslint-plugin-jsdoc/blob/main/docs/rules/informative-docs.md#repos-sticky-header
@@ -585,6 +585,17 @@ type JsdocImplementsOnClasses = []|[{
     comment?: string
     context?: string
   })[]
+  
+  fix?: ("remove" | "type")
+}]
+// ----- jsdoc/imports-as-dependencies -----
+type JsdocImportsAsDependencies = []|[{
+  
+  dependencies?: boolean
+  
+  devDependencies?: boolean
+  
+  peerDependencies?: boolean
 }]
 // ----- jsdoc/informative-docs -----
 type JsdocInformativeDocs = []|[{
@@ -808,6 +819,13 @@ type JsdocRequireDescription = []|[{
   descriptionStyle?: ("body" | "tag" | "any")
   
   exemptedBy?: string[]
+  
+  publicOnly?: (boolean | {
+    ancestorsOnly?: boolean
+    cjs?: boolean
+    esm?: boolean
+    window?: boolean
+  })
 }]
 // ----- jsdoc/require-description-complete-sentence -----
 type JsdocRequireDescriptionCompleteSentence = []|[{
@@ -948,6 +966,8 @@ type JsdocRequireParam = []|[{
   unnamedRootBase?: string[]
   
   useDefaultObjectProperties?: boolean
+  
+  useObjectTypeForDestructuredRoots?: boolean
 }]
 // ----- jsdoc/require-param-description -----
 type JsdocRequireParamDescription = []|[{
@@ -958,6 +978,13 @@ type JsdocRequireParamDescription = []|[{
   })[]
   
   defaultDestructuredRootDescription?: string
+  
+  publicOnly?: (boolean | {
+    ancestorsOnly?: boolean
+    cjs?: boolean
+    esm?: boolean
+    window?: boolean
+  })
   
   setDefaultDestructuredRootDescription?: boolean
 }]
@@ -1037,6 +1064,13 @@ type JsdocRequireReturnsDescription = []|[{
     comment?: string
     context?: string
   })[]
+  
+  publicOnly?: (boolean | {
+    ancestorsOnly?: boolean
+    cjs?: boolean
+    esm?: boolean
+    window?: boolean
+  })
 }]
 // ----- jsdoc/require-returns-type -----
 type JsdocRequireReturnsType = []|[{
