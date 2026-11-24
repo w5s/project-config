@@ -4,6 +4,9 @@
 // A dictionary of { tool: git_ignore_section}
 
 module.exports = {
+  Git: `
+  # Git worktree manager
+  .worktrees/`,
   macOS: `
   # General
   .DS_Store

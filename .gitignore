@@ -137,6 +137,8 @@ dist
 !.vscode/launch.json
 !.vscode/extensions.json
 !.vscode/*.code-snippets
+# Git worktree manager
+.worktrees/
 #==================================================================================================
 #                             ⬇ Add Project specific rules below ⬇
 #==================================================================================================
