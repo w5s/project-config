@@ -89,8 +89,7 @@ async function buildPageContent() {
     const deviceMap = groupBy(browserList, (browser) =>
       (browser.startsWith('ios_') || browser.startsWith('and_') || browser.startsWith('op_') || browser.startsWith('ie_')
         ? 'mobile'
-        : 'desktop'),
-    );
+        : 'desktop'));
 
     return {
       desktop: groupBy(deviceMap.desktop, getPrefix),

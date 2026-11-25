@@ -10,8 +10,7 @@ const envSchema = {
 const getEnvClean = lazy(() =>
   cleanEnv(process.env, envSchema, {
     reporter: null,
-  }),
-);
+  }));
 
 /**
  * Determines if the current environment is a CI (Continuous Integration) environment.
