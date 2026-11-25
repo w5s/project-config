@@ -56,6 +56,7 @@ const config = {
 		"**/vscode-extension/**",
 		"**/yarn.lock",
 		"**/pnpm-lock.yaml",
+		"**/skills-lock.json",
 		"**/*.svg",
 		"**/*.webp",
 		"**/*.webm"

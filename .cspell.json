@@ -32,6 +32,7 @@
     "rharkor",
     "gitdir",
     "gitworktrees",
+    "managed-scriptrc",
     "shellcheck",
     "tenv",
     "typanion",

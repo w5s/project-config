@@ -69,6 +69,7 @@ export const config: AdvancedCSpellSettings = {
     '**/vscode-extension/**',
     '**/yarn.lock',
     '**/pnpm-lock.yaml',
+    '**/skills-lock.json',
 
     // Ignore common media files
     '**/*.svg',
