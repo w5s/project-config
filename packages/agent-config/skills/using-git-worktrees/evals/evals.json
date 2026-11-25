@@ -1,0 +1,46 @@
+{
+  "skill_name": "using-git-worktrees",
+  "notes": "Each run operates in a fresh scratch git repo prepared by the harness. git-worktree-manager is NOT installed in the scratch repo or on PATH, so the skill must resolve the vendored copy bundled under scripts/. The worktrees root defaults to .worktrees unless a .gitworktrees config sets another root.",
+  "evals": [
+    {
+      "id": 0,
+      "name": "establish-and-create",
+      "prompt": "I want to start a new feature branch feat/checkout-v2 without touching my current work or the edits I have open. Set up an isolated workspace for it and tell me where it is.",
+      "expected_output": "Uses git-worktree-manager (vendored) to run init (creating .gitworktrees and gitignoring the worktrees root), then creates a worktree for a new branch feat/checkout-v2 under the configured root (default .worktrees). The main checkout stays on its branch with its uncommitted change intact; nothing under the worktrees root is committed.",
+      "files": [],
+      "assertions": [
+        { "text": "A .gitworktrees config file now exists at the repo root", "check": "test -f <main-repo>/.gitworktrees" },
+        { "text": "The worktrees root (.worktrees) is gitignored", "check": "git -C <main-repo> check-ignore -q .worktrees" },
+        { "text": "A worktree exists for branch feat/checkout-v2 under the configured root", "check": "git worktree list --porcelain lists branch refs/heads/feat/checkout-v2 with a path under the configured root" },
+        { "text": "Branch feat/checkout-v2 was created from the main tip", "check": "feat/checkout-v2 tip commit == main tip commit" },
+        { "text": "The main working tree is unchanged (same branch, dirty edit preserved)", "check": "main checkout still on its original branch and the uncommitted file content is intact" },
+        { "text": "No worktree contents were committed", "check": "git log adds no files under the worktrees root and git status does not track it" }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "already-in-worktree-no-duplicate",
+      "prompt": "Before we start implementing the plan, make sure we're working in an isolated worktree so my main branch stays safe.",
+      "expected_output": "Recognizes the cwd is already a linked worktree (Step 0) and does NOT create a second/nested worktree; reports it is already isolated and proceeds.",
+      "files": [],
+      "assertions": [
+        { "text": "Recognizes it is already in an isolated/linked worktree", "check": "the response states it is already in a worktree / isolated and skips creation" },
+        { "text": "Does not create an additional worktree", "check": "git worktree list count is unchanged from the start" },
+        { "text": "Does not run init or create a nested config inside the current worktree", "check": "no new .gitworktrees file is created inside the linked worktree" }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "respect-existing-config",
+      "prompt": "Spin up an isolated worktree for bugfix/signup-crash so I can work on it in parallel with what I'm doing now.",
+      "expected_output": "Sees the existing .gitworktrees config (root = .trees), does NOT re-run init, and creates the worktree under .trees/ (the configured root) rather than the default .worktrees, on a new branch bugfix/signup-crash.",
+      "files": [],
+      "assertions": [
+        { "text": "Honors the existing config root: worktree is created under .trees/", "check": "git worktree list shows a path under <main-repo>/.trees for branch bugfix/signup-crash" },
+        { "text": "Does not place the worktree under the default .worktrees", "check": "no worktree is created under <main-repo>/.worktrees" },
+        { "text": "Does not overwrite or duplicate the existing .gitworktrees", "check": ".gitworktrees still contains root = .trees and was not rewritten by init" },
+        { "text": "Branch bugfix/signup-crash exists", "check": "git show-ref --verify refs/heads/bugfix/signup-crash succeeds" }
+      ]
+    }
+  ]
+}

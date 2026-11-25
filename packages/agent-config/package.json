@@ -3,8 +3,40 @@
   "version": "1.0.0-alpha.1",
   "private": true,
   "description": "Agent config developed in this repository. Skill directories live in ./skills (symlinked from the repository root ./skills folder).",
+  "homepage": "https://github.com/w5s/project-config/blob/main/packages/agent-config#readme",
+  "bugs": {
+    "url": "https://github.com/w5s/project-config/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w5s/project-config.git",
+    "directory": "packages/agent-config"
+  },
   "license": "MIT",
+  "author": "Julien Polo <julien.polo@gmail.com>",
+  "type": "module",
   "files": [
     "skills"
-  ]
+  ],
+  "scripts": {
+    "build": "pnpm run \"/^build:.*/\"",
+    "build:skills": "node scripts/sync-skill-metadata.ts",
+    "build:vendored-cli": "node scripts/sync-vendored-cli.ts",
+    "clean": "pnpm run \"/^clean:.*/\"",
+    "clean:empty": ":",
+    "format": "pnpm run \"/^format:.*/\"",
+    "format:src": "pnpm exec eslint . --fix",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:src": "pnpm exec eslint .",
+    "test": "pnpm run \"/^test:.*/\"",
+    "test:src": "pnpm exec vitest run",
+    "typecheck": "pnpm run \"/^typecheck:.*/\"",
+    "typecheck:src": "pnpm exec tsc --noEmit"
+  },
+  "devDependencies": {
+    "@w5s/git-worktree-manager": "workspace:*"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
 }
