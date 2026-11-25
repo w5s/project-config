@@ -4,7 +4,8 @@ import rootConfig from '../../eslint.config.js';
 
 export default [
   globalIgnores(['test/**/*', '**/typegen/'], 'Ignore Test Directory'),
-  ...rootConfig, {
+  ...rootConfig,
+  {
     rules: {
       'ts/naming-convention': 'off',
       'ts/no-unsafe-argument': 'off',
@@ -14,4 +15,5 @@ export default [
       'ts/no-unsafe-return': 'off',
     // 'sort-keys/sort-keys-fix': 'error',
     },
-  }];
+  },
+];
