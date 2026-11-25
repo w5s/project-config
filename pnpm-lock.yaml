@@ -405,8 +405,8 @@ importers:
         specifier: ^2.0.0
         version: 2.0.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))
       eslint-plugin-github-actions-2:
-        specifier: ~2.0.0
-        version: 2.0.1(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+        specifier: ~2.1.0
+        version: 2.1.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
       eslint-plugin-import:
         specifier: ~2.32.0
         version: 2.32.0(@typescript-eslint/parser@8.73.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)
@@ -3154,8 +3154,8 @@ packages:
     peerDependencies:
       eslint: '>=8'
 
-  eslint-plugin-github-actions-2@2.0.1:
-    resolution: {integrity: sha512-iNnVtC178JJsKRBCCuUaga3Kty3GXluLUZss6sVtPFwrNbcpXJlJIgWdJjGz2unOLpKsFhLlEX1XB3wnz7IcQg==}
+  eslint-plugin-github-actions-2@2.1.0:
+    resolution: {integrity: sha512-jqhSfuBTqtAxb0fjyw9zzA95qU+btyZpebvzaB5g3Z8xZqD+coEeyjiwrR019rC5QnKY2JUBZqeJrCctmNHX9A==}
     engines: {node: '>=22.0.0'}
     peerDependencies:
       eslint: ^9.0.0 || ^10.5.0
@@ -9344,7 +9344,7 @@ snapshots:
       eslint: 10.15.0(jiti@2.7.0)(supports-color@7.2.0)
       eslint-compat-utils: 0.5.1(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))
 
-  eslint-plugin-github-actions-2@2.0.1(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3):
+  eslint-plugin-github-actions-2@2.1.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3):
     dependencies:
       '@typescript-eslint/parser': 8.73.0(eslint@10.15.0(jiti@2.7.0)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
       eslint: 10.15.0(jiti@2.7.0)(supports-color@7.2.0)
