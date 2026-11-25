@@ -1739,6 +1739,7 @@ type GithubActionsActionNameCasing = [] | [(("camelCase" | "kebab-case" | "Pasca
   snake_case?: boolean;
   "Title Case"?: boolean;
   "Train-Case"?: boolean;
+  allowPattern?: string;
 })];
 // ----- github-actions/input-id-case -----
 type GithubActionsInputIdCase = [] | [(("camelCase" | "kebab-case" | "PascalCase" | "SCREAMING_SNAKE_CASE" | "snake_case" | "Train-Case") | {
