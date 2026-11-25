@@ -1,7 +1,8 @@
-import { mkdir, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import nodePath from 'node:path';
 import { beforeEach, describe, expect, it } from 'vitest';
 
+import { runScript } from '../ManagedScript/runScript.js';
 import { ConfigLoader } from './ConfigLoader.js';
 
 describe('ConfigLoader', () => {
@@ -16,7 +17,6 @@ describe('ConfigLoader', () => {
     await mkdir(RUNNER_TEST_PATH, { recursive: true });
     await rm(EXTENDS_TEST_PATH, { force: true, recursive: true });
     await mkdir(EXTENDS_TEST_PATH, { recursive: true });
-    // A local package.json stops c12 from inheriting the repository root config.
     await writeFile(nodePath.join(TEST_PATH, 'package.json'), JSON.stringify({ name: 'fixture' }, null, 2));
     await writeFile(nodePath.join(RUNNER_TEST_PATH, 'package.json'), JSON.stringify({ name: 'fixture-runner' }, null, 2));
     await writeFile(nodePath.join(EXTENDS_TEST_PATH, 'package.json'), JSON.stringify({ name: 'fixture-extends' }, null, 2));
@@ -58,6 +58,91 @@ describe('ConfigLoader', () => {
       const loaded = await ConfigLoader.load({ cwd: TEST_PATH });
 
       expect(loaded.config.scripts).toEqual({ build: 'from-package-json' });
+    });
+
+    it('finds an ancestor package configuration past packages without the field', async () => {
+      const packageDir = nodePath.join(TEST_PATH, 'packages', 'child', 'src');
+      await mkdir(packageDir, { recursive: true });
+      await writeFile(
+        nodePath.join(TEST_PATH, 'package.json'),
+        JSON.stringify({ 'managed-script': { scripts: { build: 'from-root' } } }),
+      );
+      await writeFile(nodePath.join(TEST_PATH, 'packages', 'child', 'package.json'), JSON.stringify({ name: 'child' }));
+
+      const loaded = await ConfigLoader.load({ cwd: packageDir });
+
+      expect(loaded.config.scripts).toEqual({ build: 'from-root' });
+      expect(loaded.configFile).toBe(nodePath.resolve(TEST_PATH, 'package.json'));
+      expect(loaded.layers.some((layer) => layer.configFile === nodePath.resolve(TEST_PATH, 'package.json'))).toBe(true);
+    });
+
+    it('resolves ancestor extends from the config directory and executes in the child directory', async () => {
+      const childDir = nodePath.resolve(TEST_PATH, 'packages', 'child');
+      const sharedDir = nodePath.resolve(TEST_PATH, 'shared');
+      await mkdir(childDir, { recursive: true });
+      await mkdir(sharedDir, { recursive: true });
+      await writeFile(nodePath.join(TEST_PATH, 'package.json'), JSON.stringify({ 'managed-script': { extends: ['./shared'] } }));
+      await writeFile(nodePath.join(childDir, 'package.json'), JSON.stringify({ name: 'child' }));
+      await writeFile(
+        nodePath.join(sharedDir, 'managed-script.config.json'),
+        JSON.stringify({
+          scripts: {
+            build: {
+              args: ['-e', 'require("node:fs/promises").writeFile("result.txt", process.cwd() + "\\n" + process.env.MANAGED_SCRIPT_CONFIG_FILE)'],
+              runner: process.execPath,
+            },
+          },
+        }),
+      );
+
+      await runScript({ context: { cwd: childDir }, parameters: { scriptName: 'build' } });
+
+      expect(await readFile(nodePath.join(childDir, 'result.txt'), 'utf8')).toBe(
+        `${childDir}\n${nodePath.join(sharedDir, 'managed-script.config.json')}`,
+      );
+    });
+
+    it('prefers the nearest config file over an ancestor package configuration', async () => {
+      const childDir = nodePath.join(TEST_PATH, 'packages', 'child');
+      await mkdir(childDir, { recursive: true });
+      await writeFile(
+        nodePath.join(TEST_PATH, 'package.json'),
+        JSON.stringify({ 'managed-script': { scripts: { build: 'from-root' } } }),
+      );
+      await writeFile(nodePath.join(childDir, 'managed-script.config.json'), JSON.stringify({ scripts: { build: 'from-child' } }));
+
+      const loaded = await ConfigLoader.load({ cwd: childDir });
+
+      expect(loaded.config.scripts).toEqual({ build: 'from-child' });
+      expect(loaded.configFile).toBe(nodePath.resolve(childDir, 'managed-script.config.json'));
+      expect(loaded.layers.some((layer) => layer.configFile === loaded.configFile)).toBe(true);
+    });
+
+    it('continues to the ancestor when the local configuration is empty', async () => {
+      const childDir = nodePath.join(TEST_PATH, 'child');
+      await mkdir(childDir, { recursive: true });
+      await writeFile(
+        nodePath.join(TEST_PATH, 'package.json'),
+        JSON.stringify({ 'managed-script': { scripts: { build: 'from-root' } } }),
+      );
+      await writeFile(nodePath.join(childDir, 'package.json'), JSON.stringify({ 'managed-script': {} }));
+
+      const loaded = await ConfigLoader.load({ cwd: childDir });
+
+      expect(loaded.config.scripts).toEqual({ build: 'from-root' });
+      expect(loaded.configFile).toBe(nodePath.resolve(TEST_PATH, 'package.json'));
+    });
+
+    it('finds an ancestor rc file and preserves its origin', async () => {
+      const childDir = nodePath.join(TEST_PATH, 'child');
+      await mkdir(childDir, { recursive: true });
+      await writeFile(nodePath.join(TEST_PATH, '.managed-scriptrc'), 'scripts.build=from-rc\n');
+
+      const loaded = await ConfigLoader.load({ cwd: childDir });
+
+      expect(loaded.config.scripts).toEqual({ build: 'from-rc' });
+      expect(loaded.configFile).toBe(nodePath.resolve(TEST_PATH, '.managed-scriptrc'));
+      expect(loaded.layers.some((layer) => layer.configFile === loaded.configFile)).toBe(true);
     });
 
     it('returns layer origins for relative and package extends', async () => {

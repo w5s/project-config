@@ -1,5 +1,5 @@
 import { createDefineConfig } from "c12";
-import { n as meta, t as ManagedScript } from "./ManagedScript-B8d632d3.js";
+import { n as meta, t as ManagedScript } from "./ManagedScript-owl9BHa2.js";
 import { n as ManagedScriptEnv } from "./defaultContext-Xl2iA7UM.js";
 // src/defineConfig.ts
 /**

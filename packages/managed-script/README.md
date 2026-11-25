@@ -105,6 +105,8 @@ The override is executed with `npm run "build!"` (arguments are forwarded after 
 
 Use `--cwd` to choose the directory used to resolve configuration and run the selected script. The equivalent environment variable is `MANAGED_SCRIPT_CWD`; the CLI option takes precedence over the environment variable, which takes precedence over the current process directory.
 
+Configuration is searched from that directory upward and the nearest directory that yields a non-empty configuration (`managed-script.config.*`, `.managed-scriptrc` or a `managed-script` field in `package.json`) is used. Scripts still run in the selected working directory.
+
 ### Dry run
 
 Use `--dry-run,-n` to print the resolved command instead of executing it. This is a CLI-only flag; it is not part of the configuration.

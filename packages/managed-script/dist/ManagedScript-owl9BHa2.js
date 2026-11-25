@@ -1,8 +1,8 @@
 import path from "node:path";
 import { loadConfig } from "c12";
+import { access, readFile } from "node:fs/promises";
 import { spawn } from "node:child_process";
 import { n as ManagedScriptEnv, r as Stdio, t as defaultContext } from "./defaultContext-Xl2iA7UM.js";
-import { readFile } from "node:fs/promises";
 import path$1 from "node:path/win32";
 // src/meta.ts
 const meta = Object.freeze({
@@ -14,18 +14,58 @@ const meta = Object.freeze({
 	version: "1.0.0-alpha.5"
 });
 // src/internal/ConfigLoader.ts
-const ConfigLoader = { async load(options) {
-	const result = await loadConfig({
-		cwd: options.cwd,
+const ConfigLoader = { 
+/**
+* Load the configuration of the nearest directory, from `cwd` upward, that defines a non-empty one.
+*
+* @param options
+* @param options.cwd
+*/
+async load({ cwd }) {
+	for (const dir of ancestors(cwd)) {
+		const result = await loadFrom(dir);
+		if (Object.keys(result.config).length > 0) return toLoaderResult(dir, result);
+	}
+	return {
+		config: {},
+		configFile: void 0,
+		layers: []
+	};
+} };
+function* ancestors(start) {
+	for (let dir = path.resolve(start), parent = path.dirname(dir);; dir = parent, parent = path.dirname(dir)) {
+		yield dir;
+		if (parent === dir) return;
+	}
+}
+async function hasPackageJson(dir) {
+	try {
+		await access(path.join(dir, "package.json"));
+		return true;
+	} catch (error) {
+		if (error instanceof Error && "code" in error && (error.code === "ENOENT" || error.code === "ENOTDIR")) return false;
+		throw error;
+	}
+}
+async function loadFrom(dir) {
+	return loadConfig({
+		cwd: dir,
 		name: meta.binaryName,
-		packageJson: [meta.binaryName]
+		packageJson: await hasPackageJson(dir) ? [meta.binaryName] : false
+	});
+}
+function toLoaderResult(dir, result) {
+	const resolveFile = (configFile) => path.resolve(dir, configFile === `${meta.binaryName}.config` ? result.configFile ?? configFile : configFile);
+	const layers = (result.layers ?? []).filter((layer) => layer.config != null && Object.keys(layer.config).length > 0).map((layer) => layer.configFile === void 0 ? layer : {
+		...layer,
+		configFile: resolveFile(layer.configFile)
 	});
 	return {
 		config: result.config,
-		configFile: result.configFile ?? void 0,
-		layers: result.layers ?? []
+		configFile: layers.find((layer) => layer.configFile !== void 0)?.configFile,
+		layers
 	};
-} };
+}
 // src/internal/Executor.ts
 /**
 * Runs a shell command (`run`), or a program spawned directly without a shell (`runner`).
@@ -318,4 +358,4 @@ async function runScript(options) {
 const ManagedScript = Object.freeze({ runScript });
 export { meta as n, ManagedScript as t };
 
-//# sourceMappingURL=ManagedScript-B8d632d3.js.map
+//# sourceMappingURL=ManagedScript-owl9BHa2.js.map
