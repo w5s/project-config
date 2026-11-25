@@ -89,12 +89,5 @@
     "node": ">=22.0.0",
     "npm": ">=6.0.0",
     "pnpm": ">=10.0.0"
-  },
-  "skills": [
-    {
-      "source": "anthropics/skills",
-      "ref": "e4bb5d960d87126ff3b3a8af1a104b7db67560ba",
-      "skills": ["skill-creator"]
-    }
-  ]
+  }
 }
