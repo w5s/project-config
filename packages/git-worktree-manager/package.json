@@ -32,7 +32,7 @@
     "clean": "pnpm run \"/^clean:.*/\"",
     "clean:empty": ":",
     "docs": "node ../../markdown.mjs",
-    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint": "managed-script",
     "lint:bin": "bash scripts/build.sh --check",
     "lint:src": "shellcheck -x src/main.sh scripts/build.sh test/git-worktree-manager.test.sh && shellcheck bin/git-worktree-manager",
     "postpack": "clean-package restore",
