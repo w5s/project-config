@@ -16,6 +16,13 @@
       "skillPath": "skills/tsdown/SKILL.md",
       "version": "0.23.7",
       "computedHash": "29c987891882231833eaf9a44804d09647f5087e529bdf3cfce6d0f14a39c09c"
+    },
+    "using-git-worktrees": {
+      "source": "@w5s/agent-config",
+      "sourceType": "node_modules",
+      "skillPath": "skills/using-git-worktrees/SKILL.md",
+      "version": "1.0.0-alpha.1",
+      "computedHash": "ce5321ea964d6a7d58deff5b3a2f27d0fd309dc2f82da0deb533d5618aeee2a6"
     }
   }
 }

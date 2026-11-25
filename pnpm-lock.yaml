@@ -266,7 +266,11 @@ importers:
         specifier: 5.1.1
         version: 5.1.1(@types/node@26.6.6)(vite@8.3.8(@types/node@26.6.6)(jiti@2.7.0)(yaml@2.9.1))
 
-  packages/agent-config: {}
+  packages/agent-config:
+    devDependencies:
+      '@w5s/git-worktree-manager':
+        specifier: workspace:*
+        version: link:../git-worktree-manager
 
   packages/browserslist-config:
     devDependencies:

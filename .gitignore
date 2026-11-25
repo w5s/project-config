@@ -144,6 +144,9 @@ dist
 #==================================================================================================
 # END MANAGED BLOCK
 
+# skill-creator eval scratch (sibling of each skill dir, e.g. skills/<name>-workspace)
+*-workspace/
+
 # Build directory
 # We keep some built files because they are needed for the repository tooling itself (ex: prettier-config, commitlint-config)
 !packages/dev/dist/
