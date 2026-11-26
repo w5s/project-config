@@ -11540,7 +11540,7 @@ interface RuleOptions$3 {
    * Require that function overload signatures be consecutive
    * @see https://typescript-eslint.io/rules/adjacent-overload-signatures
    */
-  'ts/adjacent-overload-signatures'?: Linter.RuleEntry<[]>;
+  'ts/adjacent-overload-signatures'?: Linter.RuleEntry<TsAdjacentOverloadSignatures>;
   /**
    * Require consistently using either `T[]` or `Array<T>` for arrays
    * @see https://typescript-eslint.io/rules/array-type
@@ -12232,6 +12232,10 @@ interface RuleOptions$3 {
   'ts/use-unknown-in-catch-callback-variable'?: Linter.RuleEntry<[]>;
 }
 /* ======= Declarations ======= */
+// ----- ts/adjacent-overload-signatures -----
+type TsAdjacentOverloadSignatures = [] | [{
+  ignoreAccessors?: boolean;
+}];
 // ----- ts/array-type -----
 type TsArrayType = [] | [{
   default?: ("array" | "generic" | "array-simple");
