@@ -56,7 +56,7 @@
     "@commitlint/cli": "21.2.4",
     "@lerna-lite/cli": "5.9.0",
     "@lerna-lite/publish": "5.9.0",
-    "@types/node": "26.6.6",
+    "@types/node": "26.6.7",
     "@types/parse-gitignore": "1.0.2",
     "@w5s/agent-config": "workspace:*",
     "@w5s/commitlint-config": "workspace:*",
