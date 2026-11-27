@@ -101,7 +101,9 @@ unpushed, locked, or protected ones.
 
 - **Inspect:** `"$WT" list` shows `[dirty:N]`, `[unpushed:N]`, `[no-upstream]`,
   and `[missing directory]` markers.
-- **Remove one:** `"$WT" remove --dir=<dir>` (relative to the root; keeps the branch).
+- **Remove one:** `"$WT" remove --dir=<dir>` (relative to the root; keeps the
+  branch). It treats a branch whose remote was deleted as unpushed and refuses;
+  `cleanup --include-gone` (below) removes those, keeping the branch.
 - **Clean up:** preview, get the user's approval, then apply.
 
   ```bash

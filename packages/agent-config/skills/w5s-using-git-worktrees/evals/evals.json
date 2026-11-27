@@ -41,6 +41,49 @@
         { "text": "Does not overwrite or duplicate the existing .gitworktrees", "check": ".gitworktrees still contains root = .trees and was not rewritten by init" },
         { "text": "Branch bugfix/signup-crash exists", "check": "git show-ref --verify refs/heads/bugfix/signup-crash succeeds" }
       ]
+    },
+    {
+      "id": 3,
+      "name": "cleanup-through-the-tool",
+      "prompt": "cleanup worktrees",
+      "expected_output": "Uses git-worktree-manager rather than raw git: runs cleanup --dry-run --include-gone, presents the plan, then applies it with --yes. Worktrees whose remote branch is gone are removed; a worktree with uncommitted changes and one on a live, unmerged branch are kept and reported with their reasons.",
+      "files": [],
+      "setup": "Harness creates three worktrees under .worktrees older than one day: feat/gone (clean, upstream deleted), feat/dirty (upstream deleted, uncommitted edit), and feat/live (clean, upstream exists, not merged).",
+      "assertions": [
+        { "text": "Uses the tool, not raw git, to remove worktrees", "check": "the transcript runs git-worktree-manager cleanup (or remove) and never runs git worktree remove or git worktree prune directly" },
+        { "text": "Previews before applying", "check": "cleanup --dry-run runs before the applying cleanup --yes" },
+        { "text": "The gone, clean worktree is removed", "check": "git worktree list no longer lists refs/heads/feat/gone" },
+        { "text": "The dirty worktree is kept and its edit preserved", "check": "git worktree list still lists refs/heads/feat/dirty and its uncommitted change is intact" },
+        { "text": "The live, unmerged worktree is kept", "check": "git worktree list still lists refs/heads/feat/live" },
+        { "text": "Branches are not deleted", "check": "git show-ref --verify refs/heads/feat/gone still succeeds" }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "list-and-triage",
+      "prompt": "what worktrees do I have and which ones can go?",
+      "expected_output": "Uses git-worktree-manager to inspect (list and/or cleanup --dry-run --include-gone) and reports which worktrees are removable and why, without removing anything.",
+      "files": [],
+      "setup": "Same three worktrees as cleanup-through-the-tool.",
+      "assertions": [
+        { "text": "Inspects through the tool", "check": "the transcript runs git-worktree-manager list or cleanup --dry-run" },
+        { "text": "Identifies feat/gone as removable and the others as kept, with reasons", "check": "the response names feat/gone as removable, feat/dirty as kept for uncommitted changes, feat/live as kept because not merged" },
+        { "text": "Removes nothing", "check": "git worktree list is unchanged from the start" }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "remove-one-gone",
+      "prompt": "delete the feat/gone worktree",
+      "expected_output": "Tries remove --dir=feat/gone, sees it refused because the remote branch was deleted, previews cleanup --include-gone, and after approval removes only that worktree while keeping the branch. Never uses raw git worktree remove.",
+      "files": [],
+      "setup": "Same three worktrees as cleanup-through-the-tool. The user approves the proposed plan in a second turn.",
+      "assertions": [
+        { "text": "Never removes with raw git", "check": "the transcript never runs git worktree remove or git worktree prune directly" },
+        { "text": "feat/gone worktree is removed", "check": "git worktree list no longer lists refs/heads/feat/gone" },
+        { "text": "Other worktrees are kept", "check": "git worktree list still lists refs/heads/feat/dirty and refs/heads/feat/live" },
+        { "text": "The branch is kept", "check": "git show-ref --verify refs/heads/feat/gone still succeeds" }
+      ]
     }
   ]
 }
