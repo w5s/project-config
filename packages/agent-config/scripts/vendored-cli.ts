@@ -1,7 +1,7 @@
 import path from 'node:path';
 
 /** Skills that vendor the CLI, by skill directory name. */
-export const VENDORING_SKILLS = ['using-git-worktrees'];
+export const VENDORING_SKILLS = ['w5s-using-git-worktrees'];
 
 /**
  * @param packageDir

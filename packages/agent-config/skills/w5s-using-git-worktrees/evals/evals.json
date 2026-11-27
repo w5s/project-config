@@ -1,5 +1,5 @@
 {
-  "skill_name": "using-git-worktrees",
+  "skill_name": "w5s-using-git-worktrees",
   "notes": "Each run operates in a fresh scratch git repo prepared by the harness. git-worktree-manager is NOT installed in the scratch repo or on PATH, so the skill must resolve the vendored copy bundled under scripts/. The worktrees root defaults to .worktrees unless a .gitworktrees config sets another root.",
   "evals": [
     {

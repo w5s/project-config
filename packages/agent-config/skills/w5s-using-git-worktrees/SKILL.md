@@ -1,5 +1,5 @@
 ---
-name: using-git-worktrees
+name: w5s-using-git-worktrees
 description: Use when starting feature work, a bugfix, or executing an implementation plan that should stay isolated from your current branch and uncommitted changes, or whenever worktrees or parallel branches come up. Creates the isolated worktree with git-worktree-manager (resolved from node_modules, then PATH, then a vendored copy) and establishes the project's .gitworktrees configuration on first use.
 license: MIT
 compatibility: Requires a Git repository and shell access. Uses the git-worktree-manager CLI, resolved from the repo, PATH, or a vendored copy bundled with this skill.
@@ -26,7 +26,7 @@ keeps every worktree consistent and reproducible instead of hand-rolling
 **Core principle:** respect isolation that already exists, resolve the one tool,
 let it do the work, and surface problems loudly instead of silently degrading.
 
-**Announce at start:** "I'm using the using-git-worktrees skill to set up an
+**Announce at start:** "I'm using the w5s-using-git-worktrees skill to set up an
 isolated workspace."
 
 ## How this skill creates worktrees

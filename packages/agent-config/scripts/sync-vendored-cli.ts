@@ -2,7 +2,7 @@
 
 /**
  * Vendors the built `git-worktree-manager` binary into the skills that bundle it
- * (currently `using-git-worktrees`), so the skill is self-contained and runs the
+ * (currently `w5s-using-git-worktrees`), so the skill is self-contained and runs the
  * exact same code offline when the CLI is not installed in the host repo.
  *
  * The source is the `bin` entry of `@w5s/git-worktree-manager`, resolved through

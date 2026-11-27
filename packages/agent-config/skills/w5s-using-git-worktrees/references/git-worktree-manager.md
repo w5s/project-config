@@ -25,7 +25,7 @@ else
 fi
 ```
 
-`<skill-dir>` is the `using-git-worktrees` directory that contains this
+`<skill-dir>` is the `w5s-using-git-worktrees` directory that contains this
 `references/` folder. Use its absolute path so the binary resolves regardless of
 the current working directory.
 

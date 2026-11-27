@@ -17,12 +17,12 @@
       "version": "0.23.7",
       "computedHash": "29c987891882231833eaf9a44804d09647f5087e529bdf3cfce6d0f14a39c09c"
     },
-    "using-git-worktrees": {
+    "w5s-using-git-worktrees": {
       "source": "@w5s/agent-config",
       "sourceType": "node_modules",
-      "skillPath": "skills/using-git-worktrees/SKILL.md",
+      "skillPath": "skills/w5s-using-git-worktrees/SKILL.md",
       "version": "1.0.0-alpha.1",
-      "computedHash": "400343b21133a9f046ad95d3d406f2e23982794555c6aee005ad55db7ddda9ce"
+      "computedHash": "bc193c1041af06deed2115d52b0d965523bbc11a08578d05b47dc1405ffa3e7f"
     }
   }
 }
